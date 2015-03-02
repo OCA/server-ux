@@ -21,8 +21,8 @@
 ##############################################################################
 {
     "name": "Mass Editing",
-    "version": "1.3",
-    "author": "Serpent Consulting Services",
+    "version": "8.0.1.3.0",
+    "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",
     ],
