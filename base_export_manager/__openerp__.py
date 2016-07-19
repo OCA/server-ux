@@ -5,7 +5,7 @@
 {
     'name': "Manage model export profiles",
     'category': 'Personalization',
-    'version': '9.0.1.1.0',
+    'version': '9.0.1.0.0',
     'depends': [
         'web',
     ],
