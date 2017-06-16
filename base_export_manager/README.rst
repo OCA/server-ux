@@ -44,6 +44,7 @@ To manage export profiles, you need to:
 * Choose a name.
 * Choose a model (table in the database).
 * Choose the fields to export.
+
   * If you choose a related field, you can choose also up to 4 levels of
     subfields.
   * You can drag & drop to reorder the fields.
@@ -86,10 +87,10 @@ Credits
 Contributors
 ------------
 
-* Antonio Espinosa <antonioea@antiun.com>
 * Javier Iniesta <javieria@antiun.com>
-* Rafael Blasco <rafabn@antiun.com>
-* Jairo Llopis <yajo.sk8@gmail.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Rafael Blasco <rafael.blasco@tecnativa.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 * Dave Lasley <dave@laslabs.com>
 * Sandip Mangukiya <smangukiya@ursainfosystems.com>
 * Maxime Chambreuil <mchambreuil@ursainfosystems.com>

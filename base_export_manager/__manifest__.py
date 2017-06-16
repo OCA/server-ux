@@ -10,7 +10,6 @@
         'web',
     ],
     'data': [
-        'data/ir_exports_data.xml',
         'views/assets.xml',
         'views/ir_exports.xml',
         'views/ir_model.xml',
@@ -20,12 +19,11 @@
     'qweb': [
         "static/src/xml/base.xml",
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Tecnativa, '
+    'author': 'Tecnativa, '
               'LasLabs, '
               'Ursa Information Systems, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'website': 'https://www.tecnativa.com',
     'license': 'AGPL-3',
     'installable': True,
     'application': False,
