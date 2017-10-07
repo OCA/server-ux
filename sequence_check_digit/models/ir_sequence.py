@@ -5,14 +5,14 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 import logging
-
+_logger = logging.getLogger(__name__)
 try:
     from stdnum.iso7064 import mod_97_10
     from stdnum.iso7064 import mod_37_2, mod_37_36
     from stdnum.iso7064 import mod_11_2, mod_11_10
     from stdnum import luhn, damm, verhoeff
 except(ImportError, IOError) as err:
-    logging.info(err)
+    _logger.debug(err)
 
 
 class IrSequence(models.Model):
