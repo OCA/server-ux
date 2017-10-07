@@ -4,16 +4,16 @@
 
 
 from odoo.tests import common
-import logging
 from odoo.exceptions import ValidationError
-
+import logging
+_logger = logging.getLogger(__name__)
 try:
     from stdnum.iso7064 import mod_97_10
     from stdnum.iso7064 import mod_37_2, mod_37_36
     from stdnum.iso7064 import mod_11_2, mod_11_10
     from stdnum import luhn, damm, verhoeff
 except(ImportError, IOError) as err:
-    logging.info(err)
+    _logger.debug(err)
 
 
 class TestSequenceCheckDigit(common.TransactionCase):
@@ -24,6 +24,14 @@ class TestSequenceCheckDigit(common.TransactionCase):
             'check_digit_formula': method,
             'padding': '5'
         })
+
+    def test_none(self):
+        sequence = self.get_sequence('none')
+        self.assertEqual('00001', sequence.next_by_id())
+
+    def test_null(self):
+        sequence = self.get_sequence(None)
+        self.assertEqual('00001', sequence.next_by_id())
 
     def test_luhn(self):
         sequence = self.get_sequence('luhn')
