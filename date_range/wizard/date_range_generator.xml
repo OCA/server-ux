@@ -4,7 +4,7 @@
         <field name="name">date.range.generator.form</field>
         <field name="model">date.range.generator</field>
         <field name="arch" type="xml">
-            <form string="Genrate Date Ranges">
+            <form string="Generate Date Ranges">
                 <group col="4">
                     <field name="name_prefix"/>
                     <field name="type_id"/>
