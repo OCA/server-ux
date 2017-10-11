@@ -6,7 +6,7 @@ odoo.define('date_range.search_filters', function (require) {
 var core = require('web.core'); 
 var data = require('web.data');
 var filters = require('web.search_filters');
-var Model = require('web.Model');
+var rpc = require('web.rpc');
 var framework = require('web.framework');
 
 var _t = core._t;
@@ -71,7 +71,14 @@ filters.ExtendedSearchProposition.include({
     
 });
 
-filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.Field.extend({
+/**
+Since Odoo 11, The Field class used as base class for all specialized filter
+widgets is no more exposed by 'web.search_filters'. To create our own class we
+extend the more simple class available into the search_filters_registry as base
+class
+*/
+
+filters.ExtendedSearchProposition.DateRange = core.search_filters_registry.get('id').extend({
     template: 'SearchView.extended_search.dateRange.selection',
     events: {
         'change': 'on_range_selected',
@@ -96,16 +103,18 @@ filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.
         var self = this;
         self.domain = '';
         framework.blockUI();
-        new Model("date.range")
-                .call("get_domain",  [
-                [this.get_value()],
-                 this.field.name,
-                 {}
-         ])
-        .then(function (domain) {
-            framework.unblockUI();
-            self.domain = domain;
-        });
+        return rpc.query({
+                args: [this.get_value()],
+                kwargs: {
+                    field_name: this.field.name
+                },
+                model: 'date.range',
+                method: 'get_domain',
+            })
+            .then(function (domain) {
+                framework.unblockUI();
+                self.domain = domain;
+            });
     },
     
     get_domain: function (field, operator) {
