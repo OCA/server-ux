@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/license-LGPLv3-blue.svg
-   :target: https://www.gnu.org/licenses/lgpl.html
-   :alt: License: LGPL-3
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
 ============
 Mass Editing
@@ -11,12 +11,6 @@ This module provides the following features:
 * You can add, update or remove the values of more than one records on the fly at the same time.
 
 * You can configure mass editing for any Odoo model.
-
-* The video explaining the features and how-to for OpenERP Version 6 is here http://t.co/wukYMx1A
-
-* The video explaining the features and how-to for OpenERP Version 7 is here : http://www.youtube.com/watch?v=9BH0o74A748&feature=youtu.be
-
-* For more details/customization/feedback contact us on contact@serpentcs.com
 
 Installation
 ============
@@ -37,7 +31,7 @@ This module allows to add, update or remove the values of more than one records 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 As shown in figure you have to configure the object and fields for mass editing.
 
@@ -70,13 +64,13 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
+<https://github.com/OCA/server-ux/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed `feedback
 <https://github.com/OCA/
-server-tools/issues/new?body=module:%20
-server-tools%0Aversion:%20
-9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+server-ux/issues/new?body=module:%20
+server-ux%0Aversion:%20
+11.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -91,14 +85,16 @@ Contributors
 
 * Oihane Crucelaegui <oihanecrucelaegi@gmail.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Jay Vora <jay.vora@serpentcs.com>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
+* Juan Negrete <jnegrete@casasalce.com>
 
 Maintainer
 ----------
 
 .. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -106,5 +102,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
-
+To contribute to this module, please visit https://odoo-community.org.
