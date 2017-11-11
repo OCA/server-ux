@@ -41,12 +41,11 @@
                     <notebook colspan="4">
                         <page string="Fields">
                             <field name="field_ids" colspan="4" nolabel="1"
-                            domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_list)]"/>
+                            domain="[('ttype', 'not in', ['reference', 'function']), ('mass_editing_domain', 'in', model_list)]"/>
                         </page>
                         <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
                             <group colspan="2" col="2">
                                 <field name="ref_ir_act_window_id"/>
-                                <field name="ref_ir_value_id"/>
                             </group>
                         </page>
                     </notebook>

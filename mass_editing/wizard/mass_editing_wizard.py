@@ -246,7 +246,14 @@ class MassEditingWizard(models.TransientModel):
                     elif val == 'remove':
                         values.update({split_key: False})
                     elif val == 'remove_m2m':
-                        values.update({split_key: [(5, 0, [])]})
+                        m2m_list = []
+                        if vals.get(split_key):
+                            for m2m_id in vals.get(split_key)[0][2]:
+                                m2m_list.append((3, m2m_id))
+                        if m2m_list:
+                            values.update({split_key: m2m_list})
+                        else:
+                            values.update({split_key: [(5, 0, [])]})
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:
@@ -271,4 +278,7 @@ class MassEditingWizard(models.TransientModel):
         if fields:
             # We remove fields which are not in _fields
             real_fields = [x for x in fields if x in self._fields]
-        return super(MassEditingWizard, self).read(real_fields, load=load)
+        result = super(MassEditingWizard, self).read(real_fields, load=load)
+        # adding fields to result
+        [result[0].update({x: False}) for x in fields if x not in real_fields]
+        return result
