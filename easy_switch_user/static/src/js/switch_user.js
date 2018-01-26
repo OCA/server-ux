@@ -29,42 +29,48 @@ odoo.define('easy_switch_user', function(require) {
             });
         },
         populate: function(users) {
-            var self = this;
             var stored = this.get_stored_passwords();
             var users_stored = [];
             var users_not_stored = [];
-            for(var i in users)
-                if(users[i].login in stored)
+            for(var i in users) {
+                if(users[i].login in stored) {
                     users_stored.push(users[i]);
-                else
+                } else {
                     users_not_stored.push(users[i]);
+                }
+            }
 
             this.$('.dropdown-menu').html('');
             this.populate_users(users_stored);
-            if(users_stored.length > 0)
+            if(users_stored.length > 0) {
                 this.$('.dropdown-menu').append('<li class="divider"></li>');
+            }
             this.populate_users(users_not_stored);
         },
         populate_users: function(users) {
             var self = this;
             _.each(users, function(user) {
-                var inside = session.uid == user.id ?
-                    '<b>' + user.name + ' (' + user.login + ')</b>' :
-                    user.name + ' (' + user.login + ')';
+                var inside = session.uid === user.id
+                    ? '<b>' + user.name + ' (' + user.login + ')</b>'
+                    : user.name + ' (' + user.login + ')';
                 self.$('.dropdown-menu').append(
                     '<li><a href="#" data-user-login="' + user.login + '">' + inside + '</a></li>'
-                )
+                );
             });
         },
         get_stored_passwords: function() {
             var val = sessionStorage.getItem('easy_switch_user');
-            if (!val) return {};
+            if (!val) {
+                return {};
+            }
             return JSON.parse(val);
         },
         store_password: function(login, password) {
             var store = {};
             var val = sessionStorage.getItem('easy_switch_user');
-            if (val) store = JSON.parse(val);
+            if (val) {
+                store = JSON.parse(val);
+            }
             store[login] = password;
             sessionStorage.setItem('easy_switch_user', JSON.stringify(store));
         },
@@ -86,14 +92,17 @@ odoo.define('easy_switch_user', function(require) {
             }
         },
         switch_user: function(login, password, store) {
-            if (typeof(store) == 'undefined') store = false;
+            if (typeof(store) === 'undefined') {
+                store = false;
+            }
             var self = this;
             return ajax.jsonRpc('/easy_switch_user/switch', 'call', {
                 login: login,
                 password: password
             }).then(function() {
-                if(store)
+                if(store) {
                     self.store_password(login, password);
+                }
                 window.location.reload();
             });
         }
@@ -102,7 +111,6 @@ odoo.define('easy_switch_user', function(require) {
     SystrayMenu.Items.push(SwitchUserMenu);
 
     var SwitchUserLoginDialog = Dialog.extend({
-        login: $.Deferred(),
         init: function(parent, user_login) {
             this._super(parent, {
                 title: _t('Switch User'),
