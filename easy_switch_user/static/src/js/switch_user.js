@@ -82,7 +82,7 @@ odoo.define('easy_switch_user', function(require) {
                 dialog.open();
             }
         },
-        switch_user: function(login, password, store=false) {
+        switch_user: function(login, password, store = false) {
             var self = this;
             return ajax.jsonRpc('/easy_switch_user/switch', 'call', {
                 login: login,
