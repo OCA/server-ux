@@ -8,7 +8,7 @@
     'category': 'Tools',
     'version': '11.0.1.0.0',
     'author': 'Onestein, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-ux',
     'license': 'AGPL-3',
     'depends': [
         'web'
