@@ -4,6 +4,7 @@
 odoo.define('easy_switch_user', function(require) {
     var Widget = require('web.Widget');
     var SystrayMenu = require('web.SystrayMenu');
+    var UserMenu = require('web.UserMenu');
     var session = require('web.session');
     var Dialog = require('web.Dialog');
     var core = require('web.core');
@@ -82,9 +83,9 @@ odoo.define('easy_switch_user', function(require) {
                 this.switch_user(user_login, passwords[user_login]);
             } else {
                 var dialog = new SwitchUserLoginDialog(this, user_login);
-                dialog.on('login', this, function(password) {
+                dialog.on('login', this, function(result) {
                     dialog.hideError();
-                    self.switch_user(user_login, password, true).fail(function() {
+                    self.switch_user(user_login, result.password, result.store).fail(function() {
                         dialog.showError();
                     });
                 });
@@ -110,6 +111,16 @@ odoo.define('easy_switch_user', function(require) {
 
     SystrayMenu.Items.push(SwitchUserMenu);
 
+    UserMenu.include({
+        do_action: function(action, options) {
+            var def = this._super(action, options);
+            if (action == 'logout') {
+                sessionStorage.removeItem('easy_switch_user');
+            }
+            return def;
+        }
+    });
+
     var SwitchUserLoginDialog = Dialog.extend({
         init: function(parent, user_login) {
             this._super(parent, {
@@ -122,7 +133,10 @@ odoo.define('easy_switch_user', function(require) {
             });
         },
         login: function() {
-            this.trigger('login', this.$('input[type="password"]').val());
+            this.trigger('login', {
+                'password': this.$('input[type="password"]').val(),
+                'store': this.$('input[type="checkbox"]').is(':checked')
+            });
         },
         showError: function() {
             this.$('.alert-danger').removeClass('hidden');

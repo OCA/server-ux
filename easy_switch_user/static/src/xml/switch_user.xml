@@ -22,6 +22,11 @@
                 <label>Password</label>
                 <input type="password" class="form-control"/>
             </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"/> Store password (remembers it until you close this tab)
+                </label>
+            </div>
             <div class="alert alert-danger hidden">
                 Login failed.
             </div>
