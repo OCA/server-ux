@@ -91,6 +91,7 @@ Contributors
 ------------
 
 * Laurent Mignon <laurent.mignon@acsone.eu>
+* Miquel Raïch <miquel.raich@eficent.com>
 
 Maintainer
 ----------
