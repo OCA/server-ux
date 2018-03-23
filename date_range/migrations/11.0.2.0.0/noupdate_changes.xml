@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="date_range_type_comp_rule" model="ir.rule">
+    <field name="domain_force"> ['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+  </record>
+  <record id="date_range_comp_rule" model="ir.rule">
+    <field name="domain_force"> ['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+  </record>
+</odoo>
