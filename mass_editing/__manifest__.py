@@ -5,6 +5,7 @@
     'version': '11.0.1.0.0',
     'author': 'Serpent Consulting Services Pvt. Ltd., '
               'Tecnativa, '
+              'brain-tec AG, '
               'Odoo Community Association (OCA)',
     'category': 'Tools',
     'website': 'http://www.serpentcs.com',

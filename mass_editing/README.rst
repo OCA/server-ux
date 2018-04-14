@@ -88,6 +88,7 @@ Contributors
 * Jay Vora <jay.vora@serpentcs.com>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
 * Juan Negrete <jnegrete@casasalce.com>
+* Raul Martin <raul.martin@braintec-group.com>
 
 Maintainer
 ----------
