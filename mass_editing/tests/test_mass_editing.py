@@ -12,13 +12,14 @@ class TestMassEditing(common.TransactionCase):
 
     def setUp(self):
         super(TestMassEditing, self).setUp()
+        # Model connections
         model_obj = self.env['ir.model']
         self.mass_wiz_obj = self.env['mass.editing.wizard']
         self.mass_object_model = self.env['mass.object']
         self.res_partner_model = self.env['res.partner']
         self.ir_translation_model = self.env['ir.translation']
         self.lang_model = self.env['res.lang']
-
+        # Shared data for test methods
         self.partner = self._create_partner()
         self.partner_model = model_obj.\
             search([('model', '=', 'res.partner')])
@@ -58,15 +59,13 @@ class TestMassEditing(common.TransactionCase):
 
     def _create_partner_title(self):
         """Create a Partner Title."""
-
         # Loads German to work with translations
         self.lang_model.load_lang('de_DE')
-
+        # Creating the title in English
         partner_title = self.res_partner_title_model.create({
             'name': 'Ambassador',
             'shortcut': 'Amb.',
         })
-
         # Adding translated terms
         ctx = {'lang': 'de_DE'}
         partner_title.with_context(ctx).write({
@@ -85,7 +84,7 @@ class TestMassEditing(common.TransactionCase):
         """Create a Mass Editing with Partner as model and
         email field of partner."""
         mass = self.mass_object_model.create({
-            'name': u'Mass Editing for {0}'.format(model_name),
+            'name': 'Mass Editing for {0}'.format(model_name),
             'model_id': model.id,
             'field_ids': [(6, 0, fields.ids)]
         })
@@ -147,27 +146,23 @@ class TestMassEditing(common.TransactionCase):
         """Test Case for MASS EDITING which will check if translation
         was loaded for new partner title, and if they are removed
         as well as the value for the abbreviation for the partner title."""
-
         search_domain = [('res_id', '=', self.partner_title.id),
                          ('type', '=', 'model'),
                          ('name', '=', 'res.partner.title,shortcut'),
                          ('lang', '=', 'de_DE')]
-
         translation_ids = self.ir_translation_model.search(search_domain)
-
         self.assertEqual(len(translation_ids), 1,
                          'Translation for Partner Title\'s Abbreviation '
                          'was not loaded properly.')
-
+        # Removing partner title with mass edit action
         vals = {
             'selection__shortcut': 'remove',
         }
         self._apply_action(self.partner_title, vals)
         self.assertEqual(self.partner_title.shortcut, False,
                          'Partner Title\'s Abbreviation should be removed.')
-
+        # Checking if translations were also removed
         translation_ids = self.ir_translation_model.search(search_domain)
-
         self.assertEqual(len(translation_ids), 0,
                          'Translation for Partner Title\'s Abbreviation '
                          'was not removed properly.')
