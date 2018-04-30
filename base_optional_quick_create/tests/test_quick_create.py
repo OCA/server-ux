@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -27,3 +26,8 @@ class TestQuickCreate(TransactionCase):
         self.partner_model.avoid_quick_create = False
         partner_id = self.env['res.partner'].name_create('TEST partner')
         self.assertEqual(bool(partner_id), True)
+
+    def test_create_model(self):
+        model_id = self.env['ir.model'].create({'name': 'Test',
+                                                'model': 'x_test_model'})
+        self.assertEqual(bool(model_id), True)

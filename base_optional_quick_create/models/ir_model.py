@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 ACSONE SA/NA (<http://acsone.eu>)
 # Copyright 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
 # Copyright 2018 Simone Rubino - Agile Business Group
@@ -41,7 +40,6 @@ class IrModel(models.Model):
         return super(IrModel, self)._register_hook()
 
     @api.model
-    @api.returns('self', lambda value: value.id)
     def create(self, vals):
         ir_model = super(IrModel, self).create(vals)
         ir_model._patch_quick_create()

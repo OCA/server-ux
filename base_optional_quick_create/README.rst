@@ -24,8 +24,8 @@ To use this module, you need to:
  * enable the option *Avoid quick create*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+  :alt: Try me on Runbot
+  :target: https://runbot.odoo-community.org/runbot/250/11.0
 
 Bug Tracker
 ===========
