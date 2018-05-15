@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-ux Odoo addons",
     version=version,
     install_requires=[
+        'odoo11-addon-base_optional_quick_create',
         'odoo11-addon-base_technical_features',
         'odoo11-addon-base_tier_validation',
         'odoo11-addon-date_range',
