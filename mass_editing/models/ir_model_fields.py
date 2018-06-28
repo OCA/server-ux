@@ -10,14 +10,18 @@ class IrModelFields(models.Model):
     @api.model
     def search(self, args, offset=0, limit=0, order=None, count=False):
         model_domain = []
-        for domain in args:
-            if (len(domain) > 2 and domain[0] == 'mass_editing_domain' and
-                    isinstance(domain[2], str) and
-                    list(domain[2][1:-1])):
-                model_domain += [('model_id', 'in',
-                                  list(map(int, domain[2][1:-1].split(','))))]
-            else:
-                model_domain.append(domain)
-        return super(IrModelFields, self).search(model_domain, offset=offset,
+        if not self.env.context.get('mass_edit', False):
+            model_domain = args
+        else:
+            for domain in args:
+                if (len(domain) > 2 and domain[0] == 'model_id' and
+                        isinstance(domain[2], str) and
+                        list(domain[2][1:-1])):
+                    model_ids = list(map(int, domain[2][1:-1].split(',')))
+                    model_domain += [('model_id', 'in', model_ids)]
+                else:
+                    model_domain.append(domain)
+        return super(IrModelFields, self).search(args=model_domain,
+                                                 offset=offset,
                                                  limit=limit, order=order,
                                                  count=count)
