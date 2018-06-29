@@ -450,16 +450,17 @@ class MassEditingWizard(models.TransientModel):
                                     split_key))])
                             translation_ids.unlink()
 
-                    elif val == 'remove_m2m':
+                    elif val in ['remove_m2m', 'remove_m2m_all']:
+                        m2m_list = []
                         if vals.get(split_key):
-                            m2m_list = []
                             for m2m_id in vals.get(split_key)[0][2]:
                                 m2m_list.append((3, m2m_id))
                         if m2m_list:
                             values.update({split_key: m2m_list})
                         else:
                             values.update({split_key: [(5, 0, [])]})
-                    elif val in ['remove_o2m', 'remove_m2m_all']:
+                            
+                    elif val =='remove_o2m':
                         # model_fieds will return the particular model
                         # in order to get the field of the model
                         # and its relation.
