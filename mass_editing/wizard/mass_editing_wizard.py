@@ -58,7 +58,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'colspan': '4',
                         'nolabel': '1',
-                        'attrs': "{'invisible': [('selection__" + 
+                        'attrs': "{'invisible': [('selection__" +
                         field.name + "', '=', 'remove_m2m')]}",
                     })
                 elif field.ttype == "one2many":
@@ -86,7 +86,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'colspan': '4',
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "', '=', 'remove_o2m')]}",
                     })
                 elif field.ttype == "many2one":
@@ -107,7 +107,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '2',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "', '=', 'remove')]}",
                     })
                 elif field.ttype == "float":
@@ -147,14 +147,14 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '1',
-                        'attrs': "{'invisible': [('selection__" + 
+                        'attrs': "{'invisible': [('selection__" +
                         field.name + "', 'in', ('remove', 'set')]}",
                     })
                     # Add Copy field in view
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" + 
-                        model_obj._name + "'), ('ttype', 'in', ['" + 
+                        'domain': "[('model_id.model', '=', '" +
+                        model_obj._name + "'), ('ttype', 'in', ['" +
                         field.ttype + "', 'integer'])]",
                         'nolabel': '1',
                         'colspan': '1',
@@ -163,14 +163,14 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'label', {
                         'for': "",
                         'colspan': '1',
-                        'attrs': "{'invisible': [('selection__" + 
+                        'attrs': "{'invisible': [('selection__" +
                         field.name + "', 'in', ('remove', 'set', 'copy')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "set_selection_" + field.name,
                         'nolabel': '1',
                         'colspan': '3',
-                        'attrs': "{'invisible': [('selection__" + field.name + 
+                        'attrs': "{'invisible': [('selection__" + field.name +
                         "', 'in', ('remove', 'set', 'copy')]}",
                     })
                 elif field.ttype == "char":
@@ -199,13 +199,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" + 
-                        model_obj._name + "'), ('ttype', 'in', ['" + 
+                        'domain': "[('model_id.model', '=', '" +
+                        model_obj._name + "'), ('ttype', 'in', ['" +
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -236,13 +236,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" + 
-                        model_obj._name + "'), ('ttype', 'in', ['" + 
+                        'domain': "[('model_id.model', '=', '" +
+                        model_obj._name + "'), ('ttype', 'in', ['" +
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -273,13 +273,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" + 
-                        model_obj._name + "'), ('ttype', 'in', ['" + 
+                        'domain': "[('model_id.model', '=', '" +
+                        model_obj._name + "'), ('ttype', 'in', ['" +
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -298,7 +298,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '2',
-                        'attrs': "{'invisible':[('selection__" + 
+                        'attrs': "{'invisible':[('selection__" +
                         field.name + "', '=', 'remove')]}",
                     })
                     all_fields[field.name] = {
@@ -330,7 +330,7 @@ class MassEditingWizard(models.TransientModel):
                             'name': field.name,
                             'colspan': '4',
                             'nolabel': '1',
-                            'attrs': "{'invisible':[('selection__" + 
+                            'attrs': "{'invisible':[('selection__" +
                             field.name + "','=','remove')]}",
                         })
                     else:
@@ -346,7 +346,7 @@ class MassEditingWizard(models.TransientModel):
                         etree.SubElement(xml_group, 'field', {
                             'name': field.name,
                             'nolabel': '1',
-                            'attrs': "{'invisible':[('selection__" + 
+                            'attrs': "{'invisible':[('selection__" +
                             field.name + "','=','remove')]}",
                             'colspan': '2',
                         })
