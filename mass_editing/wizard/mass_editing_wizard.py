@@ -14,7 +14,7 @@ class MassEditingWizard(models.TransientModel):
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
-        result =\
+        result = \
             super(MassEditingWizard, self).fields_view_get(
                 view_id=view_id,
                 view_type=view_type,
@@ -58,7 +58,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'colspan': '4',
                         'nolabel': '1',
-                        'attrs': "{'invisible': [('selection__" +
+                        'attrs': "{'invisible': [('selection__" + 
                         field.name + "', '=', 'remove_m2m')]}",
                     })
                 elif field.ttype == "one2many":
@@ -86,7 +86,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'colspan': '4',
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "', '=', 'remove_o2m')]}",
                     })
                 elif field.ttype == "many2one":
@@ -107,7 +107,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '2',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "', '=', 'remove')]}",
                     })
                 elif field.ttype == "float":
@@ -147,14 +147,14 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '1',
-                        'attrs': "{'invisible': [('selection__" +
+                        'attrs': "{'invisible': [('selection__" + 
                         field.name + "', 'in', ('remove', 'set')]}",
                     })
                     # Add Copy field in view
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" +
-                        model_obj._name + "'), ('ttype', 'in', ['" +
+                        'domain': "[('model_id.model', '=', '" + 
+                        model_obj._name + "'), ('ttype', 'in', ['" + 
                         field.ttype + "', 'integer'])]",
                         'nolabel': '1',
                         'colspan': '1',
@@ -163,14 +163,14 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'label', {
                         'for': "",
                         'colspan': '1',
-                        'attrs': "{'invisible': [('selection__" +
+                        'attrs': "{'invisible': [('selection__" + 
                         field.name + "', 'in', ('remove', 'set', 'copy')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "set_selection_" + field.name,
                         'nolabel': '1',
                         'colspan': '3',
-                        'attrs': "{'invisible': [('selection__" + field.name +
+                        'attrs': "{'invisible': [('selection__" + field.name + 
                         "', 'in', ('remove', 'set', 'copy')]}",
                     })
                 elif field.ttype == "char":
@@ -199,13 +199,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" +
-                        model_obj._name + "'), ('ttype', 'in', ['" +
+                        'domain': "[('model_id.model', '=', '" + 
+                        model_obj._name + "'), ('ttype', 'in', ['" + 
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -236,13 +236,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" +
-                        model_obj._name + "'), ('ttype', 'in', ['" +
+                        'domain': "[('model_id.model', '=', '" + 
+                        model_obj._name + "'), ('ttype', 'in', ['" + 
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -273,13 +273,13 @@ class MassEditingWizard(models.TransientModel):
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name,
                         'nolabel': '1',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "','=','remove')]}",
                     })
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name + '_field_id',
-                        'domain': "[('model_id.model', '=', '" +
-                        model_obj._name + "'), ('ttype', 'in', ['" +
+                        'domain': "[('model_id.model', '=', '" + 
+                        model_obj._name + "'), ('ttype', 'in', ['" + 
                         field.ttype + "', 'selection'])]",
                         'nolabel': '1',
                         'placeholder': "Copy From...",
@@ -298,7 +298,7 @@ class MassEditingWizard(models.TransientModel):
                         'name': field.name,
                         'nolabel': '1',
                         'colspan': '2',
-                        'attrs': "{'invisible':[('selection__" +
+                        'attrs': "{'invisible':[('selection__" + 
                         field.name + "', '=', 'remove')]}",
                     })
                     all_fields[field.name] = {
@@ -330,7 +330,7 @@ class MassEditingWizard(models.TransientModel):
                             'name': field.name,
                             'colspan': '4',
                             'nolabel': '1',
-                            'attrs': "{'invisible':[('selection__" +
+                            'attrs': "{'invisible':[('selection__" + 
                             field.name + "','=','remove')]}",
                         })
                     else:
@@ -346,7 +346,7 @@ class MassEditingWizard(models.TransientModel):
                         etree.SubElement(xml_group, 'field', {
                             'name': field.name,
                             'nolabel': '1',
-                            'attrs': "{'invisible':[('selection__" +
+                            'attrs': "{'invisible':[('selection__" + 
                             field.name + "','=','remove')]}",
                             'colspan': '2',
                         })
@@ -459,8 +459,7 @@ class MassEditingWizard(models.TransientModel):
                             values.update({split_key: m2m_list})
                         else:
                             values.update({split_key: [(5, 0, [])]})
-                            
-                    elif val =='remove_o2m':
+                    elif val == 'remove_o2m':
                         # model_fieds will return the particular model
                         # in order to get the field of the model
                         # and its relation.
@@ -506,28 +505,28 @@ class MassEditingWizard(models.TransientModel):
                                 if set_val == 'set_fix':
                                     tot_val = split_key_data + split_val
                                 elif set_val == 'set_per':
-                                    tot_val = split_key_data +\
+                                    tot_val = split_key_data + \
                                         (split_key_data * split_val) / 100.0
                             # Subtraction
                             elif val == 'val_sub':
                                 if set_val == 'set_fix':
                                     tot_val = split_key_data - split_val
                                 elif set_val == 'set_per':
-                                    tot_val = split_key_data -\
+                                    tot_val = split_key_data - \
                                         (split_key_data * split_val) / 100.0
                             # Multiplication
                             elif val == 'val_mul':
                                 if set_val == 'set_fix':
                                     tot_val = split_key_data * split_val
                                 elif set_val == 'set_per':
-                                    tot_val = split_key_data *\
+                                    tot_val = split_key_data * \
                                         (split_key_data * split_val) / 100
                             # Division
                             elif val == 'val_div':
                                 if set_val == 'set_fix':
                                     tot_val = split_key_data / split_val
                                 elif set_val == 'set_per':
-                                    tot_val = split_key_data /\
+                                    tot_val = split_key_data / \
                                         (split_key_data * split_val) / 100
                             data.write({split_key: tot_val})
             if values:
