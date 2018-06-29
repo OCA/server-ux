@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * date_range
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -11,21 +11,22 @@ msgstr ""
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
 "PO-Revision-Date: 2017-08-01 02:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
+"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_AR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:43
+#: code:addons/date_range/models/date_range.py:61
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:71
+#: code:addons/date_range/models/date_range.py:89
 #, python-format
 msgid "%s overlaps %s"
 msgstr ""
@@ -48,7 +49,7 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
-msgid "Allow overlap"
+msgid "Allow Overlap"
 msgstr ""
 
 #. module: date_range
@@ -100,6 +101,11 @@ msgid "Date Ranges"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_generator_date_start
+msgid "Date Start"
+msgstr ""
+
+#. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_tree
 msgid "Date range"
 msgstr ""
@@ -112,11 +118,6 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range_generator_date_start
-msgid "Date start"
 msgstr ""
 
 #. module: date_range
@@ -139,12 +140,8 @@ msgstr ""
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
-msgid "Generate Date Ranges"
-msgstr ""
-
-#. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
-msgid "Genrate Date Ranges"
+msgid "Generate Date Ranges"
 msgstr ""
 
 #. module: date_range
@@ -197,6 +194,11 @@ msgid "Range name prefix"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_date_range_ids
+msgid "Ranges"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_start
 msgid "Start date"
 msgstr ""
@@ -207,22 +209,43 @@ msgid "Submit"
 msgstr ""
 
 #. module: date_range
+#: code:addons/date_range/wizard/date_range_generator.py:78
+#, python-format
+msgid ""
+"The Company in the Date Range Generator and in Date Range Type must be the "
+"same."
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range.py:51
+#, python-format
+msgid "The Company in the Date Range and in Date Range Type must be the same."
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_active
 #: model:ir.model.fields,help:date_range.field_date_range_type_active
-msgid ""
-"The active field allows you to hide the date range without removing it."
+msgid "The active field allows you to hide the date range without removing it."
 msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1647
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1644
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1470
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1471
 msgid "Type"
 msgstr "Tipo"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
-msgid "Unit of time"
+msgid "Unit Of Time"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range_type.py:42
+#, python-format
+msgid ""
+"You cannot change the company, as this Date Range Type is  assigned to Date "
+"Range (%s)."
 msgstr ""
 
 #. module: date_range
