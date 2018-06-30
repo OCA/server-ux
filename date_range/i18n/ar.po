@@ -9,48 +9,49 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2018-07-01 04:01+0000\n"
+"Last-Translator: Osoul <baruni@osoul.ly>\n"
 "Language-Team: Arabic (https://www.transifex.com/oca/teams/23907/ar/)\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:61
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
-msgstr ""
+msgstr "%s ليست فترة سليمة (%s > %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:89
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s تتداخل مع %s"
 
 #. module: date_range
 #: sql_constraint:date.range:0
 msgid "A date range must be unique per company !"
-msgstr ""
+msgstr "الفترة يجب أن تكون مميزة لكل مؤسسة !"
 
 #. module: date_range
 #: sql_constraint:date.range.type:0
 msgid "A date range type must be unique per company !"
-msgstr ""
+msgstr "نوع الفترة يجب أن يكون مميزاً لكل مؤسسة !"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_active
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_active
 msgid "Active"
-msgstr ""
+msgstr "نشط"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
 msgid "Allow Overlap"
-msgstr ""
+msgstr "السماح بالتداخل"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -62,7 +63,7 @@ msgstr "إلغاء"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "المؤسسة"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -81,44 +82,44 @@ msgstr "أنشئ في"
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
-msgstr ""
+msgstr "الفترة الزمنية"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
-msgstr ""
+msgstr "نوع الفترة الزمنية"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr ""
+msgstr "أنواع الفترات الزمنية"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr ""
+msgstr "الفترات الزمنية"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_date_start
 msgid "Date Start"
-msgstr ""
+msgstr "تاريخ البدء"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_tree
 msgid "Date range"
-msgstr ""
+msgstr "الفترة الزمنية"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_tree
 msgid "Date range type"
-msgstr ""
+msgstr "نوع الفترة الزمنية"
 
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
+msgstr "الفترات الزمنية"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_display_name
@@ -130,19 +131,19 @@ msgstr "اسم العرض"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
 msgid "Duration"
-msgstr ""
+msgstr "المدة الزمنية"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_end
 msgid "End date"
-msgstr ""
+msgstr "تاريخ الانتهاء"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "إنشاء فترات زمنية"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_id
@@ -186,27 +187,27 @@ msgstr "الاسم"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
 msgid "Number of ranges to generate"
-msgstr ""
+msgstr "عدد الفترات المطلوبة"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_name_prefix
 msgid "Range name prefix"
-msgstr ""
+msgstr "بادئة اسم الفترات"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_date_range_ids
 msgid "Ranges"
-msgstr ""
+msgstr "الفترات الزمنية"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_start
 msgid "Start date"
-msgstr ""
+msgstr "تاريخ البدء"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Submit"
-msgstr ""
+msgstr "إنشاء"
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:78
@@ -214,13 +215,13 @@ msgstr ""
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
-msgstr ""
+msgstr "المؤسسة في الفترة الزمنية وفي نوع الفترة يجب أن تكون متطابقة."
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:51
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
-msgstr ""
+msgstr "المؤسسة في الفترة الزمنية وفي نوع الفترة يجب أن تكون متطابقة."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_active
@@ -238,7 +239,7 @@ msgstr "النوع"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
 msgid "Unit Of Time"
-msgstr ""
+msgstr "الوحدة الزمنية"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range_type.py:42
@@ -247,6 +248,7 @@ msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
 msgstr ""
+"لا يمكنك تغيير المؤسسة، حيث أن نوع الفترة تم تعيينه للفترة الزمنية (%s)."
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
@@ -266,19 +268,19 @@ msgstr ""
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "days"
-msgstr ""
+msgstr "أيام"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "months"
-msgstr ""
+msgstr "أشهر"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "weeks"
-msgstr ""
+msgstr "أسابيع"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "years"
-msgstr ""
+msgstr "سنوات"
