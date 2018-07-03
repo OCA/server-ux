@@ -33,6 +33,12 @@ class TierValidation(models.AbstractModel):
         compute="_compute_reviewer_ids",
         search="_search_reviewer_ids",
     )
+    can_review = fields.Boolean(compute="_compute_can_review")
+
+    @api.multi
+    def _compute_can_review(self):
+        for rec in self:
+            rec.can_review = self.env.user in rec.reviewer_ids
 
     @api.multi
     @api.depends('review_ids')
