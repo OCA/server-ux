@@ -13,7 +13,7 @@ class ResPartner(models.Model):
     def find_res_partner_by_ref_using_barcode(self, barcode):
         partner = self.search([('ref', '=', barcode)], limit=1)
         if not partner:
-            action = self.env.ref('res_partner_find')
+            action = self.env.ref('barcode_action.res_partner_find')
             result = action.read()[0]
             context = safe_eval(result['context'])
             context.update({
