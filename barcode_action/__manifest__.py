@@ -18,5 +18,8 @@
     'data': [
         'views/barcode_templates.xml',
         'wizard/barcode_action_view.xml',
-    ]
+    ],
+    'demo': [
+        'demo/barcode_action_demo.xml'
+    ],
 }
