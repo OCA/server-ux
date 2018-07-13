@@ -8,6 +8,8 @@ from odoo.exceptions import ValidationError
 
 
 class DateRangeTypeTest(TransactionCase):
+    post_install = True
+    at_install = True
 
     def setUp(self):
         super(DateRangeTypeTest, self).setUp()
