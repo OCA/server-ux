@@ -7,6 +7,8 @@ from dateutil.rrule import MONTHLY
 
 
 class DateRangeGeneratorTest(TransactionCase):
+    post_install = True
+    at_install = False
 
     def setUp(self):
         super(DateRangeGeneratorTest, self).setUp()
