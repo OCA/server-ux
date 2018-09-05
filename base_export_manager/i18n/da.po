@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:09+0000\n"
-"PO-Revision-Date: 2017-12-01 02:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-09-06 08:12+0000\n"
+"Last-Translator: Hans Henrik Gabelgaard <hhg@gabelgaard.org>\n"
 "Language-Team: Danish (https://www.transifex.com/oca/teams/23907/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
 msgid "Database model to export."
-msgstr ""
+msgstr "Database model til export."
 
 #. module: base_export_manager
 #. openerp-web
@@ -35,68 +36,68 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
 msgid "Export Access"
-msgstr ""
+msgstr "Export adgang"
 
 #. module: base_export_manager
 #: model:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
 msgid "Export Profile"
-msgstr ""
+msgstr "Export profil"
 
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
 #: model:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
-msgstr ""
+msgstr "Export profiler"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:163
 #, python-format
 msgid "Field '%s' already exists"
-msgstr ""
+msgstr "Feltet '%s' findes allerede"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:157
 #, python-format
 msgid "Field '%s' does not exist"
-msgstr ""
+msgstr "Feltet '%s' findes ikke"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:191
 #, python-format
 msgid "Field '%s' not found in model '%s'"
-msgstr ""
+msgstr "Feltet '%s' findes ikke i model '%s'"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field1_id
 msgid "First field"
-msgstr ""
+msgstr "Første felt"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
 msgid "First model"
-msgstr ""
+msgstr "Første model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field4_id
 msgid "Fourth field"
-msgstr ""
+msgstr "Fjerde felt"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model4_id
 msgid "Fourth model"
-msgstr ""
+msgstr "Fjerde model"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:135
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
-msgstr ""
+msgstr "Det er ikke tilladt at have mere end 4 niveauers dybde: %s"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
@@ -106,12 +107,12 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field2_id
 msgid "Second field"
-msgstr ""
+msgstr "Andet felt"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
 msgid "Second model"
-msgstr ""
+msgstr "Anden model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
@@ -121,12 +122,12 @@ msgstr "Rækkefølge"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
 msgid "Third field"
-msgstr ""
+msgstr "Tredje felt"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
 msgid "Third model"
-msgstr ""
+msgstr "Tredje model"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_res_users
@@ -137,7 +138,7 @@ msgstr "Brugere"
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Du må angive en model eller en resource."
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports
