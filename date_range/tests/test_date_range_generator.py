@@ -1,9 +1,12 @@
-# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)nses/agpl).
 
-from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError
+import datetime
+
 from dateutil.rrule import MONTHLY
+
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class DateRangeGeneratorTest(TransactionCase):
@@ -43,8 +46,8 @@ class DateRangeGeneratorTest(TransactionCase):
             [('type_id', '=', self.type.id)])
         self.assertEqual(len(ranges), 4)
         range4 = ranges[3]
-        self.assertEqual(range4.date_start, '1943-10-01')
-        self.assertEqual(range4.date_end, '1943-12-31')
+        self.assertEqual(range4.date_start, datetime.date(1943, 10, 1))
+        self.assertEqual(range4.date_end, datetime.date(1943, 12, 31))
         self.assertEqual(range4.type_id, self.type)
 
     def test_generator_multicompany_1(self):

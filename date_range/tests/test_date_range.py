@@ -1,8 +1,10 @@
-# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import TransactionCase
+import datetime
+
 from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class DateRangeTest(TransactionCase):
@@ -105,8 +107,8 @@ class DateRangeTest(TransactionCase):
         # By default the domain include limits
         self.assertEqual(
             domain,
-            [('my_field', '>=', '2015-01-01'),
-             ('my_field', '<=', '2015-12-31')])
+            [('my_field', '>=', datetime.date(2015, 1, 1)),
+             ('my_field', '<=', datetime.date(2015, 12, 31))])
 
     def test_date_range_multicompany_1(self):
         dr = self.date_range.new({
