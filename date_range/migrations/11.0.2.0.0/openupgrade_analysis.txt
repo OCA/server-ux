@@ -1,3 +1,0 @@
----Fields in module 'date_range'---
----XML records in module 'date_range'---
-NEW ir.rule: date_range.date_range_generator_comp_rule (noupdate)
