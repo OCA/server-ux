@@ -9,7 +9,6 @@ odoo.define('date_range.search_filters', function (require) {
     var rpc = require('web.rpc');
     var framework = require('web.framework');
 
-    var _t = core._t;
     filters.ExtendedSearchProposition.include({
         select_field: function (field) {
             this._super.apply(this, arguments);
@@ -45,7 +44,7 @@ odoo.define('date_range.search_filters', function (require) {
         date_range_type_operator_selected: function (type_id) {
             this.$value.empty().show();
             var ds = new data.DataSetSearch(this, 'date.range', this.context, [['type_id', '=', parseInt(type_id, 10)]]);
-            ds.read_slice(['name','date_start', 'date_end'], {}).done(this.proxy('on_range_type_selected'));
+            ds.read_slice(['name', 'date_start', 'date_end'], {}).done(this.proxy('on_range_type_selected'));
 
         },
 
@@ -66,7 +65,7 @@ odoo.define('date_range.search_filters', function (require) {
                 res.attrs.domain = this.value.domain;
             }
             return res;
-        }
+        },
 
     });
 
@@ -80,7 +79,7 @@ class
     filters.ExtendedSearchProposition.DateRange = core.search_filters_registry.get('id').extend({
         template: 'SearchView.extended_search.dateRange.selection',
         events: {
-            'change': 'on_range_selected'
+            'change': 'on_range_selected',
         },
 
         init: function (parent, field, date_range_values) {
@@ -105,10 +104,10 @@ class
             return rpc.query({
                 args: [this.get_value()],
                 kwargs: {
-                    field_name: this.field.name
+                    field_name: this.field.name,
                 },
                 model: 'date.range',
-                method: 'get_domain'
+                method: 'get_domain',
             })
                 .then(function (domain) {
                     framework.unblockUI();
@@ -118,7 +117,7 @@ class
 
         get_domain: function (field, operator) {
             return this.domain;
-        }
+        },
 
     });
 
