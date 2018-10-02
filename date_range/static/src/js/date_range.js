@@ -1,4 +1,4 @@
-/* © 2016 ACSONE SA/NV (<http://acsone.eu>)
+/* Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
 odoo.define('date_range.search_filters', function (require) {
 "use strict";
@@ -11,7 +11,7 @@ var framework = require('web.framework');
 
 var _t = core._t;
 filters.ExtendedSearchProposition.include({
-    select_field: function(field) {
+    select_field: function (field) {
         this._super.apply(this, arguments);
         this.is_date_range_selected = false;
         this.is_date = field.type === 'date' || field.type === 'datetime';
@@ -22,9 +22,9 @@ filters.ExtendedSearchProposition.include({
         }
     },
 
-    add_date_range_types_operator: function(date_range_types){
+    add_date_range_types_operator: function (date_range_types){
         var self = this;
-        _.each(date_range_types, function(drt) {
+        _.each(date_range_types, function (drt) {
             $('<option>', {value: 'drt_' + drt.id})
                 .text(_('in ') + drt.name)
                 .appendTo(self.$el.find('.searchview_extended_prop_op, .o_searchview_extended_prop_op'));
@@ -42,14 +42,14 @@ filters.ExtendedSearchProposition.include({
         this._super.apply(this, arguments);
     },
 
-    date_range_type_operator_selected: function(type_id){
+    date_range_type_operator_selected: function (type_id){
         this.$value.empty().show();
-        var ds = new data.DataSetSearch(this, 'date.range', this.context, [['type_id', '=', parseInt(type_id)]]);
+        var ds = new data.DataSetSearch(this, 'date.range', this.context, [['type_id', '=', parseInt(type_id, 10)]]);
         ds.read_slice(['name','date_start', 'date_end'], {}).done(this.proxy('on_range_type_selected'));
 
     },
 
-    on_range_type_selected: function(date_range_values){
+    on_range_type_selected: function (date_range_values){
         this.value = new filters.ExtendedSearchProposition.DateRange(this, this.value.field, date_range_values);
         this.value.appendTo(this.$value);
         if (!this.$el.hasClass('o_filter_condition')){
@@ -66,7 +66,7 @@ filters.ExtendedSearchProposition.include({
             res.attrs.domain = this.value.domain;
         }
         return res;
-    },
+    }
 
 });
 
@@ -80,7 +80,7 @@ class
 filters.ExtendedSearchProposition.DateRange = core.search_filters_registry.get('id').extend({
     template: 'SearchView.extended_search.dateRange.selection',
     events: {
-        'change': 'on_range_selected',
+        'change': 'on_range_selected'
     },
 
     init: function (parent, field, date_range_values) {
@@ -94,31 +94,31 @@ filters.ExtendedSearchProposition.DateRange = core.search_filters_registry.get('
         return option.label || option.text;
     },
 
-    get_value: function() {
-        return parseInt(this.$el.val());
+    get_value: function () {
+        return parseInt(this.$el.val(), 10);
     },
 
-    on_range_selected: function(e){
+    on_range_selected: function (e){
         var self = this;
         self.domain = '';
         framework.blockUI();
         return rpc.query({
-                args: [this.get_value()],
-                kwargs: {
-                    field_name: this.field.name
-                },
-                model: 'date.range',
-                method: 'get_domain',
-            })
-            .then(function (domain) {
-                framework.unblockUI();
-                self.domain = domain;
-            });
+            args: [this.get_value()],
+            kwargs: {
+                field_name: this.field.name
+            },
+            model: 'date.range',
+            method: 'get_domain'
+        })
+        .then(function (domain) {
+            framework.unblockUI();
+            self.domain = domain;
+        });
     },
 
     get_domain: function (field, operator) {
         return this.domain;
-    },
+    }
 
 });
 
