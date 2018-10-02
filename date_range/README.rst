@@ -17,7 +17,7 @@ Date Range
     :target: https://github.com/OCA/server-ux/tree/12.0/date_range
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-11-0/server-ux-11-0-date_range
+    :target: https://translation.odoo-community.org/projects/server-ux-12-0/server-ux-12-0-date_range
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/250/12.0
@@ -37,8 +37,6 @@ Installation
 ============
 
 The addon use the daterange method from postgres. This method is supported as of postgresql 9.2
-
-
 
 Usage
 =====
@@ -115,6 +113,7 @@ Contributors
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Miquel Raïch <miquel.raich@eficent.com>
+* Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainers
 ~~~~~~~~~~~
@@ -133,7 +132,7 @@ promote its widespread use.
     :target: https://github.com/lmignon
     :alt: lmignon
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
