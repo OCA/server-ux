@@ -5,13 +5,13 @@ import datetime
 
 from dateutil.rrule import MONTHLY
 
+import odoo
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
+@odoo.tests.tagged('post_install', '-at_install')
 class DateRangeGeneratorTest(TransactionCase):
-    post_install = True
-    at_install = False
 
     def setUp(self):
         super(DateRangeGeneratorTest, self).setUp()
