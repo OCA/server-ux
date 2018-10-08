@@ -1,4 +1,5 @@
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# Copyright 2018 Aitor Bouzas <aitor.bouzas@adaptivecity.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import ast
@@ -30,7 +31,7 @@ class TestMassEditing(common.TransactionCase):
             search([('model_id', '=', self.partner_model.id),
                     ('name', 'in', ['email', 'phone', 'category_id', 'comment',
                                     'country_id', 'customer', 'child_ids',
-                                    'title'])])
+                                    'title', 'company_type'])])
         self.mass = self._create_mass_editing(self.partner_model,
                                               self.fields_model,
                                               'Partner')
@@ -200,8 +201,8 @@ class TestMassEditing(common.TransactionCase):
         self.assertNotEqual(self.partner.category_id, False,
                             'Partner\'s category should be removed.')
         # Add m2m categories
-        dist_categ_id = self.env.ref('base.res_partner_category_13').id
-        vend_categ_id = self.env.ref('base.res_partner_category_1').id
+        dist_categ_id = self.env.ref('base.res_partner_category_14').id
+        vend_categ_id = self.env.ref('base.res_partner_category_0').id
         vals = {
             'selection__category_id': 'add',
             'category_id': [[6, 0, [dist_categ_id, vend_categ_id]]],
@@ -239,6 +240,16 @@ class TestMassEditing(common.TransactionCase):
         self.mass.unlink_action()
         action = self.mass.ref_ir_act_window_id
         self.assertFalse(action, 'Sidebar action must be removed.')
+
+    def test_special_search(self):
+        """Test for the special search."""
+        fields = self.env['ir.model.fields'].search(
+            [('ttype', 'not in', ['reference', 'function']),
+             ('mass_editing_domain', 'in', '[1,2]')]
+        )
+        self.assertTrue(len(fields),
+                        "Special domain 'mass_editing_domain'"
+                        " should find fields in different models.")
 
     def test_unlink_mass(self):
         """Test if related actions are removed when mass editing

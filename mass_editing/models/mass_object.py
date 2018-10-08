@@ -1,4 +1,4 @@
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -58,7 +58,7 @@ class MassObject(models.Model):
             'src_model': src_obj,
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form, tree',
+            'view_mode': 'form',
             'target': 'new',
             'binding_model_id': self.model_id.id,
             'binding_type': 'action',
@@ -77,6 +77,7 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
+    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
