@@ -3,13 +3,11 @@
 
 from psycopg2 import IntegrityError
 
-import odoo
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 
-@odoo.tests.tagged('post_install', '-at_install')
 class DateRangeTypeTest(TransactionCase):
 
     def setUp(self):
