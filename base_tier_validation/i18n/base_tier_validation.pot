@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:126
+#: code:addons/base_tier_validation/models/tier_validation.py:132
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr ""
@@ -32,6 +32,11 @@ msgstr ""
 #. module: base_tier_validation
 #: selection:tier.review,status:0
 msgid "Approved"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_can_review
+msgid "Can Review"
 msgstr ""
 
 #. module: base_tier_validation
@@ -64,7 +69,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:93
+#: code:addons/base_tier_validation/models/tier_validation.py:99
 #, python-format
 msgid "Error evaluating tier validation conditions.\n"
 " %s"
@@ -166,13 +171,13 @@ msgid "Status"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:133
+#: code:addons/base_tier_validation/models/tier_validation.py:139
 #, python-format
 msgid "The operation is under validation."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:122
+#: code:addons/base_tier_validation/models/tier_validation.py:128
 #, python-format
 msgid "This action needs to be validated for at least one record. \n"
 "Please request a validation."
