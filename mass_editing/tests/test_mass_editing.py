@@ -56,7 +56,6 @@ class TestMassEditing(common.TransactionCase):
             'email': 'example@yourcompany.com',
             'phone': 123456,
             'category_id': [(6, 0, categ_ids)],
-            'notify_email': 'always'
         })
 
     def _create_partner_title(self):
