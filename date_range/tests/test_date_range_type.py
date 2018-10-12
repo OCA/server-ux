@@ -9,8 +9,6 @@ from odoo.tools import mute_logger
 
 
 class DateRangeTypeTest(TransactionCase):
-    post_install = True
-    at_install = False
 
     def setUp(self):
         super(DateRangeTypeTest, self).setUp()
