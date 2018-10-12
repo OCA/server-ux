@@ -8,8 +8,6 @@ from odoo.tests.common import TransactionCase
 
 
 class DateRangeTest(TransactionCase):
-    post_install = True
-    at_install = False
 
     def setUp(self):
         super(DateRangeTest, self).setUp()
