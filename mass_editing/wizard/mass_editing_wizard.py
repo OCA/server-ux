@@ -242,7 +242,7 @@ class MassEditingWizard(models.TransientModel):
 
             values = {}
             for key, val in vals.items():
-                if key.startswith('selection_'):
+                if key.startswith('selection_') and '__' in key:
                     split_key = key.split('__', 1)[1]
                     if val == 'set':
                         values.update({split_key: vals.get(split_key, False)})
