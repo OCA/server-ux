@@ -31,7 +31,7 @@ This module allows to add, update or remove the values of more than one records 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/250/11.0
+   :target: https://runbot.odoo-community.org/runbot/250/12.0
 
 As shown in figure you have to configure the object and fields for mass editing.
 
@@ -85,6 +85,7 @@ Contributors
 * Jairo Llopis <jairo.llopis@tecnativa.com>
 * Juan Negrete <jnegrete@casasalce.com>
 * Raul Martin <raul.martin@braintec-group.com>
+* Hugo Adan <hugo@vauxoo.com>
 
 Maintainer
 ----------

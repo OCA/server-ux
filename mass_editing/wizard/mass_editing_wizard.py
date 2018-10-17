@@ -10,6 +10,7 @@ from odoo import api, models
 
 class MassEditingWizard(models.TransientModel):
     _name = 'mass.editing.wizard'
+    _description = "Mass Editing"
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
