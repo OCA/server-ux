@@ -1,9 +1,5 @@
 This module allows to add, update or remove the values of more than one records on the fly at the same time.
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/250/11.0
-
 As shown in figure you have to configure the object and fields for mass editing.
 
 * Select the object and add the fields of that object on which you want to apply mass editing.
