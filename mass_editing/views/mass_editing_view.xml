@@ -31,10 +31,10 @@
                         </h1>
                     </div>
                     <group>
-                        <group>
+                        <group name="model_id">
                             <field name="model_id" required="1" attrs="{'readonly':[('ref_ir_act_window_id','!=',False)]}"/>
                         </group>
-                        <group>
+                        <group name="model_list">
                             <field name="model_list" invisible="1"/>
                         </group>
                     </group>
