@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-date_range',
+        'odoo12-addon-mass_editing',
     ],
     classifiers=[
         'Programming Language :: Python',
