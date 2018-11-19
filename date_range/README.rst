@@ -38,8 +38,6 @@ Installation
 
 The addon use the daterange method from postgres. This method is supported as of postgresql 9.2
 
-
-
 Usage
 =====
 
@@ -115,6 +113,7 @@ Contributors
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Miquel Raïch <miquel.raich@eficent.com>
+* Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainers
 ~~~~~~~~~~~
@@ -133,7 +132,7 @@ promote its widespread use.
     :target: https://github.com/lmignon
     :alt: lmignon
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
