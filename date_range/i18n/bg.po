@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:61
+#: code:addons/date_range/models/date_range.py:62
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:89
+#: code:addons/date_range/models/date_range.py:90
 #, python-format
 msgid "%s overlaps %s"
 msgstr ""
@@ -78,11 +78,18 @@ msgid "Created on"
 msgstr "Създадено на"
 
 #. module: date_range
+#: model:ir.model,name:date_range.model_date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model,name:date_range.model_date_range_generator
+msgid "Date Range Generator"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model,name:date_range.model_date_range_type
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
 msgstr ""
@@ -208,7 +215,7 @@ msgid "Submit"
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/wizard/date_range_generator.py:78
+#: code:addons/date_range/wizard/date_range_generator.py:79
 #, python-format
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
@@ -216,7 +223,7 @@ msgid ""
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:51
+#: code:addons/date_range/models/date_range.py:52
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr ""
@@ -229,8 +236,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1470
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1471
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1511
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1512
 msgid "Type"
 msgstr "Вид"
 
@@ -240,26 +247,11 @@ msgid "Unit Of Time"
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/models/date_range_type.py:42
+#: code:addons/date_range/models/date_range_type.py:43
 #, python-format
 msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
-msgstr ""
-
-#. module: date_range
-#: model:ir.model,name:date_range.model_date_range
-msgid "date.range"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model,name:date_range.model_date_range_generator
-msgid "date.range.generator"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model,name:date_range.model_date_range_type
-msgid "date.range.type"
 msgstr ""
 
 #. module: date_range
