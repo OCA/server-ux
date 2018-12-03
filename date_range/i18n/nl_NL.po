@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
-"teams/23907/nl_NL/)\n"
+"PO-Revision-Date: 2018-12-03 13:17+0000\n"
+"Last-Translator: Yung-Wa <yw.ng@onestein.nl>\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
+"23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:61
@@ -219,12 +220,15 @@ msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
 msgstr ""
+"Het bedrijf in de datumbereikgenerator en in het datumbereiktype moet "
+"hetzelfde zijn."
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:51
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr ""
+"Het bedrijf in het datumbereik en in het datumbereiktype moet hetzelfde zijn."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_active
@@ -254,6 +258,8 @@ msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
 msgstr ""
+"U kunt het bedrijf niet wijzigen, omdat dit datumbereiktype is toegewezen "
+"aan het datumbereik (%s)."
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
