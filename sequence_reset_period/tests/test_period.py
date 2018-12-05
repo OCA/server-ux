@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Creu Blanca <https://creublanca.es/>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -8,7 +9,7 @@ from datetime import datetime
 
 class TestSequence(common.TransactionCase):
     def setUp(self):
-        super().setUp()
+        super(TestSequence, self).setUp()
         self.date = datetime(2018, 3, 14).strftime('%Y-%m-%d')
 
     def get_sequence(self, method):

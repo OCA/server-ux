@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2017 Creu Blanca
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -13,7 +14,7 @@ class IrSequence(models.Model):
         ('daily', 'Daily'),
         ('weekly', 'Weekly'),
         ('monthly', 'Monthly'),
-        ('yearly', 'Yearly')
+        ('yearly', 'Yearly'),
     ])
 
     def _compute_date_from_to(self, date):
@@ -34,7 +35,7 @@ class IrSequence(models.Model):
     def _create_date_range_seq(self, date):
         self.ensure_one()
         if not self.range_reset:
-            return super()._create_date_range_seq(date)
+            return super(IrSequence, self)._create_date_range_seq(date)
         date_from, date_to = self._compute_date_from_to(date)
         date_range = self.env['ir.sequence.date_range'].search(
             [('sequence_id', '=', self.id), ('date_from', '>=', date),
