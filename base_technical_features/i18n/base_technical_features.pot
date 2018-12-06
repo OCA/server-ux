@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,12 +14,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
 msgid "Show field Technical Features"
 msgstr ""
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
 msgid "Technical Features"
 msgstr ""
 
@@ -40,17 +50,7 @@ msgid "Users"
 msgstr ""
 
 #. module: base_technical_features
-#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
 msgid "Whether to display the technical features field in the user preferences."
-msgstr ""
-
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_base
-msgid "base"
-msgstr ""
-
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_ir_ui_menu
-msgid "ir.ui.menu"
 msgstr ""
 
