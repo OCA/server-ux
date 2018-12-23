@@ -21,12 +21,22 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
 msgid "Show field Technical Features"
 msgstr "إظهار خانة المزايا التقنية"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
 msgid "Technical Features"
 msgstr "المزايا التقنية"
 
@@ -47,17 +57,10 @@ msgid "Users"
 msgstr "المستخدمون"
 
 #. module: base_technical_features
-#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
 
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_base
-msgid "base"
-msgstr "الأساس"
-
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_ir_ui_menu
-msgid "ir.ui.menu"
-msgstr ""
+#~ msgid "base"
+#~ msgstr "الأساس"
