@@ -50,7 +50,7 @@ Additionally, users can check the *Technical feature* field in their
 preferences to gain permanent access to the menus and views that fall under
 this category.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-ux/12.0/base_technical_features/static/description/user_preferences.png
+.. figure:: static/description/user_preferences.png
    :alt: User preferences
 
 Upon installation of this module, this preference is already
@@ -81,9 +81,6 @@ Authors
 
 Contributors
 ~~~~~~~~~~~~
-
-Contributors
-------------
 
 * Stefan Rijnhart <stefan@opener.am>
 * Jeroen Evens <jeroen.evenss@dynapps.be>
