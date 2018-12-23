@@ -9,35 +9,46 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-21 04:22+0000\n"
-"PO-Revision-Date: 2017-01-21 04:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2018-12-24 16:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
 msgid "Show field Technical Features"
-msgstr ""
+msgstr "Mostrare campo funzioni tecniche"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
 msgid "Technical Features"
-msgstr ""
+msgstr "Funzioni tecniche"
 
 #. module: base_technical_features
 #: model:res.groups,name:base_technical_features.group_technical_features
 msgid "Technical Features (w/o debug mode)"
-msgstr ""
+msgstr "Funzioni tecniche (senza modalità di debug)"
 
 #. module: base_technical_features
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr ""
+msgstr "L'utente non ha accesso alle funzioni tecniche."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
@@ -45,17 +56,14 @@ msgid "Users"
 msgstr "Utenti"
 
 #. module: base_technical_features
-#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
+"Indica se visualizzare il campo funzioni tecniche nelle preferenze utente."
 
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_base
-msgid "base"
-msgstr ""
+#~ msgid "base"
+#~ msgstr "base"
 
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_ir_ui_menu
-msgid "ir.ui.menu"
-msgstr ""
+#~ msgid "ir.ui.menu"
+#~ msgstr "ir.ui.menu"
