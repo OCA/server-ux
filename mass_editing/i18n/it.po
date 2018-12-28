@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2018-12-24 16:58+0000\n"
+"PO-Revision-Date: 2018-12-28 11:41+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -98,18 +98,18 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 #: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
 msgid "Mass Editing"
-msgstr "Modifica massiva"
+msgstr "Modifiche massive"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:53
 #, python-format
 msgid "Mass Editing (%s)"
-msgstr "Modifica massiva (%s)"
+msgstr "Modifiche massive (%s)"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr "Oggetto modifica massiva"
+msgstr "Oggetto modifiche massive"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__model_id
@@ -174,4 +174,4 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
-msgstr "Procedura guidata per la modifica massiva"
+msgstr "Procedura guidata per le modifiche massive"
