@@ -20,12 +20,22 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
 msgid "Show field Technical Features"
 msgstr "Mostrare campo funzioni tecniche"
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
 msgid "Technical Features"
 msgstr "Funzioni tecniche"
 
@@ -46,18 +56,14 @@ msgid "Users"
 msgstr "Utenti"
 
 #. module: base_technical_features
-#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
 "Indica se visualizzare il campo funzioni tecniche nelle preferenze utente."
 
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_base
-msgid "base"
-msgstr "base"
+#~ msgid "base"
+#~ msgstr "base"
 
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_ir_ui_menu
-msgid "ir.ui.menu"
-msgstr "ir.ui.menu"
+#~ msgid "ir.ui.menu"
+#~ msgstr "ir.ui.menu"
