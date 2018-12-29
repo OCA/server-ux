@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-21 04:22+0000\n"
-"PO-Revision-Date: 2018-12-24 16:58+0000\n"
+"PO-Revision-Date: 2018-12-29 23:42+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -22,12 +22,12 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "Menu"
-msgstr ""
+msgstr "Menù"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
