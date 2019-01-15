@@ -11,10 +11,12 @@
                   decoration-danger="status=='rejected'"
                   decoration-success="status=='approved'">
                 <field name="sequence"/>
+                <field name="requested_by"/>
                 <field name="review_type"/>
                 <field name="reviewer_id"/>
                 <field name="reviewer_group_id"/>
                 <field name="status"/>
+                <field name="done_by"/>
             </tree>
         </field>
     </record>
