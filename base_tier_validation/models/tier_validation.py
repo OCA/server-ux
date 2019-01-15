@@ -148,7 +148,10 @@ class TierValidation(models.AbstractModel):
             lambda r: r.status in ('pending', 'rejected') and
             (r.reviewer_id == self.env.user or
              r.reviewer_group_id in self.env.user.groups_id))
-        user_reviews.write({'status': 'approved'})
+        user_reviews.write({
+            'status': 'approved',
+            'done_by': self.env.user.id,
+        })
 
     @api.multi
     def validate_tier(self):
@@ -162,7 +165,10 @@ class TierValidation(models.AbstractModel):
                 lambda r: r.status in ('pending', 'approved') and
                 (r.reviewer_id == self.env.user or
                  r.reviewer_group_id in self.env.user.groups_id))
-            user_reviews.write({'status': 'rejected'})
+            user_reviews.write({
+                'status': 'rejected',
+                'done_by': self.env.user.id,
+            })
 
     @api.multi
     def request_validation(self):
@@ -182,6 +188,7 @@ class TierValidation(models.AbstractModel):
                                 'res_id': rec.id,
                                 'definition_id': td.id,
                                 'sequence': sequence,
+                                'requested_by': self.env.uid,
                             })
                     # TODO: notify? post some msg in chatter?
         return created_trs
