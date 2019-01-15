@@ -1,4 +1,4 @@
-# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -96,14 +96,18 @@ class DateRangeGenerator(models.TransientModel):
     def onchange_type_id(self):
         self.ensure_one()
         date_range = self.env['date.range']
-        values = {
-            'date_start': self.date_start,
-            'type_id': self.type_id.id,
-        }
-        on_change = date_range._onchange_spec()
-        domain = date_range.onchange(
-            values,
-            ['type_id', 'date_start'],
-            on_change,
-        )
-        return domain
+        domain = []
+        if self.type_id:
+            domain.append(('type_id', '=', self.type_id.parent_type_id.id))
+        if self.date_start:
+            domain.append('|')
+            domain.append(('date_start', '<=', self.date_start))
+            domain.append(('date_start', '=', False))
+        if domain:
+            # If user did not select a parent already, autoselect the last
+            # (ordered by date_start) or only parent that applies.
+            if self.type_id and self.date_start and not self.parent_id:
+                possible_parent = date_range.search(
+                    domain, limit=1, order='date_start desc')
+                self.parent_id = possible_parent  # can be empty!
+        return {'domain': {'parent_id': domain}}

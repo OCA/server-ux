@@ -1,4 +1,4 @@
-# © 2016 ACSONE SA/NV (<https://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<https://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 from odoo.tests.common import TransactionCase
@@ -270,4 +270,40 @@ class DateRangeTest(TransactionCase):
         self.assertEqual(
             parent_range.type_id,
             child_range2.parent_id.type_id
+        )
+
+    def test_partner_id_domain(self):
+        """Check here domain returned for partner_id"""
+        date_range = self.env['date.range']
+        date_type = self.env['date.range.type']
+        month_type = date_type.create({
+            'name': 'month type'
+        })
+        day_type = date_type.create({
+            'name': 'day type',
+            'parent_type_id': month_type.id,
+            'company_id': self.company.id,
+        })
+        month_range = date_range.create({
+            'name': 'month range',
+            'type_id': month_type.id,
+            'date_start': '01-01-2050',
+            'date_end': '02-01-2050',
+        })
+        # now trigger onchange in date.range listview
+        values = {
+            'company_id': month_range.company_id.id,
+            'date_start': month_range.date_start,
+            'date_end': month_range.date_end,
+            'type_id': day_type.id,
+        }
+        on_change = date_range._onchange_spec()
+        domain = date_range.onchange(
+            values,
+            ['company_id', 'type_id', 'date_start', 'date_end'],
+            on_change,
+        )
+        self.assertEqual(
+            date_range.search(domain['domain']['parent_id']),
+            month_range,
         )

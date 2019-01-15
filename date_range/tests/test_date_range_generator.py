@@ -1,4 +1,4 @@
-# © 2016 ACSONE SA/NV (<https://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<https://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)nses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -74,7 +74,7 @@ class DateRangeGeneratorTest(TransactionCase):
                 'company_id': self.company_2.id,
             })
 
-    def test_generator_partner_id_domain(self):
+    def test_partner_id_domain(self):
         """Check here domain returned for partner_id
         in both date.range and date.range.generator"""
         date_range = self.env['date.range']
@@ -107,6 +107,21 @@ class DateRangeGeneratorTest(TransactionCase):
         )
         # check that with this search domain,
         # only the month_range record is returned.
+        self.assertEqual(
+            date_range.search(domain['domain']['parent_id']),
+            month_range,
+        )
+        # the same applies to date.range treeview
+        values = {
+            'date_start': month_range.date_start,
+            'type_id': day_type.id,
+        }
+        on_change = date_range._onchange_spec()
+        domain = date_range.onchange(
+            values,
+            ['type_id', 'date_start'],
+            on_change,
+        )
         self.assertEqual(
             date_range.search(domain['domain']['parent_id']),
             month_range,

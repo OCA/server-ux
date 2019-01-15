@@ -1,4 +1,4 @@
-# © 2016 ACSONE SA/NV (<https://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<https://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -63,39 +63,39 @@ class DateRange(models.Model):
         for this in self:
             if not this.parent_id:
                 continue
-            start = this.parent_id.date_start <= this.date_start
-            end = this.parent_id.date_end >= this.date_end
-            child_range = start and end
-            if not child_range:
-                text_dict = {
-                    'name': this.name,
-                    'start': this.date_start,
-                    'end': this.date_end,
-                    'parent_name': this.parent_id.name,
-                    'parent_start': this.parent_id.date_start,
-                    'parent_end': this.parent_id.date_end,
-                }
-                if (not start) and end:
-                    text = _(
-                        "Start date %(start)s of %(name)s must be greater than"
-                        " or equal to "
-                        "start date %(parent_start)s of %(parent_name)s"
-                    ) % text_dict
-                elif (not end) and start:
-                    text = _(
-                        "End date %(end)s of %(name)s must be smaller than"
-                        " or equal to "
-                        "end date %(parent_end)s of %(parent_name)s"
-                    ) % text_dict
-                else:
-                    text = _(
-                        "%(name)s range not in "
-                        "%(parent_start)s - %(parent_end)s"
-                    ) % text_dict
-                raise ValidationError(
-                    _("%(name)s not a subrange of"
-                        " %(parent_name)s: " % text_dict) + text
-                    )
+            date_start_valid = this.parent_id.date_start <= this.date_start
+            date_end_valid = this.parent_id.date_end >= this.date_end
+            if date_start_valid and date_end_valid:
+                continue
+            text_dict = {
+                'name': this.name,
+                'start': this.date_start,
+                'end': this.date_end,
+                'parent_name': this.parent_id.name,
+                'parent_start': this.parent_id.date_start,
+                'parent_end': this.parent_id.date_end,
+            }
+            if (not date_start_valid) and date_end_valid:
+                text = _(
+                    "Start date %(start)s of %(name)s must be greater than"
+                    " or equal to "
+                    "start date %(parent_start)s of %(parent_name)s"
+                ) % text_dict
+            elif (not date_end_valid) and date_start_valid:
+                text = _(
+                    "End date %(end)s of %(name)s must be smaller than"
+                    " or equal to "
+                    "end date %(parent_end)s of %(parent_name)s"
+                ) % text_dict
+            else:
+                text = _(
+                    "%(name)s range not in "
+                    "%(parent_start)s - %(parent_end)s"
+                ) % text_dict
+            raise ValidationError(
+                _("%(name)s not a subrange of"
+                    " %(parent_name)s: " % text_dict) + text
+                )
 
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
     def _validate_range(self):
