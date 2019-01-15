@@ -9,6 +9,9 @@
         <field name="arch" type="xml">
             <tree string="Tier Definition">
                 <field name="model_id"/>
+                <field name="review_type"/>
+                <field name="reviewer_id"/>
+                <field name="reviewer_group_id"/>
                 <field name="sequence"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="active"/>
@@ -21,25 +24,49 @@
         <field name="model">tier.definition</field>
         <field name="arch" type="xml">
             <form string="Tier Definition">
-                <group>
-                    <group name="left">
-                        <field name="model_id" options="{'no_create': True}"/>
-                        <field name="review_type"/>
-                        <field name="reviewer_id"
-                               attrs="{'invisible': [('review_type', '!=', 'individual')]}"/>
-                        <field name="reviewer_group_id"
-                               attrs="{'invisible': [('review_type', '!=', 'group')]}"/>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="model_id" options="{'no_create': True}"/>
+                            <field name="review_type"/>
+                            <field name="reviewer_id"
+                                   attrs="{'invisible': [('review_type', '!=', 'individual')]}"/>
+                            <field name="reviewer_group_id"
+                                   attrs="{'invisible': [('review_type', '!=', 'group')]}"/>
+                        </group>
+                        <group name="right">
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            <field name="sequence"/>
+                        </group>
                     </group>
-                    <group name="right">
-                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                        <field name="sequence"/>
-                        <field name="active"/>
+                    <group col="4" name="bottom">
+                        <field name="python_code" colspan="4"/>
                     </group>
-                </group>
-                <group col="4" name="bottom">
-                    <field name="python_code" colspan="4"/>
-                </group>
+                </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="tier_definition_view_search" model="ir.ui.view">
+        <field name="name">tier.definition.search</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model_id"/>
+                <field name="reviewer_id"/>
+                <field name="reviewer_group_id"/>
+                <field name="active"/>
+                <separator/>
+                <filter string="All" name="all" domain="['|', ('active', '=', False), ('active', '=', True)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -49,6 +76,7 @@
         <field name="res_model">tier.definition</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_all': 1}</field>
     </record>
 
     <menuitem id="menu_tier_confirmation"

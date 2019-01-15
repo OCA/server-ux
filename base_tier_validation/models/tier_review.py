@@ -32,6 +32,12 @@ class TierReview(models.Model):
         compute="_compute_reviewer_ids", store=True,
     )
     sequence = fields.Integer(string="Tier")
+    done_by = fields.Many2one(
+        comodel_name="res.users",
+    )
+    requested_by = fields.Many2one(
+        comodel_name="res.users",
+    )
 
     @api.multi
     @api.depends('reviewer_id', 'reviewer_group_id', 'reviewer_group_id.users')
