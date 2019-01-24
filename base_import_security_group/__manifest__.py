@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Anubía, soluciones en la nube,SL (http://www.anubia.es)
 # Copyright 2017 Onestein (http://www.onestein.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Optional CSV import',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Server tools',
     'summary': 'Group-based permissions for importing CSV files',
     'license': 'AGPL-3',
