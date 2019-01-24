@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Onestein (http://www.onestein.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 from odoo.tests import common
+from odoo.tools import mute_logger
 
 
 class TestImportSecurityGroup(common.HttpCase):
     def setUp(self):
-        super(TestImportSecurityGroup, self).setUp()
+        super().setUp()
         self.Access = self.env['ir.model.access']
         self.user_test = self.env.ref('base.user_demo')
 
@@ -42,14 +42,14 @@ class TestImportSecurityGroup(common.HttpCase):
             'perm_create',
             'perm_unlink',
         )
-
         data = [
-            ('access_res_users_test', 'res.users test', '1', '0', '0', '0',),
+            ('access_res_users_test', 'res.users test', '1', '0', '0', '0'),
             ('access_res_users_test2', 'res.users test2', '1', '1', '1', '1'),
         ]
 
         self.has_button_import(user=self.env.user)
-        res = self.Access.load(fields, data)
+        with mute_logger('odoo.sql_db'):
+            res = self.Access.load(fields, data)
 
         self.assertEqual(res['ids'], False)
         self.assertEqual(len(res['messages']), 2)
