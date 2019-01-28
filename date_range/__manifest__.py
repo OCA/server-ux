@@ -3,7 +3,6 @@
 {
     "name": "Date Range",
     "summary": "Manage all kind of date range",
-    "version": "11.0.3.0.0",
     "version": "11.0.2.0.1",
     "category": "Uncategorized",
     "website": "https://github.com/oca/server-ux",

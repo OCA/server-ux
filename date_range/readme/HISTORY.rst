@@ -1,4 +1,4 @@
-11.0.3.0.0 (2019-01-14)
+11.0.3.0.0 (2019-08-08)
 ~~~~~~~~~~~~~~~~~~~~~~~
 * [MIG] Forward porting of date range with hierarchical feature
   (`#47 <https://github.com/OCA/server-ux/pull/47>`_)
@@ -21,3 +21,4 @@
   (`#10 <https://github.com/OCA/server-ux/pull/10>`_)
 * [FIX] Fix unlink date range type. 
   (`#9 <https://github.com/OCA/server-ux/pull/9>`_)
+
