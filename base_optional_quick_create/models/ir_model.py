@@ -26,7 +26,7 @@ class IrModel(models.Model):
         method_name = 'name_create'
         for model in self:
             model_obj = self.env.get(model.model)
-            if not model_obj:
+            if not isinstance(model_obj, models.BaseModel):
                 continue
             if model.avoid_quick_create:
                 model_obj._patch_method(method_name, _wrap_name_create())
