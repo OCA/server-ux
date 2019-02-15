@@ -25,6 +25,11 @@ msgid "Active"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
+msgid "All"
+msgstr ""
+
+#. module: base_tier_validation
 #: selection:tier.definition,review_type:0
 msgid "Any user in a specific group."
 msgstr ""
@@ -69,10 +74,20 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_done_by
+msgid "Done By"
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:99
 #, python-format
 msgid "Error evaluating tier validation conditions.\n"
 " %s"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
+msgid "Group By"
 msgstr ""
 
 #. module: base_tier_validation
@@ -103,6 +118,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_model
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
 msgid "Model"
 msgstr ""
 
@@ -135,6 +151,11 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_model
 msgid "Related Document Model"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_requested_by
+msgid "Requested By"
 msgstr ""
 
 #. module: base_tier_validation
