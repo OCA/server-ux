@@ -64,7 +64,7 @@
                 <separator/>
                 <filter string="All" name="all" domain="['|', ('active', '=', False), ('active', '=', True)]" />
                 <group expand="0" string="Group By">
-                    <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                    <filter string="Model" name="model_id" domain="[]" context="{'group_by':'model_id'}"/>
                 </group>
             </search>
         </field>
