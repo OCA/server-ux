@@ -14,16 +14,12 @@ openerp.web_database_rollback = function (instance) {
             this.$el.show();
             this.$el.find('.activate').on('click', function(ev) {
                     self.$el.find('.activate').css("background-color", "green").css("color", "white");
-                    var func = '/web_database_rollback/activate';
-                    self.rpc(func, {}).done(function(res) {
-                    });
+                    self.rpc('/web_database_rollback/activate', {}).done(function(res) {});
             });
 
             this.$el.find('.rollback').on('click', function(ev) {
                     self.$el.find('.activate').css("background-color", "buttonface").css("color", "#777");
-                    var func = '/web_database_rollback/rollback';
-                    self.rpc(func, {}).done(function(res) {
-                    });
+                    self.rpc('/web_database_rollback/rollback', {}).done(function(res) {});
             });
         },
     });

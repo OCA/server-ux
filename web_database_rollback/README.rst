@@ -15,7 +15,7 @@ The database state will revert to the state prior to pressing Activate button.
 
 The number of Odoo workers has to be 0.
 
-Note that when you press Rollback button, all the chanages done by other users will be lost.
+Note that when you press Rollback button, all the changes done by other users will be lost.
 
 Also note that, you always have to press Rollback button at the end of your testing/investigation session.
 When you press the Activate button, the cursor used for accessing the db is test cursor.
