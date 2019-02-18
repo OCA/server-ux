@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class TierDefinition(models.Model):
     _name = "tier.definition"
+    _description = "Tier Definition"
     _rec_name = "model_id"
 
     @api.model

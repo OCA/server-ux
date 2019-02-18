@@ -8,6 +8,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class TierValidation(models.AbstractModel):
     _name = "tier.validation"
+    _description = "Tier Validation (abstract)"
 
     _state_field = 'state'
     _state_from = ['draft']
