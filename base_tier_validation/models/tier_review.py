@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class TierReview(models.Model):
     _name = "tier.review"
+    _description = "Tier Review"
 
     status = fields.Selection(
         selection=[("pending", "Pending"),
