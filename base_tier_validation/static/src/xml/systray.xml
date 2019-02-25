@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+    <t t-name="tier.validation.ReviewMenuPreview">
+        <t t-if="_.isEmpty(reviews)">
+            <li class="text-center o_no_review">
+                <span>No reviews to do.</span>
+            </li>
+        </t>
+        <t t-foreach="reviews" t-as="review">
+            <div class="o_mail_channel_preview" t-att-data-res_model="review.model" t-att-data-model_name="review.name">
+                <div class="o_mail_channel_image o_mail_channel_app">
+                    <img t-att-src="review.icon"/>
+                </div>
+                <div class="o_channel_info">
+                    <div class="o_channel_title">
+                        <span class="o_channel_name">
+                            <t t-esc="review.name"/>
+                        </span>
+                    </div>
+                    <div>
+                        <button t-if="review.pending_count" type="button" class="btn btn-link o_activity_filter_button mr16" t-att-data-res_model="review.model" t-att-data-model_name="review.name" data-filter='pending_count'><t t-esc="review.pending_count"/> Pending </button>
+                        <span t-if="!review.pending_count" class="o_no_review mr16">0 Pending </span>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="tier.validation.ReviewMenu">
+        <li class="o_mail_navbar_item">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Reviews" href="#">
+                <i class="fa fa-pencil-square-o"/> <span class="o_notification_counter badge"/>
+            </a>
+            <ul class="o_mail_navbar_dropdown dropdown-menu" role="menu">
+                <li class="o_mail_navbar_dropdown_channels"/>
+            </ul>
+        </li>
+    </t>
+
+</templates>
