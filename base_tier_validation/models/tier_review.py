@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class TierReview(models.Model):
     _name = "tier.review"
 
+    name = fields.Char(related="definition_id.name", readonly=True)
     status = fields.Selection(
         selection=[("pending", "Pending"),
                    ("rejected", "Rejected"),
@@ -38,6 +39,7 @@ class TierReview(models.Model):
     requested_by = fields.Many2one(
         comodel_name="res.users",
     )
+    reviewed_date = fields.Datetime(string='Validation Date')
 
     @api.multi
     @api.depends('reviewer_id', 'reviewer_group_id', 'reviewer_group_id.users')

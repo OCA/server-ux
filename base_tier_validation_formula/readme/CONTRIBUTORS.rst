@@ -1,2 +1,2 @@
-* Lois Rilo <lois.rilo@eficent.com>
+* Enric Tobella <etobella@creublanca.es>
 * Adrià Gil Sorribes <adria.gil@eficent.com>
