@@ -6,13 +6,19 @@ from odoo import api, fields, models
 
 class TierDefinition(models.Model):
     _name = "tier.definition"
-    _rec_name = "model_id"
+    _rec_name = "name"
+
+    @api.model
+    def _get_default_name(self):
+        return "New Tier Validation"
 
     @api.model
     def _get_tier_validation_model_names(self):
         res = []
         return res
 
+    name = fields.Char(
+        'Description', required=True, default=_get_default_name)
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",
@@ -23,7 +29,8 @@ class TierDefinition(models.Model):
     review_type = fields.Selection(
         string="Validated by", default="individual",
         selection=[("individual", "Specific user"),
-                   ("group", "Any user in a specific group.")]
+                   ("group", "Any user in a specific group."),
+                   ("expression", "Python Expression")]
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users", string="Reviewer",
@@ -38,6 +45,14 @@ class TierDefinition(models.Model):
              "a boolean.",
         default="""# Available locals:\n#  - rec: current record""",
     )
+    reviewer_expression = fields.Text(
+        string='Review Expression',
+        help="Write Python code that defines the reviewer. "
+             "The result of executing the expression must be a res.users "
+             "recordset.",
+        default="# Available locals:\n#  - rec: current record\n"
+                "#  - Expects a recordset of res.users",
+    )
     active = fields.Boolean(default=True)
     sequence = fields.Integer(default=30)
     company_id = fields.Many2one(
@@ -51,3 +66,11 @@ class TierDefinition(models.Model):
         return {'domain': {
             'model_id': [
                 ('model', 'in', self._get_tier_validation_model_names())]}}
+
+    @api.onchange('review_type')
+    def onchange_review_type(self):
+        self.reviewer_id = None
+        self.reviewer_group_id = None
+        self.reviewer_expression = "# Available locals:\n" \
+                                   "#  - rec: current record\n"\
+                                   "#  - Expects a recordset of res.users"

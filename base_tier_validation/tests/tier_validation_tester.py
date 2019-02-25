@@ -15,6 +15,8 @@ class TierValidationTester(models.Model):
         default='draft',
     )
     test_field = fields.Float()
+    user_id = fields.Many2one(string="Assigned to:",
+                              comodel_name="res.users")
 
     @api.multi
     def action_confirm(self):
