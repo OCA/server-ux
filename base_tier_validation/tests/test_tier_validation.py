@@ -2,9 +2,9 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo.tests import common
-from odoo.exceptions import ValidationError, UserError
-from .common import setup_test_model
-from .tier_validation_tester import TierValidationTester
+from odoo.exceptions import ValidationError
+from .common import setup_test_model, teardown_test_model
+from .tier_validation_tester import TierValidationTester, TierValidationTester2
 
 
 @common.at_install(False)
@@ -15,17 +15,29 @@ class TierTierValidation(common.SavepointCase):
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
 
-        setup_test_model(cls.env, [TierValidationTester])
+        setup_test_model(cls.env,
+                         [TierValidationTester, TierValidationTester2])
 
         cls.test_model = cls.env[TierValidationTester._name]
+        cls.test_model_2 = cls.env[TierValidationTester2._name]
 
         cls.tester_model = cls.env['ir.model'].search([
             ('model', '=', 'tier.validation.tester')])
+        cls.tester_model_2 = cls.env['ir.model'].search([
+            ('model', '=', 'tier.validation.tester2')])
 
         # Access record:
         cls.env["ir.model.access"].create({
             'name': "access.tester",
             'model_id': cls.tester_model.id,
+            'perm_read': 1,
+            'perm_write': 1,
+            'perm_create': 1,
+            'perm_unlink': 1,
+        })
+        cls.env["ir.model.access"].create({
+            'name': "access.tester2",
+            'model_id': cls.tester_model_2.id,
             'perm_read': 1,
             'perm_write': 1,
             'perm_create': 1,
@@ -44,18 +56,27 @@ class TierTierValidation(common.SavepointCase):
             'login': 'test2',
         })
 
-        # Create tier definition:
+        # Create tier definitions:
         cls.tier_def_obj = cls.env['tier.definition']
         cls.tier_def_obj.create({
             'model_id': cls.tester_model.id,
             'review_type': 'individual',
             'reviewer_id': cls.test_user_1.id,
-            'python_code': 'rec.test_field > 1.0',
+            'definition_domain': "[('test_field', '>', 1.0)]",
         })
 
         cls.test_record = cls.test_model.create({
             'test_field': 2.5,
         })
+        cls.test_record_2 = cls.test_model_2.create({
+            'test_field': 2.5,
+        })
+
+    @classmethod
+    def tearDownClass(cls):
+        teardown_test_model(cls.env,
+                            [TierValidationTester, TierValidationTester2])
+        super(TierTierValidation, cls).tearDownClass()
 
     def test_01_auto_validation(self):
         """When the user can validate all future reviews, it is not needed
@@ -130,21 +151,46 @@ class TierTierValidation(common.SavepointCase):
             [('validated', '=', False)])
         self.assertTrue(res)
 
-    def test_09_wrong_tier_definition(self):
-        """Error should raise with incorrect python expresions on
-        tier definitions."""
-        self.tier_def_obj.create({
-            'model_id': self.tester_model.id,
-            'review_type': 'individual',
-            'reviewer_id': self.test_user_1.id,
-            'python_code': 'rec.not_existing_field > 1.0',
-        })
-        with self.assertRaises(UserError):
-            self.test_record.sudo(self.test_user_1.id).action_confirm()
-
-    def test_10_dummy_tier_definition(self):
+    def test_09_dummy_tier_definition(self):
         """Test tier.definition methods."""
         res = self.tier_def_obj._get_tier_validation_model_names()
         self.assertEqual(res, [])
         res = self.tier_def_obj.onchange_model_id()
         self.assertTrue(res)
+
+    def test_10_systray_counter(self):
+        # Create new test record
+        test_record = self.test_model.create({
+            'test_field': 2.5,
+        })
+        # Create tier definitions for both tester models
+        self.tier_def_obj.create({
+            'model_id': self.tester_model.id,
+            'review_type': 'individual',
+            'reviewer_id': self.test_user_1.id,
+            'definition_domain': "[('test_field', '>', 1.0)]",
+        })
+        self.tier_def_obj.create({
+            'model_id': self.tester_model.id,
+            'review_type': 'individual',
+            'reviewer_id': self.test_user_1.id,
+            'definition_domain': "[('test_field', '>', 1.0)]",
+        })
+        self.tier_def_obj.create({
+            'model_id': self.tester_model_2.id,
+            'review_type': 'individual',
+            'reviewer_id': self.test_user_1.id,
+            'definition_domain': "[('test_field', '>', 1.0)]",
+        })
+        # Request validation
+        self.test_record.sudo(self.test_user_2.id).request_validation()
+        test_record.sudo(self.test_user_2.id).request_validation()
+        self.test_record_2.sudo(self.test_user_2.id).request_validation()
+        # Get review user count as systray icon would do and check count value
+        docs = self.test_user_1.sudo(
+            self.test_user_1).review_user_count()
+        for doc in docs:
+            if doc.get('name') == 'tier.validation.tester2':
+                self.assertEqual(doc.get('pending_count'), 1)
+            else:
+                self.assertEqual(doc.get('pending_count'), 2)
