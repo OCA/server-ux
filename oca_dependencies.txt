@@ -1,0 +1,3 @@
+zpl2-label https://github.com/etobella/report-print-send 11.0-fix-qr
+report-print-send
+web

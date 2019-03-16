@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <act_window id="find_hash"
+                name="Find Hash"
+                res_model="barcode.action"
+                view_mode="form"
+                view_type="form"
+                context="{'default_model': 'hash.search', 'default_method': 'find_hash'}"
+                target="new"/>
+
+    <menuitem id="menu_find_hash" name="Find Hash"
+              action="find_hash"
+              parent="base.menu_administration"/>
+</odoo>

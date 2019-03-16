@@ -12,6 +12,11 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
+      - cups
+      - libcups2-dev
 
 env:
   global:
@@ -33,7 +38,10 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-
+  - pip install pycups==1.9.73
+  - pip install PyPDF2==1.18
+  - pip install requests
+  
 script:
   - travis_run_tests
 
