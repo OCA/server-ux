@@ -46,9 +46,11 @@ class HashSearchMixin(models.AbstractModel):
 
     def _get_printer(self):
         """
-        We must define the printer method. Usually an installation
+        We could rewrite the printer method. Usually an installation
         configuration
         """
+        if self.env.user.printing_printer_id:
+            return self.env.user.printing_printer_id
         raise UserError(_('Printer function not defined'))
 
     @api.multi
