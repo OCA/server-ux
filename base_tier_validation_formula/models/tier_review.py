@@ -14,13 +14,13 @@ class TierReview(models.Model):
         compute="_compute_python_reviewer_ids", store=True
     )
 
-    @api.depends('reviewer_id', 'reviewer_group_id', 'reviewer_group_id.users',
-                 'python_reviewer_ids')
-    def _compute_reviewer_ids(self):
-        super(TierReview, self)._compute_reviewer_ids()
-        for rec in self:
-            rec.reviewer_ids = rec.reviewer_id + rec.reviewer_group_id.users \
-                + rec.python_reviewer_ids
+    @api.model
+    def _get_reviewer_fields(self):
+        res = super()._get_reviewer_fields()
+        return res + ['python_reviewer_ids']
+
+    def _get_reviewers(self):
+        return super()._get_reviewers() + self.python_reviewer_ids
 
     @api.multi
     @api.depends('definition_id.reviewer_expression',
