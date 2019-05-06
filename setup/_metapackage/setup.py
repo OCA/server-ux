@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-base_optional_quick_create',
         'odoo11-addon-base_technical_features',
         'odoo11-addon-base_tier_validation',
+        'odoo11-addon-base_tier_validation_formula',
         'odoo11-addon-date_range',
         'odoo11-addon-easy_switch_user',
         'odoo11-addon-mass_editing',
