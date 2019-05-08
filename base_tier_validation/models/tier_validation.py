@@ -154,7 +154,14 @@ class TierValidation(models.AbstractModel):
             'done_by': self.env.user.id,
             'reviewed_date': fields.Datetime.now(),
         })
-        # TODO: add message_post
+        for review in user_reviews:
+            rec = self.env[review.model].browse(review.res_id)
+            if hasattr(rec, 'message_post'):
+                # Notify state change
+                getattr(rec, 'message_post')(
+                    subtype='mt_comment',
+                    body=_('A review was accepted')
+                )
 
     @api.multi
     def validate_tier(self):
@@ -173,7 +180,14 @@ class TierValidation(models.AbstractModel):
                 'done_by': self.env.user.id,
                 'reviewed_date': fields.Datetime.now(),
             })
-            # TODO: Add Message_post
+            if hasattr(rec, 'message_post'):
+                # Notify state change
+                getattr(rec, 'message_post')(
+                    subtype='mt_comment',
+                    body=_(
+                        'A review was rejected by %s.'
+                    ) % (self.env.user.name)
+                )
 
     @api.multi
     def request_validation(self):
