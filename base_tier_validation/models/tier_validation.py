@@ -156,12 +156,18 @@ class TierValidation(models.AbstractModel):
         })
         for review in user_reviews:
             rec = self.env[review.model].browse(review.res_id)
-            if hasattr(rec, 'message_post'):
-                # Notify state change
-                getattr(rec, 'message_post')(
-                    subtype='mt_comment',
-                    body=_('A review was accepted')
-                )
+            rec._notify_accepted_reviews()
+
+    def _notify_accepted_reviews(self):
+        if hasattr(self, 'message_post'):
+            # Notify state change
+            getattr(self, 'message_post')(
+                subtype='mt_comment',
+                body=self._notify_accepted_reviews_body()
+            )
+
+    def _notify_accepted_reviews_body(self):
+        return _('A review was accepted')
 
     @api.multi
     def validate_tier(self):
@@ -180,14 +186,18 @@ class TierValidation(models.AbstractModel):
                 'done_by': self.env.user.id,
                 'reviewed_date': fields.Datetime.now(),
             })
-            if hasattr(rec, 'message_post'):
-                # Notify state change
-                getattr(rec, 'message_post')(
-                    subtype='mt_comment',
-                    body=_(
-                        'A review was rejected by %s.'
-                    ) % (self.env.user.name)
-                )
+            rec._notify_rejected_review()
+
+    def _notify_rejected_review_body(self):
+        return _('A review was rejected by %s.') % (self.env.user.name)
+
+    def _notify_rejected_review(self):
+        if hasattr(self, 'message_post'):
+            # Notify state change
+            getattr(self, 'message_post')(
+                subtype='mt_comment',
+                body=self._notify_rejected_review_body()
+            )
 
     @api.multi
     def request_validation(self):
