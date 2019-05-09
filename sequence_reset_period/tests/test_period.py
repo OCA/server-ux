@@ -3,13 +3,13 @@
 
 
 from odoo.tests import common
-from datetime import datetime
+from datetime import date
 
 
 class TestSequence(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.date = datetime(2018, 3, 14).strftime('%Y-%m-%d')
+        self.date = date(2018, 3, 14)
 
     def get_sequence(self, method):
         return self.env['ir.sequence'].create({
@@ -27,8 +27,8 @@ class TestSequence(common.TransactionCase):
             ir_sequence_date=self.date).next_by_id())
         range = sequence.date_range_ids
         self.assertTrue(range)
-        self.assertEqual('2018-01-01', range.date_from)
-        self.assertEqual('2018-12-31', range.date_to)
+        self.assertEqual(date(2018, 1, 1), range.date_from)
+        self.assertEqual(date(2018, 12, 31), range.date_to)
 
     def test_daily(self):
         sequence = self.get_sequence('daily')
@@ -47,8 +47,8 @@ class TestSequence(common.TransactionCase):
             ir_sequence_date=self.date).next_by_id())
         range = sequence.date_range_ids
         self.assertTrue(range)
-        self.assertEqual('2018-03-12', range.date_from)
-        self.assertEqual('2018-03-18', range.date_to)
+        self.assertEqual(date(2018, 3, 12), range.date_from)
+        self.assertEqual(date(2018, 3, 18), range.date_to)
 
     def test_monthly(self):
         sequence = self.get_sequence('monthly')
@@ -57,8 +57,8 @@ class TestSequence(common.TransactionCase):
             ir_sequence_date=self.date).next_by_id())
         range = sequence.date_range_ids
         self.assertTrue(range)
-        self.assertEqual('2018-03-01', range.date_from)
-        self.assertEqual('2018-03-31', range.date_to)
+        self.assertEqual(date(2018, 3, 1), range.date_from)
+        self.assertEqual(date(2018, 3, 31), range.date_to)
 
     def test_yearly(self):
         sequence = self.get_sequence('yearly')
@@ -67,5 +67,5 @@ class TestSequence(common.TransactionCase):
             ir_sequence_date=self.date).next_by_id())
         range = sequence.date_range_ids
         self.assertTrue(range)
-        self.assertEqual('2018-01-01', range.date_from)
-        self.assertEqual('2018-12-31', range.date_to)
+        self.assertEqual(date(2018, 1, 1), range.date_from)
+        self.assertEqual(date(2018, 12, 31), range.date_to)
