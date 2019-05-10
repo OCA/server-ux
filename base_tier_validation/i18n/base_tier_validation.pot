@@ -26,6 +26,18 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr ""
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:170
+#, python-format
+msgid "A review was accepted"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:192
+#, python-format
+msgid "A review was rejected by %s."
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:134
 #, python-format
 msgid "A validation process is still open for at least one record."
