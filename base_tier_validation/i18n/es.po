@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation
+# 	* base_tier_validation
 #
 msgid ""
 msgstr ""
@@ -27,6 +27,18 @@ msgstr "0 Pendiente"
 #: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nombre</span>"
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:170
+#, python-format
+msgid "A review was accepted"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:192
+#, python-format
+msgid "A review was rejected by %s."
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:134
@@ -282,7 +294,8 @@ msgstr "Esta operación está en proceso de validación."
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:130
 #, python-format
-msgid "This action needs to be validated for at least one record. \n"
+msgid ""
+"This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
 "Esta acción necesita ser validada para algún registro.\n"
