@@ -4,7 +4,6 @@
 
 from odoo.tests import common
 from datetime import date
-from dateutil.relativedelta import relativedelta
 
 
 class TestSequence(common.TransactionCase):
