@@ -4,6 +4,7 @@
 
 from odoo.tests import common
 from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 class TestSequence(common.TransactionCase):
@@ -69,3 +70,18 @@ class TestSequence(common.TransactionCase):
         self.assertTrue(range)
         self.assertEqual(date(2018, 1, 1), range.date_from)
         self.assertEqual(date(2018, 12, 31), range.date_to)
+
+    def test_monthly_existing(self):
+        sequence = self.get_sequence('monthly')
+        self.env['ir.sequence.date_range'].create({
+            'date_from': date(2018, 3, 1),
+            'date_to': date(2018, 3, 10),
+            'sequence_id': sequence.id,
+        })
+        self.env['ir.sequence.date_range'].create({
+            'date_from': date(2018, 3, 20),
+            'date_to': date(2018, 3, 25),
+            'sequence_id': sequence.id,
+        })
+        self.assertEqual('00001', sequence.with_context(
+            ir_sequence_date=self.date).next_by_id())
