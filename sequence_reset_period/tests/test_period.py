@@ -25,50 +25,50 @@ class TestSequence(common.TransactionCase):
         self.assertFalse(sequence.date_range_ids)
         self.assertEqual('00001', sequence.with_context(
             ir_sequence_date=self.date).next_by_id())
-        range = sequence.date_range_ids
-        self.assertTrue(range)
-        self.assertEqual(date(2018, 1, 1), range.date_from)
-        self.assertEqual(date(2018, 12, 31), range.date_to)
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 1, 1), xrange.date_from)
+        self.assertEqual(date(2018, 12, 31), xrange.date_to)
 
     def test_daily(self):
         sequence = self.get_sequence('daily')
         self.assertFalse(sequence.date_range_ids)
         self.assertEqual('00001', sequence.with_context(
             ir_sequence_date=self.date).next_by_id())
-        range = sequence.date_range_ids
-        self.assertTrue(range)
-        self.assertEqual(self.date, range.date_from)
-        self.assertEqual(self.date, range.date_to)
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(self.date, xrange.date_from)
+        self.assertEqual(self.date, xrange.date_to)
 
     def test_weekly(self):
         sequence = self.get_sequence('weekly')
         self.assertFalse(sequence.date_range_ids)
         self.assertEqual('00001', sequence.with_context(
             ir_sequence_date=self.date).next_by_id())
-        range = sequence.date_range_ids
-        self.assertTrue(range)
-        self.assertEqual(date(2018, 3, 12), range.date_from)
-        self.assertEqual(date(2018, 3, 18), range.date_to)
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 3, 12), xrange.date_from)
+        self.assertEqual(date(2018, 3, 18), xrange.date_to)
 
     def test_monthly(self):
         sequence = self.get_sequence('monthly')
         self.assertFalse(sequence.date_range_ids)
         self.assertEqual('00001', sequence.with_context(
             ir_sequence_date=self.date).next_by_id())
-        range = sequence.date_range_ids
-        self.assertTrue(range)
-        self.assertEqual(date(2018, 3, 1), range.date_from)
-        self.assertEqual(date(2018, 3, 31), range.date_to)
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 3, 1), xrange.date_from)
+        self.assertEqual(date(2018, 3, 31), xrange.date_to)
 
     def test_yearly(self):
         sequence = self.get_sequence('yearly')
         self.assertFalse(sequence.date_range_ids)
         self.assertEqual('00001', sequence.with_context(
             ir_sequence_date=self.date).next_by_id())
-        range = sequence.date_range_ids
-        self.assertTrue(range)
-        self.assertEqual(date(2018, 1, 1), range.date_from)
-        self.assertEqual(date(2018, 12, 31), range.date_to)
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 1, 1), xrange.date_from)
+        self.assertEqual(date(2018, 12, 31), xrange.date_to)
 
     def test_monthly_existing(self):
         sequence = self.get_sequence('monthly')
