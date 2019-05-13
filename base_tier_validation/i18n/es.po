@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-05-08 11:03+0000\n"
+"PO-Revision-Date: 2019-05-13 15:43+0000\n"
 "Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -32,13 +32,13 @@ msgstr "<span class=\"oe_edit_only\">Nombre</span>"
 #: code:addons/base_tier_validation/models/tier_validation.py:170
 #, python-format
 msgid "A review was accepted"
-msgstr ""
+msgstr "La revisión fué aceptada"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:192
 #, python-format
 msgid "A review was rejected by %s."
-msgstr ""
+msgstr "La revisión fué rechazada por %s."
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:134
