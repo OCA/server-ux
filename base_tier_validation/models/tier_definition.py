@@ -1,7 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class TierDefinition(models.Model):
@@ -10,7 +10,7 @@ class TierDefinition(models.Model):
 
     @api.model
     def _get_default_name(self):
-        return "New Tier Validation"
+        return _("New Tier Validation")
 
     @api.model
     def _get_tier_validation_model_names(self):
@@ -18,7 +18,11 @@ class TierDefinition(models.Model):
         return res
 
     name = fields.Char(
-        'Description', required=True, default=_get_default_name)
+        string='Description',
+        required=True,
+        default=_get_default_name,
+        translate=True,
+    )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",

@@ -44,7 +44,7 @@
                             <span t-esc="review.name"/>
                         </td>
                         <td class="text-right">
-                            <span t-esc="review.status"/>
+                            <span t-esc="review.display_status"/>
                         </td>
                         <td class="text-right">
                             <span t-esc="review.done_by[1]"/>
