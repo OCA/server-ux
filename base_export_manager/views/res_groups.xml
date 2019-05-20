@@ -9,9 +9,6 @@
             <xpath expr="//field[@name='model_access']//tree//field[@name='perm_unlink']" position="after">
                 <field name="perm_export"/>
             </xpath>
-            <xpath expr="//field[@name='model_access']//form//field[@name='perm_unlink']" position="after">
-                <field name="perm_export"/>
-            </xpath>
         </field>
     </record>
 
