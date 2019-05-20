@@ -1,5 +1,6 @@
 # Copyright 2015 Antiun Ingeniería S.L. - Antonio Espinosa
 # Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2019 brain-tec AG - Olivier Jossen
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, models, fields, api, exceptions
@@ -136,7 +137,11 @@ class IrExportsLine(models.Model):
             for num in range(1, 5):
                 if num > len(parts):
                     # Empty subfield in this case
-                    one[one.field_n(num, True)] = False
+                    # You could get to failing constraint while populating the
+                    # fields, so we skip the uniqueness check and manually
+                    # check the full constraint after the loop
+                    one.with_context(skip_check=True)[one.field_n(num, True)] \
+                        = False
                     continue
                 field_name = parts[num - 1]
                 model = one.model_n(num)
@@ -145,16 +150,20 @@ class IrExportsLine(models.Model):
                 # the full constraint after the loop
                 one.with_context(skip_check=True)[one.field_n(num, True)] = (
                     one._get_field_id(model, field_name))
+            # invalidate_cache -> in order to get actual value of field 'label'
+            # in function '_check_name'
+            self.invalidate_cache(ids=one.ids)
             one._check_name()
 
     @api.multi
     @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
-        for one in self:
-            if not one.label:
-                raise exceptions.ValidationError(
-                    _("Field '%s' does not exist") % one.name)
-            if not one.env.context.get('skip_check'):
+        # do also skip the check if label is set or not, when skip_check is set
+        if not self._context.get('skip_check'):
+            for one in self:
+                if not one.label:
+                    raise exceptions.ValidationError(
+                        _("Field '%s' does not exist") % one.name)
                 lines = one.search([('export_id', '=', one.export_id.id),
                                     ('name', '=', one.name)])
                 if len(lines) > 1:

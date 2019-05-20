@@ -5,3 +5,4 @@
 * Dave Lasley <dave@laslabs.com>
 * Sandip Mangukiya <smangukiya@ursainfosystems.com>
 * Maxime Chambreuil <mchambreuil@ursainfosystems.com>
+* Olivier Jossen <olivier.jossen@braintec-group.com>
