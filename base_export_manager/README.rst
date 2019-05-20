@@ -42,7 +42,7 @@ Configuration
 =============
 
 * Activate the developer mode
-* Go to Settings > Users > Groups to select a user group
+* Go to Settings > Users & Companies > Groups to select a user group
 * Edit the group and go to the Access Rights tab
 * Uncheck the "Export Access" box on the object of your choice and save
 
@@ -55,7 +55,7 @@ You can create the export profiles as you are used to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Press *Action > Export*.
 * Use the wizard to choose the columns to export.
 * Press *Save fields list*.
 * Give it a name.
@@ -77,7 +77,7 @@ To use one of those profiles, you need to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Press *Action > Export*.
 * Choose your saved export from *Saved exports*.
 * Press *Export to file*.
 
@@ -111,6 +111,7 @@ Authors
 * Tecnativa
 * LasLabs
 * Ursa Information Systems
+* brain-tec AG
 
 Contributors
 ~~~~~~~~~~~~
@@ -122,6 +123,7 @@ Contributors
 * Dave Lasley <dave@laslabs.com>
 * Sandip Mangukiya <smangukiya@ursainfosystems.com>
 * Maxime Chambreuil <mchambreuil@ursainfosystems.com>
+* Olivier Jossen <olivier.jossen@braintec-group.com>
 
 Maintainers
 ~~~~~~~~~~~
