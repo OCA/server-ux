@@ -185,6 +185,13 @@ msgid "Need Validation"
 msgstr "Necesita validación"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_definition.py:13
+#, fuzzy, python-format
+#| msgid "Tier Validations"
+msgid "New Tier Validation"
+msgstr "Validaciones de Nivel"
+
+#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:7
 #, python-format
