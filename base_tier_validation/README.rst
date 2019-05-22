@@ -52,7 +52,10 @@ To configure this module, you need to:
 Known issues / Roadmap
 ======================
 
-* In odoo v11 it would be interesting to try to take advantage of ``mail.activity.mixin``.
+* It would be interesting to improve the current tooltip to display reviews
+  to make it responsible and more "Odoo-ish". For instance, to use a
+  widget capable to display a tree view as a drop-down without needing
+  to navigate to a new screen.
 
 Bug Tracker
 ===========
