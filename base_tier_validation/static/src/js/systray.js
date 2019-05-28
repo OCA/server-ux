@@ -6,24 +6,24 @@ odoo.define('tier_validation.systray', function (require) {
     var session = require('web.session');
     var SystrayMenu = require('web.SystrayMenu');
     var Widget = require('web.Widget');
-    var bus = require('bus.bus').bus;
-
-    var chat_manager = require('mail.chat_manager');
+    var BusService = require('bus.BusService');
 
     var QWeb = core.qweb;
 
     var ReviewMenu = Widget.extend({
         template:'tier.validation.ReviewMenu',
         events: {
-            "click": "_onReviewMenuClick",
-            "click .o_mail_channel_preview": "_onReviewFilterClick",
+            "show.bs.dropdown": "_onReviewMenuShow",
+            'click .o_mail_activity_action': '_onReviewActionClick',
+            'click .o_mail_preview': '_onReviewFilterClick',
         },
         start: function () {
-            this.$reviews_preview = this.$('.o_mail_navbar_dropdown_channels');
+            this.$reviews_preview = this.$('.o_mail_systray_dropdown_items');
             this._updateReviewPreview();
             var channel = 'base.tier.validation';
-            bus.add_channel(channel);
-            bus.on('notification', this, this._updateReviewPreview);
+            this.call('bus_service', 'addChannel', channel);
+            this.call('bus_service', 'startPolling');
+            this.call('bus_service', 'onNotification', this, this._updateReviewPreview);
             return this._super();
         },
 
@@ -50,12 +50,15 @@ odoo.define('tier_validation.systray', function (require) {
             });
         },
         /**
-         * Check wether activity systray dropdown is open or not
+         * Get particular model view to redirect on click of review on that model.
          * @private
-         * @returns {boolean}
+         * @param {string} model
          */
-        _isOpen: function () {
-            return this.$el.hasClass('open');
+        _getReviewModelViewID: function (model) {
+            return this._rpc({
+                model: model,
+                method: 'get_activity_view_id'
+            });
         },
         /**
          * Update(render) activity system tray view on activity updation.
@@ -90,8 +93,20 @@ odoo.define('tier_validation.systray', function (require) {
             }
         },
 
-
+        //------------------------------------------------------------
         // Handlers
+        //------------------------------------------------------------
+
+        /**
+         * Redirect to specific action given its xml id
+         * @private
+         * @param {MouseEvent} ev
+         */
+        _onReviewActionClick: function (ev) {
+            ev.stopPropagation();
+            var actionXmlid = $(ev.currentTarget).data('action_xmlid');
+            this.do_action(actionXmlid);
+        },
 
         /**
          * Redirect to particular model view
@@ -118,18 +133,13 @@ odoo.define('tier_validation.systray', function (require) {
          * @private
          * @param {MouseEvent} event
          */
-        _onReviewMenuClick: function () {
-            if (!this._isOpen()) {
-                this._updateReviewPreview();
-            }
+        _onReviewMenuShow: function () {
+            this._updateReviewPreview();
         },
 
     });
 
     SystrayMenu.Items.push(ReviewMenu);
 
-    // to test activity menu in qunit test cases we need it
-    return {
-        ReviewMenu: ReviewMenu,
-    };
+    return ReviewMenu;
 });
