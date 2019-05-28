@@ -1,19 +1,28 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class TierDefinition(models.Model):
     _name = "tier.definition"
     _description = "Tier Definition"
-    _rec_name = "model_id"
+
+    @api.model
+    def _get_default_name(self):
+        return _("New Tier Validation")
 
     @api.model
     def _get_tier_validation_model_names(self):
         res = []
         return res
 
+    name = fields.Char(
+        string="Description",
+        required=True,
+        default=lambda self: self._get_default_name(),
+        translate=True,
+    )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",
@@ -23,8 +32,10 @@ class TierDefinition(models.Model):
     )
     review_type = fields.Selection(
         string="Validated by", default="individual",
-        selection=[("individual", "Specific user"),
-                   ("group", "Any user in a specific group.")]
+        selection=[
+            ("individual", "Specific user"),
+            ("group", "Any user in a specific group."),
+        ]
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users", string="Reviewer",
@@ -32,13 +43,14 @@ class TierDefinition(models.Model):
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group",
     )
-    python_code = fields.Text(
-        string='Tier Definition Expression',
-        help="Write Python code that defines when this tier confirmation "
-             "will be needed. The result of executing the expresion must be "
-             "a boolean.",
-        default="""# Available locals:\n#  - rec: current record""",
+    definition_type = fields.Selection(
+        string="Definition",
+        selection=[
+            ('domain', 'Domain'),
+        ],
+        default='domain',
     )
+    definition_domain = fields.Char()
     active = fields.Boolean(default=True)
     sequence = fields.Integer(default=30)
     company_id = fields.Many2one(
@@ -52,3 +64,8 @@ class TierDefinition(models.Model):
         return {'domain': {
             'model_id': [
                 ('model', 'in', self._get_tier_validation_model_names())]}}
+
+    @api.onchange('review_type')
+    def onchange_review_type(self):
+        self.reviewer_id = None
+        self.reviewer_group_id = None
