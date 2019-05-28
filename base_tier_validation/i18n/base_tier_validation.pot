@@ -14,7 +14,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:133
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:34
+#, python-format
+msgid "0 Pending"
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "<span class=\"oe_edit_only\">Name</span>"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:167
+#, python-format
+msgid "A review was accepted"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:191
+#, python-format
+msgid "A review was rejected by %s."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:131
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr ""
@@ -62,8 +86,23 @@ msgid "Created on"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__definition_id
 msgid "Definition"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_domain
+msgid "Definition Domain"
+msgstr ""
+
+#. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:25
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
+#, python-format
+msgid "Description"
 msgstr ""
 
 #. module: base_tier_validation
@@ -74,15 +113,25 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_tier_validation
+#: selection:tier.definition,definition_type:0
+msgid "Domain"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__done_by
 msgid "Done By"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:100
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:27
 #, python-format
-msgid "Error evaluating tier validation conditions.\n"
-" %s"
+msgid "Done by"
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.definition,definition_type:0
+msgid "Formula"
 msgstr ""
 
 #. module: base_tier_validation
@@ -128,8 +177,29 @@ msgid "Need Validation"
 msgstr ""
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_definition.py:13
+#, python-format
+msgid "New Tier Validation"
+msgstr ""
+
+#. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:7
+#, python-format
+msgid "No reviews to do."
+msgstr ""
+
+#. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:33
 #: selection:tier.review,status:0
+#, python-format
 msgid "Pending"
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.definition,review_type:0
+msgid "Python Expression"
 msgstr ""
 
 #. module: base_tier_validation
@@ -159,6 +229,20 @@ msgid "Requested By"
 msgstr ""
 
 #. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:24
+#, python-format
+msgid "Requested by"
+msgstr ""
+
+#. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:13
+#, python-format
+msgid "Review"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_id
 msgid "Reviewer"
@@ -177,7 +261,19 @@ msgid "Reviewers"
 msgstr ""
 
 #. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:44
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:10
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
+#, python-format
+msgid "Reviews"
+msgstr ""
+
+#. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:23
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#, python-format
 msgid "Sequence"
 msgstr ""
 
@@ -187,18 +283,21 @@ msgid "Specific user"
 msgstr ""
 
 #. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:26
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__status
+#, python-format
 msgid "Status"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:140
+#: code:addons/base_tier_validation/models/tier_validation.py:138
 #, python-format
 msgid "The operation is under validation."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:129
+#: code:addons/base_tier_validation/models/tier_validation.py:127
 #, python-format
 msgid "This action needs to be validated for at least one record. \n"
 "Please request a validation."
@@ -219,11 +318,6 @@ msgid "Tier Definition"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__python_code
-msgid "Tier Definition Expression"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
 msgid "Tier Review"
@@ -240,6 +334,11 @@ msgid "Tier Validations"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
 msgid "Validated"
 msgstr ""
@@ -251,12 +350,20 @@ msgid "Validated by"
 msgstr ""
 
 #. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:28
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewed_date
+#, python-format
+msgid "Validation Date"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__python_code
-msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "e.g. Tier Validation for..."
 msgstr ""
 
