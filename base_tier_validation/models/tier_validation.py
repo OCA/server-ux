@@ -23,10 +23,6 @@ class TierValidation(models.AbstractModel):
         domain=lambda self: [('model', '=', self._name)],
         auto_join=True,
     )
-    review_ids_dropdown = fields.One2many(
-        related='review_ids',
-        help="Field needed to display the dropdown menu correctly"
-    )
     validated = fields.Boolean(
         compute="_compute_validated_rejected",
         search="_search_validated",
@@ -174,6 +170,7 @@ class TierValidation(models.AbstractModel):
     def validate_tier(self):
         for rec in self:
             rec._validate_tier()
+        self._update_counter()
 
     @api.multi
     def reject_tier(self):
@@ -188,6 +185,7 @@ class TierValidation(models.AbstractModel):
                 'reviewed_date': fields.Datetime.now(),
             })
             rec._notify_rejected_review()
+        self._update_counter()
 
     def _notify_rejected_review_body(self):
         return _('A review was rejected by %s.') % (self.env.user.name)
@@ -230,6 +228,7 @@ class TierValidation(models.AbstractModel):
                 rec.mapped('review_ids').unlink()
                 self._update_counter()
 
+    @api.model
     def _update_counter(self):
         notifications = []
         channel = 'base.tier.validation'
