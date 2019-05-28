@@ -18,9 +18,9 @@ class TierDefinition(models.Model):
         return res
 
     name = fields.Char(
-        string='Description',
+        string="Description",
         required=True,
-        default=_get_default_name,
+        default=lambda self: self._get_default_name(),
         translate=True,
     )
     model_id = fields.Many2one(
