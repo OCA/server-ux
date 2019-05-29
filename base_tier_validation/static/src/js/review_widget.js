@@ -17,8 +17,7 @@ odoo.define('base_tier_validation.ReviewField', function (require) {
         },
         start: function () {
             var self = this;
-            console.log(self)
-
+            self._renderDropdown();
         },
         /**
          * Make RPC and get current user's activity details
