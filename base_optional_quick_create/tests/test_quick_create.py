@@ -1,10 +1,12 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+from odoo.tests import common
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestQuickCreate(TransactionCase):
 
     def setUp(self, *args, **kwargs):
