@@ -12,6 +12,8 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - libzbar-dev
+      - poppler-utils
 
 env:
   global:
