@@ -38,8 +38,8 @@ class DateRange(models.Model):
         comodel_name='date.range', string="Parent", index=1)
 
     _sql_constraints = [
-        ('date_range_uniq', 'unique (name,type_id, company_id)',
-         'A date range must be unique per company !')]
+        ('date_range_uniq', 'unique (name,type_id, company_id, parent_id)',
+         'A date range must be unique per company and parent!')]
 
     @api.onchange('company_id', 'type_id')
     def _onchange_company_id(self):
