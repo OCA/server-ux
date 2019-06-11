@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_tier_validation_formula
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Any user in a specific group."
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
+msgid "Definition"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,definition_type:0
+msgid "Domain"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: code:addons/base_tier_validation_formula/models/tier_review.py:37
+#: code:addons/base_tier_validation_formula/models/tier_validation.py:17
+#, python-format
+msgid "Error evaluating tier validation conditions.\n"
+" %s"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,definition_type:0
+msgid "Formula"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Python Expression"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__reviewer_expression
+msgid "Review Expression"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: code:addons/base_tier_validation_formula/models/tier_review.py:43
+#, python-format
+msgid "Reviewer python expression must return a res.users recordset."
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
+msgid "Reviewers from Python expression"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Specific user"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model,name:base_tier_validation_formula.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__python_code
+msgid "Tier Definition Expression"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model,name:base_tier_validation_formula.model_tier_review
+msgid "Tier Review"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model,name:base_tier_validation_formula.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
+msgid "Validated by"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
+msgid "Write Python code that defines the reviewer. The result of executing the expression must be a res.users recordset."
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
+msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+msgstr ""
