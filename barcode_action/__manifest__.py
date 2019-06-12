@@ -4,7 +4,7 @@
 
 {
     'name': 'Barcode action launcher',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Extra Tools',
     'website': 'https://github.com/OCA/server-ux',
     'author': 'Creu Blanca, Eficent, Odoo Community Association (OCA)',
