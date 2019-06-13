@@ -4,7 +4,7 @@
               inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/base_tier_validation/static/src/js/systray.js"/>
-            <script type="text/javascript" src="/base_tier_validation/static/src/js/review_widget.js"/>
+            <script type="text/javascript" src="/base_tier_validation/static/src/js/tier_review_widget.js"/>
 
             <link rel="stylesheet" href="/base_tier_validation/static/src/less/systray.less" type="text/less"/>
             <link rel="stylesheet" href="/base_tier_validation/static/src/less/review.less" type="text/less"/>
