@@ -263,7 +263,7 @@ msgstr ""
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:44
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:10
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:9
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
 #, python-format
 msgid "Reviews"
