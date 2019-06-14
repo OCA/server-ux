@@ -11,9 +11,11 @@ odoo.define('base_tier_validation.ReviewField', function (require) {
     var QWeb = core.qweb;
 
     var ReviewField = AbstractField.extend({
-        template: 'tier.review.ReviewPopUp',
+        template: 'tier.review.Collapse',
         events: {
             'click .o_info_btn': '_onButtonClicked',
+            'show.bs.collapse': '_showCollapse',
+            'hide.bs.collapse': '_hideCollapse'
         },
         start: function () {
             var self = this;
@@ -26,7 +28,7 @@ odoo.define('base_tier_validation.ReviewField', function (require) {
         _getReviewData: function(res_ids){
             var self = this;
 
-            return self._rpc({
+            return this._rpc({
                 model: 'res.users',
                 method: 'get_reviews',
                 args: [res_ids],
@@ -37,7 +39,7 @@ odoo.define('base_tier_validation.ReviewField', function (require) {
         _renderDropdown: function () {
             var self = this;
             return this._getReviewData(self.value).then(function (){
-                self.$('.o_review').html(QWeb.render("tier.review.ReviewDropDown", {
+                self.$('.o_review').html(QWeb.render("tier.review.ReviewsTable", {
                     reviews : self.reviews
                 }));
             });
@@ -48,9 +50,15 @@ odoo.define('base_tier_validation.ReviewField', function (require) {
                 this._renderDropdown();
             }
         },
+        _showCollapse: function () {
+            this.$el.find('.panel-heading').addClass('active');
+        },
+        _hideCollapse: function () {
+            this.$el.find('.panel-heading').removeClass('active');
+        }
     });
 
-    field_registry.add('review_popup', ReviewField);
+    field_registry.add('tier_validation', ReviewField);
 
     return ReviewField;
 
