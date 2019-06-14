@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation
+# 	* base_tier_validation
 #
 msgid ""
 msgstr ""
@@ -266,7 +266,7 @@ msgstr "Revisores"
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:44
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:10
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:9
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
 #, python-format
 msgid "Reviews"
@@ -302,7 +302,8 @@ msgstr "Esta operación está en proceso de validación."
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:127
 #, python-format
-msgid "This action needs to be validated for at least one record. \n"
+msgid ""
+"This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
 "Esta acción necesita ser validada para algún registro.\n"
