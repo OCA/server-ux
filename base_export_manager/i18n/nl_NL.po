@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_export_manager
+# 	* base_export_manager
 #
 # Translators:
 # Peter Hageman <hageman.p@gmail.com>, 2017
@@ -20,15 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_export_manager
-#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__model_id
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 msgid "Database model to export."
 msgstr "Te exporteren databasemodel"
 
 #. module: base_export_manager
 #. openerp-web
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:18
-#: code:addons/base_export_manager/static/src/js/base_export_manager.js:39
 #, python-format
 msgid "Export"
 msgstr "Export"
@@ -37,6 +36,13 @@ msgstr "Export"
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
 msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__name
+#, fuzzy
+#| msgid "Export"
+msgid "Export Name"
+msgstr "Export"
 
 #. module: base_export_manager
 #: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
@@ -49,6 +55,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
 msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports
+msgid "Exports"
+msgstr "ir.exports"
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports_line
+msgid "Exports Line"
+msgstr "ir.exports.line"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:171
@@ -67,6 +83,16 @@ msgstr "Veld %s bestaat niet"
 #, python-format
 msgid "Field '%s' not found in model '%s'"
 msgstr "Veld %s niet gevonden in model %s"
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
+msgid "Field Name"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__name
+msgid "Field's technical name."
+msgstr ""
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field1_id
@@ -89,6 +115,11 @@ msgid "Fourth model"
 msgstr "Vierde model"
 
 #. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:135
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
@@ -105,12 +136,27 @@ msgid "Model"
 msgstr "Model"
 
 #. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_model_access
+msgid "Model Access"
+msgstr "ir.model.access"
+
+#. module: base_export_manager
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports__resource
+msgid "Model's technical name."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__resource
+msgid "Resource"
+msgstr ""
+
+#. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field2_id
 msgid "Second field"
 msgstr "Tweede veld"
 
 #. module: base_export_manager
-#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model2_id
 msgid "Second model"
 msgstr "Tweede model"
 
@@ -139,18 +185,3 @@ msgstr "Gebruikers"
 #, python-format
 msgid "You must supply a model or resource."
 msgstr ""
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_exports
-msgid "Exports"
-msgstr "ir.exports"
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_exports_line
-msgid "Exports Line"
-msgstr "ir.exports.line"
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_model_access
-msgid "Model Access"
-msgstr "ir.model.access"
