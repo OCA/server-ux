@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_export_manager
+# 	* base_export_manager
 #
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
@@ -21,15 +21,14 @@ msgstr ""
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: base_export_manager
-#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__model_id
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 msgid "Database model to export."
 msgstr ""
 
 #. module: base_export_manager
 #. openerp-web
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:18
-#: code:addons/base_export_manager/static/src/js/base_export_manager.js:39
 #, python-format
 msgid "Export"
 msgstr ""
@@ -37,6 +36,11 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__name
+msgid "Export Name"
 msgstr ""
 
 #. module: base_export_manager
@@ -49,6 +53,16 @@ msgstr ""
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
 #: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports
+msgid "Exports"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports_line
+msgid "Exports Line"
 msgstr ""
 
 #. module: base_export_manager
@@ -67,6 +81,16 @@ msgstr ""
 #: code:addons/base_export_manager/models/ir_exports_line.py:199
 #, python-format
 msgid "Field '%s' not found in model '%s'"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
+msgid "Field Name"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__name
+msgid "Field's technical name."
 msgstr ""
 
 #. module: base_export_manager
@@ -90,6 +114,11 @@ msgid "Fourth model"
 msgstr ""
 
 #. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:135
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
@@ -106,12 +135,27 @@ msgid "Model"
 msgstr ""
 
 #. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_model_access
+msgid "Model Access"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports__resource
+msgid "Model's technical name."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__resource
+msgid "Resource"
+msgstr ""
+
+#. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field2_id
 msgid "Second field"
 msgstr ""
 
 #. module: base_export_manager
-#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model2_id
 msgid "Second model"
 msgstr ""
 
@@ -139,19 +183,4 @@ msgstr ""
 #: code:addons/base_export_manager/models/ir_exports.py:65
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_exports
-msgid "Exports"
-msgstr ""
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_exports_line
-msgid "Exports Line"
-msgstr ""
-
-#. module: base_export_manager
-#: model:ir.model,name:base_export_manager.model_ir_model_access
-msgid "Model Access"
 msgstr ""
