@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo11-addon-base_tier_validation',
         'odoo11-addon-base_tier_validation_formula',
         'odoo11-addon-date_range',
+        'odoo11-addon-document_quick_access',
         'odoo11-addon-easy_switch_user',
         'odoo11-addon-mass_editing',
         'odoo11-addon-sequence_check_digit',
