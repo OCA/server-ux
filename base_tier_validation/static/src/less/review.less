@@ -2,3 +2,43 @@ ul.o_review {
     min-width: 600px;
     max-width: 800px
 }
+
+.panel-group {
+    min-height: auto !important;
+    margin-top: -12px !important;
+    padding: 6px !important;
+}
+
+.panel-review {
+
+    .panel-heading {
+        background-color: initial !important;
+    }
+
+    .panel {
+        border: 0px !important;
+    }
+
+    .collapse > .panel-body {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    .panel-title>a, .panel-title>a:active{
+        display:block;
+    }
+
+    .panel-heading  a:before {
+       font-family: FontAwesome;
+       content: "\f0d7";
+       float: right;
+       transition: all 0.5s;
+    }
+
+    .panel-heading.active a:before {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+}
