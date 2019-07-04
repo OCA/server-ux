@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "12.0.3.0.0",
+    "version": "12.0.3.1.0",
     "development_status": "Mature",
     "maintainers": ['lreficent'],
     "category": "Tools",
