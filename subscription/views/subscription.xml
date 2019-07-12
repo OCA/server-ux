@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Subscription -->
+        <record id="subscription_subscription_form" model="ir.ui.view">
+            <field name="name">subscription.subscription.form</field>
+            <field name="model">subscription.subscription</field>
+            <field name="arch" type="xml">
+                <form string="Subscriptions">
+                    <header>
+                        <button name="set_process" states="draft" string="Process" type="object" class="btn-primary"/>
+                        <button name="set_done" states="running" string="Stop" type="object" class="btn-primary"/>
+                        <button name="set_draft" states="done" string="Set to Draft" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,running"/>
+                    </header>
+                    <sheet>
+                        <group col="4" name="top">
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="active"/>
+                        </group>
+                        <notebook>
+                            <page string="Subscription Data" name="subscription_data">
+                                <group col="4">
+                                    <field name="interval_number"/>
+                                    <field name="interval_type"/>
+                                    <field name="exec_init"/>
+                                    <field name="date_init"/>
+                                    <field name="doc_source" widget="reference"/>
+                                    <field name="cron_id"/>
+                                    <field name="nextcall"/>
+                                </group>
+                                <separator string="Internal Notes"/>
+                                <field name="notes"/>
+                            </page>
+                            <page string="Documents created" name="history">
+                                <field name="doc_lines" widget="one2many_list"/>
+                            </page>
+                        </notebook>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="subscription_subscription_tree" model="ir.ui.view">
+            <field name="name">subscription.subscription.tree</field>
+            <field name="model">subscription.subscription</field>
+            <field name="arch" type="xml">
+                <tree string="Subscriptions">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="nextcall"/>
+                    <field name="active"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subscription_subscription_filter" model="ir.ui.view">
+            <field name="name">subscription.subscription.filter</field>
+            <field name="model">subscription.subscription</field>
+            <field name="arch" type="xml">
+                <search string="Search Subscription">
+                    <field name="name" string="Subscription"/>
+                    <field name="date_init"/>
+                    <filter string="Running" name="running"
+                            domain="[('state', '=', 'running')]"/>
+                    <field name="user_id"/>
+                    <field name="partner_id"/>
+                    <group name="groupby" string="Group By">
+                        <filter string="User" name="user_groupby" context="{'group_by': 'user_id'}"/>
+                        <filter string="Partner" name="partner_groupby" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Status" name="state_groupby" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="subscription_subscription_action" model="ir.actions.act_window">
+            <field name="name">Recurring Documents</field>
+            <field name="res_model">subscription.subscription</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="subscription_subscription_menu"
+            action="subscription_subscription_action"
+            parent="base.menu_automation"/>
+
+        <record id="subscription_subscription_history_tree" model="ir.ui.view">
+            <field name="name">subscription.subscription.history.tree</field>
+            <field name="model">subscription.subscription.history</field>
+            <field name="arch" type="xml">
+                <tree string="Subscription History">
+                    <field name="date"/>
+                    <field name="document_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subscription_subscription_history_form" model="ir.ui.view">
+            <field name="name">subscription.subscription.history.form</field>
+            <field name="model">subscription.subscription.history</field>
+            <field name="arch" type="xml">
+                <form string="Subscription History">
+                    <group name="main">
+                        <field name="date"/>
+                        <field name="document_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="subscription_document_form" model="ir.ui.view">
+            <field name="name">subscription.document.form</field>
+            <field name="model">subscription.document</field>
+            <field name="arch" type="xml">
+                <form string="Subscription Document">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="model"/>
+                        <field name="active"/>
+                    </group>
+                    <field name="field_ids"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="subscription_document_tree" model="ir.ui.view">
+            <field name="name">subscription.document.tree</field>
+            <field name="model">subscription.document</field>
+            <field name="arch" type="xml">
+                <tree string="Subscription Document">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="model"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subscription_document_filter" model="ir.ui.view">
+            <field name="name">subscription.document.filter</field>
+            <field name="model">subscription.document</field>
+            <field name="arch" type="xml">
+                <search string="Subscription Document">
+                    <field name="name" string="Subscription Document"/>
+                    <field name="model"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="subscription_document_fields_form" model="ir.ui.view">
+            <field name="name">subscription.document.fields.form</field>
+            <field name="model">subscription.document.fields</field>
+            <field name="arch" type="xml">
+                <form string="Subscription Document Field">
+                    <group name="main">
+                        <field name="field"/>
+                        <field name="value"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="subscription_document_fields_tree" model="ir.ui.view">
+            <field name="name">subscription.document.fields.tree</field>
+            <field name="model">subscription.document.fields</field>
+            <field name="arch" type="xml">
+                <tree string="Subscription Document Fields">
+                    <field name="field"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subscription_document_action" model="ir.actions.act_window">
+            <field name="name">Recurring Types</field>
+            <field name="res_model">subscription.document</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="subscription_document_menu" action="subscription_document_action"
+            parent="base.menu_automation"/>
+
+</odoo>
