@@ -1,5 +1,5 @@
 # Copyright 2019 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
 
@@ -20,9 +20,6 @@ class MultiStepWizard(models.AbstractModel):
 
     The final state has no related method because the view
     should only display a button to close the wizard.
-
-    Look at the models and views of task.link.jira and
-    project.link.jira for examples.
 
     open_next and _reopen_self should not need to be
     overidden, but _selection_state and state_exit_start
