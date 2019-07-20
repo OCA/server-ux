@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* barcode_action
+# 	* barcode_action
 #
 msgid ""
 msgstr ""
@@ -22,7 +22,14 @@ msgid "Barcode Launcher"
 msgstr "Buscador por código de barras"
 
 #. module: barcode_action
-#: model:ir.ui.view,arch_db:barcode_action.barcode_action_form
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action___barcode_scanned
+#, fuzzy
+#| msgid "Barcode Launcher"
+msgid "Barcode Scanned"
+msgstr "Buscador por código de barras"
+
+#. module: barcode_action
+#: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
 msgid "Close"
 msgstr "Cerrar"
 
@@ -32,22 +39,22 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_create_uid
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_create_date
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_display_name
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: barcode_action
-#: model:ir.ui.view,arch_db:barcode_action.barcode_action_form
+#: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
 msgid "Find"
 msgstr "Buscar"
 
@@ -62,32 +69,32 @@ msgid "Find partners"
 msgstr "Buscar contactos"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_id
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__id
 msgid "ID"
 msgstr "ID"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action___last_update
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_write_uid
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_write_date
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_method
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__method
 msgid "Method"
 msgstr "Método"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_model
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__model
 msgid "Model"
 msgstr "Modelo"
 
@@ -98,19 +105,24 @@ msgid "Partner with Internal Reference %s cannot be found"
 msgstr "No se ha encontrado el contacto con referencia %s"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_res_id
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__res_id
 msgid "Res"
 msgstr "Res"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_state
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__state
 msgid "State"
 msgstr "Estado"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action_status
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__status
 msgid "Status"
 msgstr "Estado"
+
+#. module: barcode_action
+#: model:ir.model.fields,help:barcode_action.field_barcode_action___barcode_scanned
+msgid "Value of the last barcode scanned."
+msgstr ""
 
 #. module: barcode_action
 #: selection:barcode.action,state:0
