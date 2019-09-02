@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2019-09-02 15:05+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,28 +18,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:59
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
-msgstr ""
+msgstr "%s 不是有效范围 (%s > %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:87
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s 重叠 %s"
 
 #. module: date_range
 #: sql_constraint:date.range:0
 msgid "A date range must be unique per company !"
-msgstr ""
+msgstr "每个公司的日期范围必须是唯一的！"
 
 #. module: date_range
 #: sql_constraint:date.range.type:0
 msgid "A date range type must be unique per company !"
-msgstr ""
+msgstr "每个公司的日期范围类型必须是唯一的！"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__active
@@ -49,7 +50,6 @@ msgstr "有效"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__allow_overlap
-#, fuzzy
 msgid "Allow Overlap"
 msgstr "允许重叠"
 
@@ -70,7 +70,7 @@ msgstr "公司"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__create_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__create_uid
 msgid "Created by"
-msgstr "创建人"
+msgstr "创建者"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__create_date
@@ -87,9 +87,8 @@ msgstr "日期范围"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
-#, fuzzy
 msgid "Date Range Generator"
-msgstr "日期范围类型"
+msgstr "日期范围生成器"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
@@ -111,9 +110,8 @@ msgstr "日期范围"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_start
-#, fuzzy
 msgid "Date Start"
-msgstr "日期开始"
+msgstr "开始日期"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
@@ -140,19 +138,19 @@ msgstr "显示名称"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__duration_count
 msgid "Duration"
-msgstr "时长"
+msgstr "持续时间"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_end
 msgid "End date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "生成日期范围"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
@@ -164,7 +162,7 @@ msgstr "ID"
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__allow_overlap
 msgid "If sets date range of same type must not overlap."
-msgstr ""
+msgstr "如果设置相同类型的日期范围不得重叠。"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
@@ -185,7 +183,7 @@ msgstr "最后更新者"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__write_date
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr "最后更新时间"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__name
@@ -196,18 +194,17 @@ msgstr "名称"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__count
 msgid "Number of ranges to generate"
-msgstr ""
+msgstr "要生成的范围数"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__name_prefix
 msgid "Range name prefix"
-msgstr ""
+msgstr "范围名称前缀"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_range_ids
-#, fuzzy
 msgid "Ranges"
-msgstr "日期范围"
+msgstr "范围"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_start
@@ -225,24 +222,24 @@ msgstr "提交"
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
-msgstr ""
+msgstr "日期范围生成器和日期范围类型中的公司必须相同。"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:51
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
-msgstr ""
+msgstr "日期范围和日期范围类型中的公司必须相同。"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
 msgid ""
 "The active field allows you to hide the date range type without removing it."
-msgstr ""
+msgstr "活动字段允许您隐藏日期范围类型而不删除它。"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range__active
 msgid "The active field allows you to hide the date range without removing it."
-msgstr ""
+msgstr "活动字段允许您隐藏日期范围而不删除它。"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__type_id
@@ -252,14 +249,13 @@ msgstr "类型"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-#, fuzzy
 msgid "Type Name"
-msgstr "名称"
+msgstr "类型名称"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 msgid "Unit Of Time"
-msgstr ""
+msgstr "单位时间"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range_type.py:42
@@ -267,27 +263,27 @@ msgstr ""
 msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
-msgstr ""
+msgstr "您无法更改公司，因为此日期范围类型已分配给日期范围（%s）。"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "days"
-msgstr ""
+msgstr "天"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "months"
-msgstr ""
+msgstr "月"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "weeks"
-msgstr ""
+msgstr "周"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "years"
-msgstr ""
+msgstr "年"
 
 #~ msgid "Genrate Date Ranges"
 #~ msgstr "生成日期范围"
