@@ -9,46 +9,47 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-21 04:22+0000\n"
-"PO-Revision-Date: 2017-01-21 04:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2019-09-03 03:24+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
 msgid "Base"
-msgstr ""
+msgstr "Suporte"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
 msgid "Show field Technical Features"
-msgstr ""
+msgstr "Mostrar campo de Recursos Técnicos"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
 msgid "Technical Features"
-msgstr ""
+msgstr "Recursos Técnicos"
 
 #. module: base_technical_features
 #: model:res.groups,name:base_technical_features.group_technical_features
 msgid "Technical Features (w/o debug mode)"
-msgstr ""
+msgstr "Recursos Técnicos (w/o modo debug)"
 
 #. module: base_technical_features
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr ""
+msgstr "O usuário não tem acesso aos recursos técnicos."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
@@ -60,3 +61,4 @@ msgstr "Usuários"
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
+"Se o campo de recursos técnicos deve ser exibido nas preferências do usuário."
