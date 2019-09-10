@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-
+# coding: utf-8
+#  -*- encoding: utf-8 -*-
 # #############################################################################
 #
 #    Authors: Cojocaru Marcel (marcel.cojocaru@gmail.com)
@@ -49,4 +50,3 @@ class DBRollbackController(http.Controller):
         if registry.test_cr is not None:
             registry.leave_test_mode()
             registry.clear_caches()
-

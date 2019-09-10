@@ -1,28 +1,31 @@
 // Copyright (C) 2019 Cojocaru Aurelian Marcel PFA
-// @author Marcel Cojocaru <marcel.cojocari@gmail.com>
+// @author Marcel Cojocaru <marcel.cojocaru@gmail.com>
 // License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 openerp.web_database_rollback = function (instance) {
+    'use strict';
+    instance.web_database_rollback.RollbackButtonsWidget = instance.web.Widget
+        .extend({
 
-    instance.web_database_rollback.RollbackButtonsWidget = instance.web.Widget.extend({
+            template:'web_database_rollback.ButtonsWidget',
 
-        template:'web_database_rollback.ButtonsWidget',
+            renderElement: function () {
+                var self = this;
+                this._super();
+                this.$el.show();
+                this.$el.find('.activate').on('click', function () {
+                    self.$el.find('.activate').css("background-color", "green")
+                        .css("color", "white");
+                    self.rpc('/web_database_rollback/activate', {});
+                });
 
-        renderElement: function() {
-            var self = this;
-            this._super();
-            this.$el.show();
-            this.$el.find('.activate').on('click', function(ev) {
-                    self.$el.find('.activate').css("background-color", "green").css("color", "white");
-                    self.rpc('/web_database_rollback/activate', {}).done(function(res) {});
-            });
-
-            this.$el.find('.rollback').on('click', function(ev) {
-                    self.$el.find('.activate').css("background-color", "buttonface").css("color", "#777");
-                    self.rpc('/web_database_rollback/rollback', {}).done(function(res) {});
-            });
-        },
-    });
+                this.$el.find('.rollback').on('click', function () {
+                    self.$el.find('.activate')
+                        .css("background-color", "buttonface")
+                        .css("color", "#777");
+                    self.rpc('/web_database_rollback/rollback', {});
+                });
+            },
+        });
 
     instance.web.UserMenu.include({
         do_update: function () {
@@ -32,10 +35,12 @@ openerp.web_database_rollback = function (instance) {
                 if (!_.isUndefined(self.rollbackButtons)) {
                     return;
                 }
-                self.rollbackButtons = new instance.web_database_rollback.RollbackButtonsWidget(self);
-                self.rollbackButtons.prependTo(instance.webclient.$('.oe_systray'));
+                self.rollbackButtons = new instance.web_database_rollback
+                    .RollbackButtonsWidget(self);
+                self.rollbackButtons.prependTo(
+                    instance.webclient.$('.oe_systray'));
             });
         },
     });
 
-}
+};

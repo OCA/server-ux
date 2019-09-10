@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
@@ -22,8 +22,8 @@
     'name': 'Database Rollback',
     'version': '8.0.1.0.0',
     'category': 'web',
-    'author': "Cojocaru Marcel",
-    'website': '',
+    'author': "Cojocaru Marcel <marcel.cojocaru@gmail.com>, Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/server-ux',
     'license': 'AGPL-3',
     'depends': [
         'web',
