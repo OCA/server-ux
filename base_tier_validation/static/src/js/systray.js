@@ -76,27 +76,6 @@ odoo.define('tier_validation.systray', function (require) {
                 }));
             });
         },
-        /**
-         * update counter based on activity status(created or Done)
-         * @private
-         * @param {Object} [data] key, value to decide activity created or deleted
-         * @param {String} [data.type] notification type
-         * @param {Boolean} [data.activity_deleted] when activity deleted
-         * @param {Boolean} [data.activity_created] when activity created
-         */
-        _updateCounter: function (data) {
-            if (data) {
-                if (data.review_created) {
-                    this.reviewCounter ++;
-                }
-                if (data.review_deleted && this.reviewCounter > 0) {
-                    this.reviewCounter --;
-                }
-                this.$('.o_notification_counter').text(this.reviewCounter);
-                this.$el.toggleClass('o_no_notification', !this.reviewCounter);
-            }
-        },
-
 
         // Handlers
 
