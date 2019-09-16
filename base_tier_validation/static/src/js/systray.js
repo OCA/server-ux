@@ -18,13 +18,22 @@ odoo.define("tier_validation.systray", function (require) {
         start: function () {
             this.$reviews_preview = this.$(".o_mail_systray_dropdown_items");
             this._updateReviewPreview();
-            var channel = "base.tier.validation";
-            this.call("bus_service", "addChannel", channel);
+            this.channel = "base.tier.validation";
+            this.call("bus_service", "addChannel", this.channel);
             this.call("bus_service", "startPolling");
-            this.call("bus_service", "onNotification", this, this._updateReviewPreview);
+            this.call("bus_service", "onNotification", this, this.bus_notification);
             return this._super();
         },
 
+        bus_notification: function (notifications) {
+            var self = this;
+            _.each(notifications, function (notification) {
+                var channel = notification[0];
+                if (channel === self.channel) {
+                    self._updateReviewPreview();
+                }
+            });
+        },
         // Private
 
         /**
