@@ -8,8 +8,6 @@ odoo.define('tier_validation.systray', function (require) {
     var Widget = require('web.Widget');
     var bus = require('bus.bus').bus;
 
-    var chat_manager = require('mail.chat_manager');
-
     var QWeb = core.qweb;
 
     var ReviewMenu = Widget.extend({
@@ -21,12 +19,21 @@ odoo.define('tier_validation.systray', function (require) {
         start: function () {
             this.$reviews_preview = this.$('.o_mail_navbar_dropdown_channels');
             this._updateReviewPreview();
-            var channel = 'base.tier.validation';
-            bus.add_channel(channel);
-            bus.on('notification', this, this._updateReviewPreview);
+            this.channel = 'base.tier.validation';
+            bus.add_channel(this.channel);
+            bus.on('notification', this, this.bus_notification);
             return this._super();
         },
 
+        bus_notification: function(notifications) {
+            var self = this;
+            _.each(notifications, function (notification) {
+                var channel = notification[0];
+                if (channel === self.channel) {
+                    self._updateReviewPreview();
+                }
+            });
+        },
         // Private
 
         /**
