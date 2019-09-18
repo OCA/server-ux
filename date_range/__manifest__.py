@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 # Copyright 2016 ACSONE SA/NV (<https://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Date Range",
     "summary": "Manage all kind of date range",
-    "version": "11.0.2.0.1",
+    "version": "10.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/oca/server-ux",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
