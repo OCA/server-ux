@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-base_technical_features',
         'odoo12-addon-base_tier_validation',
         'odoo12-addon-base_tier_validation_formula',
+        'odoo12-addon-base_user_locale',
         'odoo12-addon-date_range',
         'odoo12-addon-mass_editing',
         'odoo12-addon-multi_step_wizard',
