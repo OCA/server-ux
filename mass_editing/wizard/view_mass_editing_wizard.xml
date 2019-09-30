@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2019-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="view_mass_editing_wizard_form" model="ir.ui.view">
+        <field name="model">mass.editing.wizard</field>
+        <field name="inherit_id" ref="mass_operation_abstract.view_mass_operation_wizard_mixin_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='custom_info']" position="inside">
+                <group name="group_field_list" colspan="4" col="6">
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
