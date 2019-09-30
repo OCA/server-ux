@@ -35,7 +35,7 @@ msgid "A review was accepted"
 msgstr "La revisión fué aceptada"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:192
+#: code:addons/base_tier_validation/models/tier_validation.py:194
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "La revisión fué rechazada por %s."
