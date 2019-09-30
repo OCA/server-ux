@@ -8,8 +8,6 @@ odoo.define('tier_validation.systray', function (require) {
     var Widget = require('web.Widget');
     var bus = require('bus.bus').bus;
 
-    var chat_manager = require('mail.chat_manager');
-
     var QWeb = core.qweb;
 
     var ReviewMenu = Widget.extend({
@@ -21,12 +19,21 @@ odoo.define('tier_validation.systray', function (require) {
         start: function () {
             this.$reviews_preview = this.$('.o_mail_navbar_dropdown_channels');
             this._updateReviewPreview();
-            var channel = 'base.tier.validation';
-            bus.add_channel(channel);
-            bus.on('notification', this, this._updateReviewPreview);
+            this.channel = 'base.tier.validation';
+            bus.add_channel(this.channel);
+            bus.on('notification', this, this.bus_notification);
             return this._super();
         },
 
+        bus_notification: function(notifications) {
+            var self = this;
+            _.each(notifications, function (notification) {
+                var channel = notification[0];
+                if (channel === self.channel) {
+                    self._updateReviewPreview();
+                }
+            });
+        },
         // Private
 
         /**
@@ -69,27 +76,6 @@ odoo.define('tier_validation.systray', function (require) {
                 }));
             });
         },
-        /**
-         * update counter based on activity status(created or Done)
-         * @private
-         * @param {Object} [data] key, value to decide activity created or deleted
-         * @param {String} [data.type] notification type
-         * @param {Boolean} [data.activity_deleted] when activity deleted
-         * @param {Boolean} [data.activity_created] when activity created
-         */
-        _updateCounter: function (data) {
-            if (data) {
-                if (data.review_created) {
-                    this.reviewCounter ++;
-                }
-                if (data.review_deleted && this.reviewCounter > 0) {
-                    this.reviewCounter --;
-                }
-                this.$('.o_notification_counter').text(this.reviewCounter);
-                this.$el.toggleClass('o_no_notification', !this.reviewCounter);
-            }
-        },
-
 
         // Handlers
 

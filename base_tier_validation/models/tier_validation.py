@@ -173,6 +173,7 @@ class TierValidation(models.AbstractModel):
     def validate_tier(self):
         for rec in self:
             rec._validate_tier()
+            rec._update_counter()
 
     @api.multi
     def reject_tier(self):
@@ -187,6 +188,7 @@ class TierValidation(models.AbstractModel):
                 'reviewed_date': fields.Datetime.now(),
             })
             rec._notify_rejected_review()
+            rec._update_counter()
 
     def _notify_rejected_review_body(self):
         return _('A review was rejected by %s.') % (self.env.user.name)
