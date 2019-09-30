@@ -37,7 +37,7 @@ class DateRangeGeneratorTest(TransactionCase):
             'name_prefix': '1943-',
             'type_id': self.type.id,
             'duration_count': 3,
-            'unit_of_time': MONTHLY,
+            'unit_of_time': str(MONTHLY),
             'count': 4})
         generator.action_apply()
         ranges = self.env['date.range'].search(
@@ -49,28 +49,13 @@ class DateRangeGeneratorTest(TransactionCase):
         self.assertEqual(range4.type_id, self.type)
 
     def test_generator_multicompany_1(self):
-        generator = self.generator.new({
-            'date_start': '1943-01-01',
-            'name_prefix': '1943-',
-            'type_id': self.typeB.id,
-            'duration_count': 3,
-            'unit_of_time': MONTHLY,
-            'count': 4,
-            'company_id': self.company.id,
-        })
-        generator._cache.update(generator._convert_to_cache(
-            {'company_id': self.company_2.id}, update=True))
-        generator._onchange_company_id()
-        self.assertFalse(generator.type_id)
-
-    def test_generator_multicompany_2(self):
         with self.assertRaises(ValidationError):
             self.generator.create({
                 'date_start': '1943-01-01',
                 'name_prefix': '1943-',
                 'type_id': self.typeB.id,
                 'duration_count': 3,
-                'unit_of_time': MONTHLY,
+                'unit_of_time': str(MONTHLY),
                 'count': 4,
                 'company_id': self.company_2.id,
             })

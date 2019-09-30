@@ -29,7 +29,6 @@
     </record>
     <record id="date_range_generator_action" model="ir.actions.act_window">
         <field name="name">Generate Date Ranges</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">date.range.generator</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="date_range_generator_view_form"/>
