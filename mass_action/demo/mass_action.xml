@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2019 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="mass_action_duplicate_users" model="mass.action">
+        <field name="name">res.users - Mass Duplicate</field>
+        <field name="action_name">Mass Duplicate</field>
+        <field name="message">This operation will duplicate each selected item</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="python_code"><![CDATA[
+for user in self.sudo():
+    user.copy()
+        ]]></field>
+    </record>
+
+    <function model="mass.action" name="enable_mass_operation">
+        <value eval="[ref('mass_action_duplicate_users')]"/>
+    </function>
+
+</odoo>

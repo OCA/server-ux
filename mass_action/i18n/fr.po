@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * mass_action
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-03 16:30+0000\n"
+"PO-Revision-Date: 2019-10-03 16:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__action_name
+msgid "Action Name"
+msgstr "Nom de l'action"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__groups_id
+msgid "Allowed Groups"
+msgstr "Groupes autorisés"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__create_uid
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__create_date
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__display_name
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__display_name
+msgid "Display Name"
+msgstr "Afficher Nom"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__domain
+msgid "Domain"
+msgstr "Domaine"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__id
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mass_action
+#: model:ir.model.fields,help:mass_action.field_mass_action__message
+msgid "If set, this message will be displayed in the wizard."
+msgstr "Si ce champ est défini, le message sera affiché dans l'assistant"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action____last_update
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__write_uid
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__write_date
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mass_action
+#: code:addons/mass_action/models/mass_action.py:0
+#, python-format
+msgid "Mass Action (%s)"
+msgstr "Action de lot (%s)"
+
+#. module: mass_action
+#: model:ir.actions.act_window,name:mass_action.action_mass_action
+#: model:ir.model,name:mass_action.model_mass_action
+#: model:ir.ui.menu,name:mass_action.menu_mass_action
+msgid "Mass Actions"
+msgstr "Actions en lot"
+
+#. module: mass_action
+#: model:ir.model,name:mass_action.model_mass_action_wizard
+msgid "Mass Actions Wizard"
+msgstr "Assistant d'action en lot"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__message
+msgid "Message"
+msgstr "Message"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__operation_description_danger
+msgid "Operation Description Danger"
+msgstr ""
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__operation_description_info
+msgid "Operation Description Info"
+msgstr ""
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__operation_description_warning
+msgid "Operation Description Warning"
+msgstr ""
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__python_code
+#: model_terms:ir.ui.view,arch_db:mass_action.view_mass_action_form
+msgid "Python Code"
+msgstr "Code Python"
+
+#. module: mass_action
+#: model:ir.model.fields,help:mass_action.field_mass_action__python_code
+msgid ""
+"Python code that will be evaluated\n"
+"\n"
+" * self: contains the current items that can be processed\n"
+" * other python function are available like 'abs', 'min', 'any'. See safe_eval() definition in odoo core to have an exhaustive list of the available functions"
+msgstr "Code python qui sera exécuté\n"
+"\n"
+" * self: contient les éléments courant qui seront traités\n"
+" * D'autres fonctions python sont disponibles comme 'abs', 'min', 'any'. Voir la définition"
+" de la fonction safe_eval() dans le noyaut de odoo pour avoir une liste exhaustive"
+" des fonctions disponibles."
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__remaining_item_qty
+msgid "Remaining Item Qty"
+msgstr "Nombre d'éléments restants"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action_wizard__selected_item_qty
+msgid "Selected Item Qty"
+msgstr "Nombre d'éléments sélectionnés"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__ref_ir_act_window_id
+msgid "Sidebar Action"
+msgstr "Action de la barre latérale"
+
+#. module: mass_action
+#: model:ir.model.fields,field_description:mass_action.field_mass_action__message
+msgid "message"
+msgstr "message"

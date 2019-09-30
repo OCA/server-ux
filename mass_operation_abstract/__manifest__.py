@@ -10,6 +10,7 @@
     "summary": "Abstract Tools used for modules that realize operation on" "many items",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
+    "maintainers": ["legalsylvain"],
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
