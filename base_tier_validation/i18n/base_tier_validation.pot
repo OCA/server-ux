@@ -32,7 +32,7 @@ msgid "A review was accepted"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:192
+#: code:addons/base_tier_validation/models/tier_validation.py:194
 #, python-format
 msgid "A review was rejected by %s."
 msgstr ""
