@@ -109,19 +109,6 @@ class DateRangeTest(TransactionCase):
              ('my_field', '<=', datetime.date(2015, 12, 31))])
 
     def test_date_range_multicompany_1(self):
-        dr = self.date_range.new({
-            'name': 'FS2016',
-            'date_start': '2015-01-01',
-            'date_end': '2016-12-31',
-            'type_id': self.typeB.id,
-            'company_id': self.company.id,
-        })
-        dr._cache.update(dr._convert_to_cache(
-            {'company_id': self.company_2.id}, update=True))
-        dr._onchange_company_id()
-        self.assertFalse(dr.type_id)
-
-    def test_date_range_multicompany_2(self):
         with self.assertRaises(ValidationError):
             self.date_range.create({
                 'name': 'FS2016',

@@ -12,7 +12,7 @@ class DateRange(models.Model):
 
     @api.model
     def _default_company(self):
-        return self.env['res.company']._company_default_get('date.range')
+        return self.env.company
 
     name = fields.Char(required=True, translate=True)
     date_start = fields.Date(string='Start date', required=True)
@@ -20,9 +20,11 @@ class DateRange(models.Model):
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', index=1, required=True,
         ondelete='restrict', domain="['|', ('company_id', '=', company_id), "
-                                    "('company_id', '=', False)]")
+                                    "('company_id', '=', False)]",
+        store=True, compute='_compute_type_id', readonly=False,
+    )
     type_name = fields.Char(
-        related='type_id.name', readonly=True, store=True, string="Type Name")
+        related='type_id.name', store=True, string="Type Name")
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', index=1,
         default=_default_company)
@@ -34,14 +36,12 @@ class DateRange(models.Model):
         ('date_range_uniq', 'unique (name,type_id, company_id)',
          'A date range must be unique per company !')]
 
-    @api.onchange('company_id', 'type_id')
-    def _onchange_company_id(self):
+    @api.depends('company_id', 'type_id.company_id')
+    def _compute_type_id(self):
         if self.company_id and self.type_id.company_id and \
                 self.type_id.company_id != self.company_id:
-            self._cache.update(
-                self._convert_to_cache({'type_id': False}, update=True))
+            self.type_id = self.env['date.range.type']
 
-    @api.multi
     @api.constrains('company_id', 'type_id')
     def _check_company_id_type_id(self):
         for rec in self.sudo():
@@ -86,7 +86,6 @@ class DateRange(models.Model):
                 raise ValidationError(
                     _("%s overlaps %s") % (this.name, dt.name))
 
-    @api.multi
     def get_domain(self, field_name):
         self.ensure_one()
         return [(field_name, '>=', self.date_start),
