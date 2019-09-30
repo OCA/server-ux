@@ -16,6 +16,12 @@ odoo.define('date_range.search_filters', function (require) {
             this.is_date = field.type === 'date' || field.type === 'datetime';
             this.$value = this.$el.find('.searchview_extended_prop_value, .o_searchview_extended_prop_value');
             if (this.is_date) {
+//                this._rpc({
+//                    model: 'date.range.type',
+//                    method: 'search_read',
+//                    fields: ['name'],
+//                    context: this.context,
+//                    }).done(this.proxy('add_date_range_types_operator'));
                 var ds = new data.DataSetSearch(this, 'date.range.type', this.context, [[1, '=', 1]]);
                 ds.read_slice(['name'], {}).done(this.proxy('add_date_range_types_operator'));
             }
@@ -43,9 +49,15 @@ odoo.define('date_range.search_filters', function (require) {
 
         date_range_type_operator_selected: function (type_id) {
             this.$value.empty().show();
+//            this._rpc({
+//                model: 'date.range',
+//                method: 'search_read',
+//                fields: ['name', 'date_start', 'date_end'],
+//                context: this.context,
+//                domain: ['type_id', '=', parseInt(type_id, 10)]]
+//                }).done(this.proxy('on_range_type_selected'));
             var ds = new data.DataSetSearch(this, 'date.range', this.context, [['type_id', '=', parseInt(type_id, 10)]]);
             ds.read_slice(['name', 'date_start', 'date_end'], {}).done(this.proxy('on_range_type_selected'));
-
         },
 
         on_range_type_selected: function (date_range_values) {

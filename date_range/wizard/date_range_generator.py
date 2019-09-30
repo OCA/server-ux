@@ -14,30 +14,31 @@ class DateRangeGenerator(models.TransientModel):
 
     @api.model
     def _default_company(self):
-        return self.env['res.company']._company_default_get('date.range')
+        return self.env.company
 
     name_prefix = fields.Char('Range name prefix', required=True)
     date_start = fields.Date(strint='Start date', required=True)
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', required=True,
         domain="['|', ('company_id', '=', company_id), "
-               "('company_id', '=', False)]", ondelete='cascade')
+               "('company_id', '=', False)]", ondelete='cascade',
+        store=True, compute='_compute_type_id', readonly=False,
+    )
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
         default=_default_company)
     unit_of_time = fields.Selection([
-        (YEARLY, 'years'),
-        (MONTHLY, 'months'),
-        (WEEKLY, 'weeks'),
-        (DAILY, 'days')], required=True)
+        (str(YEARLY), 'years'),
+        (str(MONTHLY), 'months'),
+        (str(WEEKLY), 'weeks'),
+        (str(DAILY), 'days')], required=True)
     duration_count = fields.Integer('Duration', required=True)
     count = fields.Integer(
         string="Number of ranges to generate", required=True)
 
-    @api.multi
     def _compute_date_ranges(self):
         self.ensure_one()
-        vals = rrule(freq=self.unit_of_time, interval=self.duration_count,
+        vals = rrule(freq=int(self.unit_of_time), interval=self.duration_count,
                      dtstart=self.date_start,
                      count=self.count+1)
         vals = list(vals)
@@ -57,14 +58,12 @@ class DateRangeGenerator(models.TransientModel):
                 'company_id': self.company_id.id})
         return date_ranges
 
-    @api.onchange('company_id')
-    def _onchange_company_id(self):
+    @api.depends('company_id', 'type_id.company_id')
+    def _compute_type_id(self):
         if self.company_id and self.type_id.company_id and \
                 self.type_id.company_id != self.company_id:
-            self._cache.update(
-                self._convert_to_cache({'type_id': False}, update=True))
+            self.type_id = self.env['date.range.type']
 
-    @api.multi
     @api.constrains('company_id', 'type_id')
     def _check_company_id_type_id(self):
         for rec in self.sudo():
@@ -74,7 +73,6 @@ class DateRangeGenerator(models.TransientModel):
                     _('The Company in the Date Range Generator and in '
                       'Date Range Type must be the same.'))
 
-    @api.multi
     def action_apply(self):
         date_ranges = self._compute_date_ranges()
         if date_ranges:
