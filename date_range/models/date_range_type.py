@@ -11,7 +11,7 @@ class DateRangeType(models.Model):
 
     @api.model
     def _default_company(self):
-        return self.env['res.company']._company_default_get('date.range')
+        return self.env.company
 
     name = fields.Char(required=True, translate=True)
     allow_overlap = fields.Boolean(
