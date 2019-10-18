@@ -15,49 +15,69 @@ class DateRange(models.Model):
         return self.env.company
 
     name = fields.Char(required=True, translate=True)
-    date_start = fields.Date(string='Start date', required=True)
-    date_end = fields.Date(string='End date', required=True)
+    date_start = fields.Date(string="Start date", required=True)
+    date_end = fields.Date(string="End date", required=True)
     type_id = fields.Many2one(
-        comodel_name='date.range.type', string='Type', index=1, required=True,
-        ondelete='restrict', domain="['|', ('company_id', '=', company_id), "
-                                    "('company_id', '=', False)]",
-        store=True, compute='_compute_type_id', readonly=False,
+        comodel_name="date.range.type",
+        string="Type",
+        index=1,
+        required=True,
+        ondelete="restrict",
+        domain="['|', ('company_id', '=', company_id), " "('company_id', '=', False)]",
+        store=True,
+        compute="_compute_type_id",
+        readonly=False,
     )
-    type_name = fields.Char(
-        related='type_id.name', store=True, string="Type Name")
+    type_name = fields.Char(related="type_id.name", store=True, string="Type Name")
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', index=1,
-        default=_default_company)
+        comodel_name="res.company", string="Company", index=1, default=_default_company
+    )
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
-        "removing it.", default=True)
+        "removing it.",
+        default=True,
+    )
 
     _sql_constraints = [
-        ('date_range_uniq', 'unique (name,type_id, company_id)',
-         'A date range must be unique per company !')]
+        (
+            "date_range_uniq",
+            "unique (name,type_id, company_id)",
+            "A date range must be unique per company !",
+        )
+    ]
 
-    @api.depends('company_id', 'type_id.company_id')
+    @api.depends("company_id", "type_id.company_id")
     def _compute_type_id(self):
-        if self.company_id and self.type_id.company_id and \
-                self.type_id.company_id != self.company_id:
-            self.type_id = self.env['date.range.type']
+        if (
+            self.company_id
+            and self.type_id.company_id
+            and self.type_id.company_id != self.company_id
+        ):
+            self.type_id = self.env["date.range.type"]
 
-    @api.constrains('company_id', 'type_id')
+    @api.constrains("company_id", "type_id")
     def _check_company_id_type_id(self):
         for rec in self.sudo():
-            if rec.company_id and rec.type_id.company_id and\
-                    rec.company_id != rec.type_id.company_id:
+            if (
+                rec.company_id
+                and rec.type_id.company_id
+                and rec.company_id != rec.type_id.company_id
+            ):
                 raise ValidationError(
-                    _('The Company in the Date Range and in '
-                      'Date Range Type must be the same.'))
+                    _(
+                        "The Company in the Date Range and in "
+                        "Date Range Type must be the same."
+                    )
+                )
 
-    @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
+    @api.constrains("type_id", "date_start", "date_end", "company_id")
     def _validate_range(self):
         for this in self:
             if this.date_start > this.date_end:
                 raise ValidationError(
-                    _("%s is not a valid range (%s > %s)") % (
-                        this.name, this.date_start, this.date_end))
+                    _("%s is not a valid range (%s > %s)")
+                    % (this.name, this.date_start, this.date_end)
+                )
             if this.type_id.allow_overlap:
                 continue
             # here we use a plain SQL query to benefit of the daterange
@@ -75,18 +95,21 @@ class DateRange(models.Model):
                     AND dt.active
                     AND dt.company_id = %s
                     AND dt.type_id=%s;"""
-            self.env.cr.execute(SQL, (this.date_start,
-                                      this.date_end,
-                                      this.id,
-                                      this.company_id.id or None,
-                                      this.type_id.id))
+            self.env.cr.execute(
+                SQL,
+                (
+                    this.date_start,
+                    this.date_end,
+                    this.id,
+                    this.company_id.id or None,
+                    this.type_id.id,
+                ),
+            )
             res = self.env.cr.fetchall()
             if res:
                 dt = self.browse(res[0][0])
-                raise ValidationError(
-                    _("%s overlaps %s") % (this.name, dt.name))
+                raise ValidationError(_("%s overlaps %s") % (this.name, dt.name))
 
     def get_domain(self, field_name):
         self.ensure_one()
-        return [(field_name, '>=', self.date_start),
-                (field_name, '<=', self.date_end)]
+        return [(field_name, ">=", self.date_start), (field_name, "<=", self.date_end)]
