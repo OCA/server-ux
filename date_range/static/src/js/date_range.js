@@ -3,8 +3,6 @@
 odoo.define('date_range.search_filters', function (require) {
     "use strict";
 
-    var core = require('web.core');
-    var data = require('web.data');
     var filters = require('web.search_filters');
     var rpc = require('web.rpc');
     var framework = require('web.framework');
@@ -14,7 +12,8 @@ odoo.define('date_range.search_filters', function (require) {
             this._super.apply(this, arguments);
             this.is_date_range_selected = false;
             this.is_date = field.type === 'date' || field.type === 'datetime';
-            this.$value = this.$el.find('.searchview_extended_prop_value, .o_searchview_extended_prop_value');
+            this.$value = this.$el.find(
+                '.searchview_extended_prop_value, .o_searchview_extended_prop_value');
             if (this.is_date) {
                 this._rpc({
                     model: 'date.range.type',
@@ -28,9 +27,12 @@ odoo.define('date_range.search_filters', function (require) {
         add_date_range_types_operator: function (date_range_types) {
             var self = this;
             _.each(date_range_types, function (drt) {
+                var el = self.$el.find(
+                    '.searchview_extended_prop_op, .o_searchview_extended_prop_op');
                 $('<option>', {value: 'drt_' + drt.id})
                     .text(_('in ') + drt.name)
-                    .appendTo(self.$el.find('.searchview_extended_prop_op, .o_searchview_extended_prop_op'));
+                    .appendTo(el);
+
             });
         },
 
@@ -53,13 +55,15 @@ odoo.define('date_range.search_filters', function (require) {
                 fields: ['name', 'date_start', 'date_end'],
                 context: this.context,
                 domain: [
-                    ['type_id', '=', parseInt(type_id, 10)]
-                ]
+                    ['type_id', '=', parseInt(type_id, 10)],
+                ],
             }).then(this.proxy('on_range_type_selected'));
         },
 
         on_range_type_selected: function (date_range_values) {
-            this.value = new filters.ExtendedSearchProposition.DateRange(this, this.value.field, date_range_values);
+            this.value = new filters.ExtendedSearchProposition.DateRange(
+                this, this.value.field, date_range_values
+            );
             var self = this;
             this.value.appendTo(this.$value).then(function () {
                 if (!self.$el.hasClass('o_filter_condition')) {
@@ -102,7 +106,7 @@ odoo.define('date_range.search_filters', function (require) {
             return parseInt(this.$el.val(), 10);
         },
 
-        on_range_selected: function (e) {
+        on_range_selected: function () {
             var self = this;
             self.domain = '';
             framework.blockUI();
@@ -120,7 +124,7 @@ odoo.define('date_range.search_filters', function (require) {
                 });
         },
 
-        get_domain: function (field, operator) {
+        get_domain: function () {
             return this.domain;
         },
 

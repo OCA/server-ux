@@ -15,30 +15,42 @@ class DateRangeType(models.Model):
 
     name = fields.Char(required=True, translate=True)
     allow_overlap = fields.Boolean(
-        help="If sets date range of same type must not overlap.",
-        default=False)
+        help="If sets date range of same type must not overlap.", default=False
+    )
     active = fields.Boolean(
         help="The active field allows you to hide the date range type "
-        "without removing it.", default=True)
+        "without removing it.",
+        default=True,
+    )
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', index=1,
-        default=_default_company)
-    date_range_ids = fields.One2many('date.range', 'type_id', string='Ranges')
+        comodel_name="res.company", string="Company", index=1, default=_default_company
+    )
+    date_range_ids = fields.One2many("date.range", "type_id", string="Ranges")
 
     _sql_constraints = [
-        ('date_range_type_uniq', 'unique (name,company_id)',
-         'A date range type must be unique per company !')]
+        (
+            "date_range_type_uniq",
+            "unique (name,company_id)",
+            "A date range type must be unique per company !",
+        )
+    ]
 
-    @api.constrains('company_id')
+    @api.constrains("company_id")
     def _check_company_id(self):
-        if not self.env.context.get('bypass_company_validation', False):
+        if not self.env.context.get("bypass_company_validation", False):
             for rec in self.sudo():
                 if not rec.company_id:
                     continue
-                if bool(rec.date_range_ids.filtered(
-                        lambda r: r.company_id and
-                        r.company_id != rec.company_id)):
+                if bool(
+                    rec.date_range_ids.filtered(
+                        lambda r: r.company_id and r.company_id != rec.company_id
+                    )
+                ):
                     raise ValidationError(
-                        _('You cannot change the company, as this '
-                          'Date Range Type is  assigned to Date Range '
-                          '(%s).') % (rec.date_range_ids.name_get()[0][1]))
+                        _(
+                            "You cannot change the company, as this "
+                            "Date Range Type is  assigned to Date Range "
+                            "(%s)."
+                        )
+                        % (rec.date_range_ids.name_get()[0][1])
+                    )
