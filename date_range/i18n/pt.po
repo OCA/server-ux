@@ -20,24 +20,24 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:59
+#: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
 msgstr "%s não é um período válido (%s > %s)"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:87
+#: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s overlaps %s"
 msgstr "%s sobrepõe-se a %s"
 
 #. module: date_range
-#: sql_constraint:date.range:0
+#: model:ir.model.constraint,message:date_range.constraint_date_range_date_range_uniq
 msgid "A date range must be unique per company !"
 msgstr "Um período deve ser único em cada empresa !"
 
 #. module: date_range
-#: sql_constraint:date.range.type:0
+#: model:ir.model.constraint,message:date_range.constraint_date_range_type_date_range_type_uniq
 msgid "A date range type must be unique per company !"
 msgstr "Um tipo de período deve ser único em cada empresa !"
 
@@ -80,7 +80,6 @@ msgstr "Criado em"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
 msgstr "Período"
 
@@ -216,7 +215,7 @@ msgid "Submit"
 msgstr "Submeter"
 
 #. module: date_range
-#: code:addons/date_range/wizard/date_range_generator.py:74
+#: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
@@ -225,7 +224,7 @@ msgstr ""
 "A Empresa no Gerador de Períodos e no Tipo de Período tem que ser a mesma."
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:51
+#: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr "A Empresa no Período e no Tipo de Período tem que ser a mesma."
@@ -258,7 +257,7 @@ msgid "Unit Of Time"
 msgstr "Unidade de Tempo"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range_type.py:42
+#: code:addons/date_range/models/date_range_type.py:0
 #, python-format
 msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
@@ -268,22 +267,22 @@ msgstr ""
 "ao Período (%s)."
 
 #. module: date_range
-#: selection:date.range.generator,unit_of_time:0
+#: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__3
 msgid "days"
 msgstr "dias"
 
 #. module: date_range
-#: selection:date.range.generator,unit_of_time:0
+#: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__1
 msgid "months"
 msgstr "meses"
 
 #. module: date_range
-#: selection:date.range.generator,unit_of_time:0
+#: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__2
 msgid "weeks"
 msgstr "semanas"
 
 #. module: date_range
-#: selection:date.range.generator,unit_of_time:0
+#: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__0
 msgid "years"
 msgstr "anos"
 
