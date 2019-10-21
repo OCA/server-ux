@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-02 16:57+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"PO-Revision-Date: 2019-10-21 16:32+0000\n"
+"Last-Translator: Tony Gu <tony@openerp.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -32,19 +32,19 @@ msgstr "<span class=\"oe_edit_only\">名称</span>"
 #: code:addons/base_tier_validation/models/tier_validation.py:167
 #, python-format
 msgid "A review was accepted"
-msgstr "已接受审查"
+msgstr "审批已通过"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:191
 #, python-format
 msgid "A review was rejected by %s."
-msgstr "%s拒绝了审查。"
+msgstr "%s审批拒绝。"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:131
 #, python-format
 msgid "A validation process is still open for at least one record."
-msgstr "对于至少一条记录，验证过程仍然是开放的。"
+msgstr "至少有一条记录需要审批。"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__active
@@ -69,7 +69,7 @@ msgstr "批准"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
-msgstr "可以审查"
+msgstr "可审批"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__company_id
@@ -177,20 +177,20 @@ msgstr "模型"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
 msgid "Need Validation"
-msgstr "需要验证"
+msgstr "需要审批"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_definition.py:13
 #, python-format
 msgid "New Tier Validation"
-msgstr "新层验证"
+msgstr "新建层级审批"
 
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:7
 #, python-format
 msgid "No reviews to do."
-msgstr "没有审核要做。"
+msgstr "没有需要审批的项目。"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -198,7 +198,7 @@ msgstr "没有审核要做。"
 #: selection:tier.review,status:0
 #, python-format
 msgid "Pending"
-msgstr "等待"
+msgstr "等待中"
 
 #. module: base_tier_validation
 #: selection:tier.definition,review_type:0
@@ -243,25 +243,25 @@ msgstr "请求者"
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:13
 #, python-format
 msgid "Review"
-msgstr "审查"
+msgstr "审批"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_id
 msgid "Reviewer"
-msgstr "审查者"
+msgstr "审批者"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
-msgstr "审查者组"
+msgstr "审批组"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__reviewer_ids
 msgid "Reviewers"
-msgstr "审查者"
+msgstr "审批者"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -270,7 +270,7 @@ msgstr "审查者"
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
 #, python-format
 msgid "Reviews"
-msgstr "审查"
+msgstr "审批"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -283,7 +283,7 @@ msgstr "序列"
 #. module: base_tier_validation
 #: selection:tier.definition,review_type:0
 msgid "Specific user"
-msgstr "具体用户"
+msgstr "指定用户"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -297,7 +297,7 @@ msgstr "状态"
 #: code:addons/base_tier_validation/models/tier_validation.py:138
 #, python-format
 msgid "The operation is under validation."
-msgstr "该操作正在验证中。"
+msgstr "该操作正在审批中。"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:127
@@ -305,13 +305,13 @@ msgstr "该操作正在验证中。"
 msgid "This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
-"此操作需要至少对一条记录进行验证。\n"
-"请申请验证。"
+"此操作需要至少对一条记录进行审批。\n"
+"请申请审批。"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 msgid "Tier"
-msgstr "层"
+msgstr "层级"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -320,23 +320,23 @@ msgstr "层"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_tree
 msgid "Tier Definition"
-msgstr "层定义"
+msgstr "层级定义"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
 msgid "Tier Review"
-msgstr "层审查"
+msgstr "层级审批"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr "层验证（抽象）"
+msgstr "层级审批（抽象）"
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
 msgid "Tier Validations"
-msgstr "层验证"
+msgstr "层级审批"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_users
@@ -346,13 +346,13 @@ msgstr "用户"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
 msgid "Validated"
-msgstr "已验证"
+msgstr "已审批"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__review_type
 msgid "Validated by"
-msgstr "验证者"
+msgstr "审批者"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -360,14 +360,14 @@ msgstr "验证者"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewed_date
 #, python-format
 msgid "Validation Date"
-msgstr "验证日期"
+msgstr "审批日期"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
-msgstr "验证"
+msgstr "审批"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
-msgstr "例如层验证..."
+msgstr "例如：层级审批对于..."
