@@ -37,6 +37,8 @@ class DateRangeGenerator(models.TransientModel):
     duration_count = fields.Integer('Duration', required=True)
     count = fields.Integer(
         string="Number of ranges to generate", required=True)
+    parent_id = fields.Many2one(
+        comodel_name='date.range', string="Parent", index=1)
 
     @api.multi
     def _compute_date_ranges(self):
@@ -59,7 +61,8 @@ class DateRangeGenerator(models.TransientModel):
                 'date_start': date_start,
                 'date_end': date_end,
                 'type_id': self.type_id.id,
-                'company_id': self.company_id.id})
+                'company_id': self.company_id.id,
+                'parent_id': self.parent_id.id})
         return date_ranges
 
     @api.onchange('company_id')
@@ -87,3 +90,24 @@ class DateRangeGenerator(models.TransientModel):
                 self.env['date.range'].create(dr)
         return self.env['ir.actions.act_window'].for_xml_id(
             module='date_range', xml_id='date_range_action')
+
+    @api.multi
+    @api.onchange('type_id', 'date_start')
+    def onchange_type_id(self):
+        self.ensure_one()
+        date_range = self.env['date.range']
+        domain = []
+        if self.type_id:
+            domain.append(('type_id', '=', self.type_id.parent_type_id.id))
+        if self.date_start:
+            domain.append('|')
+            domain.append(('date_start', '<=', self.date_start))
+            domain.append(('date_start', '=', False))
+        if domain:
+            # If user did not select a parent already, autoselect the last
+            # (ordered by date_start) or only parent that applies.
+            if self.type_id and self.date_start and not self.parent_id:
+                possible_parent = date_range.search(
+                    domain, limit=1, order='date_start desc')
+                self.parent_id = possible_parent  # can be empty!
+        return {'domain': {'parent_id': domain}}
