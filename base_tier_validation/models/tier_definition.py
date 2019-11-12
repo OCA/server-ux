@@ -58,6 +58,11 @@ class TierDefinition(models.Model):
         default=lambda self: self.env["res.company"]._company_default_get(
             "tier.definition"),
     )
+    notify_on_create = fields.Boolean(
+        string="Notify Reviewers on Creation",
+        help="If set, all possible reviewers will be notified by email when "
+             "this definition is triggered."
+    )
 
     @api.onchange('model_id')
     def onchange_model_id(self):
