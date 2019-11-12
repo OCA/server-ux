@@ -201,6 +201,23 @@ class TierValidation(models.AbstractModel):
                 body=self._notify_rejected_review_body()
             )
 
+    def _notify_requested_review_body(self):
+        return _('A review has been requested by %s.') % (self.env.user.name)
+
+    def _notify_review_requested(self, tier_reviews):
+        if hasattr(self, 'message_post'):
+            for rec in self:
+                users_to_notify = tier_reviews.filtered(
+                    lambda r: r.definition_id.notify_on_create and
+                    r.res_id == rec.id).mapped(
+                    "reviewer_ids")
+                # Subscribe reviewers and notify
+                getattr(rec, 'message_subscribe_users')(users_to_notify.ids)
+                getattr(rec, 'message_post')(
+                    subtype='mt_comment',
+                    body=rec._notify_requested_review_body()
+                )
+
     @api.multi
     def request_validation(self):
         td_obj = self.env['tier.definition']
@@ -222,6 +239,7 @@ class TierValidation(models.AbstractModel):
                                 'requested_by': self.env.uid,
                             })
                     self._update_counter()
+        self._notify_review_requested(created_trs)
         return created_trs
 
     @api.multi
