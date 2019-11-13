@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2019-11-13 18:34+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:59
@@ -49,7 +50,6 @@ msgstr "Aktivan"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__allow_overlap
-#, fuzzy
 msgid "Allow Overlap"
 msgstr "Dozvoli preklapanje"
 
@@ -87,9 +87,8 @@ msgstr "Raspon datuma"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
-#, fuzzy
 msgid "Date Range Generator"
-msgstr "date.range.generator"
+msgstr "Generator raspona datuma"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
@@ -111,7 +110,6 @@ msgstr "Rasponi datuma"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_start
-#, fuzzy
 msgid "Date Start"
 msgstr "Datum početka"
 
@@ -205,7 +203,6 @@ msgstr "Prefiks naziva raspona"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_range_ids
-#, fuzzy
 msgid "Ranges"
 msgstr "Rasponi datuma"
 
