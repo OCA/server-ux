@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sequence_reset_period
+# 	* sequence_reset_period
 #
 msgid ""
 msgstr ""
@@ -27,9 +27,16 @@ msgid "Monthly"
 msgstr "Mensual"
 
 #. module: sequence_reset_period
-#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence_range_reset
+#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence__range_reset
 msgid "Range Reset"
 msgstr "Reinicio del Rango"
+
+#. module: sequence_reset_period
+#: model:ir.model,name:sequence_reset_period.model_ir_sequence
+#, fuzzy
+#| msgid "ir.sequence"
+msgid "Sequence"
+msgstr "ir.sequence"
 
 #. module: sequence_reset_period
 #: selection:ir.sequence,range_reset:0
@@ -40,8 +47,3 @@ msgstr "Semanal"
 #: selection:ir.sequence,range_reset:0
 msgid "Yearly"
 msgstr "Anual"
-
-#. module: sequence_reset_period
-#: model:ir.model,name:sequence_reset_period.model_ir_sequence
-msgid "ir.sequence"
-msgstr "ir.sequence"
