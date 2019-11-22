@@ -229,7 +229,7 @@ class TierValidation(models.AbstractModel):
                         ('model', '=', self._name)], order="sequence desc")
                     sequence = 0
                     for td in tier_definitions:
-                        if self.evaluate_tier(td):
+                        if rec.evaluate_tier(td):
                             sequence += 1
                             created_trs += tr_obj.create({
                                 'model': self._name,
