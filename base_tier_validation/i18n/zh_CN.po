@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation
+# 	* base_tier_validation
 #
 msgid ""
 msgstr ""
@@ -27,6 +27,13 @@ msgstr "0 等待"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:202
+#, fuzzy, python-format
+#| msgid "A review was rejected by %s."
+msgid "A review has been requested by %s."
+msgstr "%s审批拒绝。"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:167
@@ -150,6 +157,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_create
+msgid ""
+"If set, all possible reviewers will be notified by email when this "
+"definition is triggered."
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation____last_update
@@ -191,6 +205,11 @@ msgstr "新建层级审批"
 #, python-format
 msgid "No reviews to do."
 msgstr "没有需要审批的项目。"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
+msgid "Notify Reviewers on Creation"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
@@ -302,7 +321,8 @@ msgstr "该操作正在审批中。"
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:127
 #, python-format
-msgid "This action needs to be validated for at least one record. \n"
+msgid ""
+"This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
 "此操作需要至少对一条记录进行审批。\n"
