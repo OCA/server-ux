@@ -26,6 +26,12 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr ""
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:202
+#, python-format
+msgid "A review has been requested by %s."
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:167
 #, python-format
 msgid "A review was accepted"
@@ -147,6 +153,11 @@ msgid "ID"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_create
+msgid "If set, all possible reviewers will be notified by email when this definition is triggered."
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation____last_update
@@ -187,6 +198,11 @@ msgstr ""
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:7
 #, python-format
 msgid "No reviews to do."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
+msgid "Notify Reviewers on Creation"
 msgstr ""
 
 #. module: base_tier_validation
