@@ -9,6 +9,8 @@
     'license': 'AGPL-3',
     'author': 'Creu Blanca,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/server-ux',
+    'development_status': 'Beta',
+    'maintainers': ['etobella'],
     'depends': [
         'web',
         'barcode_action',
