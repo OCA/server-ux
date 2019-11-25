@@ -29,6 +29,13 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nombre</span>"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:205
+#, fuzzy, python-format
+#| msgid "A review was rejected by %s."
+msgid "A review has been requested by %s."
+msgstr "La revisión fué rechazada por %s."
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:170
 #, python-format
 msgid "A review was accepted"
@@ -155,6 +162,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition_notify_on_create
+msgid ""
+"If set, all possible reviewers will be notified by email when this "
+"definition is triggered."
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition___last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review___last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation___last_update
@@ -196,6 +210,11 @@ msgstr "Nueva Validación de Nivel"
 #, python-format
 msgid "No reviews to do."
 msgstr "No hay revisiones a realizar."
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_notify_on_create
+msgid "Notify Reviewers on Creation"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
