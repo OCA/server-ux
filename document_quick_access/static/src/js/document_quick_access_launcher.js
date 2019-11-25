@@ -9,7 +9,9 @@ odoo.define('document_quick_access.document_quick_access_launcher', function (re
             "click": "on_click_find_document",
         },
 
-        on_click_find_document: function () {
+        on_click_find_document: function (event) {
+            event.preventDefault();
+            event.stopPropagation();
             var context = {};
             context.default_model = 'document.quick.access.rule';
             context.default_method ='read_code_action';
