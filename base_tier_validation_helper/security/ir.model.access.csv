@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tier_definition_helper,access_tier_definition_helper,model_tier_definition_helper,base.group_system,1,1,1,1
+access_tier_definition_helper_line,access_tier_definition_helper_line,model_tier_definition_helper_line,base.group_system,1,1,1,1
