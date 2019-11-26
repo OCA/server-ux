@@ -202,14 +202,16 @@ class TierValidation(models.AbstractModel):
         return _('A review has been requested by %s.') % (self.env.user.name)
 
     def _notify_review_requested(self, tier_reviews):
-        if hasattr(self, 'message_post'):
+        if hasattr(self, 'message_post') and \
+                hasattr(self, 'message_subscribe'):
             for rec in self:
                 users_to_notify = tier_reviews.filtered(
                     lambda r: r.definition_id.notify_on_create and
                     r.res_id == rec.id).mapped(
                     "reviewer_ids")
                 # Subscribe reviewers and notify
-                getattr(rec, 'message_subscribe_users')(users_to_notify.ids)
+                getattr(rec, 'message_subscribe')(
+                    partner_ids=users_to_notify.mapped("partner_id").ids)
                 getattr(rec, 'message_post')(
                     subtype='mt_comment',
                     body=rec._notify_requested_review_body()
