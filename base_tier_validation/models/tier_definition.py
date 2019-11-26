@@ -63,6 +63,15 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
              "this definition is triggered."
     )
+    has_comment = fields.Boolean(
+        string='Comment',
+        default=False,
+    )
+    approve_sequence = fields.Boolean(
+        string='Approve by sequence',
+        default=False,
+        help="Approval order by the specified sequence number",
+    )
 
     @api.onchange('model_id')
     def onchange_model_id(self):

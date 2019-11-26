@@ -3,6 +3,7 @@
 
 from odoo.tests import common
 from odoo.exceptions import ValidationError
+from odoo.tests.common import Form
 from .common import setup_test_model, teardown_test_model
 from .tier_validation_tester import TierValidationTester, TierValidationTester2
 
@@ -194,3 +195,51 @@ class TierTierValidation(common.SavepointCase):
                 self.assertEqual(doc.get('pending_count'), 1)
             else:
                 self.assertEqual(doc.get('pending_count'), 2)
+
+    def test_11_add_comment(self):
+        # Create new test record
+        test_record = self.test_model.create({
+            'test_field': 2.5,
+        })
+        # Create tier definitions
+        self.tier_def_obj.create({
+            'model_id': self.tester_model.id,
+            'review_type': 'individual',
+            'reviewer_id': self.test_user_1.id,
+            'definition_domain': "[('test_field', '>', 1.0)]",
+            'has_comment': True,
+        })
+        # Request validation
+        review = test_record.sudo(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        record = test_record.sudo(self.test_user_1.id)
+        res = record.validate_tier()
+        ctx = res.get('context')
+        wizard = Form(self.env['comment.wizard'].with_context(ctx))
+        wizard.comment = 'Test Comment'
+        wiz = wizard.save()
+        wiz.add_comment()
+        self.assertTrue(test_record.review_ids.mapped('comment'))
+
+    def test_12_approve_sequence(self):
+        # Create new test record
+        test_record = self.test_model.create({
+            'test_field': 2.5,
+        })
+        # Create tier definitions
+        self.tier_def_obj.create({
+            'model_id': self.tester_model.id,
+            'review_type': 'individual',
+            'reviewer_id': self.test_user_1.id,
+            'definition_domain': "[('test_field', '>', 1.0)]",
+            'approve_sequence': True,
+        })
+        # Request validation
+        self.assertFalse(self.test_record.review_ids)
+        reviews = test_record.sudo(
+            self.test_user_2.id).request_validation()
+        self.assertTrue(reviews)
+        record = test_record.sudo(self.test_user_1.id)
+        self.assertTrue(record.can_review)
+        record.validate_tier()
+        self.assertTrue(record.validated)
