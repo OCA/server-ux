@@ -17,6 +17,7 @@
                 <field name="status"/>
                 <field name="done_by"/>
                 <field name="reviewed_date"/>
+                <field name="comment"/>
             </tree>
         </field>
     </record>

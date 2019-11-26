@@ -21,6 +21,7 @@
         "views/tier_definition_view.xml",
         "views/tier_review_view.xml",
         "views/assets_backend.xml",
+        "wizard/comment_wizard_view.xml",
     ],
     'qweb': [
         'static/src/xml/systray.xml',
