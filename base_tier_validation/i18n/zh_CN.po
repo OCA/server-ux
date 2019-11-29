@@ -29,26 +29,26 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:202
+#: code:addons/base_tier_validation/models/tier_validation.py:271
 #, fuzzy, python-format
 #| msgid "A review was rejected by %s."
 msgid "A review has been requested by %s."
 msgstr "%s审批拒绝。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:167
+#: code:addons/base_tier_validation/models/tier_validation.py:199
 #, python-format
 msgid "A review was accepted"
 msgstr "审批已通过"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:191
+#: code:addons/base_tier_validation/models/tier_validation.py:244
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "%s审批拒绝。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:131
+#: code:addons/base_tier_validation/models/tier_validation.py:163
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr "至少有一条记录需要审批。"
@@ -69,6 +69,25 @@ msgid "Any user in a specific group."
 msgstr "特定组中的任何用户。"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
+#: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence
+msgid "Approval order by the specified sequence number"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__approve_sequence
+#, fuzzy
+#| msgid "Sequence"
+msgid "Approve Sequence"
+msgstr "序列"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
+msgid "Approve by sequence"
+msgstr ""
+
+#. module: base_tier_validation
 #: selection:tier.review,status:0
 msgid "Approved"
 msgstr "批准"
@@ -79,23 +98,51 @@ msgid "Can Review"
 msgstr "可审批"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:211
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__has_comment
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
+#, python-format
+msgid "Comment"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_comment_wizard
+msgid "Comment Wizard"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__comment
+msgid "Comments"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__company_id
 msgid "Company"
 msgstr "公司"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__create_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__create_uid
 msgid "Created by"
 msgstr "创建者"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_date
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__create_date
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__create_date
 msgid "Created on"
 msgstr "创建时间"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__definition_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__definition_id
 msgid "Definition"
@@ -116,6 +163,7 @@ msgid "Description"
 msgstr "说明"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__display_name
@@ -150,6 +198,12 @@ msgid "Group By"
 msgstr "分组"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__has_comment
+msgid "Has Comment"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__id
@@ -164,6 +218,7 @@ msgid ""
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation____last_update
@@ -171,12 +226,14 @@ msgid "Last Modified on"
 msgstr "最后修改时间"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_date
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__write_date
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__write_date
 msgid "Last Updated on"
@@ -209,6 +266,11 @@ msgstr "没有需要审批的项目。"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
 msgid "Notify Reviewers on Creation"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__object
+msgid "Object"
 msgstr ""
 
 #. module: base_tier_validation
@@ -256,6 +318,20 @@ msgstr "请求者"
 #, python-format
 msgid "Requested by"
 msgstr "请求者"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
+#, fuzzy
+#| msgid "Reviews"
+msgid "Res"
+msgstr "审批"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
+#, fuzzy
+#| msgid "Model"
+msgid "Res Model"
+msgstr "模型"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -313,13 +389,13 @@ msgid "Status"
 msgstr "状态"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:138
+#: code:addons/base_tier_validation/models/tier_validation.py:170
 #, python-format
 msgid "The operation is under validation."
 msgstr "该操作正在审批中。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:127
+#: code:addons/base_tier_validation/models/tier_validation.py:159
 #, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
@@ -362,6 +438,13 @@ msgstr "层级审批"
 #: model:ir.model,name:base_tier_validation.model_res_users
 msgid "Users"
 msgstr "用户"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
+#, fuzzy
+#| msgid "Validated"
+msgid "Validate Reject"
+msgstr "已审批"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
