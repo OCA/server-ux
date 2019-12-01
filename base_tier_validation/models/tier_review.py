@@ -45,7 +45,6 @@ class TierReview(models.Model):
     def _get_reviewer_fields(self):
         return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.users"]
 
-    @api.multi
     @api.depends(lambda self: self._get_reviewer_fields())
     def _compute_reviewer_ids(self):
         for rec in self:
