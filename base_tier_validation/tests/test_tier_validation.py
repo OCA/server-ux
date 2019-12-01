@@ -81,30 +81,32 @@ class TierTierValidation(common.SavepointCase):
     def test_01_auto_validation(self):
         """When the user can validate all future reviews, it is not needed
         to request a validation, the action can be done straight forward."""
-        self.test_record.sudo(self.test_user_1.id).action_confirm()
+        self.test_record.with_user(self.test_user_1.id).action_confirm()
         self.assertEqual(self.test_record.state, "confirmed")
 
     def test_02_no_auto_validation(self):
         """User with no right to validate future reviews must request a
         validation."""
         with self.assertRaises(ValidationError):
-            self.test_record.sudo(self.test_user_2.id).action_confirm()
+            self.test_record.with_user(self.test_user_2.id).action_confirm()
 
     def test_03_request_validation_approved(self):
         """User 2 request a validation and user 1 approves it."""
         self.assertFalse(self.test_record.review_ids)
-        reviews = self.test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.sudo(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         record.validate_tier()
         self.assertTrue(record.validated)
 
     def test_04_request_validation_rejected(self):
         """Request validation, rejection and reset."""
         self.assertFalse(self.test_record.review_ids)
-        reviews = self.test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.sudo(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         record.reject_tier()
         self.assertTrue(record.review_ids)
         self.assertTrue(record.rejected)
@@ -114,34 +116,38 @@ class TierTierValidation(common.SavepointCase):
     def test_05_under_validation(self):
         """Write is forbidden in a record under validation."""
         self.assertFalse(self.test_record.review_ids)
-        reviews = self.test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.sudo(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         with self.assertRaises(ValidationError):
             record.write({"test_field": 0.5})
 
     def test_06_validation_process_open(self):
         """Operation forbidden while a validation process is open."""
         self.assertFalse(self.test_record.review_ids)
-        reviews = self.test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.sudo(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         with self.assertRaises(ValidationError):
             record.action_confirm()
 
     def test_07_search_reviewers(self):
         """Test search methods."""
-        reviews = self.test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.sudo(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.id)])
         self.assertTrue(res)
 
     def test_08_search_validated(self):
         """Test for the validated search method."""
-        self.test_record.sudo(self.test_user_2.id).request_validation()
-        res = self.test_model.sudo(self.test_user_1.id).search(
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.test_record.invalidate_cache()
+        res = self.test_model.with_user(self.test_user_1.id).search(
             [("validated", "=", False)]
         )
         self.assertTrue(res)
@@ -182,11 +188,14 @@ class TierTierValidation(common.SavepointCase):
             }
         )
         # Request validation
-        self.test_record.sudo(self.test_user_2.id).request_validation()
-        test_record.sudo(self.test_user_2.id).request_validation()
-        self.test_record_2.sudo(self.test_user_2.id).request_validation()
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.test_record.invalidate_cache()
+        test_record.with_user(self.test_user_2.id).request_validation()
+        test_record.invalidate_cache()
+        self.test_record_2.with_user(self.test_user_2.id).request_validation()
+        self.test_record_2.invalidate_cache()
         # Get review user count as systray icon would do and check count value
-        docs = self.test_user_1.sudo(self.test_user_1).review_user_count()
+        docs = self.test_user_1.with_user(self.test_user_1).review_user_count()
         for doc in docs:
             if doc.get("name") == "tier.validation.tester2":
                 self.assertEqual(doc.get("pending_count"), 1)
@@ -207,9 +216,10 @@ class TierTierValidation(common.SavepointCase):
             }
         )
         # Request validation
-        review = test_record.sudo(self.test_user_2.id).request_validation()
+        review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
-        record = test_record.sudo(self.test_user_1.id)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         res = record.validate_tier()
         ctx = res.get("context")
         wizard = Form(self.env["comment.wizard"].with_context(ctx))
@@ -233,9 +243,67 @@ class TierTierValidation(common.SavepointCase):
         )
         # Request validation
         self.assertFalse(self.test_record.review_ids)
-        reviews = test_record.sudo(self.test_user_2.id).request_validation()
+        reviews = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = test_record.sudo(self.test_user_1.id)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
         self.assertTrue(record.can_review)
         record.validate_tier()
         self.assertTrue(record.validated)
+
+    def test_13_onchange_review_type(self):
+        tier_def_id = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+            }
+        )
+        self.assertTrue(tier_def_id.reviewer_id)
+        tier_def_id.review_type = "group"
+        tier_def_id.onchange_review_type()
+        self.assertFalse(tier_def_id.reviewer_id)
+
+    def test_14_onchange_review_type(self):
+        tier_def_id = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+            }
+        )
+        self.assertTrue(tier_def_id.reviewer_id)
+        tier_def_id.review_type = "group"
+        tier_def_id.onchange_review_type()
+        self.assertFalse(tier_def_id.reviewer_id)
+
+    def test_15_review_user_count(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "has_comment": True,
+            }
+        )
+        # Request validation
+        review = test_record.with_user(self.test_user_2).request_validation()
+        self.assertTrue(review)
+        self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
+        self.assertTrue(self.test_user_1.review_ids)
+        # Used by front-end
+        count = self.test_user_1.with_user(self.test_user_1).review_user_count()
+        self.assertEqual(len(count), 1)
+        # False Review
+        self.assertFalse(self.test_record._calc_reviews_validated(False))
+        self.assertIn("requested", self.test_record._notify_requested_review_body())
+        self.assertIn("rejected", self.test_record._notify_rejected_review_body())
+        self.assertIn("accepted", self.test_record._notify_accepted_reviews_body())
