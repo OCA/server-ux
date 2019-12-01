@@ -5,19 +5,20 @@ from odoo import api, fields, models
 
 
 class TierValidationTester(models.Model):
-    _name = 'tier.validation.tester'
-    _inherit = ['tier.validation']
+    _name = "tier.validation.tester"
+    _inherit = ["tier.validation"]
 
     state = fields.Selection(
-        selection=[('draft', 'Draft'),
-                   ('confirmed', 'Confirmed'),
-                   ('cancel', 'Cancel')],
-        default='draft',
+        selection=[
+            ("draft", "Draft"),
+            ("confirmed", "Confirmed"),
+            ("cancel", "Cancel"),
+        ],
+        default="draft",
     )
     test_field = fields.Float()
-    user_id = fields.Many2one(string="Assigned to:",
-                              comodel_name="res.users")
+    user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
 
     @api.multi
     def action_confirm(self):
-        self.write({'state': 'confirmed'})
+        self.write({"state": "confirmed"})
