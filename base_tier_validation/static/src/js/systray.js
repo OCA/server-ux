@@ -1,12 +1,10 @@
 odoo.define('tier_validation.systray', function (require) {
     "use strict";
 
-    var config = require('web.config');
     var core = require('web.core');
     var session = require('web.session');
     var SystrayMenu = require('web.SystrayMenu');
     var Widget = require('web.Widget');
-    var BusService = require('bus.BusService');
 
     var QWeb = core.qweb;
 
@@ -23,7 +21,9 @@ odoo.define('tier_validation.systray', function (require) {
             var channel = 'base.tier.validation';
             this.call('bus_service', 'addChannel', channel);
             this.call('bus_service', 'startPolling');
-            this.call('bus_service', 'onNotification', this, this._updateReviewPreview);
+            this.call(
+                'bus_service', 'onNotification', this, this._updateReviewPreview
+            );
             return this._super();
         },
 
@@ -32,8 +32,9 @@ odoo.define('tier_validation.systray', function (require) {
         /**
          * Make RPC and get current user's activity details
          * @private
+         * @returns {integer}
          */
-        _getReviewData: function(){
+        _getReviewData: function () {
             var self = this;
 
             return self._rpc({
@@ -44,36 +45,43 @@ odoo.define('tier_validation.systray', function (require) {
                 },
             }).then(function (data) {
                 self.reviews = data;
-                self.reviewCounter = _.reduce(data, function(total_count, p_data){ return total_count + p_data.pending_count; }, 0);
+                self.reviewCounter = _.reduce(data, function (total_count, p_data) {
+                    return total_count + p_data.pending_count;
+                }, 0);
                 self.$('.o_notification_counter').text(self.reviewCounter);
                 self.$el.toggleClass('o_no_notification', !self.reviewCounter);
             });
         },
+
         /**
          * Get particular model view to redirect on click of review on that model.
          * @private
-         * @param {string} model
+         * @param {String} model
+         * @returns {integer}
          */
         _getReviewModelViewID: function (model) {
             return this._rpc({
                 model: model,
-                method: 'get_activity_view_id'
+                method: 'get_activity_view_id',
             });
         },
+
         /**
          * Update(render) activity system tray view on activity updation.
          * @private
          */
         _updateReviewPreview: function () {
             var self = this;
-            self._getReviewData().then(function (){
-                self.$reviews_preview.html(QWeb.render('tier.validation.ReviewMenuPreview', {
-                    reviews : self.reviews
-                }));
+            self._getReviewData().then(function () {
+                self.$reviews_preview.html(QWeb.render(
+                    'tier.validation.ReviewMenuPreview', {
+                        reviews : self.reviews,
+                    }));
             });
         },
+
         /**
-         * update counter based on activity status(created or Done)
+         * Update counter based on activity status(created or Done)
          * @private
          * @param {Object} [data] key, value to decide activity created or deleted
          * @param {String} [data.type] notification type
@@ -93,9 +101,9 @@ odoo.define('tier_validation.systray', function (require) {
             }
         },
 
-        //------------------------------------------------------------
+        // ------------------------------------------------------------
         // Handlers
-        //------------------------------------------------------------
+        // ------------------------------------------------------------
 
         /**
          * Redirect to specific action given its xml id
@@ -114,8 +122,10 @@ odoo.define('tier_validation.systray', function (require) {
          * @param {MouseEvent} event
          */
         _onReviewFilterClick: function (event) {
-            // fetch the data from the button otherwise fetch the ones from the parent (.o_tier_channel_preview).
-            var data = _.extend({}, $(event.currentTarget).data(), $(event.target).data());
+            // Fetch the data from the button otherwise fetch the ones from the
+            // parent (.o_tier_channel_preview).
+            var data = _.extend({}, $(
+                event.currentTarget).data(), $(event.target).data());
             var context = {};
             this.do_action({
                 type: 'ir.actions.act_window',
@@ -124,10 +134,11 @@ odoo.define('tier_validation.systray', function (require) {
                 views: [[false, 'list'], [false, 'form']],
                 search_view_id: [false],
                 domain: [['review_ids.reviewer_ids', '=', session.uid],
-                ['review_ids.status', '=', 'pending']],
+                    ['review_ids.status', '=', 'pending']],
                 context:context,
             });
         },
+
         /**
          * When menu clicked update activity preview if counter updated
          * @private
