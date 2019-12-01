@@ -10,8 +10,11 @@ class TierReview(models.Model):
     _inherit = "tier.review"
 
     python_reviewer_ids = fields.Many2many(
-        string="Reviewers from Python expression",
         comodel_name="res.users",
+        relation="tier_review_python_reviewer_rel",
+        column1="tier_review_id",
+        column2="user_id",
+        string="Reviewers from Python expression",
         compute="_compute_python_reviewer_ids",
         store=True,
     )
@@ -24,32 +27,28 @@ class TierReview(models.Model):
     def _get_reviewers(self):
         return super()._get_reviewers() + self.python_reviewer_ids
 
-    @api.multi
     @api.depends("definition_id.reviewer_expression", "review_type", "model", "res_id")
     def _compute_python_reviewer_ids(self):
-        for rec in self:
-            if rec.review_type == "expression":
-                record = rec.env[rec.model].browse(rec.res_id).exists()
-                try:
-                    reviewer_ids = safe_eval(
-                        rec.definition_id.reviewer_expression,
-                        globals_dict={"rec": record},
+        for rec in self.filtered(lambda x: x.review_type == "expression"):
+            record = rec.env[rec.model].browse(rec.res_id).exists()
+            try:
+                reviewer_ids = safe_eval(
+                    rec.definition_id.reviewer_expression, globals_dict={"rec": record}
+                )
+            except Exception as error:
+                raise UserError(
+                    _("Error evaluating tier validation " "conditions.\n %s") % error
+                )
+            # Check if python expression returns 'res.users' recordset
+            if (
+                not isinstance(reviewer_ids, models.Model)
+                or reviewer_ids._name != "res.users"
+            ):
+                raise UserError(
+                    _(
+                        "Reviewer python expression must return a "
+                        "res.users recordset."
                     )
-                except Exception as error:
-                    raise UserError(
-                        _("Error evaluating tier validation " "conditions.\n %s")
-                        % error
-                    )
-                # Check if python expression returns 'res.users' recordset
-                if (
-                    not isinstance(reviewer_ids, models.Model)
-                    or reviewer_ids._name != "res.users"
-                ):
-                    raise UserError(
-                        _(
-                            "Reviewer python expression must return a "
-                            "res.users recordset."
-                        )
-                    )
-                else:
-                    rec.python_reviewer_ids = reviewer_ids
+                )
+            else:
+                rec.python_reviewer_ids = reviewer_ids
