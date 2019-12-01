@@ -10,52 +10,40 @@ class TierReview(models.Model):
 
     name = fields.Char(related="definition_id.name", readonly=True)
     status = fields.Selection(
-        selection=[("pending", "Pending"),
-                   ("rejected", "Rejected"),
-                   ("approved", "Approved")],
+        selection=[
+            ("pending", "Pending"),
+            ("rejected", "Rejected"),
+            ("approved", "Approved"),
+        ],
         default="pending",
     )
-    model = fields.Char(string='Related Document Model', index=True)
-    res_id = fields.Integer(string='Related Document ID', index=True)
-    definition_id = fields.Many2one(
-        comodel_name="tier.definition",
-    )
-    review_type = fields.Selection(
-        related="definition_id.review_type", readonly=True,
-    )
-    reviewer_id = fields.Many2one(
-        related="definition_id.reviewer_id", readonly=True,
-    )
+    model = fields.Char(string="Related Document Model", index=True)
+    res_id = fields.Integer(string="Related Document ID", index=True)
+    definition_id = fields.Many2one(comodel_name="tier.definition")
+    review_type = fields.Selection(related="definition_id.review_type", readonly=True)
+    reviewer_id = fields.Many2one(related="definition_id.reviewer_id", readonly=True)
     reviewer_group_id = fields.Many2one(
-        related="definition_id.reviewer_group_id", readonly=True,
+        related="definition_id.reviewer_group_id", readonly=True
     )
     reviewer_ids = fields.Many2many(
-        string="Reviewers", comodel_name="res.users",
-        compute="_compute_reviewer_ids", store=True,
+        string="Reviewers",
+        comodel_name="res.users",
+        compute="_compute_reviewer_ids",
+        store=True,
     )
     sequence = fields.Integer(string="Tier")
-    done_by = fields.Many2one(
-        comodel_name="res.users",
-    )
-    requested_by = fields.Many2one(
-        comodel_name="res.users",
-    )
-    reviewed_date = fields.Datetime(string='Validation Date')
-    has_comment = fields.Boolean(
-        related='definition_id.has_comment',
-        readonly=True,
-    )
-    comment = fields.Char(
-        string='Comments',
-    )
+    done_by = fields.Many2one(comodel_name="res.users")
+    requested_by = fields.Many2one(comodel_name="res.users")
+    reviewed_date = fields.Datetime(string="Validation Date")
+    has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
+    comment = fields.Char(string="Comments")
     approve_sequence = fields.Boolean(
-        related='definition_id.approve_sequence',
-        readonly=True,
+        related="definition_id.approve_sequence", readonly=True
     )
 
     @api.model
     def _get_reviewer_fields(self):
-        return ['reviewer_id', 'reviewer_group_id', 'reviewer_group_id.users']
+        return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.users"]
 
     @api.multi
     @api.depends(lambda self: self._get_reviewer_fields())
