@@ -6,10 +6,9 @@ from openupgradelib.openupgrade import migrate
 
 @migrate()
 def migrate(env, version):
-    module_ids = env['ir.module.module'].search([
-        ('name', '=', 'base_tier_validation_formula'),
-        ('state', '=', 'uninstalled')
-    ])
+    module_ids = env["ir.module.module"].search(
+        [("name", "=", "base_tier_validation_formula"), ("state", "=", "uninstalled")]
+    )
     if module_ids:
         module_ids.sudo().button_install()
     cr = env.cr
