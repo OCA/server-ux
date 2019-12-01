@@ -28,8 +28,10 @@ class TierDefinition(models.Model):
     @api.onchange("review_type")
     def onchange_review_type(self):
         super(TierDefinition, self).onchange_review_type()
-        self.reviewer_expression = (
-            "# Available locals:\n"
-            "#  - rec: current record\n"
-            "#  - Expects a recordset of res.users"
-        )
+        self.reviewer_expression = False
+        if self.review_type == "expression":
+            self.reviewer_expression = (
+                "# Available locals:\n"
+                "#  - rec: current record\n"
+                "#  - Expects a recordset of res.users"
+            )
