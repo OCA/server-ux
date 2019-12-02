@@ -37,6 +37,7 @@ class TierReview(models.Model):
     reviewed_date = fields.Datetime(string="Validation Date")
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
     comment = fields.Char(string="Comments")
+    can_review = fields.Boolean()
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )
