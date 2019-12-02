@@ -1,0 +1,78 @@
+12.0.3.3.1 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Show comment on Reviews Table.
+- Edit notification with approve_sequence.
+
+12.0.3.3.0 (2019-11-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Add comment on Reviews Table.
+- Approve by sequence.
+
+12.0.3.2.1 (2019-11-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Remove message_subscribe_users
+
+12.0.3.2.0 (2019-11-25)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Notify reviewers
+
+12.0.3.1.0 (2019-07-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Singleton error
+
+12.0.3.0.0 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit Reviews Table
+
+12.0.2.1.0 (2019-05-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit drop-down style width and position
+
+12.0.2.0.0 (2019-05-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Pass parameters as functions.
+- Add Systray.
+
+12.0.1.0.0 (2019-02-18)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 12.
+
+11.0.1.0.0 (2018-05-09)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 11.
+
+10.0.1.0.0 (2018-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 10.
+
+9.0.1.0.0 (2017-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+First version.

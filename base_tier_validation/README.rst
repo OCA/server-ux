@@ -32,8 +32,7 @@ purchase orders, sales orders...).
 **Note:** To be able to use this module in a new model you will need some
 development.
 
-See `purchase_tier_validation <https://github
-.com/OCA/purchase-workflow>`_ as an example of implementation.
+See `purchase_tier_validation <https://github.com/OCA/purchase-workflow>`_ as an example of implementation.
 
 **Table of contents**
 
@@ -48,6 +47,94 @@ To configure this module, you need to:
 #. Go to *Settings > Technical > Tier Validations > Tier Definition*.
 #. Create as many tiers as you want for any model having tier validation
    functionality.
+
+**Note:**
+
+* If check **Notify Reviewers on Creation**, all possible reviewers will be notified by email when this definition is triggered.
+* If check **Comment**, reviewers can comment after click Validate or Reject.
+* If check **Approve by sequence**, reviewers is forced to review by specified sequence.
+
+Changelog
+=========
+
+12.0.3.3.1 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Show comment on Reviews Table.
+- Edit notification with approve_sequence.
+
+12.0.3.3.0 (2019-11-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Add comment on Reviews Table.
+- Approve by sequence.
+
+12.0.3.2.1 (2019-11-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Remove message_subscribe_users
+
+12.0.3.2.0 (2019-11-25)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Notify reviewers
+
+12.0.3.1.0 (2019-07-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Singleton error
+
+12.0.3.0.0 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit Reviews Table
+
+12.0.2.1.0 (2019-05-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit drop-down style width and position
+
+12.0.2.0.0 (2019-05-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Pass parameters as functions.
+- Add Systray.
+
+12.0.1.0.0 (2019-02-18)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 12.
+
+11.0.1.0.0 (2018-05-09)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 11.
+
+10.0.1.0.0 (2018-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 10.
+
+9.0.1.0.0 (2017-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+First version.
 
 Bug Tracker
 ===========
