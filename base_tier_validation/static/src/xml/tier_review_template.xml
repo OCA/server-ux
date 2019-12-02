@@ -26,6 +26,7 @@
                     <th class="text-right">Status</th>
                     <th class="text-right">Done by</th>
                     <th class="text-right">Validation Date</th>
+                    <th class="text-right">Comment</th>
                 </tr>
             </thead>
             <tbody class="sale_tbody">
@@ -52,6 +53,11 @@
                         <td class="text-right">
                             <t t-if="review.reviewed_date">
                                 <span t-esc="review.reviewed_date"/>
+                            </t>
+                        </td>
+                        <td class="text-left">
+                            <t t-if="review.comment">
+                                <span t-esc="review.comment"/>
                             </t>
                         </td>
                     </tr>

@@ -5,5 +5,4 @@ purchase orders, sales orders...).
 **Note:** To be able to use this module in a new model you will need some
 development.
 
-See `purchase_tier_validation <https://github
-.com/OCA/purchase-workflow>`_ as an example of implementation.
+See `purchase_tier_validation <https://github.com/OCA/purchase-workflow>`_ as an example of implementation.
