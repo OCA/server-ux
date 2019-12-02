@@ -227,6 +227,15 @@ class TierTierValidation(common.SavepointCase):
         wiz = wizard.save()
         wiz.add_comment()
         self.assertTrue(test_record.review_ids.mapped("comment"))
+        # Check notify
+        comment = test_record.with_user(
+            self.test_user_1.id
+        )._notify_accepted_reviews_body()
+        self.assertEqual(comment, "A review was accepted. (Test Comment)")
+        comment = test_record.with_user(
+            self.test_user_1.id
+        )._notify_rejected_review_body()
+        self.assertEqual(comment, "A review was rejected by John. (Test Comment)")
 
     def test_12_approve_sequence(self):
         # Create new test record
@@ -239,17 +248,39 @@ class TierTierValidation(common.SavepointCase):
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
+                "sequence": 30,
+            }
+        )
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "sequence": 10,
             }
         )
         # Request validation
         self.assertFalse(self.test_record.review_ids)
         reviews = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_cache()
-        self.assertTrue(record.can_review)
-        record.validate_tier()
-        self.assertTrue(record.validated)
+
+        docs1 = self.test_user_2.with_user(self.test_user_1).review_user_count()
+        for doc in docs1:
+            self.assertEqual(doc.get("pending_count"), 1)
+        docs2 = self.test_user_2.with_user(self.test_user_2).review_user_count()
+        for doc in docs2:
+            self.assertEqual(doc.get("pending_count"), 0)
+
+        record1 = test_record.with_user(self.test_user_1.id)
+        record1.invalidate_cache()
+        self.assertTrue(record1.can_review)
+        record1.validate_tier()
+        self.assertTrue(record1.validated)
+        record2 = test_record.with_user(self.test_user_2.id)
+        record2.invalidate_cache()
+        self.assertFalse(record2.can_review)
 
     def test_13_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(
