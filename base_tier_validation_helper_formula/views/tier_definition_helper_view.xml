@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tier_definition_helper_form" model="ir.ui.view">
+        <field name="name">tier.definition.helper.form</field>
+        <field name="model">tier.definition.helper</field>
+        <field name="inherit_id" ref="base_tier_validation_helper.view_tier_definition_helper_form"/>
+        <field name="arch" type="xml">
+            <!-- Tier Definition Helper -->
+            <field name="review_type" position="after">
+                <field name="is_reviewers" attrs="{'invisible': [('review_type', '!=', 'expression')]}"/>
+            </field>
+            <field name="definition_type" position="after">
+                <field name="is_amount_domain" attrs="{'invisible': [('definition_type', '!=', 'formula')]}"/>
+            </field>
+            <xpath expr="//group[@name='right']" position="inside">
+                <field name="amount_ref_id" attrs="{'invisible': [('is_amount_domain', '!=', True)], 'required': [('is_amount_domain', '=', True)]}"/>
+                <field name="condition_type" attrs="{'invisible': [('is_amount_domain', '!=', True)], 'required': [('is_amount_domain', '=', True)]}"/>
+            </xpath>
+            <!-- Tier Definition Helper Line -->
+            <field name="reviewer_group_id" position="after">
+                <field name="reviewer_expression" attrs="{'column_invisible': ['|', ('parent.review_type', '!=', 'expression'), ('parent.is_reviewers', '=', True)], 'required': [('parent.review_type', '=', 'expression'), ('parent.is_reviewers', '!=', True)]}"/>
+                <field name="reviewer_ids" widget="many2many_tags" attrs="{'column_invisible': [('parent.is_reviewers', '!=', True)], 'required': [('parent.is_reviewers', '=', True)]}"/>
+            </field>
+            <field name="tier_definition_id" position="before">
+                <field name="python_code" attrs="{'column_invisible': ['|', ('parent.is_amount_domain', '=', True), ('parent.definition_type', '!=', 'formula')], 'required': [('parent.definition_type', '=', 'formula'), ('parent.is_amount_domain', '!=', True)]}"/>
+                <field name="min_amount" attrs="{'column_invisible': ['|', ('parent.is_amount_domain', '!=', True), ('parent.condition_type', 'not in', ('range', 'min'))]}"/>
+                <field name="max_amount" attrs="{'column_invisible': ['|', ('parent.is_amount_domain', '!=', True), ('parent.condition_type', 'not in', ('range', 'max'))]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
