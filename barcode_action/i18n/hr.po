@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-12-04 12:04+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,124 +15,125 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
 msgid "Barcode Launcher"
-msgstr ""
+msgstr "Barkod pokretač"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action___barcode_scanned
 msgid "Barcode Scanned"
-msgstr ""
+msgstr "Barkod skeniran"
 
 #. module: barcode_action
 #: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: barcode_action
 #: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
 msgid "Find"
-msgstr ""
+msgstr "Traži"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.res_partner_find
 msgid "Find Partner"
-msgstr ""
+msgstr "Nađi partnera"
 
 #. module: barcode_action
 #: model:ir.ui.menu,name:barcode_action.menu_orders_customers
 msgid "Find partners"
-msgstr ""
+msgstr "Nađi partnere"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnje ažurirao"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnje ažuriranje"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__method
 msgid "Method"
-msgstr ""
+msgstr "Metoda"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__model
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: barcode_action
 #: code:addons/barcode_action/models/res_partner.py:21
 #, python-format
 msgid "Partner with Internal Reference %s cannot be found"
-msgstr ""
+msgstr "Partner sa šifrom %s nije pronađen"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__res_id
 msgid "Res"
-msgstr ""
+msgstr "Res"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__state
 msgid "State"
-msgstr ""
+msgstr "Država"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__status
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: barcode_action
 #: model:ir.model.fields,help:barcode_action.field_barcode_action___barcode_scanned
 msgid "Value of the last barcode scanned."
-msgstr ""
+msgstr "Vrijednost zadnje skeniranog barkoda."
 
 #. module: barcode_action
 #: selection:barcode.action,state:0
 msgid "Waiting"
-msgstr ""
+msgstr "Na čekanju"
 
 #. module: barcode_action
 #: selection:barcode.action,state:0
 msgid "Warning"
-msgstr ""
+msgstr "Upozorenje"
 
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_barcode_action
 msgid "barcode.action"
-msgstr ""
+msgstr "barcode.action"
