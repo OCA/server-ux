@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2019-11-13 18:34+0000\n"
+"PO-Revision-Date: 2019-12-04 12:04+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:59
@@ -223,19 +223,19 @@ msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
 msgstr ""
+"Tvrtka u Generatoru raspona mora biti identična kao i tvrtka tipa raspona."
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:51
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
-msgstr ""
+msgstr "Tvrtka u Rasponu datuma mora biti identična kao i tvrtka tipa raspona."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
-#, fuzzy
 msgid ""
 "The active field allows you to hide the date range type without removing it."
-msgstr "Polje aktivan omogućuje sakrivanje raspona bez da ga brišete."
+msgstr "Polje aktivan omogućuje sakrivanje raspona bez brisanja."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range__active
@@ -250,13 +250,11 @@ msgstr "Tip"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-#, fuzzy
 msgid "Type Name"
-msgstr "Ime"
+msgstr "Naziv tipa"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
-#, fuzzy
 msgid "Unit Of Time"
 msgstr "Jedinica vremena"
 
@@ -267,6 +265,8 @@ msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
 msgstr ""
+"Nije moguće promijeniti tvrtku, jer ovaj tip raspona datuma je dodijeljen "
+"rasponu (%s)."
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
