@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="mail assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/base_tier_validation/static/src/js/systray.js"/>
+            <script type="text/javascript" src="/base_tier_validation/static/src/js/tier_review_widget.js"/>
+
+            <link rel="stylesheet" href="/base_tier_validation/static/src/scss/systray.scss" type="text/scss"/>
+            <link rel="stylesheet" href="/base_tier_validation/static/src/scss/review.scss" type="text/scss"/>
+        </xpath>
+    </template>
+</odoo>
