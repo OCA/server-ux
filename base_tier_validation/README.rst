@@ -17,7 +17,7 @@ Base Tier Validation
     :target: https://github.com/OCA/server-ux/tree/13.0/base_tier_validation
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-12-0/server-ux-12-0-base_tier_validation
+    :target: https://translation.odoo-community.org/projects/server-ux-13-0/server-ux-13-0-base_tier_validation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/250/13.0
@@ -74,6 +74,7 @@ Contributors
 * Naglis Jonaitis <naglis@versada.eu>
 * Adrià Gil Sorribes <adria.gil@eficent.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Pedro Gonzalez <pedro.gonzalez@pesol.es>
 
 Maintainers
 ~~~~~~~~~~~
