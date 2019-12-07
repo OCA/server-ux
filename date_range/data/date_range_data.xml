@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--    <data noupdate="1">-->
+        <record id="date_range_type_default" model="date.range.type">
+            <field name="name">Date - Default</field>
+            <field name="allow_overlap" eval="True"/>
+        </record>
+
+        <record id="date_range_today" model="date.range">
+            <field name="name">Today</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().date()</field>
+            <field name="date_end_python">datetime.now().date()</field>
+        </record>
+
+        <record id="date_range_yesterday" model="date.range">
+            <field name="name">Yesterday</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().date() - relativedelta(days=1)</field>
+            <field name="date_end_python">datetime.now().date() - relativedelta(days=1)</field>
+        </record>
+
+        <record id="date_range_this_week" model="date.range">
+            <field name="name">This Week</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().date() + relativedelta(weeks=-1, weekday=6)</field>
+            <field name="date_end_python">datetime.now().date()</field>
+        </record>
+
+        <record id="date_range_a_week_ago" model="date.range">
+            <field name="name">A Week Ago</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().date() - relativedelta(weeks=2, weekday=6)</field>
+            <field name="date_end_python">datetime.now().date() - relativedelta(weeks=2, weekday=6) + relativedelta(days=6)</field>
+        </record>
+
+        <record id="date_range_this_month" model="date.range">
+            <field name="name">This Month</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().strftime('%Y-%m-01')</field>
+            <field name="date_end_python">datetime.now().date()</field>
+        </record>
+
+        <record id="date_range_a_month_ago" model="date.range">
+            <field name="name">A Month Ago</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">(datetime.now() - relativedelta(months=1)).strftime('%Y-%m-01')</field>
+            <field name="date_end_python">datetime.strptime(datetime.now().strftime('%Y-%m-01'), '%Y-%m-%d') - relativedelta(days=1)</field>
+        </record>
+
+        <record id="date_range_two_month_ago" model="date.range">
+            <field name="name">Two Month Ago</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">(datetime.now() - relativedelta(months=2)).strftime('%Y-%m-01')</field>
+            <field name="date_end_python">datetime.strptime((datetime.now() - relativedelta(months=1)).strftime('%Y-%m-01'), '%Y-%m-%d') - relativedelta(days=1)</field>
+        </record>
+
+        <record id="date_range_this_year" model="date.range">
+            <field name="name">This Year</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">datetime.now().strftime('%Y-01-01')</field>
+            <field name="date_end_python">datetime.now().date()</field>
+        </record>
+
+        <record id="date_range_custom" model="date.range">
+            <field name="name">Custom</field>
+            <field name="type_id" ref="date_range.date_range_type_default"/>
+            <field name="use_python_code" eval="True"/>
+            <field name="date_start_python">False</field>
+            <field name="date_end_python">False</field>
+        </record>
+    </data>
+</odoo>

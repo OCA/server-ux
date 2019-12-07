@@ -3,7 +3,9 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-
+# must import relativedelta,cause use in date_start_python, date_end_python
+from datetime  import datetime
+from dateutil.relativedelta import relativedelta
 
 class DateRange(models.Model):
     _name = "date.range"
@@ -15,8 +17,8 @@ class DateRange(models.Model):
         return self.env.company
 
     name = fields.Char(required=True, translate=True)
-    date_start = fields.Date(string="Start date", required=True)
-    date_end = fields.Date(string="End date", required=True)
+    date_start = fields.Date(string="Start date")
+    date_end = fields.Date(string="End date")
     type_id = fields.Many2one(
         comodel_name="date.range.type",
         string="Type",
@@ -28,6 +30,10 @@ class DateRange(models.Model):
         compute="_compute_type_id",
         readonly=False,
     )
+    use_python_code = fields.Boolean('Use Python Code', default=False)
+    date_start_python = fields.Text('Date From')
+    date_end_python = fields.Text('Date To')
+
     type_name = fields.Char(related="type_id.name", store=True, string="Type Name")
     company_id = fields.Many2one(
         comodel_name="res.company", string="Company", index=1, default=_default_company
@@ -45,6 +51,13 @@ class DateRange(models.Model):
             "A date range must be unique per company !",
         )
     ]
+
+    def get_value(self):
+        if self.use_python_code:
+            d1, d2 = eval(self.date_start_python), eval(self.date_end_python)
+        else:
+            d1, d2 = self.date_start, self.date_end
+        return d1, d2
 
     @api.depends("company_id", "type_id.company_id")
     def _compute_type_id(self):
