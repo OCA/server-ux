@@ -16,6 +16,7 @@
         "views/assets.xml",
         "views/date_range_view.xml",
         "wizard/date_range_generator.xml",
+        "data/date_range_data.xml",
     ],
     "qweb": ["static/src/xml/date_range.xml"],
     "development_status": "Mature",
