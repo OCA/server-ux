@@ -141,3 +141,18 @@ class TierTierValidation(common.SavepointCase):
         review = test_record.with_user(self.test_user_2).request_validation()
         with self.assertRaises(UserError):
             self.test_record.evaluate_formula_tier(review)
+
+    def test_05_definition_from_domain_formula(self):
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_type": "domain_formula",
+                "definition_domain": '[("test_field", "<", 5.0)]',
+                "python_code": "rec.test_field > 1.0",
+            }
+        )
+        self.test_record.write({"test_field": 3.5, "user_id": self.test_user_2.id})
+        reviews = self.test_record.with_user(self.test_user_3.id).request_validation()
+        self.assertTrue(reviews)
