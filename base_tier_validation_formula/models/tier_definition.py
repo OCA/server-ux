@@ -15,7 +15,10 @@ class TierDefinition(models.Model):
         default="""# Available locals:\n#  - rec: current record""",
     )
     definition_type = fields.Selection(
-        selection_add=[('formula', 'Formula')]
+        selection_add=[
+            ('formula', 'Formula'),
+            ('domain_formula', 'Domain & Formula'),
+        ]
     )
     reviewer_expression = fields.Text(
         string='Review Expression',

@@ -36,8 +36,11 @@ and the tier reviewers using python code.
 Usage
 =====
 
-To define the domain by python code choose the Formula option in the Definition field.
-To define the reviewers by python code choose Python Expression option in the Validated by field.
+To define the domain,
+* By python code choose the **Formula** option in the Definition field.
+* By both domain and python code, choose the **Domain & Formula** option in the Definition field.
+
+To define the reviewers by python code choose **Python Expression** option in the Validated by field.
 
 Bug Tracker
 ===========
@@ -62,6 +65,7 @@ Contributors
 
 * Enric Tobella <etobella@creublanca.es>
 * Adrià Gil Sorribes <adria.gil@eficent.com>
+* Pimolnat Suntian <pimolnats@ecosoft.co.th>
 
 Maintainers
 ~~~~~~~~~~~
