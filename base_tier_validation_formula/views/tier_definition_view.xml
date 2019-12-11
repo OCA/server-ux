@@ -15,9 +15,12 @@
                                attrs="{'invisible': [('review_type', '!=', 'expression')]}"/>
                     </group>
             </xpath>
+            <xpath expr="//field[@name='definition_domain']" position="attributes">
+                <attribute name="attrs">{'invisible': [('definition_type', 'not in', ('domain', 'domain_formula'))]}</attribute>
+            </xpath>
             <field name="definition_domain" position="after">
                 <field name="python_code"
-                       attrs="{'invisible': [('definition_type', '!=', 'formula')]}"/>
+                       attrs="{'invisible': [('definition_type', 'not in', ('formula', 'domain_formula'))]}"/>
             </field>
         </field>
     </record>
