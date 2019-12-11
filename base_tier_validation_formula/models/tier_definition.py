@@ -14,7 +14,9 @@ class TierDefinition(models.Model):
         "a boolean.",
         default="""# Available locals:\n#  - rec: current record""",
     )
-    definition_type = fields.Selection(selection_add=[("formula", "Formula")])
+    definition_type = fields.Selection(
+        selection_add=[("formula", "Formula"), ("domain_formula", "Domain & Formula")]
+    )
     reviewer_expression = fields.Text(
         string="Review Expression",
         help="Write Python code that defines the reviewer. "
