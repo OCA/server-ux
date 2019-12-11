@@ -19,6 +19,9 @@ class TierValidation(models.AbstractModel):
         return res
 
     def evaluate_tier(self, tier):
+        res = super().evaluate_tier(tier)
         if tier.definition_type == "formula":
             return self.evaluate_formula_tier(tier)
-        return super().evaluate_tier(tier)
+        if tier.definition_type == "domain_formula":
+            return res and self.evaluate_formula_tier(tier)
+        return res
