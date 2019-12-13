@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation
+# 	* base_tier_validation
 #
 msgid ""
 msgstr ""
@@ -29,19 +29,19 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Navn</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:271
+#: code:addons/base_tier_validation/models/tier_validation.py:282
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "%s har anmodet om en godkendelse."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:199
+#: code:addons/base_tier_validation/models/tier_validation.py:204
 #, python-format
 msgid "A review was accepted"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:244
+#: code:addons/base_tier_validation/models/tier_validation.py:255
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "En godkendelse var afvist af %s."
@@ -90,6 +90,7 @@ msgid "Approved"
 msgstr "Godkendt"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
 msgstr "Kan gennemse"
@@ -100,7 +101,9 @@ msgid "Cancel"
 msgstr "Annuller"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:211
+#. openerp-web
+#: code:addons/base_tier_validation/models/tier_validation.py:216
+#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:29
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__has_comment
@@ -209,7 +212,9 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_create
-msgid "If set, all possible reviewers will be notified by email when this definition is triggered."
+msgid ""
+"If set, all possible reviewers will be notified by email when this "
+"definition is triggered."
 msgstr ""
 
 #. module: base_tier_validation
@@ -388,7 +393,8 @@ msgstr "Operationen er under godkendelse."
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:159
 #, python-format
-msgid "This action needs to be validated for at least one record. \n"
+msgid ""
+"This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
 "Denne handling behøver godkendelse for minimum en rekord.\n"
