@@ -41,6 +41,7 @@ class TierReview(models.Model):
         comodel_name="res.users",
     )
     reviewed_date = fields.Datetime(string='Validation Date')
+    can_review = fields.Boolean()
     has_comment = fields.Boolean(
         related='definition_id.has_comment',
         readonly=True,

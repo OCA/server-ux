@@ -120,11 +120,11 @@ odoo.define('tier_validation.systray', function (require) {
             this.do_action({
                 type: 'ir.actions.act_window',
                 name: data.model_name,
-                res_model:  data.res_model,
+                res_model: data.res_model,
                 views: [[false, 'list'], [false, 'form']],
                 search_view_id: [false],
                 domain: [['review_ids.reviewer_ids', '=', session.uid],
-                ['review_ids.status', '=', 'pending']],
+                ['review_ids.status', '=', 'pending'], ['review_ids.can_review', '=', true]],
                 context:context,
             });
         },
