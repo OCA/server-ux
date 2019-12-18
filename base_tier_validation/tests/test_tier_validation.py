@@ -276,11 +276,13 @@ class TierTierValidation(common.SavepointCase):
         record1 = test_record.with_user(self.test_user_1.id)
         record1.invalidate_cache()
         self.assertTrue(record1.can_review)
-        record1.validate_tier()
-        self.assertTrue(record1.validated)
         record2 = test_record.with_user(self.test_user_2.id)
         record2.invalidate_cache()
         self.assertFalse(record2.can_review)
+        # User 1 validates the record, 2 review should be approved.
+        self.assertFalse(any(r.status == "approved" for r in record1.review_ids))
+        record1.validate_tier()
+        self.assertTrue(any(r.status == "approved" for r in record1.review_ids))
 
     def test_13_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(
@@ -330,6 +332,8 @@ class TierTierValidation(common.SavepointCase):
         self.assertTrue(review)
         self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
         self.assertTrue(self.test_user_1.review_ids)
+        test_record.invalidate_cache()
+        self.assertTrue(test_record.review_ids)
         # Used by front-end
         count = self.test_user_1.with_user(self.test_user_1).review_user_count()
         self.assertEqual(len(count), 1)
