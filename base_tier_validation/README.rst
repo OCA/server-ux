@@ -57,7 +57,7 @@ To configure this module, you need to:
 Known issues / Roadmap
 ======================
 
-This is the list of know issues for this module. Any proposal for improvement will
+This is the list of known issues for this module. Any proposal for improvement will
 be very valuable.
 
 * **Issue:**
