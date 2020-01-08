@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
@@ -210,6 +210,12 @@ class TierValidation(models.AbstractModel):
             )
 
     def _notify_accepted_reviews_body(self):
+        has_comment = self.review_ids.filtered(
+            lambda r: (self.env.user in r.reviewer_ids) and r.comment
+        )
+        if has_comment:
+            comment = has_comment.mapped("comment")[0]
+            return _("A review was accepted. (%s)" % comment)
         return _("A review was accepted")
 
     def _add_comment(self, validate_reject):
@@ -253,6 +259,14 @@ class TierValidation(models.AbstractModel):
         self._update_counter()
 
     def _notify_rejected_review_body(self):
+        has_comment = self.review_ids.filtered(
+            lambda r: (self.env.user in r.reviewer_ids) and r.comment
+        )
+        if has_comment:
+            comment = has_comment.mapped("comment")[0]
+            return _(
+                "A review was rejected by {}. ({})".format(self.env.user.name, comment)
+            )
         return _("A review was rejected by %s.") % (self.env.user.name)
 
     def _notify_rejected_review(self):

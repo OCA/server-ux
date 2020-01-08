@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -37,6 +37,7 @@ class TierReview(models.Model):
     reviewed_date = fields.Datetime(string="Validation Date")
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
     comment = fields.Char(string="Comments")
+    can_review = fields.Boolean()
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )

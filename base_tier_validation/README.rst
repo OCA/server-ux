@@ -32,8 +32,7 @@ purchase orders, sales orders...).
 **Note:** To be able to use this module in a new model you will need some
 development.
 
-See `purchase_tier_validation <https://github
-.com/OCA/purchase-workflow>`_ as an example of implementation.
+See `purchase_tier_validation <https://github.com/OCA/purchase-workflow>`_ as an example of implementation.
 
 **Table of contents**
 
@@ -48,6 +47,112 @@ To configure this module, you need to:
 #. Go to *Settings > Technical > Tier Validations > Tier Definition*.
 #. Create as many tiers as you want for any model having tier validation
    functionality.
+
+**Note:**
+
+* If check **Notify Reviewers on Creation**, all possible reviewers will be notified by email when this definition is triggered.
+* If check **Comment**, reviewers can comment after click Validate or Reject.
+* If check **Approve by sequence**, reviewers is forced to review by specified sequence.
+
+Known issues / Roadmap
+======================
+
+This is the list of know issues for this module. Any proposal for improvement will
+be very valuable.
+
+* **Issue:**
+
+  When using `approve_sequence` option in any tier.definition there can be inconsistencies
+  in the systray notifications.
+
+  **Description:**
+
+  Field `can_review` in tier.review is used to filter out, in the systray notifications,
+  the reviews a user can approve. This `can_review` field is updated **in the database**
+  in method `review_user_count`, this can make it very inconsistent for databases
+  with a lot of users and recurring updates that can change the expected behavior.
+
+Changelog
+=========
+
+12.0.3.3.1 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Show comment on Reviews Table.
+- Edit notification with approve_sequence.
+
+12.0.3.3.0 (2019-11-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Add comment on Reviews Table.
+- Approve by sequence.
+
+12.0.3.2.1 (2019-11-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Remove message_subscribe_users
+
+12.0.3.2.0 (2019-11-25)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Notify reviewers
+
+12.0.3.1.0 (2019-07-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Singleton error
+
+12.0.3.0.0 (2019-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit Reviews Table
+
+12.0.2.1.0 (2019-05-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- Edit drop-down style width and position
+
+12.0.2.0.0 (2019-05-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Pass parameters as functions.
+- Add Systray.
+
+12.0.1.0.0 (2019-02-18)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 12.
+
+11.0.1.0.0 (2018-05-09)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 11.
+
+10.0.1.0.0 (2018-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 10.
+
+9.0.1.0.0 (2017-12-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+First version.
 
 Bug Tracker
 ===========
@@ -65,14 +170,14 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Lois Rilo <lois.rilo@eficent.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
 * Naglis Jonaitis <naglis@versada.eu>
-* Adrià Gil Sorribes <adria.gil@eficent.com>
+* Adrià Gil Sorribes <adria.gil@forgeflow.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 
@@ -89,13 +194,13 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-lreficent| image:: https://github.com/lreficent.png?size=40px
-    :target: https://github.com/lreficent
-    :alt: lreficent
+.. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
+    :target: https://github.com/LoisRForgeFlow
+    :alt: LoisRForgeFlow
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-lreficent| 
+|maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/13.0/base_tier_validation>`_ project on GitHub.
 
