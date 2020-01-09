@@ -4,7 +4,10 @@ import os
 import base64
 import shutil
 from odoo import api, models
-from odoo.addons.queue_job.job import job
+try:
+    from odoo.addons.queue_job.job import job
+except ImportError:
+    job = lambda *args, **kwargs: lambda func: func  # noqa: E731
 from odoo.modules.registry import Registry
 import logging
 _logger = logging.getLogger(__name__)
