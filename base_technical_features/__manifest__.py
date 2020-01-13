@@ -1,4 +1,3 @@
-# coding: utf-8
 # © 2016 Opener B.V. (<https://opener.am>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
@@ -8,11 +7,7 @@
     "category": "Usability",
     "website": "https://github.com/oca/server-ux",
     "author": "Opener B.V., Odoo Community Association (OCA)",
-    "data": [
-        'security/res_groups.xml',
-        'views/res_users.xml',
-        'data/res_users.xml',
-    ],
+    "data": ["security/res_groups.xml", "views/res_users.xml", "data/res_users.xml"],
     "license": "AGPL-3",
-    'installable': True,
+    "installable": True,
 }
