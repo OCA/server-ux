@@ -9,36 +9,33 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     technical_features = fields.Boolean(
-        compute="get_technical_features", inverse="set_technical_features"
+        compute="_compute_technical_features", inverse="_inverse_technical_features"
     )
     show_technical_features = fields.Boolean(
         string="Show field Technical Features",
-        compute="get_show_technical_features",
+        compute="_compute_show_technical_features",
         help=(
             "Whether to display the technical features field in the user "
             "preferences."
         ),
     )
 
-    @api.multi
     @api.depends("groups_id")
-    def get_show_technical_features(self):
+    def _compute_show_technical_features(self):
         """ Only display the technical features checkbox in the user
         preferences if the user has access to them """
         users = self.env.ref("base.group_no_one").users
         for user in self:
             user.show_technical_features = user in users
 
-    @api.multi
     @api.depends("groups_id")
-    def get_technical_features(self):
+    def _compute_technical_features(self):
         """ Map user membership to boolean field value """
         users = self.env.ref("base_technical_features.group_technical_features").users
         for user in self:
             user.technical_features = user in users
 
-    @api.multi
-    def set_technical_features(self):
+    def _inverse_technical_features(self):
         """ Map boolean field value to group membership, but checking
         access """
         group = self.env.ref("base_technical_features.group_technical_features")
@@ -53,6 +50,6 @@ class ResUsers(models.Model):
             self.sudo().write({"groups_id": [(3, group.id)]})
 
     def __init__(self, pool, cr):
-        super(ResUsers, self).__init__(pool, cr)
+        super().__init__(pool, cr)
         self.SELF_READABLE_FIELDS += ["technical_features", "show_technical_features"]
         self.SELF_WRITEABLE_FIELDS.append("technical_features")

@@ -46,7 +46,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "المزايا التقنية (بدون وضع التطوير)"
 
 #. module: base_technical_features
-#: code:addons/base_technical_features/models/res_users.py:48
+#: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
 msgstr "هذا المستخدم ليس لديه صلاحية للمزايا التقنية."
