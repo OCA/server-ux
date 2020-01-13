@@ -14,8 +14,10 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
             [("groups_id", "=", self.env.ref("base.group_no_one").id)], limit=1
         ).id
         self.env.user.write({"technical_features": False})
+        self.env.user._compute_show_technical_features()
         self.assertNotIn(menu_id, menu_obj._visible_menu_ids())
         self.env.user.write({"technical_features": True})
+        self.env.user._compute_show_technical_features()
         self.assertIn(menu_id, menu_obj._visible_menu_ids())
 
     def test02_visible_fields(self):
@@ -49,6 +51,8 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
                 "groups_id": [(6, 0, [])],
             }
         )
+        self.env.user._compute_show_technical_features()
+        self.env.user._compute_technical_features()
         with api.Environment.manage():
             env = api.Environment(self.env.cr, user.id, self.env.context)
             with self.assertRaises(AccessError):
