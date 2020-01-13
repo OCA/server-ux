@@ -15,4 +15,4 @@ class Base(models.AbstractModel):
             "base_technical_features.group_technical_features"
         ):
             return True
-        return super(Base, self).user_has_groups(groups)
+        return super().user_has_groups(groups)

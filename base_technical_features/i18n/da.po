@@ -45,7 +45,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "Tekniske feature (uden debug mode)"
 
 #. module: base_technical_features
-#: code:addons/base_technical_features/models/res_users.py:48
+#: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
 msgstr "Denne bruger har ikke adgang til Tekniske features."
