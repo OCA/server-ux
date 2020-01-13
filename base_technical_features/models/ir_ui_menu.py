@@ -14,4 +14,4 @@ class IrUiMenu(models.Model):
             debug = self.env.user.has_group(
                 "base_technical_features.group_technical_features"
             )
-        return super(IrUiMenu, self)._visible_menu_ids(debug=debug)
+        return super()._visible_menu_ids(debug=debug)
