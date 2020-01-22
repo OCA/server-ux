@@ -133,9 +133,11 @@ odoo.define('tier_validation.systray', function (require) {
                 res_model: data.res_model,
                 views: [[false, 'list'], [false, 'form']],
                 search_view_id: [false],
-                domain: [['review_ids.reviewer_ids', '=', session.uid],
-                         ['review_ids.status', '=', 'pending'],
-                         ['review_ids.can_review', '=', true]],
+                domain: [
+                    ['review_ids.reviewer_ids', '=', session.uid],
+                    ['review_ids.status', '=', 'pending'],
+                    ['review_ids.can_review', '=', true],
+                ],
                 context:context,
             });
         },
