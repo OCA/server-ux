@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Request-->
+    <record id="tier_approval_request_action" model="ir.actions.act_window">
+        <field name="name">My Requests</field>
+        <field name="res_model">tier.approval.request</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('request_owner_id','=',uid)]</field>
+    </record>
+    <record id="tier_approval_request_action_to_review" model="ir.actions.act_window">
+        <field name="name">Approvals to Review</field>
+        <field name="res_model">tier.approval.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="domain"
+        >[('reviewer_ids.id','=',uid), ('state','=','pending')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new approvals to review
+            </p>
+        </field>
+    </record>
+    <record id="tier_approval_request_action_all" model="ir.actions.act_window">
+        <field name="name">All Approvals</field>
+        <field name="res_model">tier.approval.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <record id="tier_approval_request_view_tree" model="ir.ui.view">
+        <field name="name">tier.approval.request.view.tree</field>
+        <field name="model">tier.approval.request</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name" />
+                <field name="request_owner_id" />
+                <field name="category_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <!-- <record id="approval_search_view_search" model="ir.ui.view">
+        <field name="name">approval.request.search</field>
+        <field name="model">approval.request</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="My Request" name="filter_my_request" domain="[('request_owner_id', '=', uid)]"/>
+                <filter string="My Approvals to Review" name="filter_approvals_to_review"
+                    domain="[('approver_ids', '=', True), ('state', '=', 'pending')]"/>
+
+                <separator/>
+                <filter name="needs_review" string="Needs my Review"
+                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['pending'])]"
+                        help="My Purchases to review"/>
+                <filter name="tier_validated" string="Validated"
+                        domain="[('validated', '=', True)]"
+                        help="POs validated and ready to be confirmed"/>
+
+
+            </search>
+        </field>
+    </record> -->
+    <record id="tier_approval_request_view_form" model="ir.ui.view">
+        <field name="name">tier.approval.request.view.form</field>
+        <field name="model">tier.approval.request</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form string="Request" create="false">
+                <header>
+                    <button
+                        name="create_reference_rec"
+                        string="Create Ref. Record"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('reference_model', '=', False), ('reference_rec', '!=', False)]}"
+                    />
+                    <button
+                        name="request_validation"
+                        string="Request Validation"
+                        attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('state','not in',['pending'])]}"
+                        type="object"
+                    />
+                    <button
+                        name="restart_validation"
+                        string="Restart Validation"
+                        attrs="{'invisible': ['|',('review_ids', '=', []),('state','not in',['pending'])]}"
+                        type="object"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Submit"
+                        type="object"
+                        attrs="{'invisible':['|', ('state','!=','new'), ('reference_rec', '=', False)]}"
+                        class="btn-primary"
+                    />
+                    <widget
+                        name="attach_document"
+                        string="Attach Document"
+                        action="message_post"
+                        attrs="{'invisible': [('attachment_number', '&lt;', 1)]}"
+                    />
+                    <widget
+                        name="attach_document"
+                        string="Attach Document"
+                        action="message_post"
+                        highlight="1"
+                        attrs="{'invisible': [('attachment_number', '&gt;=', 1)]}"
+                    />
+                    <button
+                        name="action_draft"
+                        string="Back To Draft"
+                        type="object"
+                        attrs="{'invisible':[('state','!=','cancel')]}"
+                        groups="approvals_tier_validation.group_approval_manager"
+                    />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        attrs="{'invisible':[('state','in',['refused', 'cancel'])]}"
+                        groups="approvals_tier_validation.group_approval_manager"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="new,pending,approved"
+                    />
+                </header>
+                <field name="need_validation" invisible="1" />
+                <field name="validated" invisible="1" />
+                <field name="rejected" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', '|',
+                       ('validated', '=', True), ('state', 'not in', ['pending']),
+                       ('rejected', '=', True), ('review_ids', '=', [])]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-info-circle" />This document needs to be
+                        validated.
+                        <field name="can_review" invisible="1" />
+                        <button
+                            name="validate_tier"
+                            string="Validate"
+                            attrs="{'invisible': [('can_review', '=', False)]}"
+                            type="object"
+                            class="oe_inline oe_button btn-success"
+                            icon="fa-thumbs-up"
+                        />
+                        <button
+                            name="reject_tier"
+                            string="Reject"
+                            attrs="{'invisible': [('can_review', '=', False)]}"
+                            type="object"
+                            class="btn-icon btn-danger"
+                            icon="fa-thumbs-down"
+                        />
+                    </p>
+                </div>
+                <div
+                    class="alert alert-success"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['pending']), ('review_ids', '=', [])]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-thumbs-up" /> Operation has been <b
+                        >validated</b>!</p>
+                </div>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['pending']), ('review_ids', '=', [])]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-thumbs-down" /> Operation has been <b
+                        >rejected</b>.</p>
+                </div>
+                <sheet>
+                    <field name="require_document" invisible="1" />
+                    <div class="oe_button_box">
+                        <button
+                            name="open_reference_rec"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                            type="object"
+                            attrs="{'invisible': [('reference_rec', '=', False)]}"
+                        >
+                            <field
+                                name="reference_rec_name"
+                                widget="statinfo"
+                                nolabel="1"
+                            />
+                        </button>
+                        <button
+                            name="action_get_attachment_view"
+                            class="oe_stat_button"
+                            icon="fa-file-text"
+                            type="object"
+                            attrs="{'invisible': [('attachment_number', '=', 0)]}"
+                        >
+                            <field
+                                name="attachment_number"
+                                widget="statinfo"
+                                string="Attachments"
+                                options="{'reload_on_button': false}"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="E.g: Expenses Paris business trip"
+                                required="1"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="request_main">
+                            <field
+                                name="request_owner_id"
+                                groups="approvals_tier_validation.group_approval_user"
+                            />
+                            <field name="category_id" />
+                            <field
+                                name="date_confirmed"
+                                groups="base.group_no_one"
+                                readonly="1"
+                            />
+                        </group>
+                        <group name="request_details">
+                            <field
+                                name="reference_model"
+                                attrs="{'invisible': [('reference_model', '=', False)]}"
+                            />
+                            <field name="reference_rec" invisible="1" />
+                            <field name="reference_rec_id" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="reason" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <field name="review_ids" widget="tier_validation" />
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="tier_approval_request_view_kanban" model="ir.ui.view">
+        <field name="name">tier_approval.request.view.kanban</field>
+        <field name="model">tier.approval.request</field>
+        <field name="arch" type="xml">
+            <kanban
+                create="false"
+                class="o_modules_kanban"
+                default_group_by="state"
+                default_order="create_date desc"
+                group_create="false"
+                group_edit="false"
+                group_delete="false"
+            >
+                <field name="request_owner_id" />
+                <field name="state" />
+                <!-- <field name="user_status"/> -->
+                <field name="name" />
+                <field name="activity_ids" />
+                <field name="category_id" readonly="1" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click container">
+                            <div
+                                class="o_dropdown_kanban dropdown"
+                                t-if="!selection_mode"
+                            >
+                                <a
+                                    class="dropdown-toggle o-no-caret btn"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    href="#"
+                                    aria-label="Dropdown menu"
+                                    title="Dropdown menu"
+                                >
+                                    <span class="fa fa-ellipsis-v" />
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <a
+                                        t-if="widget.editable"
+                                        role="menuitem"
+                                        type="edit"
+                                        class="dropdown-item"
+                                    >Edit Request</a>
+                                    <a
+                                        t-if="widget.deletable"
+                                        role="menuitem"
+                                        type="delete"
+                                        class="dropdown-item"
+                                    >Delete</a>
+                                    <!-- <a name="action_approve" type="object" attrs="{'invisible':[('user_status','!=','pending')]}"
+                                        role="menuitem" class="dropdown-item">Approve</a>
+                                    <a name="action_refuse" type="object" attrs="{'invisible':[('user_status','!=','pending')]}"
+                                        role="menuitem" class="dropdown-item">Refuse</a>
+                                    <a name="action_withdraw" type="object" attrs="{'invisible':['|',('state','==','new'),('user_status','in',['pending','cancel'])]}"
+                                        role="menuitem" class="dropdown-item">Withdraw</a> -->
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <!-- <t t-if="record.user_status.raw_value == 'pending'">
+                                    <span class="badge badge-pill float-right badge-warning mt4 mr16"><t t-esc="record.user_status.value"/></span>
+                                </t>
+                                <t t-if="record.user_status.raw_value == 'approved'">
+                                    <span class="badge badge-pill float-right badge-success mt4 mr16"><t t-esc="record.user_status.value"/></span>
+                                </t>
+                                <t t-if="record.user_status.raw_value == 'refused'">
+                                    <span class="badge badge-pill float-right badge-danger mt4 mr16"><t t-esc="record.user_status.value"/></span>
+                                </t> -->
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                </div>
+                                <div class="text-muted o_kanban_record_subtitle">
+                                    <field name="category_id" />
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field
+                                            name="activity_ids"
+                                            widget="kanban_activity"
+                                        />
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <img
+                                            t-att-src="kanban_image('res.users', 'image_128', record.request_owner_id.raw_value)"
+                                            t-att-title="record.request_owner_id.value"
+                                            t-att-alt="record.request_owner_id.value"
+                                            class="oe_kanban_avatar"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!--MenuItem-->
+    <menuitem id="tier_approvals_menu_root" name="Tier Approvals" sequence="101" />
+    <menuitem
+        id="tier_approvals_approval_menu"
+        parent="tier_approvals_menu_root"
+        name="My Approvals"
+        sequence="10"
+    />
+    <menuitem
+        id="tier_approvals_category_menu_new"
+        parent="tier_approvals_approval_menu"
+        name="New Request"
+        action="tier_approval_category_action_new_request"
+        sequence="10"
+    />
+    <menuitem
+        id="tier_approvals_request_menu_my"
+        parent="tier_approvals_approval_menu"
+        name="My Requests"
+        action="tier_approval_request_action"
+        sequence="20"
+    />
+    <menuitem
+        id="tier_approvals_menu_manager"
+        parent="tier_approvals_menu_root"
+        name="Manager"
+        groups="base.group_user"
+        sequence="20"
+    />
+    <menuitem
+        id="tier_approvals_approval_menu_to_review"
+        parent="tier_approvals_menu_manager"
+        name="Approvals to Review"
+        action="tier_approval_request_action_to_review"
+        groups="base.group_user"
+        sequence="10"
+    />
+    <menuitem
+        id="tier_approvals_approval_menu_all"
+        parent="tier_approvals_menu_manager"
+        name="All Approvals"
+        action="tier_approval_request_action_all"
+        groups="group_approval_user"
+        sequence="20"
+    />
+    <menuitem
+        id="tier_approvals_menu_config"
+        parent="tier_approvals_menu_root"
+        name="Configuration"
+        sequence="30"
+    />
+    <menuitem
+        id="tier_approvals_category_menu_config"
+        parent="tier_approvals_menu_config"
+        name="Approvals Types"
+        action="tier_approval_category_action"
+        groups="group_approval_manager"
+        sequence="10"
+    />
+</odoo>
