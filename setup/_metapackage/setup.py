@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-barcode_action',
         'odoo12-addon-base_export_manager',
+        'odoo12-addon-base_substate',
         'odoo12-addon-base_technical_features',
         'odoo12-addon-base_tier_validation',
         'odoo12-addon-base_tier_validation_formula',
