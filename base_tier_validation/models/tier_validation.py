@@ -206,7 +206,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post):
             # Notify state change
             getattr(self, post)(
-                subtype="mt_comment", body=self._notify_accepted_reviews_body()
+                subtype="mt_note", body=self._notify_accepted_reviews_body()
             )
 
     def _notify_accepted_reviews_body(self):
@@ -274,7 +274,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post):
             # Notify state change
             getattr(self, post)(
-                subtype="mt_comment", body=self._notify_rejected_review_body()
+                subtype="mt_note", body=self._notify_rejected_review_body()
             )
 
     def _rejected_tier(self, tiers=False):
