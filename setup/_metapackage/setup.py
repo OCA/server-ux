@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-base_technical_features',
         'odoo13-addon-base_tier_validation',
+        'odoo13-addon-base_tier_validation_formula',
         'odoo13-addon-date_range',
     ],
     classifiers=[
