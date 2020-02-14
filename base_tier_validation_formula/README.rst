@@ -17,7 +17,7 @@ Base Tier Validation Formula
     :target: https://github.com/OCA/server-ux/tree/13.0/base_tier_validation_formula
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-12-0/server-ux-12-0-base_tier_validation_formula
+    :target: https://translation.odoo-community.org/projects/server-ux-13-0/server-ux-13-0-base_tier_validation_formula
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/250/13.0
@@ -62,6 +62,7 @@ Contributors
 
 * Enric Tobella <etobella@creublanca.es>
 * Adrià Gil Sorribes <adria.gil@eficent.com>
+* Pedro Gonzalez <pedro.gonzalez@pesol.es>
 
 Maintainers
 ~~~~~~~~~~~
