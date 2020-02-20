@@ -29,6 +29,11 @@ msgid "Domain"
 msgstr ""
 
 #. module: base_tier_validation_formula
+#: selection:tier.definition,definition_type:0
+msgid "Domain & Formula"
+msgstr ""
+
+#. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:37
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:17
 #, python-format
