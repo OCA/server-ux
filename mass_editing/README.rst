@@ -10,6 +10,8 @@ This module provides the following features:
 
 * You can add, update or remove the values of more than one records on the fly at the same time.
 
+* You can also copy the field's value from one field to another field in the records.
+
 * You can configure mass editing for any Odoo model.
 
 Installation
@@ -58,6 +60,16 @@ As shown in figure you have to configure the object and fields for mass editing.
 * This way you can set / remove the values of the fields.
 
 .. image:: /mass_editing/static/description/mass_editing-5.png
+   :width: 70%
+
+* Select *Copy From Another Field* action and select the field.
+
+.. image:: /mass_editing/static/description/mass_editing-6.png
+   :width: 70%
+
+* This way you can copy the values of the fields.
+
+.. image:: /mass_editing/static/description/mass_editing-7.png
    :width: 70%
 
 Bug Tracker
