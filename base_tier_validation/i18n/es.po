@@ -179,6 +179,13 @@ msgid "Domain"
 msgstr "Dominio"
 
 #. module: base_tier_validation
+#: selection:tier.definition,definition_type:0
+#, fuzzy
+#| msgid "Formula"
+msgid "Domain & Formula"
+msgstr "Fórmula"
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__done_by
 msgid "Done By"
 msgstr "Hecho Por"

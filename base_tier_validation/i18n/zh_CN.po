@@ -179,6 +179,13 @@ msgid "Domain"
 msgstr "域"
 
 #. module: base_tier_validation
+#: selection:tier.definition,definition_type:0
+#, fuzzy
+#| msgid "Formula"
+msgid "Domain & Formula"
+msgstr "公式"
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__done_by
 msgid "Done By"
 msgstr "完成者"
