@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation_formula
+# 	* base_tier_validation_formula
 #
 msgid ""
 msgstr ""
@@ -32,10 +32,18 @@ msgid "Domain"
 msgstr "域"
 
 #. module: base_tier_validation_formula
+#: selection:tier.definition,definition_type:0
+#, fuzzy
+#| msgid "Formula"
+msgid "Domain & Formula"
+msgstr "公式"
+
+#. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:37
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:17
 #, python-format
-msgid "Error evaluating tier validation conditions.\n"
+msgid ""
+"Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
 "评估层验证条件的错误。\n"
@@ -99,10 +107,14 @@ msgstr "验证者"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
-msgid "Write Python code that defines the reviewer. The result of executing the expression must be a res.users recordset."
+msgid ""
+"Write Python code that defines the reviewer. The result of executing the "
+"expression must be a res.users recordset."
 msgstr "编写定义审查者的Python代码。执行表达式的结果必须是res.users记录集。"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
-msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+msgid ""
+"Write Python code that defines when this tier confirmation will be needed. "
+"The result of executing the expresion must be a boolean."
 msgstr "编写Python代码，定义何时需要此层确认。执行表达式的结果必须是布尔值。"
