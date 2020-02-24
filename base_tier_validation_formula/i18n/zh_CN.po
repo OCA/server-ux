@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation_formula
+# 	* base_tier_validation_formula
 #
 msgid ""
 msgstr ""
@@ -17,37 +17,28 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: base_tier_validation_formula
-#: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
-msgstr "特定组中的任何用户。"
-
-#. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
 msgid "Definition"
 msgstr "定义"
 
 #. module: base_tier_validation_formula
-#: selection:tier.definition,definition_type:0
-msgid "Domain"
-msgstr "域"
-
-#. module: base_tier_validation_formula
-#: code:addons/base_tier_validation_formula/models/tier_review.py:37
-#: code:addons/base_tier_validation_formula/models/tier_validation.py:17
+#: code:addons/base_tier_validation_formula/models/tier_review.py:0
+#: code:addons/base_tier_validation_formula/models/tier_validation.py:0
 #, python-format
-msgid "Error evaluating tier validation conditions.\n"
+msgid ""
+"Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
 "评估层验证条件的错误。\n"
 " %s"
 
 #. module: base_tier_validation_formula
-#: selection:tier.definition,definition_type:0
+#: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__formula
 msgid "Formula"
 msgstr "公式"
 
 #. module: base_tier_validation_formula
-#: selection:tier.definition,review_type:0
+#: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__review_type__expression
 msgid "Python Expression"
 msgstr "Python表达式"
 
@@ -57,7 +48,7 @@ msgid "Review Expression"
 msgstr "审查表达式"
 
 #. module: base_tier_validation_formula
-#: code:addons/base_tier_validation_formula/models/tier_review.py:43
+#: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #, python-format
 msgid "Reviewer python expression must return a res.users recordset."
 msgstr "审查者python表达式必须返回res.users记录集。"
@@ -66,11 +57,6 @@ msgstr "审查者python表达式必须返回res.users记录集。"
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
 msgid "Reviewers from Python expression"
 msgstr "来自Python表达式的审查者"
-
-#. module: base_tier_validation_formula
-#: selection:tier.definition,review_type:0
-msgid "Specific user"
-msgstr "具体用户"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_definition
@@ -99,10 +85,23 @@ msgstr "验证者"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
-msgid "Write Python code that defines the reviewer. The result of executing the expression must be a res.users recordset."
+msgid ""
+"Write Python code that defines the reviewer. The result of executing the "
+"expression must be a res.users recordset."
 msgstr "编写定义审查者的Python代码。执行表达式的结果必须是res.users记录集。"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
-msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+msgid ""
+"Write Python code that defines when this tier confirmation will be needed. "
+"The result of executing the expresion must be a boolean."
 msgstr "编写Python代码，定义何时需要此层确认。执行表达式的结果必须是布尔值。"
+
+#~ msgid "Any user in a specific group."
+#~ msgstr "特定组中的任何用户。"
+
+#~ msgid "Domain"
+#~ msgstr "域"
+
+#~ msgid "Specific user"
+#~ msgstr "具体用户"
