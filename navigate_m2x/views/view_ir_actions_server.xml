@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2020 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="view_ir_actions_server_form" model="ir.ui.view">
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='code']" position="after">
+                <page string="Navigation Options" name='page_navigate_m2x' autofocus="autofocus"
+                        attrs="{'invisible': [('state', '!=', 'navigate_m2x')]}">
+                    <group>
+                        <field name="max_navigate_line_sequence" invisible="1"/>
+                        <field name="max_navigate_line_model" invisible="1"/>
+                        <button name="delete_last_line" string="Delete Last Line" type="object"
+                            attrs="{'invisible': [('max_navigate_line_sequence', '=', 1)]}"/>
+                        <field name="navigate_line_ids" context="{'default_sequence': max_navigate_line_sequence}" nolabel="1" colspan="4">
+                            <tree editable="bottom" delete="false">
+                                <field name="sequence" invisible="1"/>
+                                <field name="sequence2"/>
+                                <field name="field_id" domain="[
+                                    ('model', '=', parent.max_navigate_line_model),
+                                    ('ttype', 'in', ['many2one', 'one2many', 'many2many']),
+                                    ]"/>
+                                <field name="field_model"/>
+                            </tree>
+                        </field>
+                        <field name="navigate_action_id"
+                            attrs="{'invisible': [('max_navigate_line_sequence', '=', 1)]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

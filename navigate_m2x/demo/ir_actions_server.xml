@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2020 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="actions_server_navigate_partner_2_tags" model="ir.actions.server">
+        <field name="name">See tags of Partners</field>
+        <field name="state">navigate_m2x</field>
+        <field name="model_id" ref="base.model_res_users"/>
+    </record>
+
+    <record id="navigate_line_1" model="ir.actions.server.navigate.line">
+        <field name="action_id" ref="actions_server_navigate_partner_2_tags"/>
+        <field name="sequence">1</field>
+        <field name="field_id" ref="base.field_res_users__partner_id"/>
+    </record>
+
+    <record id="navigate_line_2" model="ir.actions.server.navigate.line">
+        <field name="action_id" ref="actions_server_navigate_partner_2_tags"/>
+        <field name="sequence">2</field>
+        <field name="field_id" ref="base.field_res_partner__category_id"/>
+    </record>
+
+    <function model="ir.actions.server" name="create_action">
+        <value eval="[ref('actions_server_navigate_partner_2_tags')]"/>
+    </function>
+
+</odoo>
