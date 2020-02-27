@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-date_range',
         'odoo12-addon-mass_editing',
         'odoo12-addon-multi_step_wizard',
+        'odoo12-addon-sequence_check_digit',
         'odoo12-addon-sequence_reset_period',
     ],
     classifiers=[
