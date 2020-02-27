@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:46
+#: code:addons/sequence_check_digit/models/ir_sequence.py:45
 #, python-format
 msgid "%s is not an implemented function"
 msgstr ""
 
 #. module: sequence_check_digit
-#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence_check_digit_formula
+#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__check_digit_formula
 msgid "Check Digit Formula"
 msgstr ""
 
@@ -30,8 +30,8 @@ msgid "Damm"
 msgstr ""
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:40
-#: code:addons/sequence_check_digit/models/ir_sequence.py:49
+#: code:addons/sequence_check_digit/models/ir_sequence.py:39
+#: code:addons/sequence_check_digit/models/ir_sequence.py:48
 #, python-format
 msgid "Format is not accepted"
 msgstr ""
@@ -72,12 +72,12 @@ msgid "None"
 msgstr ""
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
-msgid "Verhoeff"
+#: model:ir.model,name:sequence_check_digit.model_ir_sequence
+msgid "Sequence"
 msgstr ""
 
 #. module: sequence_check_digit
-#: model:ir.model,name:sequence_check_digit.model_ir_sequence
-msgid "ir.sequence"
+#: selection:ir.sequence,check_digit_formula:0
+msgid "Verhoeff"
 msgstr ""
 
