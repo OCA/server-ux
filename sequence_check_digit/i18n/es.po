@@ -18,13 +18,13 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:46
+#: code:addons/sequence_check_digit/models/ir_sequence.py:45
 #, python-format
 msgid "%s is not an implemented function"
 msgstr "%s no es una función implementada"
 
 #. module: sequence_check_digit
-#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence_check_digit_formula
+#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__check_digit_formula
 msgid "Check Digit Formula"
 msgstr "Fórmula del Dígito de control"
 
@@ -34,8 +34,8 @@ msgid "Damm"
 msgstr "Damm"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:40
-#: code:addons/sequence_check_digit/models/ir_sequence.py:49
+#: code:addons/sequence_check_digit/models/ir_sequence.py:39
+#: code:addons/sequence_check_digit/models/ir_sequence.py:48
 #, python-format
 msgid "Format is not accepted"
 msgstr "El formato no está aceptado"
@@ -76,14 +76,16 @@ msgid "None"
 msgstr "Ninguno"
 
 #. module: sequence_check_digit
+#: model:ir.model,name:sequence_check_digit.model_ir_sequence
+#, fuzzy
+#| msgid "ir.sequence"
+msgid "Sequence"
+msgstr "ir.sequence"
+
+#. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
 msgid "Verhoeff"
 msgstr "Verhoeff"
-
-#. module: sequence_check_digit
-#: model:ir.model,name:sequence_check_digit.model_ir_sequence
-msgid "ir.sequence"
-msgstr "ir.sequence"
 
 #~ msgid "Function not found"
 #~ msgstr "Función no encontrada"
