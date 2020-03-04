@@ -5,8 +5,8 @@ from odoo import api, fields, models
 
 
 class DocumentQuickAccessMissingAssign(models.TransientModel):
-
     _name = 'document.quick.access.missing.assign'
+    _description = 'document.quick.access.missing.assign'
 
     @api.model
     def document_quick_access_models(self):

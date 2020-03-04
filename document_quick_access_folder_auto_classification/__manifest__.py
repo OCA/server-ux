@@ -5,7 +5,7 @@
     'name': 'Document Quick Access Folder Auto Classification',
     'summary': """
         Auto classification of Documents after reading a QR""",
-    'version': '11.0.1.0.1',
+    'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Creu Blanca,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/server-ux',
@@ -21,12 +21,6 @@
         'data/config_parameter.xml',
         'data/cron_data.xml',
     ],
-    'external_dependencies': {
-        'python': [
-            'pyzbar',
-            'pdf2image',
-        ],
-    },
     'maintainers': [
         'etobella',
     ],
