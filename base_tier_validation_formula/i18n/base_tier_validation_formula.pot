@@ -19,6 +19,11 @@ msgid "Definition"
 msgstr ""
 
 #. module: base_tier_validation_formula
+#: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
+msgid "Domain & Formula"
+msgstr ""
+
+#. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:0
 #, python-format
