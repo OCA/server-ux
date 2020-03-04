@@ -22,6 +22,13 @@ msgid "Definition"
 msgstr "定义"
 
 #. module: base_tier_validation_formula
+#: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
+#, fuzzy
+#| msgid "Formula"
+msgid "Domain & Formula"
+msgstr "公式"
+
+#. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:0
 #, python-format
