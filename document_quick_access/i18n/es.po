@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* document_quick_access
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-07-09 16:43+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_barcode_format
+msgid "Barcode Format"
+msgstr "Formato"
+
+#. module: document_quick_access
+#: selection:document.quick.access.rule,barcode_format:0
+msgid "Base64"
+msgstr "Base64"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: document_quick_access
+#: model:ir.actions.act_window,name:document_quick_access.document_quick_access_rule_act_window
+#: model:ir.model,name:document_quick_access.model_document_quick_access_rule
+#: model:ir.ui.menu,name:document_quick_access.document_quick_access_rule_menu
+msgid "Document Quick Access Rule"
+msgstr "Regla de acceso rápido"
+
+#. module: document_quick_access
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:76
+#, python-format
+msgid "Document cannot be found"
+msgstr "No se ha encontrado documento"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_id
+msgid "ID"
+msgstr "ID"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: document_quick_access
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:100
+#, python-format
+msgid "No format has been found for this record"
+msgstr "No se ha encontrado ningún formato para este registro"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule_priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: document_quick_access
+#. openerp-web
+#: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:7
+#, python-format
+msgid "QR search"
+msgstr "Buscar QR"
+
+#. module: document_quick_access
+#: selection:document.quick.access.rule,barcode_format:0
+msgid "Standard"
+msgstr "Estándar"
+
+#. module: document_quick_access
+#: model:ir.model,name:document_quick_access.model_base
+msgid "base"
+msgstr "base"
