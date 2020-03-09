@@ -1,5 +1,5 @@
 # Copyright 2018 Creu Blanca
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2020 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from odoo.tests.common import TransactionCase
 
@@ -16,7 +16,7 @@ class TestPartnerFind(TransactionCase):
         )
         # No partner is found, then there is no res_id on the result
         self.assertFalse(
-            partner_obj.find_res_partner_by_ref_using_barcode("{}-{}".format(ref, ref)).get(
-                "res_id", False
-            )
+            partner_obj.find_res_partner_by_ref_using_barcode(
+                "{}-{}".format(ref, ref)
+            ).get("res_id", False)
         )
