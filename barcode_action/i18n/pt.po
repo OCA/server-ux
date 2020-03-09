@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* barcode_action
+# 	* barcode_action
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.7.1\n"
+
+#. module: barcode_action
+#: model:ir.model,name:barcode_action.model_barcode_action
+#, fuzzy
+#| msgid "Barcode Scanned"
+msgid "Barcode Action"
+msgstr "Código de Barras Digitalizado"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
@@ -97,7 +104,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: barcode_action
-#: code:addons/barcode_action/models/res_partner.py:21
+#: code:addons/barcode_action/models/res_partner.py:0
 #, python-format
 msgid "Partner with Internal Reference %s cannot be found"
 msgstr "O parceiro com Refª Interna %s não pode ser encontrado"
@@ -123,16 +130,11 @@ msgid "Value of the last barcode scanned."
 msgstr "Valor do último código de barras digitalizado."
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__waiting
 msgid "Waiting"
 msgstr "À Espera"
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__warning
 msgid "Warning"
 msgstr "Aviso"
-
-#. module: barcode_action
-#: model:ir.model,name:barcode_action.model_barcode_action
-msgid "barcode.action"
-msgstr ""

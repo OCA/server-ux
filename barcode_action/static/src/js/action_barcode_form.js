@@ -11,7 +11,7 @@ odoo.define('barcode_action.form', function (require) {
                     model: record.data.model,
                     method: record.data.method,
                     args: [[record.data.res_id], barcode],
-                }).done(function (action) {
+                }).then(function (action) {
                     if (action) {
                         self._barcodeStopListening();
                         self.do_action(action);
