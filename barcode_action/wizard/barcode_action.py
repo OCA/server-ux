@@ -4,6 +4,7 @@ from odoo import fields, models
 class BarcodeAction(models.TransientModel):
     _name = "barcode.action"
     _inherit = "barcodes.barcode_events_mixin"
+    _description = "Barcode Action"
 
     model = fields.Char(required=True, readonly=True)
     res_id = fields.Integer()
