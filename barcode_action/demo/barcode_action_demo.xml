@@ -5,7 +5,6 @@
             name="Find Partner"
             res_model="barcode.action"
             view_mode="form"
-            view_type="form"
             context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
             target="new"/>
 
