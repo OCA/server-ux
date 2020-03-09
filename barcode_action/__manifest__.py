@@ -1,13 +1,13 @@
 # Copyright 2017 Creu Blanca
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2020 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "Barcode action launcher",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-ux",
-    "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
+    "author": "Creu Blanca, ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
