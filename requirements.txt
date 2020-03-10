@@ -1,0 +1,2 @@
+pyzbar
+pdf2image
