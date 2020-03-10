@@ -89,7 +89,7 @@ class DocumentQuickAccessRule(models.Model):
     @api.model
     def read_code(self, code):
         formats = self._fields["barcode_format"].selection
-        for barcode_format, format_name in formats:
+        for barcode_format, _format_name in formats:
             if getattr(self, "_check_code_%s" % barcode_format)(code):
                 record = getattr(self, "_read_code_%s" % barcode_format)(code)
                 if record and self.search(
