@@ -5,8 +5,8 @@ from odoo import api, fields, models
 
 
 class DocumentQuickAccessMissingAssign(models.TransientModel):
-
     _name = "document.quick.access.missing.assign"
+    _description = "document.quick.access.missing.assign"
 
     @api.model
     def document_quick_access_models(self):
@@ -23,7 +23,6 @@ class DocumentQuickAccessMissingAssign(models.TransientModel):
         "document.quick.access.missing", required=True
     )
 
-    @api.multi
     def doit(self):
         self.ensure_one()
         self.missing_document_id.assign_model(self.object_id._name, self.object_id.id)
