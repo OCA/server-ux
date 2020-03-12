@@ -14,6 +14,12 @@
         'web',
         'barcode_action',
     ],
+    'external_dependencies': {
+        'python': [
+            'pyzbar',
+            'pdf2image',
+        ],
+    },
     'data': [
         'security/ir.model.access.csv',
         'views/document_quick_access_rule.xml',
