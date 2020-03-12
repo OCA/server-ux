@@ -2,11 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
-from io import StringIO
 import logging
 import traceback
-from .document_quick_access_rule import OCRException
+from io import StringIO
+
 from odoo import api, models
+
+from .document_quick_access_rule import OCRException
 
 _logger = logging.getLogger(__name__)
 
@@ -19,23 +21,21 @@ try:
     from pdf2image.exceptions import (
         PDFInfoNotInstalledError,
         PDFPageCountError,
-        PDFSyntaxError
+        PDFSyntaxError,
     )
 except (ImportError, IOError) as err:
     _logger.warning(err)
 
 
 class IrAttachment(models.Model):
-    _inherit = 'ir.attachment'
+    _inherit = "ir.attachment"
 
     def _search_document_pdf(self):
         self.ensure_one()
         records = []
         try:
             images = pdf2image.convert_from_bytes(base64.b64decode(self.datas))
-        except (
-            PDFInfoNotInstalledError, PDFPageCountError, PDFSyntaxError
-        ) as e:
+        except (PDFInfoNotInstalledError, PDFPageCountError, PDFSyntaxError) as e:
             buff = StringIO()
             traceback.print_exc(file=buff)
             _logger.warning(buff.getvalue())
@@ -48,35 +48,29 @@ class IrAttachment(models.Model):
     def _search_pil_image(self, image):
         results = decode(image, symbols=[ZBarSymbol.QRCODE])
         records = []
-        rule_obj = self.env['document.quick.access.rule']
+        rule_obj = self.env["document.quick.access.rule"]
         for result in results:
-            record = rule_obj.with_context(
-                no_raise_document_access=True
-            ).read_code(result.data.decode("utf-8"))
+            record = rule_obj.with_context(no_raise_document_access=True).read_code(
+                result.data.decode("utf-8")
+            )
             if record and record not in records:
                 records += record
         return records
 
     def _search_document(self):
-        if self.mimetype == 'application/pdf':
+        if self.mimetype == "application/pdf":
             return self._search_document_pdf()
         return []
 
     def _process_quick_access_rules(self):
         self.ensure_one()
-        results = self.env['ir.attachment']
+        results = self.env["ir.attachment"]
         records = self._search_document()
         for record in records:
             if not results:
                 result = self
-                result.write({
-                    'res_id': record.id,
-                    'res_model': record._name
-                })
+                result.write({"res_id": record.id, "res_model": record._name})
             else:
-                result = self.copy({
-                    'res_id': record.id,
-                    'res_model': record._name
-                })
+                result = self.copy({"res_id": record.id, "res_model": record._name})
             results |= result
         return results or self
