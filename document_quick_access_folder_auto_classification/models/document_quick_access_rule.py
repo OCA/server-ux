@@ -17,6 +17,8 @@ _logger = logging.getLogger(__name__)
 
 
 class OCRException(Exception):
+    __slots__ = "name"
+
     def __init__(self, name):
         self.name = name
 
@@ -139,7 +141,7 @@ class DocumentQuickAccessRule(models.Model):
         return bool(results)
 
     def _get_attachment_vals(self, filename, datas):
-        return {"name": filename, "datas": datas, "datas_fname": filename}
+        return {"name": filename, "datas": datas}
 
     @api.model
     def read_code(self, code):
