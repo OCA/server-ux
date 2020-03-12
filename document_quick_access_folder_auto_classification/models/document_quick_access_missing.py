@@ -1,7 +1,7 @@
 # Copyright 2019 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class DocumentQuickAccessMissing(models.Model):
@@ -18,7 +18,6 @@ class DocumentQuickAccessMissing(models.Model):
     res_id = fields.Integer(readonly=True)
     attachment_id = fields.Many2one("ir.attachment", readonly=True)
 
-    @api.multi
     def assign_model(self, model, res_id):
         records = self.filtered(lambda r: r.state == "pending")
         res = self.env[model].browse(res_id)
@@ -47,6 +46,5 @@ class DocumentQuickAccessMissing(models.Model):
             "res_id": record.id,
         }
 
-    @api.multi
     def reject_assign_document(self):
         self.filtered(lambda r: r.state == "pending").write(self._deleted_values())
