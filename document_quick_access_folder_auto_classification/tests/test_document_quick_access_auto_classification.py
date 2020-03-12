@@ -12,6 +12,8 @@ from odoo.tools import mute_logger
 
 
 class Encoded:
+    __slots__ = "data"
+
     def __init__(self, data):
         self.data = data
 
