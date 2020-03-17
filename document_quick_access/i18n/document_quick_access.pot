@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* document_quick_access
+# 	* document_quick_access
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgid "Base"
 msgstr ""
 
 #. module: document_quick_access
-#: selection:document.quick.access.rule,barcode_format:0
+#: model:ir.model.fields.selection,name:document_quick_access.selection__document_quick_access_rule__barcode_format__b64_standard
 msgid "Base64"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgid "Document Quick Access Rule"
 msgstr ""
 
 #. module: document_quick_access
-#: code:addons/document_quick_access/models/document_quick_access_rule.py:76
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "Document cannot be found"
 msgstr ""
@@ -92,7 +92,7 @@ msgid "Name"
 msgstr ""
 
 #. module: document_quick_access
-#: code:addons/document_quick_access/models/document_quick_access_rule.py:100
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "No format has been found for this record"
 msgstr ""
@@ -104,13 +104,12 @@ msgstr ""
 
 #. module: document_quick_access
 #. openerp-web
-#: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:7
+#: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:0
 #, python-format
 msgid "QR search"
 msgstr ""
 
 #. module: document_quick_access
-#: selection:document.quick.access.rule,barcode_format:0
+#: model:ir.model.fields.selection,name:document_quick_access.selection__document_quick_access_rule__barcode_format__standard
 msgid "Standard"
 msgstr ""
-
