@@ -17,6 +17,13 @@ msgstr ""
 "X-Generator: Weblate 3.5.1\n"
 
 #. module: barcode_action
+#: model:ir.model,name:barcode_action.model_barcode_action
+#, fuzzy
+#| msgid "barcode.action"
+msgid "Barcode Action"
+msgstr "barcode.action"
+
+#. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
 msgid "Barcode Launcher"
 msgstr "Buscador por código de barras"
@@ -99,7 +106,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: barcode_action
-#: code:addons/barcode_action/models/res_partner.py:21
+#: code:addons/barcode_action/models/res_partner.py:0
 #, python-format
 msgid "Partner with Internal Reference %s cannot be found"
 msgstr "No se ha encontrado el contacto con referencia %s"
@@ -125,16 +132,11 @@ msgid "Value of the last barcode scanned."
 msgstr ""
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__waiting
 msgid "Waiting"
 msgstr "Esperando"
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__warning
 msgid "Warning"
 msgstr "Aviso"
-
-#. module: barcode_action
-#: model:ir.model,name:barcode_action.model_barcode_action
-msgid "barcode.action"
-msgstr "barcode.action"
