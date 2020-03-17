@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* barcode_action
+# 	* barcode_action
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8\n"
+
+#. module: barcode_action
+#: model:ir.model,name:barcode_action.model_barcode_action
+#, fuzzy
+#| msgid "barcode.action"
+msgid "Barcode Action"
+msgstr "barcode.action"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
@@ -97,7 +104,7 @@ msgid "Model"
 msgstr "模型"
 
 #. module: barcode_action
-#: code:addons/barcode_action/models/res_partner.py:21
+#: code:addons/barcode_action/models/res_partner.py:0
 #, python-format
 msgid "Partner with Internal Reference %s cannot be found"
 msgstr "无法找到内部参考%s的合作伙伴"
@@ -123,16 +130,11 @@ msgid "Value of the last barcode scanned."
 msgstr "最后扫描的条形码的值。"
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__waiting
 msgid "Waiting"
 msgstr "等待"
 
 #. module: barcode_action
-#: selection:barcode.action,state:0
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__warning
 msgid "Warning"
 msgstr "警告"
-
-#. module: barcode_action
-#: model:ir.model,name:barcode_action.model_barcode_action
-msgid "barcode.action"
-msgstr "barcode.action"
