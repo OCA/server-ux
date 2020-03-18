@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-base_tier_validation_formula',
         'odoo13-addon-date_range',
         'odoo13-addon-document_quick_access',
+        'odoo13-addon-document_quick_access_folder_auto_classification',
         'odoo13-addon-mass_editing',
         'odoo13-addon-mass_operation_abstract',
     ],
