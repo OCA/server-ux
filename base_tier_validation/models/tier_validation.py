@@ -334,3 +334,7 @@ class TierValidation(models.AbstractModel):
         channel = 'base.tier.validation'
         notifications.append([channel, {}])
         self.env['bus.bus'].sendmany(notifications)
+
+    def unlink(self):
+        self.mapped('review_ids').unlink()
+        return super().unlink()
