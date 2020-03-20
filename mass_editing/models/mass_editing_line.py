@@ -23,7 +23,6 @@ class MassEditingLine(models.Model):
         string="Field",
         domain="["
         "('name', '!=', '__last_update'),"
-        "('readonly', '=', False),"
         "('ttype', 'not in', ['reference', 'function']),"
         "('model_id', '=', model_id)"
         "]",
