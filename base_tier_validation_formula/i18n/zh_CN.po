@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-02 16:57+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"PO-Revision-Date: 2020-03-23 17:13+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
@@ -23,10 +23,8 @@ msgstr "定义"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
-#, fuzzy
-#| msgid "Formula"
 msgid "Domain & Formula"
-msgstr "公式"
+msgstr "域和公式"
 
 #. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
@@ -36,7 +34,7 @@ msgid ""
 "Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
-"评估层验证条件的错误。\n"
+"错误的层级审批条件。\n"
 " %s"
 
 #. module: base_tier_validation_formula
@@ -52,13 +50,13 @@ msgstr "Python表达式"
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__reviewer_expression
 msgid "Review Expression"
-msgstr "审查表达式"
+msgstr "审核表达式"
 
 #. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #, python-format
 msgid "Reviewer python expression must return a res.users recordset."
-msgstr "审查者python表达式必须返回res.users记录集。"
+msgstr "审核者python表达式必须返回res.users记录集。"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
@@ -68,34 +66,34 @@ msgstr "来自Python表达式的审查者"
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_definition
 msgid "Tier Definition"
-msgstr "层定义"
+msgstr "层级定义"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__python_code
 msgid "Tier Definition Expression"
-msgstr "层定义表达式"
+msgstr "层级定义表达式"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_review
 msgid "Tier Review"
-msgstr "层审查"
+msgstr "审核层级"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr "层验证（抽象）"
+msgstr "审核层级（抽象）"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
 msgid "Validated by"
-msgstr "验证者"
+msgstr "审批人"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
 msgid ""
 "Write Python code that defines the reviewer. The result of executing the "
 "expression must be a res.users recordset."
-msgstr "编写定义审查者的Python代码。执行表达式的结果必须是res.users记录集。"
+msgstr "编写定义审核者的Python代码。执行表达式的结果必须是res.users记录集。"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
