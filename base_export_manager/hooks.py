@@ -1,6 +1,6 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import api, SUPERUSER_ID
+from openerp import SUPERUSER_ID, api
 
 
 def post_init_hook(cr, registry):
@@ -12,8 +12,10 @@ def post_init_hook(cr, registry):
     """
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        env["ir.exports.line"].search([
-            ("field1_id", "=", False),
-            ("export_id", "!=", False),
-            ("name", "!=", False),
-        ])._inverse_name()
+        env["ir.exports.line"].search(
+            [
+                ("field1_id", "=", False),
+                ("export_id", "!=", False),
+                ("name", "!=", False),
+            ]
+        )._inverse_name()

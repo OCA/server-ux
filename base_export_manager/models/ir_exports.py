@@ -6,13 +6,12 @@ from odoo.exceptions import ValidationError
 
 
 class IrExports(models.Model):
-    _inherit = 'ir.exports'
+    _inherit = "ir.exports"
 
     name = fields.Char(required=True)
     resource = fields.Char(
-        required=False,
-        readonly=True,
-        help="Model's technical name.")
+        required=False, readonly=True, help="Model's technical name."
+    )
     model_id = fields.Many2one(
         "ir.model",
         "Model",
@@ -20,7 +19,8 @@ class IrExports(models.Model):
         domain=[("transient", "=", False)],
         compute="_compute_model_id",
         inverse="_inverse_model_id",
-        help="Database model to export.")
+        help="Database model to export.",
+    )
 
     @api.multi
     @api.depends("resource")
