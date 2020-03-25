@@ -73,6 +73,14 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: base_tier_validation
+#. openerp-web
+#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#, fuzzy, python-format
+#| msgid "Active"
+msgid "Activities"
+msgstr "Activo"
+
+#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
 msgid "All"
 msgstr "Todos"
