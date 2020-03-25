@@ -23,14 +23,18 @@ class TestIrExportsCase(TransactionCase):
                 [0, 0, {"name": "export_fields/field1_id"}],
             ],
         }
-        record = self.env["ir.exports"].create(data)
+        virt_record = self.env["ir.exports"].new(data)
+        virt_record.export_fields._inverse_name()
+        record = self.env["ir.exports"].create(
+            virt_record._convert_to_write(virt_record._cache)
+        )
 
         self.assertEqual(record.model_id.model, data["resource"])
 
     def test_create_without_model(self):
         """Creating a record without ``model_id`` and ``resource`` fails."""
         IrExports = self.env["ir.exports"]
-        model = IrExports._get_model_id("res.partner")
+        model = self.env["ir.model"]._get("res.partner")
 
         # Creating with resource
         record = IrExports.create({"name": "some", "resource": model.model})

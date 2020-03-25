@@ -11,8 +11,6 @@ class IrExportsLine(models.Model):
     _order = "sequence,id"
 
     name = fields.Char(
-        required=False,
-        readonly=True,
         store=True,
         compute="_compute_name",
         inverse="_inverse_name",
@@ -52,7 +50,6 @@ class IrExportsLine(models.Model):
         """Default model depending on context."""
         return self.env.context.get("default_model1_id", False)
 
-    @api.multi
     @api.depends("field1_id", "field2_id", "field3_id", "field4_id")
     def _compute_name(self):
         """Get the name from the selected fields."""
@@ -63,7 +60,6 @@ class IrExportsLine(models.Model):
             if name != one.name:
                 one.name = name
 
-    @api.multi
     @api.depends("field1_id")
     def _compute_model2_id(self):
         """Get the related model for the second field."""
@@ -75,7 +71,6 @@ class IrExportsLine(models.Model):
                 and IrModel.search([("model", "=", one.field1_id.relation)])
             )
 
-    @api.multi
     @api.depends("field2_id")
     def _compute_model3_id(self):
         """Get the related model for the third field."""
@@ -87,7 +82,6 @@ class IrExportsLine(models.Model):
                 and IrModel.search([("model", "=", one.field2_id.relation)])
             )
 
-    @api.multi
     @api.depends("field3_id")
     def _compute_model4_id(self):
         """Get the related model for the third field."""
@@ -99,7 +93,6 @@ class IrExportsLine(models.Model):
                 and IrModel.search([("model", "=", one.field3_id.relation)])
             )
 
-    @api.multi
     @api.depends("name")
     def _compute_label(self):
         """Column label in a user-friendly format and language."""
@@ -125,19 +118,18 @@ class IrExportsLine(models.Model):
                 else False
             )
 
-    @api.multi
     def _inverse_name(self):
         """Get the fields from the name."""
         for one in self:
             # Field names can have up to only 4 indentation levels
-            parts = one.name.split("/")
+            parts = (one.name or "").split("/")
             if len(parts) > 4:
                 raise exceptions.ValidationError(
-                    _("It's not allowed to have more than 4 levels depth: " "%s")
+                    _("It's not allowed to have more than 4 levels depth: %s")
                     % one.name
                 )
             for num in range(1, 5):
-                if num > len(parts):
+                if not any(parts) or num > len(parts):
                     # Empty subfield in this case
                     # You could get to failing constraint while populating the
                     # fields, so we skip the uniqueness check and manually
@@ -152,39 +144,29 @@ class IrExportsLine(models.Model):
                 one.with_context(skip_check=True)[
                     one.field_n(num, True)
                 ] = one._get_field_id(model, field_name)
-            # invalidate_cache -> in order to get actual value of field 'label'
-            # in function '_check_name'
-            self.invalidate_cache(ids=one.ids)
-            one._check_name()
+            if any(parts):
+                # invalidate_cache -> in order to get actual value of field 'label'
+                # in function '_check_name'
+                self.invalidate_cache(ids=one.ids)
+                one._check_name()
 
-    @api.multi
     @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
         # do also skip the check if label is set or not, when skip_check is set
-        if not self._context.get("skip_check"):
-            for one in self:
-                if not one.label:
-                    raise exceptions.ValidationError(
-                        _("Field '%s' does not exist") % one.name
-                    )
-                lines = one.search(
-                    [("export_id", "=", one.export_id.id), ("name", "=", one.name)]
+        if self._context.get("skip_check"):
+            return
+        for one in self:
+            if not one.label:
+                raise exceptions.ValidationError(
+                    _("Field '%s' does not exist") % one.name
                 )
-                if len(lines) > 1:
-                    raise exceptions.ValidationError(
-                        _("Field '%s' already exists") % one.name
-                    )
-
-    @api.multi
-    @api.onchange("name")
-    def _onchange_name(self):
-        if self.name:
-            self._inverse_name()
-        else:
-            self.field1_id = False
-            self.field2_id = False
-            self.field3_id = False
-            self.field4_id = False
+            num_lines = one.search_count(
+                [("export_id", "=", one.export_id.id), ("name", "=", one.name)]
+            )
+            if num_lines > 1:
+                raise exceptions.ValidationError(
+                    _("Field '%s' already exists") % one.name
+                )
 
     @api.model
     def _get_field_id(self, model, name):
@@ -205,7 +187,6 @@ class IrExportsLine(models.Model):
             )
         return field
 
-    @api.multi
     def field_n(self, n, only_name=False):
         """Helper to choose the field according to its indentation level.
 
@@ -218,7 +199,6 @@ class IrExportsLine(models.Model):
         name = "field%d_id" % n
         return name if only_name else self[name]
 
-    @api.multi
     def model_n(self, n, only_name=False):
         """Helper to choose the model according to its indentation level.
 
