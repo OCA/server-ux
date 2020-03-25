@@ -11,6 +11,7 @@ class ResUsers(models.Model):
 
     @api.model
     def fetch_export_models(self):
+        """Gets all models where the user has export access."""
         accessobj = self.env["ir.model.access"]
         accessobj_ids = accessobj.search(
             [("perm_export", "=", True), ("group_id", "in", self.groups_id.ids)]

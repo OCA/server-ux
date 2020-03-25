@@ -2,11 +2,11 @@ You can create the export profiles as you are used to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Click *Action > Export*.
 * Use the wizard to choose the columns to export.
-* Press *Save fields list*.
+* Click on the *Template* dropdown and select *New template*
 * Give it a name.
-* Press *OK*.
+* Click on the floppy disk icon to save it.
 
 To manage export profiles, you need to:
 
@@ -24,7 +24,7 @@ To use one of those profiles, you need to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Click *Action > Export*.
 * Choose your saved export from *Saved exports*.
 * Press *Export to file*.
 
