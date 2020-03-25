@@ -9,7 +9,13 @@ class Http(models.AbstractModel):
     _inherit = "ir.http"
 
     def session_info(self):
-        res = super(Http, self).session_info()
+        """
+        Odoo implementation doesn't allow add more access types, so we
+        send all models where the user has the 'export' access over the
+        session dictionary.
+        TODO: Use other way to don't send all this data every time.
+        """
+        res = super().session_info()
         user = request.env.user
         export_models = user.fetch_export_models()
         res.update({"export_models": export_models})

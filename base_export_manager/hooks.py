@@ -1,6 +1,6 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import SUPERUSER_ID, api
+from odoo import SUPERUSER_ID, api
 
 
 def post_init_hook(cr, registry):

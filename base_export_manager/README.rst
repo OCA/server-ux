@@ -14,13 +14,13 @@ Manage model export profiles
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/12.0/base_export_manager
+    :target: https://github.com/OCA/server-ux/tree/13.0/base_export_manager
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-12-0/server-ux-12-0-base_export_manager
+    :target: https://translation.odoo-community.org/projects/server-ux-13-0/server-ux-13-0-base_export_manager
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/250/12.0
+    :target: https://runbot.odoo-community.org/runbot/250/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -55,11 +55,11 @@ You can create the export profiles as you are used to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Click *Action > Export*.
 * Use the wizard to choose the columns to export.
-* Press *Save fields list*.
+* Click on the *Template* dropdown and select *New template*
 * Give it a name.
-* Press *OK*.
+* Click on the floppy disk icon to save it.
 
 To manage export profiles, you need to:
 
@@ -77,7 +77,7 @@ To use one of those profiles, you need to:
 
 * Go to any list view.
 * Check some records.
-* Press *More > Export*.
+* Click *Action > Export*.
 * Choose your saved export from *Saved exports*.
 * Press *Export to file*.
 
@@ -98,7 +98,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_export_manager%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_export_manager%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -124,6 +124,7 @@ Contributors
 * Sandip Mangukiya <smangukiya@ursainfosystems.com>
 * Maxime Chambreuil <mchambreuil@ursainfosystems.com>
 * Olivier Jossen <olivier.jossen@braintec-group.com>
+* Alexandre Díaz <alexandre.diaz@tecnativa.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -138,6 +139,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/12.0/base_export_manager>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/13.0/base_export_manager>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
