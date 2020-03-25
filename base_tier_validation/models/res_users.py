@@ -54,4 +54,9 @@ class Users(models.Model):
             r["display_status"] = dict(
                 review_obj.fields_get("status")["status"]["selection"]
             ).get(r.get("status"))
+            # Convert to datetime timezone
+            if r["reviewed_date"]:
+                r["reviewed_date"] = fields.Datetime.context_timestamp(
+                    self, r["reviewed_date"]
+                )
         return res
