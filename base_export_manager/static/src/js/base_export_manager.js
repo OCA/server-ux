@@ -5,23 +5,28 @@
 odoo.define("base_export_manager.base_export_manager", function(require) {
     "use strict";
 
-    var core = require("web.core");
-    var Sidebar = require("web.Sidebar");
-    var session = require("web.session");
-    var _t = core._t;
+    const core = require("web.core");
+    const Sidebar = require("web.Sidebar");
+    const session = require("web.session");
+
+    const _t = core._t;
 
     Sidebar.include({
+        /**
+         * Reject "export" item if the current user has not 'export perm' in
+         * the active model
+         *
+         * @override
+         */
         _addItems: function(sectionCode, items) {
-            var _items = items;
-            var render_export_enalble = jQuery.inArray(
-                this.env.model,
-                session.export_models
-            );
+            let _items = items;
+            const is_export_enabled =
+                session.export_models.indexOf(this.env.model) !== -1;
             if (
-                !session.is_superuser &&
+                !session.is_system &&
                 sectionCode === "other" &&
                 items.length &&
-                render_export_enalble < 0
+                !is_export_enabled
             ) {
                 _items = _.reject(_items, {label: _t("Export")});
             }
