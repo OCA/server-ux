@@ -33,21 +33,13 @@ class TestIrExportsCase(TransactionCase):
         model = IrExports._get_model_id("res.partner")
 
         # Creating with resource
-        record = IrExports.create({
-            "name": "some",
-            "resource": model.model,
-        })
+        record = IrExports.create({"name": "some", "resource": model.model})
         self.assertEqual(record.model_id, model)
 
         # Creating with model_id
-        record = IrExports.create({
-            "name": "some",
-            "model_id": model.id,
-        })
+        record = IrExports.create({"name": "some", "model_id": model.id})
         self.assertEqual(record.resource, model.model)
 
         # Creating without anyone
         with self.assertRaises(ValidationError):
-            IrExports.create({
-                "name": "some",
-            })
+            IrExports.create({"name": "some"})
