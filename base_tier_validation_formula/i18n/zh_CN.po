@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-03-23 17:13+0000\n"
+"PO-Revision-Date: 2020-03-28 16:13+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -76,12 +76,12 @@ msgstr "层级定义表达式"
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_review
 msgid "Tier Review"
-msgstr "审核层级"
+msgstr "多层级审批"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr "审核层级（抽象）"
+msgstr "多层级审批（抽象）"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
