@@ -394,7 +394,7 @@ itself.</p>
     <span class="n">project_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span>
         <span class="n">comodel_name</span><span class="o">=</span><span class="s1">'project.project'</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Project&quot;</span><span class="p">,</span>
-        <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">ondelete</span><span class="o">=</span><span class="s1">'cascade'</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_project_id</span><span class="p">(),</span>
     <span class="p">)</span>
@@ -403,7 +403,7 @@ itself.</p>
     <span class="n">field2</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">()</span>
     <span class="n">field3</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">()</span>
 
-    <span class="nd">&#64;api.model</span>
+    <span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span>
     <span class="k">def</span> <span class="nf">_selection_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">(</span><span class="s1">'start'</span><span class="p">,</span> <span class="s1">'Start'</span><span class="p">),</span>
@@ -412,7 +412,7 @@ itself.</p>
             <span class="p">(</span><span class="s1">'final'</span><span class="p">,</span> <span class="s1">'Final'</span><span class="p">),</span>
         <span class="p">]</span>
 
-    <span class="nd">&#64;api.model</span>
+    <span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span>
     <span class="k">def</span> <span class="nf">_default_project_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'active_id'</span><span class="p">)</span>
 
