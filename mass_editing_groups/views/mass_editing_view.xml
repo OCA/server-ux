@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Inherit mass.object Form View to add groups -->
+    <record id="view_mass_object_groups_form" model="ir.ui.view">
+        <field name="name">Add groups to view</field>
+        <field name="model">mass.object</field>
+        <field name="inherit_id" ref="mass_editing.view_mass_object_form"/>
+        <field name="arch" type="xml">
+
+           <notebook position="inside">
+               <page string="Security">
+                    <field name="groups_id" colspan="4" nolabel="1"/>
+               </page>
+           </notebook>
+
+        </field>
+    </record>
+</odoo>
