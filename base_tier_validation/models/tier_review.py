@@ -44,7 +44,7 @@ class TierReview(models.Model):
     can_review = fields.Boolean(
         compute='_compute_can_review',
         store=True,
-        help="""Can review will be marked if the review is pending and the 
+        help="""Can review will be marked if the review is pending and the
         approve sequence has been achieved""",
     )
     has_comment = fields.Boolean(
