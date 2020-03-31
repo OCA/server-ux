@@ -93,11 +93,6 @@ msgid "Approval order by the specified sequence number"
 msgstr "审批按指定序号排序"
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__approve_sequence
-msgid "Approve Sequence"
-msgstr "批准顺序"
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approve by sequence"
@@ -113,6 +108,13 @@ msgstr "已批准"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
 msgstr "可审批"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_review__can_review
+msgid ""
+"Can review will be marked if the review is pending and the\n"
+"        approve sequence has been achieved"
+msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
@@ -477,6 +479,9 @@ msgstr "审批"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "例如：审批层级用于..."
+
+#~ msgid "Approve Sequence"
+#~ msgstr "批准顺序"
 
 #~ msgid "Formula"
 #~ msgstr "公式"
