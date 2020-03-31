@@ -37,10 +37,36 @@ class TierReview(models.Model):
     reviewed_date = fields.Datetime(string="Validation Date")
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
     comment = fields.Char(string="Comments")
-    can_review = fields.Boolean()
+    can_review = fields.Boolean(
+        compute="_compute_can_review",
+        store=True,
+        help="""Can review will be marked if the review is pending and the
+        approve sequence has been achieved""",
+    )
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )
+
+    @api.depends("definition_id.approve_sequence")
+    def _compute_can_review(self):
+        for record in self:
+            record.can_review = record._can_review_value()
+
+    def _can_review_value(self):
+        if self.status != "pending":
+            return False
+        if not self.approve_sequence:
+            return True
+        resource = self.env[self.model].browse(self.res_id)
+        reviews = resource.review_ids.filtered(
+            lambda r: r.status in ("pending", "rejected")
+        )
+        if not reviews:
+            return True
+        sequence = reviews.mapped("sequence")
+        sequence.sort()
+        current_sequence = sequence[0]
+        return self.sequence == current_sequence
 
     @api.model
     def _get_reviewer_fields(self):
