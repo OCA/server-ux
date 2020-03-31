@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:85
+#: code:addons/mass_editing/models/mass_object.py:93
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (复制)"
@@ -70,6 +70,11 @@ msgid "Fields"
 msgstr "字段"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__id
 msgid "ID"
@@ -101,7 +106,7 @@ msgid "Mass Editing"
 msgstr "批量编辑"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:53
+#: code:addons/mass_editing/models/mass_object.py:60
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "批量编辑（%s）"
@@ -153,6 +158,11 @@ msgstr "删除动作按钮"
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
 msgstr "删除上下文操作以在相关文档上使用此模板"
+
+#. module: mass_editing
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__ref_ir_act_window_id

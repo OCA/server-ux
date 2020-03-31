@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:85
+#: code:addons/mass_editing/models/mass_object.py:93
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -70,6 +70,11 @@ msgid "Fields"
 msgstr "Champs"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__id
 msgid "ID"
@@ -101,7 +106,7 @@ msgid "Mass Editing"
 msgstr "Édition en lot"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:53
+#: code:addons/mass_editing/models/mass_object.py:60
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Édition en lot (%s)"
@@ -152,6 +157,11 @@ msgstr "Enlever bouton au menu latéral"
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
+msgstr ""
+
+#. module: mass_editing
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
 msgstr ""
 
 #. module: mass_editing

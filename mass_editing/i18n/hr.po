@@ -17,12 +17,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.8\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:85
+#: code:addons/mass_editing/models/mass_object.py:93
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (kopija)"
@@ -72,6 +72,11 @@ msgid "Fields"
 msgstr "Polja"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__id
 msgid "ID"
@@ -103,7 +108,7 @@ msgid "Mass Editing"
 msgstr "Grupno uređivanje"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:53
+#: code:addons/mass_editing/models/mass_object.py:60
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Grupno uredi (%s)"
@@ -159,6 +164,11 @@ msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 "Ukloni kontekstni izbornik za korištenje ovog predloška na povezanim "
 "dokumentima."
+
+#. module: mass_editing
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__ref_ir_act_window_id

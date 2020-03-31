@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
 "PO-Revision-Date: 2019-08-26 16:01+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:85
+#: code:addons/mass_editing/models/mass_object.py:93
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (cópia)"
@@ -71,6 +71,11 @@ msgid "Fields"
 msgstr "Campos"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__id
 msgid "ID"
@@ -102,7 +107,7 @@ msgid "Mass Editing"
 msgstr "Edição em massa"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:53
+#: code:addons/mass_editing/models/mass_object.py:60
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Edição em Massa (%s)"
@@ -157,6 +162,11 @@ msgstr "Remover Botão da Barra Lateral"
 msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 "Remover a ação contextual para usar este modelo nos documentos relacionados"
+
+#. module: mass_editing
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__ref_ir_act_window_id
