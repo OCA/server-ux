@@ -16,23 +16,30 @@ class Users(models.Model):
         for review in self.env.user.review_ids.filtered(
             lambda r: r.status == "pending"
         ):
-            record = review.env[review.model].browse(review.res_id)
-            can_review = record.with_user(self.env.user).can_review
-            if can_review:
-                if not user_reviews.get(review["model"]):
-                    user_reviews[review.model] = {
-                        "name": record._description,
-                        "model": review.model,
-                        "icon": modules.module.get_module_icon(
-                            self.env[review.model]._original_module
-                        ),
-                        "pending_count": 0,
-                    }
-                docs = to_review_docs.get(review.model)
-                if (docs and record not in docs) or not docs:
-                    user_reviews[review.model]["pending_count"] += 1
-                review.can_review = True
-                to_review_docs.setdefault(review.model, []).append(record)
+            record = (
+                review.env[review.model]
+                .with_user(self.env.user)
+                .search([("id", "=", review.res_id)])
+            )
+            if not record:
+                # Checking that the review is accessible with the permissions
+                continue
+            can_review = record.can_review
+            if not can_review:
+                continue
+            if not user_reviews.get(review["model"]):
+                user_reviews[review.model] = {
+                    "name": record._description,
+                    "model": review.model,
+                    "icon": modules.module.get_module_icon(
+                        self.env[review.model]._original_module
+                    ),
+                    "pending_count": 0,
+                }
+            docs = to_review_docs.get(review.model)
+            if (docs and record not in docs) or not docs:
+                user_reviews[review.model]["pending_count"] += 1
+            to_review_docs.setdefault(review.model, []).append(record)
         return list(user_reviews.values())
 
     @api.model
