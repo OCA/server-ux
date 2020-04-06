@@ -9,26 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2018-12-28 11:41+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2020-04-06 17:19+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Nome Azione"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -37,11 +37,14 @@ msgid ""
 "Example :\n"
 "'many2many_tags', 'selection'"
 msgstr ""
+"Aggiunti il tipo di widget che sarà usato per mostrare il campo nel wizard. "
+"Esempio:\n"
+"'many2many_tags', 'selection'"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__groups_id
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Gruppi Abilitati"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
@@ -67,14 +70,12 @@ msgstr "Nome visualizzato"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
 msgid "Domain"
-msgstr ""
+msgstr "Dominio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
-#, fuzzy
-#| msgid "Fields"
 msgid "Field"
-msgstr "Campi"
+msgstr "Campo"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
@@ -86,7 +87,7 @@ msgstr "ID"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Se impostato, questo messaggio sarà mostrato nel wizard."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
@@ -112,7 +113,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_editing
@@ -133,7 +134,7 @@ msgstr "Modifiche massive"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
@@ -170,7 +171,7 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "RImuovi"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
@@ -180,25 +181,23 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Imposta"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
-#, fuzzy
-#| msgid "Sidebar action"
 msgid "Sidebar Action"
-msgstr "Azione pulsante menù"
+msgstr "Azione Pulsante Menù"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Opzione Widget"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
