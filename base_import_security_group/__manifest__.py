@@ -1,10 +1,11 @@
 # Copyright 2015 Anubía, soluciones en la nube,SL (http://www.anubia.es)
 # Copyright 2017 Onestein (http://www.onestein.eu)
+# Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Optional CSV import',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Server tools',
     'summary': 'Group-based permissions for importing CSV files',
     'license': 'AGPL-3',
