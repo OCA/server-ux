@@ -82,11 +82,6 @@ msgid "Approval order by the specified sequence number"
 msgstr "Godkendelse rækkefølge i den angivne sekvensnummering"
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__approve_sequence
-msgid "Approve Sequence"
-msgstr "Godkendelsesrækkefølge"
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approve by sequence"
@@ -102,6 +97,13 @@ msgstr "Godkendt"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
 msgstr "Kan gennemse"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_review__can_review
+msgid ""
+"Can review will be marked if the review is pending and the\n"
+"        approve sequence has been achieved"
+msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
@@ -483,3 +485,6 @@ msgstr "Godkendelser"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr ""
+
+#~ msgid "Approve Sequence"
+#~ msgstr "Godkendelsesrækkefølge"
