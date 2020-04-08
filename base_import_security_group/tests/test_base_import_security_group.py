@@ -11,12 +11,12 @@ class TestImportSecurityGroup(common.HttpCase):
         super().setUp()
         self.Access = self.env['ir.model.access']
         self.user_test = self.env.ref('base.user_demo')
+        self.user_admin = self.env.ref('base.user_admin')
 
     def has_button_import(self, falsify=False, user=None):
         """
-        Verify that the button is either visible or invisible.
-        After the adjacent button is loaded, allow for a second for
-        the asynchronous call to finish and update the visibility """
+        Verify that the Import button is either visible or invisible.
+        """
         code = """
         window.setTimeout(function () {
             if (%s$('.o_button_import').length) {
@@ -29,7 +29,7 @@ class TestImportSecurityGroup(common.HttpCase):
         action = self.env.ref('base.action_partner_category_form').id
         link = '/web#action=%s' % action
         self.phantom_js(
-            link, code, "$('button.o_list_button_add').length",
+            link, code, "",
             login=user.login)
 
     def test_01_load(self):
@@ -46,10 +46,9 @@ class TestImportSecurityGroup(common.HttpCase):
             ('access_res_users_test', 'res.users test', '1', '0', '0', '0'),
             ('access_res_users_test2', 'res.users test2', '1', '1', '1', '1'),
         ]
-
-        self.has_button_import(user=self.env.user)
+        self.has_button_import(user=self.user_admin)
         with mute_logger('odoo.sql_db'):
-            res = self.Access.load(fields, data)
+            res = self.Access.sudo(self.user_admin).load(fields, data)
 
         self.assertEqual(res['ids'], False)
         self.assertEqual(len(res['messages']), 2)
