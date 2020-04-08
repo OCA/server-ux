@@ -78,11 +78,6 @@ msgid "Approval order by the specified sequence number"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__approve_sequence
-msgid "Approve Sequence"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approve by sequence"
@@ -97,6 +92,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_review__can_review
+msgid "Can review will be marked if the review is pending and the\n"
+"        approve sequence has been achieved"
 msgstr ""
 
 #. module: base_tier_validation
