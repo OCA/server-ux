@@ -26,39 +26,35 @@ class MultiStepWizard(models.AbstractModel):
     likely will need to.
 
     """
-    _name = 'multi.step.wizard.mixin'
-    _description = 'Multi Steps Wizard Mixin'
+
+    _name = "multi.step.wizard.mixin"
+    _description = "Multi Steps Wizard Mixin"
 
     state = fields.Selection(
-        selection='_selection_state',
-        default='start',
-        required=True,
+        selection="_selection_state", default="start", required=True
     )
 
     @api.model
     def _selection_state(self):
-        return [
-            ('start', 'Start'),
-            ('final', 'Final'),
-        ]
+        return [("start", "Start"), ("final", "Final")]
 
     def open_next(self):
-        state_method = getattr(self, 'state_exit_%s' % (self.state,), None)
+        state_method = getattr(self, "state_exit_{}".format(self.state), None)
         if state_method is None:
             raise NotImplementedError(
-                'No method defined for state %s' % (self.state,)
+                "No method defined for state {}".format(self.state)
             )
         state_method()
         return self._reopen_self()
 
     def _reopen_self(self):
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': self._name,
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'new',
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
         }
 
     def state_exit_start(self):
-        self.state = 'final'
+        self.state = "final"
