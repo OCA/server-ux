@@ -5,6 +5,6 @@ from odoo import models
 
 
 class MultiStepWizardTest(models.TransientModel):
-    _name = 'multi.step.wizard.test'
-    _description = 'Multi Step Wizard Test'
-    _inherit = 'multi.step.wizard.mixin'
+    _name = "multi.step.wizard.test"
+    _description = "Multi Step Wizard Test"
+    _inherit = "multi.step.wizard.mixin"
