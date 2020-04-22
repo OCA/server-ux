@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
 Copyright (C) 2018-Today GRAP (http://www.grap.coop)
 @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
-
 <odoo>
-
-    <menuitem id="menu_mass_operation"
+    <menuitem
+        id="menu_mass_operation"
         name="Mass Operations"
-        parent="base.menu_administration" sequence="11"/>
-
-<!-- base.menu_custom -->
-
+        parent="base.menu_administration"
+        sequence="11"
+    />
+    <!-- base.menu_custom -->
 </odoo>
