@@ -1,6 +1,6 @@
 ul.o_review {
     min-width: 600px;
-    max-width: 800px
+    max-width: 800px;
 }
 
 .panel-group {
@@ -22,19 +22,20 @@ ul.o_review {
     overflow-x: auto;
 }
 
-.panel-title>a, .panel-title>a:active{
-	display:block;
+.panel-title > a,
+.panel-title > a:active {
+    display: block;
 }
 
-.panel-heading  a:before {
-   font-family: FontAwesome;
-   content: "\f0d7";
-   float: right;
-   transition: all 0.5s;
+.panel-heading a:before {
+    font-family: FontAwesome;
+    content: "\f0d7";
+    float: right;
+    transition: all 0.5s;
 }
 
 .panel-heading.active a:before {
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
