@@ -1,16 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-        <act_window id="res_partner_find"
+        <act_window
+            id="res_partner_find"
             name="Find Partner"
             res_model="barcode.action"
             view_mode="form"
             context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
-            target="new"/>
-
-        <menuitem id="menu_orders_customers" name="Find partners"
+            target="new"
+        />
+        <menuitem
+            id="menu_orders_customers"
+            name="Find partners"
             action="res_partner_find"
-            parent="base.menu_administration"/>
-
+            parent="base.menu_administration"
+        />
     </data>
 </odoo>
