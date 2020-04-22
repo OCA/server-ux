@@ -1,61 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="view_mass_editing_search" model="ir.ui.view">
         <field name="model">mass.editing</field>
-        <field name="inherit_id" ref="mass_operation_abstract.view_mass_operation_mixin_search"/>
+        <field
+            name="inherit_id"
+            ref="mass_operation_abstract.view_mass_operation_mixin_search"
+        />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//search" position="attributes">
-                <field name="string"/>
+                <field name="string" />
             </xpath>
         </field>
     </record>
-
-
     <record id="view_mass_editing_tree" model="ir.ui.view">
         <field name="model">mass.editing</field>
-        <field name="inherit_id" ref="mass_operation_abstract.view_mass_operation_mixin_tree"/>
+        <field
+            name="inherit_id"
+            ref="mass_operation_abstract.view_mass_operation_mixin_tree"
+        />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <field name="string"/>
+                <field name="string" />
             </xpath>
         </field>
     </record>
-
-
     <record id="view_mass_editing_form" model="ir.ui.view">
         <field name="model">mass.editing</field>
-        <field name="inherit_id" ref="mass_operation_abstract.view_mass_operation_mixin_form"/>
+        <field
+            name="inherit_id"
+            ref="mass_operation_abstract.view_mass_operation_mixin_form"
+        />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='setting']" position="inside">
                 <group>
                     <field name="line_ids" colspan="4" nolabel="1">
                         <tree editable="bottom">
-                            <field name="model_id" invisible="1"/>
-                            <field name="mass_editing_id" invisible="1"/>
-                            <field name="sequence" widget="handle"/>
-                            <field name="field_id"/>
-                            <field name="widget_option"/>
+                            <field name="model_id" invisible="1" />
+                            <field name="mass_editing_id" invisible="1" />
+                            <field name="sequence" widget="handle" />
+                            <field name="field_id" />
+                            <field name="widget_option" />
                         </tree>
                     </field>
                 </group>
             </xpath>
         </field>
     </record>
-
-
     <record model="ir.actions.act_window" id="action_mass_editing">
         <field name="name">Mass Editing</field>
         <field name="res_model">mass.editing</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-
-    <menuitem id="menu_mass_editing"
+    <menuitem
+        id="menu_mass_editing"
         action="action_mass_editing"
-        parent="mass_operation_abstract.menu_mass_operation"/>
-
+        parent="mass_operation_abstract.menu_mass_operation"
+    />
 </odoo>
