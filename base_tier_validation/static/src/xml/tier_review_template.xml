@@ -1,21 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-
     <t t-name="tier.review.Collapse">
         <div class="o_form_sheet panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a class="o_info_btn" data-toggle="collapse" href="#" data-target="#collapse1">Reviews</a>
+                        <a
+                            class="o_info_btn"
+                            data-toggle="collapse"
+                            href="#"
+                            data-target="#collapse1"
+                        >Reviews</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-                    <div class="panel-body o_review"></div>
+                    <div class="panel-body o_review" />
                 </div>
             </div>
         </div>
     </t>
-
     <t t-name="tier.review.ReviewsTable">
         <table class="oe_mt32 table table-condensed">
             <thead>
@@ -31,33 +34,45 @@
             </thead>
             <tbody class="sale_tbody">
                 <t t-foreach="reviews" t-as="review">
-                    <t t-if="review.status == 'pending'" t-set="status_class" t-value=""/>
-                    <t t-if="review.status == 'approved'" t-set="status_class" t-value="'alert-success'"/>
-                    <t t-if="review.status == 'rejected'" t-set="status_class" t-value="'alert-danger'"/>
+                    <t
+                        t-if="review.status == 'pending'"
+                        t-set="status_class"
+                        t-value=""
+                    />
+                    <t
+                        t-if="review.status == 'approved'"
+                        t-set="status_class"
+                        t-value="'alert-success'"
+                    />
+                    <t
+                        t-if="review.status == 'rejected'"
+                        t-set="status_class"
+                        t-value="'alert-danger'"
+                    />
                     <tr t-att-class="status_class">
                         <td class="text-center">
-                            <span t-esc="review.sequence"/>
+                            <span t-esc="review.sequence" />
                         </td>
                         <td class="text-left">
-                            <span t-esc="review.requested_by[1]"/>
+                            <span t-esc="review.requested_by[1]" />
                         </td>
                         <td class="text-right">
-                            <span t-esc="review.name"/>
+                            <span t-esc="review.name" />
                         </td>
                         <td class="text-right">
-                            <span t-esc="review.display_status"/>
+                            <span t-esc="review.display_status" />
                         </td>
                         <td class="text-right">
-                            <span t-esc="review.done_by[1]"/>
+                            <span t-esc="review.done_by[1]" />
                         </td>
                         <td class="text-right">
                             <t t-if="review.reviewed_date">
-                                <span t-esc="review.reviewed_date"/>
+                                <span t-esc="review.reviewed_date" />
                             </t>
                         </td>
                         <td class="text-left">
                             <t t-if="review.comment">
-                                <span t-esc="review.comment"/>
+                                <span t-esc="review.comment" />
                             </t>
                         </td>
                     </tr>
@@ -65,5 +80,4 @@
             </tbody>
         </table>
     </t>
-
 </templates>
