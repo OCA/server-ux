@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo13-addon-document_quick_access_folder_auto_classification',
         'odoo13-addon-mass_editing',
         'odoo13-addon-mass_operation_abstract',
+        'odoo13-addon-multi_step_wizard',
     ],
     classifiers=[
         'Programming Language :: Python',
