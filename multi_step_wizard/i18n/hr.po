@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* multi_step_wizard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-12-04 12:04+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Cancel"
+msgstr "Odustani"
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Close"
+msgstr "Zatvori"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__display_name
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__display_name
+msgid "Display Name"
+msgstr "Naziv"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__id
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__id
+msgid "ID"
+msgstr "ID"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin____last_update
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test____last_update
+msgid "Last Modified on"
+msgstr "Zadnje modificirano"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__write_uid
+msgid "Last Updated by"
+msgstr "Zadnje ažurirao"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: multi_step_wizard
+#: model:ir.model,name:multi_step_wizard.model_multi_step_wizard_test
+msgid "Multi Step Wizard Test"
+msgstr "Čarobnjak sa više koraka Test"
+
+#. module: multi_step_wizard
+#: model:ir.model,name:multi_step_wizard.model_multi_step_wizard_mixin
+msgid "Multi Steps Wizard Mixin"
+msgstr "Multi Steps Wizard Mixin"
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Next"
+msgstr "Sljedeći"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__state
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__state
+msgid "State"
+msgstr "Status"
