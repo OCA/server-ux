@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2020-04-06 17:19+0000\n"
+"PO-Revision-Date: 2020-05-04 05:19+0000\n"
 "Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -125,10 +125,8 @@ msgstr "Modifiche massive"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
-#, fuzzy
-#| msgid "Mass Editing"
 msgid "Mass Editing Line"
-msgstr "Modifiche massive"
+msgstr "Modifiche massive linea"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
@@ -150,22 +148,22 @@ msgstr "Nome"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Descrizione Operazione Pericolosa"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Descrizione Operazione Informativa"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Descrizione Operazione Avviso"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Qta Item RImanenti"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
@@ -176,7 +174,7 @@ msgstr "RImuovi"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Qty Item Selezionati"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
