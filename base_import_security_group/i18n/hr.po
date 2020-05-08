@@ -20,11 +20,14 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_import_security_group
+#: model:ir.model,name:base_import_security_group.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_import_security_group
 #: model:res.groups,name:base_import_security_group.group_import_csv
 msgid "Import CSV/Excel files"
 msgstr "Uvoz CSV/Excel datoteka"
 
-#. module: base_import_security_group
-#: model:ir.model,name:base_import_security_group.model_base
-msgid "base"
-msgstr "base"
+#~ msgid "base"
+#~ msgstr "base"
