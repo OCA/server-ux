@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-barcode_action',
+        'odoo13-addon-base_export_manager',
         'odoo13-addon-base_technical_features',
         'odoo13-addon-base_tier_validation',
         'odoo13-addon-base_tier_validation_formula',
