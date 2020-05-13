@@ -4,7 +4,7 @@ odoo.define("barcode_action.form", function(require) {
     var FormController = require("web.FormController");
 
     FormController.include({
-        _barcodeHandleAction: function(barcode, activeBarcode) {
+        _barcodeHandleAction: function(barcode) {
             var record = this.model.get(this.handle);
             var self = this;
             return self
