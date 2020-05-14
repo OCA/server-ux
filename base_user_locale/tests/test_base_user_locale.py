@@ -15,7 +15,7 @@ class TestBaseUserLocale(TransactionCase):
         self.CalendarEvent = self.env["calendar.event"]
 
     def test_date_format(self):
-        company = self.ResCompany.create({"name": "Company",})
+        company = self.ResCompany.create({"name": "Company"})
         user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "User",
@@ -28,27 +28,27 @@ class TestBaseUserLocale(TransactionCase):
         )
 
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[0], "%B-%d-%Y"
+            self.CalendarEvent.with_user(user)._get_date_formats()[0], "%B-%d-%Y"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {})
 
         company.date_format = "%d %b %Y"
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[0], "%d %b %Y"
+            self.CalendarEvent.with_user(user)._get_date_formats()[0], "%d %b %Y"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"date_format": "%d %b %Y",})
+        self.assertEqual(lang_parameters, {"date_format": "%d %b %Y"})
 
         user.date_format = "%d/%b/%Y"
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[0], "%d/%b/%Y"
+            self.CalendarEvent.with_user(user)._get_date_formats()[0], "%d/%b/%Y"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"date_format": "%d/%b/%Y",})
+        self.assertEqual(lang_parameters, {"date_format": "%d/%b/%Y"})
 
     def test_time_format(self):
-        company = self.ResCompany.create({"name": "Company",})
+        company = self.ResCompany.create({"name": "Company"})
         user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "User",
@@ -61,27 +61,27 @@ class TestBaseUserLocale(TransactionCase):
         )
 
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[1], "%I-%M %p"
+            self.CalendarEvent.with_user(user)._get_date_formats()[1], "%I-%M %p"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {})
 
         company.time_format = "%H.%M.%S"
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[1], "%H.%M.%S"
+            self.CalendarEvent.with_user(user)._get_date_formats()[1], "%H.%M.%S"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"time_format": "%H.%M.%S",})
+        self.assertEqual(lang_parameters, {"time_format": "%H.%M.%S"})
 
         user.time_format = "%I:%M%p"
         self.assertEqual(
-            self.CalendarEvent.sudo(user)._get_date_formats()[1], "%I:%M%p"
+            self.CalendarEvent.with_user(user)._get_date_formats()[1], "%I:%M%p"
         )
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"time_format": "%I:%M%p",})
+        self.assertEqual(lang_parameters, {"time_format": "%I:%M%p"})
 
     def test_week_start(self):
-        company = self.ResCompany.create({"name": "Company",})
+        company = self.ResCompany.create({"name": "Company"})
         user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "User",
@@ -98,8 +98,8 @@ class TestBaseUserLocale(TransactionCase):
 
         company.week_start = "4"
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"week_start": 4,})
+        self.assertEqual(lang_parameters, {"week_start": 4})
 
         user.week_start = "2"
         lang_parameters = WebClient().get_user_lang_parameters(user)
-        self.assertEqual(lang_parameters, {"week_start": 2,})
+        self.assertEqual(lang_parameters, {"week_start": 2})
