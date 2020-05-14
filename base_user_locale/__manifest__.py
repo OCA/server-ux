@@ -7,7 +7,7 @@
     "author": "Brainbean Apps, " "Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
-    "depends": ["base", "base_setup", "calendar", "web",],
+    "depends": ["base", "base_setup", "calendar", "web"],
     "website": "https://github.com/OCA/server-ux",
     "data": [
         "templates/assets.xml",

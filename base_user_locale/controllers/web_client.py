@@ -11,19 +11,13 @@ class WebClient(WebClient):
         res = {}
         date_format = user.date_format or user.company_id.date_format
         if date_format:
-            res.update(
-                {"date_format": date_format,}
-            )
+            res.update({"date_format": date_format})
         time_format = user.time_format or user.company_id.time_format
         if time_format:
-            res.update(
-                {"time_format": time_format,}
-            )
+            res.update({"time_format": time_format})
         week_start = user.week_start or user.company_id.week_start
         if week_start:
-            res.update(
-                {"week_start": int(week_start),}  # NOTE: WebClient needs int
-            )
+            res.update({"week_start": int(week_start)})  # NOTE: WebClient needs int
         return res
 
     @route()
