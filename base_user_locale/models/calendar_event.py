@@ -6,17 +6,15 @@ from odoo.tools import pycompat
 
 
 class CalendarEvent(models.Model):
-    _inherit = 'calendar.event'
+    _inherit = "calendar.event"
 
     @api.model
     def _get_date_formats(self):
         format_date, format_time = super()._get_date_formats()
-        date_format = self.env.user.date_format \
-            or self.env.user.company_id.date_format
+        date_format = self.env.user.date_format or self.env.user.company_id.date_format
         if date_format:
             format_date = pycompat.to_native(date_format)
-        time_format = self.env.user.time_format \
-            or self.env.user.company_id.time_format
+        time_format = self.env.user.time_format or self.env.user.company_id.time_format
         if time_format:
             format_time = pycompat.to_native(time_format)
         return (format_date, format_time)
