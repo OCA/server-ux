@@ -2,7 +2,9 @@
 <odoo>
     <template id="assets_backend" inherit_id="web.assets_backend">
         <xpath expr=".">
- <script src="/base_search_custom_field_filter/static/src/js/search_input.js"></script>
+            <script
+                src="/base_search_custom_field_filter/static/src/js/search_bar_autocomplete_sources.js"
+            />
         </xpath>
     </template>
 </odoo>
