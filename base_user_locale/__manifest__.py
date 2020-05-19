@@ -10,7 +10,6 @@
     "depends": ["base", "base_setup", "calendar", "web"],
     "website": "https://github.com/OCA/server-ux",
     "data": [
-        "templates/assets.xml",
         "views/res_config_settings.xml",
         "views/res_users.xml",
     ],
