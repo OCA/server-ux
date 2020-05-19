@@ -7,9 +7,7 @@
     "category": "Usability",
     "website": "https://github.com/OCA/server-ux",
     "author": "Tecnativa, Odoo Community Association (OCA)",
-    "demo": [
-        "demo/demo_ir_ui_custom_field_filter.xml",
-    ],
+    "demo": ["demo/demo_ir_ui_custom_field_filter.xml"],
     "data": [
         "security/ir.model.access.csv",
         "templates/assets.xml",
