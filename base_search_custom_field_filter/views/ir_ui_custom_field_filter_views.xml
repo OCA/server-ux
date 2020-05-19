@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="sequence" widget="handle" />
-                <field name="model_id" />
+                <field name="model_id" options="{'no_create_edit': True}" />
                 <field name="name" />
                 <field name="expression" />
                 <field name="position_after" />

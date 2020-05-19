@@ -14,16 +14,16 @@ Add custom filters for fields via UI
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/12.0/base_search_custom_field_filter
+    :target: https://github.com/OCA/server-ux/tree/13.0/base_search_custom_field_filter
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-ux-12-0/server-ux-12-0-base_search_custom_field_filter
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/250/12.0
+    :target: https://runbot.odoo-community.org/runbot/250/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to define custom filters in the search views for an specific
 field belonging to the document or any other related document.
@@ -63,7 +63,7 @@ Usage
 
 As demo data, a custom field filter is included for sample purposes:
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/base_search_custom_field_filter/static/src/img/ir_ui_custom_field_filter.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/13.0/base_search_custom_field_filter/static/src/img/ir_ui_custom_field_filter.png
 
 Steps for trying this sample:
 
@@ -71,7 +71,7 @@ Steps for trying this sample:
 #. Go to *Contacts*.
 #. Type "english" and you'll find the filter "Language" at the end:
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/base_search_custom_field_filter/static/src/img/contact_search.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/13.0/base_search_custom_field_filter/static/src/img/contact_search.png
 
 Bug Tracker
 ===========
@@ -118,8 +118,8 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/12.0/base_search_custom_field_filter>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/13.0/base_search_custom_field_filter>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
