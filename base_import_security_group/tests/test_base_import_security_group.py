@@ -28,8 +28,8 @@ class TestImportSecurityGroup(common.HttpCase):
         """ % ('!' if falsify else '')
         action = self.env.ref('base.action_partner_category_form').id
         link = '/web#action=%s' % action
-        self.phantom_js(
-            link, code, "",
+        self.browser_js(
+            link, code, 'Boolean($(".o_list_button_add"))',
             login=user.login)
 
     def test_01_load(self):
