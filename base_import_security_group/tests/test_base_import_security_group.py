@@ -24,7 +24,7 @@ class TestImportSecurityGroup(common.HttpCase):
             } else {
                 console.log('error');
             };
-        }, 1000);
+        }, 2000);
         """ % ('!' if falsify else '')
         action = self.env.ref('base.action_partner_category_form').id
         link = '/web#action=%s' % action
