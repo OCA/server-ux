@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* document_quick_access
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__active
+msgid "Active"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__barcode_format
+msgid "Barcode Format"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model,name:document_quick_access.model_base
+msgid "Base"
+msgstr ""
+
+#. module: document_quick_access
+#: selection:document.quick.access.rule,barcode_format:0
+msgid "Base64"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.actions.act_window,name:document_quick_access.document_quick_access_rule_act_window
+#: model:ir.model,name:document_quick_access.model_document_quick_access_rule
+#: model:ir.ui.menu,name:document_quick_access.document_quick_access_rule_menu
+msgid "Document Quick Access Rule"
+msgstr ""
+
+#. module: document_quick_access
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:76
+#, python-format
+msgid "Document cannot be found"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__model_id
+msgid "Model"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__name
+msgid "Name"
+msgstr ""
+
+#. module: document_quick_access
+#: code:addons/document_quick_access/models/document_quick_access_rule.py:100
+#, python-format
+msgid "No format has been found for this record"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__priority
+msgid "Priority"
+msgstr ""
+
+#. module: document_quick_access
+#. openerp-web
+#: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:7
+#, python-format
+msgid "QR search"
+msgstr ""
+
+#. module: document_quick_access
+#: selection:document.quick.access.rule,barcode_format:0
+msgid "Standard"
+msgstr ""
