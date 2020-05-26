@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_ir_ui_custom_field_filter_form" model="ir.ui.view">
+        <field name="model">ir.ui.custom.field.filter</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="model_id" options="{'no_create_edit': True}" />
+                <field name="name" />
+                <field name="expression" />
+                <field name="position_after" />
+            </tree>
+        </field>
+    </record>
+    <act_window
+        id="action_ir_ui_custom_field_filter"
+        name="Custom Field Filters"
+        res_model="ir.ui.custom.field.filter"
+    />
+    <menuitem
+        id="menu_ir_ui_custom_field_filter"
+        action="action_ir_ui_custom_field_filter"
+        parent="base.next_id_2"
+        sequence="6"
+    />
+</odoo>
