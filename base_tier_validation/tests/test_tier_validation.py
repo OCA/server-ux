@@ -156,8 +156,6 @@ class TierTierValidation(common.SavepointCase):
         """Test tier.definition methods."""
         res = self.tier_def_obj._get_tier_validation_model_names()
         self.assertEqual(res, [])
-        res = self.tier_def_obj.onchange_model_id()
-        self.assertTrue(res)
 
     def test_10_systray_counter(self):
         # Create new test record
