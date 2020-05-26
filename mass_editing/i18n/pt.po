@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2019-07-05 16:42+0000\n"
+"PO-Revision-Date: 2020-05-26 21:19+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:93
@@ -52,7 +52,7 @@ msgstr "Criado em"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__display_name
 msgid "Display Name"
-msgstr "Nome a Apresentar"
+msgstr "Nome a Exibir"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -73,7 +73,7 @@ msgstr "Campos"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__group_ids
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
@@ -85,19 +85,19 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object____last_update
 msgid "Last Modified on"
-msgstr "Última Modificação Em"
+msgstr "Última Modificação em"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__write_uid
 msgid "Last Updated by"
-msgstr "Atualizado pela última vez por"
+msgstr "Última Atualização por"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__write_date
 msgid "Last Updated on"
-msgstr "Atualizado pela última vez em"
+msgstr "Última Atualização em"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -166,7 +166,7 @@ msgstr ""
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Security"
-msgstr ""
+msgstr "Segurança"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object__ref_ir_act_window_id
