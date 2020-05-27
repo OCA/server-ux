@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-05-26 21:19+0000\n"
+"PO-Revision-Date: 2020-05-27 11:19+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -24,17 +24,17 @@ msgstr "Ativo"
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__barcode_format
 msgid "Barcode Format"
-msgstr ""
+msgstr "Formato do Código de Barras"
 
 #. module: document_quick_access
 #: model:ir.model,name:document_quick_access.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: document_quick_access
 #: selection:document.quick.access.rule,barcode_format:0
 msgid "Base64"
-msgstr ""
+msgstr "Base64"
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__create_uid
@@ -56,18 +56,18 @@ msgstr "Nome a Exibir"
 #: model:ir.model,name:document_quick_access.model_document_quick_access_rule
 #: model:ir.ui.menu,name:document_quick_access.document_quick_access_rule_menu
 msgid "Document Quick Access Rule"
-msgstr ""
+msgstr "Regra de Acesso Rápido ao Documento"
 
 #. module: document_quick_access
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:76
 #, python-format
 msgid "Document cannot be found"
-msgstr ""
+msgstr "O documento não pode ser encontrado"
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__id
 msgid "ID"
-msgstr ""
+msgstr "Id"
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule____last_update
@@ -98,21 +98,21 @@ msgstr "Nome"
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:100
 #, python-format
 msgid "No format has been found for this record"
-msgstr ""
+msgstr "Não foi encontrado qualquer formato para este registo"
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__priority
 msgid "Priority"
-msgstr ""
+msgstr "Prioridade"
 
 #. module: document_quick_access
 #. openerp-web
 #: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:7
 #, python-format
 msgid "QR search"
-msgstr ""
+msgstr "Pesquisa QR"
 
 #. module: document_quick_access
 #: selection:document.quick.access.rule,barcode_format:0
 msgid "Standard"
-msgstr ""
+msgstr "Padrão"
