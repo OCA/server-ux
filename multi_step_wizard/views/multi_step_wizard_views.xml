@@ -6,30 +6,26 @@
         <field name="arch" type="xml">
             <form>
                 <field name="state" invisible="1" />
+                <field name="allow_back" invisible="1" />
                 <footer>
-                    <div
-                        name="states_buttons"
-                        attrs="{'invisible': [('state', '=', 'final')]}"
-                    >
+                    <div name="states_buttons">
                         <button
                             name="open_next"
                             string="Next"
                             type="object"
                             class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'final')]}"
+                        />
+                        <button
+                            name="open_previous"
+                            string="Go Back"
+                            type="object"
+                            class="btn btn-default"
+                            attrs="{'invisible': [('allow_back', '=', False)]}"
                         />
                         <button
                             string="Cancel"
                             class="btn btn-default"
-                            special="cancel"
-                        />
-                    </div>
-                    <div
-                        name="final_buttons"
-                        attrs="{'invisible': [('state', '!=', 'final')]}"
-                    >
-                        <button
-                            string="Close"
-                            class="btn btn-primary"
                             special="cancel"
                         />
                     </div>
