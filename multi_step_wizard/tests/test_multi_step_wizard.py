@@ -16,3 +16,6 @@ class TestMultiStepWizard(TransactionCase):
         self.assertEqual(wizard.state, 'final')
         with self.assertRaises(NotImplementedError):
             wizard.open_next()
+        self.assertTrue(wizard.allow_back)
+        wizard.open_previous()
+        self.assertEqual(wizard.state, 'start')
