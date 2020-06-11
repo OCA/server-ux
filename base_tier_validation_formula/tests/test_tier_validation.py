@@ -171,7 +171,7 @@ class TierTierValidation(common.SavepointCase):
             'rec.env["res.users"].browse([{user_id}])'
         ).format(user_id=user_id)
 
-        definition = self.tier_def_obj.create({
+        self.tier_def_obj.create({
             'name': 'Over 10',
             'model_id': self.tester_model.id,
             'review_type': 'expression',
