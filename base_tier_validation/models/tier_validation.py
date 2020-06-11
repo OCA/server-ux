@@ -267,8 +267,7 @@ class TierValidation(models.AbstractModel):
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
             lambda r: r.status in ('pending', 'approved') and
-            (r.reviewer_id == self.env.user or
-             r.reviewer_group_id in self.env.user.groups_id))
+            (self.env.user in r.reviewer_ids))
         user_reviews.write({
             'status': 'rejected',
             'done_by': self.env.user.id,
