@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* multi_step_wizard
+# 	* multi_step_wizard
 #
 msgid ""
 msgstr ""
@@ -17,14 +17,15 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: multi_step_wizard
-#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
-msgid "Cancel"
-msgstr "取消"
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__allow_back
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__allow_back
+msgid "Allow Back"
+msgstr ""
 
 #. module: multi_step_wizard
 #: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
-msgid "Close"
-msgstr "关闭"
+msgid "Cancel"
+msgstr "取消"
 
 #. module: multi_step_wizard
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__create_uid
@@ -41,6 +42,11 @@ msgstr "创建时间"
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__display_name
 msgid "Display Name"
 msgstr "显示名称"
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Go Back"
+msgstr ""
 
 #. module: multi_step_wizard
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__id
@@ -84,3 +90,6 @@ msgstr "下一个"
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__state
 msgid "State"
 msgstr "状态"
+
+#~ msgid "Close"
+#~ msgstr "关闭"
