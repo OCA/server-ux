@@ -14,13 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: multi_step_wizard
-#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
-msgid "Cancel"
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__allow_back
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__allow_back
+msgid "Allow Back"
 msgstr ""
 
 #. module: multi_step_wizard
 #: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
-msgid "Close"
+msgid "Cancel"
 msgstr ""
 
 #. module: multi_step_wizard
@@ -37,6 +38,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__display_name
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Go Back"
 msgstr ""
 
 #. module: multi_step_wizard
