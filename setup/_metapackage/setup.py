@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-barcode_action',
         'odoo12-addon-base_export_manager',
         'odoo12-addon-base_import_security_group',
+        'odoo12-addon-base_optional_quick_create',
         'odoo12-addon-base_search_custom_field_filter',
         'odoo12-addon-base_substate',
         'odoo12-addon-base_technical_features',
