@@ -442,6 +442,20 @@ msgid "Tier Validation (abstract)"
 msgstr "Validaciones de Nivel (abstracto)"
 
 #. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
+#, fuzzy
+#| msgid "Tier Validation (abstract)"
+msgid "Tier Validation Accepted Notification"
+msgstr "Validaciones de Nivel (abstracto)"
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
+#, fuzzy
+#| msgid "Tier Validation (abstract)"
+msgid "Tier Validation Rejected Notification"
+msgstr "Validaciones de Nivel (abstracto)"
+
+#. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
 msgid "Tier Validations"
 msgstr "Validaciones de Nivel"
