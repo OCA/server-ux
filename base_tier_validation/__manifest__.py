@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "13.0.1.1.1",
+    "version": "13.0.1.2.0",
     "development_status": "Mature",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -12,8 +12,9 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["web", "bus"],
+    "depends": ["mail"],
     "data": [
+        "data/mail_data.xml",
         "security/ir.model.access.csv",
         "views/tier_definition_view.xml",
         "views/tier_review_view.xml",
