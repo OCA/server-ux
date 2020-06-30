@@ -187,11 +187,17 @@ class TierValidation(models.AbstractModel):
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_accepted_reviews()
 
+    def _get_accepted_notification_subtype(self):
+        return 'base_tier_validation.mt_tier_validation_accepted'
+
+    def _get_rejected_notification_subtype(self):
+        return 'base_tier_validation.mt_tier_validation_rejected'
+
     def _notify_accepted_reviews(self):
         if hasattr(self, 'message_post'):
             # Notify state change
             getattr(self, 'message_post')(
-                subtype='mt_note',
+                subtype=self._get_accepted_notification_subtype(),
                 body=self._notify_accepted_reviews_body()
             )
 
@@ -258,7 +264,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, 'message_post'):
             # Notify state change
             getattr(self, 'message_post')(
-                subtype='mt_note',
+                subtype=self._get_rejected_notification_subtype(),
                 body=self._notify_rejected_review_body()
             )
 
