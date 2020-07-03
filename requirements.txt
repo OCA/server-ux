@@ -1,2 +1,3 @@
 pyzbar
 pdf2image
+openupgradelib
