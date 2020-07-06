@@ -63,6 +63,11 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
              "this definition is triggered."
     )
+    notify_by_sequence = fields.Boolean(
+        string="Notify Reviewers by Sequence",
+        help="If set, all possible reviewers will be notified by sequence when"
+             " this definition is triggered."
+    )
     has_comment = fields.Boolean(
         string='Comment',
         default=False,
