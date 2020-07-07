@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo13-addon-mass_editing',
         'odoo13-addon-mass_operation_abstract',
         'odoo13-addon-multi_step_wizard',
+        'odoo13-addon-sequence_reset_period',
     ],
     classifiers=[
         'Programming Language :: Python',
