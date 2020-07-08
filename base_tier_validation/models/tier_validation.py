@@ -217,7 +217,7 @@ class TierValidation(models.AbstractModel):
             return _(('A review was accepted. (%s)') % (comment))
         return _('A review was accepted')
 
-    def _notify_accepted_reviews_body_custom(self):
+    def _notify_accepted_reviews_by_sequence_body(self):
         accepted_review = self._notify_accepted_reviews_body()
         return accepted_review + _('. Ready for next review.')
 
@@ -299,9 +299,6 @@ class TierValidation(models.AbstractModel):
     def _notify_requested_review_body(self):
         return _('A review has been requested by %s.') % (self.env.user.name)
 
-    def _notify_requested_review_body_custom(self, user_id):
-        return _('A review has been requested by %s.') % (user_id.name)
-
     def _notify_review_requested(self, tier_reviews):
         if hasattr(self, 'message_post') and \
                 hasattr(self, 'message_subscribe'):
@@ -324,31 +321,28 @@ class TierValidation(models.AbstractModel):
             for rec in self:
                 # Subscribe reviewers and notify
                 getattr(rec, 'message_subscribe')(
-                    partner_ids=tier_review.reviewer_ids.mapped("partner_id").ids)
+                    partner_ids=tier_review.reviewer_ids.mapped(
+                        "partner_id").ids)
                 getattr(rec, 'message_post')(
                     message_type='email',
-                    # subtype='mt_comment',
                     body=rec._notify_requested_review_body(),
                     partner_ids=tier_review.reviewer_ids.mapped(
                         "partner_id").ids)
 
     def _notify_review_accepted_requested_by_sequence(self, tier_review):
         if hasattr(self, 'message_post') and \
-            hasattr(self, 'message_subscribe'):
+                hasattr(self, 'message_subscribe'):
             for rec in self:
-                if tier_review.definition_id.notify_by_sequence:
-                    if hasattr(rec, 'message_post'):
-                        getattr(rec, 'message_subscribe')(
-                            partner_ids=tier_review.reviewer_ids.mapped(
-                                "partner_id").ids)
-                        # Notify state change
-
-                        getattr(rec, 'message_post')(
-                            message_type='email',
-                            body=self._notify_accepted_reviews_body_custom(),
-                            partner_ids=tier_review.reviewer_ids.mapped(
-                                "partner_id").ids
-                        )
+                getattr(rec, 'message_subscribe')(
+                    partner_ids=tier_review.reviewer_ids.mapped(
+                        "partner_id").ids)
+                # Notify state change by sending email to next reviewers
+                getattr(rec, 'message_post')(
+                    message_type='email',
+                    body=self._notify_accepted_reviews_by_sequence_body(),
+                    partner_ids=tier_review.reviewer_ids.mapped(
+                        "partner_id").ids
+                    )
 
     @api.multi
     def request_validation(self):
@@ -372,10 +366,9 @@ class TierValidation(models.AbstractModel):
                             })
                     self._update_counter()
 
-        if created_trs and not created_trs[0].definition_id.notify_on_create and created_trs[0].definition_id.notify_by_sequence:
-            # Subscribe reviewers and notify
-            getattr(self, 'message_subscribe')(
-                partner_ids=created_trs[0].reviewer_ids.mapped("partner_id").ids)
+        if created_trs and \
+            not created_trs[0].definition_id.notify_on_create and \
+            created_trs[0].definition_id.notify_by_sequence:
             self._notify_review_requested_by_sequence(created_trs[0])
         else:
             self._notify_review_requested(created_trs)
