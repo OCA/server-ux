@@ -20,8 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_optional_quick_create
-#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model_avoid_quick_create
-msgid "Avoid quick create"
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
+msgid "Avoid Quick Create"
 msgstr ""
 
 #. module: base_optional_quick_create
