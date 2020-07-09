@@ -29,20 +29,20 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:282
+#: code:addons/base_tier_validation/models/tier_validation.py:288
 #, fuzzy, python-format
 #| msgid "A review was rejected by %s."
 msgid "A review has been requested by %s."
 msgstr "%s审批拒绝。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:204
+#: code:addons/base_tier_validation/models/tier_validation.py:210
 #, python-format
 msgid "A review was accepted"
 msgstr "审批已通过"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:255
+#: code:addons/base_tier_validation/models/tier_validation.py:261
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "%s审批拒绝。"
@@ -113,7 +113,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:216
+#: code:addons/base_tier_validation/models/tier_validation.py:222
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:29
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -445,6 +445,20 @@ msgstr "层级审批"
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
 msgid "Tier Validation (abstract)"
+msgstr "层级审批（抽象）"
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
+#, fuzzy
+#| msgid "Tier Validation (abstract)"
+msgid "Tier Validation Accepted Notification"
+msgstr "层级审批（抽象）"
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
+#, fuzzy
+#| msgid "Tier Validation (abstract)"
+msgid "Tier Validation Rejected Notification"
 msgstr "层级审批（抽象）"
 
 #. module: base_tier_validation
