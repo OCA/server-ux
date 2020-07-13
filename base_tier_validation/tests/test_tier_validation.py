@@ -155,7 +155,14 @@ class TierTierValidation(common.SavepointCase):
     def test_09_dummy_tier_definition(self):
         """Test tier.definition methods."""
         res = self.tier_def_obj._get_tier_validation_model_names()
-        self.assertEqual(res, [])
+        expected_tier_validation_model_name = []
+        module_id = self.env.ref("base.module_sale_tier_validation")
+        if module_id.state == "installed":
+            expected_tier_validation_model_name.append("sale.order")
+        module_id = self.env.ref("base.module_purchase_tier_validation")
+        if module_id.state == "installed":
+            expected_tier_validation_model_name.append("purchase.order")
+        self.assertSetEqual(set(res), set(expected_tier_validation_model_name))
 
     def test_10_systray_counter(self):
         # Create new test record
