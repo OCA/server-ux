@@ -156,11 +156,15 @@ class TierTierValidation(common.SavepointCase):
         """Test tier.definition methods."""
         res = self.tier_def_obj._get_tier_validation_model_names()
         expected_tier_validation_model_name = []
-        module_id = self.env.ref("base.module_sale_tier_validation")
-        if module_id.state == "installed":
+        module = self.env.ref(
+            "base.module_sale_tier_validation", raise_if_not_found=False
+        )
+        if module and module.state == "installed":
             expected_tier_validation_model_name.append("sale.order")
-        module_id = self.env.ref("base.module_purchase_tier_validation")
-        if module_id.state == "installed":
+        module = self.env.ref(
+            "base.module_purchase_tier_validation", raise_if_not_found=False
+        )
+        if module and module.state == "installed":
             expected_tier_validation_model_name.append("purchase.order")
         self.assertSetEqual(set(res), set(expected_tier_validation_model_name))
 
