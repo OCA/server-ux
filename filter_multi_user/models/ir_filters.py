@@ -10,7 +10,23 @@ class IrFilters(models.Model):
     user_ids = fields.Many2many(
         comodel_name="res.users",
         string="Users",
+        compute="_compute_user_ids",
+        store=True,
     )
+    manual_user_ids = fields.Many2many(
+        comodel_name="res.users",
+        string="Available for Users",
+        relation="ir_filters_res_users_manual_rel",
+    )
+    group_ids = fields.Many2many(
+        comodel_name="res.groups",
+        string="Available for Groups",
+    )
+
+    @api.constrains("manual_user_ids", "group_ids")
+    def _compute_user_ids(self):
+        for rec in self:
+            rec.user_ids = rec.manual_user_ids + rec.group_ids.users
 
     @api.model
     def get_filters(self, model, action_id=None):
