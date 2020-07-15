@@ -17,9 +17,13 @@ class TestFilterMultiUser(common.SavepointCase):
         cls.user_model = cls.env["res.users"]
 
         cls.group_user = cls.env.ref("base.group_user")
+        cls.group_private = cls.env["res.groups"].create({
+            "name": "Test Group",
+        })
 
-        cls.user_1 = cls._create_user("user_1", [cls.group_user])
+        cls.user_1 = cls._create_user("user_1", [cls.group_user, cls.group_private])
         cls.user_2 = cls._create_user("user_2", [cls.group_user])
+        cls.user_3 = cls._create_user("user_3", [cls.group_user, cls.group_private])
 
     @classmethod
     def _create_user(self, login, groups):
@@ -48,7 +52,7 @@ class TestFilterMultiUser(common.SavepointCase):
             "name": "Test filter",
             "model_id": "ir.filters",
             "user_id": self.user_1.id,
-            "user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
+            "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
         })
         self.assertTrue(test_filter.sudo(self.user_1).name)
         self.assertTrue(test_filter.sudo(self.user_2).name)
@@ -58,7 +62,7 @@ class TestFilterMultiUser(common.SavepointCase):
             "name": "Test filter",
             "model_id": "ir.filters",
             "user_id": self.user_1.id,
-            "user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
+            "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
         })
         test_filter_2 = self.filter_model.create({
             "name": "Test filter 2",
@@ -79,3 +83,14 @@ class TestFilterMultiUser(common.SavepointCase):
             result.append(filter.get("id"))
         self.assertIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
+
+    def test_04_group_filter(self):
+        test_filter = self.filter_model.create({
+            "name": "Test filter",
+            "model_id": "ir.filters",
+            "group_ids": [(6, 0, self.group_private.ids)],
+        })
+        self.assertTrue(test_filter.sudo(self.user_1).name)
+        with self.assertRaises(AccessError):
+            self.assertTrue(test_filter.sudo(self.user_2).name)
+        self.assertTrue(test_filter.sudo(self.user_3).name)
