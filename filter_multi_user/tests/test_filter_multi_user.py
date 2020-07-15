@@ -10,6 +10,9 @@ class TestFilterMultiUser(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(cls.env.context, tracking_disable=True, no_reset_password=True)
+        )
         cls.filter_model = cls.env["ir.filters"]
         cls.user_model = cls.env["res.users"]
 
@@ -21,7 +24,7 @@ class TestFilterMultiUser(common.SavepointCase):
     @classmethod
     def _create_user(self, login, groups):
         group_ids = [group.id for group in groups]
-        user = self.user_model.with_context({"no_reset_password": True}).create({
+        user = self.user_model.create({
             "name": "Test User",
             "login": login,
             "password": "demo",
