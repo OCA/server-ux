@@ -57,11 +57,10 @@ class TestFilterMultiUser(common.SavepointCase):
         self.assertTrue(test_filter.sudo(self.user_1).name)
         self.assertTrue(test_filter.sudo(self.user_2).name)
 
-    def test_02_get_filters(self):
+    def test_03_get_filters(self):
         test_filter_1 = self.filter_model.create({
             "name": "Test filter",
             "model_id": "ir.filters",
-            "user_id": self.user_1.id,
             "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
         })
         test_filter_2 = self.filter_model.create({
@@ -88,6 +87,7 @@ class TestFilterMultiUser(common.SavepointCase):
         test_filter = self.filter_model.create({
             "name": "Test filter",
             "model_id": "ir.filters",
+            "user_id": self.user_1.id,
             "group_ids": [(6, 0, self.group_private.ids)],
         })
         self.assertTrue(test_filter.sudo(self.user_1).name)

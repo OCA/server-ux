@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters_group_ids
+#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__group_ids
 msgid "Available for Groups"
 msgstr ""
 
 #. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters_manual_user_ids
-#: model:ir.ui.view,arch_db:filter_multi_user.ir_filters_view_tree
+#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__manual_user_ids
+#: model_terms:ir.ui.view,arch_db:filter_multi_user.ir_filters_view_tree
 msgid "Available for Users"
 msgstr ""
 
@@ -30,12 +30,12 @@ msgid "Filters"
 msgstr ""
 
 #. module: filter_multi_user
-#: model:ir.ui.view,arch_db:filter_multi_user.ir_filters_view_form
+#: model_terms:ir.ui.view,arch_db:filter_multi_user.ir_filters_view_form
 msgid "Owner"
 msgstr ""
 
 #. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters_user_ids
+#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__user_ids
 msgid "Users"
 msgstr ""
 
