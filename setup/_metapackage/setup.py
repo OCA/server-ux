@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo11-addon-document_quick_access',
         'odoo11-addon-document_quick_access_folder_auto_classification',
         'odoo11-addon-easy_switch_user',
+        'odoo11-addon-filter_multi_user',
         'odoo11-addon-mass_editing',
         'odoo11-addon-sequence_check_digit',
         'odoo11-addon-sequence_reset_period',
