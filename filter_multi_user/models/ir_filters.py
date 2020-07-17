@@ -35,8 +35,11 @@ class IrFilters(models.Model):
         action_domain = self._get_action_domain(action_id)
         filters = self.search(action_domain + [
             ('model_id', '=', model),
-            '|', ('user_id', 'in', [self._uid, False]),
+            '|',
+            '|', ('user_id', '=', self._uid),
             ('user_ids', 'in', self._uid),
+            '&', ('user_id', '=', False),
+            ('user_ids', 'in', False),
         ])
         user_context = self.env['res.users'].context_get()
         return filters.with_context(user_context).read(
