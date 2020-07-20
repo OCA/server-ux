@@ -19,8 +19,7 @@ class IrFilters(models.Model):
         relation="ir_filters_res_users_manual_rel",
     )
     group_ids = fields.Many2many(
-        comodel_name="res.groups",
-        string="Available for Groups",
+        comodel_name="res.groups", string="Available for Groups",
     )
 
     @api.constrains("manual_user_ids", "group_ids")
@@ -33,14 +32,20 @@ class IrFilters(models.Model):
         # WARNING: this function overrides the standard one.
         # The only change done is in the domain used to search the filters.
         action_domain = self._get_action_domain(action_id)
-        filters = self.search(action_domain + [
-            ('model_id', '=', model),
-            '|',
-            '|', ('user_id', '=', self._uid),
-            ('user_ids', 'in', self._uid),
-            '&', ('user_id', '=', False),
-            ('user_ids', 'in', False),
-        ])
-        user_context = self.env['res.users'].context_get()
+        filters = self.search(
+            action_domain
+            + [
+                ("model_id", "=", model),
+                "|",
+                "|",
+                ("user_id", "=", self._uid),
+                ("user_ids", "in", self._uid),
+                "&",
+                ("user_id", "=", False),
+                ("user_ids", "in", False),
+            ]
+        )
+        user_context = self.env["res.users"].context_get()
         return filters.with_context(user_context).read(
-            ['name', 'is_default', 'domain', 'context', 'user_id', 'sort'])
+            ["name", "is_default", "domain", "context", "user_id", "sort"]
+        )
