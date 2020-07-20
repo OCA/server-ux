@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo12-addon-date_range',
         'odoo12-addon-document_quick_access',
         'odoo12-addon-document_quick_access_folder_auto_classification',
+        'odoo12-addon-filter_multi_user',
         'odoo12-addon-mass_editing',
         'odoo12-addon-multi_step_wizard',
         'odoo12-addon-sequence_check_digit',
