@@ -44,9 +44,10 @@ class TestFilterMultiUser(common.SavepointCase):
                 "user_id": self.user_1.id,
             }
         )
-        self.assertTrue(test_filter.sudo(self.user_1).name)
+        self.assertTrue(test_filter.with_user(self.user_1).name)
+        test_filter.invalidate_cache()
         with self.assertRaises(AccessError):
-            self.assertTrue(test_filter.sudo(self.user_2).name)
+            self.assertTrue(test_filter.with_user(self.user_2).name)
 
     def test_02_multi_user(self):
         test_filter = self.filter_model.create(
@@ -57,38 +58,57 @@ class TestFilterMultiUser(common.SavepointCase):
                 "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
             }
         )
-        self.assertTrue(test_filter.sudo(self.user_1).name)
-        self.assertTrue(test_filter.sudo(self.user_2).name)
+        self.assertTrue(test_filter.with_user(self.user_1).name)
+        test_filter.invalidate_cache()
+        self.assertTrue(test_filter.with_user(self.user_2).name)
 
     def test_03_get_filters(self):
         test_filter_1 = self.filter_model.create(
             {
-                "name": "Test filter",
+                "name": "Test filter - specific user",
                 "model_id": "ir.filters",
                 "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
             }
         )
         test_filter_2 = self.filter_model.create(
             {
-                "name": "Test filter 2",
+                "name": "Test filter 2 - Regular",
                 "model_id": "ir.filters",
                 "user_id": self.user_1.id,
             }
         )
+        test_filter_3 = self.filter_model.create(
+            {
+                "name": "Test filter 3 - Group",
+                "model_id": "ir.filters",
+                "user_id": self.user_1.id,
+                "group_ids": [(6, 0, self.group_private.ids)],
+            }
+        )
         # User 1:
-        res = self.filter_model.sudo(self.user_1).get_filters("ir.filters")
+        res = self.filter_model.with_user(self.user_1).get_filters("ir.filters")
         result = []
         for filter in res:
             result.append(filter.get("id"))
         self.assertIn(test_filter_1.id, result)
         self.assertIn(test_filter_2.id, result)
+        self.assertIn(test_filter_3.id, result)
         # User 2:
-        res = self.filter_model.sudo(self.user_2).get_filters("ir.filters")
+        res = self.filter_model.with_user(self.user_2).get_filters("ir.filters")
         result = []
         for filter in res:
             result.append(filter.get("id"))
         self.assertIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
+        self.assertNotIn(test_filter_3.id, result)
+        # User 3:
+        res = self.filter_model.with_user(self.user_3).get_filters("ir.filters")
+        result = []
+        for filter in res:
+            result.append(filter.get("id"))
+        self.assertNotIn(test_filter_1.id, result)
+        self.assertNotIn(test_filter_2.id, result)
+        self.assertIn(test_filter_3.id, result)
 
     def test_04_group_filter(self):
         test_filter = self.filter_model.create(
@@ -99,7 +119,9 @@ class TestFilterMultiUser(common.SavepointCase):
                 "group_ids": [(6, 0, self.group_private.ids)],
             }
         )
-        self.assertTrue(test_filter.sudo(self.user_1).name)
+        self.assertTrue(test_filter.with_user(self.user_1).name)
+        test_filter.invalidate_cache()
         with self.assertRaises(AccessError):
-            self.assertTrue(test_filter.sudo(self.user_2).name)
-        self.assertTrue(test_filter.sudo(self.user_3).name)
+            self.assertTrue(test_filter.with_user(self.user_2).name)
+        test_filter.invalidate_cache()
+        self.assertTrue(test_filter.with_user(self.user_3).name)
