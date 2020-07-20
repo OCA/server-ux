@@ -3,24 +3,15 @@
 
 {
     "name": "Check Digit on Sequences",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Reporting",
     "website": "https://github.com/OCA/server-ux",
-    "author": "Creu Blanca, "
-              "Odoo Community Association (OCA)",
+    "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "installable": True,
     "application": False,
     "summary": "Adds a check digit on sequences",
-    "depends": [
-        "base",
-    ],
-    "data": [
-        "views/sequence_views.xml",
-    ],
-    "external_dependencies": {
-        "python": [
-            "stdnum",
-        ],
-    },
+    "depends": ["base"],
+    "data": ["views/sequence_views.xml"],
+    "external_dependencies": {"python": ["stdnum"]},
 }
