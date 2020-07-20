@@ -42,7 +42,7 @@ class IrFilters(models.Model):
                 ("user_ids", "in", self._uid),
                 "&",
                 ("user_id", "=", False),
-                ("user_ids", "in", False),
+                ("user_ids", "=", False),
             ]
         )
         user_context = self.env["res.users"].context_get()
