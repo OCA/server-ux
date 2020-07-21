@@ -3,7 +3,7 @@
 {
     "name": "Default Multi User",
     "summary": "Allows to share user-defined defaults among several users.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "development_status": "Beta",
     "maintainers": ['LoisRForgeFlow'],
     "category": "Tools",
