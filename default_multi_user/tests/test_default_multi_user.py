@@ -18,7 +18,7 @@ class TestDefaultMultiUser(common.SavepointCase):
         cls.user_model = cls.env["res.users"]
         cls.partner_model = cls.env["res.partner"]
 
-        cls.field = cls.env.ref("base.field_res_partner_phone")
+        cls.field = cls.env.ref("base.field_res_partner__phone")
         cls.group_user = cls.env.ref("base.group_user")
         cls.group_partner = cls.env.ref("base.group_partner_manager")
         cls.group_private = cls.env["res.groups"].create({
