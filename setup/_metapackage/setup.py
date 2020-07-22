@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-base_tier_validation_formula',
         'odoo12-addon-base_user_locale',
         'odoo12-addon-date_range',
+        'odoo12-addon-default_multi_user',
         'odoo12-addon-document_quick_access',
         'odoo12-addon-document_quick_access_folder_auto_classification',
         'odoo12-addon-filter_multi_user',
