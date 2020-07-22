@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,28 +14,28 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default_group_ids
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__group_ids
 msgid "Available for Groups"
 msgstr ""
 
 #. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default_manual_user_ids
-#: model:ir.ui.view,arch_db:default_multi_user.ir_default_view_tree
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__manual_user_ids
+#: model_terms:ir.ui.view,arch_db:default_multi_user.ir_default_view_tree
 msgid "Available for Users"
 msgstr ""
 
 #. module: default_multi_user
-#: model:ir.ui.view,arch_db:default_multi_user.ir_default_view_form
+#: model:ir.model,name:default_multi_user.model_ir_default
+msgid "Default Values"
+msgstr ""
+
+#. module: default_multi_user
+#: model_terms:ir.ui.view,arch_db:default_multi_user.ir_default_view_form
 msgid "Owner"
 msgstr ""
 
 #. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default_user_ids
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__user_ids
 msgid "Users"
-msgstr ""
-
-#. module: default_multi_user
-#: model:ir.model,name:default_multi_user.model_ir_default
-msgid "ir.default"
 msgstr ""
 
