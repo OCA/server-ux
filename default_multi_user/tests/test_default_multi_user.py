@@ -20,7 +20,7 @@ class TestDefaultMultiUser(common.SavepointCase):
         cls.field = cls.env.ref("base.field_res_partner__phone")
         cls.group_user = cls.env.ref("base.group_user")
         cls.group_partner = cls.env.ref("base.group_partner_manager")
-        cls.group_private = cls.env["res.groups"].create({"name": "Test Group",})
+        cls.group_private = cls.env["res.groups"].create({"name": "Test Group"})
 
         cls.user_1 = cls._create_user(
             "user_1", [cls.group_user, cls.group_partner, cls.group_private]
@@ -33,9 +33,9 @@ class TestDefaultMultiUser(common.SavepointCase):
         cls.test_value = "+34 666 777 888"
 
     @classmethod
-    def _create_user(self, login, groups):
+    def _create_user(cls, login, groups):
         group_ids = [group.id for group in groups]
-        user = self.user_model.create(
+        user = cls.user_model.create(
             {
                 "name": "Test User",
                 "login": login,
@@ -54,9 +54,9 @@ class TestDefaultMultiUser(common.SavepointCase):
                 "user_id": self.user_1.id,
             }
         )
-        rec_1 = self.partner_model.sudo(self.user_1).create({"name": "Test"})
+        rec_1 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
         self.assertEqual(rec_1.phone, self.test_value)
-        rec_2 = self.partner_model.sudo(self.user_2).create({"name": "Test"})
+        rec_2 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
         self.assertNotEqual(rec_2.phone, self.test_value)
 
     def test_02_multi_user(self):
@@ -70,9 +70,9 @@ class TestDefaultMultiUser(common.SavepointCase):
         )
         self.assertIn(self.user_1, test_default.user_ids)
         self.assertIn(self.user_2, test_default.user_ids)
-        rec_1 = self.partner_model.sudo(self.user_1).create({"name": "Test"})
+        rec_1 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
         self.assertEqual(rec_1.phone, self.test_value)
-        rec_2 = self.partner_model.sudo(self.user_2).create({"name": "Test"})
+        rec_2 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
         self.assertEqual(rec_2.phone, self.test_value)
 
     def test_03_group_default(self):
@@ -94,11 +94,11 @@ class TestDefaultMultiUser(common.SavepointCase):
         )
         self.assertIn(self.user_1, test_default.user_ids)
         self.assertIn(self.user_3, test_default.user_ids)
-        rec_1 = self.partner_model.sudo(self.user_1).create({"name": "Test"})
+        rec_1 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
         self.assertEqual(rec_1.phone, self.test_value)
-        rec_2 = self.partner_model.sudo(self.user_2).create({"name": "Test"})
+        rec_2 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
         self.assertEqual(rec_2.phone, global_value)
-        rec_3 = self.partner_model.sudo(self.user_3).create({"name": "Test"})
+        rec_3 = self.partner_model.with_user(self.user_3).create({"name": "Test"})
         self.assertEqual(rec_3.phone, self.test_value)
 
     def test_04_multi_user_no_alternative(self):
@@ -111,7 +111,7 @@ class TestDefaultMultiUser(common.SavepointCase):
         )
         self.assertNotIn(self.user_1, test_default.user_ids)
         self.assertIn(self.user_2, test_default.user_ids)
-        rec_1 = self.partner_model.sudo(self.user_1).create({"name": "Test"})
+        rec_1 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
         self.assertNotEqual(rec_1.phone, self.test_value)
-        rec_2 = self.partner_model.sudo(self.user_2).create({"name": "Test"})
+        rec_2 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
         self.assertEqual(rec_2.phone, self.test_value)
