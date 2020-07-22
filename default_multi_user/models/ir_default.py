@@ -22,8 +22,7 @@ class IrDefaultgard(models.Model):
         relation="ir_default_res_users_manual_rel",
     )
     group_ids = fields.Many2many(
-        comodel_name="res.groups",
-        string="Available for Groups",
+        comodel_name="res.groups", string="Available for Groups",
     )
 
     @api.constrains("manual_user_ids", "group_ids")

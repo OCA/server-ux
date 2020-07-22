@@ -5,17 +5,13 @@
     "summary": "Allows to share user-defined defaults among several users.",
     "version": "12.0.1.0.0",
     "development_status": "Beta",
-    "maintainers": ['LoisRForgeFlow'],
+    "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "base",
-    ],
-    "data": [
-        "views/ir_default_view.xml",
-    ],
+    "depends": ["base",],
+    "data": ["views/ir_default_view.xml",],
     "post_load": "post_load_hook",
 }
