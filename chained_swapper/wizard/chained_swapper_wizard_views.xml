@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="chained_swapper_wizard_view_form" model="ir.ui.view">
+        <field name="name">chained.swapper.wizard.form</field>
+        <field name="model">chained.swapper.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group col="4" name="swap_field_group"/>
+                <footer>
+                    <button name="change_action"
+                            string="Change"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Close"
+                            class="btn-default"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
