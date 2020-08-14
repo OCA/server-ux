@@ -1,7 +1,9 @@
 # Copyright 2020 Tecnativa - Ernesto Tejeda
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, exceptions, fields, models, _
+from odoo.tools.safe_eval import safe_eval
 
 
 class ChainedSwapper(models.Model):
@@ -98,7 +100,7 @@ class ChainedSwapper(models.Model):
     def add_action(self):
         self.ensure_one()
         action = self.env['ir.actions.act_window'].create({
-            'name': self.name,
+            'name': _("Chained swap") + ": " + self.name,
             'type': 'ir.actions.act_window',
             'res_model': 'chained.swapper.wizard',
             'src_model': self.model_id.model,
@@ -124,7 +126,7 @@ class ChainedSwapperSubField(models.Model):
     _description = "Chained Swapper Sub-field"
 
     chained_swapper_id = fields.Many2one(
-        comodel_name='chained.swapper'
+        comodel_name='chained.swapper', ondelete="cascade"
     )
     sub_field_chain = fields.Char(
         required=True,
@@ -142,10 +144,11 @@ class ChainedSwapperSubField(models.Model):
                 chain_model = self.env[rec.chained_swapper_id.model_id.model]
                 for name in chain_list:
                     chain_model = chain_model[name]
-                chain_model[chain_field_name]
+                chain_model[chain_field_name]  # pylint: disable=W0104
             except KeyError:
                 raise exceptions.ValidationError(
-                    _("Incorrect sub-field expression."))
+                    _("Incorrect sub-field expression:") + " " +
+                    rec.sub_field_chain)
             # Check sub-field and original field are the same type
             swap_field = rec.chained_swapper_id.field_id
             chain_field = self.env['ir.model.fields'].search([
@@ -155,8 +158,8 @@ class ChainedSwapperSubField(models.Model):
             if (chain_field.ttype != swap_field.ttype or
                     chain_field.relation != swap_field.relation):
                 raise exceptions.ValidationError(
-                    _("At least one sub-field is no compatible with "
-                      "the main field."))
+                    _("The sub-field '%s' is not compatible with the main"
+                      " field.") % rec.sub_field_chain)
 
 
 class ChainedSwapperConstraint(models.Model):
@@ -164,7 +167,7 @@ class ChainedSwapperConstraint(models.Model):
     _description = "Chained Swapper Constraint"
 
     chained_swapper_id = fields.Many2one(
-        comodel_name='chained.swapper'
+        comodel_name='chained.swapper', ondelete="cascade"
     )
     name = fields.Char(
         required=True,
@@ -173,8 +176,19 @@ class ChainedSwapperConstraint(models.Model):
     expression = fields.Text(
         string='Constraint expression',
         required=True,
-        help="Boolean python expression. You can use the key word "
+        help="Boolean python expression. You can use the keyword "
              "'records' as the records selected to execute the "
              "contextual action. Ex.: bool(records.mapped('parent_id'))",
-        default="return False",
+        default="True",
     )
+
+    @api.constrains("expression")
+    def _check_expression(self):
+        for record in self:
+            model = self.env[record.chained_swapper_id.model_id.model]
+            try:
+                safe_eval(record.expression, {'records': model})
+            except Exception:
+                raise exceptions.ValidationError(_(
+                    "Invalid constraint expression:" + "  " + record.expression
+                ))

@@ -14,17 +14,17 @@ class ChainedSwapperWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        UserError("lolo")
         context = self.env.context
         if context.get('chained_swapper_id'):
-            model = self.env[context.get('active_model')].browse(
+            records = self.env[context.get('active_model')].browse(
                 context.get('active_ids'))
             chained_swapper = self.env['chained.swapper'].browse(
                 context.get('chained_swapper_id'))
             for constraint in chained_swapper.constraint_ids:
-                expr = constraint.expression
-                if safe_eval(expr, {'records': model}):
-                    UserError(constraint.name)
+                if safe_eval(constraint.expression, {'records': records}):
+                    raise UserError(_(
+                        "Not possible to swap the field due to the constraint"
+                    ) + ": " + constraint.name)
         return super().default_get(fields)
 
     @api.model
@@ -49,6 +49,7 @@ class ChainedSwapperWizard(models.TransientModel):
             field.name: {
                 'type': field.ttype,
                 'string': field.field_description,
+                "views": {},
             }
         }
         if field.ttype in ["many2many", "many2one"]:
@@ -135,6 +136,15 @@ class ChainedSwapperWizard(models.TransientModel):
         for m in model:
             original_value = human_readable_field(original_values[m.id])
             m.message_post(
-                body=_("<b>Chained swap done</b>:<br/>%s: %s > %s") % (
+                body=_("<b>Chained swap done</b>:") + "<br/>%s: %s ⇒ %s" % (
                     field_desc, original_value, new_value)
             )
+
+    def read(self, fields, load='_classic_read'):
+        """Without this call, dynamic fields build by fields_view_get()
+        generate a crash and warning, i.e.: read() with unknown field 'myfield'
+        """
+        real_fields = set(fields) & set(self._fields)
+        result = super().read(list(real_fields), load=load)
+        result[0].update({x: False for x in set(fields) - real_fields})
+        return result
