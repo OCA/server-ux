@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 17:13+0000\n"
-"PO-Revision-Date: 2020-08-13 17:13+0000\n"
+"POT-Creation-Date: 2020-08-14 10:32+0000\n"
+"PO-Revision-Date: 2020-08-14 10:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: chained_swapper
 #: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:138
 #, python-format
-msgid "<b>Chained swap done</b>:<br/>%s: %s > %s"
+msgid "<b>Chained swap done</b>:"
 msgstr ""
 
 #. module: chained_swapper
@@ -52,14 +52,8 @@ msgid "Allowed Field"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:158
-#, python-format
-msgid "At least one sub-field is no compatible with the main field."
-msgstr ""
-
-#. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper_constraint__expression
-msgid "Boolean python expression. You can use the key word 'records' as the records selected to execute the contextual action. Ex.: bool(records.mapped('parent_id'))"
+msgid "Boolean python expression. You can use the keyword 'records' as the records selected to execute the contextual action. Ex.: bool(records.mapped('parent_id'))"
 msgstr ""
 
 #. module: chained_swapper
@@ -80,14 +74,19 @@ msgid "Chained Swapper Sub-field"
 msgstr ""
 
 #. module: chained_swapper
-#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_wizard_view_form
-msgid "Change"
+#: code:addons/chained_swapper/models/chained_swapper.py:103
+#, python-format
+msgid "Chained swap"
 msgstr ""
 
 #. module: chained_swapper
-#: model:chained.swapper,name:chained_swapper.chained_swapper_demo
 #: model:ir.actions.act_window,name:chained_swapper.partner_chained_swap_lang_action_demo
-msgid "Change language"
+msgid "Chained swap: Language"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_wizard_view_form
+msgid "Change"
 msgstr ""
 
 #. module: chained_swapper
@@ -157,9 +156,20 @@ msgid "ID"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:148
+#: code:addons/chained_swapper/models/chained_swapper.py:150
 #, python-format
-msgid "Incorrect sub-field expression."
+msgid "Incorrect sub-field expression:"
+msgstr ""
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:192
+#, python-format
+msgid "Invalid constraint expression:  "
+msgstr ""
+
+#. module: chained_swapper
+#: model:chained.swapper,name:chained_swapper.chained_swapper_demo
+msgid "Language"
 msgstr ""
 
 #. module: chained_swapper
@@ -208,6 +218,12 @@ msgid "Name"
 msgstr ""
 
 #. module: chained_swapper
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:25
+#, python-format
+msgid "Not possible to swap the field due to the constraint"
+msgstr ""
+
+#. module: chained_swapper
 #: model:chained.swapper.constraint,name:chained_swapper.chained_swapper_constraint_demo
 msgid "Only parent company"
 msgstr ""
@@ -236,6 +252,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__sub_field_ids
 #: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
 msgid "Sub-fields"
+msgstr ""
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:161
+#, python-format
+msgid "The sub-field '%s' is not compatible with the main field."
 msgstr ""
 
 #. module: chained_swapper
