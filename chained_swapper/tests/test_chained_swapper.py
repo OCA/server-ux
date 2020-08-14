@@ -1,6 +1,8 @@
 # Copyright 2020 Tecnativa - Ernesto Tejeda
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import exceptions
 from odoo.tests import common
 from odoo.modules import registry
 from ..hooks import uninstall_hook
@@ -18,11 +20,24 @@ class TestChainedSwapper(common.SavepointCase):
             {'name': 'partner child1 cs', 'parent_id': cls.partner_parent.id})
         cls.partner_child_2 = res_partner.create(
             {'name': 'partner child2 cs', 'parent_id': cls.partner_parent.id})
-        cls.chained_swapper = cls.env.ref(
-            "chained_swapper.chained_swapper_demo")
+        # Prevent duplicate error removing demo data if exists
+        record = cls.env.ref("chained_swapper.chained_swapper_demo", False)
+        if record:
+            record.unlink()
+        cls.chained_swapper = cls.env["chained.swapper"].create({
+            "name": "Language",
+            "model_id": cls.env.ref("base.model_res_partner").id,
+            "field_id": cls.env.ref("base.field_res_partner__lang").id,
+            "sub_field_ids": [(0, 0, {"sub_field_chain": "child_ids.lang"})],
+            "constraint_ids": [(0, 0, {
+                "name": "Only parent company",
+                "expression": "bool(records.mapped('parent_id'))",
+            })],
+        })
+        cls.chained_swapper.add_action()
 
     def test_create_unlink_action(self):
-        """Test if Sidebar Action is added / removed to / from give object."""
+        """Test if Sidebar Action is added / removed to / from given object."""
         action = self.chained_swapper.ref_ir_act_window_id\
             and self.chained_swapper.ref_ir_act_window_id.binding_model_id
         self.assertTrue(action)
@@ -46,28 +61,36 @@ class TestChainedSwapper(common.SavepointCase):
         self.assertFalse(action)
 
     def test_change_constrained_partner_language(self):
-        self.env['chained.swapper.wizard'].with_context(
-            active_model='res.partner',
-            active_id=self.partner_parent.id,
-            active_ids=(self.partner_parent | self.partner_child_1).ids,
-            chained_swapper_id=self.chained_swapper.id
-        ).create({'lang': 'es_ES'})
+        with self.assertRaises(exceptions.UserError):
+            self.env['chained.swapper.wizard'].with_context(
+                active_model='res.partner',
+                active_id=self.partner_parent.id,
+                active_ids=(self.partner_parent | self.partner_child_1).ids,
+                chained_swapper_id=self.chained_swapper.id
+            ).create({'lang': 'es_ES'})
 
     def test_change_partner_language(self):
-        all_partner = (
-            self.partner_parent | self.partner_child_1 | self.partner_child_2)
-        self.assertEqual(all_partner.mapped('lang'), ['en_US']*3)
         self.env['chained.swapper.wizard'].with_context(
             active_model='res.partner',
             active_id=self.partner_parent.id,
             active_ids=[self.partner_parent.id],
             chained_swapper_id=self.chained_swapper.id
         ).create({'lang': 'es_ES'})
-        self.assertEqual(all_partner.mapped('lang'), ['es_ES']*3)
+        self.assertEqual(self.partner_parent.lang, 'es_ES')
+        self.assertEqual(self.partner_child_1.lang, 'es_ES')
+        self.assertEqual(self.partner_child_2.lang, 'es_ES')
 
-    def _test_uninstall_hook(self):
+    def test_uninstall_hook(self):
         """Test if related actions are removed when mass editing
         record is uninstalled."""
         action_id = self.chained_swapper.ref_ir_act_window_id.id
         uninstall_hook(self.cr, registry)
-        self.assertFalse(self.env['ir.actions.act_window'].browse(action_id))
+        self.assertFalse(
+            self.env['ir.actions.act_window'].browse(action_id).exists()
+        )
+
+    def test_invalid_constraint(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.chained_swapper.constraint_ids.write({
+                "expression": "Something incorrect"
+            })

@@ -25,12 +25,19 @@ Chained Swapper
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-With this module you can set the properly configuration
-to add/remove whenever you want a option in the top actions
-menu of any object. That action will launch a wizard that
-will allow you to set a value to a certain field in the
-selected objects and also set that value in other fields
-of other objects related with the original ones.
+This module allows to swap the value of a field and propagate it in a chained
+way to linked records. Example: changing the delivery address in a confirmed
+sales order, it should be changed in its delivery orders as well.
+
+It also allows to apply constraints for not allowing to do that change
+according rules, so the business logic is not broken. Example: Don't allow
+to change the delivery address if the delivery order is validated.
+
+This module requires some technical knowledge for setting the chained swap and
+the constraint, as it's defined through technical names and Python code.
+
+**WARNING**: Use this module with care, as it can screw up database consistency
+if swaps are not properly designed .
 
 **Table of contents**
 
@@ -42,32 +49,49 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to *Setting > Fiend Swaps > Fiend Swaps*.
+#. Go to *Setting > Field Swaps > Field Swaps*.
 #. Create a new object and set the following data as an example:
 
-   #. Set name 'Change Language'.
-   #. Select 'Contact' as a Model.
-   #. Select 'Language (res.partner)' as 'Field'.
-   #. Add a new 'Sub-field chain' with this value 'child_ids.lang'.
-   #. Add a new Constraint with this 'Expression':
-      ```bool(records.mapped('parent_id')```
+   * Name for identifying it and use it for the action name.
+   * Select the source model where the swap will be started.
+   * Select the starting field for which the swap will be done.
+   * Add several chained fields. They are expressed as a string using
+     dot notation, taking the source model as beginning for looking there
+     the first field, and continuing from there drilling through. Example:
+     `picking_ids.partner_id` for `sale.order` model will go to the linked
+     deliveries orders, and change the customer there.
+   * Add possible constraints for restricting the chained swap. They are
+     Python expressions that must be one line that is evaluated as boolean.
+     If the evaluation is true, then a message will be thrown and no swap
+     will be allowed. You can use the variable `records` in your code, that
+     will be referring the selected records for doing the swap. Example: for
+     restricting sales orders that have a delivery order validated:
 
-#. Click on 'Add action' smart button to add a new menu action in
-   'res.partner' tree view named 'Change Language'.
+     `any(p.state == 'done' for p in records.mapped('picking_ids.state'))`
+
+     Each constraint has a name for identifying it, but also for showing that
+     name when displaying the error trying to do the swap.
+
+#. Click on 'Add action' smart button to add a new action in the source model.
+
+On demo databases, you can check the example "Language", that changes the
+language of a contact, and propagate it to children contacts.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Follow the described steps in the configuration section.
-#. If 'Contact' app is installed, go to *Contacts > Contacts*.
-#. Open a parent company contact form view or select one or more
-   parent company contacts in the tree view.
-#. Go to action menu and click on *Change Language* option.
-#. A wizard will be launched allowing you to set a new language.
-#. Click on 'Change' button and the selected contacts will change
-   their language as well as their children.
+#. Go to the source document in list mode.
+#. Select one or several records.
+#. Click on Action and locate the option "Chained swap: <name of the swap>".
+#. If one of the selected records doesn't comply with one of the constraints,
+   a message will be shown, and the swap won't continue.
+#. If everything is OK, a popup will arise, and you will see a field for
+   filling the new value.
+#. Click on "Change", and the swap will be done.
+#. On the chatter of the source document, an entry will be logged for
+   reflecting the done swap.
 
 Bug Tracker
 ===========
