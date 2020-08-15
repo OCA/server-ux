@@ -20,6 +20,7 @@ To configure this module, you need to:
 
      `any(p.state == 'done' for p in records.mapped('picking_ids.state'))`
 
+     Other variables you can use are `env`, `date` and `datetime`.
      Each constraint has a name for identifying it, but also for showing that
      name when displaying the error trying to do the swap.
 

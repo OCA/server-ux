@@ -419,7 +419,8 @@ will be allowed. You can use the variable <cite>records</cite> in your code, tha
 will be referring the selected records for doing the swap. Example: for
 restricting sales orders that have a delivery order validated:</p>
 <p><cite>any(p.state == ‘done’ for p in records.mapped(‘picking_ids.state’))</cite></p>
-<p>Each constraint has a name for identifying it, but also for showing that
+<p>Other variables you can use are <cite>env</cite>, <cite>date</cite> and <cite>datetime</cite>.
+Each constraint has a name for identifying it, but also for showing that
 name when displaying the error trying to do the swap.</p>
 </li>
 </ul>
