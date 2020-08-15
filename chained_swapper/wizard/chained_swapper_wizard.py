@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from lxml import etree
+from datetime import date, datetime
 
 from odoo.tools.safe_eval import safe_eval
 from odoo import _, api, models
@@ -18,10 +19,16 @@ class ChainedSwapperWizard(models.TransientModel):
         if context.get('chained_swapper_id'):
             records = self.env[context.get('active_model')].browse(
                 context.get('active_ids'))
+            exp_dict = {
+                'records': records,
+                'env': self.env,
+                'date': date,
+                'datetime': datetime,
+            }
             chained_swapper = self.env['chained.swapper'].browse(
                 context.get('chained_swapper_id'))
             for constraint in chained_swapper.constraint_ids:
-                if safe_eval(constraint.expression, {'records': records}):
+                if safe_eval(constraint.expression, exp_dict):
                     raise UserError(_(
                         "Not possible to swap the field due to the constraint"
                     ) + ": " + constraint.name)
