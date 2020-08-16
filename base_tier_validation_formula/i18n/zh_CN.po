@@ -34,7 +34,6 @@ msgstr "域"
 #. module: base_tier_validation_formula
 #: selection:tier.definition,definition_type:0
 #, fuzzy
-#| msgid "Formula"
 msgid "Domain & Formula"
 msgstr "公式"
 
