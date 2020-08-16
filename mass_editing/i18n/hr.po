@@ -73,7 +73,6 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 #, fuzzy
-#| msgid "Fields"
 msgid "Field"
 msgstr "Polja"
 
@@ -126,7 +125,6 @@ msgstr "Grupno uređivanje"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 #, fuzzy
-#| msgid "Mass Editing"
 msgid "Mass Editing Line"
 msgstr "Grupno uređivanje"
 
@@ -192,7 +190,6 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
 #, fuzzy
-#| msgid "Sidebar action"
 msgid "Sidebar Action"
 msgstr "Akcija bočnog izbornika"
 

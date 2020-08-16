@@ -72,7 +72,6 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 #, fuzzy
-#| msgid "Fields"
 msgid "Field"
 msgstr "Champs"
 
@@ -125,7 +124,6 @@ msgstr "Édition en lot"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 #, fuzzy
-#| msgid "Mass Editing"
 msgid "Mass Editing Line"
 msgstr "Édition en lot"
 
@@ -191,7 +189,6 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
 #, fuzzy
-#| msgid "Sidebar action"
 msgid "Sidebar Action"
 msgstr "Action de menu latéral"
 
