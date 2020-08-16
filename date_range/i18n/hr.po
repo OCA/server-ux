@@ -46,7 +46,6 @@ msgstr "%s preklapa se sa %s"
 #. module: date_range
 #: sql_constraint:date.range:0
 #, fuzzy
-#| msgid "A date range must be unique per company !"
 msgid "A date range must be unique per company and parent!"
 msgstr "Raspon datuma mora biti jedinstven unutar tvrtke!"
 
@@ -236,7 +235,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_parent_type_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_parent_type_id
 #, fuzzy
-#| msgid "Date Range Type"
 msgid "Parent Type"
 msgstr "Tip raspona datuma"
 
