@@ -34,7 +34,6 @@ msgstr "Reinicio del Rango"
 #. module: sequence_reset_period
 #: model:ir.model,name:sequence_reset_period.model_ir_sequence
 #, fuzzy
-#| msgid "ir.sequence"
 msgid "Sequence"
 msgstr "ir.sequence"
 
