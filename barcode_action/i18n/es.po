@@ -24,7 +24,6 @@ msgstr "Buscador por código de barras"
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action___barcode_scanned
 #, fuzzy
-#| msgid "Barcode Launcher"
 msgid "Barcode Scanned"
 msgstr "Buscador por código de barras"
 
