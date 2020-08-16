@@ -39,7 +39,6 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__name
 #, fuzzy
-#| msgid "Export"
 msgid "Export Name"
 msgstr "Exportar"
 
