@@ -19,7 +19,6 @@ msgstr ""
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_barcode_action
 #, fuzzy
-#| msgid "Barcode Scanned"
 msgid "Barcode Action"
 msgstr "Código de Barras Digitalizado"
 
