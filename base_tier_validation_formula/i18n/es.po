@@ -24,7 +24,6 @@ msgstr "Definición"
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
 #, fuzzy
-#| msgid "Formula"
 msgid "Domain & Formula"
 msgstr "Fórmula"
 
