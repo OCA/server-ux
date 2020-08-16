@@ -20,7 +20,6 @@ msgstr ""
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_barcode_action
 #, fuzzy
-#| msgid "barcode.action"
 msgid "Barcode Action"
 msgstr "barcode.action"
 
