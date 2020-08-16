@@ -78,7 +78,6 @@ msgstr "Ninguno"
 #. module: sequence_check_digit
 #: model:ir.model,name:sequence_check_digit.model_ir_sequence
 #, fuzzy
-#| msgid "ir.sequence"
 msgid "Sequence"
 msgstr "ir.sequence"
 
