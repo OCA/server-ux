@@ -23,7 +23,6 @@ msgstr ""
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
 #, fuzzy
-#| msgid "Avoid quick create"
 msgid "Avoid Quick Create"
 msgstr "Unterbinde Schnellanlage"
 
