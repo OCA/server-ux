@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-14 10:32+0000\n"
-"PO-Revision-Date: 2020-08-14 10:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:138
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:146
 #, python-format
 msgid "<b>Chained swap done</b>:"
 msgstr ""
@@ -218,7 +216,7 @@ msgid "Name"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:25
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:32
 #, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr ""
