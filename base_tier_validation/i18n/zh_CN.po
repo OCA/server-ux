@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-10-21 16:32+0000\n"
+"PO-Revision-Date: 2020-08-24 14:59+0000\n"
 "Last-Translator: Tony Gu <tony@openerp.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -30,10 +30,9 @@ msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:288
-#, fuzzy, python-format
-#| msgid "A review was rejected by %s."
+#, python-format
 msgid "A review has been requested by %s."
-msgstr "%s审批拒绝。"
+msgstr "%s发起审批请求。"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:210
@@ -61,10 +60,9 @@ msgstr "有效"
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:45
-#, fuzzy, python-format
-#| msgid "Active"
+#, python-format
 msgid "Activities"
-msgstr "有效"
+msgstr "活动"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
@@ -80,13 +78,13 @@ msgstr "特定组中的任何用户。"
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approval order by the specified sequence number"
-msgstr ""
+msgstr "根据序号先后执行审批程序"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approve by sequence"
-msgstr ""
+msgstr "根据序号先后执行审批"
 
 #. module: base_tier_validation
 #: selection:tier.review,status:0
@@ -109,7 +107,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -121,17 +119,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
 #, python-format
 msgid "Comment"
-msgstr ""
+msgstr "审批意见"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_comment_wizard
 msgid "Comment Wizard"
-msgstr ""
+msgstr "审批意见向导"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__comment
 msgid "Comments"
-msgstr ""
+msgstr "审批意见"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__company_id
@@ -188,10 +186,8 @@ msgstr "域"
 
 #. module: base_tier_validation
 #: selection:tier.definition,definition_type:0
-#, fuzzy
-#| msgid "Formula"
 msgid "Domain & Formula"
-msgstr "公式"
+msgstr "过滤规则&公式"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__done_by
@@ -218,7 +214,7 @@ msgstr "分组"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__has_comment
 msgid "Has Comment"
-msgstr ""
+msgstr "有审批意见"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
@@ -284,12 +280,12 @@ msgstr "没有需要审批的项目。"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
 msgid "Notify Reviewers on Creation"
-msgstr ""
+msgstr "单据创建时通知审批人"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__object
 msgid "Object"
-msgstr ""
+msgstr "对象"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -339,17 +335,13 @@ msgstr "请求者"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
-#, fuzzy
-#| msgid "Reviews"
 msgid "Res"
-msgstr "审批"
+msgstr "数据"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
-#, fuzzy
-#| msgid "Model"
 msgid "Res Model"
-msgstr "模型"
+msgstr "数据模型"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -449,17 +441,13 @@ msgstr "层级审批（抽象）"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
-#, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Accepted Notification"
-msgstr "层级审批（抽象）"
+msgstr "层级审批已通过的通知"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
-#, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Rejected Notification"
-msgstr "层级审批（抽象）"
+msgstr "层级审批已拒绝的通知"
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
@@ -473,10 +461,8 @@ msgstr "用户"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
-#, fuzzy
-#| msgid "Validated"
 msgid "Validate Reject"
-msgstr "已审批"
+msgstr "拒绝"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
