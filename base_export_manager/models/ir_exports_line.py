@@ -127,33 +127,32 @@ class IrExportsLine(models.Model):
     @api.multi
     def _inverse_name(self):
         """Get the fields from the name."""
-        for one in self:
-            # Field names can have up to only 4 indentation levels
-            parts = one.name.split("/")
-            if len(parts) > 4:
-                raise exceptions.ValidationError(
-                    _("It's not allowed to have more than 4 levels depth: "
-                      "%s") % one.name)
-            for num in range(1, 5):
-                if num > len(parts):
-                    # Empty subfield in this case
+        with self.env.norecompute():
+            for one in self:
+                # Field names can have up to only 4 indentation levels
+                parts = one.name.split("/")
+                if len(parts) > 4:
+                    raise exceptions.ValidationError(
+                        _("It's not allowed to have more than 4 levels depth: "
+                          "%s") % one.name)
+                for num in range(1, 5):
+                    if num > len(parts):
+                        # Empty subfield in this case
+                        # You could get to failing constraint while populating the
+                        # fields, so we skip the uniqueness check and manually
+                        # check the full constraint after the loop
+                        one.with_context(skip_check=True)[one.field_n(num, True)] \
+                            = False
+                        continue
+                    field_name = parts[num - 1]
+                    model = one.model_n(num)
                     # You could get to failing constraint while populating the
-                    # fields, so we skip the uniqueness check and manually
-                    # check the full constraint after the loop
-                    one.with_context(skip_check=True)[one.field_n(num, True)] \
-                        = False
-                    continue
-                field_name = parts[num - 1]
-                model = one.model_n(num)
-                # You could get to failing constraint while populating the
-                # fields, so we skip the uniqueness check and manually check
-                # the full constraint after the loop
-                one.with_context(skip_check=True)[one.field_n(num, True)] = (
-                    one._get_field_id(model, field_name))
-            # invalidate_cache -> in order to get actual value of field 'label'
-            # in function '_check_name'
-            self.invalidate_cache(ids=one.ids)
-            one._check_name()
+                    # fields, so we skip the uniqueness check and manually check
+                    # the full constraint after the loop
+                    one.with_context(skip_check=True)[one.field_n(num, True)] = (
+                        one._get_field_id(model, field_name))
+        self.recompute()
+        self._check_name()
 
     @api.multi
     @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
