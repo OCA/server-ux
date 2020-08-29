@@ -58,15 +58,11 @@ class TierReview(models.Model):
         if not self.approve_sequence:
             return True
         resource = self.env[self.model].browse(self.res_id)
-        reviews = resource.review_ids.filtered(
-            lambda r: r.status in ("pending", "rejected")
-        )
+        reviews = resource.review_ids.filtered(lambda r: r.status == "pending")
         if not reviews:
             return True
-        sequence = reviews.mapped("sequence")
-        sequence.sort()
-        current_sequence = sequence[0]
-        return self.sequence == current_sequence
+        sequence = min(reviews.mapped("sequence"))
+        return self.sequence == sequence
 
     @api.model
     def _get_reviewer_fields(self):
