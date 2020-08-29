@@ -164,7 +164,6 @@ msgid "Created on"
 msgstr "Aangemaakt door"
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__definition_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__definition_id
 msgid "Definition"
@@ -288,11 +287,6 @@ msgid "Notify Reviewers on Creation"
 msgstr "Informeer beoordelaar bij het maken"
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__object
-msgid "Object"
-msgstr "Object"
-
-#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
@@ -346,6 +340,7 @@ msgstr "Res model"
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__review_ids
 #, python-format
 msgid "Review"
 msgstr "Beoordeling"
@@ -496,6 +491,9 @@ msgstr "Validaties"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "bijv. Tier validatie voor..."
+
+#~ msgid "Object"
+#~ msgstr "Object"
 
 #~ msgid "Approve Sequence"
 #~ msgstr "Volgorde goedkeuren"
