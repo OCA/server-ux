@@ -148,6 +148,7 @@ odoo.define("tier_validation.systray", function(require) {
                     ["review_ids.reviewer_ids", "=", session.uid],
                     ["review_ids.status", "=", "pending"],
                     ["review_ids.can_review", "=", true],
+                    ["rejected", "=", false],
                 ],
                 context: context,
             });
