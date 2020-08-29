@@ -49,6 +49,11 @@
                         t-set="status_class"
                         t-value="'alert-danger'"
                     />
+                    <t
+                        t-if="review.status == 'escalated'"
+                        t-set="status_class"
+                        t-value="'alert-warning'"
+                    />
                     <tr t-att-class="status_class">
                         <td class="text-center">
                             <span t-esc="review.sequence" />

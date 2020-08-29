@@ -20,6 +20,7 @@
         "views/tier_review_view.xml",
         "views/assets_backend.xml",
         "wizard/comment_wizard_view.xml",
+        "wizard/escalate_wizard_view.xml",
     ],
     "qweb": ["static/src/xml/systray.xml", "static/src/xml/tier_review_template.xml"],
 }

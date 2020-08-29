@@ -39,6 +39,7 @@ class TierValidation(models.AbstractModel):
         search="_search_reviewer_ids",
     )
     can_review = fields.Boolean(compute="_compute_can_review")
+    can_escalate = fields.Boolean(compute="_compute_can_escalate")
     has_comment = fields.Boolean(compute="_compute_has_comment")
 
     def _compute_has_comment(self):
@@ -67,6 +68,16 @@ class TierValidation(models.AbstractModel):
     def _compute_can_review(self):
         for rec in self:
             rec.can_review = rec._get_sequences_to_approve(self.env.user)
+
+    def _compute_can_escalate(self):
+        for rec in self:
+            if not rec.can_review:
+                rec.can_escalate = False
+                continue
+            sequences = self._get_sequences_to_approve(self.env.user)
+            reviews = rec.review_ids.filtered(lambda l: l.sequence in sequences)
+            definitions = reviews.mapped("definition_id")
+            rec.can_escalate = True in definitions.mapped("has_escalate")
 
     @api.depends("review_ids")
     def _compute_reviewer_ids(self):
@@ -115,7 +126,9 @@ class TierValidation(models.AbstractModel):
         """Override for different validation policy."""
         if not reviews:
             return False
-        return not any([s != "approved" for s in reviews.mapped("status")])
+        return not any(
+            [s not in ("approved", "escalated") for s in reviews.mapped("status")]
+        )
 
     @api.model
     def _calc_reviews_rejected(self, reviews):
@@ -212,6 +225,9 @@ class TierValidation(models.AbstractModel):
     def _get_rejected_notification_subtype(self):
         return "base_tier_validation.mt_tier_validation_rejected"
 
+    def _get_escalated_notification_subtype(self):
+        return "base_tier_validation.mt_tier_validation_escalated"
+
     def _notify_accepted_reviews(self):
         post = "message_post"
         if hasattr(self, post):
@@ -266,6 +282,28 @@ class TierValidation(models.AbstractModel):
         self._rejected_tier(reviews)
         self._update_counter()
 
+    def escalate_tier(self):
+        self.ensure_one()
+        sequences = self._get_sequences_to_approve(self.env.user)
+        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
+        ctx = self._add_comment("escalate", reviews)["context"]
+        comment = self.env["comment.wizard"].with_context(ctx).create({"comment": "/"})
+        wizard = self.env.ref("base_tier_validation.view_escalate_wizard")
+        return {
+            "name": _("Escalation"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "tier.validation.escalate.wizard",
+            "views": [(wizard.id, "form")],
+            "view_id": wizard.id,
+            "target": "new",
+            "context": {
+                "default_res_id": self.id,
+                "default_res_model": self._name,
+                "comment_id": comment.id,
+            },
+        }
+
     def _notify_rejected_review_body(self):
         has_comment = self.review_ids.filtered(
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
@@ -302,6 +340,43 @@ class TierValidation(models.AbstractModel):
         for review in user_reviews:
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_rejected_review()
+
+    def _escalate_tier(self, tiers=False):
+        self.ensure_one()
+        tier_reviews = tiers or self.review_ids
+        user_reviews = tier_reviews.filtered(
+            lambda r: r.status != "approved" and (self.env.user in r.reviewer_ids)
+        )
+        user_reviews.write(
+            {
+                "status": "escalated",
+                "done_by": self.env.user.id,
+                "reviewed_date": fields.Datetime.now(),
+            }
+        )
+        for review in user_reviews:
+            rec = self.env[review.model].browse(review.res_id)
+            rec._notify_escalated_reviews()
+
+    def _notify_escalated_reviews(self):
+        post = "message_post"
+        if hasattr(self, post):
+            # Notify state change
+            getattr(self, post)(
+                subtype=self._get_escalated_notification_subtype(),
+                body=self._notify_escalated_reviews_body(),
+            )
+
+    def _notify_escalated_reviews_body(self):
+        has_comment = self.review_ids.filtered(
+            lambda r: (self.env.user in r.reviewer_ids) and r.comment
+        )
+        if has_comment:
+            comment = has_comment.mapped("comment")[0]
+            return _(
+                "A review was escalated from {} {}".format(self.env.user.name, comment)
+            )
+        return _("A review was escalated by %s.") % (self.env.user.name)
 
     def _notify_requested_review_body(self):
         return _("A review has been requested by %s.") % (self.env.user.name)

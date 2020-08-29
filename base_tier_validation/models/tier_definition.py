@@ -63,6 +63,7 @@ class TierDefinition(models.Model):
         default=False,
         help="Approval order by the specified sequence number",
     )
+    has_escalate = fields.Boolean(string="Allow Escalation", default=False)
 
     @api.onchange("review_type")
     def onchange_review_type(self):

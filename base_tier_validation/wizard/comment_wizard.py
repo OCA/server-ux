@@ -22,4 +22,7 @@ class CommentWizard(models.TransientModel):
             rec._validate_tier(self.review_ids)
         if self.validate_reject == "reject":
             rec._rejected_tier(self.review_ids)
+        if self.validate_reject == "escalate":
+            rec._escalate_tier(self.review_ids)
         rec._update_counter()
+        return self.review_ids

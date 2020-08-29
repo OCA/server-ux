@@ -7,23 +7,41 @@ from odoo import api, fields, models
 class TierReview(models.Model):
     _name = "tier.review"
     _description = "Tier Review"
+    _order = "sequence"
 
-    name = fields.Char(related="definition_id.name", readonly=True)
+    name = fields.Char(compute="_compute_definition_data", store=True, readonly=False)
     status = fields.Selection(
         selection=[
             ("pending", "Pending"),
             ("rejected", "Rejected"),
             ("approved", "Approved"),
+            ("escalated", "Escalated"),
         ],
         default="pending",
     )
     model = fields.Char(string="Related Document Model", index=True)
     res_id = fields.Integer(string="Related Document ID", index=True)
     definition_id = fields.Many2one(comodel_name="tier.definition")
-    review_type = fields.Selection(related="definition_id.review_type", readonly=True)
-    reviewer_id = fields.Many2one(related="definition_id.reviewer_id", readonly=True)
+    review_type = fields.Selection(
+        selection=[
+            ("individual", "Specific user"),
+            ("group", "Any user in a specific group."),
+        ],
+        compute="_compute_definition_data",
+        store=True,
+        readonly=False,
+    )
+    reviewer_id = fields.Many2one(
+        comodel_name="res.users",
+        compute="_compute_definition_data",
+        store=True,
+        readonly=False,
+    )
     reviewer_group_id = fields.Many2one(
-        related="definition_id.reviewer_group_id", readonly=True
+        comodel_name="res.groups",
+        compute="_compute_definition_data",
+        store=True,
+        readonly=False,
     )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
@@ -31,11 +49,13 @@ class TierReview(models.Model):
         compute="_compute_reviewer_ids",
         store=True,
     )
-    sequence = fields.Integer(string="Tier")
+    sequence = fields.Float(string="Tier")
     done_by = fields.Many2one(comodel_name="res.users")
     requested_by = fields.Many2one(comodel_name="res.users")
     reviewed_date = fields.Datetime(string="Validation Date")
-    has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
+    has_comment = fields.Boolean(
+        compute="_compute_definition_data", store=True, readonly=False
+    )
     comment = fields.Char(string="Comments")
     can_review = fields.Boolean(
         compute="_compute_can_review",
@@ -44,12 +64,29 @@ class TierReview(models.Model):
         approve sequence has been achieved""",
     )
     approve_sequence = fields.Boolean(
-        related="definition_id.approve_sequence", readonly=True
+        compute="_compute_definition_data", store=True, readonly=False
     )
+
+    @api.depends(
+        "definition_id.name",
+        "definition_id.review_type",
+        "definition_id.reviewer_id",
+        "definition_id.reviewer_group_id",
+        "definition_id.has_comment",
+        "definition_id.approve_sequence",
+    )
+    def _compute_definition_data(self):
+        for rec in self:
+            rec.name = rec.definition_id.name
+            rec.review_type = rec.definition_id.review_type
+            rec.reviewer_id = rec.definition_id.reviewer_id
+            rec.reviewer_group_id = rec.definition_id.reviewer_group_id
+            rec.has_comment = rec.definition_id.has_comment
+            rec.approve_sequence = rec.definition_id.approve_sequence
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
-        for record in self:
+        for record in self.sorted("sequence"):
             record.can_review = record._can_review_value()
 
     def _can_review_value(self):
@@ -58,9 +95,10 @@ class TierReview(models.Model):
         if not self.approve_sequence:
             return True
         resource = self.env[self.model].browse(self.res_id)
+        resource.invalidate_cache()
         reviews = resource.review_ids.filtered(lambda r: r.status == "pending")
         if not reviews:
-            return True
+            return False
         sequence = min(reviews.mapped("sequence"))
         return self.sequence == sequence
 

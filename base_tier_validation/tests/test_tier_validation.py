@@ -466,3 +466,54 @@ class TierTierValidation(common.SavepointCase):
         self.assertFalse(
             self.test_user_2.with_user(self.test_user_2).review_user_count()
         )
+
+    def test_17_escalate_tier(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "has_escalate": True,
+            }
+        )
+        # Request validation
+        review = test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        record.validate_tier()
+        self.assertFalse(record.can_escalate)
+        # User 2 escalate to user 1
+        record = test_record.with_user(self.test_user_2.id)
+        record.invalidate_cache()
+        self.assertTrue(record.can_escalate)
+        res = record.escalate_tier()
+        ctx = res.get("context")
+        wizard = Form(
+            self.env["tier.validation.escalate.wizard"]
+            .with_user(self.test_user_2.id)
+            .with_context(ctx)
+        )
+        wizard.escalate_reviewer_id = self.test_user_1
+        wizard.escalate_description = "Please review again"
+        wiz = wizard.save()
+        wiz.add_escalate()
+        # Newly created escalated review will have no definition
+        record = test_record.with_user(self.test_user_2.id)
+        record.invalidate_cache()
+        self.assertTrue(record.review_ids.filtered(lambda l: not l.definition_id))
+        # User 1 validate
+        res = record.with_user(self.test_user_1.id).validate_tier()
+        ctx = res.get("context")
+        wizard = Form(
+            self.env["comment.wizard"].with_user(self.test_user_1.id).with_context(ctx)
+        )
+        wizard.comment = "Escalation is reviewed"
+        wiz = wizard.save()
+        wiz.add_comment()
+        self.assertTrue(record.validated)
