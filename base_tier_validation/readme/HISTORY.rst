@@ -1,3 +1,11 @@
+13.0.1.2.2 (2020-08-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixes:
+
+- When using approve_sequence option in any tier.definition there can be inconsistencies in the systray notifications
+- When using approve_sequence, still not approve only the needed sequence, but also other sequence for the same approver
+
 12.0.3.3.1 (2019-12-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
