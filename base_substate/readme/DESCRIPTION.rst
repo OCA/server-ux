@@ -9,4 +9,4 @@ example:
 * We can also send mail when the susbstate is reached.
 
 It is not useful for itself. You can see an example of implementation
-in the 'sale_substate' module. (sale-workflow repository).
+in the 'purchase_substate' module. (purchase-workflow repository).
