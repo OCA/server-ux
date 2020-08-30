@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_substate
+# 	* base_substate
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +91,9 @@ msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_base_substate__mail_template_id
-msgid "If set, an email will be sent to the partner when the object reaches this substate."
+msgid ""
+"If set, an email will be sent to the partner when the object reaches this "
+"substate."
 msgstr ""
 
 #. module: base_substate
@@ -188,24 +190,33 @@ msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_target_state_value__name
-msgid "Target state translateble name.\n"
+msgid ""
+"Target state translateble name.\n"
 "Ex: for sale order \"Quotation\", \"Sale order\", \"Locked\"..."
 msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_base_substate_type__target_state_field
-msgid "Technical target state field name. Ex for sale order \"state\" for other \"status\" ... "
+msgid ""
+"Technical target state field name. Ex for sale order \"state\" for other "
+"\"status\" ... "
 msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_target_state_value__target_state_value
-msgid "Technical target state value.\n"
+msgid ""
+"Technical target state value.\n"
 "Ex: for sale order \"draft\", \"sale\", \"done\", ..."
 msgstr ""
 
 #. module: base_substate
-#: code:addons/base_substate/models/base_substate_mixin.py:67
+#: code:addons/base_substate/models/base_substate_mixin.py:0
+#, python-format
+msgid "The substate \"%s\" is not define for the state \"%s\" but for \"%s\" "
+msgstr ""
+
+#. module: base_substate
+#: code:addons/base_substate/models/base_substate_mixin.py:0
 #, python-format
 msgid "This substate is not define for this object but for %s"
 msgstr ""
-

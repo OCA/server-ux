@@ -28,19 +28,17 @@ class SaleTest(models.Model, TestMixin):
     amount_total = fields.Float(compute="_compute_amount_total", store=True)
 
     @api.depends("line_ids")
-    def _compute_amount_total(cls):
-        for record in cls:
+    def _compute_amount_total(self):
+        for record in self:
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
 
-    @api.multi
-    def button_confirm(cls):
-        cls.write({"state": "sale"})
+    def button_confirm(self):
+        self.write({"state": "sale"})
         return True
 
-    @api.multi
-    def button_cancel(cls):
-        cls.write({"state": "cancel"})
+    def button_cancel(self):
+        self.write({"state": "cancel"})
 
 
 class LineTest(models.Model, TestMixin):
