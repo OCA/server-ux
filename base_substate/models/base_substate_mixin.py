@@ -8,6 +8,42 @@ from odoo.exceptions import ValidationError
 class BaseSubstateMixin(models.AbstractModel):
     _name = "base.substate.mixin"
     _description = "BaseSubstate Mixin"
+    _state_field = "state"
+
+    @api.constrains("substate_id", _state_field)
+    def check_substate_id_value(self):
+        rec_states = dict(self._fields[self._state_field].selection)
+        for rec in self:
+            target_state = rec.substate_id.target_state_value_id.target_state_value
+            if rec.substate_id and rec.state != target_state:
+                raise ValidationError(
+                    _(
+                        'The substate "%s" is not define for the state'
+                        ' "%s" but for "%s" '
+                    )
+                    % (
+                        rec.substate_id.name,
+                        _(rec_states[rec.state]),
+                        _(rec_states[target_state]),
+                    )
+                )
+
+    def _track_template(self, tracking):
+        res = super()._track_template(tracking)
+        first_rec = self[0]
+        changes, tracking_value_ids = tracking[first_rec.id]
+        if "substate_id" in changes and first_rec.substate_id.mail_template_id:
+            res["substate_id"] = (
+                first_rec.substate_id.mail_template_id,
+                {
+                    "auto_delete_message": True,
+                    "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
+                        "mail.mt_note"
+                    ),
+                    "notif_layout": "mail.mail_notification_light",
+                },
+            )
+        return res
 
     def _get_default_substate_id(self, state_val=False):
         """ Gives default substate_id """
@@ -78,7 +114,6 @@ class BaseSubstateMixin(models.AbstractModel):
             values["substate_id"] = self._get_default_substate_id(state_val)
         return values
 
-    @api.multi
     def write(self, values):
         values = self._update_before_write_create(values)
         res = super().write(values)
