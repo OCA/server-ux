@@ -6,28 +6,28 @@ from .models_mixin import TestMixin
 
 
 class SaleTest(models.Model, TestMixin):
-    _inherit = 'base.substate.mixin'
+    _inherit = "base.substate.mixin"
     _name = "base.substate.test.sale"
     _description = "Base substate Test Model"
 
     name = fields.Char(required=True)
-    user_id = fields.Many2one('res.users', string='Responsible')
+    user_id = fields.Many2one("res.users", string="Responsible")
     state = fields.Selection(
-        [('draft', 'New'), ('cancel', 'Cancelled'),
-         ('sale', 'Sale'),
-         ('done', 'Done')],
-        string="Status", readonly=True, default='draft')
+        [("draft", "New"), ("cancel", "Cancelled"), ("sale", "Sale"), ("done", "Done")],
+        string="Status",
+        readonly=True,
+        default="draft",
+    )
     active = fields.Boolean(default=True)
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    partner_id = fields.Many2one("res.partner", string="Partner")
     line_ids = fields.One2many(
-        comodel_name='base.substate.test.sale.line',
-        inverse_name='sale_id',
+        comodel_name="base.substate.test.sale.line",
+        inverse_name="sale_id",
         context={"active_test": False},
     )
-    amount_total = fields.Float(
-        compute='_compute_amount_total', store=True)
+    amount_total = fields.Float(compute="_compute_amount_total", store=True)
 
-    @api.depends('line_ids')
+    @api.depends("line_ids")
     def _compute_amount_total(cls):
         for record in cls:
             for line in record.line_ids:
@@ -35,12 +35,12 @@ class SaleTest(models.Model, TestMixin):
 
     @api.multi
     def button_confirm(cls):
-        cls.write({'state': 'sale'})
+        cls.write({"state": "sale"})
         return True
 
     @api.multi
     def button_cancel(cls):
-        cls.write({'state': 'cancel'})
+        cls.write({"state": "cancel"})
 
 
 class LineTest(models.Model, TestMixin):
@@ -49,8 +49,8 @@ class LineTest(models.Model, TestMixin):
 
     name = fields.Char()
     sale_id = fields.Many2one(
-        comodel_name='base.substate.test.sale',
-        ondelete='cascade',
+        comodel_name="base.substate.test.sale",
+        ondelete="cascade",
         context={"active_test": False},
     )
     qty = fields.Float()
