@@ -10,8 +10,8 @@
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
-        'security/base_substate_security.xml',
-        'security/ir.model.access.csv',
+        "security/base_substate_security.xml",
+        "security/ir.model.access.csv",
         "views/base_substate_type_views.xml",
         "views/base_substate_value_views.xml",
         "views/base_substate_views.xml",
