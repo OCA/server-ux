@@ -101,7 +101,7 @@ class TestBaseSubstate(common.SavepointCase):
                 "name": "Test base substate to basic sale",
                 "partner_id": partner.id,
                 "line_ids": [
-                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5,})
+                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
             }
         )
