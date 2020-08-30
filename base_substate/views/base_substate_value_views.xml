@@ -51,7 +51,6 @@
         <field name="name">Target State Value</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">target.state.value</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="target_state_value_view_search" />
         <field name="domain">[]</field>
