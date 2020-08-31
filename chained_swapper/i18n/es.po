@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:138
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:146
 #, python-format
 msgid "<b>Chained swap done</b>:"
 msgstr "<b>Cambio encadenado realizado</b>:"
@@ -89,7 +89,7 @@ msgid "Chained Swapper Sub-field"
 msgstr "Intercambiador encadenado - Sub-campos"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:103
+#: code:addons/chained_swapper/models/chained_swapper.py:104
 #, python-format
 msgid "Chained swap"
 msgstr "Cambio encadenado"
@@ -171,13 +171,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:150
+#: code:addons/chained_swapper/models/chained_swapper.py:151
 #, python-format
 msgid "Incorrect sub-field expression:"
 msgstr "Expresión de sub-campo incorrecta:"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:192
+#: code:addons/chained_swapper/models/chained_swapper.py:193
 #, python-format
 msgid "Invalid constraint expression:  "
 msgstr "Expresión de restricción no válida:"
@@ -237,7 +237,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:25
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:32
 #, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr "No es posible cambiar el campo debido a la restricción"
@@ -276,7 +276,7 @@ msgid "Sub-fields"
 msgstr "Sub-campo"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:161
+#: code:addons/chained_swapper/models/chained_swapper.py:162
 #, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr "El sub-campo '%s' no es compatible con el campo principal."

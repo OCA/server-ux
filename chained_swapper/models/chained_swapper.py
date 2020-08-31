@@ -87,9 +87,10 @@ class ChainedSwapper(models.Model):
         self.field_id = False
 
     def write(self, vals):
-        super().write(vals)
+        res = super().write(vals)
         if 'name' in vals:
-            self.ref_ir_act_window_id.name = self.name
+            self.mapped("ref_ir_act_window_id").write({"name": vals["name"]})
+        return res
 
     @api.multi
     def unlink(self):
