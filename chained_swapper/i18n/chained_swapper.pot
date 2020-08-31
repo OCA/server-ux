@@ -72,7 +72,7 @@ msgid "Chained Swapper Sub-field"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:103
+#: code:addons/chained_swapper/models/chained_swapper.py:104
 #, python-format
 msgid "Chained swap"
 msgstr ""
@@ -154,13 +154,13 @@ msgid "ID"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:150
+#: code:addons/chained_swapper/models/chained_swapper.py:151
 #, python-format
 msgid "Incorrect sub-field expression:"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:192
+#: code:addons/chained_swapper/models/chained_swapper.py:193
 #, python-format
 msgid "Invalid constraint expression:  "
 msgstr ""
@@ -253,7 +253,7 @@ msgid "Sub-fields"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:161
+#: code:addons/chained_swapper/models/chained_swapper.py:162
 #, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr ""
