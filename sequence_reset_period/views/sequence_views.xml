@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-     <record id="sequence_view" model="ir.ui.view">
+    <record id="sequence_view" model="ir.ui.view">
         <field name="model">ir.sequence</field>
-        <field name="inherit_id" ref="base.sequence_view"/>
+        <field name="inherit_id" ref="base.sequence_view" />
         <field name="arch" type="xml">
             <field name="use_date_range" position="after">
-                <field name="range_reset" attrs="{'invisible': [('use_date_range','=', False)]}"/>
+                <field
+                    name="range_reset"
+                    attrs="{'invisible': [('use_date_range','=', False)]}"
+                />
             </field>
         </field>
-     </record>
+    </record>
 </odoo>
