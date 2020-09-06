@@ -58,7 +58,7 @@ class MassObject(models.Model):
             'src_model': src_obj,
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form, tree',
+            'view_mode': 'form',
             'target': 'new',
             'binding_model_id': self.model_id.id,
             'binding_type': 'action',
