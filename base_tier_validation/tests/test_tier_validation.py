@@ -67,6 +67,7 @@ class TierTierValidation(common.SavepointCase):
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
+                "sequence": 30,
             }
         )
 
@@ -152,6 +153,15 @@ class TierTierValidation(common.SavepointCase):
         )
         self.assertTrue(res)
 
+    def test_09_search_rejected(self):
+        """Test for the rejected search method."""
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.test_record.invalidate_cache()
+        res = self.test_model.with_user(self.test_user_1.id).search(
+            [("rejected", "=", False)]
+        )
+        self.assertTrue(res)
+
     def test_10_systray_counter(self):
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
@@ -230,6 +240,41 @@ class TierTierValidation(common.SavepointCase):
         )._notify_rejected_review_body()
         self.assertEqual(comment, "A review was rejected by John. (Test Comment)")
 
+    def test_11_add_comment_rejection(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "has_comment": True,
+            }
+        )
+        # Request validation
+        review = test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        res = record.reject_tier()  # Rejection
+        ctx = res.get("context")
+        wizard = Form(self.env["comment.wizard"].with_context(ctx))
+        wizard.comment = "Test Comment"
+        wiz = wizard.save()
+        wiz.add_comment()
+        self.assertTrue(test_record.review_ids.mapped("comment"))
+        # Check notify
+        comment = test_record.with_user(
+            self.test_user_1.id
+        )._notify_accepted_reviews_body()
+        self.assertEqual(comment, "A review was accepted. (Test Comment)")
+        comment = test_record.with_user(
+            self.test_user_1.id
+        )._notify_rejected_review_body()
+        self.assertEqual(comment, "A review was rejected by John. (Test Comment)")
+
     def test_12_approve_sequence(self):
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
@@ -276,6 +321,57 @@ class TierTierValidation(common.SavepointCase):
         self.assertFalse(any(r.status == "approved" for r in record1.review_ids))
         record1.validate_tier()
         self.assertTrue(any(r.status == "approved" for r in record1.review_ids))
+
+    def test_12_approve_sequence_same_user(self):
+        """ Similar to test_12_approve_sequence, but all same users,
+        the approve_sequence still apply correctly """
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "sequence": 20,
+            }
+        )
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "sequence": 10,
+            }
+        )
+        # Request validation
+        self.assertFalse(self.test_record.review_ids)
+        reviews = test_record.with_user(self.test_user_1.id).request_validation()
+        self.assertTrue(reviews)
+
+        record1 = test_record.with_user(self.test_user_1.id)
+        record1.invalidate_cache()
+        self.assertTrue(record1.can_review)
+        # Validation will be all by sequence
+        self.assertEqual(
+            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            1, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
 
     def test_13_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(
@@ -335,3 +431,38 @@ class TierTierValidation(common.SavepointCase):
         self.assertIn("requested", self.test_record._notify_requested_review_body())
         self.assertIn("rejected", self.test_record._notify_rejected_review_body())
         self.assertIn("accepted", self.test_record._notify_accepted_reviews_body())
+
+    def test_16_review_user_count_on_rejected(self):
+        """If document is rejected, it should always removed from tray"""
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+            }
+        )
+        test_record.with_user(self.test_user_2).request_validation()
+        record1 = test_record.with_user(self.test_user_1)
+        record1.invalidate_cache()
+        self.assertTrue(record1.can_review)
+        self.assertTrue(
+            self.test_user_1.with_user(self.test_user_1).review_user_count()
+        )
+        self.assertTrue(
+            self.test_user_2.with_user(self.test_user_2).review_user_count()
+        )
+        # user 1 reject first tier
+        record1.reject_tier()
+        record1.invalidate_cache()
+        self.assertFalse(record1.can_review)
+        # both user 1 and 2 has nothing left in tray
+        self.assertFalse(
+            self.test_user_1.with_user(self.test_user_1).review_user_count()
+        )
+        self.assertFalse(
+            self.test_user_2.with_user(self.test_user_2).review_user_count()
+        )
