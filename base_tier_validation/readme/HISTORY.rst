@@ -1,3 +1,12 @@
+
+13.0.1.3.0 (2020-09-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Tier Definition option to auto validation by cron job
+- Tier Definition option to trigger server action on approved
+
 13.0.1.2.2 (2020-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

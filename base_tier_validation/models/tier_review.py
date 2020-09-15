@@ -75,3 +75,11 @@ class TierReview(models.Model):
 
     def _get_reviewers(self):
         return self.reviewer_id + self.reviewer_group_id.users
+
+    @api.constrains("status")
+    def _trigger_server_action(self):
+        for rec in self.filtered(lambda l: l.status == "approved"):
+            if not rec.definition_id.server_action_id:
+                continue
+            ctx = {"active_model": rec.model, "active_id": rec.res_id}
+            rec.definition_id.server_action_id.with_context(ctx).run()

@@ -63,20 +63,41 @@
                                 options="{'no_create': True}"
                             />
                             <field name="sequence" />
-                            <field name="notify_on_create" />
-                            <field name="has_comment" />
                             <field name="approve_sequence" />
                         </group>
                     </group>
-                    <group name="bottom">
-                        <field name="definition_type" />
-                        <field
-                            name="definition_domain"
-                            widget="domain"
-                            options="{'model': 'model'}"
-                            attrs="{'invisible': [('definition_type', '!=', 'domain')]}"
-                        />
-                    </group>
+                    <notebook>
+                        <page name="apply" string="Apply On">
+                            <group name="bottom">
+                                <field name="definition_type" />
+                                <field
+                                    name="definition_domain"
+                                    widget="domain"
+                                    options="{'model': 'model'}"
+                                    attrs="{'invisible': [('definition_type', '!=', 'domain')]}"
+                                />
+                            </group>
+                        </page>
+                        <page name="options" string="More Options">
+                            <group>
+                                <group>
+                                    <field name="notify_on_create" />
+                                    <field name="has_comment" />
+                                </group>
+                                <group>
+                                    <field name="server_action_id" />
+                                    <field name="auto_validate" />
+                                    <field
+                                        name="auto_validate_domain"
+                                        string="if pass condition"
+                                        widget="domain"
+                                        options="{'model': 'model'}"
+                                        attrs="{'invisible': [('auto_validate', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

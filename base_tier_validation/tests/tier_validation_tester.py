@@ -19,9 +19,13 @@ class TierValidationTester(models.Model):
     )
     test_field = fields.Float()
     user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
+    test_bool = fields.Boolean()
 
     def action_confirm(self):
         self.write({"state": "confirmed"})
+
+    def _get_under_validation_exceptions(self):
+        return super()._get_under_validation_exceptions() + ["test_bool"]
 
 
 class TierValidationTester2(models.Model):
