@@ -66,19 +66,19 @@ msgid "Exports Line"
 msgstr ""
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:171
+#: code:addons/base_export_manager/models/ir_exports_line.py:170
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "Feltet '%s' findes allerede"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:166
+#: code:addons/base_export_manager/models/ir_exports_line.py:165
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Feltet '%s' findes ikke"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:199
+#: code:addons/base_export_manager/models/ir_exports_line.py:198
 #, python-format
 msgid "Field '%s' not found in model '%s'"
 msgstr "Feltet '%s' findes ikke i model '%s'"
@@ -119,7 +119,7 @@ msgid "HTTP Routing"
 msgstr ""
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
 msgstr "Det er ikke tilladt at have mere end 4 niveauers dybde: %s"

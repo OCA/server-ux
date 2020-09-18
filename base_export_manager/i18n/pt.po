@@ -66,19 +66,19 @@ msgid "Exports Line"
 msgstr "Linha de exportação"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:171
+#: code:addons/base_export_manager/models/ir_exports_line.py:170
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "O campo '%s' já existe"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:166
+#: code:addons/base_export_manager/models/ir_exports_line.py:165
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "O campo '%s' não existe"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:199
+#: code:addons/base_export_manager/models/ir_exports_line.py:198
 #, python-format
 msgid "Field '%s' not found in model '%s'"
 msgstr "O campo '%s' não foi encontrado no modelo '%s'"
@@ -119,7 +119,7 @@ msgid "HTTP Routing"
 msgstr "Encaminhamento HTTP"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
 msgstr "Não é permitido ter mais de 4 níveis de produndidade: %s"
