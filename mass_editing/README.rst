@@ -25,13 +25,11 @@ Mass Editing
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-
 This module provides the following features:
 
 * You can add, update or remove the values of more than one records on the fly at the same time.
 
 * You can configure mass editing for any Odoo model.
-
 
 **Table of contents**
 
@@ -41,41 +39,40 @@ This module provides the following features:
 Configuration
 =============
 
-
-To configure this module, you need to:
-
 * Go to *Settings / Mass Editing / Mass Editing* and configure the object and fields for Mass Editing.
-
-Usage
-=====
-
-This module allows to add, update or remove the values of more than one records on the fly at the same time.
-
-As shown in figure you have to configure the object and fields for mass editing.
 
 * Select the object and add the fields of that object on which you want to apply mass editing.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-1.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing_form.png
    :width: 70%
 
 * *Add Action*: As shown in figure click on *Add Sidebar Button* to add mass editing option in *Action* option in action.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-2.png
-   :width: 70%
 
-* *Go for Mass Editing*: As shown in figure, select the records which you want to modify and click on *Action* to open mass editing popup.
+**Options**
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-3.png
+* You can limit the mass editing by a domain.
+
+* you can limit the access to the option to a given group.
+
+* you can add an extra message that will be displayed in the wizard.
+
+Usage
+=====
+
+* *Go for Mass Editing*: select the records which you want to modify and click on *Action* to open mass editing popup.
+
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-item_tree.png
    :width: 70%
 
 * Select *Set / Remove* action and write down the value to set or remove the value for the given field.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-4.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-wizard_form.png
    :width: 70%
 
 * This way you can set / remove the values of the fields.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-5.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-item_tree-result.png
    :width: 70%
 
 Bug Tracker
@@ -96,6 +93,7 @@ Authors
 
 * Serpent Consulting Services Pvt. Ltd.
 * Tecnativa
+* GRAP
 
 Contributors
 ~~~~~~~~~~~~
@@ -107,6 +105,7 @@ Contributors
 * Juan Negrete <jnegrete@casasalce.com>
 * Raul Martin <raul.martin@braintec-group.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Sylvain LE GAL (https://twitter.com/legalsylvain)
 
 Maintainers
 ~~~~~~~~~~~
