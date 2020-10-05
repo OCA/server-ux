@@ -42,7 +42,7 @@ msgid "Add sidebar button"
 msgstr "Ajouter le boutton à la barre latérale"
 
 #. module: mass_operation_abstract
-#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__groups_id
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
 msgid "Allowed Groups"
 msgstr "Groupes autorisés"
 

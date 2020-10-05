@@ -45,7 +45,13 @@ class MassOperationMixin(models.AbstractModel):
         copy=False,
     )
 
-    groups_id = fields.Many2one(comodel_name="res.groups", string="Allowed Groups")
+    group_ids = fields.Many2many(
+        comodel_name="res.groups",
+        relation="mass_group_rel",
+        column1="mass_id",
+        column2="group_id",
+        string="Allowed Groups",
+    )
 
     domain = fields.Char(string="Domain", required=True, default="[]")
 
@@ -82,7 +88,7 @@ class MassOperationMixin(models.AbstractModel):
             "name": self.action_name,
             "type": "ir.actions.act_window",
             "res_model": self._wizard_model_name,
-            "groups_id": [(6, 0, self.groups_id.ids)],
+            "groups_id": [(6, 0, self.group_ids.ids)],
             "context": """{
                 'mass_operation_mixin_id' : %d,
                 'mass_operation_mixin_name' : '%s',

@@ -36,7 +36,7 @@ msgstr ""
 "'many2many_tags', 'selection'"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__groups_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__group_ids
 msgid "Allowed Groups"
 msgstr "Groupes Autorisés"
 
