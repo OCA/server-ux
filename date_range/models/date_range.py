@@ -48,12 +48,10 @@ class DateRange(models.Model):
 
     @api.depends("company_id", "type_id.company_id")
     def _compute_type_id(self):
-        if (
-            self.company_id
-            and self.type_id.company_id
-            and self.type_id.company_id != self.company_id
-        ):
-            self.type_id = self.env["date.range.type"]
+        """Enforce check of company consistency when changing company, here
+        or in the type.
+        """
+        self._check_company_id_type_id()
 
     @api.constrains("company_id", "type_id")
     def _check_company_id_type_id(self):
