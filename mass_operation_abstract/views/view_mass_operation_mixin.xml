@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2018-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="view_mass_operation_mixin_search" model="ir.ui.view">
+        <field name="model">mass.operation.mixin</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="group_ids"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_mass_operation_mixin_tree" model="ir.ui.view">
+        <field name="model">mass.operation.mixin</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="(ref_ir_act_window_id == False)">
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="group_ids"/>
+                <field name="ref_ir_act_window_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mass_operation_mixin_form" model="ir.ui.view">
+        <field name="model">mass.operation.mixin</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="enable_mass_operation" type="object"
+                        icon="fa-plus"
+                        class="btn btn-primary" string="Add sidebar button"
+                        attrs="{'invisible':[('ref_ir_act_window_id', '!=', False)]}"
+                        help="Display a button in the sidebar of related model to open a wizard"/>
+                    <button name="disable_mass_operation" type="object"
+                        icon="fa-minus"
+                        class="btn btn-default" string="Remove sidebar button"
+                        attrs="{'invisible':[('ref_ir_act_window_id', '=', False)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only"><label for="name"/></div>
+                        <h1><field name="name"/></h1>
+                        <div class="oe_edit_only"><label for="action_name"/></div>
+                        <h2><field name="action_name"
+                            attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"/></h2>
+
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_id" attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"/>
+                            <field name="domain" attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="message"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="setting" string="Settings" />
+                            <!-- Placeholder to use in inherited view, to insert custom settings-->
+                        <page name="technical" string="Technical Informations">
+                            <group>
+                                <field name="ref_ir_act_window_id" attrs="{'invisible':[('ref_ir_act_window_id', '=', False)]}"/>
+                            </group>
+                        </page>
+                        <page string="Security">
+                            <field name="group_ids" nolabel="1" attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

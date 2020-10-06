@@ -5,3 +5,4 @@
 * Juan Negrete <jnegrete@casasalce.com>
 * Raul Martin <raul.martin@braintec-group.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Sylvain LE GAL (https://twitter.com/legalsylvain)
