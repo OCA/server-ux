@@ -46,7 +46,7 @@ class DateRangeTypeTest(TransactionCase):
         drt = self.type.create(
             {"name": "Fiscal year", "company_id": False, "allow_overlap": False}
         )
-        self.env["date.range"].create(
+        dr = self.env["date.range"].create(
             {
                 "name": "FS2016",
                 "date_start": "2015-01-01",
@@ -57,3 +57,6 @@ class DateRangeTypeTest(TransactionCase):
         )
         with self.assertRaises(ValidationError):
             drt.company_id = self.company_2
+        drt.company_id = self.company.id
+        with self.assertRaises(ValidationError):
+            dr.company_id = self.company_2
