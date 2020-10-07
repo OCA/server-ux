@@ -7,7 +7,7 @@ from openupgradelib import openupgrade
 
 
 def migrate(cr, installed_version):
-    if not installed_version:
+    if not installed_version or openupgrade.table_exists(cr, 'mass_editing'):
         return
 
     openupgrade.rename_tables(cr, [('mass_object', 'mass_editing')])
