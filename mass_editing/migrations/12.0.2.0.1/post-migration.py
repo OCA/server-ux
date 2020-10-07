@@ -3,10 +3,11 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from openupgradelib import openupgrade
 
 
 def migrate(cr, version):
-    if not version:
+    if not version or openupgrade.table_exists(cr, 'mass_editing'):
         return
     # Move field_ids to mass_editing_line
     cr.execute(
