@@ -3,13 +3,21 @@
 
 from lxml import etree
 
-from odoo import _, api, models
+from odoo import _, api, fields, models
 
 
 class MassEditingWizard(models.TransientModel):
     _name = "mass.editing.wizard"
     _inherit = "mass.operation.wizard.mixin"
     _description = "Wizard for mass edition"
+
+    # need for fields with attribute check_company
+    # See: odoo/fields.py#L2350
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+    )
 
     @api.model
     def _prepare_fields(self, line, field, field_info):
