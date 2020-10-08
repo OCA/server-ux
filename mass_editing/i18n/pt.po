@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2020-05-26 21:19+0000\n"
+"PO-Revision-Date: 2020-10-09 00:08+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -23,13 +23,13 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Nome da Ação"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:23
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -38,11 +38,14 @@ msgid ""
 "Example :\n"
 "'many2many_tags', 'selection'"
 msgstr ""
+"Adicionar texto do widget que será usado para exibir o campo do assistente. "
+"Exemplo:\n"
+"'many2many_tags', 'selection'"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__group_ids
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Grupos Permitidos"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
@@ -68,24 +71,24 @@ msgstr "Nome a Exibir"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domínio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 msgid "ID"
-msgstr "ID"
+msgstr "Id"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Se atribuído, esta mensagem será exibida no assistente."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
@@ -111,7 +114,7 @@ msgstr "Última Atualização em"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_editing
@@ -119,18 +122,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__mass_editing_id
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 msgid "Mass Editing"
-msgstr "Edição Múltipla"
+msgstr "Edição em Massa"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr ""
+msgstr "Linha de Edição em Massa"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 msgid "Message"
-msgstr ""
+msgstr "Mensagem"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
@@ -146,61 +149,61 @@ msgstr "Nome"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Perigo da Descrição da Operação"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Info da Descrição da Operação"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Aviso da Descrição da Operação"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Qtd de Itens Restantes"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:22
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Qtd de Itens Selecionados"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequência"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:21
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Atribuir"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
 msgid "Sidebar Action"
-msgstr ""
+msgstr "Ação da Barra Lateral"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Opção do Widget"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
-msgstr "Assistente de edição múltipla"
+msgstr "Assistente de edição em massa"
 
 #~ msgid "%s (copy)"
 #~ msgstr "%s (cópia)"
