@@ -99,6 +99,6 @@ class DateRangeGenerator(models.TransientModel):
         if date_ranges:
             for dr in date_ranges:
                 self.env["date.range"].create(dr)
-        return self.env["ir.actions.act_window"].for_xml_id(
-            module="date_range", xml_id="date_range_action"
+        return self.env["ir.actions.actions"]._for_xml_id(
+            "date_range.date_range_action"
         )
