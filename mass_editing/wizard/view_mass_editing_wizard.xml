@@ -14,15 +14,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='custom_info']" position="inside">
-                <!--
-                In v13.0 any field can be have the attribute "check_company"
-                that adds an extra domain in field view so we need the
-                company_id field in mass editing wizard view.
-                As example see location_id from stock.location model.
-                The extra domain is added here:
-                odoo/fields.py#L2350
-                -->
-                <field name="company_id" invisible="1" />
                 <group name="group_field_list" colspan="4" col="6">
                 </group>
             </xpath>
