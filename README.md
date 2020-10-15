@@ -15,7 +15,11 @@ None
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[date_range](date_range/) | 14.0.1.0.0 | Manage all kind of date range
 
 [//]: # (end addons)
 
