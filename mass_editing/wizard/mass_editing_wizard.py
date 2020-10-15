@@ -72,7 +72,9 @@ class MassEditingWizard(models.TransientModel):
         for line in mass_editing.mapped("line_ids"):
             # Field part
             field = line.field_id
-            field_info = fields_info[field.name]
+            field_info = self._clean_check_company_field_domain(
+                TargetModel, field, fields_info[field.name]
+            )
             all_fields.update(self._prepare_fields(line, field, field_info))
 
             # XML Part
@@ -81,6 +83,20 @@ class MassEditingWizard(models.TransientModel):
         result["arch"] = etree.tostring(arch, encoding="unicode")
         result["fields"] = all_fields
         return result
+
+    @api.model
+    def _clean_check_company_field_domain(self, TargetModel, field, field_info):
+        """
+        This method remove the field view domain added by Odoo for relational
+        fields with check_company attribute to avoid error for non exists
+        company_id or company_ids fields in wizard view.
+        See _description_domain method in _Relational Class
+        """
+        field_class = TargetModel._fields[field.name]
+        if not field_class.relational or not field_class.check_company or field.domain:
+            return field_info
+        field_info["domain"] = "[]"
+        return field_info
 
     @api.model
     def create(self, vals):
