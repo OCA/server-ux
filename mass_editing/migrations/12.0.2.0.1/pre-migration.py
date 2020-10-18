@@ -11,3 +11,6 @@ def migrate(cr, installed_version):
         return
 
     openupgrade.rename_tables(cr, [('mass_object', 'mass_editing')])
+    if not openupgrade.column_exists(cr, 'mass_editing', 'action_name'):
+        copy_vals = {'mass_editing': [('name', 'action_name', None)]}
+        openupgrade.copy_columns(cr, copy_vals)
