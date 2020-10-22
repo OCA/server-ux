@@ -9,36 +9,37 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2021-02-11 18:44+0000\n"
+"Last-Translator: Dennis Sluijk <d.sluijk@onestein.nl>\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
-msgstr ""
+msgstr "%s is een ongeldige reeks (%s > %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s overlapt %s"
 
 #. module: date_range
 #: model:ir.model.constraint,message:date_range.constraint_date_range_date_range_uniq
 msgid "A date range must be unique per company !"
-msgstr ""
+msgstr "Een datumreeks moet uniek zijn per bedrijf!"
 
 #. module: date_range
 #: model:ir.model.constraint,message:date_range.constraint_date_range_type_date_range_type_uniq
 msgid "A date range type must be unique per company !"
-msgstr ""
+msgstr "Een datumreekssoort moet uniek zijn per bedrijf!"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__active
@@ -49,7 +50,7 @@ msgstr "Actief"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__allow_overlap
 msgid "Allow Overlap"
-msgstr ""
+msgstr "Overlappen toestaan"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -61,7 +62,7 @@ msgstr "Annuleren"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__company_id
 msgid "Company"
-msgstr ""
+msgstr "Bedrijf"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__create_uid
@@ -80,50 +81,50 @@ msgstr "Aangemaakt op"
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
 msgid "Date Range"
-msgstr ""
+msgstr "Datumreeks"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
 msgid "Date Range Generator"
-msgstr ""
+msgstr "Datumreeks Generator"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
-msgstr ""
+msgstr "Datumreekssoort"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr ""
+msgstr "Datumreekssoorten"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr ""
+msgstr "Datumreeksen"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_start
 msgid "Date Start"
-msgstr ""
+msgstr "Start Datum"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
 msgid "Date range"
-msgstr ""
+msgstr "Datumreeks"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
 msgid "Date range type"
-msgstr ""
+msgstr "Datumreekssoort"
 
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
+msgstr "Datumreeksen"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__display_name
@@ -135,19 +136,19 @@ msgstr "Te tonen naam"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__duration_count
 msgid "Duration"
-msgstr ""
+msgstr "Duur"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_end
 msgid "End date"
-msgstr ""
+msgstr "Einddatum"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "Genereer Datumreeksen"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
@@ -191,27 +192,27 @@ msgstr "Naam"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__count
 msgid "Number of ranges to generate"
-msgstr ""
+msgstr "Aantal te genereren reeksen"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__name_prefix
 msgid "Range name prefix"
-msgstr ""
+msgstr "Voorvoegsel voor reeksnaam"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_range_ids
 msgid "Ranges"
-msgstr ""
+msgstr "Reeksen"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_start
 msgid "Start date"
-msgstr ""
+msgstr "Startdatum"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Submit"
-msgstr ""
+msgstr "Verzenden"
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:0
@@ -220,12 +221,15 @@ msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
 msgstr ""
+"Het bedrijf in de datumreeksgenerator en in de datumreekssoort moeten "
+"hetzelfde zijn."
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr ""
+"Het bedrijf in de datumreeks en in de datumreekssoort moeten hetzelfde zijn."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
