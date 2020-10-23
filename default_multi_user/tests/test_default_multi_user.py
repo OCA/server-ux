@@ -16,6 +16,10 @@ class TestDefaultMultiUser(common.SavepointCase):
         cls.default_model = cls.env["ir.default"]
         cls.user_model = cls.env["res.users"]
         cls.partner_model = cls.env["res.partner"]
+        cls.company_model = cls.env["res.company"]
+
+        cls.main_company = cls.env.ref("base.main_company")
+        cls.other_company = cls.company_model.create({"name": "Test Company"})
 
         cls.field = cls.env.ref("base.field_res_partner__phone")
         cls.group_user = cls.env.ref("base.group_user")
@@ -29,11 +33,18 @@ class TestDefaultMultiUser(common.SavepointCase):
         cls.user_3 = cls._create_user(
             "user_3", [cls.group_user, cls.group_partner, cls.group_private]
         )
+        cls.user_4 = cls._create_user(
+            "user_4",
+            [cls.group_user, cls.group_partner, cls.group_private],
+            cls.other_company,
+        )
 
         cls.test_value = "+34 666 777 888"
 
     @classmethod
-    def _create_user(cls, login, groups):
+    def _create_user(cls, login, groups, company=False):
+        if not company:
+            company = cls.main_company
         group_ids = [group.id for group in groups]
         user = cls.user_model.create(
             {
@@ -42,6 +53,8 @@ class TestDefaultMultiUser(common.SavepointCase):
                 "password": "demo",
                 "email": "%s@yourcompany.com" % login,
                 "groups_id": [(6, 0, group_ids)],
+                "company_id": company.id,
+                "company_ids": [(6, 0, [cls.main_company.id, cls.other_company.id])],
             }
         )
         return user
@@ -115,3 +128,22 @@ class TestDefaultMultiUser(common.SavepointCase):
         self.assertNotEqual(rec_1.phone, self.test_value)
         rec_2 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
         self.assertEqual(rec_2.phone, self.test_value)
+
+    def test_05_multi_company(self):
+        # Global for main company
+        self.default_model.create(
+            {
+                "field_id": self.field.id,
+                "json_value": json.dumps(self.test_value, ensure_ascii=False),
+                "company_id": self.main_company.id,
+            }
+        )
+        rec_1 = self.partner_model.with_user(self.user_2).create({"name": "Test"})
+        self.assertEqual(rec_1.phone, self.test_value)
+        # User in other company does not get the default.
+        rec_2 = self.partner_model.with_user(self.user_4).create({"name": "Test"})
+        self.assertNotEqual(rec_2.phone, self.test_value)
+        # User 1 switch company. Does not get the default.
+        self.user_1.company_id = self.other_company
+        rec_3 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
+        self.assertNotEqual(rec_3.phone, self.test_value)
