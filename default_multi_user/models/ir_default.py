@@ -41,11 +41,11 @@ class IrDefaultgard(models.Model):
             WHERE f.model=%s
                 AND ((d.user_id IS NULL AND m.res_users_id IS NULL)
                      OR d.user_id=u.id OR m.res_users_id = u.id)
-                AND (d.company_id IS NULL OR d.company_id=u.company_id)
+                AND (d.company_id IS NULL OR d.company_id=%s)
                 AND {}
             ORDER BY d.user_id, m.res_users_id, d.company_id, d.id
         """
-        params = [self.env.uid, model_name]
+        params = [self.env.uid, model_name, self.env.company.id or None]
         if condition:
             query = query.format("d.condition=%s")
             params.append(condition)
