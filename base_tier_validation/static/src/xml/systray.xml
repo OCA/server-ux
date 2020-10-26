@@ -33,6 +33,7 @@
                                     t-att-data-res_model="review.model"
                                     t-att-data-model_name="review.name"
                                 >
+
                                 </button>
                             </t>
                         </div>
@@ -45,11 +46,13 @@
                             t-att-data-res_model="review.model"
                             t-att-data-model_name="review.name"
                             data-filter='pending_count'
-                        ><t t-esc="review.pending_count" /> Pending </button>
-                        <span
-                            t-if="!review.pending_count"
-                            class="o_no_activity mr16"
-                        >0 Pending </span>
+                        >
+                            <t t-esc="review.pending_count" />
+                            Pending
+                        </button>
+                        <span t-if="!review.pending_count" class="o_no_activity mr16">
+                            0 Pending
+                        </span>
                     </div>
                 </div>
             </div>
