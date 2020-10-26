@@ -3,14 +3,13 @@
 
 from odoo.exceptions import ValidationError
 from odoo.tests import common
-from odoo.tests.common import Form
+from odoo.tests.common import Form, tagged
 
 from .common import setup_test_model, teardown_test_model
 from .tier_validation_tester import TierValidationTester, TierValidationTester2
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TierTierValidation(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
