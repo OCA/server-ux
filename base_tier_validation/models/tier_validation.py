@@ -124,6 +124,9 @@ class TierValidation(models.AbstractModel):
 
     def _compute_need_validation(self):
         for rec in self:
+            if isinstance(rec.id, models.NewId):
+                rec.need_validation = False
+                continue
             tiers = self.env["tier.definition"].search([("model", "=", self._name)])
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
@@ -217,7 +220,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post):
             # Notify state change
             getattr(self, post)(
-                subtype=self._get_accepted_notification_subtype(),
+                subtype_xmlid=self._get_accepted_notification_subtype(),
                 body=self._notify_accepted_reviews_body(),
             )
 
@@ -282,7 +285,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post):
             # Notify state change
             getattr(self, post)(
-                subtype=self._get_rejected_notification_subtype(),
+                subtype_xmlid=self._get_rejected_notification_subtype(),
                 body=self._notify_rejected_review_body(),
             )
 
@@ -319,7 +322,8 @@ class TierValidation(models.AbstractModel):
                     partner_ids=users_to_notify.mapped("partner_id").ids
                 )
                 getattr(rec, post)(
-                    subtype="mt_comment", body=rec._notify_requested_review_body()
+                    subtype_xmlid="mail.mt_comment",
+                    body=rec._notify_requested_review_body(),
                 )
 
     def request_validation(self):
