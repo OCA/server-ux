@@ -10,7 +10,9 @@
                             data-toggle="collapse"
                             href="#"
                             data-target="#collapse1"
-                        >Reviews</a>
+                        >
+                            Reviews
+                        </a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
