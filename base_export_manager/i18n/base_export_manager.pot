@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,6 +17,15 @@ msgstr ""
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__model_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__display_name
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__display_name
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_http__display_name
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__display_name
+#: model:ir.model.fields,field_description:base_export_manager.field_res_users__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: base_export_manager
@@ -112,6 +121,15 @@ msgid "HTTP Routing"
 msgstr ""
 
 #. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__id
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__id
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_http__id
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__id
+#: model:ir.model.fields,field_description:base_export_manager.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
@@ -120,6 +138,15 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__label
 msgid "Label"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports____last_update
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line____last_update
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_http____last_update
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access____last_update
+#: model:ir.model.fields,field_description:base_export_manager.field_res_users____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: base_export_manager
