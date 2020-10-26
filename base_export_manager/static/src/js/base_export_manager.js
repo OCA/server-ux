@@ -2,7 +2,7 @@
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  */
 
-odoo.define("base_export_manager.base_export_manager", function(require) {
+odoo.define("base_export_manager.base_export_manager", function (require) {
     "use strict";
 
     const core = require("web.core");
@@ -18,7 +18,7 @@ odoo.define("base_export_manager.base_export_manager", function(require) {
          *
          * @override
          */
-        _addItems: function(sectionCode, items) {
+        _addItems: function (sectionCode, items) {
             let _items = items;
             const is_export_enabled =
                 session.export_models.indexOf(this.env.model) !== -1;
