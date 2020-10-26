@@ -1,4 +1,4 @@
-odoo.define("base_tier_validation.ReviewField", function(require) {
+odoo.define("base_tier_validation.ReviewField", function (require) {
     "use strict";
 
     var AbstractField = require("web.AbstractField");
@@ -14,7 +14,7 @@ odoo.define("base_tier_validation.ReviewField", function(require) {
             "show.bs.collapse": "_showCollapse",
             "hide.bs.collapse": "_hideCollapse",
         },
-        start: function() {
+        start: function () {
             var self = this;
             self._renderDropdown();
         },
@@ -25,20 +25,20 @@ odoo.define("base_tier_validation.ReviewField", function(require) {
          * @param {Object} res_ids
          * @returns {integer}
          */
-        _getReviewData: function(res_ids) {
+        _getReviewData: function (res_ids) {
             var self = this;
 
             return this._rpc({
                 model: "res.users",
                 method: "get_reviews",
                 args: [res_ids],
-            }).then(function(data) {
+            }).then(function (data) {
                 self.reviews = data;
             });
         },
-        _renderDropdown: function() {
+        _renderDropdown: function () {
             var self = this;
-            return this._getReviewData(self.value).then(function() {
+            return this._getReviewData(self.value).then(function () {
                 self.$(".o_review").html(
                     QWeb.render("tier.review.ReviewsTable", {
                         reviews: self.reviews,
@@ -46,16 +46,16 @@ odoo.define("base_tier_validation.ReviewField", function(require) {
                 );
             });
         },
-        _onButtonClicked: function(event) {
+        _onButtonClicked: function (event) {
             event.preventDefault();
             if (!this.$el.hasClass("open")) {
                 this._renderDropdown();
             }
         },
-        _showCollapse: function() {
+        _showCollapse: function () {
             this.$el.find(".panel-heading").addClass("active");
         },
-        _hideCollapse: function() {
+        _hideCollapse: function () {
             this.$el.find(".panel-heading").removeClass("active");
         },
     });
