@@ -323,8 +323,8 @@ class TierTierValidation(common.SavepointCase):
         self.assertTrue(any(r.status == "approved" for r in record1.review_ids))
 
     def test_12_approve_sequence_same_user(self):
-        """ Similar to test_12_approve_sequence, but all same users,
-        the approve_sequence still apply correctly """
+        """Similar to test_12_approve_sequence, but all same users,
+        the approve_sequence still apply correctly"""
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
         # Create tier definitions

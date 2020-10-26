@@ -1,4 +1,4 @@
-odoo.define("tier_validation.systray", function(require) {
+odoo.define("tier_validation.systray", function (require) {
     "use strict";
 
     var core = require("web.core");
@@ -15,7 +15,7 @@ odoo.define("tier_validation.systray", function(require) {
             "click .o_mail_activity_action": "_onReviewActionClick",
             "click .o_mail_preview": "_onReviewFilterClick",
         },
-        start: function() {
+        start: function () {
             this.$reviews_preview = this.$(".o_mail_systray_dropdown_items");
             this._updateReviewPreview();
             var channel = "base.tier.validation";
@@ -32,7 +32,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @private
          * @returns {integer}
          */
-        _getReviewData: function() {
+        _getReviewData: function () {
             var self = this;
 
             return self
@@ -43,11 +43,11 @@ odoo.define("tier_validation.systray", function(require) {
                         context: session.user_context,
                     },
                 })
-                .then(function(data) {
+                .then(function (data) {
                     self.reviews = data;
                     self.reviewCounter = _.reduce(
                         data,
-                        function(total_count, p_data) {
+                        function (total_count, p_data) {
                             return total_count + p_data.pending_count;
                         },
                         0
@@ -63,7 +63,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @param {String} model
          * @returns {integer}
          */
-        _getReviewModelViewID: function(model) {
+        _getReviewModelViewID: function (model) {
             return this._rpc({
                 model: model,
                 method: "get_activity_view_id",
@@ -74,9 +74,9 @@ odoo.define("tier_validation.systray", function(require) {
          * Update(render) activity system tray view on activity updation.
          * @private
          */
-        _updateReviewPreview: function() {
+        _updateReviewPreview: function () {
             var self = this;
-            self._getReviewData().then(function() {
+            self._getReviewData().then(function () {
                 self.$reviews_preview.html(
                     QWeb.render("tier.validation.ReviewMenuPreview", {
                         reviews: self.reviews,
@@ -93,7 +93,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @param {Boolean} [data.activity_deleted] when activity deleted
          * @param {Boolean} [data.activity_created] when activity created
          */
-        _updateCounter: function(data) {
+        _updateCounter: function (data) {
             if (data) {
                 if (data.review_created) {
                     this.reviewCounter++;
@@ -115,7 +115,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @private
          * @param {MouseEvent} ev
          */
-        _onReviewActionClick: function(ev) {
+        _onReviewActionClick: function (ev) {
             ev.stopPropagation();
             var actionXmlid = $(ev.currentTarget).data("action_xmlid");
             this.do_action(actionXmlid);
@@ -126,7 +126,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @private
          * @param {MouseEvent} event
          */
-        _onReviewFilterClick: function(event) {
+        _onReviewFilterClick: function (event) {
             // Fetch the data from the button otherwise fetch the ones from the
             // parent (.o_tier_channel_preview).
             var data = _.extend(
@@ -159,7 +159,7 @@ odoo.define("tier_validation.systray", function(require) {
          * @private
          * @param {MouseEvent} event
          */
-        _onReviewMenuShow: function() {
+        _onReviewMenuShow: function () {
             this._updateReviewPreview();
         },
     });
