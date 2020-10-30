@@ -51,5 +51,5 @@ class ResUsers(models.Model):
 
     def __init__(self, pool, cr):
         super().__init__(pool, cr)
-        self.SELF_READABLE_FIELDS += ["technical_features", "show_technical_features"]
-        self.SELF_WRITEABLE_FIELDS.append("technical_features")
+        type(self).SELF_READABLE_FIELDS += ["technical_features", "show_technical_features"]
+        type(self).SELF_WRITEABLE_FIELDS.append("technical_features")
