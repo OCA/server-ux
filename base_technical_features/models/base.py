@@ -7,7 +7,7 @@ class Base(models.AbstractModel):
     _inherit = "base"
 
     def user_has_groups(self, groups):
-        """ Return True for users in the technical features group when
+        """Return True for users in the technical features group when
         membership of the original group is checked, even if debug mode
         is not enabled.
         """
