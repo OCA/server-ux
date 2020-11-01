@@ -5,7 +5,7 @@
     "summary": "Manage all kind of date range",
     "version": "14.0.1.0.1",
     "category": "Uncategorized",
-    "website": "https://github.com/oca/server-ux",
+    "website": "https://github.com/OCA/server-ux",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
