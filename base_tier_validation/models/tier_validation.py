@@ -156,12 +156,8 @@ class TierValidation(models.AbstractModel):
         return True
 
     def write(self, vals):
-        state = self._state_field
         for rec in self:
-            if (
-                getattr(rec, state) in self._state_from
-                and vals.get(self._state_field) in self._state_to
-            ):
+            if rec._check_state_conditions(vals):
                 if rec.need_validation:
                     # try to validate operation
                     reviews = rec.request_validation()
@@ -191,6 +187,13 @@ class TierValidation(models.AbstractModel):
         if vals.get(self._state_field) in self._state_from:
             self.mapped("review_ids").unlink()
         return super(TierValidation, self).write(vals)
+
+    def _check_state_conditions(self, vals):
+        self.ensure_one()
+        return (
+            getattr(self, self._state_field) in self._state_from
+            and vals.get(self._state_field) in self._state_to
+        )
 
     def _validate_tier(self, tiers=False):
         self.ensure_one()
