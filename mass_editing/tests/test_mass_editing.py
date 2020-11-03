@@ -35,7 +35,7 @@ class TestMassEditing(common.SavepointCase):
     def _create_partner_title(self):
         """Create a Partner Title."""
         # Loads German to work with translations
-        self.ResLang.load_lang("de_DE")
+        self.ResLang._activate_lang("de_DE")
         # Creating the title in English
         partner_title = self.ResPartnerTitle.create(
             {"name": "Ambassador", "shortcut": "Amb."}

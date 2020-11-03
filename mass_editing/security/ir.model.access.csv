@@ -4,3 +4,6 @@ access_mass_editing_normal_erp_manager,mass.editing.normal.erp_manager,model_mas
 
 access_mass_editing_line_normal_user,mass.editing.line.normal.user,model_mass_editing_line,base.group_user,1,0,0,0
 access_mass_editing_line_normal_erp_manager,mass.editing.line.normal.erp_manager,model_mass_editing_line,base.group_erp_manager,1,1,1,1
+
+access_mass_editing_wizard_normal_user,access_mass_editing_wizard,model_mass_editing_wizard,base.group_user,1,0,0,0
+access_mass_editing_wizard_normal_erp_manager,access_mass_editing_wizard,model_mass_editing_wizard,base.group_user,1,1,1,1

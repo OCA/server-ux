@@ -161,11 +161,11 @@ class MassEditingWizard(models.TransientModel):
         return super().create({})
 
     def read(self, fields, load="_classic_read"):
-        """ Without this call, dynamic fields build by fields_view_get()
-            generate a log warning, i.e.:
-            odoo.models:mass.editing.wizard.read() with unknown field 'myfield'
-            odoo.models:mass.editing.wizard.read()
-                with unknown field 'selection__myfield'
+        """Without this call, dynamic fields build by fields_view_get()
+        generate a log warning, i.e.:
+        odoo.models:mass.editing.wizard.read() with unknown field 'myfield'
+        odoo.models:mass.editing.wizard.read()
+            with unknown field 'selection__myfield'
         """
         real_fields = fields
         if fields:
