@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-11-04 10:08+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
 msgid "Definition"
-msgstr ""
+msgstr "Definizione"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
 msgid "Domain & Formula"
-msgstr ""
+msgstr "Dominio e Formula"
 
 #. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
@@ -32,21 +34,23 @@ msgid ""
 "Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
+"Errore valutando le condizioni di validazione del livello.\n"
+" %s"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__formula
 msgid "Formula"
-msgstr ""
+msgstr "Formula"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__review_type__expression
 msgid "Python Expression"
-msgstr ""
+msgstr "Espressione Python"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__reviewer_expression
 msgid "Review Expression"
-msgstr ""
+msgstr "Espressione Approvazione"
 
 #. module: base_tier_validation_formula
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
@@ -57,32 +61,32 @@ msgstr ""
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
 msgid "Reviewers from Python expression"
-msgstr ""
+msgstr "Approvatori da espressione Python"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Definizione Livello"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__python_code
 msgid "Tier Definition Expression"
-msgstr ""
+msgstr "Espressione Definizione Livello"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Livello Approvazione"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Livello Approvazione (astratto)"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
 msgid "Validated by"
-msgstr ""
+msgstr "Approvato da"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
