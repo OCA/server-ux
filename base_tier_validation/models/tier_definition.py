@@ -50,7 +50,7 @@ class TierDefinition(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )
     notify_on_create = fields.Boolean(
         string="Notify Reviewers on Creation",
