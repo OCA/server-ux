@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="base.module_mi" model="ir.ui.menu">
+        <field
+            eval="[(4, ref('base_menu_visibility_restriction.group_demo_user'))]"
+            name="excluded_group_ids"
+        />
+    </record>
+</odoo>
