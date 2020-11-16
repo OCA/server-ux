@@ -20,6 +20,7 @@ class TierReview(models.Model):
     model = fields.Char(string="Related Document Model", index=True)
     res_id = fields.Integer(string="Related Document ID", index=True)
     definition_id = fields.Many2one(comodel_name="tier.definition")
+    company_id = fields.Many2one(related="definition_id.company_id", store=True,)
     review_type = fields.Selection(related="definition_id.review_type", readonly=True)
     reviewer_id = fields.Many2one(related="definition_id.reviewer_id", readonly=True)
     reviewer_group_id = fields.Many2one(
