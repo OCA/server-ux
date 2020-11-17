@@ -38,15 +38,19 @@ class MassEditingLine(models.Model):
         "'many2many_tags', 'selection'",
     )
 
+    apply_domain = fields.Boolean(
+        default=False,
+        string="Apply domain",
+        help="Apply default domain related to field"
+    )
+
     @api.depends("field_id")
     def _compute_widget_option(self):
         # this function propose selection, depending on the field
         for line in self.filtered("field_id"):
             field = line.field_id
             line.widget_option = False
-            if field.ttype == "many2one":
-                line.widget_option = "selection"
-            elif field.ttype == "many2many":
+            if field.ttype == "many2many":
                 line.widget_option = "many2many_tags"
             elif field.ttype == "Binary":
                 if "image" in field.name or "logo" in field.name:
