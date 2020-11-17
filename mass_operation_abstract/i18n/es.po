@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-30 23:08+0000\n"
-"Last-Translator: Harald Panten <harald.panten@sygel.es>\n"
+"PO-Revision-Date: 2020-11-17 17:36+0000\n"
+"Last-Translator: María Asunción Daza <mariaasuncion.daza@guadaltech.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -50,12 +50,12 @@ msgstr ""
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__display_name
