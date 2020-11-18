@@ -40,6 +40,7 @@ class MultiStepWizard(models.AbstractModel):
 
     allow_back = fields.Boolean(compute="_compute_allow_back")
 
+    @api.depends('state')
     def _compute_allow_back(self):
         for record in self:
             record.allow_back = getattr(
