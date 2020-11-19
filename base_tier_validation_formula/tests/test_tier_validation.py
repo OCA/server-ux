@@ -98,7 +98,7 @@ class TierTierValidation(common.SavepointCase):
 
     def test_02_wrong_reviewer_expression(self):
         """Error should raise with incorrect python expresions on
-                tier definitions."""
+        tier definitions."""
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
