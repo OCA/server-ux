@@ -63,20 +63,30 @@
                                 options="{'no_create': True}"
                             />
                             <field name="sequence" />
-                            <field name="notify_on_create" />
-                            <field name="has_comment" />
                             <field name="approve_sequence" />
                         </group>
                     </group>
-                    <group name="bottom">
-                        <field name="definition_type" />
-                        <field
-                            name="definition_domain"
-                            widget="domain"
-                            options="{'model': 'model'}"
-                            attrs="{'invisible': [('definition_type', '!=', 'domain')]}"
-                        />
-                    </group>
+                    <notebook>
+                        <page name="apply" string="Apply On">
+                            <group name="bottom">
+                                <field name="definition_type" />
+                                <field
+                                    name="definition_domain"
+                                    widget="domain"
+                                    options="{'model': 'model'}"
+                                    attrs="{'invisible': [('definition_type', '!=', 'domain')]}"
+                                />
+                            </group>
+                        </page>
+                        <page name="options" string="More Options">
+                            <group name="more_option">
+                                <group name="notify">
+                                    <field name="notify_on_create" />
+                                    <field name="has_comment" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
