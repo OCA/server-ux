@@ -368,44 +368,49 @@ ul.auto-toc {
 !! changes will be overwritten.                   !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/server-ux/tree/14.0/base_tier_validation"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/server-ux-14-0/server-ux-14-0-base_tier_validation"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/250/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
+<p>Validating some operations is a common need across different areas in a company
+and sometimes it also involves several people and stages in the process. With
+this module you will be able to define your custom validation workflows for
+any Odoo document.</p>
 <p>This module does not provide a functionality by itself but an abstract model
 to implement a validation process based on tiers on other models (e.g.
-purchase orders, sales orders…).</p>
+purchase orders, sales orders, budgets, expenses…).</p>
 <p><strong>Note:</strong> To be able to use this module in a new model you will need some
 development.</p>
 <p>See <a class="reference external" href="https://github.com/OCA/purchase-workflow">purchase_tier_validation</a> as an example of implementation.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="id14">Configuration</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="id15">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#changelog" id="id16">Changelog</a><ul>
-<li><a class="reference internal" href="#id1" id="id17">13.0.1.2.2 (2020-08-30)</a></li>
-<li><a class="reference internal" href="#id2" id="id18">12.0.3.3.1 (2019-12-02)</a></li>
-<li><a class="reference internal" href="#id3" id="id19">12.0.3.3.0 (2019-11-27)</a></li>
-<li><a class="reference internal" href="#id4" id="id20">12.0.3.2.1 (2019-11-26)</a></li>
-<li><a class="reference internal" href="#id5" id="id21">12.0.3.2.0 (2019-11-25)</a></li>
-<li><a class="reference internal" href="#id6" id="id22">12.0.3.1.0 (2019-07-08)</a></li>
-<li><a class="reference internal" href="#id7" id="id23">12.0.3.0.0 (2019-12-02)</a></li>
-<li><a class="reference internal" href="#id8" id="id24">12.0.2.1.0 (2019-05-29)</a></li>
-<li><a class="reference internal" href="#id9" id="id25">12.0.2.0.0 (2019-05-28)</a></li>
-<li><a class="reference internal" href="#id10" id="id26">12.0.1.0.0 (2019-02-18)</a></li>
-<li><a class="reference internal" href="#id11" id="id27">11.0.1.0.0 (2018-05-09)</a></li>
-<li><a class="reference internal" href="#id12" id="id28">10.0.1.0.0 (2018-03-26)</a></li>
-<li><a class="reference internal" href="#id13" id="id29">9.0.1.0.0 (2017-12-02)</a></li>
+<li><a class="reference internal" href="#configuration" id="id15">Configuration</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id16">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#changelog" id="id17">Changelog</a><ul>
+<li><a class="reference internal" href="#id1" id="id18">14.0.1.0.0 (2020-11-19)</a></li>
+<li><a class="reference internal" href="#id2" id="id19">13.0.1.2.2 (2020-08-30)</a></li>
+<li><a class="reference internal" href="#id3" id="id20">12.0.3.3.1 (2019-12-02)</a></li>
+<li><a class="reference internal" href="#id4" id="id21">12.0.3.3.0 (2019-11-27)</a></li>
+<li><a class="reference internal" href="#id5" id="id22">12.0.3.2.1 (2019-11-26)</a></li>
+<li><a class="reference internal" href="#id6" id="id23">12.0.3.2.0 (2019-11-25)</a></li>
+<li><a class="reference internal" href="#id7" id="id24">12.0.3.1.0 (2019-07-08)</a></li>
+<li><a class="reference internal" href="#id8" id="id25">12.0.3.0.0 (2019-12-02)</a></li>
+<li><a class="reference internal" href="#id9" id="id26">12.0.2.1.0 (2019-05-29)</a></li>
+<li><a class="reference internal" href="#id10" id="id27">12.0.2.0.0 (2019-05-28)</a></li>
+<li><a class="reference internal" href="#id11" id="id28">12.0.1.0.0 (2019-02-18)</a></li>
+<li><a class="reference internal" href="#id12" id="id29">11.0.1.0.0 (2018-05-09)</a></li>
+<li><a class="reference internal" href="#id13" id="id30">10.0.1.0.0 (2018-03-26)</a></li>
+<li><a class="reference internal" href="#id14" id="id31">9.0.1.0.0 (2017-12-02)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="id30">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id31">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id32">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id33">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id34">Maintainers</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id32">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id33">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id34">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id35">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id36">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="configuration">
-<h1><a class="toc-backref" href="#id14">Configuration</a></h1>
+<h1><a class="toc-backref" href="#id15">Configuration</a></h1>
 <p>To configure this module, you need to:</p>
 <ol class="arabic simple">
 <li>Go to <em>Settings &gt; Technical &gt; Tier Validations &gt; Tier Definition</em>.</li>
@@ -414,13 +419,13 @@ functionality.</li>
 </ol>
 <p><strong>Note:</strong></p>
 <ul class="simple">
-<li>If check <strong>Notify Reviewers on Creation</strong>, all possible reviewers will be notified by email when this definition is triggered.</li>
-<li>If check <strong>Comment</strong>, reviewers can comment after click Validate or Reject.</li>
-<li>If check <strong>Approve by sequence</strong>, reviewers is forced to review by specified sequence.</li>
+<li>If check <em>Notify Reviewers on Creation</em>, all possible reviewers will be notified by email when this definition is triggered.</li>
+<li>If check <em>Comment</em>, reviewers can comment after click Validate or Reject.</li>
+<li>If check <em>Approve by sequence</em>, reviewers is forced to review by specified sequence.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#id15">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#id16">Known issues / Roadmap</a></h1>
 <p>This is the list of known issues for this module. Any proposal for improvement will
 be very valuable.</p>
 <ul>
@@ -436,93 +441,97 @@ with a lot of users and recurring updates that can change the expected behavior.
 </ul>
 </div>
 <div class="section" id="changelog">
-<h1><a class="toc-backref" href="#id16">Changelog</a></h1>
+<h1><a class="toc-backref" href="#id17">Changelog</a></h1>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id17">13.0.1.2.2 (2020-08-30)</a></h2>
+<h2><a class="toc-backref" href="#id18">14.0.1.0.0 (2020-11-19)</a></h2>
+<p>Migrated to Odoo 14.</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id19">13.0.1.2.2 (2020-08-30)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>When using approve_sequence option in any tier.definition there can be inconsistencies in the systray notifications</li>
 <li>When using approve_sequence, still not approve only the needed sequence, but also other sequence for the same approver</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id18">12.0.3.3.1 (2019-12-02)</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id20">12.0.3.3.1 (2019-12-02)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>Show comment on Reviews Table.</li>
 <li>Edit notification with approve_sequence.</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id19">12.0.3.3.0 (2019-11-27)</a></h2>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id21">12.0.3.3.0 (2019-11-27)</a></h2>
 <p>New features:</p>
 <ul class="simple">
 <li>Add comment on Reviews Table.</li>
 <li>Approve by sequence.</li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2><a class="toc-backref" href="#id20">12.0.3.2.1 (2019-11-26)</a></h2>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id22">12.0.3.2.1 (2019-11-26)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>Remove message_subscribe_users</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2><a class="toc-backref" href="#id21">12.0.3.2.0 (2019-11-25)</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id23">12.0.3.2.0 (2019-11-25)</a></h2>
 <p>New features:</p>
 <ul class="simple">
 <li>Notify reviewers</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2><a class="toc-backref" href="#id22">12.0.3.1.0 (2019-07-08)</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id24">12.0.3.1.0 (2019-07-08)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>Singleton error</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id23">12.0.3.0.0 (2019-12-02)</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id25">12.0.3.0.0 (2019-12-02)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>Edit Reviews Table</li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id24">12.0.2.1.0 (2019-05-29)</a></h2>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id26">12.0.2.1.0 (2019-05-29)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
 <li>Edit drop-down style width and position</li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h2><a class="toc-backref" href="#id25">12.0.2.0.0 (2019-05-28)</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id27">12.0.2.0.0 (2019-05-28)</a></h2>
 <p>New features:</p>
 <ul class="simple">
 <li>Pass parameters as functions.</li>
 <li>Add Systray.</li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h2><a class="toc-backref" href="#id26">12.0.1.0.0 (2019-02-18)</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id28">12.0.1.0.0 (2019-02-18)</a></h2>
 <p>Migrated to Odoo 12.</p>
 </div>
-<div class="section" id="id11">
-<h2><a class="toc-backref" href="#id27">11.0.1.0.0 (2018-05-09)</a></h2>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id29">11.0.1.0.0 (2018-05-09)</a></h2>
 <p>Migrated to Odoo 11.</p>
 </div>
-<div class="section" id="id12">
-<h2><a class="toc-backref" href="#id28">10.0.1.0.0 (2018-03-26)</a></h2>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id30">10.0.1.0.0 (2018-03-26)</a></h2>
 <p>Migrated to Odoo 10.</p>
 </div>
-<div class="section" id="id13">
-<h2><a class="toc-backref" href="#id29">9.0.1.0.0 (2017-12-02)</a></h2>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id31">9.0.1.0.0 (2017-12-02)</a></h2>
 <p>First version.</p>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id30">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id32">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-ux/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -530,15 +539,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id31">Credits</a></h1>
+<h1><a class="toc-backref" href="#id33">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id32">Authors</a></h2>
+<h2><a class="toc-backref" href="#id34">Authors</a></h2>
 <ul class="simple">
 <li>ForgeFlow</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id33">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id35">Contributors</a></h2>
 <ul class="simple">
 <li>Lois Rilo &lt;<a class="reference external" href="mailto:lois.rilo&#64;forgeflow.com">lois.rilo&#64;forgeflow.com</a>&gt;</li>
 <li>Naglis Jonaitis &lt;<a class="reference external" href="mailto:naglis&#64;versada.eu">naglis&#64;versada.eu</a>&gt;</li>
@@ -550,7 +559,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id34">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id36">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
