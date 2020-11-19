@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[base_tier_validation](base_tier_validation/) | 14.0.1.0.0 | Implement a validation process based on tiers.
 [date_range](date_range/) | 14.0.1.0.1 | Manage all kind of date range
 
 [//]: # (end addons)
