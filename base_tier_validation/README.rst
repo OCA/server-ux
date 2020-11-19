@@ -25,9 +25,14 @@ Base Tier Validation
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
+Validating some operations is a common need across different areas in a company
+and sometimes it also involves several people and stages in the process. With
+this module you will be able to define your custom validation workflows for
+any Odoo document.
+
 This module does not provide a functionality by itself but an abstract model
 to implement a validation process based on tiers on other models (e.g.
-purchase orders, sales orders...).
+purchase orders, sales orders, budgets, expenses...).
 
 **Note:** To be able to use this module in a new model you will need some
 development.
@@ -50,9 +55,9 @@ To configure this module, you need to:
 
 **Note:**
 
-* If check **Notify Reviewers on Creation**, all possible reviewers will be notified by email when this definition is triggered.
-* If check **Comment**, reviewers can comment after click Validate or Reject.
-* If check **Approve by sequence**, reviewers is forced to review by specified sequence.
+* If check *Notify Reviewers on Creation*, all possible reviewers will be notified by email when this definition is triggered.
+* If check *Comment*, reviewers can comment after click Validate or Reject.
+* If check *Approve by sequence*, reviewers is forced to review by specified sequence.
 
 Known issues / Roadmap
 ======================
@@ -74,6 +79,11 @@ be very valuable.
 
 Changelog
 =========
+
+14.0.1.0.0 (2020-11-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Migrated to Odoo 14.
 
 13.0.1.2.2 (2020-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
