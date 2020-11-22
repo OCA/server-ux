@@ -73,7 +73,6 @@ msgstr "Activo"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #, fuzzy, python-format
-#| msgid "Active"
 msgid "Activities"
 msgstr "Activo"
 
@@ -329,14 +328,12 @@ msgstr "Solicitado Por"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
 #, fuzzy
-#| msgid "Reviews"
 msgid "Res"
 msgstr "Revisiones"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
 #, fuzzy
-#| msgid "Model"
 msgid "Res Model"
 msgstr "Modelo"
 
@@ -440,14 +437,12 @@ msgstr "Validaciones de Nivel (abstracto)"
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
 #, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Accepted Notification"
 msgstr "Validaciones de Nivel (abstracto)"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
 #, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Rejected Notification"
 msgstr "Validaciones de Nivel (abstracto)"
 
@@ -464,7 +459,6 @@ msgstr "Usuarios"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
 #, fuzzy
-#| msgid "Validated"
 msgid "Validate Reject"
 msgstr "Validado"
 
