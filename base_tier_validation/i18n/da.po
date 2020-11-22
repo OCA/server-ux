@@ -61,7 +61,6 @@ msgstr "Aktive"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:45
 #, fuzzy, python-format
-#| msgid "Active"
 msgid "Activities"
 msgstr "Aktive"
 
@@ -188,7 +187,6 @@ msgstr ""
 #. module: base_tier_validation
 #: selection:tier.definition,definition_type:0
 #, fuzzy
-#| msgid "Formula"
 msgid "Domain & Formula"
 msgstr "Formel"
 
