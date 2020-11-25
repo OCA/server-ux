@@ -76,6 +76,8 @@ class MassEditingWizard(models.TransientModel):
             # Field part
             field = line.field_id
             field_info = fields_info[field.name]
+            if not line.apply_domain and 'domain' in field_info:
+                field_info['domain'] = '[]'
             all_fields.update(self._prepare_fields(line, field, field_info))
 
             # XML Part
