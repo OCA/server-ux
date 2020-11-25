@@ -376,6 +376,7 @@ msgstr "Revisiones"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Secuencia"
@@ -408,11 +409,6 @@ msgid ""
 msgstr ""
 "Esta acción necesita ser validada para algún registro.\n"
 "Por favor, solicita una validación."
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
-msgstr "Nivel"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -490,6 +486,9 @@ msgstr "Validaciones"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ej. Validación de Nivel por..."
+
+#~ msgid "Tier"
+#~ msgstr "Nivel"
 
 #, fuzzy
 #~| msgid "Sequence"
