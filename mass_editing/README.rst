@@ -75,6 +75,11 @@ Usage
 .. image:: https://raw.githubusercontent.com/OCA/server-ux/12.0/mass_editing/static/description/mass_editing-item_tree-result.png
    :width: 70%
 
+Known issues / Roadmap
+======================
+
+- Auto add fields that are used in related domains if apply_domain=True
+
 Bug Tracker
 ===========
 
@@ -101,11 +106,15 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@gmail.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Jay Vora <jay.vora@serpentcs.com>
-* Jairo Llopis <jairo.llopis@tecnativa.com>
 * Juan Negrete <jnegrete@casasalce.com>
 * Raul Martin <raul.martin@braintec-group.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
+
+* `Tecnativa <https://www.tecnativa.com>`_
+
+  * Jairo Llopis
+  * Víctor Martínez
 
 Maintainers
 ~~~~~~~~~~~
