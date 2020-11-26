@@ -30,7 +30,6 @@ class MassEditingLine(models.Model):
 
     widget_option = fields.Char(
         string="Widget Option",
-        compute="_compute_widget_option",
         store=True,
         readonly=False,
         help="Add widget text that will be used"
@@ -43,14 +42,10 @@ class MassEditingLine(models.Model):
         help="Apply default domain related to field",
     )
 
-    @api.depends("field_id")
-    def _compute_widget_option(self):
-        # this function propose selection, depending on the field
-        for line in self.filtered("field_id"):
-            field = line.field_id
-            line.widget_option = False
-            if field.ttype == "many2many":
-                line.widget_option = "many2many_tags"
-            elif field.ttype == "Binary":
-                if "image" in field.name or "logo" in field.name:
-                    line.widget_option = "image"
+    @api.onchange("field_id")
+    def _onchange_field_id(self):
+        if self.field_id and self.field_id.ttype == "many2many":
+            self.widget_option = "many2many_tags"
+        elif self.field_id and self.field_id.ttype == "Binary":
+            if "image" in self.field_id.name or "logo" in self.field_id.name:
+                self.widget_option = "image"
