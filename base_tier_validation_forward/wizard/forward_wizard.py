@@ -10,11 +10,16 @@ class ValidationForwardWizard(models.TransientModel):
     res_model = fields.Char()
     res_id = fields.Integer()
     forward_reviewer_id = fields.Many2one(
-        comodel_name="res.users", string="Next Reviewer", required=True,
+        comodel_name="res.users",
+        string="Next Reviewer",
+        required=True,
     )
     forward_description = fields.Char()
     has_comment = fields.Boolean(string="Allow Comment", default=True)
-    approve_sequence = fields.Boolean(string="Approve by sequence", default=True,)
+    approve_sequence = fields.Boolean(
+        string="Approve by sequence",
+        default=True,
+    )
 
     def add_forward(self):
         """ Add extra step, with specific reviewer """
