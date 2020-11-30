@@ -74,7 +74,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post):
             # Notify state change
             getattr(self, post)(
-                subtype=self._get_forwarded_notification_subtype(),
+                subtype_xmlid=self._get_forwarded_notification_subtype(),
                 body=self._notify_forwarded_reviews_body(),
             )
 

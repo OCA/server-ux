@@ -1,0 +1,18 @@
+<odoo>
+    <template
+        id="tier_validation_label_forward"
+        inherit_id="base_tier_validation.tier_validation_label"
+    >
+        <xpath expr="//button[@name='reject_tier']" position="after">
+            <field name="can_forward" invisible="1" />
+            <button
+                name="forward_tier"
+                string="Forward"
+                attrs="{'invisible': [('can_forward', '=', False)]}"
+                type="object"
+                class="oe_inline oe_button btn-warning"
+                icon="fa-arrow-circle-right"
+            />
+        </xpath>
+    </template>
+</odoo>
