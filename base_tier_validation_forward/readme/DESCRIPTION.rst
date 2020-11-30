@@ -9,7 +9,3 @@ for some reason, and want to pass/forward the decision to another person.
 
 User can then click on Forward instead of Approve. A new tier with minor sequence will be
 created on the reviewer table, and new user will be able to make approval decision.
-
-**Note:** To enable Forward button in the desired view, you will need some development.
-
-See `purchase_tier_validation_forward <https://github.com/OCA/purchase-workflow>`_ as an example of implementation.
