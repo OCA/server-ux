@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-11-17 17:36+0000\n"
+"PO-Revision-Date: 2020-12-02 10:36+0000\n"
 "Last-Translator: María Asunción Daza <mariaasuncion.daza@guadaltech.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -172,7 +172,7 @@ msgstr ""
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid "The treatment will be processed on the %d selected elements."
-msgstr ""
+msgstr "El tratamiento se procesará sobre los %d elementos seleccionados."
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
