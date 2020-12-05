@@ -6,7 +6,10 @@
 def migrate(cr, version):
     if not version:
         return
-
+    # Don't execute if already migrated in v12
+    cr.execute("SELECT 1 FROM pg_class WHERE relname = %s", ("mass_editing",))
+    if cr.fetchone():
+        return
     # First remove the obsolete constraint created by the existence of the
     # remove M2M field 'field_ids' between mass.object and ir.model.fields
     cr.execute(

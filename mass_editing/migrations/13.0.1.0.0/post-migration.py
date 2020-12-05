@@ -6,7 +6,10 @@
 def migrate(cr, version):
     if not version:
         return
-
+    # Don't execute if already migrated in v12
+    cr.execute("SELECT COUNT(*) FROM mass_editing_line")
+    if cr.fetchone()[0] > 0:
+        return
     # Rename table for consistency reason
     cr.execute(
         """
