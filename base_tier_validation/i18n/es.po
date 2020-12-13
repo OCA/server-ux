@@ -24,6 +24,32 @@ msgid "0 Pending"
 msgstr "0 Pendientes"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                This Record needs to be\n"
+"                validated."
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid ""
+"<i class=\"fa fa-thumbs-down\"/>\n"
+"                Operation has been\n"
+"                <b>rejected</b>\n"
+"                ."
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid ""
+"<i class=\"fa fa-thumbs-up\"/>\n"
+"                Operation has been\n"
+"                <b>validated</b>\n"
+"                !"
+msgstr ""
+
+#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nombre</span>"
@@ -73,7 +99,6 @@ msgstr "Activo"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #, fuzzy, python-format
-#| msgid "Active"
 msgid "Activities"
 msgstr "Activo"
 
@@ -86,6 +111,11 @@ msgstr "Todos"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__group
 msgid "Any user in a specific group."
 msgstr "Cualquier usuario en el grupo especificado."
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Apply On"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
@@ -146,6 +176,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__company_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__company_id
 msgid "Company"
 msgstr "Compañía"
 
@@ -185,6 +216,7 @@ msgstr "Descripción"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__display_name
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_users__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__display_name
@@ -220,6 +252,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_users__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__id
@@ -235,6 +268,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_users____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation____last_update
@@ -260,6 +294,11 @@ msgstr "Última actualización en"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
 msgid "Model"
 msgstr "Modelo"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "More Options"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
@@ -298,6 +337,11 @@ msgid "Referenced Model"
 msgstr "Modelo referenciado"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid "Reject"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
 msgid "Rejected"
@@ -314,6 +358,11 @@ msgid "Related Document Model"
 msgstr "Modelo del Documento Relacionado"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_buttons
+msgid "Request Validation"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__requested_by
 msgid "Requested By"
 msgstr "Solicitado Por"
@@ -328,16 +377,19 @@ msgstr "Solicitado Por"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
 #, fuzzy
-#| msgid "Reviews"
 msgid "Res"
 msgstr "Revisiones"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
 #, fuzzy
-#| msgid "Model"
 msgid "Res Model"
 msgstr "Modelo"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_buttons
+msgid "Restart Validation"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
@@ -439,14 +491,12 @@ msgstr "Validaciones de Nivel (abstracto)"
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
 #, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Accepted Notification"
 msgstr "Validaciones de Nivel (abstracto)"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
 #, fuzzy
-#| msgid "Tier Validation (abstract)"
 msgid "Tier Validation Rejected Notification"
 msgstr "Validaciones de Nivel (abstracto)"
 
@@ -461,9 +511,13 @@ msgid "Users"
 msgstr "Usuarios"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid "Validate"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
 #, fuzzy
-#| msgid "Validated"
 msgid "Validate Reject"
 msgstr "Validado"
 
