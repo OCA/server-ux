@@ -8,6 +8,7 @@ class TierValidationTester(models.Model):
     _name = "tier.validation.tester"
     _description = "Tier Validation Tester"
     _inherit = ["tier.validation"]
+    _tier_validation_manual_config = True
 
     state = fields.Selection(
         selection=[
@@ -28,6 +29,7 @@ class TierValidationTester2(models.Model):
     _name = "tier.validation.tester2"
     _description = "Tier Validation Tester 2"
     _inherit = ["tier.validation"]
+    _tier_validation_manual_config = False
 
     state = fields.Selection(
         selection=[

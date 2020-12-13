@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.2.0.0",
     "development_status": "Mature",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -21,6 +21,7 @@
         "views/tier_review_view.xml",
         "views/assets_backend.xml",
         "wizard/comment_wizard_view.xml",
+        "templates/tier_validation_templates.xml",
     ],
     "qweb": ["static/src/xml/systray.xml", "static/src/xml/tier_review_template.xml"],
 }
