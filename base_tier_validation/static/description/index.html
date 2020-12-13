@@ -438,6 +438,11 @@ the reviews a user can approve. This <cite>can_review</cite> field is updated <s
 in method <cite>review_user_count</cite>, this can make it very inconsistent for databases
 with a lot of users and recurring updates that can change the expected behavior.</p>
 </li>
+<li><p class="first"><strong>Migration to 15.0:</strong></p>
+<p>The parameter _tier_validation_manual_config will become False, on 14.0, the default
+value is True, as the change is applied after the migration. In order to use the new
+behavior we need to modify the value on our expected model.</p>
+</li>
 </ul>
 </div>
 <div class="section" id="changelog">
