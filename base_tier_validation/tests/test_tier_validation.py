@@ -1,12 +1,12 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from lxml import etree
+from odoo_test_helper import FakeModelLoader
+
 from odoo.exceptions import ValidationError
 from odoo.tests import common
 from odoo.tests.common import Form
-
-from .common import setup_test_model, teardown_test_model
-from .tier_validation_tester import TierValidationTester, TierValidationTester2
 
 
 @common.at_install(False)
@@ -16,7 +16,11 @@ class TierTierValidation(common.SavepointCase):
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
 
-        setup_test_model(cls.env, [TierValidationTester, TierValidationTester2])
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .tier_validation_tester import TierValidationTester, TierValidationTester2
+
+        cls.loader.update_registry((TierValidationTester, TierValidationTester2))
 
         cls.test_model = cls.env[TierValidationTester._name]
         cls.test_model_2 = cls.env[TierValidationTester2._name]
@@ -76,7 +80,7 @@ class TierTierValidation(common.SavepointCase):
 
     @classmethod
     def tearDownClass(cls):
-        teardown_test_model(cls.env, [TierValidationTester, TierValidationTester2])
+        cls.loader.restore_registry()
         super(TierTierValidation, cls).tearDownClass()
 
     def test_01_auto_validation(self):
@@ -503,3 +507,53 @@ class TierTierValidation(common.SavepointCase):
         review = reviews.filtered(lambda r: r.definition_id == definition)
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
+
+    def test_view_manual(self):
+        # We need to add a view in order to ensure that an automatic view with all
+        # fields is not created
+        self.env["ir.ui.view"].create(
+            {
+                "model": self.test_record._name,
+                "name": "Demo view",
+                "arch": """<form>
+            <header>
+                <button name="action_confirm" type="object" string="Confirm" />
+                <field name="state" widget="statusbar" />
+            </header>
+            <sheet>
+                <field name="test_field" />
+            </sheet>
+            </form>""",
+            }
+        )
+        with Form(self.test_record) as f:
+            self.assertNotIn("review_ids", f._values)
+            form = etree.fromstring(f._view["arch"])
+            self.assertFalse(form.xpath("//field[@name='review_ids']"))
+            self.assertFalse(form.xpath("//field[@name='can_review']"))
+            self.assertFalse(form.xpath("//button[@name='request_validation']"))
+
+    def test_view_automatic(self):
+        # We need to add a view in order to ensure that an automatic view with all
+        # fields is not created
+        self.env["ir.ui.view"].create(
+            {
+                "model": self.test_record_2._name,
+                "name": "Demo view",
+                "arch": """<form>
+            <header>
+                <button name="action_confirm" type="object" string="Confirm" />
+                <field name="state" widget="statusbar" />
+            </header>
+            <sheet>
+                <field name="test_field" />
+            </sheet>
+            </form>""",
+            }
+        )
+        with Form(self.test_record_2) as f:
+            self.assertIn("review_ids", f._values)
+            form = etree.fromstring(f._view["arch"])
+            self.assertTrue(form.xpath("//field[@name='review_ids']"))
+            self.assertTrue(form.xpath("//field[@name='can_review']"))
+            self.assertTrue(form.xpath("//button[@name='request_validation']"))

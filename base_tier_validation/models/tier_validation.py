@@ -3,6 +3,8 @@
 
 from ast import literal_eval
 
+from lxml import etree
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
@@ -11,6 +13,9 @@ from odoo.osv import expression
 class TierValidation(models.AbstractModel):
     _name = "tier.validation"
     _description = "Tier Validation (abstract)"
+
+    _tier_validation_buttons_xpath = "/form/header/button[last()]"
+    _tier_validation_manual_config = True
 
     _state_field = "state"
     _state_from = ["draft"]
@@ -408,3 +413,44 @@ class TierValidation(models.AbstractModel):
     def unlink(self):
         self.mapped("review_ids").unlink()
         return super().unlink()
+
+    @api.model
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        res = super().fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        )
+        if view_type == "form" and not self._tier_validation_manual_config:
+            doc = etree.XML(res["arch"])
+            for node in doc.xpath(self._tier_validation_buttons_xpath):
+                # By default, after the last button of the header
+                str_element = self.env["ir.qweb"]._render(
+                    "base_tier_validation.tier_validation_buttons"
+                )
+                new_node = etree.fromstring(str_element)
+                for new_element in new_node:
+                    node.addnext(new_element)
+            for node in doc.xpath("/form/sheet"):
+                str_element = self.env["ir.qweb"]._render(
+                    "base_tier_validation.tier_validation_label"
+                )
+                new_node = etree.fromstring(str_element)
+                for new_element in new_node:
+                    node.addprevious(new_element)
+                str_element = self.env["ir.qweb"]._render(
+                    "base_tier_validation.tier_validation_reviews"
+                )
+                node.addnext(etree.fromstring(str_element))
+            View = self.env["ir.ui.view"]
+
+            # Override context for postprocessing
+            if view_id and res.get("base_model", self._name) != self._name:
+                View = View.with_context(base_model_name=res["base_model"])
+            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
+            res["arch"] = new_arch
+            # We don't want to loose previous configuration, so, we only want to add
+            # the new fields
+            new_fields.update(res["fields"])
+            res["fields"] = new_fields
+        return res
