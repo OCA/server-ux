@@ -20,8 +20,8 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [base_technical_features](base_technical_features/) | 14.0.1.0.0 | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 14.0.1.0.0 | Implement a validation process based on tiers.
-[base_tier_validation_formula](base_tier_validation_formula/) | 14.0.1.0.0 | Formulas for Base tier validation
+[base_tier_validation](base_tier_validation/) | 14.0.2.0.0 | Implement a validation process based on tiers.
+[base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.0 | Formulas for Base tier validation
 [date_range](date_range/) | 14.0.1.0.1 | Manage all kind of date range
 
 [//]: # (end addons)
