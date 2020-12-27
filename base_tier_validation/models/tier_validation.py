@@ -283,7 +283,7 @@ class TierValidation(models.AbstractModel):
         )
         if has_comment:
             comment = has_comment.mapped("comment")[0]
-            return _("A review was rejected by {}. ({})").format(self.env.user.name, comment)
+            return _("A review was rejected by %s. (%s)") % (self.env.user.name, comment)
 
         return _("A review was rejected by %s.") % (self.env.user.name)
 
