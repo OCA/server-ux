@@ -21,7 +21,6 @@ class MassOperationWizardMixin(models.AbstractModel):
     # To Overwrite Section
     def _apply_operation(self, items):
         self.ensure_one()
-        pass
 
     # Column Section
     selected_item_qty = fields.Integer(readonly=True)
