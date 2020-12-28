@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [barcode_action](barcode_action/) | 13.0.1.0.0 | Allows to use barcodes as a launcher
 [base_export_manager](base_export_manager/) | 13.0.1.0.0 | Manage model export profiles
+[base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | Restrict (with groups) menu visibilty
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.0 | Add custom filters for fields via UI
 [base_technical_features](base_technical_features/) | 13.0.1.0.0 | Access to technical features without activating debug mode
 [base_tier_validation](base_tier_validation/) | 13.0.1.3.0 | Implement a validation process based on tiers.
