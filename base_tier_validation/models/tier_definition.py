@@ -7,7 +7,7 @@ from odoo import _, api, fields, models
 class TierDefinition(models.Model):
     _name = "tier.definition"
     _description = "Tier Definition"
-    _order = "sequence, id"
+    _order = "model_id, sequence, id"
 
     @api.model
     def _get_default_name(self):
