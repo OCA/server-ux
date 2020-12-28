@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-barcode_action',
         'odoo13-addon-base_export_manager',
+        'odoo13-addon-base_menu_visibility_restriction',
         'odoo13-addon-base_search_custom_field_filter',
         'odoo13-addon-base_technical_features',
         'odoo13-addon-base_tier_validation',
