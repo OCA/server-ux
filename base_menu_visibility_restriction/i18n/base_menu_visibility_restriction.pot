@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 09:30+0000\n"
-"PO-Revision-Date: 2020-11-11 09:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_menu_visibility_restriction
-#: model:ir.model.fields,field_description:base_menu_visibility_restriction.field_ir_ui_menu__excluded_groups_id
+#: model:ir.model.fields,field_description:base_menu_visibility_restriction.field_ir_ui_menu__excluded_group_ids
 msgid "Excluded Groups"
 msgstr ""
 
 #. module: base_menu_visibility_restriction
 #: model:ir.model,name:base_menu_visibility_restriction.model_ir_ui_menu
 msgid "Menu"
+msgstr ""
+
+#. module: base_menu_visibility_restriction
+#: model:res.groups,name:base_menu_visibility_restriction.group_demo_user
+msgid "Menu visibility restriction demo group"
 msgstr ""
