@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_server_action_form" model="ir.ui.view">
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form" />
+        <field name="arch" type="xml">
+            <field name="model_id" position="after">
+                <field
+                    name="domain"
+                    widget="domain"
+                    options="{'model': 'model_name', 'in_dialog': True}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
