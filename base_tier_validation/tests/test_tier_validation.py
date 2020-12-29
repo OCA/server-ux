@@ -218,7 +218,7 @@ class TierTierValidation(CommonTierValidation):
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
-                "sequence": 30,
+                "sequence": 10,
             }
         )
         self.tier_def_obj.create(
@@ -228,7 +228,7 @@ class TierTierValidation(CommonTierValidation):
                 "reviewer_id": self.test_user_2.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
-                "sequence": 10,
+                "sequence": 30,
             }
         )
         # Request validation
@@ -267,7 +267,7 @@ class TierTierValidation(CommonTierValidation):
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
-                "sequence": 20,
+                "sequence": 10,
             }
         )
         self.tier_def_obj.create(
@@ -277,7 +277,7 @@ class TierTierValidation(CommonTierValidation):
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
-                "sequence": 10,
+                "sequence": 20,
             }
         )
         # Request validation
