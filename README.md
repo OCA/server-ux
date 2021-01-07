@@ -24,6 +24,7 @@ addon | version | summary
 [base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.0 | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 14.0.1.0.1 | Forward option for base tiers
 [date_range](date_range/) | 14.0.1.0.1 | Manage all kind of date range
+[mass_editing](mass_editing/) | 14.0.1.0.0 | Mass Editing
 
 [//]: # (end addons)
 
