@@ -35,6 +35,7 @@ addon | version | summary
 [mass_editing](mass_editing/) | 13.0.1.1.0 | Mass Editing
 [mass_operation_abstract](mass_operation_abstract/) | 13.0.1.0.0 | Abstract Tools used for modules that realize operation onmany items
 [multi_step_wizard](multi_step_wizard/) | 13.0.1.1.2 | Multi-Steps Wizards
+[sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 
 [//]: # (end addons)
