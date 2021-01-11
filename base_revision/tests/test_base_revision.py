@@ -3,23 +3,27 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # Copyright 2020 Ecosoft (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import common
-
-from .base_revision_tester import BaseRevisionTester
-from .common import setup_test_model, teardown_test_model
 
 
 class TestBaseRevision(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseRevision, cls).setUpClass()
-        setup_test_model(cls.env, [BaseRevisionTester])
+
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .base_revision_tester import BaseRevisionTester
+
+        cls.loader.update_registry((BaseRevisionTester,))
+
         cls.revision_model = cls.env[BaseRevisionTester._name]
 
     @classmethod
     def tearDownClass(cls):
-        teardown_test_model(cls.env, [BaseRevisionTester])
+        cls.loader.restore_registry()
         super(TestBaseRevision, cls).tearDownClass()
 
     def _create_tester(self):

@@ -14,10 +14,9 @@ class BaseRevision(models.AbstractModel):
     @api.depends("old_revision_ids")
     def _compute_has_old_revisions(self):
         for rec in self:
-            if rec.with_context(active_test=False).old_revision_ids:
-                rec.has_old_revisions = True
-            else:
-                rec.has_old_revisions = False
+            rec.has_old_revisions = (
+                True if rec.with_context(active_test=False).old_revision_ids else False
+            )
 
     current_revision_id = fields.Many2one(
         comodel_name="base.revision",
@@ -50,8 +49,7 @@ class BaseRevision(models.AbstractModel):
 
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
-        if default is None:
-            default = {}
+        default = default or {}
         if "unrevisioned_name" not in default:
             default["unrevisioned_name"] = False
         rec = super().copy(default=default)
@@ -60,17 +58,20 @@ class BaseRevision(models.AbstractModel):
             rec.write({"unrevisioned_name": rec[name_field]})
         return rec
 
+    def _get_new_rev_data(self, new_rev_number):
+        self.ensure_one()
+        return {
+            "revision_number": new_rev_number,
+            "unrevisioned_name": self.unrevisioned_name,
+            "name": "%s-%02d" % (self.unrevisioned_name, new_rev_number),
+            "old_revision_ids": [(4, self.id, False)],
+        }
+
     def copy_revision_with_context(self):
         default_data = self.default_get([])
         new_rev_number = self.revision_number + 1
-        default_data.update(
-            {
-                "revision_number": new_rev_number,
-                "unrevisioned_name": self.unrevisioned_name,
-                "name": "%s-%02d" % (self.unrevisioned_name, new_rev_number),
-                "old_revision_ids": [(4, self.id, False)],
-            }
-        )
+        vals = self._get_new_rev_data(new_rev_number)
+        default_data.update(vals)
         new_revision = self.copy(default_data)
         self.old_revision_ids.write({"current_revision_id": new_revision.id})
         self.write(
