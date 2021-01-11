@@ -14,10 +14,9 @@ class BaseRevision(models.AbstractModel):
     @api.depends("old_revision_ids")
     def _compute_has_old_revisions(self):
         for rec in self:
-            if rec.with_context(active_test=False).old_revision_ids:
-                rec.has_old_revisions = True
-            else:
-                rec.has_old_revisions = False
+            rec.has_old_revisions = (
+                True if rec.with_context(active_test=False).old_revision_ids else False
+            )
 
     current_revision_id = fields.Many2one(
         comodel_name="base.revision",
@@ -50,8 +49,7 @@ class BaseRevision(models.AbstractModel):
 
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
-        if default is None:
-            default = {}
+        default = default or {}
         if "unrevisioned_name" not in default:
             default["unrevisioned_name"] = False
         rec = super().copy(default=default)
