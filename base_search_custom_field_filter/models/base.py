@@ -51,9 +51,12 @@ class Base(models.AbstractModel):
     @api.model
     def load_views(self, views, options=None):
         """Inject fake field definition for having custom filters available."""
-        res = super(Base, self.with_context(custom_field_filter=True,)).load_views(
-            views, options=options
-        )
+        res = super(
+            Base,
+            self.with_context(
+                custom_field_filter=True,
+            ),
+        ).load_views(views, options=options)
         custom_filters = self.env["ir.ui.custom.field.filter"].search(
             [("model_name", "=", self._name)]
         )
