@@ -14,11 +14,10 @@
             </tree>
         </field>
     </record>
-    <act_window
-        id="action_ir_ui_custom_field_filter"
-        name="Custom Field Filters"
-        res_model="ir.ui.custom.field.filter"
-    />
+    <record id="action_ir_ui_custom_field_filter" model="ir.actions.act_window">
+        <field name="name">Custom Field Filters</field>
+        <field name="res_model">ir.ui.custom.field.filter</field>
+    </record>
     <menuitem
         id="menu_ir_ui_custom_field_filter"
         action="action_ir_ui_custom_field_filter"
