@@ -11,7 +11,9 @@ class IrUiCustomFilter(models.Model):
     _order = "model_id, sequence, id"
 
     sequence = fields.Integer()
-    model_id = fields.Many2one(comodel_name="ir.model", required=True)
+    model_id = fields.Many2one(
+        comodel_name="ir.model", required=True, ondelete="cascade"
+    )
     model_name = fields.Char(
         related="model_id.model",
         store=True,
