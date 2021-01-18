@@ -10,7 +10,7 @@ class ChainedSwapper(models.Model):
     _name = "chained.swapper"
     _description = "Chained Swapper"
 
-    name = fields.Char(required=True, translate=True, index=1,)
+    name = fields.Char(required=True, translate=True, index=1)
     model_id = fields.Many2one(
         comodel_name="ir.model",
         required=True,
@@ -92,12 +92,10 @@ class ChainedSwapper(models.Model):
             self.mapped("ref_ir_act_window_id").write({"name": vals["name"]})
         return res
 
-    @api.multi
     def unlink(self):
         self.unlink_action()
         return super().unlink()
 
-    @api.multi
     def add_action(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"].create(
@@ -105,9 +103,7 @@ class ChainedSwapper(models.Model):
                 "name": _("Chained swap") + ": " + self.name,
                 "type": "ir.actions.act_window",
                 "res_model": "chained.swapper.wizard",
-                "src_model": self.model_id.model,
                 "groups_id": [(4, x.id) for x in self.group_ids],
-                "view_type": "form",
                 "context": "{'chained_swapper_id': %d}" % (self.id),
                 "view_mode": "form",
                 "target": "new",
@@ -118,7 +114,6 @@ class ChainedSwapper(models.Model):
         self.write({"ref_ir_act_window_id": action.id})
         return True
 
-    @api.multi
     def unlink_action(self):
         self.mapped("ref_ir_act_window_id").unlink()
         return True
@@ -177,7 +172,7 @@ class ChainedSwapperConstraint(models.Model):
     chained_swapper_id = fields.Many2one(
         comodel_name="chained.swapper", ondelete="cascade"
     )
-    name = fields.Char(required=True, translate=True,)
+    name = fields.Char(required=True, translate=True)
     expression = fields.Text(
         string="Constraint expression",
         required=True,
