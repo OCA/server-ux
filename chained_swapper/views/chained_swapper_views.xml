@@ -87,7 +87,6 @@
     <record id="chained_swapper_action" model="ir.actions.act_window">
         <field name="name">Field Swaps</field>
         <field name="res_model">chained.swapper</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <!-- Chained Swapper Sub-fields -->
