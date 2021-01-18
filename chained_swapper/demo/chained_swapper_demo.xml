@@ -23,12 +23,12 @@
         id="partner_chained_swap_lang_action_demo"
         name="Chained swap: Language"
         res_model="chained.swapper.wizard"
-        src_model="res.partner"
+        binding_model="res.partner"
         view_mode="form"
         context="{'chained_swapper_id': ref('chained_swapper_demo')}"
-        key2="client_action_multi"
         target="new"
     />
+    <!-- pylint:disable=duplicate-xml-record-id -->
     <record id="chained_swapper_demo" model="chained.swapper">
         <field
             name="ref_ir_act_window_id"
