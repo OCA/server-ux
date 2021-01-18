@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2020 Tecnativa - Ernesto Tejeda
      Copyright 2020 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
@@ -11,52 +11,64 @@
             <form>
                 <sheet>
                     <div class="oe_button_box" name="buttons">
-                        <field name="ref_ir_act_window_id" invisible="1"/>
+                        <field name="ref_ir_act_window_id" invisible="1" />
                         <!--string="Create Contextual Action"-->
-                        <button name="add_action"
+                        <button
+                            name="add_action"
                             type="object"
                             string="Add Action"
                             attrs="{'invisible':[('ref_ir_act_window_id','!=',False)]}"
                             class="oe_stat_button"
                             icon="fa-plus"
-                            help="Add a new contextual action of related documents to open a composition wizard"/>
-                        <button name="unlink_action"
+                            help="Add a new contextual action of related documents to open a composition wizard"
+                        />
+                        <button
+                            name="unlink_action"
                             type="object"
                             string="Remove Action"
-                            class="oe_stat_button" icon="fa-minus"
+                            class="oe_stat_button"
+                            icon="fa-minus"
                             attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}"
                             help="Remove the contextual action to use this template on related documents"
-                            widget="statinfo"/>
+                            widget="statinfo"
+                        />
                     </div>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
+                        <label for="name" class="oe_edit_only" />
                         <h1>
-                            <field name="name" required="1"/>
+                            <field name="name" required="1" />
                         </h1>
                     </div>
                     <group>
                         <group name="model_id">
-                            <field name="model_id" required="1" attrs="{'readonly':[('ref_ir_act_window_id','!=',False)]}"/>
-                            <field name="field_id"/>
+                            <field
+                                name="model_id"
+                                required="1"
+                                attrs="{'readonly':[('ref_ir_act_window_id','!=',False)]}"
+                            />
+                            <field name="field_id" />
                         </group>
                     </group>
                     <notebook colspan="4">
                         <page string="Sub-fields">
-                            <field name="sub_field_ids" nolabel="1"/>
+                            <field name="sub_field_ids" nolabel="1" />
                         </page>
                         <page string="Constraints">
-                            <field name="constraint_ids" nolabel="1"/>
+                            <field name="constraint_ids" nolabel="1" />
                         </page>
                         <page string="Security">
-                            <field name="group_ids" nolabel="1"/>
+                            <field name="group_ids" nolabel="1" />
                         </page>
-                        <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
+                        <page
+                            string="Advanced"
+                            attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}"
+                        >
                             <group colspan="2" col="2">
-                                <field name="ref_ir_act_window_id"/>
+                                <field name="ref_ir_act_window_id" />
                             </group>
                         </page>
                     </notebook>
-                    <field name="allowed_field_ids" invisible="1"/>
+                    <field name="allowed_field_ids" invisible="1" />
                 </sheet>
             </form>
         </field>
@@ -66,9 +78,9 @@
         <field name="model">chained.swapper</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="model_id"/>
-                <field name="field_id"/>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_id" />
             </tree>
         </field>
     </record>
@@ -84,7 +96,7 @@
         <field name="model">chained.swapper.sub.field</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="sub_field_chain"/>
+                <field name="sub_field_chain" />
             </tree>
         </field>
     </record>
@@ -94,8 +106,8 @@
         <field name="model">chained.swapper.constraint</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="name"/>
-                <field name="expression"/>
+                <field name="name" />
+                <field name="expression" />
             </tree>
         </field>
     </record>
@@ -105,21 +117,30 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name"/>
+                    <field name="name" />
                 </group>
                 <group string="Constraint expression">
-                    <field name="expression" nolabel="1" widget="ace" options="{'mode': 'python'}"/>
+                    <field
+                        name="expression"
+                        nolabel="1"
+                        widget="ace"
+                        options="{'mode': 'python'}"
+                    />
                 </group>
             </form>
         </field>
     </record>
     <!-- Menus -->
-    <menuitem id="chained_swapper_menu"
-              name="Field Swaps"
-              parent="base.menu_administration"
-              sequence="7"/>
-    <menuitem id="chained_swapper_submenu"
-              action="chained_swapper_action"
-              parent="chained_swapper_menu"/>
+    <menuitem
+        id="chained_swapper_menu"
+        name="Field Swaps"
+        parent="base.menu_administration"
+        sequence="7"
+    />
+    <menuitem
+        id="chained_swapper_submenu"
+        action="chained_swapper_action"
+        parent="chained_swapper_menu"
+    />
 
 </odoo>
