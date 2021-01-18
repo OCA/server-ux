@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* chained_swapper
+# 	* chained_swapper
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:146
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "<b>Chained swap done</b>:"
 msgstr ""
@@ -26,7 +26,9 @@ msgstr ""
 
 #. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper__ref_ir_act_window_id
-msgid "Action to make this template available on records of the related document model."
+msgid ""
+"Action to make this template available on records of the related document "
+"model."
 msgstr ""
 
 #. module: chained_swapper
@@ -36,7 +38,9 @@ msgstr ""
 
 #. module: chained_swapper
 #: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
-msgid "Add a new contextual action of related documents to open a composition wizard"
+msgid ""
+"Add a new contextual action of related documents to open a composition "
+"wizard"
 msgstr ""
 
 #. module: chained_swapper
@@ -51,7 +55,10 @@ msgstr ""
 
 #. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper_constraint__expression
-msgid "Boolean python expression. You can use the keyword 'records' as the records selected to execute the contextual action. Ex.: bool(records.mapped('parent_id'))"
+msgid ""
+"Boolean python expression. You can use the keyword 'records' as the records "
+"selected to execute the contextual action. Ex.: "
+"bool(records.mapped('parent_id'))"
 msgstr ""
 
 #. module: chained_swapper
@@ -72,7 +79,7 @@ msgid "Chained Swapper Sub-field"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:104
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Chained swap"
 msgstr ""
@@ -154,13 +161,13 @@ msgid "ID"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:151
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Incorrect sub-field expression:"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:193
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Invalid constraint expression:  "
 msgstr ""
@@ -200,13 +207,15 @@ msgid "Model"
 msgstr ""
 
 #. module: chained_swapper
-#: sql_constraint:chained.swapper:0
+#: model:ir.model.constraint,message:chained_swapper.constraint_chained_swapper_model_id_field_id_unique
 msgid "Model and Field must be unique!"
 msgstr ""
 
 #. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper__model_id
-msgid "Model is used for Selecting Field. This is editable until Contextual Action is not created."
+msgid ""
+"Model is used for Selecting Field. This is editable until Contextual Action "
+"is not created."
 msgstr ""
 
 #. module: chained_swapper
@@ -216,7 +225,7 @@ msgid "Name"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:32
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr ""
@@ -253,7 +262,7 @@ msgid "Sub-fields"
 msgstr ""
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:162
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr ""
@@ -265,6 +274,7 @@ msgstr ""
 
 #. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper_sub_field__sub_field_chain
-msgid "You can specify here a field of related fields as dotted names. Ex.: 'child_ids.lang'."
+msgid ""
+"You can specify here a field of related fields as dotted names. Ex.: "
+"'child_ids.lang'."
 msgstr ""
-

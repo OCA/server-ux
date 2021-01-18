@@ -43,12 +43,12 @@ class ChainedSwapperWizard(models.TransientModel):
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
-        """ As we don't have any field in this model, result['fields']
+        """As we don't have any field in this model, result['fields']
         and result['arch'] are modified to add dynamically the
         corresponding field.
         """
         res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu,
         )
         if not self.env.context.get("chained_swapper_id"):
             return res
@@ -83,7 +83,7 @@ class ChainedSwapperWizard(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        """ As we don't have any field in this model, the key-value pair
+        """As we don't have any field in this model, the key-value pair
         received in vals dict are only used to change the value in the active
         models.
         """
@@ -114,7 +114,6 @@ class ChainedSwapperWizard(models.TransientModel):
                 )
         return super().create({})
 
-    @api.multi
     def change_action(self):
         return {"type": "ir.actions.act_window_close"}
 
