@@ -178,6 +178,30 @@ class TestMassEditing(common.SavepointCase):
             self.mass_editing_user.write(
                 {"model_id": self.env.ref("base.model_res_country").id}
             )
+    def test_mass_edit_log_ids(self):
+        """Test Case for MASS EDITING which will remove and after add
+        User's log_ids and will assert the same."""
+        # Add one log_ids
+        self.env['res.users.log'].sudo(self.user).create({})
+        self.assertTrue(self.user.log_ids)
+        # Remove one log_ids
+        vals = {"selection__log_ids": "remove"}
+        self._create_wizard_and_apply_values(
+            self.mass_editing_user, self.user, vals)
+        self.assertFalse(
+            self.user.log_ids.exists(), "User's log_ids should be removed.")
+        # Set one log_ids
+        vals = {
+            'selection__log_ids': 'set',
+            'log_ids': [[
+                0,
+                0,
+                {}
+            ]]}
+        self._create_wizard_and_apply_values(
+            self.mass_editing_user, self.user, vals)
+        self.assertTrue(
+            self.user.log_ids, "User's log_ids should be set.")
 
     def test_onchanges(self):
         """Test that form onchanges do what they're supposed to"""
