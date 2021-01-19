@@ -101,10 +101,17 @@ class MassEditingWizard(models.TransientModel):
                 if key.startswith("selection_"):
                     split_key = key.split("__", 1)[1]
                     if val == "set":
-                        values.update({split_key: vals.get(split_key, False)})
-
+                        if TargetModel._fields[split_key].type == 'one2many':
+                            values.update({
+                                split_key: vals.get(split_key, [(6, 0, [])])})
+                        else:
+                            values.update({
+                                split_key: vals.get(split_key, False)})
                     elif val == "remove":
-                        values.update({split_key: False})
+                        if TargetModel._fields[split_key].type == 'one2many':
+                            values.update({split_key: [(6, 0, [])]})
+                        else:
+                            values.update({split_key: False})
 
                         # If field to remove is translatable,
                         # its translations have to be removed
