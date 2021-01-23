@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Tecnativa - Ernesto Tejeda
+     Copyright 2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!--Add a chained swapper-->
+    <record id="chained_swapper_demo" model="chained.swapper">
+        <field name="name">Language</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="field_id" ref="base.field_res_partner__lang" />
+    </record>
+    <record id="chained_swapper_sub_field_demo" model="chained.swapper.sub.field">
+        <field name="chained_swapper_id" ref="chained_swapper_demo" />
+        <field name="sub_field_chain">child_ids.lang</field>
+    </record>
+    <record id="chained_swapper_constraint_demo" model="chained.swapper.constraint">
+        <field name="chained_swapper_id" ref="chained_swapper_demo" />
+        <field name="name">Only parent company</field>
+        <field name="expression">bool(records.mapped('parent_id'))</field>
+    </record>
+    <!--Add an action-->
+    <act_window
+        id="partner_chained_swap_lang_action_demo"
+        name="Chained swap: Language"
+        res_model="chained.swapper.wizard"
+        binding_model="res.partner"
+        view_mode="form"
+        context="{'chained_swapper_id': ref('chained_swapper_demo')}"
+        target="new"
+    />
+    <!-- pylint:disable=duplicate-xml-record-id -->
+    <record id="chained_swapper_demo" model="chained.swapper">
+        <field
+            name="ref_ir_act_window_id"
+            ref="partner_chained_swap_lang_action_demo"
+        />
+    </record>
+</odoo>
