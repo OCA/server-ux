@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="base_hide_menu_view_tree" model="ir.ui.view">
+        <field name="name">base.hide.menu.tree</field>
+        <field name="model">base.hide.menu</field>
+        <field name="arch" type="xml">
+            <tree string="Base Hide Menu">
+                <field name="name"/>
+                <field name="parent_menu_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="base_hide_menu_view_form" model="ir.ui.view">
+        <field name="name">base.hide.menu.form</field>
+        <field name="model">base.hide.menu</field>
+        <field name="arch" type="xml">
+            <form string="Base Hide Menu">
+                <header/>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <span class="oe_edit_only">Name</span>
+                        <h1>
+                            <field name="name" required="1"
+                                   placeholder="e.g. Hide Menu Account Reporting..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="parent_menu_id"/>
+                        </group>
+                        <group name="right">
+                            <field name="all_hidden" invisible="1"/>
+                            <button string="Hide All" name="button_hide_all"
+                                    type="object"
+                                    attrs="{'invisible': [('all_hidden', '=', True)]}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('menu_item_ids', '=', False)]}">
+                        <field name="menu_item_ids" nolabel="1">
+                            <tree string="Sub-Menus" edit="false" create="false" delete="false">
+                                <field name="complete_name"/>
+                                <field name="visible"/>
+                                <button string="Hide Menu"
+                                        name="hide_menu" attrs="{'invisible': [('visible', '=', False)]}"
+                                        icon="fa-eye-slash" type="object"/>
+                                <button string="Unhide Menu"
+                                        name="unhide_menu" attrs="{'invisible': [('visible', '=', True)]}"
+                                        icon="fa-eye" type="object"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="base_hide_menu_view_search" model="ir.ui.view">
+        <field name="name">base.hide.menu.search</field>
+        <field name="model">base.hide.menu</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="active"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

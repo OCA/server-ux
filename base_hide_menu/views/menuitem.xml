@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="base_hide_menu_view_action" model="ir.actions.act_window">
+        <field name="name">Hidden Menus</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">base.hide.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_base_hide_menu"
+              name="Hidden Menus"
+              parent="base.menu_custom"/>
+    <menuitem id="menu_base_hide_menu_child"
+              parent="menu_base_hide_menu"
+              action="base_hide_menu_view_action"/>
+
+</odoo>

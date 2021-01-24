@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_hide_menu,access.base.hide.menu,model_base_hide_menu,,1,0,0,0
+access_base_hide_menu_settings,access.base.hide.menu.settings,model_base_hide_menu,base.group_system,1,1,1,1
+access_base_hide_menu_item,access.base.hide.menu.item,model_base_hide_menu_item,,1,0,0,0
+access_base_hide_menu_item_settings,access.base.hide.menu.item.settings,model_base_hide_menu_item,base.group_system,1,1,1,1
