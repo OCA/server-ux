@@ -17,6 +17,7 @@
     ],
     "data": [
         "data/mail_data.xml",
+        "security/tier_validation_security.xml",
         "security/ir.model.access.csv",
         "views/tier_definition_view.xml",
         "views/tier_review_view.xml",
