@@ -5,19 +5,20 @@
             <button
                 name="request_validation"
                 string="Request Validation"
-                attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('state','not in',['draft','sent','to approve'])]}"
+                attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('validate_ready','=',False)]}"
                 type="object"
             />
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                attrs="{'invisible': ['|',('review_ids', '=', []),('state','not in',['draft','sent','to approve'])]}"
+                attrs="{'invisible': ['|',('review_ids', '=', []),('validate_ready','=',False)]}"
                 type="object"
             />
         </div>
     </template>
     <template id="tier_validation_label">
         <div>
+        <field name="validate_ready" invisible="1" />
         <field name="need_validation" invisible="1" />
         <field name="validated" invisible="1" />
         <field name="rejected" invisible="1" />
@@ -25,14 +26,13 @@
                 class="alert alert-warning"
                 role="alert"
                 attrs="{'invisible': ['|', '|', '|',
-             ('validated', '=', True), ('state', 'not in', ['draft','sent','to approve']),
+             ('validated', '=', True),('validate_ready','=',False),
              ('rejected', '=', True), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
                 <i class="fa fa-info-circle" />
-                This Record needs to be
-                validated.
+                This Record needs to be validated.
                 <field name="can_review" invisible="1" />
                 <button
                         name="validate_tier"
@@ -55,7 +55,7 @@
         <div
                 class="alert alert-success"
                 role="alert"
-                attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                attrs="{'invisible': ['|', '|', ('validated', '!=', True),('validate_ready','=',False), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -68,7 +68,7 @@
         <div
                 class="alert alert-danger"
                 role="alert"
-                attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                attrs="{'invisible': ['|', '|', ('rejected', '!=', True),('validate_ready','=',False), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>

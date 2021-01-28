@@ -45,6 +45,10 @@ class TierValidation(models.AbstractModel):
     )
     can_review = fields.Boolean(compute="_compute_can_review")
     has_comment = fields.Boolean(compute="_compute_has_comment")
+    validate_ready = fields.Boolean(
+        compute="_compute_validate_ready",
+        help="Check current status, ready for validatin",
+    )
 
     def _compute_has_comment(self):
         for rec in self:
@@ -52,6 +56,13 @@ class TierValidation(models.AbstractModel):
                 lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
             ).mapped("has_comment")
             rec.has_comment = True in has_comment
+
+    def _compute_validate_ready(self):
+        for rec in self:
+            if getattr(rec, self._state_field) in self._state_from:
+                rec.validate_ready = True
+            else:
+                rec.validate_ready = False
 
     def _get_sequences_to_approve(self, user):
         all_reviews = self.review_ids.filtered(lambda r: r.status == "pending")
