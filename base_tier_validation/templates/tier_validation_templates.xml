@@ -5,13 +5,13 @@
             <button
                 name="request_validation"
                 string="Request Validation"
-                attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('state','not in',['draft','sent','to approve'])]}"
+                t-attf-attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('#{state_field}', 'not in', [#{state_from}])]}"
                 type="object"
             />
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                attrs="{'invisible': ['|',('review_ids', '=', []),('state','not in',['draft','sent','to approve'])]}"
+                t-attf-attrs="{'invisible': ['|',('review_ids', '=', []),('#{state_field}', 'not in', [#{state_from}])]}"
                 type="object"
             />
         </div>
@@ -24,8 +24,8 @@
         <div
                 class="alert alert-warning"
                 role="alert"
-                attrs="{'invisible': ['|', '|', '|',
-             ('validated', '=', True), ('state', 'not in', ['draft','sent','to approve']),
+                t-attf-attrs="{'invisible': ['|', '|', '|',
+             ('validated', '=', True), ('#{state_field}', 'not in', [#{state_from}]),
              ('rejected', '=', True), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
@@ -37,7 +37,7 @@
                 <button
                         name="validate_tier"
                         string="Validate"
-                        attrs="{'invisible': [('can_review', '=', False)]}"
+                        t-attf-attrs="{'invisible': [('can_review', '=', False)]}"
                         type="object"
                         class="oe_inline oe_button btn-success"
                         icon="fa-thumbs-up"
@@ -45,7 +45,7 @@
                 <button
                         name="reject_tier"
                         string="Reject"
-                        attrs="{'invisible': [('can_review', '=', False)]}"
+                        t-attf-attrs="{'invisible': [('can_review', '=', False)]}"
                         type="object"
                         class="btn-icon btn-danger"
                         icon="fa-thumbs-down"
@@ -55,7 +55,7 @@
         <div
                 class="alert alert-success"
                 role="alert"
-                attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                t-attf-attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('#{state_field}', 'not in', [#{state_from}]), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -68,7 +68,7 @@
         <div
                 class="alert alert-danger"
                 role="alert"
-                attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                t-attf-attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('#{state_field}', 'not in', [#{state_from}]), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
