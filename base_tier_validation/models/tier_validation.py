@@ -387,23 +387,27 @@ class TierValidation(models.AbstractModel):
         )
         if view_type == "form" and not self._tier_validation_manual_config:
             doc = etree.XML(res["arch"])
+            params = {
+                "state_field": self._state_field,
+                "state_from": ",".join("'%s'" % state for state in self._state_from),
+            }
             for node in doc.xpath(self._tier_validation_buttons_xpath):
                 # By default, after the last button of the header
                 str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_buttons"
+                    "base_tier_validation.tier_validation_buttons", params
                 )
                 new_node = etree.fromstring(str_element)
                 for new_element in new_node:
                     node.addnext(new_element)
             for node in doc.xpath("/form/sheet"):
                 str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_label"
+                    "base_tier_validation.tier_validation_label", params
                 )
                 new_node = etree.fromstring(str_element)
                 for new_element in new_node:
                     node.addprevious(new_element)
                 str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_reviews"
+                    "base_tier_validation.tier_validation_reviews", params
                 )
                 node.addnext(etree.fromstring(str_element))
             View = self.env["ir.ui.view"]
