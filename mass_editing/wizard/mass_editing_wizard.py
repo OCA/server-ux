@@ -70,6 +70,11 @@ class MassEditingWizard(models.TransientModel):
                 ("remove_m2m", _("Remove")),
                 ("add", _("Add")),
             ]
+        elif field.ttype == "one2many":
+            selection = [
+                ("set_o2m", _("Set")),
+                ("remove_o2m", _("Remove")),
+            ]
         else:
             selection = [("set", _("Set")), ("remove", _("Remove"))]
         result["selection__" + field.name] = {
@@ -164,18 +169,14 @@ class MassEditingWizard(models.TransientModel):
                 if key.startswith("selection_"):
                     split_key = key.split("__", 1)[1]
                     if val == "set":
-                        if TargetModel._fields[split_key].type == 'one2many':
-                            values.update({
-                                split_key: vals.get(split_key, [(6, 0, [])])})
-                        else:
-                            values.update({
-                                split_key: vals.get(split_key, False)})
-                    elif val == "remove":
-                        if TargetModel._fields[split_key].type == 'one2many':
-                            values.update({split_key: [(6, 0, [])]})
-                        else:
-                            values.update({split_key: False})
+                        values.update({split_key: vals.get(split_key, False)})
 
+                    elif val == "set_o2m":
+                        values.update({
+                            split_key: vals.get(split_key, [(6, 0, [])])})
+
+                    elif val == "remove":
+                        values.update({split_key: False})
                         # If field to remove is translatable,
                         # its translations have to be removed
                         model_field = IrModelFields.search(
@@ -209,6 +210,9 @@ class MassEditingWizard(models.TransientModel):
                             values.update({split_key: m2m_list})
                         else:
                             values.update({split_key: [(5, 0, [])]})
+
+                    elif val == "remove_o2m":
+                        values.update({split_key: [(6, 0, [])]})
 
                     elif val == "add":
                         m2m_list = []

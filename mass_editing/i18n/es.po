@@ -193,7 +193,9 @@ msgid "Remaining Item Qty"
 msgstr "Cantidad artículos restantes"
 
 #. module: mass_editing
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:22
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:28
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Remove"
 msgstr "Eliminar"
@@ -209,7 +211,9 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: mass_editing
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:21
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:27
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Set"
 msgstr "Establecer"
