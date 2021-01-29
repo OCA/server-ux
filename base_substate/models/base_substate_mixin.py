@@ -95,7 +95,7 @@ class BaseSubstateMixin(models.AbstractModel):
         string="Sub State",
         ondelete="restrict",
         default=lambda self: self._get_default_substate_id(),
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         domain=lambda self: [("model", "=", self._name)],
         copy=False,

@@ -2,10 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 
-from .models_mixin import TestMixin
 
-
-class SaleTest(models.Model, TestMixin):
+class SaleTest(models.Model):
     _inherit = "base.substate.mixin"
     _name = "base.substate.test.sale"
     _description = "Base substate Test Model"
@@ -41,7 +39,7 @@ class SaleTest(models.Model, TestMixin):
         self.write({"state": "cancel"})
 
 
-class LineTest(models.Model, TestMixin):
+class LineTest(models.Model):
     _name = "base.substate.test.sale.line"
     _description = "Base substate Test Model Line"
 
