@@ -56,8 +56,8 @@ class BaseSubstateMixin(models.AbstractModel):
         )
 
     def _get_default_substate_domain(self, state_val=False):
-        """ Override this method
-            to change domain values
+        """Override this method
+        to change domain values
         """
         if not state_val:
             state_val = self._get_default_state_value()
@@ -72,15 +72,19 @@ class BaseSubstateMixin(models.AbstractModel):
         ]
         return domain
 
-    def _get_default_state_value(self,):
-        """ Override this method
-            to change state_value
-            """
+    def _get_default_state_value(
+        self,
+    ):
+        """Override this method
+        to change state_value
+        """
         return "draft"
 
-    def _get_substate_type(self,):
-        """ Override this method
-            to change substate_type (get by xml id for example)
+    def _get_substate_type(
+        self,
+    ):
+        """Override this method
+        to change substate_type (get by xml id for example)
         """
         return self.env["base.substate.type"].search(
             [("model", "=", self._name)], limit=1
