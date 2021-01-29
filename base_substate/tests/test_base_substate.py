@@ -1,19 +1,21 @@
 # Copyright 2020 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo_test_helper import FakeModelLoader
 
-from .sale_test import LineTest, SaleTest
+from odoo.tests import common, tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
-class TestBaseSubstate(common.SavepointCase):
+@tagged("-at_install", "post_install")
+class TestBaseSubstate(common.SavepointCase, FakeModelLoader):
     @classmethod
     def setUpClass(cls):
         super(TestBaseSubstate, cls).setUpClass()
-        SaleTest._test_setup_models(cls.env, [SaleTest, LineTest])
-        LineTest._test_setup_model(cls.env)
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .models import LineTest, SaleTest
+
+        cls.loader.update_registry((SaleTest, LineTest))
 
         cls.substate_test_sale = cls.env["base.substate.test.sale"]
         cls.substate_test_sale_line = cls.env["base.substate.test.sale.line"]
@@ -59,7 +61,7 @@ class TestBaseSubstate(common.SavepointCase):
         cls.substate_won = cls.env["base.substate"].create(
             {
                 "name": "Won",
-                "sequence": 1,
+                "sequence": 3,
                 "target_state_value_id": cls.substate_val_quotation.id,
             }
         )
@@ -67,7 +69,7 @@ class TestBaseSubstate(common.SavepointCase):
         cls.substate_wait_docs = cls.env["base.substate"].create(
             {
                 "name": "Waiting for legal documents",
-                "sequence": 2,
+                "sequence": 4,
                 "target_state_value_id": cls.substate_val_sale.id,
             }
         )
@@ -75,7 +77,7 @@ class TestBaseSubstate(common.SavepointCase):
         cls.substate_valid_docs = cls.env["base.substate"].create(
             {
                 "name": "To validate legal documents",
-                "sequence": 3,
+                "sequence": 5,
                 "target_state_value_id": cls.substate_val_sale.id,
             }
         )
@@ -83,15 +85,14 @@ class TestBaseSubstate(common.SavepointCase):
         cls.substate_in_delivering = cls.env["base.substate"].create(
             {
                 "name": "In delivering",
-                "sequence": 4,
+                "sequence": 6,
                 "target_state_value_id": cls.substate_val_sale.id,
             }
         )
 
     @classmethod
     def tearDownClass(cls):
-        SaleTest._test_teardown_model(cls.env)
-        LineTest._test_teardown_model(cls.env)
+        cls.loader.restore_registry()
         super().tearDownClass()
 
     def test_sale_order_substate(self):
