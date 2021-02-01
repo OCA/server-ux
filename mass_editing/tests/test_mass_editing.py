@@ -183,7 +183,7 @@ class TestMassEditing(common.SavepointCase):
         """Test Case for MASS EDITING which will remove and after add
         User's log_ids and will assert the same."""
         # Add one log_ids
-        self.env['res.users.log'].sudo(self.user).create({})
+        self.env["res.users.log"].sudo(self.user).create({})
         self.assertTrue(self.user.log_ids)
         # Remove one log_ids
         vals = {"selection__log_ids": "remove_o2m"}
