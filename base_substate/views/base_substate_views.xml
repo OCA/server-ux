@@ -43,7 +43,7 @@
                             <field name="model" />
                             <field
                                 name="mail_template_id"
-                                domain="[('model', '=', model)]"
+                                domain="[('model_id', '=', model)]"
                             />
                         </group>
                     </group>

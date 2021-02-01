@@ -8,7 +8,7 @@
     "author": "Akretion, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": ["base", "mail"],
     "data": [
         "security/base_substate_security.xml",
         "security/ir.model.access.csv",
