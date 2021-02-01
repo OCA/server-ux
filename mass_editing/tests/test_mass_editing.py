@@ -188,7 +188,7 @@ class TestMassEditing(common.SavepointCase):
             self.user.log_ids.exists(), "User's log_ids should be removed.")
         # Set one log_ids
         vals = {
-            'selection__log_ids': 'set_o2m',
+            'selection__log_ids': "set_o2m",
             'log_ids': [[
                 0,
                 0,
