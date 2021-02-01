@@ -184,6 +184,7 @@ class TierValidation(models.AbstractModel):
             if (
                 rec.review_ids
                 and getattr(rec, self._state_field) in self._state_from
+                and vals.get(self._state_field)
                 and not vals.get(self._state_field)
                 in (self._state_to + [self._cancel_state])
                 and not self._check_allow_write_under_validation(vals)
