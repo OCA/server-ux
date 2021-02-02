@@ -7,37 +7,32 @@ class TierReview(models.Model):
     _inherit = "tier.review"
     _order = "sequence"
 
-    name = fields.Char(compute="_compute_definition_data", store=True, readonly=False)
+    name = fields.Char(compute="_compute_definition_data", store=True)
     status = fields.Selection(
         selection_add=[("forwarded", "Forwarded")],
     )
     review_type = fields.Selection(
         compute="_compute_definition_data",
         store=True,
-        readonly=False,
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users",
         compute="_compute_definition_data",
         store=True,
-        readonly=False,
     )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups",
         compute="_compute_definition_data",
         store=True,
-        readonly=False,
     )
     sequence = fields.Float()
     has_comment = fields.Boolean(
         compute="_compute_definition_data",
         store=True,
-        readonly=False,
     )
     approve_sequence = fields.Boolean(
         compute="_compute_definition_data",
         store=True,
-        readonly=False,
     )
 
     @api.depends(
