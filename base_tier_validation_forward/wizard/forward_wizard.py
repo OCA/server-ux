@@ -32,13 +32,18 @@ class ValidationForwardWizard(models.TransientModel):
             {"comment": _(">> %s") % self.forward_reviewer_id.display_name}
         )
         prev_reviews = prev_comment.add_comment()
-        self.env["tier.review"].create(
+        review = self.env["tier.review"].create(
             {
-                "name": self.forward_description,
                 "model": rec._name,
                 "res_id": rec.id,
                 "sequence": max(prev_reviews.mapped("sequence")) + 0.1,
                 "requested_by": self.env.uid,
+            }
+        )
+        # Because following fileds are readonly, we need to write after create
+        review.write(
+            {
+                "name": self.forward_description,
                 "review_type": "individual",
                 "reviewer_id": self.forward_reviewer_id.id,
                 "has_comment": self.has_comment,
