@@ -23,7 +23,10 @@ class MassEditingWizard(models.TransientModel):
                 ("add", _("Add")),
             ]
         elif field.ttype == "one2many":
-            selection = [("set_o2m", _("Set")), ("remove_o2m", _("Remove"))]
+            selection = [
+                ("set_o2m", _("Set")),
+                ("remove_o2m", _("Remove")),
+            ]
         else:
             selection = [("set", _("Set")), ("remove", _("Remove"))]
         result["selection__" + field.name] = {
