@@ -8,7 +8,20 @@
         <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
         <field name="arch" type="xml">
             <field name="approve_sequence" position="after">
-                <field name="has_forward" />
+                <label for="has_forward" />
+                <div name="has_forward_div" class="o_row">
+                    <field name="has_forward" />
+                </div>
+                <label for="backward" invisible="1" />
+                <div
+                    name="backward_div"
+                    class="o_row"
+                    attrs="{'invisible': [('has_forward', '=', False)]}"
+                    title="If the forwarded step is approved, auto forward back again to finish the step."
+                >
+                    <field name="backward" />
+                    <span>Auto backward after the forward step is validated</span>
+                </div>
             </field>
         </field>
     </record>
