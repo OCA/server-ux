@@ -34,6 +34,11 @@ class TierReview(models.Model):
         compute="_compute_definition_data",
         store=True,
     )
+    origin_id = fields.Many2one(
+        comodel_name="tier.review",
+        copy=False,
+        help="Reference to origin tier review that createก this tier.",
+    )
 
     @api.depends(
         "definition_id.name",

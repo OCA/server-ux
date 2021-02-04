@@ -88,3 +88,29 @@ class TierValidation(models.AbstractModel):
                 "A review was forwarded from {} {}".format(self.env.user.name, comment)
             )
         return _("A review was forwarded by %s.") % (self.env.user.name)
+
+    def _validate_tier(self, tiers=False):
+        self.ensure_one()
+        self._create_backward(tiers)
+        super()._validate_tier(tiers=tiers)
+
+    def _create_backward(self, tiers):
+        """ Find the forward tier that require to backward """
+        tier_reviews = tiers or self.review_ids
+        to_backward_reviews = tier_reviews.filtered(
+            lambda r: r.status == "pending"
+            and (self.env.user in r.reviewer_ids)
+            and r.origin_id.definition_id.has_forward  # Forward
+            and r.origin_id.definition_id.backward  # To Backward
+        )
+        for review in to_backward_reviews:
+            review.origin_id.copy(
+                {
+                    "sequence": round(review.sequence + 0.1, 2),
+                    "done_by": False,
+                    "reviewed_date": False,
+                    "status": "pending",
+                    "comment": False,
+                    "origin_id": False,
+                }
+            )
