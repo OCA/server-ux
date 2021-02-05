@@ -34,7 +34,9 @@ class TierValidation(models.AbstractModel):
         compute="_compute_reviewer_ids",
         search="_search_reviewer_ids",
     )
-    can_review = fields.Boolean(compute="_compute_can_review")
+    can_review = fields.Boolean(
+        compute="_compute_can_review", search="_search_can_review"
+    )
     has_comment = fields.Boolean(
         compute='_compute_has_comment',
     )
@@ -71,6 +73,22 @@ class TierValidation(models.AbstractModel):
     def _compute_can_review(self):
         for rec in self:
             rec.can_review = rec._check_approve_sequence(self.env.user)
+
+    @api.model
+    def _search_can_review(self, operator, value):
+        res_ids = (
+            self.search(
+                [
+                    ("review_ids.reviewer_ids", "=", self.env.user.id),
+                    ("review_ids.status", "=", "pending"),
+                    ("review_ids.can_review", "=", True),
+                    ("rejected", "=", False),
+                ]
+            )
+            .filtered("can_review")
+            .ids
+        )
+        return [("id", "in", res_ids)]
 
     @api.multi
     @api.depends('review_ids')
