@@ -16,6 +16,7 @@
                 <field name="review_type" />
                 <field name="name" />
                 <field name="status" />
+                <field name="todo_by" />
                 <field name="done_by" />
                 <field name="reviewed_date" />
                 <field name="comment" />
