@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tier_correction_admin,access.tier.correction.item.admin,model_tier_correction,group_tier_correction,1,1,1,1
+access_tier_correction_item_admin,access.tier.correction.item.admin,model_tier_correction_item,group_tier_correction,1,1,1,1
+access_tier_correction_user,access.tier.correction.item.user,model_tier_correction,,1,0,0,0
+access_tier_correction_item_user,access.tier.correction.item.user,model_tier_correction_item,,1,0,0,0
+access_affected_tier_reviews,access_affected_tier_reviews,model_affected_tier_reviews,,1,0,0,0
