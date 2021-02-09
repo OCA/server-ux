@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Ecosoft (http://ecosoft.co.th)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_correction_view_tree" model="ir.ui.view">
+        <field name="name">tier.correction.tree</field>
+        <field name="model">tier.correction</field>
+        <field name="arch" type="xml">
+            <tree string="Tier Correction">
+                <field name="name" />
+                <field name="correction_type" />
+                <field name="reference" />
+                <field
+                    name="state"
+                    decoration-info="state == 'draft'"
+                    decoration-warning="state == 'prepare'"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state in 'cancel'"
+                    widget="badge"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="tier_correction_view_form" model="ir.ui.view">
+        <field name="name">tier.correction.form</field>
+        <field name="model">tier.correction</field>
+        <field name="arch" type="xml">
+            <form string="Tier Correction">
+                <header>
+                    <button
+                        name="action_prepare"
+                        states="draft"
+                        type="object"
+                        string="Prepare"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_done"
+                        states="prepare"
+                        type="object"
+                        string="Make Correcton"
+                        class="oe_highlight"
+                        confirm="Are you sure to reassign new reviewer(s) for affected tier reviews?"
+                    />
+                    <button
+                        name="action_revert"
+                        states="done"
+                        type="object"
+                        string="Revert Back"
+                        confirm="Are you sure to revert to old reviewer(s) for affected tier reviews?"
+                    />
+                    <button
+                        name="action_draft"
+                        states="prepare"
+                        type="object"
+                        string="Set to Draft"
+                    />
+                    <button
+                        name="action_cancel"
+                        states="draft,prepare"
+                        type="object"
+                        string="Cancel"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,prepare,done"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <span class="oe_edit_only">Name</span>
+                        <h1>
+                            <field
+                                name="name"
+                                required="1"
+                                placeholder="e.g. Correction for..."
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="correction_type" />
+                            <field name="model_id" required="1" widget="selection" />
+                            <field name="model" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="create_uid" readonly="1" />
+                            <field name="create_date" readonly="1" />
+                        </group>
+                        <group
+                            name="search"
+                            string="Find documents with pending reviews by"
+                        >
+                            <p class="oe_grey" colspan="2">
+                                This is optional search criteria to find matched document into Correction Details.
+                                Only document with pending reviews will be listed.
+                            </p>
+                            <field
+                                name="old_reviewer_ids"
+                                widget="many2many_tags"
+                                string="Reviewer(s)"
+                            />
+                            <field name="search_name" />
+                        </group>
+                        <group name="set_value" string="Reassign to new value">
+                            <p class="oe_grey" colspan="2">
+                                Default new reviewers to be assigned to the correction. This value can be overwritten in
+                                Correction Detail.
+                            </p>
+                            <field
+                                name="new_reviewer_ids"
+                                widget="many2many_tags"
+                                string="Reviewer(s)"
+                                attrs="{'invisible': [('correction_type', '!=', 'reviewer')],
+                                        'required': [('correction_type', '=', 'reviewer')]}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="correction_item" string="Correction Details">
+                            <field name="item_ids">
+                                <tree create="0" editable="bottom">
+                                    <field name="resource_ref" />
+                                    <field
+                                        name="new_reviewer_ids"
+                                        widget="many2many_tags"
+                                    />
+                                    <field name="review_ids" widget="many2many_tags" />
+                                    <button
+                                        name="%(view_affected_tier_reviews_action)d"
+                                        string=" Affected Tier Reviews"
+                                        type="action"
+                                        icon="fa-list"
+                                    />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="resource_ref" />
+                                    </group>
+                                    <group>
+                                        <field
+                                            name="new_reviewer_ids"
+                                            widget="many2many_tags"
+                                        />
+                                        <field
+                                            name="review_ids"
+                                            widget="many2many_tags"
+                                        />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Scheduled Action">
+                            <div class="oe_grey" colspan="4">
+                                Scheduled date/time to auto correct and/or revert by
+                                <button
+                                    name="%(view_affected_tier_reviews_action)d"
+                                    string="Scheduled Action"
+                                    type="action"
+                                    icon="fa-clock-o"
+                                    class="oe_inline"
+                                />
+                            </div>
+                            <group>
+                                <group>
+                                    <field
+                                        name="date_schedule_correct"
+                                        string="Scheduled Correct"
+                                    />
+                                    <field
+                                        name="date_actual_correct"
+                                        string="Actual Correct"
+                                        attrs="{'invisible': [('date_actual_correct', '=', False)]}"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="date_schedule_revert"
+                                        string="Scheduled Revert"
+                                    />
+                                    <field
+                                        name="date_actual_revert"
+                                        string="Actual Revert"
+                                        attrs="{'invisible': [('date_actual_correct', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="tier_correction_view_search" model="ir.ui.view">
+        <field name="name">tier.correction.search</field>
+        <field name="model">tier.correction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="Correction"
+                    filter_domain="['|', '|', ('name', 'ilike', self), ('reference', 'ilike', self), ('model_id', 'ilike', self)]"
+                />
+                <field
+                    name="old_reviewer_ids"
+                    string="Reviewer"
+                    filter_domain="['|', ('old_reviewer_ids', 'ilike', self), ('new_reviewer_ids', 'ilike', self)]"
+                />
+                <separator />
+                <filter
+                    string="Change Reviewers"
+                    name="reviewer"
+                    domain="[('correction_type', '=', 'reviewer')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Correction Type"
+                        name="correction_type"
+                        domain="[]"
+                        context="{'group_by':'correction_type'}"
+                    />
+                    <filter
+                        string="Model"
+                        name="correction_type"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tier_correction_action" model="ir.actions.act_window">
+        <field name="name">Tier Review Correction</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.correction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    <menuitem
+        id="menu_tier_correction"
+        parent="base_tier_validation.menu_tier_confirmation"
+        action="tier_correction_action"
+        groups="base_tier_validation_correction.group_tier_correction"
+    />
+
+</odoo>

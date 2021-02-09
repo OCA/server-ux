@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Ecosoft - (http://ecosoft.co.th)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_affected_tier_reviews_form" model="ir.ui.view">
+        <field name="name">affected.tier.reviews.form</field>
+        <field name="model">affected.tier.reviews</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="review_ids" nolabel="1" readonly="1" />
+                </group>
+                <footer>
+                    <button special="cancel" string="Close" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="view_affected_tier_reviews_action" model="ir.actions.act_window">
+        <field name="name">Affected Tier Reviews</field>
+        <field name="res_model">affected.tier.reviews</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
