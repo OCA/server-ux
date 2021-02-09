@@ -29,6 +29,7 @@
                     <th class="text-left">Requested by</th>
                     <th class="text-right">Description</th>
                     <th class="text-right">Status</th>
+                    <th class="text-right">Todo by</th>
                     <th class="text-right">Done by</th>
                     <th class="text-right">Validation Date</th>
                     <th class="text-right">Comment</th>
@@ -63,6 +64,9 @@
                         </td>
                         <td class="text-right">
                             <span t-esc="review.display_status" />
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="review.todo_by" />
                         </td>
                         <td class="text-right">
                             <span t-esc="review.done_by[1]" />
