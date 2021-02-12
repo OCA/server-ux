@@ -1,4 +1,4 @@
-# Copyright 2020 Tecnativa - Carlos Dauden
+# Copyright 2020-2021 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -18,7 +18,9 @@ class Base(models.AbstractModel):
                 node = arch.xpath(
                     "//field[@name='%s']" % custom_filter.position_after)
             if not node:
-                node = arch.xpath("//field[last()]")
+                node = (arch.xpath("//field[last()]") or
+                        arch.xpath("//filter[last()]") or
+                        arch.xpath("//group[last()]"))
             if node:
                 elem = etree.Element('field', {
                     'name': 'ir_ui_custom_filter_%s' % custom_filter.id,
