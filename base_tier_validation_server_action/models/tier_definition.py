@@ -13,9 +13,15 @@ class TierDefinition(models.Model):
 
     server_action_id = fields.Many2one(
         comodel_name="ir.actions.server",
-        string="Post Review Action",
+        string="Post Approve Action",
         domain=[("usage", "=", "ir_actions_server")],
         help="Server action triggered as soon as this step is approved",
+    )
+    rejected_server_action_id = fields.Many2one(
+        comodel_name="ir.actions.server",
+        string="Post Reject Action",
+        domain=[("usage", "=", "ir_actions_server")],
+        help="Server action triggered as soon as this step is rejected",
     )
     auto_validate = fields.Boolean(
         string="Auto Validate",
