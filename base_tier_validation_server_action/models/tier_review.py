@@ -9,8 +9,12 @@ class TierReview(models.Model):
 
     @api.constrains("status")
     def _trigger_server_action(self):
-        for rec in self.filtered(lambda l: l.status == "approved"):
-            if not rec.definition_id.server_action_id:
-                continue
-            ctx = {"active_model": rec.model, "active_id": rec.res_id}
-            rec.definition_id.server_action_id.with_context(ctx).run()
+        for rec in self.filtered(lambda l: l.status in ["approved", "rejected"]):
+            server_action = False
+            if rec.status == "approved":
+                server_action = rec.definition_id.server_action_id
+            if rec.status == "rejected":
+                server_action = rec.definition_id.rejected_server_action_id
+            if server_action:
+                ctx = {"active_model": rec.model, "active_id": rec.res_id}
+                server_action.with_context(ctx).run()

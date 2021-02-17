@@ -177,3 +177,32 @@ class TierTierValidation(common.SavepointCase):
         record.invalidate_cache()
         record.validate_tier()
         self.assertTrue(record.test_bool)
+
+    def test_4_trigger_rejected_server_action(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create rejected server action
+        rejected_server_action = self.env["ir.actions.server"].create(
+            {
+                "name": "Set test_bool = True",
+                "model_id": self.tester_model.id,
+                "state": "code",
+                "code": "record.write({'test_bool': True})",
+            }
+        )
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "sequence": 20,
+                "rejected_server_action_id": rejected_server_action.id,
+            }
+        )
+        # Request rejection
+        test_record.with_user(self.test_user_2).request_validation()
+        record = test_record.with_user(self.test_user_1)
+        record.invalidate_cache()
+        record.reject_tier()
+        self.assertTrue(record.test_bool)
