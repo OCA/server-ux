@@ -5,13 +5,14 @@
 
 {
     'name': 'Optional CSV import',
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'Server tools',
     'summary': 'Group-based permissions for importing CSV files',
     'license': 'AGPL-3',
     'author': 'Odoo Community Association (OCA), '
               'Alejandro Santana <alejandrosantana@anubia.es>, '
-              'Onestein',
+              'Onestein'
+              'Open Source Integrators, (OSI)',
     'maintainer': 'Odoo Community Association (OCA)',
     'website': 'http://odoo-community.org',
     'depends': [
