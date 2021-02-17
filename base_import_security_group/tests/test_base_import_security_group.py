@@ -48,7 +48,7 @@ class TestImportSecurityGroup(common.HttpCase):
         ]
         self.has_button_import(user=self.user_admin)
         with mute_logger('odoo.sql_db'):
-            res = self.Access.sudo(self.user_admin).load(fields, data)
+            res = self.Access.with_user(self.user_admin).load(fields, data)
 
         self.assertEqual(res['ids'], False)
         self.assertEqual(len(res['messages']), 2)
@@ -60,7 +60,7 @@ class TestImportSecurityGroup(common.HttpCase):
             "Missing required value for the field 'Object' (model_id)")
 
         self.has_button_import(falsify=True, user=self.user_test)
-        res2 = self.Access.sudo(self.user_test).load(fields, data)
+        res2 = self.Access.with_user(self.user_test).load(fields, data)
 
         self.assertEqual(res2['ids'], None)
         self.assertEqual(len(res2['messages']), 1)

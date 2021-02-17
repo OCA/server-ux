@@ -34,5 +34,5 @@ class Base(models.AbstractModel):
             info = {}
             messages.append(
                 dict(info, type='error', message=msg, moreinfo=None))
-            res = {'ids': None, 'messages': messages}
+            res = {'ids': None, 'messages': messages, 'nextrow': None}
         return res
