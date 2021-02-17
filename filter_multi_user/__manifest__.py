@@ -3,7 +3,7 @@
 {
     "name": "Filter Multi User",
     "summary": "Allows to share user-defined filters filters among several users.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "development_status": "Beta",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
