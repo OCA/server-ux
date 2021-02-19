@@ -134,7 +134,7 @@ class TierValidation(models.AbstractModel):
     @api.model
     def _get_under_validation_exceptions(self):
         """Extend for more field exceptions."""
-        return ['message_follower_ids', 'message_main_attachment_id']
+        return ['message_follower_ids', 'message_main_attachment_id', 'access_token']
 
     @api.multi
     def _check_allow_write_under_validation(self, vals):
