@@ -10,6 +10,7 @@
             <xpath expr="//page[@name='options']/group" position="inside">
                 <group name="server_action">
                     <field name="server_action_id" />
+                    <field name="rejected_server_action_id" />
                     <field name="auto_validate" />
                     <field
                         name="auto_validate_domain"
