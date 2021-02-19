@@ -24,7 +24,7 @@ addon | version | summary
 [base_tier_validation](base_tier_validation/) | 14.0.2.1.1 | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.0 | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 14.0.1.0.2 | Forward option for base tiers
-[base_tier_validation_server_action](base_tier_validation_server_action/) | 14.0.1.0.0 | Add option to call server action when a tier is validated
+[base_tier_validation_server_action](base_tier_validation_server_action/) | 14.0.1.1.0 | Add option to call server action when a tier is validated
 [date_range](date_range/) | 14.0.1.0.1 | Manage all kind of date range
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | Allows to share user-defined filters filters among several users.
 [mass_editing](mass_editing/) | 14.0.1.0.0 | Mass Editing
