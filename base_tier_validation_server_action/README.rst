@@ -25,7 +25,7 @@ Base Tier Validation - Server Action
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module add option to call "Server Action" when a tier definition is validate.
+This module add option to call "Server Action" when a tier definition is approved or rejected
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -42,7 +42,7 @@ Configuration
 
 On each Tier Definition
 
-* Choose server action you want to call as soon this definition is validated
+* Choose server action you want to call as soon this definition is approved or rejected
 * Select "Auto Validate", if you want this definition to get validated by cron job based on "if pass condition" criteria,
    * If no user specified, use job's system user to validate
    * If 1 user matched as reviewer, use the user to validate
