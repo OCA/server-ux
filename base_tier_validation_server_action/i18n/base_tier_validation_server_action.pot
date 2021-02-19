@@ -50,12 +50,22 @@ msgstr ""
 
 #. module: base_tier_validation_server_action
 #: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition__server_action_id
-msgid "Post Review Action"
+msgid "Post Approve Action"
+msgstr ""
+
+#. module: base_tier_validation_server_action
+#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition__rejected_server_action_id
+msgid "Post Reject Action"
 msgstr ""
 
 #. module: base_tier_validation_server_action
 #: model:ir.model.fields,help:base_tier_validation_server_action.field_tier_definition__server_action_id
 msgid "Server action triggered as soon as this step is approved"
+msgstr ""
+
+#. module: base_tier_validation_server_action
+#: model:ir.model.fields,help:base_tier_validation_server_action.field_tier_definition__rejected_server_action_id
+msgid "Server action triggered as soon as this step is rejected"
 msgstr ""
 
 #. module: base_tier_validation_server_action
