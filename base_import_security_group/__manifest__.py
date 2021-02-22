@@ -14,7 +14,7 @@
     "Onestein"
     "Open Source Integrators, (OSI)",
     "maintainer": "Odoo Community Association (OCA)",
-    "website": "http://odoo-community.org",
+    "website": "https://github.com/OCA/server-ux",
     "depends": [
         "web",
         "base_import",
