@@ -5,7 +5,7 @@
 
 {
     "name": "Optional CSV import",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Server tools",
     "summary": "Group-based permissions for importing CSV files",
     "license": "AGPL-3",
@@ -15,7 +15,10 @@
     "Open Source Integrators, (OSI)",
     "maintainer": "Odoo Community Association (OCA)",
     "website": "http://odoo-community.org",
-    "depends": ["web", "base_import",],
+    "depends": [
+        "web",
+        "base_import",
+    ],
     "data": [
         "security/base_import_security_group_security.xml",
         "views/base_import.xml",

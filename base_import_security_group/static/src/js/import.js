@@ -1,39 +1,22 @@
-odoo.define("web.ListImport", function(require) {
+odoo.define('base_import_security_group.group_import', function (require) {
     "use strict";
 
-    var KanbanController = require("web.KanbanController");
-    var KanbanView = require("web.KanbanView");
-    var ListController = require("web.ListController");
-    var ListView = require("web.ListView");
-    var session = require("web.session");
+    const session = require('web.session');
+    const FavoriteMenu = require('web.FavoriteMenu');
+    const ImportMenu = require('base_import.ImportMenu');
 
-    var ImportViewMixin = {
-        init: function(viewInfo, params) {
-            var self = this;
-            var result = self._super.apply(self, arguments);
-            var base_group = "base_import_security_group.group_import_csv";
+    class GroupImportMenu extends ImportMenu {
+        async willStart() {
+            var base_group = 'base_import_security_group.group_import_csv';
+            this.is_export = await session.user_has_group(base_group)
+        }
+        mounted() {
+            var $import = $('.o_import_menu')
+            if (!this.is_export) {
+                $import.remove()
+            }
+        }
+    }
+    FavoriteMenu.registry.add('import-menu', GroupImportMenu, 1);
 
-            session.user_has_group(base_group).then(function(result) {
-                var importEnabled = false;
-                if (result) {
-                    importEnabled = true;
-                }
-                self.controllerParams.importEnabled = importEnabled;
-            });
-        },
-    };
-
-    ListView.include({
-        init: function() {
-            this._super.apply(this, arguments);
-            ImportViewMixin.init.apply(this, arguments);
-        },
-    });
-
-    KanbanView.include({
-        init: function() {
-            this._super.apply(this, arguments);
-            ImportViewMixin.init.apply(this, arguments);
-        },
-    });
 });
