@@ -3,7 +3,7 @@
 {
     "name": "Technical features group",
     "summary": "Access to technical features without activating debug mode",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Usability",
     "website": "https://github.com/oca/server-ux",
     "author": "Opener B.V., Odoo Community Association (OCA)",
