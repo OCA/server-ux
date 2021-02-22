@@ -15,7 +15,7 @@
     "Open Source Integrators, (OSI)",
     "maintainer": "Odoo Community Association (OCA)",
     "website": "http://odoo-community.org",
-    "depends": ["web", "base_import",],
+    "depends": ["web", "base_import"],
     "data": [
         "security/base_import_security_group_security.xml",
         "views/base_import.xml",
