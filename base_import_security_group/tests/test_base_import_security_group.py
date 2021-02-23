@@ -18,18 +18,16 @@ class TestImportSecurityGroup(common.HttpCase):
         Verify that the Import button is either visible or invisible.
         """
         code = """
-        window.setTimeout(function () {
             if (%s$('.o_button_import').length) {
                 console.log('ok');
             } else {
                 console.log('error');
             };
-        }, 2000);
         """ % ('!' if falsify else '')
         action = self.env.ref('base.action_partner_category_form').id
         link = '/web#action=%s' % action
         self.browser_js(
-            link, code, 'Boolean($(".o_list_button_add"))',
+            link, code, ready='jQuery(".o_list_view,.o_kanban_view").length > 0',
             login=user.login)
 
     def test_01_load(self):
