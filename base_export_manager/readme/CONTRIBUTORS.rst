@@ -7,3 +7,4 @@
 * Maxime Chambreuil <mchambreuil@ursainfosystems.com>
 * Olivier Jossen <olivier.jossen@braintec-group.com>
 * Alexandre Díaz <alexandre.diaz@tecnativa.com>
+* Sunanda Chhatbar <sunanda.chhatbar@initos.com>

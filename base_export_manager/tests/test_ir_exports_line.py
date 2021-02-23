@@ -66,6 +66,10 @@ class TestIrExportsLineCase(TransactionCase):
         self.assertEqual(line.field3_id, self.field_parent_id)
         self.assertEqual(line.field4_id, self.field_name)
 
+    def test_name_validation(self):
+        with self.assertRaises(ValidationError):
+            self._record_create("parent_id/parent_id/parent_id/name/parent_id")
+
     def test_compute_name(self):
         line = self.env["ir.exports.line"].create(
             {
