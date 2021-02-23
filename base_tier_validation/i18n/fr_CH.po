@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation
+# 	* base_tier_validation
 #
 msgid ""
 msgstr ""
@@ -29,25 +29,25 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nom</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:292
+#: code:addons/base_tier_validation/models/tier_validation.py:310
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "Une validation a été demandée par %s."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:214
+#: code:addons/base_tier_validation/models/tier_validation.py:232
 #, python-format
 msgid "A review was accepted"
 msgstr "Une validation a été acceptée"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:265
+#: code:addons/base_tier_validation/models/tier_validation.py:283
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "Une validation a été rejetée par %s."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:162
+#: code:addons/base_tier_validation/models/tier_validation.py:180
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr ""
@@ -101,7 +101,8 @@ msgstr "Peut valider"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__can_review
-msgid "Can review will be marked if the review is pending and the\n"
+msgid ""
+"Can review will be marked if the review is pending and the\n"
 "        approve sequence has been achieved"
 msgstr ""
 "Peut valider sera coché si la validation est en cours et que la séquence "
@@ -114,7 +115,7 @@ msgstr "Annuler"
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:226
+#: code:addons/base_tier_validation/models/tier_validation.py:244
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:29
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -229,7 +230,9 @@ msgstr "ID"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_create
-msgid "If set, all possible reviewers will be notified by email when this definition is triggered."
+msgid ""
+"If set, all possible reviewers will be notified by email when this "
+"definition is triggered."
 msgstr ""
 "Si coché, tous les validateurs possibles seront notifiés par email quand ce "
 "palier sera déclenché."
@@ -402,15 +405,16 @@ msgid "Status"
 msgstr "Etat"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:169
+#: code:addons/base_tier_validation/models/tier_validation.py:187
 #, python-format
 msgid "The operation is under validation."
 msgstr "Cette opération est en train d'être validée."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:158
+#: code:addons/base_tier_validation/models/tier_validation.py:176
 #, python-format
-msgid "This action needs to be validated for at least one record. \n"
+msgid ""
+"This action needs to be validated for at least one record. \n"
 "Please request a validation."
 msgstr ""
 "Cette action doit être validée pour au moins un enregistrement. \n"
