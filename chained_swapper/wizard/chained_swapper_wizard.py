@@ -48,7 +48,10 @@ class ChainedSwapperWizard(models.TransientModel):
         corresponding field.
         """
         res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu,
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
         )
         if not self.env.context.get("chained_swapper_id"):
             return res
