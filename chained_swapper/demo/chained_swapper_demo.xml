@@ -19,15 +19,20 @@
         <field name="expression">bool(records.mapped('parent_id'))</field>
     </record>
     <!--Add an action-->
-    <act_window
-        id="partner_chained_swap_lang_action_demo"
-        name="Chained swap: Language"
-        res_model="chained.swapper.wizard"
-        binding_model="res.partner"
-        view_mode="form"
-        context="{'chained_swapper_id': ref('chained_swapper_demo')}"
-        target="new"
-    />
+    <record id="partner_chained_swap_lang_action_demo" model="ir.actions.act_window">
+        <field name="name">Chained swap: Language</field>
+        <field name="res_model">chained.swapper.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="binding_view_types">form</field>
+        <field
+            name="context"
+            eval="{
+            'chained_swapper_id': ref('chained_swapper_demo'),
+        }"
+        />
+    </record>
     <!-- pylint:disable=duplicate-xml-record-id -->
     <record id="chained_swapper_demo" model="chained.swapper">
         <field

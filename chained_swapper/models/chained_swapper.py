@@ -14,6 +14,7 @@ class ChainedSwapper(models.Model):
     model_id = fields.Many2one(
         comodel_name="ir.model",
         required=True,
+        ondelete="cascade",
         help="Model is used for Selecting Field. This is editable "
         "until Contextual Action is not created.",
     )
@@ -23,6 +24,7 @@ class ChainedSwapper(models.Model):
     field_id = fields.Many2one(
         comodel_name="ir.model.fields",
         required=True,
+        ondelete="cascade",
         domain="[('id', 'in', allowed_field_ids)]",
     )
     sub_field_ids = fields.One2many(
