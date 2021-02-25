@@ -8,7 +8,7 @@
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": ["product"],
     "data": [
         "security/ir.model.access.csv",
         "views/chained_swapper_views.xml",
