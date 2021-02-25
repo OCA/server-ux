@@ -5,3 +5,4 @@ access_chained_swapper_sub_field_user,chained.swapper.sub.field.user,model_chain
 access_chained_swapper_sub_field_erp_manager,chained.swapper.sub.field.erp_manager,model_chained_swapper_sub_field,base.group_erp_manager,1,1,1,1
 access_chained_swapper_constraint_user,chained.swapper.constraint.user,model_chained_swapper_constraint,base.group_user,1,0,0,0
 access_chained_swapper_constraint_erp_manager,chained.swapper.constraint.erp_manager,model_chained_swapper_constraint,base.group_erp_manager,1,1,1,1
+access_chained_swapper_wizard,chained.swapper.wizard.constraint.erp_manager,model_chained_swapper_wizard,base.group_user,1,1,1,1

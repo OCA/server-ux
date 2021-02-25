@@ -5,6 +5,7 @@
 from odoo import exceptions
 from odoo.modules import registry
 from odoo.tests import common
+from odoo.tests.common import Form
 
 from ..hooks import uninstall_hook
 
@@ -28,24 +29,18 @@ class TestChainedSwapper(common.SavepointCase):
         record = cls.env.ref("chained_swapper.chained_swapper_demo", False)
         if record:
             record.unlink()
-        cls.chained_swapper = cls.env["chained.swapper"].create(
-            {
-                "name": "Language",
-                "model_id": cls.env.ref("base.model_res_partner").id,
-                "field_id": cls.env.ref("base.field_res_partner__lang").id,
-                "sub_field_ids": [(0, 0, {"sub_field_chain": "child_ids.lang"})],
-                "constraint_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Only parent company",
-                            "expression": "bool(records.mapped('parent_id'))",
-                        },
-                    )
-                ],
-            }
-        )
+
+        chained_swapper_form = Form(cls.env["chained.swapper"])
+        chained_swapper_form.name = "Language"
+        chained_swapper_form.model_id = cls.env.ref("base.model_res_partner")
+        chained_swapper_form.field_id = cls.env.ref("base.field_res_partner__lang")
+        with chained_swapper_form.sub_field_ids.new() as sub_field_form:
+            sub_field_form.sub_field_chain = "child_ids.lang"
+        with chained_swapper_form.constraint_ids.new() as constraint_form:
+            constraint_form.name = "Only parent company"
+            constraint_form.expression = "bool(records.mapped('parent_id'))"
+
+        cls.chained_swapper = chained_swapper_form.save()
         cls.chained_swapper.add_action()
 
     def test_create_unlink_action(self):
