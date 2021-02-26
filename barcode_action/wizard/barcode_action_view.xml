@@ -46,11 +46,13 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="barcode_action_action"
-        name="Barcode Launcher"
-        res_model="barcode.action"
-        view_mode="form"
-        target="new"
-    />
+
+    <record id="barcode_action_action" model="ir.actions.act_window">
+        <field name="name">Barcode Launcher</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">barcode.action</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="barcode_action_form" />
+        <field name="target">new</field>
+    </record>
 </odoo>
