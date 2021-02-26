@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_cancel_confirm_wizard" model="ir.ui.view">
+        <field name="name">Cancel Confirmation</field>
+        <field name="model">cancel.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Confirmation">
+                <h3>Are you sure to cancel this document?</h3>
+                <group>
+                    <field name="has_cancel_reason" invisible="1" />
+                    <field
+                        name="cancel_reason"
+                        attrs="{'invisible': [('has_cancel_reason', '=', 'no')],
+                                                        'required': [('has_cancel_reason', '=', 'required')]}"
+                    />
+                </group>
+                <footer>
+                <button
+                        name="confirm_cancel"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_cancel_confirm_wizard" model="ir.actions.act_window">
+        <field name="name">Cancel Confirmation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cancel.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_cancel_confirm_wizard" />
+        <field name="target">new</field>
+    </record>
+</odoo>
