@@ -429,20 +429,20 @@ class TierValidation(models.AbstractModel):
             }
             for node in doc.xpath(self._tier_validation_buttons_xpath):
                 # By default, after the last button of the header
-                str_element = self.env["ir.qweb"]._render(
+                str_element = self.env["ir.qweb"].render(
                     "base_tier_validation.tier_validation_buttons", params
                 )
                 new_node = etree.fromstring(str_element)
                 for new_element in new_node:
                     node.addnext(new_element)
             for node in doc.xpath("/form/sheet"):
-                str_element = self.env["ir.qweb"]._render(
+                str_element = self.env["ir.qweb"].render(
                     "base_tier_validation.tier_validation_label", params
                 )
                 new_node = etree.fromstring(str_element)
                 for new_element in new_node:
                     node.addprevious(new_element)
-                str_element = self.env["ir.qweb"]._render(
+                str_element = self.env["ir.qweb"].render(
                     "base_tier_validation.tier_validation_reviews", params
                 )
                 node.addnext(etree.fromstring(str_element))
@@ -451,7 +451,7 @@ class TierValidation(models.AbstractModel):
             # Override context for postprocessing
             if view_id and res.get("base_model", self._name) != self._name:
                 View = View.with_context(base_model_name=res["base_model"])
-            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
+            new_arch, new_fields = View.postprocess_and_fields(self._name, doc, view_id)
             res["arch"] = new_arch
             # We don't want to loose previous configuration, so, we only want to add
             # the new fields
