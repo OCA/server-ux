@@ -178,11 +178,16 @@ class TierValidation(models.AbstractModel):
                     reviews = rec.request_validation()
                     rec._validate_tier(reviews)
                     if not self._calc_reviews_validated(reviews):
+                        pending_reviews = reviews.filtered(
+                            lambda r: r.status == "pending"
+                        ).mapped("name")
                         raise ValidationError(
                             _(
                                 "This action needs to be validated for at least "
-                                "one record. \nPlease request a validation."
+                                "one record. Reviews pending:\n - %s "
+                                "\nPlease request a validation."
                             )
+                            % "\n - ".join(pending_reviews)
                         )
                 if rec.review_ids and not rec.validated:
                     raise ValidationError(
