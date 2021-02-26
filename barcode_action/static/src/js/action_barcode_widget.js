@@ -1,11 +1,11 @@
-odoo.define("barcode_action.field", function(require) {
+odoo.define("barcode_action.field", function (require) {
     "use strict";
 
     var AbstractField = require("web.AbstractField");
     var field_registry = require("web.field_registry");
 
     var ActionBarcodeField = AbstractField.extend({
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
             this.trigger_up("activeBarcode", {
                 name: this.name,
