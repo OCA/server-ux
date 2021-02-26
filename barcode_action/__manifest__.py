@@ -13,6 +13,10 @@
     "application": False,
     "summary": "Allows to use barcodes as a launcher",
     "depends": ["barcodes"],
-    "data": ["views/barcode_templates.xml", "wizard/barcode_action_view.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/barcode_templates.xml",
+        "wizard/barcode_action_view.xml",
+    ],
     "demo": ["demo/barcode_action_demo.xml"],
 }
