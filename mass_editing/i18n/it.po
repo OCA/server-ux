@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2020-03-04 10:22+0000\n"
+"PO-Revision-Date: 2021-02-27 15:45+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
@@ -36,7 +36,7 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:23
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -207,7 +207,7 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Imposta"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
