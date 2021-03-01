@@ -1,0 +1,1 @@
+On a sequence, when the option *Use subsequence per date_range* is enabled, Odoo will auto-create new yearly subsequence when you start to work on a new year. This module adds a new configuration option to auto-create daily, weekly, monthly or yealy subsequence.
