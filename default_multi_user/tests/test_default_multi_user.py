@@ -3,9 +3,10 @@
 
 import json
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestDefaultMultiUser(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
