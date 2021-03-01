@@ -414,11 +414,10 @@ msgstr "L'operazione è in attesa di approvazione."
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
-"This action needs to be validated for at least one record. \n"
+"This action needs to be validated for at least one record. Reviews pending:\n"
+" - %s \n"
 "Please request a validation."
 msgstr ""
-"L'azione richiede di essere approvata per almeno un record.\n"
-"Prego richiedere l'approvazione."
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -505,6 +504,13 @@ msgstr "Approvazioni"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ad es., Livello Validazione per ..."
+
+#~ msgid ""
+#~ "This action needs to be validated for at least one record. \n"
+#~ "Please request a validation."
+#~ msgstr ""
+#~ "L'azione richiede di essere approvata per almeno un record.\n"
+#~ "Prego richiedere l'approvazione."
 
 #~ msgid "Tier"
 #~ msgstr "Livello"

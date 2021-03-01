@@ -410,11 +410,10 @@ msgstr "该操作正在审批中。"
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
-"This action needs to be validated for at least one record. \n"
+"This action needs to be validated for at least one record. Reviews pending:\n"
+" - %s \n"
 "Please request a validation."
 msgstr ""
-"当前操作存在需要通过审批的记录。\n"
-"请发起审批申请。"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -501,6 +500,13 @@ msgstr "审批"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "例如：用于...的审批节点"
+
+#~ msgid ""
+#~ "This action needs to be validated for at least one record. \n"
+#~ "Please request a validation."
+#~ msgstr ""
+#~ "当前操作存在需要通过审批的记录。\n"
+#~ "请发起审批申请。"
 
 #~ msgid "Tier"
 #~ msgstr "层级"
