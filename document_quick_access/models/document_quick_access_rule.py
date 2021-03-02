@@ -24,7 +24,7 @@ class DocumentQuickAccessRule(models.Model):
     )
     # All formats must have a function to determine the code from a record and
     # get the record from the code
-    model_id = fields.Many2one("ir.model", required=True)
+    model_id = fields.Many2one("ir.model", required=True, ondelete="cascade")
     active = fields.Boolean(default=True)
 
     def get_code(self, record):
