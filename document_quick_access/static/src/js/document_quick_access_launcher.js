@@ -1,4 +1,4 @@
-odoo.define("document_quick_access.document_quick_access_launcher", function(require) {
+odoo.define("document_quick_access.document_quick_access_launcher", function (require) {
     "use strict";
 
     var SystrayMenu = require("web.SystrayMenu");
@@ -9,7 +9,7 @@ odoo.define("document_quick_access.document_quick_access_launcher", function(req
             click: "on_click_find_document",
         },
 
-        on_click_find_document: function(event) {
+        on_click_find_document: function (event) {
             event.preventDefault();
             event.stopPropagation();
             var context = {};
