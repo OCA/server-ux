@@ -1,10 +1,13 @@
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import tagged
+
+from .common import CommonTestMultiStepWizard
 
 
-class TestMultiStepWizard(TransactionCase):
+@tagged("post_install", "-at_install")
+class TestMultiStepWizard(CommonTestMultiStepWizard):
     def setUp(self):
         super().setUp()
         self.MultiStepWizard = self.env["multi.step.wizard.test"]
