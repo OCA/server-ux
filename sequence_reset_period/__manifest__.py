@@ -3,7 +3,7 @@
 
 {
     "name": "Reset Sequences on selected period ranges",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Reporting",
     "website": "https://github.com/OCA/server-ux",
     "author": "Creu Blanca, Odoo Community Association (OCA)",
