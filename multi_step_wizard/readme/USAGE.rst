@@ -78,9 +78,12 @@ Example of view (note the mode, must be primary):
       </field>
     </record>
 
-    <act_window id="open_my_wizard"
-                name="My Wizard"
-                res_model="my.wizard"
-                src_model="project.project"
-                view_mode="form" target="new" view_type="form" />
+    <record id="open_my_wizard" model="ir.actions.act_window">
+        <field name="name">My Wizard</field>
+        <field name="res_model">my.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="project.model_project_project" />
+        <field name="binding_view_types">form</field>
+    </record>
   </odoo>
