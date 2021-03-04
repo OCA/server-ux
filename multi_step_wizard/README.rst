@@ -14,13 +14,13 @@ Multi-Steps Wizards
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/13.0/multi_step_wizard
+    :target: https://github.com/OCA/server-ux/tree/14.0/multi_step_wizard
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-13-0/server-ux-13-0-multi_step_wizard
+    :target: https://translation.odoo-community.org/projects/server-ux-14-0/server-ux-14-0-multi_step_wizard
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/250/13.0
+    :target: https://runbot.odoo-community.org/runbot/250/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -116,11 +116,15 @@ Example of view (note the mode, must be primary):
       </field>
     </record>
 
-    <act_window id="open_my_wizard"
-                name="My Wizard"
-                res_model="my.wizard"
-                src_model="project.project"
-                view_mode="form" target="new" view_type="form" />
+    <record id="open_my_wizard" model="ir.actions.act_window">
+        <field name="name">My Wizard</field>
+        <field name="res_model">my.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="project.model_project_project" />
+        <field name="binding_view_types">form</field>
+    </record>
+
   </odoo>
 
 Bug Tracker
@@ -148,6 +152,7 @@ Contributors
 * `CorporateHub <https://corporatehub.eu/>`__
 
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
+* Sunanda Chhatbar <sunanda.chhatbar@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -162,6 +167,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/13.0/multi_step_wizard>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/14.0/multi_step_wizard>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
