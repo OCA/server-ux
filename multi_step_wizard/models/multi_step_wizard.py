@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 
 class MultiStepWizard(models.AbstractModel):
-    """ Mixin to ease the creation of multisteps wizards
+    """Mixin to ease the creation of multisteps wizards
 
     _selection_state must return all possible step of
     the wizard.

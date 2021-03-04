@@ -2,7 +2,7 @@
 
 {
     "name": "Multi-Steps Wizards",
-    "version": "13.0.1.1.2",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["base"],
