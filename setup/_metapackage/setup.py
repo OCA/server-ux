@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo14-addon-base_tier_validation_forward',
         'odoo14-addon-base_tier_validation_server_action',
         'odoo14-addon-date_range',
+        'odoo14-addon-default_multi_user',
         'odoo14-addon-filter_multi_user',
         'odoo14-addon-mass_editing',
     ],
