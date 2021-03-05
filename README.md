@@ -29,6 +29,7 @@ addon | version | summary
 [base_tier_validation_server_action](base_tier_validation_server_action/) | 14.0.1.1.0 | Add option to call server action when a tier is validated
 [date_range](date_range/) | 14.0.1.0.1 | Manage all kind of date range
 [default_multi_user](default_multi_user/) | 14.0.1.0.0 | Allows to share user-defined defaults among several users.
+[document_quick_access](document_quick_access/) | 14.0.1.0.0 | Document quick access
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | Allows to share user-defined filters filters among several users.
 [mass_editing](mass_editing/) | 14.0.1.0.0 | Mass Editing
 
