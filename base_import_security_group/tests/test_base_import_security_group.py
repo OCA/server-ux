@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 from odoo.tools import mute_logger
 
 
+@tagged("post_install", "-at_install")
 class TestImportSecurityGroup(common.HttpCase):
     def setUp(self):
         super().setUp()
@@ -31,7 +32,11 @@ class TestImportSecurityGroup(common.HttpCase):
         action = self.env.ref("base.action_partner_category_form").id
         link = "/web#action=%s" % action
         self.browser_js(
-            link, code, 'Boolean($(".o_list_button_add"))', login=user.login
+            link,
+            code,
+            'Boolean($(".o_list_button_add"))',
+            login=user.login,
+            timeout=2000,
         )
 
     def test_01_load(self):
