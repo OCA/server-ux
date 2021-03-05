@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,6 +16,11 @@ msgstr ""
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__active
 msgid "Active"
+msgstr ""
+
+#. module: document_quick_access
+#: model_terms:ir.ui.view,arch_db:document_quick_access.document_quick_access_rule_form_view
+msgid "Archived"
 msgstr ""
 
 #. module: document_quick_access
