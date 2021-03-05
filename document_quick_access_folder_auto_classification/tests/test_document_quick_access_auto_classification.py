@@ -24,6 +24,7 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         self.tmpdir = TemporaryDirectory()
         self.ok_tmpdir = TemporaryDirectory()
         self.no_ok_tmpdir = TemporaryDirectory()
+        self.process_tmpdir = TemporaryDirectory()
         self.env["ir.config_parameter"].set_param(
             "document_quick_access_auto_classification.path", self.tmpdir.name
         )
@@ -34,6 +35,10 @@ class TestDocumentQuickAccessClassification(TransactionCase):
             "document_quick_access_auto_classification.failure_path",
             self.no_ok_tmpdir.name,
         )
+        self.processing_path = self.env["ir.config_parameter"].set_param(
+            "document_quick_access_auto_classification.process_path",
+            self.process_tmpdir.name,
+        )
         self.model_id = self.env.ref("base.model_res_partner")
 
     def tearDown(self):
@@ -41,6 +46,7 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         self.tmpdir.cleanup()
         self.ok_tmpdir.cleanup()
         self.no_ok_tmpdir.cleanup()
+        self.process_tmpdir.cleanup()
 
     def test_ok_pdf_multi(self):
         partners = self.env["res.partner"].create({"name": "Partner 1"})
@@ -48,6 +54,7 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         partners |= self.env["res.partner"].create({"name": "Partner 3"})
         partners |= self.env["res.partner"].create({"name": "Partner 4"})
         self.test_ok_pdf(partners)
+        self.test_process_pdf(partners)
 
     def test_ok_pdf_multi_limit(self):
         """Limit the number of files to process"""
@@ -78,6 +85,9 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         with open(os.path.join(self.tmpdir.name, "test_file_2.pdf"), "wb") as f:
             f.write(file)
         code = [Encoded(partner.get_quick_access_code().encode("utf-8"))]
+        self.env["document.quick.access.rule"].with_context(
+            no_raise_document_access=True
+        ).read_code(code)
         with patch(
             "odoo.addons.document_quick_access_folder_auto_classification."
             "models.ir_attachment.decode"
@@ -90,6 +100,8 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         attachments = self.env["ir.attachment"].search(
             [("res_model", "=", partner._name), ("res_id", "=", partner.id)]
         )
+        search_document = attachments._search_document()
+        self.assertEqual(search_document, [])
         self.assertTrue(attachments)
         self.assertEqual(1, len(attachments))
         self.assertTrue(
@@ -149,6 +161,41 @@ class TestDocumentQuickAccessClassification(TransactionCase):
             os.path.exists(os.path.join(self.ok_tmpdir.name, "test_file.pdf"))
         )
 
+    def test_process_pdf(self, partners=False):
+        if not partners:
+            partners = self.env["res.partner"].create({"name": "Partner"})
+        file = tools.file_open(
+            "test_file.pdf",
+            mode="rb",
+            subdir="addons/document_quick_access_folder_auto_classification" "/tests",
+        ).read()
+
+        self.env["document.quick.access.rule"].create(
+            {
+                "model_id": self.model_id.id,
+                "name": "PARTNER",
+                "priority": 1,
+                "barcode_format": "standard",
+            }
+        )
+        with open(os.path.join(self.process_tmpdir.name, "test_file_2.pdf"), "wb") as f:
+            f.write(file)
+        code = [
+            Encoded(partner.get_quick_access_code().encode("utf-8"))
+            for partner in partners
+        ]
+        with patch(
+            "odoo.addons.document_quick_access_folder_auto_classification."
+            "models.ir_attachment.decode"
+        ) as ptch:
+            ptch.return_value = code
+            self.env["document.quick.access.rule"].with_context(
+                processing_path=self.processing_path
+            ).cron_folder_auto_classification()
+        self.assertTrue(
+            os.path.exists(os.path.join(self.process_tmpdir.name, "test_file_2.pdf"))
+        )
+
     def test_no_ok_assign(self):
         """Assign failed files"""
         file = tools.file_open(
@@ -161,6 +208,9 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         self.env["document.quick.access.rule"].with_context(
             ignore_process_path=True
         ).cron_folder_auto_classification()
+        self.env["document.quick.access.rule"].with_context(
+            ignore_process_path=False
+        ).cron_folder_auto_classification(processing_path=False)
         self.assertTrue(
             os.path.exists(os.path.join(self.no_ok_tmpdir.name, "test_file.pdf"))
         )
@@ -259,3 +309,25 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         self.assertFalse(
             os.path.exists(os.path.join(self.tmpdir.name, "test_file.pdf"))
         )
+
+    def test_no_pdf(self):
+        file = tools.file_open(
+            "icon.png",
+            mode="rb",
+            subdir="addons/document_quick_access_folder_auto_classification/"
+            "static/description",
+        ).read()
+        with open(os.path.join(self.tmpdir.name, "icon.png"), "wb") as f:
+            f.write(file)
+        self.env["document.quick.access.rule"].with_context(
+            ignore_process_path=True
+        ).cron_folder_auto_classification()
+        self.env["document.quick.access.rule"].with_context(
+            ignore_process_path=False
+        ).cron_folder_auto_classification(processing_path=False)
+        if self.env["document.quick.access.rule"].cron_folder_auto_classification(
+            processing_path=self.processing_path
+        ):
+            self.assertTrue(
+                os.path.exists(os.path.join(self.no_ok_tmpdir.name, "icon.png"))
+            )

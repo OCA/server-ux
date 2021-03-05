@@ -54,13 +54,12 @@ class DocumentQuickAccessRule(models.Model):
             for f in os.listdir(path)
             if os.path.isfile(os.path.join(path, f))
         ]
+        new_cr = Registry(self.env.cr.dbname).cursor()
         if limit:
             elements = elements[:limit]
         for element in elements:
             obj = self
             new_element = element
-            if processing_path:
-                new_cr = Registry(self.env.cr.dbname).cursor()
             try:
                 if processing_path:
                     new_element = os.path.join(
@@ -78,6 +77,10 @@ class DocumentQuickAccessRule(models.Model):
                 if processing_path:
                     new_cr.commit()
             except Exception:
+                processing_path = self.env["ir.config_parameter"].get_param(
+                    "document_quick_access_auto_classification.process_path",
+                    default=False,
+                )
                 if processing_path:
                     os.unlink(new_element)
                     new_cr.rollback()

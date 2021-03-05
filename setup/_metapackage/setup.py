@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo14-addon-date_range',
         'odoo14-addon-filter_multi_user',
         'odoo14-addon-mass_editing',
+        'odoo14-addon-document_quick_access',
     ],
     classifiers=[
         'Programming Language :: Python',
