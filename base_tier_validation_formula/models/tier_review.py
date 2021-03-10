@@ -18,6 +18,7 @@ class TierReview(models.Model):
         compute="_compute_python_reviewer_ids",
         store=True,
     )
+    review_type = fields.Selection(selection_add=[("expression", "Python Expression")])
 
     @api.model
     def _get_reviewer_fields(self):
