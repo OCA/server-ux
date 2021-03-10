@@ -6,21 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-05-08 11:03+0000\n"
-"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"PO-Revision-Date: 2021-03-10 18:45+0000\n"
+"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_barcode_action
-#, fuzzy
 msgid "Barcode Action"
-msgstr "barcode.action"
+msgstr "Acción código de barras"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
@@ -29,9 +28,8 @@ msgstr "Buscador por código de barras"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action___barcode_scanned
-#, fuzzy
 msgid "Barcode Scanned"
-msgstr "Buscador por código de barras"
+msgstr "Código de barras escaneado"
 
 #. module: barcode_action
 #: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
@@ -127,7 +125,7 @@ msgstr "Estado"
 #. module: barcode_action
 #: model:ir.model.fields,help:barcode_action.field_barcode_action___barcode_scanned
 msgid "Value of the last barcode scanned."
-msgstr ""
+msgstr "Valor del último código de barras escaneado."
 
 #. module: barcode_action
 #: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__waiting
