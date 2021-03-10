@@ -7,6 +7,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv import expression
 
 
 class TierValidation(models.AbstractModel):
@@ -162,7 +163,7 @@ class TierValidation(models.AbstractModel):
         domain = []
         if tier.definition_domain:
             domain = literal_eval(tier.definition_domain)
-        return self.search([("id", "=", self.id)] + domain)
+        return self.search(expression.AND([[("id", "=", self.id)], domain]))
 
     @api.model
     def _get_under_validation_exceptions(self):
