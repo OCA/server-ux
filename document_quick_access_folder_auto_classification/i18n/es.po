@@ -6,62 +6,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-10 18:45+0000\n"
+"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: document_quick_access_folder_auto_classification
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_form_view
+#, fuzzy
 msgid "Access"
-msgstr ""
+msgstr "Acceso"
 
 #. module: document_quick_access_folder_auto_classification
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_form_view
 msgid "Assign"
-msgstr ""
+msgstr "Asignar"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:res.groups,name:document_quick_access_folder_auto_classification.group_missing_document
 msgid "Assigner"
-msgstr ""
+msgstr "Asignador"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.model,name:document_quick_access_folder_auto_classification.model_ir_attachment
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Adjunto"
 
 #. module: document_quick_access_folder_auto_classification
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_assign_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__create_uid
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__create_date
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__display_name
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.actions.act_window,name:document_quick_access_folder_auto_classification.document_quick_access_missing_act_window
 msgid "Document Quick Access Missing"
-msgstr ""
+msgstr "Falta acceso rápido a documento"
 
 #. module: document_quick_access_folder_auto_classification
 #: model:ir.actions.act_window,name:document_quick_access_folder_auto_classification.document_quick_access_missing_assign_act_window
