@@ -31,7 +31,7 @@ addon | version | summary
 [default_multi_user](default_multi_user/) | 14.0.1.0.0 | Allows to share user-defined defaults among several users.
 [document_quick_access](document_quick_access/) | 14.0.1.0.0 | Document quick access
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | Allows to share user-defined filters filters among several users.
-[mass_editing](mass_editing/) | 14.0.1.0.0 | Mass Editing
+[mass_editing](mass_editing/) | 14.0.1.0.1 | Mass Editing
 
 [//]: # (end addons)
 
