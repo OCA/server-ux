@@ -126,6 +126,7 @@ Contributors
 * Olivier Jossen <olivier.jossen@braintec-group.com>
 * Alexandre Díaz <alexandre.diaz@tecnativa.com>
 * Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+* Kevin Khao <kevin.khao@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~
