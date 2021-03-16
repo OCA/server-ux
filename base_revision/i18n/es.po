@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__active
+msgid "Active"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__current_revision_id
+msgid "Current revision"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model,name:base_revision.model_base_revision
+msgid "Document Revision (abstract)"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__has_old_revisions
+msgid "Has Old Revisions"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__id
+msgid "ID"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_revision
+#: code:addons/base_revision/models/base_revision.py:0
+#, python-format
+msgid "New Revisions"
+msgstr ""
+
+#. module: base_revision
+#: code:addons/base_revision/models/base_revision.py:0
+#, python-format
+msgid "New revision created: %s"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__old_revision_ids
+msgid "Old revisions"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__unrevisioned_name
+msgid "Original Reference"
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.constraint,message:base_revision.constraint_base_revision_revision_unique
+msgid "Reference and revision must be unique."
+msgstr ""
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_number
+msgid "Revision"
+msgstr ""
