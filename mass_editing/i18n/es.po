@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2021-03-10 18:45+0000\n"
+"PO-Revision-Date: 2021-03-16 12:45+0000\n"
 "Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -173,8 +173,9 @@ msgstr "Nombre"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
+#, fuzzy
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Peligro Descripción Operación"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
