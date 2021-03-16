@@ -12,7 +12,6 @@ class IrModel(models.Model):
 
     avoid_quick_create = fields.Boolean()
 
-    @api.multi
     def _patch_quick_create(self):
         def _wrap_name_create():
             @api.model
@@ -50,10 +49,10 @@ class IrModel(models.Model):
         ir_models._patch_quick_create()
         return ir_models
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         self._patch_quick_create()
-        if 'avoid_quick_create' in vals:
-            self.pool.signal_registry_change()
+        if "avoid_quick_create" in vals:
+            self.pool.registry_invalidated = True
+            self.pool.signal_changes()
         return res
