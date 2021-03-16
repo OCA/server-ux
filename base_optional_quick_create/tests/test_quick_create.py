@@ -6,23 +6,21 @@ from odoo.tests.common import TransactionCase
 
 
 class TestQuickCreate(TransactionCase):
-
     def setUp(self, *args, **kwargs):
         super().setUp()
-        model_model = self.env['ir.model']
-        self.partner_model = model_model.search([
-            ('model', '=', 'res.partner')])
+        model_model = self.env["ir.model"]
+        self.partner_model = model_model.search([("model", "=", "res.partner")])
 
     def test_quick_create(self):
-        partner_id = self.env['res.partner'].name_create('TEST partner')
+        partner_id = self.env["res.partner"].name_create("TEST partner")
         self.assertEqual(bool(partner_id), True)
 
         # Setting the flag, patches the method
         self.partner_model.avoid_quick_create = True
         with self.assertRaises(UserError):
-            self.env['res.partner'].name_create('TEST partner')
+            self.env["res.partner"].name_create("TEST partner")
 
         # Unsetting the flag, unpatches the method
         self.partner_model.avoid_quick_create = False
-        partner_id = self.env['res.partner'].name_create('TEST partner')
+        partner_id = self.env["res.partner"].name_create("TEST partner")
         self.assertEqual(bool(partner_id), True)
