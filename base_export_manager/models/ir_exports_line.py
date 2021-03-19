@@ -111,7 +111,8 @@ class IrExportsLine(models.Model):
                     )
                 except KeyError:
                     # No human-readable string available, so empty this
-                    return
+                    parts = []
+                    break
             one.label = (
                 "{} ({})".format("/".join(parts), one.name)
                 if parts and one.name
