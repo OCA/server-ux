@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [barcode_action](barcode_action/) | 14.0.1.0.0 | Allows to use barcodes as a launcher
+[base_cancel_confirm](base_cancel_confirm/) | 14.0.1.0.0 | Base Cancel Confirm
 [base_export_manager](base_export_manager/) | 14.0.1.0.0 | Manage model export profiles
 [base_revision](base_revision/) | 14.0.1.0.0 | Keep track of revised document
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 14.0.1.0.0 | Add custom filters for fields via UI
