@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="cancel_reason_template">
+        <div>
+            <group
+                colspan="4"
+                t-attf-attrs="{'invisible': [('cancel_reason', '=', False)]}"
+            >
+                <field name="cancel_confirm" invisible="1" />
+                <field name="cancel_reason" readonly="1" />
+            </group>
+        </div>
+    </template>
+</odoo>
