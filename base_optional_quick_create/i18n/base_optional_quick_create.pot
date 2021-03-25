@@ -29,4 +29,3 @@ msgstr ""
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
 msgid "Models"
 msgstr ""
-
