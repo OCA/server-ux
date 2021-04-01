@@ -91,10 +91,13 @@ class MassEditingWizard(models.TransientModel):
             "field",
             {"name": "selection__" + field.name, "colspan": "2"},
         )
-        field_vals = {"name": field.name, "nolabel": "1", "colspan": "4"}
+        field_vals = self._get_field_options(field)
         if line.widget_option:
             field_vals["widget"] = line.widget_option
         etree.SubElement(main_xml_group, "field", field_vals)
+
+    def _get_field_options(self, field):
+        return {"name": field.name, "nolabel": "1", "colspan": "4"}
 
     @api.model
     def fields_view_get(

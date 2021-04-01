@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="document_quick_access_launcher.view.Menu">
+        <li class="o_mail_navbar_item">
+            <a
+                class="dropdown-toggle o-no-caret"
+                data-display="static"
+                role="button"
+                aria-expanded="false"
+                title="QR search"
+                href="#"
+                accesskey="q"
+            >
+                <i class="fa fa-qrcode" />
+            </a>
+        </li>
+    </t>
+</templates>
