@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo14-addon-document_quick_access',
         'odoo14-addon-filter_multi_user',
         'odoo14-addon-mass_editing',
+        'odoo14-addon-multi_step_wizard',
         'odoo14-addon-sequence_reset_period',
     ],
     classifiers=[
