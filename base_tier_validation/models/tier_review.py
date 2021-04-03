@@ -95,14 +95,16 @@ class TierReview(models.Model):
         """ Show by group or by abbrev list of names """
         num_show = 3  # Max number of users to display
         for rec in self:
-            todo_by = False
             if rec.reviewer_group_id:
                 todo_by = _("Group %s") % rec.reviewer_group_id.name
             else:
-                todo_by = ", ".join(rec.reviewer_ids[:num_show].mapped("display_name"))
+                todo_by = ", ".join(
+                    rec.reviewer_ids[:num_show].mapped("display_name")
+                )
                 num_users = len(rec.reviewer_ids)
                 if num_users > num_show:
-                    todo_by = "{} (and {} more)".format(todo_by, num_users - num_show)
+                    todo_by = "{} (and {} more)"\
+                        .format(todo_by, num_users - num_show)
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
