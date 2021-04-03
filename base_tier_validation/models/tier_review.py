@@ -34,7 +34,11 @@ class TierReview(models.Model):
         compute="_compute_reviewer_ids", store=True,
     )
     sequence = fields.Integer(string="Tier")
-    todo_by = fields.Char(compute="_compute_todo_by", store=True)
+    todo_by = fields.Char(
+        compute="_compute_todo_by",
+        compute_sudo=True,
+        store=True,
+    )
     done_by = fields.Many2one(
         comodel_name="res.users",
     )
@@ -90,7 +94,7 @@ class TierReview(models.Model):
         for rec in self:
             rec.reviewer_ids = rec._get_reviewers()
 
-    @api.depends("reviewer_ids")
+    @api.depends("reviewer_ids", "reviewer_group_id")
     def _compute_todo_by(self):
         """ Show by group or by abbrev list of names """
         num_show = 3  # Max number of users to display
