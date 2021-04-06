@@ -107,8 +107,8 @@ class TierReview(models.Model):
                 )
                 num_users = len(rec.reviewer_ids)
                 if num_users > num_show:
-                    todo_by = "{} (and {} more)"\
-                        .format(todo_by, num_users - num_show)
+                    todo_by = _("%s (and %s more)")\
+                        % (todo_by, num_users - num_show, )
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
