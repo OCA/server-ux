@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_document_quick_access_missing,access_document_quick_access_missing,model_document_quick_access_missing,group_missing_document,1,1,1,0
