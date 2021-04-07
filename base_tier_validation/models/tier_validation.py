@@ -243,10 +243,26 @@ class TierValidation(models.AbstractModel):
         post = "message_post"
         if hasattr(self, post):
             # Notify state change
-            getattr(self, post)(
-                subtype=self._get_accepted_notification_subtype(),
-                body=self._notify_accepted_reviews_body(),
+            params = self._notify_accepted_params()
+            getattr(self, post)(**params)
+
+    def _notify_accepted_params(self):
+        """
+        Build params of message_post(...)
+        :return: dict
+        """
+        params = {
+            "subtype": self._get_accepted_notification_subtype(),
+            "body": self._notify_accepted_reviews_body(),
+        }
+        reviews_partners = self.review_ids.filtered(
+            lambda r: r.definition_id.notify_on_validation
+        )
+        if reviews_partners:
+            params.update(
+                {"partner_ids": reviews_partners.mapped("requested_by.partner_id").ids}
             )
+        return params
 
     def _notify_accepted_reviews_body(self):
         has_comment = self.review_ids.filtered(
@@ -308,10 +324,26 @@ class TierValidation(models.AbstractModel):
         post = "message_post"
         if hasattr(self, post):
             # Notify state change
-            getattr(self, post)(
-                subtype=self._get_rejected_notification_subtype(),
-                body=self._notify_rejected_review_body(),
+            params = self._notify_rejected_params()
+            getattr(self, post)(**params)
+
+    def _notify_rejected_params(self):
+        """
+        Build params of message_post(...)
+        :return: dict
+        """
+        params = {
+            "subtype": self._get_rejected_notification_subtype(),
+            "body": self._notify_rejected_review_body(),
+        }
+        reviews_partners = self.review_ids.filtered(
+            lambda r: r.definition_id.notify_on_reject
+        )
+        if reviews_partners:
+            params.update(
+                {"partner_ids": reviews_partners.mapped("requested_by.partner_id").ids}
             )
+        return params
 
     def _rejected_tier(self, tiers=False):
         self.ensure_one()
