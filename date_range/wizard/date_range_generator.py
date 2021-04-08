@@ -17,7 +17,7 @@ class DateRangeGenerator(models.TransientModel):
         return self.env['res.company']._company_default_get('date.range')
 
     name_prefix = fields.Char('Range name prefix', required=True)
-    date_start = fields.Date(strint='Start date', required=True)
+    date_start = fields.Date(required=True)
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', required=True,
         domain="['|', ('company_id', '=', company_id), "
