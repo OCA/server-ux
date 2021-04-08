@@ -28,7 +28,7 @@ addon | version | summary
 [base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.1 | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.0.0 | Forward option for base tiers
 [chained_swapper](chained_swapper/) | 13.0.1.0.0 | Chained Swapper
-[date_range](date_range/) | 13.0.1.0.1 | Manage all kind of date range
+[date_range](date_range/) | 13.0.1.0.2 | Manage all kind of date range
 [default_multi_user](default_multi_user/) | 13.0.1.0.1 | Allows to share user-defined defaults among several users.
 [document_quick_access](document_quick_access/) | 13.0.1.0.0 | Document quick access
 [document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 13.0.1.0.0 | Auto classification of Documents after reading a QR
