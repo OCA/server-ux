@@ -228,6 +228,9 @@ class TierValidation(models.AbstractModel):
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_accepted_reviews()
 
+    def _get_requested_notification_subtype(self):
+        return "base_tier_validation.mt_tier_validation_requested"
+
     def _get_accepted_notification_subtype(self):
         return 'base_tier_validation.mt_tier_validation_accepted'
 
@@ -337,7 +340,7 @@ class TierValidation(models.AbstractModel):
                 getattr(rec, 'message_subscribe')(
                     partner_ids=users_to_notify.mapped("partner_id").ids)
                 getattr(rec, 'message_post')(
-                    subtype='mt_comment',
+                    subtype=self._get_requested_notification_subtype(),
                     body=rec._notify_requested_review_body()
                 )
 
