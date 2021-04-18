@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-04-18 10:46+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,help:base_cancel_confirm.field_base_cancel_confirm__cancel_confirm
@@ -32,7 +34,7 @@ msgstr ""
 #. module: base_cancel_confirm
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleer"
 
 #. module: base_cancel_confirm
 #: model:ir.model,name:base_cancel_confirm.model_cancel_confirm
@@ -55,72 +57,72 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_reason
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__cancel_reason
 msgid "Cancel Reason"
-msgstr ""
+msgstr "Annuleringsreden"
 
 #. module: base_cancel_confirm
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "Confirm"
-msgstr ""
+msgstr "Bevestig"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__has_cancel_reason
 msgid "Has Cancel Reason"
-msgstr ""
+msgstr "Heeft annuleringsreden"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__id
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm____last_update
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst bijgewerk op"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__no
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__optional
 msgid "Optional"
-msgstr ""
+msgstr "Optioneel"
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__required
 msgid "Required"
-msgstr ""
+msgstr "Vereist"
 
 #. module: base_cancel_confirm
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "or"
-msgstr ""
+msgstr "of"
