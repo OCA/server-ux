@@ -466,3 +466,17 @@ class TierTierValidation(common.SavepointCase):
         self.assertFalse(
             self.test_user_2.with_user(self.test_user_2).review_user_count()
         )
+
+    def test_17_search_records_no_validation(self):
+        """Search for records that have no validation process started"""
+        records = self.env["tier.validation.tester"].search(
+            [("reviewer_ids", "=", False)]
+        )
+        self.assertEquals(len(records), 1)
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        records = self.env["tier.validation.tester"].search(
+            [("reviewer_ids", "=", False)]
+        )
+        self.assertEquals(len(records), 0)
