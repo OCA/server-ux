@@ -114,6 +114,12 @@ class TierValidation(models.AbstractModel):
 
     @api.model
     def _search_reviewer_ids(self, operator, value):
+        model_operator = "in"
+        if operator == "=" and value in ("[]", False):
+            # Search for records that have not yet been through a validation
+            # process.
+            operator = "!="
+            model_operator = "not in"
         reviews = self.env["tier.review"].search(
             [
                 ("model", "=", self._name),
@@ -122,7 +128,7 @@ class TierValidation(models.AbstractModel):
                 ("status", "=", "pending"),
             ]
         )
-        return [("id", "in", list(set(reviews.mapped("res_id"))))]
+        return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
 
     def _compute_validated_rejected(self):
         for rec in self:
