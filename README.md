@@ -24,7 +24,7 @@ addon | version | summary
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | Restrict (with groups) menu visibilty
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | Add custom filters for fields via UI
 [base_technical_features](base_technical_features/) | 13.0.1.0.1 | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 13.0.1.4.2 | Implement a validation process based on tiers.
+[base_tier_validation](base_tier_validation/) | 13.0.1.4.3 | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.1 | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.0.0 | Forward option for base tiers
 [chained_swapper](chained_swapper/) | 13.0.1.0.0 | Chained Swapper
