@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-base_cancel_confirm',
         'odoo14-addon-base_export_manager',
         'odoo14-addon-base_menu_visibility_restriction',
+        'odoo14-addon-base_optional_quick_create',
         'odoo14-addon-base_revision',
         'odoo14-addon-base_search_custom_field_filter',
         'odoo14-addon-base_technical_features',
