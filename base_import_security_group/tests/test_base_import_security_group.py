@@ -1,42 +1,20 @@
 # Copyright 2017 Onestein (http://www.onestein.eu)
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 from odoo.tools import mute_logger
 
 
+@tagged("-at_install", "post_install")
 class TestImportSecurityGroup(common.HttpCase):
     def setUp(self):
         super().setUp()
         self.Access = self.env["ir.model.access"]
         self.user_test = self.env.ref("base.user_demo")
         self.user_admin = self.env.ref("base.user_admin")
-
-    def has_button_import(self, falsify=False, user=None):
-        """
-        Verify that the Import button is either visible or invisible.
-        """
-        code = """
-        window.setTimeout(function () {
-            if (%s$('.o_button_import').length) {
-                console.log('ok');
-            } else {
-                console.log('error');
-            };
-        }, 2000);
-        """ % (
-            "!" if falsify else ""
-        )
-        action = self.env.ref("base.action_partner_category_form").id
-        link = "/web#action=%s" % action
-        self.browser_js(
-            link, code, 'Boolean($(".o_list_button_add"))', login=user.login
-        )
-
-    def test_01_load(self):
-        """ Admin user can import data, but the demo user cannot """
-        fields = (
+        self.fields = (
             "id",
             "name",
             "perm_read",
@@ -44,14 +22,22 @@ class TestImportSecurityGroup(common.HttpCase):
             "perm_create",
             "perm_unlink",
         )
-        data = [
+        self.data = [
             ("access_res_users_test", "res.users test", "1", "0", "0", "0"),
             ("access_res_users_test2", "res.users test2", "1", "1", "1", "1"),
         ]
-        self.has_button_import(user=self.user_admin)
-        with mute_logger("odoo.sql_db"):
-            res = self.Access.sudo(self.user_admin).load(fields, data)
 
+    def test_import_button(self):
+        """Whether or not the import button is available depending on permissions"""
+        self.start_tour("/web", "button_import_ok", login="admin")
+        group = self.env.ref("base_import_security_group.group_import_csv")
+        group.users -= self.user_admin
+        self.start_tour("/web", "button_import_ko", login="admin")
+
+    def test_access_admin(self):
+        """ Admin user can import data """
+        with mute_logger("odoo.sql_db"):
+            res = self.Access.with_user(self.user_admin).load(self.fields, self.data)
         self.assertEqual(res["ids"], False)
         self.assertEqual(len(res["messages"]), 2)
         self.assertEqual(
@@ -63,9 +49,11 @@ class TestImportSecurityGroup(common.HttpCase):
             "Missing required value for the field 'Object' (model_id)",
         )
 
-        self.has_button_import(falsify=True, user=self.user_test)
-        res2 = self.Access.sudo(self.user_test).load(fields, data)
-
+    def test_access_demo(self):
+        """ Demo user cannot import data """
+        self.user_test.write({"groups_id": [(4, self.ref("base.group_system"))]})
+        self.start_tour("/web", "button_import_ko", login="demo")
+        res2 = self.Access.with_user(self.user_test).load(self.fields, self.data)
         self.assertEqual(res2["ids"], None)
         self.assertEqual(len(res2["messages"]), 1)
         self.assertEqual(

@@ -1,13 +1,12 @@
 odoo.define("web.ListImport", function(require) {
     "use strict";
 
-    var KanbanController = require("web.KanbanController");
     var KanbanView = require("web.KanbanView");
-    var ListController = require("web.ListController");
     var ListView = require("web.ListView");
     var session = require("web.session");
 
     var ImportViewMixin = {
+        /* eslint-disable no-unused-vars */
         init: function(viewInfo, params) {
             var self = this;
             var result = self._super.apply(self, arguments);
