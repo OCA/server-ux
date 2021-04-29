@@ -5,7 +5,7 @@
 
 {
     "name": "Optional CSV import",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Server tools",
     "summary": "Group-based permissions for importing CSV files",
     "license": "AGPL-3",
@@ -13,8 +13,9 @@
     "Alejandro Santana <alejandrosantana@anubia.es>, "
     "Onestein",
     "maintainer": "Odoo Community Association (OCA)",
-    "website": "http://odoo-community.org",
-    "depends": ["web", "base_import",],
+    "website": "https://github.com/OCA/server-ux",
+    "depends": ["web", "web_tour", "base_import"],
+    "demo": ["demo/assets.xml"],
     "data": [
         "security/base_import_security_group_security.xml",
         "views/base_import.xml",
