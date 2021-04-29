@@ -4,14 +4,11 @@
 {
     "name": "User Locale Settings",
     "version": "13.0.1.0.0",
-    "author": "Brainbean Apps, " "Odoo Community Association (OCA)",
+    "author": "Brainbean Apps, Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
-    "depends": ["base", "base_setup", "calendar", "web"],
+    "depends": ["base_setup", "calendar"],
     "website": "https://github.com/OCA/server-ux",
-    "data": [
-        "views/res_config_settings.xml",
-        "views/res_users.xml",
-    ],
+    "data": ["views/res_config_settings.xml", "views/res_users.xml"],
     "installable": True,
 }
