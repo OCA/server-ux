@@ -25,5 +25,5 @@ class ResCompany(models.Model):
             ("5", "Friday"),
             ("6", "Saturday"),
             ("7", "Sunday"),
-        ],  # NOTE: Numbers as strings otherwise UI works poorly
+        ],
     )
