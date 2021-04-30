@@ -27,3 +27,13 @@ class ResCompany(models.Model):
             ("7", "Sunday"),
         ],
     )
+    decimal_point = fields.Char(
+        string="Decimal Separator",
+        trim=False,
+        help="See Settings > Translations > Languages for details",
+    )
+    thousands_sep = fields.Char(
+        string="Thousands Separator",
+        trim=False,
+        help="See Settings > Translations > Languages for details",
+    )
