@@ -72,6 +72,44 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="decimal_point" />
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+                            <div class="text-muted">
+                                Configure global override of time format for all users.
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="decimal_point" nolabel="1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="thousands_sep" />
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+                            <div class="text-muted">
+                                Configure global override of time format for all users.
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="thousands_sep" nolabel="1" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
