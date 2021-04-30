@@ -9,10 +9,27 @@
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
-            <field name="lang" position="after">
-                <field name="date_format" />
-                <field name="time_format" />
-                <field name="week_start" />
+            <field name="tz" position="before">
+                <field
+                    name="date_format"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="time_format"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="week_start"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="decimal_point"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="thousands_sep"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
             </field>
         </field>
     </record>
