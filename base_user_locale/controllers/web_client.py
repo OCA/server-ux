@@ -20,6 +20,12 @@ class WebClient(WebClient):
         week_start = user.week_start or user.env.company.week_start
         if week_start:
             res.update({"week_start": int(week_start)})  # NOTE: WebClient needs int
+        point_decimal = user.decimal_point or user.env.company.decimal_point
+        if point_decimal:
+            res.update({"decimal_point": point_decimal})
+        sep_thousands = user.thousands_sep or user.env.company.thousands_sep
+        if sep_thousands:
+            res.update({"thousands_sep": sep_thousands})
         return res
 
     @route()
