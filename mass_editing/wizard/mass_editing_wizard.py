@@ -22,6 +22,11 @@ class MassEditingWizard(models.TransientModel):
                 ("remove_m2m", _("Remove")),
                 ("add", _("Add")),
             ]
+        elif field.ttype == "one2many":
+            selection = [
+                ("set_o2m", _("Set")),
+                ("remove_o2m", _("Remove")),
+            ]
         else:
             selection = [("set", _("Set")), ("remove", _("Remove"))]
         result["selection__" + field.name] = {
@@ -103,6 +108,10 @@ class MassEditingWizard(models.TransientModel):
                     if val == "set":
                         values.update({split_key: vals.get(split_key, False)})
 
+                    elif val == "set_o2m":
+                        values.update({
+                            split_key: vals.get(split_key, [(6, 0, [])])})
+
                     elif val == "remove":
                         values.update({split_key: False})
 
@@ -139,6 +148,9 @@ class MassEditingWizard(models.TransientModel):
                             values.update({split_key: m2m_list})
                         else:
                             values.update({split_key: [(5, 0, [])]})
+
+                    elif val == "remove_o2m":
+                        values.update({split_key: [(6, 0, [])]})
 
                     elif val == "add":
                         m2m_list = []

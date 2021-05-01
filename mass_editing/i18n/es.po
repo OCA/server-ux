@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2020-02-04 22:13+0000\n"
+"POT-Creation-Date: 2021-01-28 16:20+0000\n"
+"PO-Revision-Date: 2021-01-28 16:20+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -187,7 +187,8 @@ msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:22
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:28
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Remove"
 msgstr ""
@@ -204,7 +205,8 @@ msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:21
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:27
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Set"
 msgstr ""
@@ -224,62 +226,3 @@ msgstr ""
 msgid "Wizard for mass edition"
 msgstr "Asistente para edición masiva"
 
-#~ msgid "%s (copy)"
-#~ msgstr "%s (copia)"
-
-#~ msgid "Add Sidebar Button"
-#~ msgstr "Agregar botón de barra lateral"
-
-#~ msgid "Advanced"
-#~ msgstr "Avanzado"
-
-#~ msgid ""
-#~ "Display a button in the sidebar of related documents to open a "
-#~ "composition wizard"
-#~ msgstr ""
-#~ "Mostrar un botón en el menú contextual de los documentos relacionados "
-#~ "para abrir un asistente de composición"
-
-#~ msgid "Fields"
-#~ msgstr "Campos"
-
-#~ msgid "Mass Editing (%s)"
-#~ msgstr "Edición Masiva (%s)"
-
-#~ msgid "Mass Editing Object"
-#~ msgstr "Objeto de Edición Masiva"
-
-#~ msgid "Model List"
-#~ msgstr "Lista de modelos"
-
-#~ msgid ""
-#~ "Model is used for Selecting Fields. This is editable until Sidebar menu "
-#~ "is not created."
-#~ msgstr ""
-#~ "El modelo se utiliza para Seleccionar Campos. Esto se puede editar hasta "
-#~ "que no se cree el menú de la barra lateral."
-
-#~ msgid "Name must be unique!"
-#~ msgstr "¡El nombre debe ser único!"
-
-#~ msgid "Object"
-#~ msgstr "Objeto"
-
-#~ msgid "Remove Sidebar Button"
-#~ msgstr "Eliminar el botón de la barra lateral"
-
-#~ msgid ""
-#~ "Remove the contextual action to use this template on related documents"
-#~ msgstr ""
-#~ "Elimine la acción contextual para usar esta plantilla en documentos "
-#~ "relacionados"
-
-#~ msgid "Sidebar action"
-#~ msgstr "Acción de la barra lateral"
-
-#~ msgid ""
-#~ "Sidebar action to make this template available on records of the related "
-#~ "document model."
-#~ msgstr ""
-#~ "Acción de la barra lateral para hacer que esta plantilla esté disponible "
-#~ "en los registros del modelo de documento relacionado."
