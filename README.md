@@ -37,6 +37,7 @@ addon | version | summary
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | Allows to share user-defined filters filters among several users.
 [mass_editing](mass_editing/) | 14.0.1.0.1 | Mass Editing
 [multi_step_wizard](multi_step_wizard/) | 14.0.1.0.0 | Multi-Steps Wizards
+[sequence_check_digit](sequence_check_digit/) | 14.0.1.0.0 | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 14.0.1.0.0 | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 
 [//]: # (end addons)
