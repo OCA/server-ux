@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-11-04 00:08+0000\n"
+"PO-Revision-Date: 2021-05-02 01:47+0000\n"
 "Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -215,7 +215,7 @@ msgstr "Eseguito da"
 #: code:addons/base_tier_validation/models/tier_review.py:0
 #, python-format
 msgid "Group %s"
-msgstr ""
+msgstr "Gruppo %s"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
@@ -344,8 +344,9 @@ msgstr "Res"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
+#, fuzzy
 msgid "Res Model"
-msgstr ""
+msgstr "Res Model"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -412,12 +413,16 @@ msgstr "L'operazione è in attesa di approvazione."
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
 " - %s \n"
 "Please request a validation."
 msgstr ""
+"Questa azione richiede di essere avallata almeno per un record.  Revisioni "
+"in sospeso:\n"
+" - %s \n"
+"Prego richiedere un avallo."
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -451,8 +456,9 @@ msgstr "Notifica Rifiuto Livello Approvazione"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
+#, fuzzy
 msgid "Tier Validation Requested"
-msgstr ""
+msgstr "Livello di Avallo Richiesto"
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
@@ -461,15 +467,16 @@ msgstr "Livelli Validazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
+#, fuzzy
 msgid "Todo By"
-msgstr ""
+msgstr "A carico di"
 
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
-#, python-format
+#, fuzzy, python-format
 msgid "Todo by"
-msgstr ""
+msgstr "A carico di"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_users
@@ -479,12 +486,12 @@ msgstr "Utenti"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
 msgid "Validate Reject"
-msgstr ""
+msgstr "Avallo Negato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
 msgid "Validated"
-msgstr ""
+msgstr "Avallato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type
