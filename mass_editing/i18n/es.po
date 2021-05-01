@@ -225,4 +225,3 @@ msgstr ""
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
 msgstr "Asistente para edición masiva"
-

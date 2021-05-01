@@ -187,7 +187,8 @@ msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:22
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:28
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Remove"
 msgstr ""
@@ -204,7 +205,8 @@ msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:21
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:26
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:27
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Set"
 msgstr ""
