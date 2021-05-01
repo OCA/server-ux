@@ -24,6 +24,7 @@ addon | version | summary
 [base_import_security_group](base_import_security_group/) | 13.0.1.0.0 | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | Restrict (with groups) menu visibilty
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | Add custom filters for fields via UI
+[base_substate](base_substate/) | 13.0.1.0.0 | Base Sub State
 [base_technical_features](base_technical_features/) | 13.0.1.0.1 | Access to technical features without activating debug mode
 [base_tier_validation](base_tier_validation/) | 13.0.1.5.0 | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.1 | Formulas for Base tier validation
