@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_tier_validation_forward
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: base_tier_validation_forward
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#, python-format
+msgid "A review was forwarded by %s."
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#, python-format
+msgid "A review was forwarded from {} {}"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__has_comment
+msgid "Allow Comment"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_definition__has_forward
+msgid "Allow Forward"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,help:base_tier_validation_forward.field_tier_definition__has_forward
+msgid "Allow option to 'Forward' to different person."
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,help:base_tier_validation_forward.field_tier_review__approve_sequence
+msgid "Approval order by the specified sequence number"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__approve_sequence
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__approve_sequence
+msgid "Approve by sequence"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__can_forward
+msgid "Can Forward"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__has_comment
+msgid "Comment"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model,name:base_tier_validation_forward.model_comment_wizard
+msgid "Comment Wizard"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__name
+msgid "Description"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
+#, python-format
+msgid "Forward"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_description
+msgid "Forward Description"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model,name:base_tier_validation_forward.model_tier_validation_forward_wizard
+msgid "Forward Wizard"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields.selection,name:base_tier_validation_forward.selection__tier_review__status__forwarded
+msgid "Forwarded"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_reviewer_id
+msgid "Next Reviewer"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_id
+msgid "Res"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_model
+msgid "Res Model"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__reviewer_id
+msgid "Reviewer"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__reviewer_group_id
+msgid "Reviewer group"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
+msgid "Status"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model,name:base_tier_validation_forward.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model,name:base_tier_validation_forward.model_tier_review
+msgid "Tier Review"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model,name:base_tier_validation_forward.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:mail.message.subtype,name:base_tier_validation_forward.mt_tier_validation_forwarded
+msgid "Tier Validation Forward Notification"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
+msgid "Validated by"
+msgstr ""
