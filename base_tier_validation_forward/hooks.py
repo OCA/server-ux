@@ -11,9 +11,3 @@ def uninstall_hook(cr, registry):
     cr.execute(
         "update tier_review a set status = 'approved' where status = 'forwarded';"
     )
-    cr.execute("alter table tier_review drop column name cascade;")
-    cr.execute("alter table tier_review drop column review_type cascade;")
-    cr.execute("alter table tier_review drop column reviewer_id cascade;")
-    cr.execute("alter table tier_review drop column reviewer_group_id cascade;")
-    cr.execute("alter table tier_review drop column has_comment cascade;")
-    cr.execute("alter table tier_review drop column approve_sequence cascade;")

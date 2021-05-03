@@ -8,7 +8,7 @@ class TierReview(models.Model):
     _name = "tier.review"
     _description = "Tier Review"
 
-    name = fields.Char(related="definition_id.name", readonly=True)
+    name = fields.Char(compute="_compute_definition_data", store=True, readonly=True)
     status = fields.Selection(
         selection=[
             ("pending", "Pending"),
@@ -24,10 +24,26 @@ class TierReview(models.Model):
         related="definition_id.company_id",
         store=True,
     )
-    review_type = fields.Selection(related="definition_id.review_type", readonly=True)
-    reviewer_id = fields.Many2one(related="definition_id.reviewer_id", readonly=True)
+    review_type = fields.Selection(
+        selection=[
+            ("individual", "Specific user"),
+            ("group", "Any user in a specific group."),
+        ],
+        compute="_compute_definition_data",
+        store=True,
+        readonly=True,
+    )
+    reviewer_id = fields.Many2one(
+        comodel_name="res.users",
+        compute="_compute_definition_data",
+        store=True,
+        readonly=True,
+    )
     reviewer_group_id = fields.Many2one(
-        related="definition_id.reviewer_group_id", readonly=True
+        comodel_name="res.groups",
+        compute="_compute_definition_data",
+        store=True,
+        readonly=True,
     )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
@@ -40,7 +56,9 @@ class TierReview(models.Model):
     done_by = fields.Many2one(comodel_name="res.users")
     requested_by = fields.Many2one(comodel_name="res.users")
     reviewed_date = fields.Datetime(string="Validation Date")
-    has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
+    has_comment = fields.Boolean(
+        compute="_compute_definition_data", store=True, readonly=True
+    )
     comment = fields.Char(string="Comments")
     can_review = fields.Boolean(
         compute="_compute_can_review",
@@ -49,8 +67,18 @@ class TierReview(models.Model):
         approve sequence has been achieved""",
     )
     approve_sequence = fields.Boolean(
-        related="definition_id.approve_sequence", readonly=True
+        compute="_compute_definition_data", store=True, readonly=True
     )
+
+    @api.depends("definition_id")
+    def _compute_definition_data(self):
+        for rec in self.filtered("definition_id"):
+            rec.name = rec.definition_id.name
+            rec.review_type = rec.definition_id.review_type
+            rec.reviewer_id = rec.definition_id.reviewer_id
+            rec.reviewer_group_id = rec.definition_id.reviewer_group_id
+            rec.has_comment = rec.definition_id.has_comment
+            rec.approve_sequence = rec.definition_id.approve_sequence
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
