@@ -29,8 +29,8 @@ class WebClient(WebClient):
         return res
 
     @route()
-    def translations(self, mods=None, lang=None):
-        res = super().translations(mods, lang)
+    def translations(self, unique, mods=None, lang=None):
+        res = super().translations(unique, mods, lang)
         if "uid" in request.session:
             ensure_db()
             user = request.env["res.users"].sudo().browse(request.session["uid"])

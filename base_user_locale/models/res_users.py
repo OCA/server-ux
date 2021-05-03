@@ -37,3 +37,12 @@ class ResUsers(models.Model):
         trim=False,
         help="See Settings > Translations > Languages for details",
     )
+
+    def preference_save(self):
+        super().preference_save()
+        # Do a "full" reload instead of just a context_reload to apply locale
+        # user specific settings.
+        return {
+            "type": "ir.actions.client",
+            "tag": "reload",
+        }
