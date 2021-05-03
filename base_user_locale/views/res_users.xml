@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_users_form_simple_modif" model="ir.ui.view">
+        <field name="name">res.users.preferences.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <field name="tz" position="before">
+                <field
+                    name="date_format"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="time_format"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="week_start"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="decimal_point"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+                <field
+                    name="thousands_sep"
+                    attrs="{'invisible': [('lang', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
