@@ -63,6 +63,16 @@ class TierDefinition(models.Model):
         default=False,
         help="Approval order by the specified sequence number",
     )
+    notify_on_validation = fields.Boolean(
+        string="Notifiy asker on validation",
+        help="If set, user who requests the validation will be notified "
+        "on validation.",
+    )
+    notify_on_reject = fields.Boolean(
+        string="Notifiy asker on reject",
+        help="If set, user who requests the validation will be notified "
+        "when rejected.",
+    )
 
     @api.onchange("review_type")
     def onchange_review_type(self):

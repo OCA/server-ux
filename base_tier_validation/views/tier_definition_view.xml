@@ -64,6 +64,8 @@
                             />
                             <field name="sequence" />
                             <field name="notify_on_create" />
+                            <field name="notify_on_validation" />
+                            <field name="notify_on_reject" />
                             <field name="has_comment" />
                             <field name="approve_sequence" />
                         </group>
