@@ -11,10 +11,15 @@
             <form string="Document Quick Access Missing Assign">
                 <group>
                     <field name="object_id" />
-                    <field name="missing_document_id" invisible="1" />
+                    <field name="exchange_record_id" invisible="1" />
                 </group>
                 <footer>
-                    <button name="doit" string="OK" class="btn-primary" type="object" />
+                    <button
+                        name="manually_assign"
+                        string="Assign"
+                        class="btn-primary"
+                        type="object"
+                    />
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
@@ -25,7 +30,6 @@
         id="document_quick_access_missing_assign_act_window"
     >
         <field name="name">Document Quick Access Missing Assign</field>
-        <!-- TODO -->
         <field name="res_model">document.quick.access.missing.assign</field>
         <field name="view_mode">form</field>
         <field name="context">{}</field>

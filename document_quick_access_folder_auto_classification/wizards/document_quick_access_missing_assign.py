@@ -19,11 +19,11 @@ class DocumentQuickAccessMissingAssign(models.TransientModel):
     object_id = fields.Reference(
         selection=lambda r: r.document_quick_access_models(), required=True
     )
-    missing_document_id = fields.Many2one(
-        "document.quick.access.missing", required=True
-    )
+    exchange_record_id = fields.Many2one("edi.exchange.record", required=True)
 
-    def doit(self):
+    def manually_assign(self):
         self.ensure_one()
-        self.missing_document_id.assign_model(self.object_id._name, self.object_id.id)
+        self.exchange_record_id.backend_id.with_context(
+            force_object_process=self.object_id
+        ).exchange_process(self.exchange_record_id)
         return True
