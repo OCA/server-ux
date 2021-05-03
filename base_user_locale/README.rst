@@ -29,11 +29,21 @@ This module allows overriding following settings for user or company:
  * Time format
  * Date format
  * First day of the week
+ * Decimal Separator
+ * Thousands Separator
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Usage
+=====
+
+To configure it at company level go to *Settings / General Settings* and search
+the section *Locale*.
+
+To configure it at user level go to your user preferences.
 
 Bug Tracker
 ===========
@@ -57,6 +67,8 @@ Contributors
 ~~~~~~~~~~~~
 
 * Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* Miquel Raïch <miquel.raich@forgeflow.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
