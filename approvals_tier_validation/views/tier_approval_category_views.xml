@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="tier_approval_category_action_new_request"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Dashboard</field>
+        <field name="res_model">tier.approval.category</field>
+        <field name="view_mode">kanban</field>
+    </record>
+    <record id="tier_approval_category_action" model="ir.actions.act_window">
+        <field name="name">Tier Approvals Types</field>
+        <field name="res_model">tier.approval.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record
+        id="tier_approval_request_action_to_review_category"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Tier Approvals to review</field>
+        <field name="res_model">tier.approval.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="domain"
+        >[('reviewer_ids.id','=',uid), ('state', '=', 'pending'), ('category_id', '=', active_id)]</field>
+    </record>
+    <record id="tier_approval_category_view_tree" model="ir.ui.view">
+        <field name="name">tier.approval.category.view.tree</field>
+        <field name="model">tier.approval.category</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="tier_approval_category_view_form" model="ir.ui.view">
+        <field name="name">tier.approval.category.view.form</field>
+        <field name="model">tier.approval.category</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field
+                        name="image"
+                        widget="image"
+                        class="oe_avatar"
+                        options='{"preview_image": "image", "size": [80, 80]}'
+                    />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="Tier Approvals Type Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="description" />
+                    </group>
+                    <notebook>
+                        <page string="Document Options" name="options">
+                            <group>
+                                <group name="option_settings">
+                                    <field name="active" invisible="0" />
+                                    <field
+                                        name="require_document"
+                                        string="Attach Document"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="lock_doc_wip"
+                                        widget="boolean_toggle"
+                                    />
+                                    <field
+                                        name="add_doc_action"
+                                        widget="boolean_toggle"
+                                    />
+                                </group>
+                            </group>
+                            <group>
+                                <group name="doctype">
+                                    <field
+                                        name="reference_model"
+                                        string="Create New Record"
+                                    />
+                                    <field name="approval_model_id" invisible="1" />
+                                    <field name="rec_action_id" />
+                                    <field name="rec_view_id" />
+                                </group>
+                                <group name="force_approval">
+                                    <field name="force_approval" />
+                                    <field
+                                        name="filter_pre_domain"
+                                        widget="domain"
+                                        options="{'model': 'reference_model', 'in_dialog': True}"
+                                        attrs="{'invisible': [('force_approval', '=', False)]}"
+                                    />
+                                    <field
+                                        name="filter_domain"
+                                        widget="domain"
+                                        options="{'model': 'reference_model', 'in_dialog': True}"
+                                        attrs="{'invisible': [('force_approval', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Tier Definition" name="tier_definition">
+                            <field
+                                name="tier_definition_ids"
+                                context="{'default_model_id': approval_model_id,
+                                                                        'default_definition_type': 'domain_formula',
+                                                                        'default_approve_sequence': True}"
+                            >
+                                <tree name="tier_definition_tree">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="approve_sequence" />
+                                    <field name="name" />
+                                    <field name="review_type" />
+                                    <field name="reviewer_id" />
+                                    <field name="reviewer_group_id" />
+                                    <field name="reviewer_expression" />
+                                    <field
+                                        name="company_id"
+                                        groups="base.group_multi_company"
+                                    />
+                                    <field name="python_code" />
+                                    <field name="has_comment" />
+                                </tree>
+                                <form name="tier_definition_form">
+                                    <div class="oe_title">
+                                        <span class="oe_edit_only">Name</span>
+                                        <h1>
+                                            <field
+                                                name="name"
+                                                required="1"
+                                                placeholder="e.g. Tier Validation for..."
+                                            />
+                                        </h1>
+                                    </div>
+                                    <group>
+                                        <field name="active" invisible="1" />
+                                        <group name="left">
+                                            <field name="model_id" invisible="1" />
+                                            <field name="model" invisible="1" />
+                                            <field name="review_type" />
+                                            <field
+                                                name="reviewer_id"
+                                                attrs="{'invisible': [('review_type', '!=', 'individual')]}"
+                                            />
+                                            <field
+                                                name="reviewer_group_id"
+                                                attrs="{'invisible': [('review_type', '!=', 'group')]}"
+                                            />
+                                        </group>
+                                        <group name="right">
+                                            <field
+                                                name="company_id"
+                                                groups="base.group_multi_company"
+                                                options="{'no_create': True}"
+                                            />
+                                            <field name="sequence" />
+                                            <field name="notify_on_create" />
+                                            <field name="has_comment" />
+                                            <field name="approve_sequence" />
+                                        </group>
+                                    </group>
+                                    <group col="4">
+                                        <field
+                                            name="reviewer_expression"
+                                            colspan="4"
+                                            attrs="{'invisible': [('review_type', '!=', 'expression')]}"
+                                        />
+                                    </group>
+                                    <group name="bottom">
+                                        <field name="definition_type" invisible="1" />
+                                        <field name="definition_domain" invisible="1" />
+                                        <field
+                                            name="python_code"
+                                            attrs="{'invisible': [('definition_type', 'not in', ('formula', 'domain_formula'))]}"
+                                        />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Advance" name="advance">
+                            <group>
+                                <group string="Document Begin State">
+                                    <field name="doc_begin_domain" widget="domain" nolabel="1"
+                                      options="{'model': 'reference_model', 'in_dialog': True}"/>
+                                </group>
+                                <group string="Python Expression">
+                                    <separator string="New" colspan="2" />
+                                    <field name="new_expr" nolabel="1" colspan="2" />
+                                    <separator string="Pending Approval" colspan="2" />
+                                    <field
+                                        name="pending_expr"
+                                        nolabel="1"
+                                        colspan="2"
+                                    />
+                                    <separator string="Approved" colspan="2" />
+                                    <field
+                                        name="approved_expr"
+                                        nolabel="1"
+                                        colspan="2"
+                                    />
+                                    <separator string="Refused" colspan="2" />
+                                    <field
+                                        name="refused_expr"
+                                        nolabel="1"
+                                        colspan="2"
+                                    />
+                                    <separator string="Cancelled" colspan="2" />
+                                    <field name="cancel_expr" nolabel="1" colspan="2" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="tier_approval_category_view_kanban" model="ir.ui.view">
+        <field name="name">tier.approval.category.views.kanban</field>
+        <field name="model">tier.approval.category</field>
+        <field name="arch" type="xml">
+            <kanban create="false" class="o_modules_kanban">
+                <field name="name" />
+                <field name="id" />
+                <field name="image" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <t t-if="record.id">
+                                <img
+                                    t-att-src="kanban_image('tier.approval.category', 'image', record.id.raw_value)"
+                                    alt="Approvals Types Image"
+                                    class="oe_kanban_avatar float-left mr-3"
+                                    width="64"
+                                    height="64"
+                                />
+                            </t>
+                            <div class="oe_module_desc">
+                                <h4 class="o_kanban_record_title">
+                                    <field name="name" />
+                                </h4>
+                                <p class="oe_module_name">
+                                    <field name="description" />
+                                </p>
+                                <div class="oe_module_action" t-if="!selection_mode">
+                                    <button
+                                        type="object"
+                                        class="btn btn-primary btn-sm"
+                                        name="create_request"
+                                        context="{'category_id':'active_id'}"
+                                    >New Request</button>
+                                    <button
+                                        type="action"
+                                        class="btn btn-sm btn-secondary float-right"
+                                        name="%(approvals_tier_validation.tier_approval_request_action_to_review_category)d"
+                                        groups="approvals_tier_validation.group_approval_user"
+                                    >To Review: <field
+                                            name="request_to_validate_count"
+                                        /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
