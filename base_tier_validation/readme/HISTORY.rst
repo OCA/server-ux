@@ -1,3 +1,12 @@
+13.0.1.2.3 (2021-05-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Add the possibility to request feedback after validation only when a tier
+  validation has been rejected. The tier.definition now has a boolean
+  'comment_on_rejection'.
+
 13.0.1.2.2 (2020-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

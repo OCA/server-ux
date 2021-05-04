@@ -480,3 +480,31 @@ class TierTierValidation(common.SavepointCase):
             [("reviewer_ids", "=", False)]
         )
         self.assertEquals(len(records), 0)
+
+    def test_18_no_comment_on_approve(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "has_comment": True,
+                "comment_on_rejection": True,
+            }
+        )
+        # Request validation
+        review = test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        res = record.validate_tier()
+        # No wizard is started when the user approves
+        self.assertFalse(res)
+        # Check notify
+        comment = test_record.with_user(
+            self.test_user_1.id
+        )._notify_accepted_reviews_body()
+        self.assertEqual(comment, "A review was accepted")

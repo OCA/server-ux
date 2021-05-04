@@ -65,6 +65,10 @@
                             <field name="sequence" />
                             <field name="notify_on_create" />
                             <field name="has_comment" />
+                            <field
+                                name="comment_on_rejection"
+                                attrs="{'invisible': [('has_comment', '=', False)]}"
+                            />
                             <field name="approve_sequence" />
                         </group>
                     </group>

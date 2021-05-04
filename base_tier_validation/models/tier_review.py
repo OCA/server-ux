@@ -38,6 +38,9 @@ class TierReview(models.Model):
     requested_by = fields.Many2one(comodel_name="res.users")
     reviewed_date = fields.Datetime(string="Validation Date")
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
+    comment_on_rejection = fields.Boolean(
+        related="definition_id.comment_on_rejection", readonly=True
+    )
     comment = fields.Char(string="Comments")
     can_review = fields.Boolean(
         compute="_compute_can_review",

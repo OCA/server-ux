@@ -43,13 +43,17 @@ class TierValidation(models.AbstractModel):
         compute="_compute_can_review", search="_search_can_review"
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
+    comment_on_rejection = fields.Boolean(compute="_compute_has_comment")
 
     def _compute_has_comment(self):
         for rec in self:
-            has_comment = rec.review_ids.filtered(
+            pending_reviews = rec.review_ids.filtered(
                 lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
-            ).mapped("has_comment")
+            )
+            has_comment = pending_reviews.mapped("has_comment")
+            comment_on_rejection = pending_reviews.mapped("comment_on_rejection")
             rec.has_comment = True in has_comment
+            rec.comment_on_rejection = True in comment_on_rejection
 
     def _get_sequences_to_approve(self, user):
         all_reviews = self.review_ids.filtered(lambda r: r.status == "pending")
@@ -288,7 +292,7 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
         reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
-        if self.has_comment:
+        if self.has_comment and not self.comment_on_rejection:
             return self._add_comment("validate", reviews)
         self._validate_tier(reviews)
         self._update_counter()
