@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="document_quick_access_folder_auto_classification_host"
+                model="ir.config_parameter" forcecreate="True">
+            <field name="key">document_quick_access_folder_auto_classification_ssh.host</field>
+            <field name="value">localhost</field>
+        </record>
+        <record id="document_quick_access_folder_auto_classification_port"
+                model="ir.config_parameter" forcecreate="True">
+            <field name="key">document_quick_access_folder_auto_classification_ssh.port</field>
+            <field name="value">22</field>
+        </record>
+        <record id="document_quick_access_folder_auto_classification_user"
+                model="ir.config_parameter" forcecreate="True">
+            <field name="key">document_quick_access_folder_auto_classification_ssh.user</field>
+            <field name="value">odoo</field>
+        </record>
+        <record id="document_quick_access_folder_auto_classification_password"
+                model="ir.config_parameter" forcecreate="True">
+            <field name="key">document_quick_access_folder_auto_classification_ssh.password</field>
+            <field name="value">odoo</field>
+        </record>
+        <record id="document_quick_access_folder_auto_classification_ssh_path"
+                model="ir.config_parameter">
+            <field name="key">document_quick_access_folder_auto_classification_ssh.path</field>
+            <field name="value"></field>
+        </record>
+    </data>
+</odoo>
