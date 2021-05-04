@@ -26,7 +26,16 @@ class Users(models.Model):
                 .with_user(self.env.user)
                 .search([("id", "=", review.res_id)])
             )
-            if not record or record.rejected or not record.can_review:
+            # Check that the model still supports tier validation,
+            # to gracefully handle the case where Tier Validation was
+            # added and later removed
+            has_tier_val = hasattr(record, "_tier_validation_manual_config")
+            if (
+                not record
+                or not has_tier_val
+                or record.rejected
+                or not record.can_review
+            ):
                 # Checking that the review is accessible with the permissions
                 # and to review condition is valid
                 continue
