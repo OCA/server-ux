@@ -47,3 +47,10 @@ class TestIrExportsCase(TransactionCase):
         # Creating without anyone
         with self.assertRaises(ValidationError):
             IrExports.create({"name": "some"})
+
+    def test_onchange_resource(self):
+        IrExports = self.env["ir.exports"]
+        model = self.env["ir.model"]._get("res.partner")
+        record = IrExports.create({"name": "some", "resource": model.model})
+        record._onchange_resource()
+        self.assertEqual(record.resource, "res.partner")
