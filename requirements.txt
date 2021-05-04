@@ -1,3 +1,4 @@
 pyzbar
 pdf2image
 openupgradelib @ git+https://github.com/OCA/openupgradelib.git
+odoo_test_helper
