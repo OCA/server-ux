@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="reminder_definition_view_tree" model="ir.ui.view">
+        <field name="name">reminder.definition.tree</field>
+        <field name="model">reminder.definition</field>
+        <field name="arch" type="xml">
+            <tree string="Reminder Definition">
+                <field name="model_id" />
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+    <record id="reminder_definition_view_form" model="ir.ui.view">
+        <field name="name">reminder.definition.form</field>
+        <field name="model">reminder.definition</field>
+        <field name="arch" type="xml">
+            <form string="Reminder Definition">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <span class="oe_edit_only">Name</span>
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="active" invisible="1" />
+                        <group name="left">
+                            <field name="model_id" options="{'no_create': True}" />
+                            <field name="model" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="right" />
+                        <group name="overdue_reminder" string="Overdue Reminder">
+                            <label for="overdue_reminder_min_interval_days" />
+                            <div>
+                                <field
+                                    name="overdue_reminder_min_interval_days"
+                                    class="oe_inline"
+                                />
+                                <span> days</span>
+                            </div>
+                        </group>
+                        <group name="reminder_action" string="Action Reminder">
+                            <field name="reminder_type" />
+                            <field
+                                name="mail_template_id"
+                                attrs="{'required': [('reminder_type', '=', 'mail')],
+                                'invisible': [('reminder_type', '!=', 'mail')]}"
+                            />
+                            <field
+                                name="attachment_letter"
+                                attrs="{'invisible': [('reminder_type', '!=', 'mail')]}"
+                            />
+                            <field
+                                name="letter_report"
+                                attrs="{'required': ['|', ('reminder_type', '=', 'letter'), ('attachment_letter', '!=', False)],
+                                'invisible': [('reminder_type', '!=', 'letter'), ('attachment_letter', '=', False)]}"
+                            />
+                        </group>
+                        <group name="activity" string="Activity" colspan="4">
+                            <field name="create_activity" />
+                            <field
+                                name="activity_summary"
+                                attrs="{'invisible': [('create_activity', '=', False)]}"
+                            />
+                            <field
+                                name="activity_note"
+                                attrs="{'invisible': [('create_activity', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="reminder_definition_view_search" model="ir.ui.view">
+        <field name="name">reminder.definition.search</field>
+        <field name="model">reminder.definition</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model_id" />
+                <field name="active" />
+                <separator />
+                <filter
+                    string="All"
+                    name="all"
+                    domain="['|', ('active', '=', False), ('active', '=', True)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Model"
+                        name="model_id"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="reminder_definition_action" model="ir.actions.act_window">
+        <field name="name">Reminder Definition</field>
+        <field name="res_model">reminder.definition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_all': 1}</field>
+    </record>
+    <menuitem id="menu_reminder" name="Overdue Reminders" parent="base.menu_custom" />
+    <menuitem
+        id="menu_reminder_definition"
+        parent="menu_reminder"
+        action="reminder_definition_action"
+    />
+</odoo>
