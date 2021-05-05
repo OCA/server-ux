@@ -58,8 +58,10 @@ class TierDefinition(models.Model):
         "this definition is triggered.",
     )
     has_comment = fields.Boolean(string="Comment", default=False)
-    comment_on_rejection = fields.Boolean(
-        string="Comment only on rejection", default=False
+    comment_option = fields.Selection(
+        [("all", "Both Validation & Rejection"),
+         ("validate", "Validation Only"),
+         ("reject", "Rejection Only")], string="Comment only on rejection", default='all',
     )
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
