@@ -485,8 +485,8 @@ class TierTierValidation(common.SavepointCase):
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
         # Update all definitions to request commend only on reject
-        definitions = self.env['tier.definition'].search([])
-        definitions.write({'comment_option': 'reject'})
+        definitions = self.env["tier.definition"].search([])
+        definitions.write({"comment_option": "reject"})
         # Request validation
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
