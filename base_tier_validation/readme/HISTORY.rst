@@ -1,3 +1,11 @@
+13.0.1.6.0 (2021-05-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+New features:
+
+- Allow to specify in the tier definition if you want to add a comment ony on
+  rejection, only on approval, always or never.
+
 13.0.1.2.2 (2020-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

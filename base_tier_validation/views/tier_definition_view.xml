@@ -64,7 +64,7 @@
                             />
                             <field name="sequence" />
                             <field name="notify_on_create" />
-                            <field name="has_comment" />
+                            <field name="comment_option" />
                             <field name="approve_sequence" />
                         </group>
                     </group>

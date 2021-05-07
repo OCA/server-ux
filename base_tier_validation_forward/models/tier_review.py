@@ -25,19 +25,19 @@ class TierReview(models.Model):
         readonly=False,
     )
     sequence = fields.Float()
-    has_comment = fields.Boolean(
-        compute="_compute_definition_data", store=True, readonly=False,
-    )
     approve_sequence = fields.Boolean(
         compute="_compute_definition_data", store=True, readonly=False,
+    )
+    comment_option = fields.Selection(
+        related="definition_id.comment_option", readonly=True
     )
 
     @api.depends(
         "definition_id.name",
         "definition_id.review_type",
         "definition_id.reviewer_id",
+        "definition_id.comment_option",
         "definition_id.reviewer_group_id",
-        "definition_id.has_comment",
         "definition_id.approve_sequence",
     )
     def _compute_definition_data(self):
@@ -46,5 +46,5 @@ class TierReview(models.Model):
             rec.review_type = rec.definition_id.review_type
             rec.reviewer_id = rec.definition_id.reviewer_id
             rec.reviewer_group_id = rec.definition_id.reviewer_group_id
-            rec.has_comment = rec.definition_id.has_comment
             rec.approve_sequence = rec.definition_id.approve_sequence
+            rec.comment_option = rec.definition_id.comment_option

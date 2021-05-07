@@ -57,7 +57,16 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
         "this definition is triggered.",
     )
-    has_comment = fields.Boolean(string="Comment", default=False)
+    comment_option = fields.Selection(
+        [
+            ("none", "No Comment"),
+            ("all", "Both Validation & Rejection"),
+            ("validate", "Validation Only"),
+            ("reject", "Rejection Only"),
+        ],
+        string="Comment after review",
+        default="none",
+    )
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
         default=False,

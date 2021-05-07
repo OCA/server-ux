@@ -14,7 +14,7 @@
                         <field name="forward_description" required="1" />
                     </group>
                     <group>
-                        <field name="has_comment" invisible="1" />
+                        <field name="comment_option" />
                         <field name="approve_sequence" invisible="1" />
                     </group>
                 </group>
