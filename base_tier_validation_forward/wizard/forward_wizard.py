@@ -13,8 +13,14 @@ class ValidationForwardWizard(models.TransientModel):
         comodel_name="res.users", string="Next Reviewer", required=True,
     )
     forward_description = fields.Char()
-    has_comment = fields.Boolean(string="Allow Comment", default=True)
     approve_sequence = fields.Boolean(string="Approve by sequence", default=True,)
+    comment_option = fields.Selection(
+        string="Comment after review",
+        default="none",
+        selection=lambda self: self.env["tier.definition"]
+        ._columns["comment_option"]
+        .selection,
+    )
 
     def add_forward(self):
         """ Add extra step, with specific reviewer """
@@ -36,8 +42,8 @@ class ValidationForwardWizard(models.TransientModel):
                 "requested_by": self.env.uid,
                 "review_type": "individual",
                 "reviewer_id": self.forward_reviewer_id.id,
-                "has_comment": self.has_comment,
                 "approve_sequence": self.approve_sequence,
+                "comment_option": self.comment_option,
             }
         )
         rec.invalidate_cache()
