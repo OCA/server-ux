@@ -26,6 +26,11 @@ msgid "Apply on"
 msgstr ""
 
 #. module: base_substate
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_substate
 #: model:ir.actions.act_window,name:base_substate.act_open_base_substate_view
 #: model:ir.model,name:base_substate.model_base_substate
 #: model:ir.ui.menu,name:base_substate.menu_base_substate
