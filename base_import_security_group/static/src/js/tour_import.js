@@ -10,7 +10,7 @@ odoo.define("base_import_security_group.tour", function (require) {
             url: "/web",
         },
         [
-            tour.STEPS.SHOW_APPS_MENU_ITEM,
+            tour.stepUtils.showAppsMenuItem(),
             {
                 id: "settings_menu_click",
                 trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
@@ -35,7 +35,7 @@ odoo.define("base_import_security_group.tour", function (require) {
             url: "/web",
         },
         [
-            tour.STEPS.SHOW_APPS_MENU_ITEM,
+            tour.stepUtils.showAppsMenuItem(),
             {
                 id: "settings_menu_click",
                 trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',

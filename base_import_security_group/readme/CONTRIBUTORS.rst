@@ -5,3 +5,8 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Víctor Martínez
+
+* `Open Source Integrators <https://www.opensourceintegrators.com/>`_:
+
+  * Daniel Reis
+  * Chandresh Thakkar
