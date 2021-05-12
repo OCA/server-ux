@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Studio73 - Pablo Fuentes (https://www.studio73.es)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <template>
-    <t t-name="SearchView.extended_search.dateRange.selection">
-        <select class="date-range-select">
-            <t t-as="element" t-foreach="widget.date_range_values">
-                <option t-att-value="element.id">
-                    <t t-esc="element.name" />
-                </option>
+    <t t-inherit="web.CustomFilterItem" t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('o_generator_menu_value')]" position="replace">
+            <t
+                t-if="(fieldType === 'date' || fieldType === 'datetime') &amp;&amp; selectedOperator.date_range"
+            >
+                <span class="o_generator_menu_value">
+                    <select class="o_input" t-on-change="_onValueInput(condition)">
+                        <option
+                            t-foreach="date_ranges[selectedOperator.date_range_type]"
+                            t-as="option"
+                            t-key="option_index"
+                            t-att-value="option.id"
+                            t-esc="option.name"
+                        />
+                    </select>
+                </span>
             </t>
-        </select>
+            <t t-else="">$0</t>
+        </xpath>
     </t>
 </template>

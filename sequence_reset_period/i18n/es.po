@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sequence_reset_period
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2018-07-13 08:46+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
+
+#. module: sequence_reset_period
+#: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__daily
+msgid "Daily"
+msgstr "Diario"
+
+#. module: sequence_reset_period
+#: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: sequence_reset_period
+#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence__range_reset
+msgid "Range Reset"
+msgstr "Reinicio del Rango"
+
+#. module: sequence_reset_period
+#: model:ir.model,name:sequence_reset_period.model_ir_sequence
+#, fuzzy
+msgid "Sequence"
+msgstr "ir.sequence"
+
+#. module: sequence_reset_period
+#: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__weekly
+msgid "Weekly"
+msgstr "Semanal"
+
+#. module: sequence_reset_period
+#: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__yearly
+msgid "Yearly"
+msgstr "Anual"
