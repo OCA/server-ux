@@ -42,11 +42,11 @@ class TestImportSecurityGroup(common.HttpCase):
         self.assertEqual(len(res["messages"]), 2)
         self.assertEqual(
             res["messages"][0]["message"],
-            "Missing required value for the field 'Object' (model_id)",
+            "Missing required value for the field 'Model' (model_id)",
         )
         self.assertEqual(
             res["messages"][1]["message"],
-            "Missing required value for the field 'Object' (model_id)",
+            "Missing required value for the field 'Model' (model_id)",
         )
 
     def test_access_demo(self):
