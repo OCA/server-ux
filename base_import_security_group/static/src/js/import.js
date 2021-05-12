@@ -1,9 +1,7 @@
 odoo.define('web.ListImport', function (require) {
     "use strict";
 
-    var KanbanController = require('web.KanbanController');
     var KanbanView = require('web.KanbanView');
-    var ListController = require('web.ListController');
     var ListView = require('web.ListView');
     var session = require('web.session');
 
@@ -11,12 +9,12 @@ odoo.define('web.ListImport', function (require) {
 
     init: function (viewInfo, params) {
 
-        var self = this
+        var self = this;
         var result = self._super.apply(self, arguments);
         var base_group = 'base_import_security_group.group_import_csv';
 
         session.user_has_group(base_group).then(function (result){
-            var importEnabled = false
+            var importEnabled = false;
             if (result){
                 importEnabled =  true;
             }
