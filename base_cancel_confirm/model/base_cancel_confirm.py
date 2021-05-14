@@ -16,10 +16,12 @@ class BaseCancelConfirm(models.AbstractModel):
 
     cancel_confirm = fields.Boolean(
         string="Cancel Confirmed",
+        copy=False,
         help="A flag signify that this document is confirmed for cancellation",
     )
     cancel_reason = fields.Text(
         string="Cancel Reason",
+        copy=False,
         help="An optional cancel reason",
     )
 
