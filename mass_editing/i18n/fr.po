@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-24 12:13+0000\n"
-"PO-Revision-Date: 2020-02-24 12:13+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-05-14 19:47+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
@@ -23,6 +24,10 @@ msgid ""
 "including the fields of such domain in this operation definition, will lead "
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
+"<b>WARNING</b>: Tenez compte du fait que l'ajout d'un champ avec un domaine, "
+"et le fait de ne pas inclure les champs de ce domaine dans la définition de "
+"cette opération, entraînera une erreur lors de la tentative d'exécution. "
+"Assurez-vous de les inclure."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
@@ -54,17 +59,17 @@ msgstr "Groupes Autorisés"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
-msgstr ""
+msgstr "Appliquer le domaine par défaut lié au champ"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply domain"
-msgstr ""
+msgstr "Appliquer le domaine"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
 msgid "Apply domain in lines"
-msgstr ""
+msgstr "Appliquer le domaine dans les lignes"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
