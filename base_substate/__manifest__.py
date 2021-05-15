@@ -6,7 +6,7 @@
     "version": "13.0.1.1.0",
     "category": "Tools",
     "author": "Akretion, " "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
