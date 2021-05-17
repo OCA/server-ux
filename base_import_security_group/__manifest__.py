@@ -15,12 +15,13 @@
     'maintainer': 'Odoo Community Association (OCA)',
     'website': 'http://odoo-community.org',
     'depends': [
-        'web',
+        'web_tour',
         'base_import',
     ],
     'data': [
         'security/base_import_security_group_security.xml',
         'views/base_import.xml',
     ],
+    "demo": ["demo/assets.xml"],
     'installable': True,
 }
