@@ -422,10 +422,12 @@ class TierTierValidation(common.SavepointCase):
         self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
         self.assertTrue(self.test_user_1.review_ids)
         test_record.invalidate_cache()
+        self.assertFalse(test_record.can_review)
         self.assertTrue(test_record.review_ids)
+        self.assertFalse(test_record.need_validation)
         # Used by front-end
         count = self.test_user_1.with_user(self.test_user_1).review_user_count()
-        self.assertEqual(len(count), 1)
+        self.assertEqual(len(count), 0)
         # False Review
         self.assertFalse(self.test_record._calc_reviews_validated(False))
         self.assertIn("requested", self.test_record._notify_requested_review_body())
@@ -449,10 +451,11 @@ class TierTierValidation(common.SavepointCase):
         record1 = test_record.with_user(self.test_user_1)
         record1.invalidate_cache()
         self.assertTrue(record1.can_review)
-        self.assertTrue(
+        self.assertFalse(record1.need_validation)
+        self.assertFalse(
             self.test_user_1.with_user(self.test_user_1).review_user_count()
         )
-        self.assertTrue(
+        self.assertFalse(
             self.test_user_2.with_user(self.test_user_2).review_user_count()
         )
         # user 1 reject first tier

@@ -26,7 +26,12 @@ class Users(models.Model):
                 .with_user(self.env.user)
                 .search([("id", "=", review.res_id)])
             )
-            if not record or record.rejected or not record.can_review:
+            if (
+                not record
+                or record.rejected
+                or not record.can_review
+                or not record.need_validation
+            ):
                 # Checking that the review is accessible with the permissions
                 # and to review condition is valid
                 continue
