@@ -13,6 +13,7 @@
         "web",
     ],
     "data": [
+        "data/ir_cron_data.xml",
         "security/ir.model.access.csv",
         "security/date_range_security.xml",
         "views/assets.xml",

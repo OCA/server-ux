@@ -34,7 +34,7 @@
         <field name="name">date.range.type.tree</field>
         <field name="model">date.range.type</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" string="Date range type">
+            <tree string="Date range type">
                 <field name="name"/>
                 <field name="allow_overlap"/>
                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
@@ -47,12 +47,46 @@
         <field name="model">date.range.type</field>
         <field name="arch" type="xml">
             <form string="Date Range Type">
-                <group col="4">
-                    <field name="name"/>
-                    <field name="allow_overlap"/>
-                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                    <field name="active"/>
-                </group>
+                <notebook>
+                    <page name="main" string="Configuration">
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="allow_overlap"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="generation" string="Generation">
+                        <group>
+                            <group string="Defaults for generating date ranges" colspan="4">
+                                <label for="duration_count"/>
+                                <div>
+                                    <field class="oe_inline" name="duration_count"/>&amp;nbsp;
+                                    <field class="oe_inline" name="unit_of_time"/>
+                                </div>
+                                <label for="name_prefix"/>
+                                <div>
+                                    <field name="name_prefix" class="oe_inline" attrs="{'required': [('unit_of_time', '!=', False), ('name_expr', '=', False)]}"/> or enter a complex expression below
+                                </div>
+                                <field name="name_expr"
+                                       attrs="{'required': [('unit_of_time', '!=', False), ('name_prefix', '=', False)]}" />
+                                <field name="range_name_preview" />
+                            </group>
+                            <group string="Auto-generation settings">
+                                <field name="date_ranges_exist" invisible="1"/>
+                                <field name="autogeneration_date_start"
+                                       attrs="{'invisible': [('date_ranges_exist', '=', True)]}"/>
+                                <label for="autogeneration_count" string="Create"/>
+                                <div>
+                                    <field class="oe_inline" name="autogeneration_count"/>&amp;nbsp;
+                                    <field class="oe_inline" name="autogeneration_unit"/> in advance
+                                </div>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>
