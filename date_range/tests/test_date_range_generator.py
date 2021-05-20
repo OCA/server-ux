@@ -6,7 +6,7 @@ import datetime
 from dateutil.rrule import MONTHLY
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class DateRangeGeneratorTest(TransactionCase):
@@ -61,3 +61,40 @@ class DateRangeGeneratorTest(TransactionCase):
                     "company_id": self.company_2.id,
                 }
             )
+
+    def test_generator_form(self):
+        """Test validation and onchange functionality"""
+        form = Form(self.env["date.range.generator"])
+        form.type_id = self.type
+        form.unit_of_time = str(MONTHLY)
+        form.duration_count = 10
+        form.date_end = "2021-01-01"
+        # Setting count clears date_end
+        form.count = 10
+        self.assertFalse(form.date_end)
+        # Setting date_end clears count
+        form.date_end = "2021-01-01"
+        self.assertFalse(form.count)
+        form.count = 10
+        form.name_prefix = "PREFIX"
+        # Cannot generate ranges with an invalid name_expr
+        with self.assertRaisesRegex(ValidationError, "Invalid name expression"):
+            form.name_expr = "'not valid"
+        # Setting name_expr clears name_prefix
+        form.name_expr = "'PREFIX%s' % index"
+        self.assertFalse(form.name_prefix)
+        self.assertEqual(form.range_name_preview, "PREFIX01")
+        wizard = form.save()
+
+        # Cannot generate ranges without count and without date_end
+        wizard.date_end = False
+        wizard.count = False
+        with self.assertRaisesRegex(ValidationError, "end date.*number of ranges"):
+            wizard.action_apply()
+
+        wizard.count = 10
+        # Cannot generate ranges without a prefix and without an expression
+        wizard.name_expr = False
+        wizard.name_prefix = False
+        with self.assertRaisesRegex(ValidationError, "prefix.*expression"):
+            wizard.action_apply()
