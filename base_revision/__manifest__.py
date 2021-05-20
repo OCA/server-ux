@@ -7,7 +7,7 @@
 {
     "name": "Base Revision (abstract)",
     "summary": "Keep track of revised document",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Tools",
     "author": "Agile Business Group,"
     "Dreambits,"
