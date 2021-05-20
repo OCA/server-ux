@@ -5,22 +5,53 @@
         <field name="model">date.range.generator</field>
         <field name="arch" type="xml">
             <form string="Generate Date Ranges">
-                <group col="4">
-                    <field name="name_prefix" />
-                    <field name="type_id" />
-                    <label for="duration_count" />
-                    <div>
-                        <field class="oe_inline" name="duration_count" />
-                        <field class="oe_inline" name="unit_of_time" />
-                    </div>
-                    <field name="date_start" />
-                    <field name="count" />
-                    <field
-                        groups="base.group_multi_company"
-                        name="company_id"
-                        options="{'no_create': True}"
-                    />
-                </group>
+                <sheet>
+                    <group>
+                        <group col="2" colspan="4" string="Parameters">
+                            <field name="type_id" />
+                            <field
+                                groups="base.group_multi_company"
+                                name="company_id"
+                                options="{'no_create': True}"
+                            />
+                            <label for="duration_count" />
+                            <div>
+                                <field
+                                    class="oe_inline"
+                                    name="duration_count"
+                                />&amp;nbsp;
+                                <field class="oe_inline" name="unit_of_time" />
+                            </div>
+                            <field name="date_start" />
+                            <label for="date_end" string="Until" />
+                            <div>
+                                <field
+                                    class="oe_inline"
+                                    name="date_end"
+                                    attrs="{'required': [('count', '=', 0)]}"
+                                />,
+                                or generate <field
+                                    class="oe_inline"
+                                    name="count"
+                                    attrs="{'required': [('date_end', '=', False)]}"
+                                /> entries.
+                            </div>
+                            <label for="name_prefix" />
+                            <div>
+                                <field
+                                    name="name_prefix"
+                                    class="oe_inline"
+                                    attrs="{'required': [('unit_of_time', '!=', False), ('name_expr', '=', False)]}"
+                                /> or enter a complex expression below
+                            </div>
+                            <field
+                                name="name_expr"
+                                attrs="{'required': [('unit_of_time', '!=', False), ('name_prefix', '=', False)]}"
+                            />
+                            <field name="range_name_preview" />
+                        </group>
+                    </group>
+                </sheet>
                 <footer>
                     <button
                         class="btn btn-sm btn-primary"
