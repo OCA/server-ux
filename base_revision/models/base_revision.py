@@ -104,8 +104,6 @@ class BaseRevision(models.AbstractModel):
             "name": _("New Revisions"),
             "res_model": self._name,
             "domain": "[('id', 'in', %s)]" % revision_ids,
-            "auto_search": True,
             "target": "current",
-            "nodestroy": True,
         }
         return action
