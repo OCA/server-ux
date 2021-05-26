@@ -103,14 +103,21 @@ class MassOperationWizardMixin(models.AbstractModel):
         )
 
     @api.model
-    def _get_remaining_items(self):
+    def _get_remaining_items(self, force_active_domain=False):
+        """
+        Get items based on active_ids set on the context.
+        You can also use the active_domain (by setting the parameter to True).
+        This could be useful when you want to do an operation on a lot of
+        records and you don't want to select them all.
+        :param force_active_domain: bool
+        :return: recordset
+        """
         active_ids = self.env.context.get("active_ids", [])
         mass_operation = self._get_mass_operation()
         SrcModel = self.env[mass_operation.model_id.model]
+        domain = [("id", "in", active_ids)]
+        if force_active_domain:
+            domain = self.env.context.get("active_domain", [])
         if mass_operation.domain != "[]":
-            domain = expression.AND(
-                [safe_eval(mass_operation.domain), [("id", "in", active_ids)]]
-            )
-        else:
-            domain = [("id", "in", active_ids)]
+            domain = expression.AND([safe_eval(mass_operation.domain), domain])
         return SrcModel.search(domain)
