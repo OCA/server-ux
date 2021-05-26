@@ -5,6 +5,7 @@
 # import ast
 
 from odoo.modules import registry
+from odoo.osv import expression
 from odoo.tests import common
 
 from ..hooks import uninstall_hook
@@ -14,30 +15,32 @@ class TestMassEditing(common.SavepointCase):
     at_install = False
     post_install = True
 
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.MassEditingWizard = cls.env["mass.editing.wizard"]
+        cls.ResPartnerTitle = cls.env["res.partner.title"]
+        cls.ResLang = cls.env["res.lang"]
+        cls.IrTranslation = cls.env["ir.translation"]
+        cls.IrActionsActWindow = cls.env["ir.actions.act_window"]
 
-        self.MassEditingWizard = self.env["mass.editing.wizard"]
-        self.ResPartnerTitle = self.env["res.partner.title"]
-        self.ResLang = self.env["res.lang"]
-        self.IrTranslation = self.env["ir.translation"]
-        self.IrActionsActWindow = self.env["ir.actions.act_window"]
-
-        self.mass_editing_user = self.env.ref("mass_editing.mass_editing_user")
-        self.mass_editing_partner_title = self.env.ref(
+        cls.mass_editing_user = cls.env.ref("mass_editing.mass_editing_user")
+        cls.mass_editing_partner_title = cls.env.ref(
             "mass_editing.mass_editing_partner_title"
         )
 
-        self.users = self.env["res.users"].search([])
-        self.user = self.env.ref("base.user_demo")
-        self.partner_title = self._create_partner_title()
+        cls.users = cls.env["res.users"].search([])
+        cls.user = cls.env.ref("base.user_demo")
+        cls.partner_title = cls._create_partner_title()
 
-    def _create_partner_title(self):
+    @classmethod
+    def _create_partner_title(cls):
         """Create a Partner Title."""
         # Loads German to work with translations
-        self.ResLang.load_lang("de_DE")
+        cls.ResLang.load_lang("de_DE")
         # Creating the title in English
-        partner_title = self.ResPartnerTitle.create(
+        partner_title = cls.ResPartnerTitle.create(
             {"name": "Ambassador", "shortcut": "Amb."}
         )
         # Adding translated terms
@@ -47,11 +50,15 @@ class TestMassEditing(common.SavepointCase):
         )
         return partner_title
 
-    def _create_wizard_and_apply_values(self, mass_editing, items, vals):
+    def _create_wizard_and_apply_values(
+        self, mass_editing, items, vals, active_domain=False
+    ):
         return self.MassEditingWizard.with_context(
             mass_operation_mixin_name="mass.editing",
             mass_operation_mixin_id=mass_editing.id,
             active_ids=items.ids,
+            active_model=items._name,
+            active_domain=active_domain,
         ).create(vals)
 
     def test_wiz_fields_view_get(self):
@@ -138,6 +145,26 @@ class TestMassEditing(common.SavepointCase):
         vals = {"selection__email": "set", "email": "sample@mycompany.com"}
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertNotEqual(self.user.email, False, "User's Email should be set.")
+
+    def test_mass_edit_email_active_domain(self):
+        """Test Case for MASS EDITING which will remove and after add
+        User's email and will assert the same using the active_domain (context)"""
+        vals = {
+            "selection__email": "remove",
+            "selection__phone": "remove",
+            "use_active_domain": True,
+        }
+        active_domain = expression.FALSE_DOMAIN
+        save_email = self.user.email
+        self._create_wizard_and_apply_values(
+            self.mass_editing_user, self.user, vals, active_domain=active_domain
+        )
+        self.assertEqual(self.user.email, save_email, "User's Email should be kept.")
+        active_domain = [("id", "=", self.user.id)]
+        self._create_wizard_and_apply_values(
+            self.mass_editing_user, self.user, vals, active_domain=active_domain
+        )
+        self.assertEqual(self.user.email, False, "User's Email should be removed.")
 
     def test_mass_edit_m2m_categ(self):
         """Test Case for MASS EDITING which will remove and add
