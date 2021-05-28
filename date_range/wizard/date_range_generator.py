@@ -234,3 +234,25 @@ class DateRangeGenerator(models.TransientModel):
                 self.env['date.range'].create(dr)
         return self.env['ir.actions.act_window'].for_xml_id(
             module='date_range', xml_id='date_range_action')
+
+    @staticmethod
+    def _unit_of_time_int_compat(vals):
+        """Keep compatibility with integer values for "unit_of_time"
+
+        Because we changed the column type to Char in the 12.0 release cycle
+        Don't port to later versions.
+        """
+        if vals and "unit_of_time" in vals:
+            unit = vals["unit_of_time"]
+            if unit is not False and isinstance(unit, int):
+                vals["unit_of_time"] = str(unit)
+
+    @api.model
+    def create(self, vals):
+        self._unit_of_time_int_compat(vals)
+        return super().create(vals)
+
+    @api.multi
+    def write(self, vals):
+        self._unit_of_time_int_compat(vals)
+        return super().write(vals)

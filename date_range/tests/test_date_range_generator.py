@@ -3,7 +3,7 @@
 
 import datetime
 
-from dateutil.rrule import MONTHLY
+from dateutil.rrule import MONTHLY, YEARLY
 
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, TransactionCase
@@ -113,3 +113,20 @@ class DateRangeGeneratorTest(TransactionCase):
         wizard.name_prefix = False
         with self.assertRaisesRegex(ValidationError, "prefix.*expression"):
             wizard.action_apply()
+
+    def test_unit_of_time_int_compat(self):
+        """Test compatibility with integer values for "unit_of_time"
+
+        Because we changed the column type to Char in the 12.0 release cycle.
+        Don't port to later versions.
+        """
+        generator = self.generator.create({
+            'date_start': '1943-01-01',
+            'name_prefix': '1943-',
+            'type_id': self.type.id,
+            'duration_count': 3,
+            'unit_of_time': MONTHLY,
+            'count': 4})
+        self.assertEqual(generator.unit_of_time, str(MONTHLY))
+        generator.write({"unit_of_time": YEARLY})
+        self.assertEqual(generator.unit_of_time, str(YEARLY))
