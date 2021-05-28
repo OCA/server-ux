@@ -7,7 +7,6 @@ from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tests import Form
 
 
 class DateRangeType(models.Model):
@@ -137,13 +136,11 @@ class DateRangeType(models.Model):
             ]
         ):
             try:
+                wizard = self.env["date.range.generator"].new({"type_id": dr_type.id})
+                if not wizard.date_end:
+                    # Nothing to generate
+                    continue
                 with self.env.cr.savepoint():
-                    form = Form(self.env["date.range.generator"])
-                    form.type_id = dr_type
-                    if not form.count and not form.date_end:
-                        # Nothing to generate
-                        continue
-                    wizard = form.save()
                     wizard.action_apply(batch=True)
             except Exception as e:
                 logger.warning(
