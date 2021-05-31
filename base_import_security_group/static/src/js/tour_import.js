@@ -1,4 +1,4 @@
-odoo.define("base_import_security_group.tour", function(require) {
+odoo.define("base_import_security_group.tour", function (require) {
     "use strict";
 
     var tour = require("web_tour.tour");
