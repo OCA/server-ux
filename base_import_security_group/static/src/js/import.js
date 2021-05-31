@@ -1,4 +1,4 @@
-odoo.define("web.ListImport", function(require) {
+odoo.define("web.ListImport", function (require) {
     "use strict";
 
     var KanbanView = require("web.KanbanView");
@@ -7,12 +7,12 @@ odoo.define("web.ListImport", function(require) {
 
     var ImportViewMixin = {
         /* eslint-disable no-unused-vars */
-        init: function(viewInfo, params) {
+        init: function (viewInfo, params) {
             var self = this;
             var result = self._super.apply(self, arguments);
             var base_group = "base_import_security_group.group_import_csv";
 
-            session.user_has_group(base_group).then(function(result) {
+            session.user_has_group(base_group).then(function (result) {
                 var importEnabled = false;
                 if (result) {
                     importEnabled = true;
@@ -23,14 +23,14 @@ odoo.define("web.ListImport", function(require) {
     };
 
     ListView.include({
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
             ImportViewMixin.init.apply(this, arguments);
         },
     });
 
     KanbanView.include({
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
             ImportViewMixin.init.apply(this, arguments);
         },
