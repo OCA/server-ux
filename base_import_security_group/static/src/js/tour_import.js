@@ -16,15 +16,20 @@ odoo.define("base_import_security_group.tour", function (require) {
                 trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
             },
             {
-                id: "settings_menu_users_and_co",
+                id: "settings_menu_users_and_companies",
                 trigger: '.dropdown-toggle[data-menu-xmlid="base.menu_users"]',
             },
             {
-                id: "settings_menu_users",
-                trigger: '.dropdown-item[data-menu-xmlid="base.menu_action_res_users"]',
+                id: "settings_menu_companies",
+                trigger:
+                    '.dropdown-item[data-menu-xmlid="base.menu_action_res_company_form"]',
             },
             {
-                trigger: ".o_button_import",
+                id: "favorites_dropdown_click",
+                trigger: ".o_favorite_menu > .o_dropdown_toggler_btn",
+            },
+            {
+                trigger: "li.o_import_menu",
             },
         ]
     );
@@ -41,15 +46,20 @@ odoo.define("base_import_security_group.tour", function (require) {
                 trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
             },
             {
-                id: "settings_menu_users_and_co",
+                id: "settings_menu_users_and_companies",
                 trigger: '.dropdown-toggle[data-menu-xmlid="base.menu_users"]',
             },
             {
-                id: "settings_menu_users",
-                trigger: '.dropdown-item[data-menu-xmlid="base.menu_action_res_users"]',
+                id: "settings_menu_companies",
+                trigger:
+                    '.dropdown-item[data-menu-xmlid="base.menu_action_res_company_form"]',
             },
             {
-                trigger: ".o_list_buttons:not(:has(.o_button_import))",
+                id: "favorites_dropdown_click",
+                trigger: ".o_favorite_menu > .o_dropdown_toggler_btn",
+            },
+            {
+                trigger: ".o_dropdown_menu:not(:has(li.o_import_menu))",
             },
         ]
     );
