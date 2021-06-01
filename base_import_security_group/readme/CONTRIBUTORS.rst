@@ -10,3 +10,7 @@
 
   * Daniel Reis
   * Chandresh Thakkar
+
+* `Opener B.V. <https://opener.amsterdam/>`_:
+
+  * Stefan Rijnhart <stefan@opener.amsterdam>
