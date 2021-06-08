@@ -100,19 +100,22 @@ class
         on_range_selected: function (e) {
             var self = this;
             self.domain = '';
-            framework.blockUI();
-            return rpc.query({
-                args: [this.get_value()],
-                kwargs: {
-                    field_name: this.field.name,
-                },
-                model: 'date.range',
-                method: 'get_domain',
-            })
-                .then(function (domain) {
-                    framework.unblockUI();
-                    self.domain = domain;
-                });
+            var value = this.get_value();
+            if (value) {
+                framework.blockUI();
+                return rpc.query({
+                    args: [this.get_value()],
+                    kwargs: {
+                        field_name: this.field.name,
+                    },
+                    model: 'date.range',
+                    method: 'get_domain',
+                })
+                    .then(function (domain) {
+                        framework.unblockUI();
+                        self.domain = domain;
+                    });
+            }
         },
 
         get_domain: function (field, operator) {
