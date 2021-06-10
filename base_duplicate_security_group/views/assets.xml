@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="assets_backend" name="base_duplicate_security_group assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/base_duplicate_security_group/static/src/js/duplicate.js"></script>
+        </xpath>
+    </template>
+    <template
+        id="assets_common"
+        name="Base Duplicate Security Group Assets Tests"
+        inherit_id="web.assets_common"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/base_duplicate_security_group/static/src/js/tour_duplicate.js"
+            />
+        </xpath>
+    </template>
+</odoo>
