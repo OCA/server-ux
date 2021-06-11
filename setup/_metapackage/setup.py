@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-barcode_action',
+        'odoo12-addon-base_duplicate_security_group',
         'odoo12-addon-base_export_manager',
         'odoo12-addon-base_import_security_group',
         'odoo12-addon-base_optional_quick_create',
