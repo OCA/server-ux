@@ -13,7 +13,7 @@ from .document_quick_access_rule import OCRException
 _logger = logging.getLogger(__name__)
 
 try:
-    from pyzbar.pyzbar import decode, ZBarSymbol
+    from pyzbar.pyzbar import ZBarSymbol, decode
 except (ImportError, IOError) as err:
     _logger.warning(err)
 try:
