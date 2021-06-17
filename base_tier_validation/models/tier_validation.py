@@ -99,18 +99,24 @@ class TierValidation(models.AbstractModel):
         assert operator in ("=", "!="), "Invalid domain operator"
         assert value in (True, False), "Invalid domain value"
         pos = self.search([(self._state_field, "in", self._state_from)]).filtered(
-            lambda r: r.review_ids and r.validated == value
+            lambda r: r.validated
         )
-        return [("id", "in", pos.ids)]
+        if value:
+            return [("id", "in", pos.ids)]
+        else:
+            return [("id", "not in", pos.ids)]
 
     @api.model
     def _search_rejected(self, operator, value):
         assert operator in ("=", "!="), "Invalid domain operator"
         assert value in (True, False), "Invalid domain value"
         pos = self.search([(self._state_field, "in", self._state_from)]).filtered(
-            lambda r: r.review_ids and r.rejected == value
+            lambda r: r.rejected
         )
-        return [("id", "in", pos.ids)]
+        if value:
+            return [("id", "in", pos.ids)]
+        else:
+            return [("id", "not in", pos.ids)]
 
     @api.model
     def _search_reviewer_ids(self, operator, value):
