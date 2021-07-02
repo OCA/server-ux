@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* default_multi_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__group_ids
+msgid "Available for Groups"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__manual_user_ids
+#: model_terms:ir.ui.view,arch_db:default_multi_user.ir_default_view_tree
+msgid "Available for Users"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model,name:default_multi_user.model_ir_default
+msgid "Default Values"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__id
+msgid "ID"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: default_multi_user
+#: model_terms:ir.ui.view,arch_db:default_multi_user.ir_default_view_form
+msgid "Owner"
+msgstr ""
+
+#. module: default_multi_user
+#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__user_ids
+msgid "Users"
+msgstr ""
