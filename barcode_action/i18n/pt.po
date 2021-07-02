@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-08-14 12:44+0000\n"
+"PO-Revision-Date: 2021-07-02 22:50+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -14,13 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: barcode_action
 #: model:ir.model,name:barcode_action.model_barcode_action
-#, fuzzy
 msgid "Barcode Action"
-msgstr "Código de Barras Digitalizado"
+msgstr "Ação de Código de Barras"
 
 #. module: barcode_action
 #: model:ir.actions.act_window,name:barcode_action.barcode_action_action
