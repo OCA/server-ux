@@ -22,6 +22,7 @@ addon | version | summary
 [barcode_action](barcode_action/) | 14.0.1.0.0 | Allows to use barcodes as a launcher
 [base_cancel_confirm](base_cancel_confirm/) | 14.0.1.0.2 | Base Cancel Confirm
 [base_export_manager](base_export_manager/) | 14.0.1.0.1 | Manage model export profiles
+[base_import_security_group](base_import_security_group/) | 14.0.1.0.0 | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 14.0.1.0.0 | Restrict (with groups) menu visibilty
 [base_optional_quick_create](base_optional_quick_create/) | 14.0.1.0.0 | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_revision](base_revision/) | 14.0.1.0.1 | Keep track of revised document
