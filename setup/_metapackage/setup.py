@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-barcode_action',
         'odoo14-addon-base_cancel_confirm',
         'odoo14-addon-base_export_manager',
+        'odoo14-addon-base_import_security_group',
         'odoo14-addon-base_menu_visibility_restriction',
         'odoo14-addon-base_optional_quick_create',
         'odoo14-addon-base_revision',
