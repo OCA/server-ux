@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sequence_view" model="ir.ui.view">
+        <field name="name">ir.sequence.form</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view" />
+        <field name="arch" type="xml">
+            <field name="prefix" position="after">
+                <field name="prefix_increment" style="width:15%" />
+            </field>
+            <field name="suffix" position="after">
+                <field name="suffix_increment" style="width:15%" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
