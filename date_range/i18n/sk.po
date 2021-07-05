@@ -130,6 +130,7 @@ msgstr "Rozsahy dátumov"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__display_name
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__display_name
 msgid "Display Name"
 msgstr "Zobraziť meno"
@@ -145,6 +146,11 @@ msgid "End date"
 msgstr "Dátum ukončenia"
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__date_range_search_id
+msgid "Filter by period (technical field)"
+msgstr ""
+
+#. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -154,6 +160,7 @@ msgstr "Generovať rozsahy dátumov"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__id
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__id
 msgid "ID"
 msgstr "ID"
@@ -166,6 +173,7 @@ msgstr "Pri nastavení rozsahu dátumov rovnakého typu sa nesmú prekrývať."
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
 msgid "Last Modified on"
 msgstr "Posledná modifikácia"
@@ -185,6 +193,11 @@ msgid "Last Updated on"
 msgstr "Naposledy upravované"
 
 #. module: date_range
+#: model:ir.model,name:date_range.model_date_range_search_mixin
+msgid "Mixin class to add a Many2one style period search field"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__name
 msgid "Name"
@@ -194,6 +207,13 @@ msgstr "Meno"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__count
 msgid "Number of ranges to generate"
 msgstr "Počet generovaných rozsahov"
+
+#. module: date_range
+#: code:addons/date_range/models/date_range_search_mixin.py:78
+#: code:addons/date_range/models/date_range_search_mixin.py:101
+#, python-format
+msgid "Period"
+msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__name_prefix
@@ -229,7 +249,8 @@ msgstr ""
 #: code:addons/date_range/models/date_range.py:51
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
-msgstr "Spoločnosť v rozsahu dátumov a v type rozsahu dátumov musí byť tá istá."
+msgstr ""
+"Spoločnosť v rozsahu dátumov a v type rozsahu dátumov musí byť tá istá."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
