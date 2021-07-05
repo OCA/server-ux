@@ -29,7 +29,7 @@ This module lets you define global date ranges that can be used to filter
 your values in tree views.
 
 It also provides a mixin model for developers that extends the model's search
-view so that date ranges can be searched as any relational field.
+view so that date ranges can be search as any relational field.
 
 **Table of contents**
 
@@ -145,6 +145,7 @@ Contributors
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Miquel Raïch <miquel.raich@eficent.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainers
 ~~~~~~~~~~~
