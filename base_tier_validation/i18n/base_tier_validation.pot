@@ -458,6 +458,12 @@ msgstr ""
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
+msgid "The review has been reset by %s."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
@@ -496,6 +502,11 @@ msgstr ""
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
 msgid "Tier Validation Requested"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_restarted
+msgid "Tier Validation Restarted"
 msgstr ""
 
 #. module: base_tier_validation
