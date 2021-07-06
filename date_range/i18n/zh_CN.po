@@ -210,8 +210,8 @@ msgid "Number of ranges to generate"
 msgstr "要生成的范围数"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range_search_mixin.py:78
-#: code:addons/date_range/models/date_range_search_mixin.py:101
+#: code:addons/date_range/models/date_range_search_mixin.py:79
+#: code:addons/date_range/models/date_range_search_mixin.py:102
 #, python-format
 msgid "Period"
 msgstr ""
