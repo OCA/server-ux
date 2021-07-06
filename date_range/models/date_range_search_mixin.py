@@ -63,7 +63,8 @@ class DateRangeSearchMixin(models.AbstractModel):
             submenu=False):
         """Inject the dummy Many2one field in the search view"""
         result = super().fields_view_get(
-            view_id=None, view_type=view_type, toolbar=toolbar)
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu)
         if view_type != "search":
             return result
         root = etree.fromstring(result["arch"])
