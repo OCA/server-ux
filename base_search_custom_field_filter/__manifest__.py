@@ -10,7 +10,6 @@
     "demo": ["demo/demo_ir_ui_custom_field_filter.xml"],
     "data": [
         "security/ir.model.access.csv",
-        "templates/assets.xml",
         "views/ir_ui_custom_field_filter_views.xml",
     ],
     "depends": ["web"],
