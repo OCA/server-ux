@@ -9,7 +9,10 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["web"],
+    "depends": [
+        "web",
+    ],
+    # odoo_test_helper is needed for the tests
     "data": [
         "data/ir_cron_data.xml",
         "security/ir.model.access.csv",
