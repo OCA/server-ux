@@ -12,6 +12,7 @@
     "depends": [
         "web",
     ],
+    # odoo_test_helper is needed for the tests
     "data": [
         "security/ir.model.access.csv",
         "security/date_range_security.xml",
