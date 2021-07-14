@@ -35,19 +35,19 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:310
+#: code:addons/base_tier_validation/models/tier_validation.py:320
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "%s发起审批请求。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:232
+#: code:addons/base_tier_validation/models/tier_validation.py:242
 #, python-format
 msgid "A review was accepted"
 msgstr "审批已通过"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:283
+#: code:addons/base_tier_validation/models/tier_validation.py:293
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "此审批已被%s拒绝。"
@@ -116,8 +116,14 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:197
+#, python-format
+msgid "Cannot write fields: %s"
+msgstr ""
+
+#. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:244
+#: code:addons/base_tier_validation/models/tier_validation.py:254
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
