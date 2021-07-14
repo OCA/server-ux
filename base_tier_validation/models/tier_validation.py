@@ -184,10 +184,20 @@ class TierValidation(models.AbstractModel):
                     self._state_from and not vals.get(self._state_field) in
                     (self._state_to + [self._cancel_state]) and not
                     self._check_allow_write_under_validation(vals)):
-                raise ValidationError(_("The operation is under validation."))
+                err_msg = _("The operation is under validation.")
+                err_msg = self._add_details_to_error_message(err_msg, vals)
+                raise ValidationError(err_msg)
         if vals.get(self._state_field) in self._state_from:
             self.mapped('review_ids').unlink()
         return super(TierValidation, self).write(vals)
+
+    @api.model
+    def _add_details_to_error_message(self, err_msg, vals):
+        if self.env.user.has_group('base.group_no_one'):
+            err_msg += "\n" + _("Cannot write fields: %s") % str(
+                [self._fields[key].string for key in vals.keys()]
+            )
+        return err_msg
 
     def _check_state_conditions(self, vals):
         self.ensure_one()
