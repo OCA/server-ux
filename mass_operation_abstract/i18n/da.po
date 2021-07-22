@@ -6,182 +6,186 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-07-22 10:49+0000\n"
+"Last-Translator: JonathanStein <jstein@image.dk>\n"
 "Language-Team: none\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:81
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s (kopi)"
 
 #. module: mass_operation_abstract
 #: model:ir.model,name:mass_operation_abstract.model_mass_operation_mixin
 msgid "Abstract Mass Operations"
-msgstr ""
+msgstr "Abstrakt massehandling"
 
 #. module: mass_operation_abstract
 #: model:ir.model,name:mass_operation_abstract.model_mass_operation_wizard_mixin
 msgid "Abstract Mass Operations Wizard"
-msgstr ""
+msgstr "Abstrakt massehandlingswizard"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Handlingsnavn"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Add sidebar button"
-msgstr ""
+msgstr "Tilføj sidebar knap"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Tilladte grupper"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
 msgid "Apply"
-msgstr ""
+msgstr "Anvend"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annuller"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__display_name
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Vist navn"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Display a button in the sidebar of related model to open a wizard"
-msgstr ""
+msgstr "Vis en knap på sidebar'en på den relaterede model, der åbner en wizard"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domæne"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__id
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__id
 msgid "ID"
-msgstr ""
+msgstr "Id"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,help:mass_operation_abstract.field_mass_operation_mixin__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Denne besked vil blive vist i wizard'en."
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin____last_update
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Sidst ændret den"
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:18
 #, python-format
 msgid "Mass Operation (%s)"
-msgstr ""
+msgstr "Massehandling (%s)"
 
 #. module: mass_operation_abstract
 #: model:ir.ui.menu,name:mass_operation_abstract.menu_mass_operation
 msgid "Mass Operations"
-msgstr ""
+msgstr "Massehandlinger"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__message
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__message
 msgid "Message"
-msgstr ""
+msgstr "Besked"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__model_id
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__name
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:65
 #, python-format
 msgid "None of the %d items you have selected can be processed."
-msgstr ""
+msgstr "Ingen af de %d valgte elementer kan blive behandlet."
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Handlingsbeskrivelse, fare"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Handlingsbeskrivelse, info"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Handlingsbeskrivelse, advarsel"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Tilbageværende antal elementer"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Remove sidebar button"
-msgstr ""
+msgstr "Fjern sidebar knap"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Security"
-msgstr ""
+msgstr "Sikkerhed"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Valgt antal elementer"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
 #. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__ref_ir_act_window_id
 msgid "Sidebar Action"
-msgstr ""
+msgstr "Sidebar handling"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
 msgid "Technical Informations"
-msgstr ""
+msgstr "Tekniske oplysninger"
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:54
 #, python-format
 msgid "The treatment will be processed on the %d selected elements."
-msgstr ""
+msgstr "Behandlingen vil blive udført for de %d valgte elementer."
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:60
 #, python-format
 msgid "You have selected %d items that can not be processed. Only %d items will be processed."
 msgstr ""
+"Du har valgt %d elementer, der ikke kan blive behandlet. Kun %d elementer "
+"vil blive behandlet."
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:84
@@ -189,3 +193,5 @@ msgstr ""
 msgid "there is no more element that corresponds to the rules of the domain.\n"
 " Please refresh your list and try to select again the items."
 msgstr ""
+"der er ikke flere elementer, der svarer til domænereglerne.\n"
+" Opdatér din liste og prøv at vælge elementerne igen."
