@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2017-05-17 21:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-07-22 10:49+0000\n"
+"Last-Translator: JonathanStein <jstein@image.dk>\n"
 "Language-Team: Danish (https://www.transifex.com/oca/teams/23907/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
@@ -25,17 +26,20 @@ msgid ""
 "including the fields of such domain in this operation definition, will lead "
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
+"<b>ADVARSEL</b>: Vær opmærksom på, at tilføjelse af et felt med et domæne "
+"uden at inkludere felterne fra domænet vil medføre fejl, når det skal "
+"udføres. Vær sikker på, at alle felter er inkluderet."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Handlingsnavn"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:23
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -44,26 +48,29 @@ msgid ""
 "Example :\n"
 "'many2many_tags', 'selection'"
 msgstr ""
+"Tilføj widget tekst, der vil blive brugt til at vise feltet i wizard'en. "
+"Eksempler :\n"
+"'many2many_tags', 'selection'"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__group_ids
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Tilladte grupper"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
-msgstr ""
+msgstr "Brug standard-domæne relateret til feltet"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply domain"
-msgstr ""
+msgstr "Brug domæne"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
 msgid "Apply domain in lines"
-msgstr ""
+msgstr "Bruge domæne på linjer"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
@@ -89,12 +96,12 @@ msgstr "Vist navn"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domæne"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 msgid "Field"
-msgstr ""
+msgstr "Felt"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
@@ -106,7 +113,7 @@ msgstr "Id"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Denne besked vil blive vist i wizard'en."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
@@ -132,7 +139,7 @@ msgstr "Sidst opdateret den"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Linje"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_editing
@@ -140,24 +147,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__mass_editing_id
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 msgid "Mass Editing"
-msgstr ""
+msgstr "Masseredigering"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr ""
+msgstr "Masseredigeringslinje"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 msgid "Message"
-msgstr ""
+msgstr "Besked"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__model_id
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__name
@@ -167,22 +174,22 @@ msgstr "Navn"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Handlingsbeskrivelse, fare"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Handlingsbeskrivelse, info"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Handlingsbeskrivelse, advarsel"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Tilbageværende antal elementer"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:22
@@ -190,17 +197,17 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Valgt antal elementer"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Rækkefølge"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:21
@@ -208,22 +215,22 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Sæt"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
 msgid "Sidebar Action"
-msgstr ""
+msgstr "Sidebar handling"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Widget option"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
-msgstr ""
+msgstr "Wizard til masseredigering"
 
 #~ msgid "%s (copy)"
 #~ msgstr "%s (kopi)"
