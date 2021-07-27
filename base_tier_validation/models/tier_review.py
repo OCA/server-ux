@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class TierReview(models.Model):
@@ -28,6 +29,9 @@ class TierReview(models.Model):
     )
     reviewer_group_id = fields.Many2one(
         related="definition_id.reviewer_group_id", readonly=True,
+    )
+    reviewer_field_id = fields.Many2one(
+        related="definition_id.reviewer_field_id", readonly=True
     )
     reviewer_ids = fields.Many2many(
         string="Reviewers", comodel_name="res.users",
@@ -112,4 +116,12 @@ class TierReview(models.Model):
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
-        return self.reviewer_id + self.reviewer_group_id.users
+        if self.reviewer_id or self.reviewer_group_id.users:
+            return self.reviewer_id + self.reviewer_group_id.users
+        reviewer_field = self.env["res.users"]
+        if self.reviewer_field_id:
+            resource = self.env[self.model].browse(self.res_id)
+            reviewer_field = getattr(resource, self.reviewer_field_id.name, False)
+            if not reviewer_field or not reviewer_field._name == "res.users":
+                raise ValidationError(_("There are no res.users in the selected field"))
+        return reviewer_field

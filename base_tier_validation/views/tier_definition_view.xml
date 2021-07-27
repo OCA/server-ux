@@ -13,6 +13,7 @@
                 <field name="review_type"/>
                 <field name="reviewer_id"/>
                 <field name="reviewer_group_id"/>
+                <field name="reviewer_field_id" />
                 <field name="sequence"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="active"/>
@@ -49,6 +50,11 @@
                                    attrs="{'invisible': [('review_type', '!=', 'individual')]}"/>
                             <field name="reviewer_group_id"
                                    attrs="{'invisible': [('review_type', '!=', 'group')]}"/>
+                            <field name="reviewer_field_id"
+                                attrs="{'invisible': [('review_type', '!=', 'field')]}"
+                                options="{'no_create': True}"
+                            />
+                            <field name="valid_reviewer_field_ids" invisible="1" />
                         </group>
                         <group name="right">
                             <field name="company_id"

@@ -257,3 +257,26 @@ class TierTierValidation(common.SavepointCase):
         self.assertTrue(record1.can_review)
         record2 = test_record.sudo(self.test_user_2.id)
         self.assertFalse(record2.can_review)
+
+    def test_13_test_review_by_res_users_field(self):
+        selected_field = self.env["ir.model.fields"].search(
+            [("model", "=", self.test_model._name), ("name", "=", "user_id")]
+        )
+        test_record = self.test_model.create(
+            {"test_field": 2.5, "user_id": self.test_user_2.id}
+        )
+
+        definition = self.env["tier.definition"].create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "field",
+                "reviewer_field_id": selected_field.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+            }
+        )
+
+        reviews = test_record.request_validation()
+        review = reviews.filtered(lambda r: r.definition_id == definition)
+        self.assertTrue(review)
+        self.assertEqual(review.reviewer_ids, self.test_user_2)
