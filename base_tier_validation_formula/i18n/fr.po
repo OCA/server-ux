@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_tier_validation_formula
+# 	* base_tier_validation_formula
 #
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
+msgid "Any user in a specific group"
 msgstr ""
 
 #. module: base_tier_validation_formula
@@ -38,8 +38,14 @@ msgstr ""
 #: code:addons/base_tier_validation_formula/models/tier_review.py:37
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:17
 #, python-format
-msgid "Error evaluating tier validation conditions.\n"
+msgid ""
+"Error evaluating tier validation conditions.\n"
 " %s"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Field in related record"
 msgstr ""
 
 #. module: base_tier_validation_formula
@@ -100,10 +106,14 @@ msgstr ""
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
-msgid "Write Python code that defines the reviewer. The result of executing the expression must be a res.users recordset."
+msgid ""
+"Write Python code that defines the reviewer. The result of executing the "
+"expression must be a res.users recordset."
 msgstr ""
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
-msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+msgid ""
+"Write Python code that defines when this tier confirmation will be needed. "
+"The result of executing the expresion must be a boolean."
 msgstr ""

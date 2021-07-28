@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
-msgstr "特定组中的任何用户。"
+msgid "Any user in a specific group"
+msgstr ""
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
@@ -47,6 +47,11 @@ msgid ""
 msgstr ""
 "评估层验证条件的错误。\n"
 " %s"
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Field in related record"
+msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,definition_type:0
@@ -117,3 +122,6 @@ msgid ""
 "Write Python code that defines when this tier confirmation will be needed. "
 "The result of executing the expresion must be a boolean."
 msgstr "编写Python代码，定义何时需要此层确认。执行表达式的结果必须是布尔值。"
+
+#~ msgid "Any user in a specific group."
+#~ msgstr "特定组中的任何用户。"

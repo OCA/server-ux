@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
-msgstr "Cualquier usuario de un grupo específico."
+msgid "Any user in a specific group"
+msgstr ""
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
@@ -47,6 +47,11 @@ msgid ""
 msgstr ""
 "Error evaluando las condiciones de validación de nivel.\n"
 "%s"
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Field in related record"
+msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,definition_type:0
@@ -123,3 +128,6 @@ msgid ""
 msgstr ""
 "Escribe código Python que defina si la confirmación de nivel es necesaria. "
 "El resultado de ejecutar la expresión debe ser un booleano."
+
+#~ msgid "Any user in a specific group."
+#~ msgstr "Cualquier usuario de un grupo específico."
