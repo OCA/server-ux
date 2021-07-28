@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: base_tier_validation_formula
 #: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
+msgid "Any user in a specific group"
 msgstr ""
 
 #. module: base_tier_validation_formula
@@ -39,6 +39,11 @@ msgstr ""
 #, python-format
 msgid "Error evaluating tier validation conditions.\n"
 " %s"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: selection:tier.definition,review_type:0
+msgid "Field in related record"
 msgstr ""
 
 #. module: base_tier_validation_formula
