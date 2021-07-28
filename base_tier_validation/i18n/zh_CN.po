@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:110
+#: code:addons/base_tier_validation/models/tier_review.py:114
 #, python-format
 msgid "%s (and %s more)"
 msgstr ""
@@ -77,8 +77,8 @@ msgstr "所有"
 
 #. module: base_tier_validation
 #: selection:tier.definition,review_type:0
-msgid "Any user in a specific group."
-msgstr "特定组中的任何用户。"
+msgid "Any user in a specific group"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
@@ -214,12 +214,17 @@ msgid "Done by"
 msgstr "审批人"
 
 #. module: base_tier_validation
+#: selection:tier.definition,review_type:0
+msgid "Field in related record"
+msgstr ""
+
+#. module: base_tier_validation
 #: selection:tier.definition,definition_type:0
 msgid "Formula"
 msgstr "公式"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:103
+#: code:addons/base_tier_validation/models/tier_review.py:107
 #, python-format
 msgid "Group %s"
 msgstr ""
@@ -375,6 +380,12 @@ msgid "Reviewer"
 msgstr "审批者"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_field_id
+msgid "Reviewer field"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
@@ -421,6 +432,12 @@ msgstr "状态"
 #, python-format
 msgid "The operation is under validation."
 msgstr "审批中，无法保存修改。"
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_review.py:126
+#, python-format
+msgid "There are no res.users in the selected field"
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:176
@@ -490,6 +507,11 @@ msgid "Users"
 msgstr "用户"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
+msgid "Valid Reviewer Field"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
 msgid "Validate Reject"
 msgstr "拒绝"
@@ -522,6 +544,9 @@ msgstr "审批"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "例如：对于...的层级审批。"
+
+#~ msgid "Any user in a specific group."
+#~ msgstr "特定组中的任何用户。"
 
 #, fuzzy
 #~| msgid "Sequence"
