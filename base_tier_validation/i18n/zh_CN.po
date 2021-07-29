@@ -83,8 +83,8 @@ msgstr "所有"
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__group
-msgid "Any user in a specific group."
-msgstr "指定权限组"
+msgid "Any user in a specific group"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
@@ -209,6 +209,11 @@ msgstr "审批人"
 #, python-format
 msgid "Done by"
 msgstr "审批人"
+
+#. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__field
+msgid "Field in related record"
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_review.py:0
@@ -358,6 +363,12 @@ msgid "Reviewer"
 msgstr "审批人"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_field_id
+msgid "Reviewer field"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
@@ -405,6 +416,12 @@ msgstr "状态"
 #, python-format
 msgid "The operation is under validation."
 msgstr "该操作正在审批中。"
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_review.py:0
+#, python-format
+msgid "There are no res.users in the selected field"
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
@@ -473,6 +490,11 @@ msgid "Users"
 msgstr "用户"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
+msgid "Valid Reviewer Field"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
 msgid "Validate Reject"
 msgstr "拒绝"
@@ -505,6 +527,9 @@ msgstr "审批"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "例如：用于...的审批节点"
+
+#~ msgid "Any user in a specific group."
+#~ msgstr "指定权限组"
 
 #~ msgid ""
 #~ "This action needs to be validated for at least one record. \n"
