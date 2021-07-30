@@ -2,14 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 from .common import setup_test_model, teardown_test_model
 from .overdue_reminder_tester import OverdueReminderTester, OverdueReminderWizardTester
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestOverdueReminder(common.SavepointCase):
     @classmethod
     def setUpClass(cls):

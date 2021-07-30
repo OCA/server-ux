@@ -14,7 +14,10 @@ class ReminderDefinition(models.Model):
         res = []
         return res
 
-    name = fields.Char(string="Description", required=True,)
+    name = fields.Char(
+        string="Description",
+        required=True,
+    )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",

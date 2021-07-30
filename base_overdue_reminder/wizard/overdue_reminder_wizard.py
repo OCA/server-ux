@@ -21,7 +21,10 @@ class OverdueReminderWizard(models.AbstractModel):
     mail_template_id = fields.Many2one(comodel_name="mail.template")
     attachment_letter = fields.Boolean(string="Attach letter to email")
     letter_report = fields.Many2one(comodel_name="ir.actions.report")
-    company_id = fields.Many2one(comodel_name="res.company", string="Company",)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+    )
     create_activity = fields.Boolean(readonly=True)
     activity_summary = fields.Char(string="Summary")
     activity_note = fields.Html(string="Note")
