@@ -1,3 +1,4 @@
 pyzbar
 pdf2image
-openupgradelib @ git+https://github.com/OCA/openupgradelib.git
+#openupgradelib @ git+https://github.com/OCA/openupgradelib.git
+git+https://github.com/OCA/openupgradelib/@master
