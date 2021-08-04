@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mass_operation_abstract
+# 	* mass_operation_abstract
 #
 msgid ""
 msgstr ""
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_operation_abstract
-#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:81
+#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:83
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (kopi)"
@@ -182,7 +182,9 @@ msgstr "Behandlingen vil blive udført for de %d valgte elementer."
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:60
 #, python-format
-msgid "You have selected %d items that can not be processed. Only %d items will be processed."
+msgid ""
+"You have selected %d items that can not be processed. Only %d items will be "
+"processed."
 msgstr ""
 "Du har valgt %d elementer, der ikke kan blive behandlet. Kun %d elementer "
 "vil blive behandlet."
@@ -190,7 +192,8 @@ msgstr ""
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:84
 #, python-format
-msgid "there is no more element that corresponds to the rules of the domain.\n"
+msgid ""
+"there is no more element that corresponds to the rules of the domain.\n"
 " Please refresh your list and try to select again the items."
 msgstr ""
 "der er ikke flere elementer, der svarer til domænereglerne.\n"
