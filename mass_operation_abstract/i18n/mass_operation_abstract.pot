@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mass_operation_abstract
-#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:81
+#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:83
 #, python-format
 msgid "%s (copy)"
 msgstr ""
