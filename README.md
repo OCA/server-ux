@@ -36,8 +36,8 @@ addon | version | summary
 [document_quick_access](document_quick_access/) | 13.0.1.0.0 | Document quick access
 [document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 13.0.1.0.0 | Auto classification of Documents after reading a QR
 [filter_multi_user](filter_multi_user/) | 13.0.1.0.0 | Allows to share user-defined filters filters among several users.
-[mass_editing](mass_editing/) | 13.0.1.1.0 | Mass Editing
-[mass_operation_abstract](mass_operation_abstract/) | 13.0.1.0.0 | Abstract Tools used for modules that realize operation onmany items
+[mass_editing](mass_editing/) | 13.0.1.2.0 | Mass Editing
+[mass_operation_abstract](mass_operation_abstract/) | 13.0.1.1.0 | Abstract Tools used for modules that realize operation onmany items
 [multi_step_wizard](multi_step_wizard/) | 13.0.1.1.2 | Multi-Steps Wizards
 [sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 | Auto-generate yearly/monthly/weekly/daily sequence period ranges
