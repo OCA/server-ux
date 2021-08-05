@@ -195,6 +195,11 @@ msgid "Remove"
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__use_active_domain
+msgid "Search results"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
 msgstr ""
@@ -215,6 +220,13 @@ msgstr ""
 #, fuzzy
 msgid "Sidebar Action"
 msgstr "Ação da Barra Lateral"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_wizard__use_active_domain
+msgid ""
+"Thick if you want to use the custom domain (+ domain of the mass edition) "
+"instead of select all items manually."
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
