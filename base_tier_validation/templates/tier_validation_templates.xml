@@ -50,6 +50,7 @@
                         class="btn-icon btn-danger"
                         icon="fa-thumbs-down"
                     />
+                <br /><field name="next_review" />
             </p>
         </div>
         <div

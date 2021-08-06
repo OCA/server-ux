@@ -99,7 +99,8 @@ msgstr "{} rechazó una revisión. ({})"
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A validation process is still open for at least one record."
-msgstr "Todavía hay un proceso de validación abierto para al menos un registro."
+msgstr ""
+"Todavía hay un proceso de validación abierto para al menos un registro."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__active
@@ -336,6 +337,17 @@ msgstr "Necesita validación"
 #, python-format
 msgid "New Tier Validation"
 msgstr "Nueva Definición de Nivel"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Next: %s"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web

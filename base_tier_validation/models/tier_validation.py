@@ -48,6 +48,7 @@ class TierValidation(models.AbstractModel):
         compute="_compute_can_review", search="_search_can_review"
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
+    next_review = fields.Char(compute="_compute_next_review")
 
     def _compute_has_comment(self):
         for rec in self:
@@ -139,6 +140,13 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             rec.validated = self._calc_reviews_validated(rec.review_ids)
             rec.rejected = self._calc_reviews_rejected(rec.review_ids)
+
+    def _compute_next_review(self):
+        for rec in self:
+            review = rec.review_ids.sorted("sequence").filtered(
+                lambda l: l.status == "pending"
+            )[:1]
+            rec.next_review = review and _("Next: %s") % review.name or ""
 
     @api.model
     def _calc_reviews_validated(self, reviews):
