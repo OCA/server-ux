@@ -211,7 +211,7 @@ class TierValidation(models.AbstractModel):
                 and getattr(rec, self._state_field) in self._state_from
                 and not vals.get(self._state_field)
                 in (self._state_to + [self._cancel_state])
-                and not rec._check_allow_write_under_validation(vals)
+                and not self._check_allow_write_under_validation(vals)
             ):
                 raise ValidationError(_("The operation is under validation."))
         if vals.get(self._state_field) in self._state_from:
@@ -251,14 +251,11 @@ class TierValidation(models.AbstractModel):
     def _get_rejected_notification_subtype(self):
         return "base_tier_validation.mt_tier_validation_rejected"
 
-    def _get_restarted_notification_subtype(self):
-        return "base_tier_validation.mt_tier_validation_restarted"
-
     def _notify_accepted_reviews(self):
         post = "message_post"
         if hasattr(self, post):
             # Notify state change
-            getattr(self.sudo(), post)(
+            getattr(self, post)(
                 subtype_xmlid=self._get_accepted_notification_subtype(),
                 body=self._notify_accepted_reviews_body(),
             )
@@ -323,7 +320,7 @@ class TierValidation(models.AbstractModel):
         post = "message_post"
         if hasattr(self, post):
             # Notify state change
-            getattr(self.sudo(), post)(
+            getattr(self, post)(
                 subtype_xmlid=self._get_rejected_notification_subtype(),
                 body=self._notify_rejected_review_body(),
             )
@@ -391,23 +388,11 @@ class TierValidation(models.AbstractModel):
         self._notify_review_requested(created_trs)
         return created_trs
 
-    def _notify_restarted_review_body(self):
-        return _("The review has been reset by %s.") % (self.env.user.name)
-
-    def _notify_restarted_review(self):
-        post = "message_post"
-        if hasattr(self, post):
-            getattr(self.sudo(), post)(
-                subtype_xmlid=self._get_restarted_notification_subtype(),
-                body=self._notify_restarted_review_body(),
-            )
-
     def restart_validation(self):
         for rec in self:
             if getattr(rec, self._state_field) in self._state_from:
                 rec.mapped("review_ids").unlink()
                 self._update_counter()
-            rec._notify_restarted_review()
 
     @api.model
     def _update_counter(self):

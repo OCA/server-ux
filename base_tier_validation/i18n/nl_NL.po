@@ -109,8 +109,8 @@ msgstr "Alle"
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__group
-msgid "Any user in a specific group"
-msgstr ""
+msgid "Any user in a specific group."
+msgstr "Elke gebruiker in een specifieke groep."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
@@ -239,11 +239,6 @@ msgstr "Gedaan door"
 #, python-format
 msgid "Done by"
 msgstr "Gedaan door"
-
-#. module: base_tier_validation
-#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__field
-msgid "Field in related record"
-msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_review.py:0
@@ -417,12 +412,6 @@ msgid "Reviewer"
 msgstr "Beoordelaar"
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_field_id
-msgid "Reviewer field"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
@@ -474,18 +463,6 @@ msgstr "De bewerking is onder validatie."
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
-msgid "The review has been reset by %s."
-msgstr ""
-
-#. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:0
-#, python-format
-msgid "There are no res.users in the selected field"
-msgstr ""
-
-#. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:0
-#, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
@@ -531,11 +508,6 @@ msgid "Tier Validation Requested"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_restarted
-msgid "Tier Validation Restarted"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
 msgid "Tier Validations"
 msgstr "Tier-validaties"
@@ -556,11 +528,6 @@ msgstr ""
 #: model:ir.model,name:base_tier_validation.model_res_users
 msgid "Users"
 msgstr "Gebruikers"
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
-msgid "Valid Reviewer Field"
-msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -600,9 +567,6 @@ msgstr "Validaties"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "bijv. Tier validatie voor..."
-
-#~ msgid "Any user in a specific group."
-#~ msgstr "Elke gebruiker in een specifieke groep."
 
 #~ msgid "Tier"
 #~ msgstr "Tier"
