@@ -69,9 +69,9 @@ Contributors
 
 * Sylvain LE GAL (https://www.twitter.com/legalsylvain)
 
-Trobz
+* `Trobz <https://trobz.com>`_:
 
-* Dung Tran <dungtd@trobz.com>
+  * Dung Tran <dungtd@trobz.com>
 
 Other credits
 ~~~~~~~~~~~~~
