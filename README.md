@@ -38,6 +38,7 @@ addon | version | summary
 [document_quick_access](document_quick_access/) | 14.0.1.0.0 | Document quick access
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | Allows to share user-defined filters filters among several users.
 [mass_editing](mass_editing/) | 14.0.1.0.1 | Mass Editing
+[mass_operation_abstract](mass_operation_abstract/) | 14.0.1.0.0 | Abstract Tools used for modules that realize operation on many items
 [multi_step_wizard](multi_step_wizard/) | 14.0.1.0.0 | Multi-Steps Wizards
 [sequence_check_digit](sequence_check_digit/) | 14.0.1.0.0 | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 14.0.1.0.0 | Auto-generate yearly/monthly/weekly/daily sequence period ranges
