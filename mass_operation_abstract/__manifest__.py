@@ -5,9 +5,9 @@
 
 {
     "name": "Mass Operation Abstract",
-    "version": "13.0.1.1.0",
+    "version": "14.0.1.0.0",
     "author": "GRAP, " "Odoo Community Association (OCA)",
-    "summary": "Abstract Tools used for modules that realize operation on" "many items",
+    "summary": "Abstract Tools used for modules that realize operation on many items",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
