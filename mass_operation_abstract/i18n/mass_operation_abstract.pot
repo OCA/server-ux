@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -117,7 +117,7 @@ msgstr ""
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
-msgid "None of the %d items you have selected can be processed."
+msgid "None of the {} items you have selected can be processed."
 msgstr ""
 
 #. module: mass_operation_abstract
@@ -168,21 +168,21 @@ msgstr ""
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
-msgid "The treatment will be processed on the %d selected elements."
+msgid "The treatment will be processed on the {} selected elements."
 msgstr ""
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
-"You have selected %d items that can not be processed. Only %d items will be "
-"processed."
-msgstr ""
-
-#. module: mass_operation_abstract
-#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
-#, python-format
-msgid ""
-"there is no more element that corresponds to the rules of the domain.\n"
+"There is no more element that corresponds to the rules of the domain.\n"
 " Please refresh your list and try to select again the items."
+msgstr ""
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid ""
+"You have selected {} items that can not be processed. Only {} items will be "
+"processed."
 msgstr ""
