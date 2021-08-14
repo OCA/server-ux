@@ -17,30 +17,30 @@ Server side features for usability and user experience related
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[barcode_action](barcode_action/) | 13.0.1.0.0 | Allows to use barcodes as a launcher
-[base_export_manager](base_export_manager/) | 13.0.1.0.1 | Manage model export profiles
-[base_import_security_group](base_import_security_group/) | 13.0.1.0.0 | Group-based permissions for importing CSV files
-[base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | Restrict (with groups) menu visibilty
-[base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | Add custom filters for fields via UI
-[base_substate](base_substate/) | 13.0.1.1.0 | Base Sub State
-[base_technical_features](base_technical_features/) | 13.0.1.0.1 | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 13.0.1.6.0 | Implement a validation process based on tiers.
-[base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.1 | Formulas for Base tier validation
-[base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.0.0 | Forward option for base tiers
-[base_user_locale](base_user_locale/) | 13.0.1.0.0 | User Locale Settings
-[chained_swapper](chained_swapper/) | 13.0.1.0.0 | Chained Swapper
-[date_range](date_range/) | 13.0.1.0.2 | Manage all kind of date range
-[default_multi_user](default_multi_user/) | 13.0.1.0.1 | Allows to share user-defined defaults among several users.
-[document_quick_access](document_quick_access/) | 13.0.1.0.0 | Document quick access
-[document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 13.0.1.0.0 | Auto classification of Documents after reading a QR
-[filter_multi_user](filter_multi_user/) | 13.0.1.0.0 | Allows to share user-defined filters filters among several users.
-[mass_editing](mass_editing/) | 13.0.1.2.0 | Mass Editing
-[mass_operation_abstract](mass_operation_abstract/) | 13.0.1.1.0 | Abstract Tools used for modules that realize operation onmany items
-[multi_step_wizard](multi_step_wizard/) | 13.0.1.1.2 | Multi-Steps Wizards
-[sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 | Adds a check digit on sequences
-[sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 | Auto-generate yearly/monthly/weekly/daily sequence period ranges
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[barcode_action](barcode_action/) | 13.0.1.0.0 |  | Allows to use barcodes as a launcher
+[base_export_manager](base_export_manager/) | 13.0.1.0.1 |  | Manage model export profiles
+[base_import_security_group](base_import_security_group/) | 13.0.1.0.0 |  | Group-based permissions for importing CSV files
+[base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
+[base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
+[base_substate](base_substate/) | 13.0.1.1.0 |  | Base Sub State
+[base_technical_features](base_technical_features/) | 13.0.1.0.1 |  | Access to technical features without activating debug mode
+[base_tier_validation](base_tier_validation/) | 13.0.1.6.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
+[base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.1 |  | Formulas for Base tier validation
+[base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
+[base_user_locale](base_user_locale/) | 13.0.1.0.0 |  | User Locale Settings
+[chained_swapper](chained_swapper/) | 13.0.1.0.0 |  | Chained Swapper
+[date_range](date_range/) | 13.0.1.0.2 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
+[default_multi_user](default_multi_user/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined defaults among several users.
+[document_quick_access](document_quick_access/) | 13.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Document quick access
+[document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 13.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Auto classification of Documents after reading a QR
+[filter_multi_user](filter_multi_user/) | 13.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined filters filters among several users.
+[mass_editing](mass_editing/) | 13.0.1.2.0 |  | Mass Editing
+[mass_operation_abstract](mass_operation_abstract/) | 13.0.1.1.0 |  | Abstract Tools used for modules that realize operation onmany items
+[multi_step_wizard](multi_step_wizard/) | 13.0.1.1.2 |  | Multi-Steps Wizards
+[sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 |  | Adds a check digit on sequences
+[sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 
 [//]: # (end addons)
 
