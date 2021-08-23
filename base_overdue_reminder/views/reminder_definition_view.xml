@@ -43,12 +43,9 @@
                         </group>
                         <group name="right" />
                         <group name="overdue_reminder" string="Overdue Reminder">
-                            <label for="overdue_reminder_min_interval_days" />
+                            <label for="reminder_number" />
                             <div>
-                                <field
-                                    name="overdue_reminder_min_interval_days"
-                                    class="oe_inline"
-                                />
+                                <field name="reminder_number" class="oe_inline" />
                                 <span> days</span>
                             </div>
                         </group>
@@ -71,6 +68,10 @@
                         </group>
                         <group name="activity" string="Activity" colspan="4">
                             <field name="create_activity" />
+                            <field
+                                name="activity_type_id"
+                                attrs="{'invisible': [('create_activity', '=', False)]}"
+                            />
                             <field
                                 name="activity_summary"
                                 attrs="{'invisible': [('create_activity', '=', False)]}"

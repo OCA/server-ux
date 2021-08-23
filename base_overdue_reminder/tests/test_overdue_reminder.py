@@ -82,4 +82,4 @@ class TestOverdueReminder(common.SavepointCase):
             {"reminder_type": "mail", "mail_template_id": False}
         )
         # default value
-        self.assertEqual(res.min_interval_days, 5)
+        self.assertEqual(res.reminder_number, 5)

@@ -1,6 +1,8 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import _, api, fields, models
 
 
@@ -9,11 +11,14 @@ class OverdueReminderWizard(models.AbstractModel):
     _description = "Reminder Overdue Wizard"
 
     partner_ids = fields.Many2many(comodel_name="res.partner")
-    min_interval_days = fields.Integer(
-        string="Minimum Delay Since Last Reminder",
-        help="Odoo will not propose to send a reminder to a customer "
-        "that already got a reminder for some of the same overdue invoices "
-        "less than N days ago (N = Minimum Delay Since Last Reminder).",
+    reminder_number = fields.Integer(
+        string="Reminder Every (days)",
+    )
+    reminder_next_time = fields.Date(
+        string="Next Reminder",
+        compute="_compute_reminder_next_time",
+        store=True,
+        readonly=False,
     )
     reminder_type = fields.Selection(
         selection="_reminder_type_selection", string="Reminder Type"
@@ -26,8 +31,17 @@ class OverdueReminderWizard(models.AbstractModel):
         string="Company",
     )
     create_activity = fields.Boolean(readonly=True)
+    activity_type_id = fields.Many2one(
+        comodel_name="mail.activity.type", string="Activity"
+    )
     activity_summary = fields.Char(string="Summary")
     activity_note = fields.Html(string="Note")
+
+    @api.depends("reminder_number")
+    def _compute_reminder_next_time(self):
+        today = fields.Date.context_today(self)
+        for rec in self:
+            rec.reminder_next_time = today + relativedelta(days=rec.reminder_number)
 
     @api.model
     def _reminder_type_selection(self):
@@ -40,9 +54,7 @@ class OverdueReminderWizard(models.AbstractModel):
         reminder = self.env["reminder.definition"].search([("model_id", "=", model)])
         res.update(
             {
-                "min_interval_days": reminder
-                and reminder.overdue_reminder_min_interval_days
-                or 0.0,
+                "reminder_number": reminder and reminder.reminder_number or 0,
                 "company_id": reminder
                 and reminder.company_id.id
                 or self.env.company.id,
@@ -51,6 +63,7 @@ class OverdueReminderWizard(models.AbstractModel):
                 "attachment_letter": reminder and reminder.attachment_letter,
                 "letter_report": reminder and reminder.letter_report.id or False,
                 "create_activity": reminder and reminder.create_activity,
+                "activity_type_id": reminder and reminder.activity_type_id.id or False,
                 "activity_summary": reminder and reminder.activity_summary,
                 "activity_note": reminder and reminder.activity_note,
             }

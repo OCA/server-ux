@@ -9,11 +9,6 @@ class ReminderDefinition(models.Model):
     _name = "reminder.definition"
     _description = "Reminder Definition"
 
-    @api.model
-    def _get_reminder_validation_model_names(self):
-        res = []
-        return res
-
     name = fields.Char(
         string="Description",
         required=True,
@@ -26,9 +21,7 @@ class ReminderDefinition(models.Model):
         ],
     )
     model = fields.Char(related="model_id.model", index=True, store=True)
-    overdue_reminder_min_interval_days = fields.Integer(
-        string="Minimum Interval", default=5
-    )
+    reminder_number = fields.Integer(string="Reminder Every (days)", default=5)
     reminder_type = fields.Selection(
         selection="_reminder_type_selection",
         default="mail",
@@ -56,8 +49,15 @@ class ReminderDefinition(models.Model):
     create_activity = fields.Boolean(
         help="If set, system will be notified reminder next time.",
     )
+    activity_type_id = fields.Many2one(
+        comodel_name="mail.activity.type", string="Activity"
+    )
     activity_summary = fields.Char(string="Summary")
     activity_note = fields.Html(string="Note")
+
+    @api.model
+    def _get_reminder_validation_model_names(self):
+        return []
 
     @api.constrains("model_id")
     def _check_model_uniq(self):

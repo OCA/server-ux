@@ -25,8 +25,10 @@ class OverdueReminder(models.AbstractModel):
         string="Reminder Type",
         required=True,
     )
+    reminder_next_time = fields.Date(readonly=True)
     mail_count = fields.Integer(compute="_compute_mail_count", store=True)
     mail_template_id = fields.Many2one(comodel_name="mail.template", readonly=True)
+    mail_cc = fields.Char(help="Carbon copy message recipients")
     mail_subject = fields.Char(string="Subject")
     mail_body = fields.Html()
     attachment_letter = fields.Boolean(
@@ -76,15 +78,24 @@ class OverdueReminder(models.AbstractModel):
         return [("mail", _("E-mail")), ("letter", _("Letter"))]
 
     @api.model
-    def _hook_mail_template(self, action, vals, mail_subject=False, mail_body=False):
+    def _hook_mail_template(
+        self, action, vals, mail_subject=False, mail_body=False, mail_cc=False
+    ):
         """ Hook create mail subject and description"""
-        return mail_subject, mail_body
+        return mail_subject, mail_body, mail_cc
 
     @api.model
     def create(self, vals):
         action = super().create(vals)
-        mail_subject, mail_body = self._hook_mail_template(action, vals)
-        action.write({"mail_subject": mail_subject, "mail_body": mail_body})
+        if action.reminder_type == "mail":
+            mail_subject, mail_body, mail_cc = self._hook_mail_template(action, vals)
+            action.write(
+                {
+                    "mail_subject": mail_subject,
+                    "mail_body": mail_body,
+                    "mail_cc": mail_cc,
+                }
+            )
         return action
 
     def check_warnings(self):
