@@ -83,21 +83,21 @@ class TierTierValidation(common.SavepointCase):
             }
         )
         # Request validation
-        review = test_record.with_user(self.test_user_2.id).request_validation()
+        review = test_record.sudo(self.test_user_2.id).request_validation()
         self.assertTrue(review)
-        record = test_record.with_user(self.test_user_1.id)
+        record = test_record.sudo(self.test_user_1.id)
         record.invalidate_cache()
         record.validate_tier()
         self.assertFalse(record.can_forward)
         # User 2 forward to user 1
-        record = test_record.with_user(self.test_user_2.id)
+        record = test_record.sudo(self.test_user_2.id)
         record.invalidate_cache()
         self.assertTrue(record.can_forward)
         res = record.forward_tier()
         ctx = res.get("context")
         wizard = Form(
             self.env["tier.validation.forward.wizard"]
-            .with_user(self.test_user_2.id)
+            .sudo(self.test_user_2.id)
             .with_context(ctx)
         )
         wizard.forward_reviewer_id = self.test_user_1
@@ -105,14 +105,14 @@ class TierTierValidation(common.SavepointCase):
         wiz = wizard.save()
         wiz.add_forward()
         # Newly created forwarded review will have no definition
-        record = test_record.with_user(self.test_user_2.id)
+        record = test_record.sudo(self.test_user_2.id)
         record.invalidate_cache()
         self.assertTrue(record.review_ids.filtered(lambda l: not l.definition_id))
         # User 1 validate
-        res = record.with_user(self.test_user_1.id).validate_tier()
+        res = record.sudo(self.test_user_1.id).validate_tier()
         ctx = res.get("context")
         wizard = Form(
-            self.env["comment.wizard"].with_user(self.test_user_1.id).with_context(ctx)
+            self.env["comment.wizard"].sudo(self.test_user_1.id).with_context(ctx)
         )
         wizard.comment = "Forward tier is reviewed"
         wiz = wizard.save()
