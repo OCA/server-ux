@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:114
+#: code:addons/base_tier_validation/models/tier_review.py:111
 #, python-format
 msgid "%s (and %s more)"
 msgstr ""
@@ -32,25 +32,25 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:320
+#: code:addons/base_tier_validation/models/tier_validation.py:326
 #, python-format
 msgid "A review has been requested by %s."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:242
+#: code:addons/base_tier_validation/models/tier_validation.py:251
 #, python-format
 msgid "A review was accepted"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:293
+#: code:addons/base_tier_validation/models/tier_validation.py:298
 #, python-format
 msgid "A review was rejected by %s."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:180
+#: code:addons/base_tier_validation/models/tier_validation.py:187
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr ""
@@ -112,14 +112,14 @@ msgid "Cancel"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:197
+#: code:addons/base_tier_validation/models/tier_validation.py:204
 #, python-format
 msgid "Cannot write fields: %s"
 msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:254
+#: code:addons/base_tier_validation/models/tier_validation.py:256
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -159,7 +159,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__definition_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__definition_id
 msgid "Definition"
@@ -220,7 +219,7 @@ msgid "Formula"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:107
+#: code:addons/base_tier_validation/models/tier_review.py:104
 #, python-format
 msgid "Group %s"
 msgstr ""
@@ -300,11 +299,6 @@ msgid "Notify Reviewers on Creation"
 msgstr ""
 
 #. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__object
-msgid "Object"
-msgstr ""
-
-#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:33
 #: selection:tier.review,status:0
@@ -363,6 +357,7 @@ msgstr ""
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:13
+#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__review_ids
 #, python-format
 msgid "Review"
 msgstr ""
@@ -422,19 +417,19 @@ msgid "Status"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:187
+#: code:addons/base_tier_validation/models/tier_validation.py:194
 #, python-format
 msgid "The operation is under validation."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_review.py:126
+#: code:addons/base_tier_validation/models/tier_review.py:123
 #, python-format
 msgid "There are no res.users in the selected field"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:176
+#: code:addons/base_tier_validation/models/tier_validation.py:183
 #, python-format
 msgid "This action needs to be validated for at least one record. \n"
 "Please request a validation."
