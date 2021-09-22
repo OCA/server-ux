@@ -28,7 +28,9 @@ class TierValidation(models.AbstractModel):
         search="_search_validated",
     )
     need_validation = fields.Boolean(compute="_compute_need_validation")
-    rejected = fields.Boolean(compute="_compute_validated_rejected")
+    rejected = fields.Boolean(
+        compute="_compute_validated_rejected", search="_search_rejected"
+    )
     reviewer_ids = fields.Many2many(
         string="Reviewers", comodel_name="res.users",
         compute="_compute_reviewer_ids",
@@ -45,34 +47,30 @@ class TierValidation(models.AbstractModel):
     def _compute_has_comment(self):
         for rec in self:
             has_comment = rec.review_ids.filtered(
-                lambda r: r.status in ('pending', 'rejected') and
-                (self.env.user in r.reviewer_ids)).mapped('has_comment')
+                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            ).mapped("has_comment")
             rec.has_comment = True in has_comment
 
-    def _check_approve_sequence(self, user):
-        if user not in self.reviewer_ids:
-            # If user is not a reviewer, he cannot approve
-            return False
-        reviews = self.review_ids.filtered(
-            lambda r: r.status in ('pending', 'rejected') and
-            (user in r.reviewer_ids))
-        if reviews.filtered(lambda r: not r.approve_sequence):
-            # If a review does not need a sequence, he can approve
-            return True
-        sequence = reviews.mapped('sequence')
-        sequence.sort()
-        my_sequence = sequence[0]
-        if self.review_ids.filtered(
-            lambda r: r.status != 'approved' and r.sequence < my_sequence
-        ):
-            # A review has not been approved
-            return False
-        return True
+    def _get_sequences_to_approve(self, user):
+        all_reviews = self.review_ids.filtered(lambda r: r.status == "pending")
+        my_reviews = all_reviews.filtered(lambda r: user in r.reviewer_ids)
+        # Include all my_reviews with approve_sequence = False
+        sequences = my_reviews.filtered(lambda r: not r.approve_sequence).mapped(
+            "sequence"
+        )
+        # Include only my_reviews with approve_sequence = True
+        approve_sequences = my_reviews.filtered("approve_sequence").mapped("sequence")
+        if approve_sequences:
+            my_sequence = min(approve_sequences)
+            min_sequence = min(all_reviews.mapped("sequence"))
+            if my_sequence <= min_sequence:
+                sequences.append(my_sequence)
+        return sequences
 
     @api.multi
     def _compute_can_review(self):
         for rec in self:
-            rec.can_review = rec._check_approve_sequence(self.env.user)
+            rec.can_review = rec._get_sequences_to_approve(self.env.user)
 
     @api.model
     def _search_can_review(self, operator, value):
@@ -105,6 +103,15 @@ class TierValidation(models.AbstractModel):
             (self._state_field, 'in', self._state_from)]).filtered(
             lambda r: r.review_ids and r.validated == value)
         return [('id', 'in', pos.ids)]
+
+    @api.model
+    def _search_rejected(self, operator, value):
+        assert operator in ("=", "!="), "Invalid domain operator"
+        assert value in (True, False), "Invalid domain value"
+        pos = self.search([(self._state_field, "in", self._state_from)]).filtered(
+            lambda r: r.review_ids and r.rejected == value
+        )
+        return [("id", "in", pos.ids)]
 
     @api.model
     def _search_reviewer_ids(self, operator, value):
@@ -208,13 +215,15 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
-            lambda r: r.status in ('pending', 'rejected') and
-            (self.env.user in r.reviewer_ids))
-        user_reviews.write({
-            'status': 'approved',
-            'done_by': self.env.user.id,
-            'reviewed_date': fields.Datetime.now(),
-        })
+            lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+        )
+        user_reviews.write(
+            {
+                "status": "approved",
+                "done_by": self.env.user.id,
+                "reviewed_date": fields.Datetime.now(),
+            }
+        )
         for review in user_reviews:
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_accepted_reviews()
@@ -241,46 +250,42 @@ class TierValidation(models.AbstractModel):
             return _(('A review was accepted. (%s)') % (comment))
         return _('A review was accepted')
 
-    def _add_comment(self, validate_reject):
-        wizard = self.env.ref(
-            'base_tier_validation.view_comment_wizard')
-        definition_ids = self.env['tier.definition'].search([
-            ('model', '=', self._name),
-            '|', ('reviewer_id', '=', self.env.user.id),
-                 ('reviewer_group_id', 'in',
-                  self.env.user.groups_id.ids)
-        ])
+    def _add_comment(self, validate_reject, reviews):
+        wizard = self.env.ref("base_tier_validation.view_comment_wizard")
         return {
-            'name': _('Comment'),
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'comment.wizard',
-            'views': [(wizard.id, 'form')],
-            'view_id': wizard.id,
-            'target': 'new',
-            'context': {
-                'default_res_id': self.id,
-                'default_res_model': self._name,
-                'default_definition_ids': definition_ids.ids,
-                'default_validate_reject': validate_reject
+            "name": _("Comment"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "comment.wizard",
+            "views": [(wizard.id, "form")],
+            "view_id": wizard.id,
+            "target": "new",
+            "context": {
+                "default_res_id": self.id,
+                "default_res_model": self._name,
+                "default_review_ids": reviews.ids,
+                "default_validate_reject": validate_reject,
             },
         }
 
     @api.multi
     def validate_tier(self):
         self.ensure_one()
+        sequences = self._get_sequences_to_approve(self.env.user)
+        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
         if self.has_comment:
-            return self._add_comment('validate')
-        self._validate_tier()
+            return self._add_comment("validate", reviews)
+        self._validate_tier(reviews)
         self._update_counter()
 
     @api.multi
     def reject_tier(self):
         self.ensure_one()
+        sequences = self._get_sequences_to_approve(self.env.user)
+        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
         if self.has_comment:
-            return self._add_comment('reject')
-        self._rejected_tier()
+            return self._add_comment("reject", reviews)
+        self._rejected_tier(reviews)
         self._update_counter()
 
     def _notify_rejected_review_body(self):
@@ -304,14 +309,15 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
-            lambda r: r.status in ('pending', 'approved') and
-            (r.reviewer_id == self.env.user or
-             r.reviewer_group_id in self.env.user.groups_id))
-        user_reviews.write({
-            'status': 'rejected',
-            'done_by': self.env.user.id,
-            'reviewed_date': fields.Datetime.now(),
-        })
+            lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+        )
+        user_reviews.write(
+            {
+                "status": "rejected",
+                "done_by": self.env.user.id,
+                "reviewed_date": fields.Datetime.now(),
+            }
+        )
         for review in user_reviews:
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_rejected_review()
