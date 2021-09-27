@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* base_tier_validation_forward
+#	* base_tier_validation_forward
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:90
 #, python-format
 msgid "A review was forwarded by %s."
 msgstr ""
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:88
 #, python-format
 msgid "A review was forwarded from {} {}"
 msgstr ""
@@ -49,6 +49,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__approve_sequence
 msgid "Approve by sequence"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Approved"
 msgstr ""
 
 #. module: base_tier_validation_forward
@@ -92,7 +97,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:41
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
 #, python-format
 msgid "Forward"
@@ -109,7 +114,7 @@ msgid "Forward Wizard"
 msgstr ""
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields.selection,name:base_tier_validation_forward.selection__tier_review__status__forwarded
+#: selection:tier.review,status:0
 msgid "Forwarded"
 msgstr ""
 
@@ -136,6 +141,16 @@ msgstr ""
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_reviewer_id
 msgid "Next Reviewer"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Pending"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Rejected"
 msgstr ""
 
 #. module: base_tier_validation_forward
@@ -192,3 +207,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
 msgid "Validated by"
 msgstr ""
+
