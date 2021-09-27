@@ -12,37 +12,30 @@ class Users(models.Model):
     @api.model
     def review_user_count(self):
         user_reviews = {}
-        to_review_docs = {}
-        reviews = self.env["tier.review"].search(
-            [
-                ("status", "=", "pending"),
-                ("can_review", "=", True),
-                ("id", "in", self.env.user.review_ids.ids),
-            ]
-        )
-        for review in reviews:
-            record = (
-                review.env[review.model]
-                .with_user(self.env.user)
-                .search([("id", "=", review.res_id)])
-            )
-            if not record or record.rejected or not record.can_review:
-                # Checking that the review is accessible with the permissions
-                # and to review condition is valid
-                continue
-            if not user_reviews.get(review["model"]):
-                user_reviews[review.model] = {
-                    "name": record._description,
-                    "model": review.model,
-                    "icon": modules.module.get_module_icon(
-                        self.env[review.model]._original_module
-                    ),
-                    "pending_count": 0,
-                }
-            docs = to_review_docs.get(review.model)
-            if (docs and record not in docs) or not docs:
-                user_reviews[review.model]["pending_count"] += 1
-            to_review_docs.setdefault(review.model, []).append(record)
+        domain = [
+            ("status", "=", "pending"),
+            ("can_review", "=", True),
+            ("id", "in", self.env.user.review_ids.ids),
+        ]
+        review_groups = self.env["tier.review"].read_group(domain, ["model"], ["model"])
+        for review_group in review_groups:
+            model = review_group["model"]
+            reviews = self.env["tier.review"].search(review_group.get("__domain"))
+            if reviews:
+                records = (
+                    self.env[model]
+                    .with_user(self.env.user)
+                    .search([("id", "in", reviews.mapped("res_id"))])
+                    .filtered(lambda x: not x.rejected and x.can_review)
+                )
+                if len(records):
+                    record = self.env[model]
+                    user_reviews[model] = {
+                        "name": record._description,
+                        "model": model,
+                        "icon": modules.module.get_module_icon(record._original_module),
+                        "pending_count": len(records),
+                    }
         return list(user_reviews.values())
 
     @api.model
