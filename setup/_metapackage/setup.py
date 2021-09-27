@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-base_technical_features',
         'odoo12-addon-base_tier_validation',
         'odoo12-addon-base_tier_validation_formula',
+        'odoo12-addon-base_tier_validation_forward',
         'odoo12-addon-base_user_locale',
         'odoo12-addon-chained_swapper',
         'odoo12-addon-date_range',
