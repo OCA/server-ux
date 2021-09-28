@@ -68,7 +68,8 @@ odoo.define("base_duplicate_security_group.tour", function(require) {
                 trigger: "button.o_dropdown_toggler_btn:contains('Action')",
             },
             {
-                trigger: ".btn-group:not(:has(a[role='menuitem']:contains('Duplicate')))",
+                trigger:
+                    ".btn-group:not(:has(a[role='menuitem']:contains('Duplicate')))",
             },
         ]
     );
