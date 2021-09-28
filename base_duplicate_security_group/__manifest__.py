@@ -3,7 +3,7 @@
 {
     "name": "Restrict records duplicating",
     "summary": "Adds a security group to restrict which users can copy records",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Beta",
     "category": "Server tools",
     "website": "https://github.com/OCA/server-ux",

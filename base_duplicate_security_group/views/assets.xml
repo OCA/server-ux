@@ -14,9 +14,9 @@
         </xpath>
     </template>
     <template
-        id="assets_common"
+        id="assets_tests"
         name="Base Duplicate Security Group Assets Tests"
-        inherit_id="web.assets_common"
+        inherit_id="web.assets_tests"
     >
         <xpath expr="." position="inside">
             <script
