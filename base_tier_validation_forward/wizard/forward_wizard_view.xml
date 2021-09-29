@@ -12,9 +12,11 @@
                     <group>
                         <field name="forward_reviewer_id" />
                         <field name="forward_description" required="1" />
+                        <field name="backward" />
                     </group>
                     <group>
                         <field name="has_comment" invisible="1" />
+                        <field name="can_backward" invisible="1" />
                         <field name="approve_sequence" invisible="1" />
                     </group>
                 </group>

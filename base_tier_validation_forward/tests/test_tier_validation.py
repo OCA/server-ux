@@ -118,3 +118,72 @@ class TierTierValidation(SavepointCase):
         wiz = wizard.save()
         wiz.add_comment()
         self.assertTrue(record.validated)
+
+    def test_02_forward_tier_backward(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "has_forward": True,
+                "backward": True,
+            }
+        )
+        # Request validation
+        review = test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        record.validate_tier()
+        self.assertFalse(record.can_forward)
+        self.assertFalse(record.can_backward)
+        # User 2 forward to user 1
+        record = test_record.with_user(self.test_user_2.id)
+        record.invalidate_cache()
+        self.assertTrue(record.can_forward)
+        self.assertTrue(record.can_backward)
+        res = record.forward_tier()
+        ctx = res.get("context")
+        wizard = Form(
+            self.env["tier.validation.forward.wizard"]
+            .with_user(self.test_user_2.id)
+            .with_context(ctx)
+        )
+        wizard.forward_reviewer_id = self.test_user_1
+        wizard.forward_description = "Please review again"
+        wizard.backward = True
+        wiz = wizard.save()
+        wiz.add_forward()
+        # Newly created forwarded review will have no definition and will have origin
+        record = test_record.with_user(self.test_user_2.id)
+        record.invalidate_cache()
+        self.assertTrue(record.review_ids.filtered(lambda l: not l.definition_id))
+        self.assertTrue(record.review_ids.filtered(lambda l: l.origin_id))
+        # User 1 validate
+        res = record.with_user(self.test_user_1.id).validate_tier()
+        ctx = res.get("context")
+        wizard = Form(
+            self.env["comment.wizard"].with_user(self.test_user_1.id).with_context(ctx)
+        )
+        wizard.comment = "Forward tier is reviewed"
+        wiz = wizard.save()
+        wiz.add_comment()
+        self.assertFalse(record.validated)
+        # Newly created review back to the original user
+        record = test_record.with_user(self.test_user_2.id)
+        record.invalidate_cache()
+        # There are now two tier reviews for user 2
+        self.assertEqual(
+            len(
+                record.review_ids.filtered(lambda l: l.reviewer_id == self.test_user_2)
+            ),
+            2,
+        )
+        # User 2 does final validation
+        record.validate_tier()
+        self.assertTrue(record.validated)

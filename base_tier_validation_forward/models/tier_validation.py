@@ -6,17 +6,20 @@ from odoo import _, api, fields, models
 class TierValidation(models.AbstractModel):
     _inherit = "tier.validation"
 
-    can_forward = fields.Boolean(compute="_compute_can_forward")
+    can_forward = fields.Boolean(compute="_compute_forward_backward")
+    can_backward = fields.Boolean(compute="_compute_forward_backward")
 
-    def _compute_can_forward(self):
+    def _compute_forward_backward(self):
         for rec in self:
             if not rec.can_review:
                 rec.can_forward = False
+                rec.can_backward = False
                 continue
             sequences = self._get_sequences_to_approve(self.env.user)
             reviews = rec.review_ids.filtered(lambda l: l.sequence in sequences)
             definitions = reviews.mapped("definition_id")
             rec.can_forward = True in definitions.mapped("has_forward")
+            rec.can_backward = True in definitions.mapped("backward")
 
     @api.model
     def _calc_reviews_validated(self, reviews):

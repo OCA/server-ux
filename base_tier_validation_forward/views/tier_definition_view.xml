@@ -20,7 +20,7 @@
                     title="If the forwarded step is approved, auto forward back again to finish the step."
                 >
                     <field name="backward" />
-                    <span>Auto backward after the forward step is validated</span>
+                    <span>Allow backward after the forward step is validated</span>
                 </div>
             </field>
         </field>
