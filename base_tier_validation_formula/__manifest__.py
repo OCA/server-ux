@@ -5,7 +5,7 @@
     "name": "Base Tier Validation Formula",
     "summary": """
         Formulas for Base tier validation""",
-    "version": "13.0.1.1.1",
+    "version": "13.0.1.1.2",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
