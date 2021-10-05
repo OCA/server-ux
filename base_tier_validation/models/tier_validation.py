@@ -372,7 +372,7 @@ class TierValidation(models.AbstractModel):
             if getattr(rec, self._state_field) in self._state_from:
                 if rec.need_validation:
                     tier_definitions = td_obj.search(
-                        [("model", "=", self._name)], order="sequence desc"
+                        [("model", "=", self._name)], order="sequence"
                     )
                     sequence = 0
                     for td in tier_definitions:
