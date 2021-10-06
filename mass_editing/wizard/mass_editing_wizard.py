@@ -16,6 +16,12 @@ class MassEditingWizard(models.TransientModel):
         help="Thick if you want to use the custom domain (+ domain of the "
         "mass edition) instead of select all items manually.",
     )
+    tracking_disable = fields.Boolean(
+        string="Disable tracking",
+        help="Thick if you want to disable tracking (mail thread feature).\n"
+        "That may improve performance but you won't have any tracking "
+        "activities (to know what has been updated, when and by who).",
+    )
 
     @api.model
     def _prepare_fields(self, line, field, field_info):
@@ -182,7 +188,7 @@ class MassEditingWizard(models.TransientModel):
                             m2m_list.append((4, m2m_id))
                         values.update({split_key: m2m_list})
             if values:
-                items.write(values)
+                items.with_context(tracking_disable=self.tracking_disable).write(values)
 
     def read(self, fields, load="_classic_read"):
         """ Without this call, dynamic fields build by fields_view_get()
