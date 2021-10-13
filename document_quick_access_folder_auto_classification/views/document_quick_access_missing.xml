@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="document_quick_access_missing_form_view">
+        <field
+            name="name"
+        >document.quick.access.missing.form (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">document.quick.access.missing</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                    <button
+                        name="%(document_quick_access_folder_auto_classification.document_quick_access_missing_assign_act_window)s"
+                        type="action"
+                        class="primary"
+                        string="Assign"
+                        states="pending"
+                        context="{'default_missing_document_id': active_id}"
+                    />
+                    <button
+                        name="reject_assign_document"
+                        type="object"
+                        string="Reject"
+                        states="pending"
+                    />
+                    <button
+                        name="access_resource"
+                        type="object"
+                        string="Access"
+                        attrs="{'invisible': ['|', ('res_id', '=', False), ('model', '=', False)]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <field name="data" filename="name" />
+                        <field name="res_id" invisible="1" />
+                        <field name="model" invisible="1" />
+                        <field name="create_date" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="document_quick_access_missing_search_view">
+        <field
+            name="name"
+        >document.quick.access.missing.search (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">document.quick.access.missing</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <separator />
+                <filter
+                    domain="[('state', '=', 'pending')]"
+                    help="Pending"
+                    name="pending"
+                />
+                <filter
+                    domain="[('state', '=', 'processed')]"
+                    help="Processed"
+                    name="processed"
+                />
+                <filter
+                    domain="[('state', '=', 'deleted')]"
+                    help="Rejected"
+                    name="deleted"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="document_quick_access_missing_tree_view">
+        <field
+            name="name"
+        >document.quick.access.missing.tree (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">document.quick.access.missing</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false">
+                <field name="name" />
+                <field name="state" />
+                <field name="create_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="document_quick_access_missing_act_window">
+        <field name="name">Document Quick Access Missing</field>
+        <field name="res_model">document.quick.access.missing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+    <menuitem
+        id="document_quick_access_missing_menu"
+        name="Documents to process"
+        sequence="16"
+        groups="document_quick_access_folder_auto_classification.group_missing_document"
+        action="document_quick_access_missing_act_window"
+        web_icon="document_quick_access_folder_auto_classification,static/description/icon.png"
+    />
+</odoo>
