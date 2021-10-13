@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-date_range',
         'odoo14-addon-default_multi_user',
         'odoo14-addon-document_quick_access',
+        'odoo14-addon-document_quick_access_folder_auto_classification',
         'odoo14-addon-filter_multi_user',
         'odoo14-addon-mass_editing',
         'odoo14-addon-mass_operation_abstract',
