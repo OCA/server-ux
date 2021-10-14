@@ -33,7 +33,7 @@ class Users(models.Model):
                 if len(records):
                     record = self.env[model]
                     user_reviews[model] = {
-                        "name": record._description,
+                        "name": self.env['ir.model']._get(record._name).name,
                         "model": model,
                         "icon": modules.module.get_module_icon(record._original_module),
                         "pending_count": len(records),
