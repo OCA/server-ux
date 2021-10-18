@@ -30,7 +30,7 @@ class ResUsers(models.Model):
 
     @api.depends("groups_id")
     def _compute_technical_features(self):
-        """ Map user membership to boolean field value """
+        """Map user membership to boolean field value"""
         users = self.env.ref("base_technical_features.group_technical_features").users
         for user in self:
             user.technical_features = user in users
@@ -49,10 +49,13 @@ class ResUsers(models.Model):
         else:
             self.sudo().write({"groups_id": [(3, group.id)]})
 
-    def __init__(self, pool, cr):
-        super().__init__(pool, cr)
-        type(self).SELF_READABLE_FIELDS += [
+    @property
+    def SELF_READABLE_FIELDS(self):
+        return super().SELF_READABLE_FIELDS + [
             "technical_features",
             "show_technical_features",
         ]
-        type(self).SELF_WRITEABLE_FIELDS.append("technical_features")
+
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        return super().SELF_WRITEABLE_FIELDS + ["technical_features"]
