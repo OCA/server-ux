@@ -16,4 +16,3 @@ set for the administrator user of the database.
 In the background, this preference is mapped to the *Technical feature (w/o
 debug mode)* group that this module adds. As an administrator, you can
 therefore manage this preference from the regular Users and Groups menu items.
-f it's not unique.
