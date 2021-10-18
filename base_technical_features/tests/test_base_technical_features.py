@@ -1,6 +1,5 @@
 from lxml import etree
 
-from odoo import api
 from odoo.exceptions import AccessError
 from odoo.tests import common
 
@@ -9,7 +8,7 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
     def test_01_visible_menus(self):
         """ A technical feature is visible to the user with the technical \
         features group """
-        menu_obj = self.env["ir.ui.menu"].with_context({"ir.ui.menu.full_list": True})
+        menu_obj = self.env["ir.ui.menu"].with_context(**{"ir.ui.menu.full_list": True})
         menu_id = menu_obj.search(
             [("groups_id", "=", self.env.ref("base.group_no_one").id)], limit=1
         ).id
@@ -53,13 +52,11 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
         )
         self.env.user._compute_show_technical_features()
         self.env.user._compute_technical_features()
-        with api.Environment.manage():
-            env = api.Environment(self.env.cr, user.id, self.env.context)
-            with self.assertRaises(AccessError):
-                env["res.users"].browse(user.id).write({"technical_features": True})
+        with self.assertRaises(AccessError):
+            self.env["res.users"].browse(user.id).sudo().write(
+                {"technical_features": True}
+            )
         with self.assertRaises(AccessError):
             user.write({"technical_features": True})
         user.write({"groups_id": [(4, self.env.ref("base.group_no_one").id)]})
-        with api.Environment.manage():
-            env = api.Environment(self.env.cr, user.id, self.env.context)
-            env["res.users"].browse(user.id).write({"technical_features": True})
+        self.env["res.users"].browse(user.id).sudo().write({"technical_features": True})
