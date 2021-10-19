@@ -12,7 +12,10 @@
                     <group>
                         <field name="forward_reviewer_id" />
                         <field name="forward_description" required="1" />
-                        <field name="backward" />
+                        <field
+                            name="backward"
+                            attrs="{'invisible': [('can_backward', '=', False)]}"
+                        />
                     </group>
                     <group>
                         <field name="has_comment" invisible="1" />

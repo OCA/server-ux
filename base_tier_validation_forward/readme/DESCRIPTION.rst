@@ -1,6 +1,7 @@
 This module add an advance option to base_tier_validation.
 
 * To allow "Forward" the tier to different user.
+* Also allow optional "Backward" tier once the forwarded tier is reviewed.
 
 **Sample use case:**
 

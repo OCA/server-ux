@@ -1,6 +1,6 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class ValidationForwardWizard(models.TransientModel):
@@ -23,8 +23,13 @@ class ValidationForwardWizard(models.TransientModel):
     can_backward = fields.Boolean(
         string="Can ask for review", compute="_compute_can_backward"
     )
-    backward = fields.Boolean(string="Ask for review", default=False)
+    backward = fields.Boolean(
+        string="Ask for review",
+        default=False,
+        help="The forwarded tier is meant for reivew, once approved, it will be back.",
+    )
 
+    @api.depends("forward_reviewer_id")
     def _compute_can_backward(self):
         self.ensure_one()
         record = self.env[self.res_model].browse(self.res_id)

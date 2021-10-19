@@ -14,5 +14,5 @@ class TierDefinition(models.Model):
     backward = fields.Boolean(
         string="Backward",
         help="If the forwarded step is approved, "
-        "auto forward back again to finish the step.",
+        "option to backward to finish the step.",
     )
