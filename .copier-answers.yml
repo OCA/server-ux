@@ -1,6 +1,7 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.1.4
+_commit: v1.3.4
 _src_path: gh:OCA/oca-addons-repo-template
+ci: Travis
 dependency_installation_mode: OCA
 generate_requirements_txt: false
 include_wkhtmltopdf: false
@@ -10,6 +11,6 @@ repo_description: Server side features for usability and user experience related
 repo_name: Server UX
 repo_slug: server-ux
 travis_apt_packages:
-  - libzbar-dev
-  - poppler-utils
+- libzbar-dev
+- poppler-utils
 travis_apt_sources: []
