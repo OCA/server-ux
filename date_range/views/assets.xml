@@ -2,7 +2,7 @@
 <odoo>
     <template
         id="assets_backend"
-        inherit_id="web.assets_backend"
+        inherit_id="web.assets_backend_legacy_lazy"
         name="Module name backend assets"
     >
         <xpath expr="." position="inside">
