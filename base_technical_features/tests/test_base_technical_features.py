@@ -9,7 +9,7 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
     def test_01_visible_menus(self):
         """ A technical feature is visible to the user with the technical \
         features group """
-        menu_obj = self.env["ir.ui.menu"].with_context({"ir.ui.menu.full_list": True})
+        menu_obj = self.env["ir.ui.menu"].with_context(**{"ir.ui.menu.full_list": True})
         menu_id = menu_obj.search(
             [("groups_id", "=", self.env.ref("base.group_no_one").id)], limit=1
         ).id
