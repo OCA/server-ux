@@ -60,6 +60,9 @@ class TierReview(models.Model):
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )
+    approve_sequence_bypass = fields.Boolean(
+        related="definition_id.approve_sequence_bypass", readonly=True
+    )
 
     @api.depends_context("tz")
     def _compute_reviewed_formated_date(self):
