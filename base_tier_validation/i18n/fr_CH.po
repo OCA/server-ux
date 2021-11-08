@@ -35,19 +35,19 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nom</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:326
+#: code:addons/base_tier_validation/models/tier_validation.py:329
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "Une validation a été demandée par %s."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:251
+#: code:addons/base_tier_validation/models/tier_validation.py:254
 #, python-format
 msgid "A review was accepted"
 msgstr "Une validation a été acceptée"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:298
+#: code:addons/base_tier_validation/models/tier_validation.py:301
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "Une validation a été rejetée par %s."
@@ -127,7 +127,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:256
+#: code:addons/base_tier_validation/models/tier_validation.py:259
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -485,6 +485,11 @@ msgstr "Notification d'acceptation de validation par palier"
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
 msgstr "Notification de rejet de validation par palier"
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation

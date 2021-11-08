@@ -35,19 +35,19 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:326
+#: code:addons/base_tier_validation/models/tier_validation.py:329
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "%s发起审批请求。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:251
+#: code:addons/base_tier_validation/models/tier_validation.py:254
 #, python-format
 msgid "A review was accepted"
 msgstr "审批已通过"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:298
+#: code:addons/base_tier_validation/models/tier_validation.py:301
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "此审批已被%s拒绝。"
@@ -123,7 +123,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:256
+#: code:addons/base_tier_validation/models/tier_validation.py:259
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -479,6 +479,11 @@ msgstr "层级审批已通过的通知"
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
 msgstr "层级审批已拒绝的通知"
+
+#. module: base_tier_validation
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
