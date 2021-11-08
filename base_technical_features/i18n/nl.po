@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_technical_features
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-18 02:29+0000\n"
+"PO-Revision-Date: 2021-04-18 10:46+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr "Basis"
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr "Menu"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
+msgid "Show field Technical Features"
+msgstr "Toon veld Technische mogelijkheden"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
+msgid "Technical Features"
+msgstr "Technische mogelijkheden"
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr "Technische mogelijkheden (zonder debugmodus)"
+
+#. module: base_technical_features
+#: code:addons/base_technical_features/models/res_users.py:0
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr "De gebruiker heeft geen toegang tot technische mogelijkheden."
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_res_users
+msgid "Users"
+msgstr "Gebruikers"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
+msgid ""
+"Whether to display the technical features field in the user preferences."
+msgstr ""
+"Geeft aan of het veld Technische mogelijkheden wordt getoond in de "
+"voorkeuren van de gebruiker."
