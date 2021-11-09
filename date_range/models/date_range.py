@@ -73,8 +73,12 @@ class DateRange(models.Model):
         for this in self:
             if this.date_start > this.date_end:
                 raise ValidationError(
-                    _("%s is not a valid range (%s > %s)")
-                    % (this.name, this.date_start, this.date_end)
+                    _("%(name)s is not a valid range (%(date_start)s > %(date_end)s)")
+                    % {
+                        "name": this.name,
+                        "date_start": this.date_start,
+                        "date_end": this.date_end,
+                    }
                 )
             if this.type_id.allow_overlap:
                 continue
@@ -88,25 +92,28 @@ class DateRange(models.Model):
                     date_range dt
                 WHERE
                     DATERANGE(dt.date_start, dt.date_end, '[]') &&
-                        DATERANGE(%s::date, %s::date, '[]')
-                    AND dt.id != %s
+                        DATERANGE(%(date_start)s::date, %(date_end)s::date, '[]')
+                    AND dt.id != %(id)s
                     AND dt.active
-                    AND dt.company_id = %s
-                    AND dt.type_id=%s;"""
+                    AND dt.company_id = %(company_id)s
+                    AND dt.type_id=%(type_id)s;"""
             self.env.cr.execute(
                 SQL,
-                (
-                    this.date_start,
-                    this.date_end,
-                    this.id,
-                    this.company_id.id or None,
-                    this.type_id.id,
-                ),
+                {
+                    "date_start": this.date_start,
+                    "date_end": this.date_end,
+                    "id": this.id,
+                    "company_id": this.company_id.id or None,
+                    "type_id": this.type_id.id,
+                },
             )
             res = self.env.cr.fetchall()
             if res:
                 dt = self.browse(res[0][0])
-                raise ValidationError(_("%s overlaps %s") % (this.name, dt.name))
+                raise ValidationError(
+                    _("%(name)s overlaps %(dt_name)s")
+                    % {"name": this.name, "dt_name": dt.name}
+                )
 
     def get_domain(self, field_name):
         self.ensure_one()
