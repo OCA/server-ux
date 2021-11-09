@@ -49,13 +49,11 @@ odoo.define("date_range.CustomFilterItem", function (require) {
 
                 _setDefaultValue(condition) {
                     const type = this.fields[condition.field].type;
-                    const operator = this.OPERATORS[FIELD_TYPES[type]][
-                        condition.operator
-                    ];
+                    const operator =
+                        this.OPERATORS[FIELD_TYPES[type]][condition.operator];
                     if (operator.date_range) {
-                        const default_range = this.date_ranges[
-                            operator.date_range_type
-                        ][0];
+                        const default_range =
+                            this.date_ranges[operator.date_range_type][0];
                         const d_start = moment(`${default_range.date_start} 00:00:00`);
                         const d_end = moment(`${default_range.date_end} 23:59:59`);
                         condition.value = [d_start, d_end];
@@ -66,13 +64,12 @@ odoo.define("date_range.CustomFilterItem", function (require) {
 
                 _onValueInput(condition, ev) {
                     const type = this.fields[condition.field].type;
-                    const operator = this.OPERATORS[FIELD_TYPES[type]][
-                        condition.operator
-                    ];
+                    const operator =
+                        this.OPERATORS[FIELD_TYPES[type]][condition.operator];
                     if (operator.date_range) {
-                        const eid = parseInt(ev.target.value);
+                        const eid = parseInt(ev.target.value, 10);
                         const ranges = this.date_ranges[operator.date_range_type];
-                        const range = ranges.find((x) => x.id == eid);
+                        const range = ranges.find((x) => x.id === eid);
                         const d_start = moment(`${range.date_start} 00:00:00`);
                         const d_end = moment(`${range.date_end} 23:59:59`);
                         condition.value = [d_start, d_end];

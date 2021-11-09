@@ -73,8 +73,8 @@ class DateRange(models.Model):
         for this in self:
             if this.date_start > this.date_end:
                 raise ValidationError(
-                    _("%s is not a valid range (%s > %s)")
-                    % (this.name, this.date_start, this.date_end)
+                    _("%(r1)s is not a valid range (%(r2)s > %(r3)s)")
+                    % {"r1": this.name, "r2": this.date_start, "r3": this.date_end}
                 )
             if this.type_id.allow_overlap:
                 continue
@@ -106,7 +106,9 @@ class DateRange(models.Model):
             res = self.env.cr.fetchall()
             if res:
                 dt = self.browse(res[0][0])
-                raise ValidationError(_("%s overlaps %s") % (this.name, dt.name))
+                raise ValidationError(
+                    _("%(rr)s overlaps %(rt)s") % {"rr": this.name, "rt": dt.name}
+                )
 
     def get_domain(self, field_name):
         self.ensure_one()
