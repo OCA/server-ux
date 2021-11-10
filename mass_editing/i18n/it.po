@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2021-02-27 15:45+0000\n"
+"PO-Revision-Date: 2021-11-10 14:35+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -26,11 +26,14 @@ msgid ""
 "including the fields of such domain in this operation definition, will lead "
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
+"<b>ATTENZIONE</b>: Considera che aggiungere un campo con un dominio, e non "
+"aggiungere i campi in quel dominio nella definizione di questa operazione, "
+"porterà ad un'errore quando si prova ad eseguirla. Assicurati di includerli."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Nome Azione"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:23
@@ -45,26 +48,29 @@ msgid ""
 "Example :\n"
 "'many2many_tags', 'selection'"
 msgstr ""
+"Aggiungi testo alla widget che sarà usato per mostrare il campo nella "
+"wizard. Esempio:\n"
+"'many2many_tags', 'selection'"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__group_ids
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Gruppi consentiti"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
-msgstr ""
+msgstr "Applica dominio predefinito relativo al campo"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply domain"
-msgstr ""
+msgstr "Applica dominio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
 msgid "Apply domain in lines"
-msgstr ""
+msgstr "Applica dominio sulle righe"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
@@ -90,12 +96,12 @@ msgstr "Nome visualizzato"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
 msgid "Domain"
-msgstr ""
+msgstr "Dominio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
@@ -107,7 +113,7 @@ msgstr "ID"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Se impostato, questo messaggio verrà mostrato nella wizard."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
@@ -133,7 +139,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Riga"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_editing
@@ -146,13 +152,13 @@ msgstr "Modifiche massive"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr ""
+msgstr "Riga Modifica Massiva"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
@@ -191,7 +197,7 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:31
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "Rimuovi"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
@@ -219,7 +225,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Opzioni Widget"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
