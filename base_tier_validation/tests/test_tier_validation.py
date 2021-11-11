@@ -9,7 +9,6 @@ from odoo.tests.common import Form, tagged
 from .common import CommonTierValidation
 
 
-@tagged("post_install", "-at_install")
 class TierTierValidation(CommonTierValidation):
     def test_01_auto_validation(self):
         """When the user can validate all future reviews, it is not needed
