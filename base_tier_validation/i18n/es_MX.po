@@ -195,6 +195,11 @@ msgid "Company"
 msgstr "Empresa"
 
 #. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__create_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__create_uid
@@ -230,6 +235,7 @@ msgstr "Descripción"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__display_name
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_name
@@ -277,6 +283,7 @@ msgstr "Tiene comentario"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
@@ -295,6 +302,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
@@ -326,6 +334,11 @@ msgstr "Modelo"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "More Options"
 msgstr "Más opciones"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "More reports about tier validations, i.e., summary of all my reviews"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
@@ -360,6 +373,21 @@ msgstr "No hay revisiones que hacer."
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
 msgid "Notify Reviewers on Creation"
 msgstr "Notificar a los revisores sobre la creación"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Option to forward a tier validation to other reviewer, and backward"
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Option to trigger server actions on completion of tier reviews"
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Option to use python formula to get reviewers and find documents"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
@@ -528,10 +556,35 @@ msgid "Tier Definition"
 msgstr "Definición de Nivel"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_formula
+msgid "Tier Formula"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_forward
+msgid "Tier Forward & Backward"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_report
+msgid "Tier Reports"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
 msgid "Tier Review"
 msgstr "Revisión de niveles"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_server_action
+msgid "Tier Server Action"
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Tier Validation"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation

@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "14.0.2.6.0",
+    "version": "14.0.2.7.0",
     "development_status": "Mature",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -17,6 +17,7 @@
         "data/mail_data.xml",
         "security/ir.model.access.csv",
         "security/tier_validation_security.xml",
+        "views/res_config_settings_views.xml",
         "views/tier_definition_view.xml",
         "views/tier_review_view.xml",
         "views/assets_backend.xml",
