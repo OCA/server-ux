@@ -14,16 +14,27 @@ class IrSequence(models.Model):
     def _get_prefix_suffix(self, date=None, date_range=None):
         if "range_end_" in str(self.prefix) or "range_end_" in str(self.suffix):
             return self._get_prefix_suffix_range_end(date_range=date_range)
-        return super()._get_prefix_suffix(date=date, date_range=date_range)
+        else:
+            return super()._get_prefix_suffix(date=date, date_range=date_range)
 
-    def _get_prefix_suffix_range_end(self, date_range=None):
+    def _get_prefix_suffix_range_end(self, date=None, date_range=None):
         def _interpolate(s, d):
             return (s % d) if s else ""
 
         def _interpolation_dict():
-            range_date = datetime.now(pytz.timezone(self._context.get("tz") or "UTC"))
-            if date_range or self._context.get("ir_sequence_date_range_end"):
+            now = range_date = range_end_date = effective_date = datetime.now(
+                pytz.timezone(self._context.get("tz") or "UTC")
+            )
+            if date or self._context.get("ir_sequence_date"):
+                effective_date = fields.Datetime.from_string(
+                    date or self._context.get("ir_sequence_date")
+                )
+            if date_range or self._context.get("ir_sequence_date_range"):
                 range_date = fields.Datetime.from_string(
+                    date_range or self._context.get("ir_sequence_date_range")
+                )
+            if date_range or self._context.get("ir_sequence_date_range_end"):
+                range_end_date = fields.Datetime.from_string(
                     date_range or self._context.get("ir_sequence_date_range_end")
                 )
 
@@ -42,7 +53,10 @@ class IrSequence(models.Model):
             }
             res = {}
             for key, format in sequences.items():
-                res["range_end_" + key] = range_date.strftime(format)
+                res[key] = effective_date.strftime(format)
+                res["current_" + key] = now.strftime(format)
+                res["range_" + key] = range_date.strftime(format)
+                res["range_end_" + key] = range_end_date.strftime(format)
             return res
 
         self.ensure_one()
