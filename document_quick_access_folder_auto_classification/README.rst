@@ -25,7 +25,7 @@ Document Quick Access Folder Auto Classification
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module creates a job that scans all files from a folder and attaches them
+This module creates a job that scans all files from a storage and attaches them
 to its record. The record is found using the document quick access rules.
 
 **Table of contents**
@@ -36,10 +36,7 @@ to its record. The record is found using the document quick access rules.
 Configuration
 =============
 
-# Create 3 folders on your odoo system. Odoo will use them for Preprocessing,
-  Store processed (not required), Store failed (not required)
-# Access your system parameters and edit the parameters in order to match your
-  folders
+# Create an storage on your system using the storage project from OCA
 
 Usage
 =====
