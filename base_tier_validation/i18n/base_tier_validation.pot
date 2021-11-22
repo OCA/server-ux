@@ -53,13 +53,11 @@ msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review has been requested by %s."
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review was accepted"
@@ -67,13 +65,11 @@ msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review was accepted. (%s)"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review was rejected by %s."
@@ -81,13 +77,11 @@ msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review was rejected by {}. ({})"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A validation process is still open for at least one record."
@@ -157,7 +151,6 @@ msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
@@ -477,7 +470,6 @@ msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "The operation is under validation."
 msgstr ""
@@ -489,7 +481,6 @@ msgid "There are no res.users in the selected field"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
