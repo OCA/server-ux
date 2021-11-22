@@ -1,25 +1,25 @@
 # Copyright 2018 ForgeFlow S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo.tests import Form, common
+from odoo_test_helper import FakeModelLoader
 
-from odoo.addons.base_tier_validation.tests.common import (
-    setup_test_model,
-    teardown_test_model,
-)
-
-from .tier_validation_tester import TierValidationTester
+from odoo.tests import Form
+from odoo.tests.common import SavepointCase, tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
-class TierTierValidation(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class TierTierValidation(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
 
-        setup_test_model(cls.env, [TierValidationTester])
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
+            TierValidationTester,
+        )
 
+        cls.loader.update_registry((TierValidationTester,))
         cls.test_model = cls.env[TierValidationTester._name]
 
         cls.tester_model = cls.env["ir.model"].search(
@@ -65,7 +65,7 @@ class TierTierValidation(common.SavepointCase):
 
     @classmethod
     def tearDownClass(cls):
-        teardown_test_model(cls.env, [TierValidationTester])
+        cls.loader.restore_registry()
         super(TierTierValidation, cls).tearDownClass()
 
     def test_01_forward_tier(self):
