@@ -8,9 +8,20 @@ from ast import literal_eval
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common
 
+from odoo.addons.base.models.ir_actions import IrActionsServer
+
+
+def fake_onchange_model_id(self):
+    result = {
+        "warning": {
+            "title": "This is a fake onchange",
+        },
+    }
+    return result
+
 
 @common.tagged("-at_install", "post_install")
-class TestMassEditing(common.SavepointCase):
+class TestMassEditing(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
@@ -58,10 +69,71 @@ class TestMassEditing(common.SavepointCase):
         wizard.button_apply()
         return wizard
 
+    def test_wzd_default_get(self):
+        """Test whether `operation_description_danger` is correct"""
+        wzd_obj = self.MassEditingWizard.with_context(
+            server_action_id=self.mass_editing_user.id,
+            active_ids=[1],
+            original_active_ids=[1],
+        )
+        result = wzd_obj.default_get(
+            fields=[],
+        )
+        self.assertEqual(
+            result["operation_description_info"],
+            "The treatment will be processed on the 1 selected record(s).",
+        )
+        self.assertFalse(
+            result["operation_description_warning"],
+        )
+        self.assertFalse(
+            result["operation_description_danger"],
+        )
+
+        result = wzd_obj.with_context(active_ids=[]).default_get(
+            fields=[],
+        )
+        self.assertFalse(
+            result["operation_description_info"],
+        )
+        self.assertEqual(
+            result["operation_description_warning"],
+            (
+                "You have selected 1 record(s) that can not be processed.\n"
+                "Only 0 record(s) will be processed."
+            ),
+        )
+        self.assertFalse(
+            result["operation_description_danger"],
+        )
+
+        result = wzd_obj.with_context(original_active_ids=[]).default_get(
+            fields=[],
+        )
+        self.assertFalse(
+            result["operation_description_info"],
+        )
+        self.assertFalse(
+            result["operation_description_warning"],
+        )
+        self.assertEqual(
+            result["operation_description_danger"],
+            "None of the 1 record(s) you have selected can be processed.",
+        )
+
     def test_wiz_fields_view_get(self):
         """Test whether fields_view_get method returns arch.
         with dynamic fields.
         """
+        result = self.MassEditingWizard.with_context(
+            active_ids=[],
+        ).fields_view_get()
+        arch = result.get("arch", "")
+        self.assertTrue(
+            "selection__email" not in arch,
+            "Fields view get must return architecture w/o fields" "created dynamicaly",
+        )
+
         result = self.MassEditingWizard.with_context(
             server_action_id=self.mass_editing_user.id,
             active_ids=[],
@@ -70,6 +142,55 @@ class TestMassEditing(common.SavepointCase):
         self.assertTrue(
             "selection__email" in arch,
             "Fields view get must return architecture with fields" "created dynamicaly",
+        )
+
+    def test_wzd_clean_check_company_field_domain(self):
+        """
+        Test company field domain replacement
+        """
+        model_name = "res.partner"
+        field_domain = [
+            ("model", "=", model_name),
+            ("name", "=", "company_id"),
+        ]
+        field = self.env["ir.model.fields"].search(
+            field_domain,
+        )
+        field_info = {
+            "name": "company_id",
+        }
+        result = self.MassEditingWizard._clean_check_company_field_domain(
+            self.env[model_name],
+            field=field,
+            field_info=field_info,
+        )
+        self.assertDictEqual(
+            result,
+            field_info,
+        )
+
+        model_name = "res.partner"
+        field_name = "parent_id"
+        field_domain = [
+            ("model", "=", model_name),
+            ("name", "=", field_name),
+        ]
+        field = self.env["ir.model.fields"].search(
+            field_domain,
+        )
+        field_info = {
+            "name": field_name,
+        }
+        model = self.env[model_name]
+        model._fields[field_name].check_company = True
+        result = self.MassEditingWizard._clean_check_company_field_domain(
+            model,
+            field=field,
+            field_info=field_info,
+        )
+        self.assertEqual(
+            result.get("domain"),
+            "[]",
         )
 
     def test_wiz_read_fields(self):
@@ -88,6 +209,11 @@ class TestMassEditing(common.SavepointCase):
         result = mass_wizard.read(fields)[0]
         self.assertTrue(
             all([field in result for field in fields]), "Read must return all fields."
+        )
+
+        result = mass_wizard.read(fields=[])[0]
+        self.assertTrue(
+            "selection__email" not in result,
         )
 
     def test_mass_edit_partner_title(self):
@@ -205,5 +331,28 @@ class TestMassEditing(common.SavepointCase):
             "base.field_res_partner__image_1920"
         )
         self.assertEqual(mass_edit_line_form.widget_option, "image")
+        mass_edit_line_form.field_id = self.env.ref("base.field_res_company__logo")
+        self.assertEqual(mass_edit_line_form.widget_option, "image")
+        # binary
+        mass_edit_line_form.field_id = self.env.ref("base.field_res_company__favicon")
+        self.assertEqual(mass_edit_line_form.widget_option, False)
+
         mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
         self.assertFalse(mass_edit_line_form.widget_option)
+
+    def test_onchange_model_id(self):
+        """Test super call of `_onchange_model_id`"""
+
+        IrActionsServer._onchange_model_id = fake_onchange_model_id
+        result = self.env["ir.actions.server"]._onchange_model_id()
+        self.assertEqual(
+            result,
+            fake_onchange_model_id(self),
+        )
+
+        del IrActionsServer._onchange_model_id
+        result = self.env["ir.actions.server"]._onchange_model_id()
+        self.assertEqual(
+            result,
+            None,
+        )

@@ -47,8 +47,10 @@ class MassEditingWizard(models.TransientModel):
             }
         else:
             operation_description_danger = _(
-                "None of the %d record(s) you have selected can be processed."
-            ) % (len(active_ids))
+                "None of the %(amount)d record(s) you have selected can be processed."
+            ) % {
+                "amount": len(active_ids),
+            }
         # Set values
         res.update(
             {
@@ -158,7 +160,7 @@ class MassEditingWizard(models.TransientModel):
         active_ids = self.env.context.get("active_ids", [])
         if server_action and active_ids:
             TargetModel = self.env[server_action.model_id.model]
-            IrModelFields = self.env["ir.model.fields"]
+            IrModelFields = self.env["ir.model.fields"].sudo()
             IrTranslation = self.env["ir.translation"]
 
             values = {}

@@ -59,10 +59,10 @@ class MassEditingLine(models.Model):
     @api.onchange("field_id")
     def _onchange_field_id(self):
         for rec in self:
+            widget_option = False
             if rec.field_id.ttype == "many2many":
-                rec.widget_option = "many2many_tags"
+                widget_option = "many2many_tags"
             elif rec.field_id.ttype == "binary":
                 if "image" in rec.field_id.name or "logo" in rec.field_id.name:
-                    rec.widget_option = "image"
-            else:
-                rec.widget_option = False
+                    widget_option = "image"
+            rec.widget_option = widget_option
