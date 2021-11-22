@@ -27,9 +27,9 @@ addon | version | maintainers | summary
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 13.0.1.1.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 13.0.1.0.1 |  | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 13.0.1.6.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
-[base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.1.2 |  | Formulas for Base tier validation
-[base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
+[base_tier_validation](base_tier_validation/) | 13.0.1.7.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
+[base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.2.0 |  | Formulas for Base tier validation
+[base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.1.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
 [base_user_locale](base_user_locale/) | 13.0.1.0.0 |  | User Locale Settings
 [chained_swapper](chained_swapper/) | 13.0.1.0.0 |  | Chained Swapper
 [date_range](date_range/) | 13.0.1.0.2 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
