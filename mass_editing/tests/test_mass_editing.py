@@ -38,8 +38,7 @@ class TestMassEditing(common.SavepointCase):
             {"name": "Ambassador", "shortcut": "Amb."}
         )
         # Adding translated terms
-        ctx = {"lang": "de_DE"}
-        partner_title.with_context(ctx).write(
+        partner_title.with_context(lang="de_DE").write(
             {"name": "Botschafter", "shortcut": "Bots."}
         )
         return partner_title
@@ -52,7 +51,7 @@ class TestMassEditing(common.SavepointCase):
         wizard = (
             self.env[action["res_model"]]
             .with_context(
-                literal_eval(action["context"]),
+                **literal_eval(action["context"]),
             )
             .create(vals)
         )
