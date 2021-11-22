@@ -19,7 +19,7 @@ class MassEditingWizard(models.TransientModel):
     message = fields.Text(readonly=True)
 
     @api.model
-    def default_get(self, fields):
+    def default_get(self, fields, active_ids=None):
         res = super().default_get(fields)
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
@@ -33,16 +33,18 @@ class MassEditingWizard(models.TransientModel):
         operation_description_danger = False
         if len(active_ids) == len(original_active_ids):
             operation_description_info = _(
-                "The treatment will be processed on the %d selected record(s)."
-            ) % (len(active_ids))
+                "The treatment will be processed on the %(amount)d selected record(s)."
+            ) % {
+                "amount": len(active_ids),
+            }
         elif len(original_active_ids):
             operation_description_warning = _(
-                "You have selected %d record(s) that can not be processed.\n"
-                "Only %d record(s) will be processed."
-            ) % (
-                len(original_active_ids) - len(active_ids),
-                len(active_ids),
-            )
+                "You have selected %(origin_amount)d record(s) that can not be processed.\n"
+                "Only %(amount)d record(s) will be processed."
+            ) % {
+                "origin_amount": len(original_active_ids) - len(active_ids),
+                "amount": len(active_ids),
+            }
         else:
             operation_description_danger = _(
                 "None of the %d record(s) you have selected can be processed."
