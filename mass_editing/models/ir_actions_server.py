@@ -36,7 +36,7 @@ class IrActionsServer(models.Model):
 
     @api.constrains("model_id")
     def _check_field_model(self):
-        """ Check that all fields belong to the model """
+        """Check that all fields belong to the model"""
         self.mapped("mass_edit_line_ids")._check_field_model()
 
     @api.depends("mass_edit_line_ids")
@@ -47,7 +47,7 @@ class IrActionsServer(models.Model):
             )
 
     def _run_action_mass_edit_multi(self, eval_context=None):
-        """ Show report label wizard """
+        """Show report label wizard"""
         context = dict(self.env.context)
         context.update({"server_action_id": self.id})
         return {
