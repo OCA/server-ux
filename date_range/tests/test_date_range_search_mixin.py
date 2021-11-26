@@ -29,7 +29,7 @@ class TestDateRangeearchMixin(SavepointCase):
              'name_prefix': '1943-',
              'type_id': rtype.id,
              'duration_count': 3,
-             'unit_of_time': MONTHLY,
+             'unit_of_time': str(MONTHLY),
              'count': 4}
         ).action_apply()
         cls.ranges = cls.env['date.range'].search(
