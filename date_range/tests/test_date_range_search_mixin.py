@@ -2,7 +2,6 @@
 # Copyright 2021 Opener B.V. <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from dateutil.rrule import MONTHLY
-
 from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import SavepointCase
@@ -16,24 +15,24 @@ class TestDateRangeearchMixin(SavepointCase):
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from .models import TestDateRangeSearchMixin
+
         cls.loader.update_registry((TestDateRangeSearchMixin,))
 
         cls.env.user.lang = "en_US"
-        rtype = cls.env['date.range.type'].create(
-            {'name': __name__,
-             'company_id': False,
-             'allow_overlap': False}
+        rtype = cls.env["date.range.type"].create(
+            {"name": __name__, "company_id": False, "allow_overlap": False}
         )
-        cls.env['date.range.generator'].create(
-            {'date_start': '1943-01-01',
-             'name_prefix': '1943-',
-             'type_id': rtype.id,
-             'duration_count': 3,
-             'unit_of_time': str(MONTHLY),
-             'count': 4}
+        cls.env["date.range.generator"].create(
+            {
+                "date_start": "1943-01-01",
+                "name_prefix": "1943-",
+                "type_id": rtype.id,
+                "duration_count": 3,
+                "unit_of_time": str(MONTHLY),
+                "count": 4,
+            }
         ).action_apply()
-        cls.ranges = cls.env['date.range'].search(
-            [('type_id', '=', rtype.id)])
+        cls.ranges = cls.env["date.range"].search([("type_id", "=", rtype.id)])
         cls.model = cls.env[TestDateRangeSearchMixin._name]
 
     @classmethod
@@ -45,17 +44,18 @@ class TestDateRangeearchMixin(SavepointCase):
         """The search field is injected in the model's search view"""
         self.assertIn(
             '<separator/><field name="date_range_search_id" string="Period"/>',
-            self.model.fields_view_get(view_type="search")["arch"]
+            self.model.fields_view_get(view_type="search")["arch"],
         )
         self.assertNotIn(
             '<separator/><field name="date_range_search_id" string="Period"/>',
-            self.model.fields_view_get(view_type="form")["arch"]
+            self.model.fields_view_get(view_type="form")["arch"],
         )
         # Having a view with a group element in it
-        view = self.env["ir.ui.view"].create({
-            "name": __name__,
-            "model": self.model._name,
-            "arch": """
+        view = self.env["ir.ui.view"].create(
+            {
+                "name": __name__,
+                "model": self.model._name,
+                "arch": """
                 <search>
                     <field name="name"/>
                     <group string="Group by">
@@ -63,10 +63,11 @@ class TestDateRangeearchMixin(SavepointCase):
                     </group>
                 </search>
             """,
-        })
+            }
+        )
         self.assertIn(
             '<separator/><field name="date_range_search_id" string="Period"/>',
-            self.model.fields_view_get(view_type="search")["arch"]
+            self.model.fields_view_get(view_type="search")["arch"],
         )
         # Having a view in which the field is added explicitely
         view.arch = """
@@ -80,7 +81,7 @@ class TestDateRangeearchMixin(SavepointCase):
         """
         self.assertNotIn(
             '<separator/><field name="date_range_search_id" string="Period"/>',
-            self.model.fields_view_get(view_type="search")["arch"]
+            self.model.fields_view_get(view_type="search")["arch"],
         )
 
     def test_02_search_result(self):
@@ -89,81 +90,56 @@ class TestDateRangeearchMixin(SavepointCase):
         self.assertFalse(record.date_range_search_id)
         self.assertIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "=", self.ranges[1].id)])
+            self.model.search([("date_range_search_id", "=", self.ranges[1].id)]),
         )
         self.assertNotIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "!=", self.ranges[1].id)])
+            self.model.search([("date_range_search_id", "!=", self.ranges[1].id)]),
         )
         self.assertIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "!=", self.ranges[0].id)])
+            self.model.search([("date_range_search_id", "!=", self.ranges[0].id)]),
         )
         self.assertNotIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "=", self.ranges[0].id)])
+            self.model.search([("date_range_search_id", "=", self.ranges[0].id)]),
+        )
+        self.assertIn(
+            record, self.model.search([("date_range_search_id", "in", self.ranges.ids)])
+        )
+        self.assertNotIn(
+            record,
+            self.model.search([("date_range_search_id", "not in", self.ranges.ids)]),
         )
         self.assertIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "in", self.ranges.ids)])
+            self.model.search([("date_range_search_id", "not in", self.ranges[3].ids)]),
         )
         self.assertNotIn(
             record,
-            self.model.search(
-                [("date_range_search_id", "not in", self.ranges.ids)])
+            self.model.search([("date_range_search_id", "in", self.ranges[3].ids)]),
         )
         self.assertIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "not in", self.ranges[3].ids)])
+            record, self.model.search([("date_range_search_id", "ilike", "1943")])
         )
         self.assertNotIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "in", self.ranges[3].ids)])
+            record, self.model.search([("date_range_search_id", "not ilike", "1943")])
         )
         self.assertIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "ilike", "1943")])
+            record, self.model.search([("date_range_search_id", "not ilike", "2021")])
         )
         self.assertNotIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "not ilike", "1943")])
+            record, self.model.search([("date_range_search_id", "ilike", "2021")])
+        )
+        self.assertIn(record, self.model.search([("date_range_search_id", "=", True)]))
+        self.assertNotIn(
+            record, self.model.search([("date_range_search_id", "=", False)])
         )
         self.assertIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "not ilike", "2021")])
+            record, self.model.search([("date_range_search_id", "!=", False)])
         )
         self.assertNotIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "ilike", "2021")])
-        )
-        self.assertIn(
-            record,
-            self.model.search([("date_range_search_id", "=", True)])
-        )
-        self.assertNotIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "=", False)])
-        )
-        self.assertIn(
-            record,
-            self.model.search([("date_range_search_id", "!=", False)])
-        )
-        self.assertNotIn(
-            record,
-            self.model.search(
-                [("date_range_search_id", "!=", True)])
+            record, self.model.search([("date_range_search_id", "!=", True)])
         )
 
     def test_03_read(self):
@@ -173,6 +149,7 @@ class TestDateRangeearchMixin(SavepointCase):
 
     def test_04_load_views(self):
         """Technical field label is replaced in `load_views`"""
-        field = self.model.load_views(
-            [(None, "form")])["fields"]["date_range_search_id"]
+        field = self.model.load_views([(None, "form")])["fields"][
+            "date_range_search_id"
+        ]
         self.assertNotIn("technical", field["string"])
