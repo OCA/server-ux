@@ -2,10 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from lxml import etree
 
-from odoo.osv.expression import (
-    NEGATIVE_TERM_OPERATORS, TRUE_DOMAIN, FALSE_DOMAIN
-)
 from odoo import _, api, fields, models
+from odoo.osv.expression import FALSE_DOMAIN, NEGATIVE_TERM_OPERATORS, TRUE_DOMAIN
 
 
 class DateRangeSearchMixin(models.AbstractModel):
@@ -17,7 +15,8 @@ class DateRangeSearchMixin(models.AbstractModel):
         comodel_name="date.range",
         string="Filter by period (technical field)",
         compute="_compute_date_range_search_id",
-        search="_search_date_range_search_id")
+        search="_search_date_range_search_id",
+    )
 
     def _compute_date_range_search_id(self):
         """Assign a dummy value for this search field"""
@@ -40,8 +39,7 @@ class DateRangeSearchMixin(models.AbstractModel):
         # a single id or a list of ids
         ranges = self.env["date.range"]
         if isinstance(value, str):
-            ranges = self.env["date.range"].search(
-                [("name", operator, value)])
+            ranges = self.env["date.range"].search([("name", operator, value)])
         else:
             if isinstance(value, int):
                 value = [value]
@@ -50,21 +48,26 @@ class DateRangeSearchMixin(models.AbstractModel):
         if not ranges:
             return FALSE_DOMAIN
         domain = (len(ranges) - 1) * ["|"] + sum(
-            (["&",
-              (self._date_range_search_field, ">=", date_range.date_start),
-              (self._date_range_search_field, "<=", date_range.date_end)]
-             for date_range in ranges),
-            [])
+            (
+                [
+                    "&",
+                    (self._date_range_search_field, ">=", date_range.date_start),
+                    (self._date_range_search_field, "<=", date_range.date_end),
+                ]
+                for date_range in ranges
+            ),
+            [],
+        )
         return domain
 
     @api.model
     def fields_view_get(
-            self, view_id=None, view_type='form', toolbar=False,
-            submenu=False):
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
         """Inject the dummy Many2one field in the search view"""
         result = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar,
-            submenu=submenu)
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        )
         if view_type != "search":
             return result
         root = etree.fromstring(result["arch"])
@@ -77,7 +80,7 @@ class DateRangeSearchMixin(models.AbstractModel):
             attrib={
                 "name": "date_range_search_id",
                 "string": _("Period"),
-            }
+            },
         )
         groups = root.xpath("/search/group")
         if groups:
@@ -87,7 +90,7 @@ class DateRangeSearchMixin(models.AbstractModel):
             search = root.xpath("/search")
             search[0].append(separator)
             search[0].append(field)
-        result['arch'] = etree.tostring(root, encoding='unicode')
+        result["arch"] = etree.tostring(root, encoding="unicode")
         return result
 
     @api.model
