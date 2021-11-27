@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo14-addon-mass_operation_abstract',
         'odoo14-addon-multi_step_wizard',
         'odoo14-addon-sequence_check_digit',
+        'odoo14-addon-sequence_range_end',
         'odoo14-addon-sequence_reset_period',
     ],
     classifiers=[
