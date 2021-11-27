@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sequence_range_end
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sequence_range_end
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence__display_name
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence_date_range__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sequence_range_end
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence__id
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence_date_range__id
+msgid "ID"
+msgstr ""
+
+#. module: sequence_range_end
+#: code:addons/sequence_range_end/models/ir_sequence.py:0
+#, python-format
+msgid "Invalid prefix or suffix for sequence '%s'"
+msgstr ""
+
+#. module: sequence_range_end
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence____last_update
+#: model:ir.model.fields,field_description:sequence_range_end.field_ir_sequence_date_range____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sequence_range_end
+#: model:ir.model,name:sequence_range_end.model_ir_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sequence_range_end
+#: model:ir.model,name:sequence_range_end.model_ir_sequence_date_range
+msgid "Sequence Date Range"
+msgstr ""
+
+#. module: sequence_range_end
+#: model_terms:ir.ui.view,arch_db:sequence_range_end.sequence_view
+msgid ""
+"You can also use 'range_end_' to use the end date of the range, e.g. "
+"%(range_end_year)s."
+msgstr ""
