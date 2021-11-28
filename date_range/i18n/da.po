@@ -185,6 +185,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__display_name
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__display_name
 msgid "Display Name"
 msgstr "Vist navn"
@@ -211,6 +212,11 @@ msgid ""
 msgstr ""
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__date_range_search_id
+msgid "Filter by period (technical field)"
+msgstr ""
+
+#. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -225,6 +231,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__id
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__id
 msgid "ID"
 msgstr "Id"
@@ -243,6 +250,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
+#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
 msgid "Last Modified on"
 msgstr "Sidst ændret den"
@@ -260,6 +268,11 @@ msgstr "Sidst opdateret af"
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__write_date
 msgid "Last Updated on"
 msgstr "Sidst opdateret den"
+
+#. module: date_range
+#: model:ir.model,name:date_range.model_date_range_search_mixin
+msgid "Mixin class to add a Many2one style period search field"
+msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__name
@@ -286,6 +299,12 @@ msgstr ""
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Parameters"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range_search_mixin.py:0
+#, python-format
+msgid "Period"
 msgstr ""
 
 #. module: date_range
