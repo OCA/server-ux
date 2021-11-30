@@ -116,6 +116,7 @@ msgstr ""
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid "None of the %d items you have selected can be processed."
 msgstr ""
@@ -167,11 +168,13 @@ msgstr ""
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid "The treatment will be processed on the %d selected elements."
 msgstr ""
 
 #. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
@@ -180,6 +183,7 @@ msgid ""
 msgstr ""
 
 #. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
