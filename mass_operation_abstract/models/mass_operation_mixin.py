@@ -15,7 +15,7 @@ class MassOperationMixin(models.AbstractModel):
 
     # To Overwrite Section (Optional)
     def _prepare_action_name(self):
-        return _("Mass Operation (%s)" % (self.name))
+        return _("Mass Operation (%s)") % self.name
 
     def _get_model_domain(self):
         return [("transient", "=", False)]
