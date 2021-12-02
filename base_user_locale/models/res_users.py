@@ -9,11 +9,15 @@ class ResUsers(models.Model):
 
     date_format = fields.Char(
         string="Date Format",
-        help="See Settings > Translations > Languages for details",
+        help="See Settings > Translations > Languages and then "
+        "click on any language to see the Legends for "
+        "supported Date and Time Formats and some examples",
     )
     time_format = fields.Char(
         string="Time Format",
-        help="See Settings > Translations > Languages for details",
+        help="See Settings > Translations > Languages and then "
+        "click on any language to see the Legends for "
+        "supported Date and Time Formats and some examples",
     )
     week_start = fields.Selection(
         string="Week Start",
@@ -30,12 +34,16 @@ class ResUsers(models.Model):
     decimal_point = fields.Char(
         string="Decimal Separator",
         trim=False,
-        help="See Settings > Translations > Languages for details",
+        help="See Settings > Translations > Languages and then "
+        "click on any language to see the Legends for "
+        "supported Date and Time Formats and some examples",
     )
     thousands_sep = fields.Char(
         string="Thousands Separator",
         trim=False,
-        help="See Settings > Translations > Languages for details",
+        help="See Settings > Translations > Languages and then "
+        "click on any language to see the Legends for "
+        "supported Date and Time Formats and some examples",
     )
 
     def preference_save(self):
