@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-19 17:10+0000\n"
-"PO-Revision-Date: 2018-03-19 17:10+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2021-12-03 12:37+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
-#, fuzzy
 msgid "Avoid Quick Create"
-msgstr "Evita creazione veloce"
+msgstr "Impedisci creazione rapida"
 
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/models/ir_model.py:21
