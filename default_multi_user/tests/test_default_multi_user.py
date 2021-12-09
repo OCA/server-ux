@@ -7,7 +7,7 @@ from odoo.tests import common, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestDefaultMultiUser(common.SavepointCase):
+class TestDefaultMultiUser(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
