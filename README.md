@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[base_menu_visibility_restriction](base_menu_visibility_restriction/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
 [base_technical_features](base_technical_features/) | 15.0.1.1.0 |  | Access to technical features without activating debug mode
 
 [//]: # (end addons)
