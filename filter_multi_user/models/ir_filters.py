@@ -47,6 +47,6 @@ class IrFilters(models.Model):
             ]
         )
         user_context = self.env["res.users"].context_get()
-        return filters.with_context(user_context).read(
+        return filters.with_context(**user_context).read(
             ["name", "is_default", "domain", "context", "user_id", "sort"]
         )
