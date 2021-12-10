@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-ux Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-base_menu_visibility_restriction>=15.0dev,<15.1dev',
         'odoo-addon-base_technical_features>=15.0dev,<15.1dev',
     ],
     classifiers=[
