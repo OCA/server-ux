@@ -88,24 +88,24 @@ class TestFilterMultiUser(common.SavepointCase):
         # User 1:
         res = self.filter_model.with_user(self.user_1).get_filters("ir.filters")
         result = []
-        for filter in res:
-            result.append(filter.get("id"))
+        for filters in res:
+            result.append(filters.get("id"))
         self.assertIn(test_filter_1.id, result)
         self.assertIn(test_filter_2.id, result)
         self.assertIn(test_filter_3.id, result)
         # User 2:
         res = self.filter_model.with_user(self.user_2).get_filters("ir.filters")
         result = []
-        for filter in res:
-            result.append(filter.get("id"))
+        for filters in res:
+            result.append(filters.get("id"))
         self.assertIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
         self.assertNotIn(test_filter_3.id, result)
         # User 3:
         res = self.filter_model.with_user(self.user_3).get_filters("ir.filters")
         result = []
-        for filter in res:
-            result.append(filter.get("id"))
+        for filters in res:
+            result.append(filters.get("id"))
         self.assertNotIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
         self.assertIn(test_filter_3.id, result)
