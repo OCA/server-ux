@@ -5,7 +5,7 @@ from odoo.exceptions import AccessError
 from odoo.tests import common
 
 
-class TestFilterMultiUser(common.SavepointCase):
+class TestFilterMultiUser(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
