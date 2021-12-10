@@ -18,7 +18,7 @@ class IrUiMenu(models.Model):
     @api.model
     @tools.ormcache("frozenset(self.env.user.groups_id.ids)", "debug")
     def _visible_menu_ids(self, debug=False):
-        """ Return the ids of the menu items visible to the user. """
+        """Return the ids of the menu items visible to the user."""
         visible = super()._visible_menu_ids(debug=debug)
         context = {"ir.ui.menu.full_list": True}
         menus = self.with_context(context).browse(visible)
