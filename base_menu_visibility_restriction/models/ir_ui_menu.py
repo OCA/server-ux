@@ -21,7 +21,7 @@ class IrUiMenu(models.Model):
         """Return the ids of the menu items visible to the user."""
         visible = super()._visible_menu_ids(debug=debug)
         context = {"ir.ui.menu.full_list": True}
-        menus = self.with_context(context).browse(visible)
+        menus = self.with_context(**context).browse(visible)
         groups = self.env.user.groups_id
         visible = menus - menus.filtered(lambda menu: menu.excluded_group_ids & groups)
         return set(visible.ids)
