@@ -4,7 +4,7 @@
         <field name="name">date.range.tree</field>
         <field name="model">date.range</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" string="Date range">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="type_id" />
                 <field name="date_start" />
@@ -42,7 +42,7 @@
         <field name="name">date.range.type.tree</field>
         <field name="model">date.range.type</field>
         <field name="arch" type="xml">
-            <tree string="Date range type">
+            <tree>
                 <field name="name" />
                 <field name="allow_overlap" />
                 <field

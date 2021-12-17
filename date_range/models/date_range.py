@@ -62,10 +62,12 @@ class DateRange(models.Model):
                 and rec.company_id != rec.type_id.company_id
             ):
                 raise ValidationError(
-                    _(
-                        "The Company in the Date Range and in "
-                        "Date Range Type must be the same."
-                    )
+                    _("%(name)s is not a valid range (%(date_start)s > %(date_end)s)")
+                    % {
+                        "name": rec.name,
+                        "date_start": rec.date_start,
+                        "date_end": rec.date_end,
+                    }
                 )
 
     @api.constrains("type_id", "date_start", "date_end", "company_id")
@@ -73,8 +75,12 @@ class DateRange(models.Model):
         for this in self:
             if this.date_start > this.date_end:
                 raise ValidationError(
-                    _("%s is not a valid range (%s > %s)")
-                    % (this.name, this.date_start, this.date_end)
+                    _("%(name)s is not a valid range (%(date_start)s > %(date_end)s)")
+                    % {
+                        "name": this.name,
+                        "date_start": this.date_start,
+                        "date_end": this.date_end,
+                    }
                 )
             if this.type_id.allow_overlap:
                 continue
@@ -106,7 +112,10 @@ class DateRange(models.Model):
             res = self.env.cr.fetchall()
             if res:
                 dt = self.browse(res[0][0])
-                raise ValidationError(_("%s overlaps %s") % (this.name, dt.name))
+                raise ValidationError(
+                    _("%(thisname)s overlaps %(dtname)s")
+                    % {"thisname": this.name, "dtname": dt.name}
+                )
 
     def get_domain(self, field_name):
         self.ensure_one()
