@@ -1,6 +1,7 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # Copyright 2021 Opener B.V. (<https://opener.amsterdam>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import logging
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
@@ -8,6 +9,8 @@ from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
 
 
 class DateRangeGenerator(models.TransientModel):
@@ -178,7 +181,7 @@ class DateRangeGenerator(models.TransientModel):
                         )
                     )
                 except (SyntaxError, ValueError) as e:
-                    raise ValidationError(_("Invalid name expression: %s") % e)
+                    raise ValidationError(_("Invalid name expression: %s") % e) from e
             elif name_prefix:
                 names.append(name_prefix + index)
             else:
@@ -199,7 +202,7 @@ class DateRangeGenerator(models.TransientModel):
                 try:
                     vals = wiz._generate_intervals()
                 except Exception:
-                    pass
+                    _logger.exception("Something happened generating intervals")
                 if vals:
                     names = wiz.generate_names(vals)
                     if names:
