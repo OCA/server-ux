@@ -4,10 +4,10 @@
 from dateutil.rrule import MONTHLY
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestDateRangeearchMixin(SavepointCase):
+class TestDateRangeearchMixin(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -38,7 +38,7 @@ class TestDateRangeearchMixin(SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super().tearDownClass()
+        return super().tearDownClass()
 
     def test_01_search_view(self):
         """The search field is injected in the model's search view"""
