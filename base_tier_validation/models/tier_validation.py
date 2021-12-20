@@ -277,7 +277,7 @@ class TierValidation(models.AbstractModel):
         )
         if has_comment:
             comment = has_comment.mapped("comment")[0]
-            return _("A review was accepted. (%s)" % comment)
+            return _("A review was accepted. (%s)") % comment
         return _("A review was accepted")
 
     def _add_comment(self, validate_reject, reviews):
@@ -322,9 +322,10 @@ class TierValidation(models.AbstractModel):
         )
         if has_comment:
             comment = has_comment.mapped("comment")[0]
-            return _(
-                "A review was rejected by {}. ({})".format(self.env.user.name, comment)
-            )
+            return _("A review was rejected by %(user)s. (%(comment)s)") % {
+                "user": self.env.user.name,
+                "comment": comment,
+            }
         return _("A review was rejected by %s.") % (self.env.user.name)
 
     def _notify_rejected_review(self):
@@ -422,8 +423,8 @@ class TierValidation(models.AbstractModel):
         self.review_ids._compute_can_review()
         notifications = []
         channel = "base.tier.validation"
-        notifications.append([channel, {}])
-        self.env["bus.bus"].sendmany(notifications)
+        notifications.append([self.env.user.partner_id, channel, {}])
+        self.env["bus.bus"]._sendmany(notifications)
 
     def unlink(self):
         self.mapped("review_ids").unlink()
