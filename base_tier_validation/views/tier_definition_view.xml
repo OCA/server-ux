@@ -6,7 +6,7 @@
         <field name="name">tier.definition.tree</field>
         <field name="model">tier.definition</field>
         <field name="arch" type="xml">
-            <tree string="Tier Definition">
+            <tree>
                 <field name="model_id" />
                 <field name="name" />
                 <field name="review_type" />
