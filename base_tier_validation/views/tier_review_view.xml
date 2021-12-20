@@ -7,7 +7,6 @@
         <field name="model">tier.review</field>
         <field name="arch" type="xml">
             <tree
-                string="Tier Review"
                 decoration-danger="status=='rejected'"
                 decoration-success="status=='approved'"
             >

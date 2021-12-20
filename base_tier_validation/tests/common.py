@@ -6,7 +6,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import common
 
 
-class CommonTierValidation(common.SavepointCase):
+class CommonTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(CommonTierValidation, cls).setUpClass()
@@ -76,4 +76,4 @@ class CommonTierValidation(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(CommonTierValidation, cls).tearDownClass()
+        return super(CommonTierValidation, cls).tearDownClass()
