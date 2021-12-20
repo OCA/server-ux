@@ -404,14 +404,14 @@ class TierTierValidation(CommonTierValidation):
         records = self.env["tier.validation.tester"].search(
             [("reviewer_ids", "=", False)]
         )
-        self.assertEquals(len(records), 1)
+        self.assertEqual(len(records), 1)
         self.test_record.with_user(self.test_user_2.id).request_validation()
         record = self.test_record.with_user(self.test_user_1.id)
         record.invalidate_cache()
         records = self.env["tier.validation.tester"].search(
             [("reviewer_ids", "=", False)]
         )
-        self.assertEquals(len(records), 0)
+        self.assertEqual(len(records), 0)
 
     def test_18_test_review_by_res_users_field(self):
         selected_field = self.env["ir.model.fields"].search(
