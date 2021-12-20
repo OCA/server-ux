@@ -157,7 +157,7 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_cache()
         res = record.validate_tier()
         ctx = res.get("context")
-        wizard = Form(self.env["comment.wizard"].with_context(ctx))
+        wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
         wiz.add_comment()
@@ -192,7 +192,7 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_cache()
         res = record.reject_tier()  # Rejection
         ctx = res.get("context")
-        wizard = Form(self.env["comment.wizard"].with_context(ctx))
+        wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
         wiz.add_comment()
