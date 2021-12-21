@@ -15,7 +15,7 @@ class TierValidation(models.AbstractModel):
         except Exception as error:
             raise UserError(
                 _("Error evaluating tier validation conditions.\n %s") % error
-            )
+            ) from error
         return res
 
     def evaluate_tier(self, tier):

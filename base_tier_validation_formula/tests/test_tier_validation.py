@@ -9,7 +9,7 @@ from odoo.tests.common import tagged
 
 
 @tagged("post_install", "-at_install")
-class TierTierValidation(common.SavepointCase):
+class TierTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
@@ -67,7 +67,7 @@ class TierTierValidation(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TierTierValidation, cls).tearDownClass()
+        return super(TierTierValidation, cls).tearDownClass()
 
     def test_01_reviewer_from_python_expression(self):
         tier_definition = self.tier_def_obj.create(
@@ -142,8 +142,8 @@ class TierTierValidation(common.SavepointCase):
             }
         )
         # Request validation
-        review = test_record.with_user(self.test_user_2).request_validation()
         with self.assertRaises(UserError):
+            review = test_record.with_user(self.test_user_2).request_validation()
             self.test_record.evaluate_formula_tier(review)
 
     def test_05_definition_from_domain_formula(self):
