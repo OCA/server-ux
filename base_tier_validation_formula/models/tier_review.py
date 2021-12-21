@@ -41,7 +41,7 @@ class TierReview(models.Model):
             except Exception as error:
                 raise UserError(
                     _("Error evaluating tier validation " "conditions.\n %s") % error
-                )
+                ) from error
             # Check if python expression returns 'res.users' recordset
             if (
                 not isinstance(reviewer_ids, models.Model)
