@@ -18,14 +18,14 @@ class BaseSubstateMixin(models.AbstractModel):
             if rec.substate_id and rec.state != target_state:
                 raise ValidationError(
                     _(
-                        'The substate "%s" is not define for the state'
-                        ' "%s" but for "%s" '
+                        "The substate %(name)s is not defined for the state"
+                        " %(state)s but for %(target_state)s "
                     )
-                    % (
-                        rec.substate_id.name,
-                        _(rec_states[rec.state]),
-                        _(rec_states[target_state]),
-                    )
+                    % {
+                        "name": rec.substate_id.name,
+                        "state": _(rec_states[rec.state]),
+                        "target_state": _(rec_states[target_state]),
+                    }
                 )
 
     def _track_template(self, tracking):
@@ -95,7 +95,7 @@ class BaseSubstateMixin(models.AbstractModel):
         string="Sub State",
         ondelete="restrict",
         default=lambda self: self._get_default_substate_id(),
-        track_visibility="onchange",
+        tracking=5,
         index=True,
         domain=lambda self: [("model", "=", self._name)],
         copy=False,
