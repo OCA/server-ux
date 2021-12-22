@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="ir_filters_view_form" model="ir.ui.view">
+        <field name="name">ir.filters.form - base_custom_filter</field>
+        <field name="model">ir.filters</field>
+        <field name="inherit_id" ref="base.ir_filters_view_form" />
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="type" />
+                <field
+                    name="group_id"
+                    domain="[('model_id', '=', model_id), ('type', '=', type)]"
+                    context="{'default_model_id': model_id, 'default_type': type}"
+                    attrs="{'invisible': [('type', '=', 'favorite')]}"
+                />
+            </field>
+            <field name="domain" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'groupby')]}</attribute>
+            </field>
+            <field name="domain" position="after">
+                <field
+                    name="groupby_field"
+                    domain="[('model', '=', model_id), ('store', '=', True)]"
+                    attrs="{'required': [('type', '=', 'groupby')], 'invisible': [('type', '!=', 'groupby')]}"
+                />
+            </field>
+            <field name="action_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+            </field>
+            <field name="is_default" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+            </field>
+            <field name="context" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+            </field>
+            <field name="sort" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="ir_filters_view_tree" model="ir.ui.view">
+        <field name="name">ir.filters.tree - base_custom_filter</field>
+        <field name="model">ir.filters</field>
+        <field name="inherit_id" ref="base.ir_filters_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="sequence" widget="handle" />
+            </field>
+            <field name="action_id" position="after">
+                <field name="type" />
+                <field name="groupby_field" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="ir_filters_view_tree_custom" model="ir.ui.view">
+        <field name="name">ir.filters.tree.custom</field>
+        <field name="model">ir.filters</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="type" />
+                <field name="group_id" />
+                <field name="domain" optional="hide" />
+                <field name="groupby_field" optional="hide" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_ir_custom_filter" model="ir.actions.act_window">
+        <field name="name">Custom Filters</field>
+        <field name="res_model">ir.filters</field>
+        <field name="domain">[('type', '!=', 'favorite')]</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('base_custom_filter.ir_filters_view_tree_custom')}),
+            (0, 0, {'view_mode': 'form'})]"
+        />
+        <field name="context">{'default_type': 'filter'}</field>
+    </record>
+    <menuitem
+        id="menu_base_custom_filter"
+        name="Custom Filters"
+        parent="base.menu_administration"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_ir_custom_filter"
+        action="action_ir_custom_filter"
+        parent="menu_base_custom_filter"
+        sequence="20"
+    />
+</odoo>
