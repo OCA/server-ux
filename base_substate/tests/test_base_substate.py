@@ -6,9 +6,8 @@ from odoo.tests import common
 from .sale_test import LineTest, SaleTest
 
 
-@common.at_install(False)
-@common.post_install(True)
-class TestBaseSubstate(common.SavepointCase):
+@common.tagged("post_install", "-at_install")
+class TestBaseSubstate(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseSubstate, cls).setUpClass()
@@ -92,7 +91,7 @@ class TestBaseSubstate(common.SavepointCase):
     def tearDownClass(cls):
         SaleTest._test_teardown_model(cls.env)
         LineTest._test_teardown_model(cls.env)
-        super().tearDownClass()
+        return super().tearDownClass()
 
     def test_sale_order_substate(self):
         partner = self.env.ref("base.res_partner_1")
