@@ -72,8 +72,8 @@
     </record>
     <menuitem
         id="menu_substate_config"
-        parent="base.next_id_9"
-        sequence="3"
+        parent="base.menu_custom"
+        sequence="10"
         name="Sub State Configuration"
     />
     <menuitem
