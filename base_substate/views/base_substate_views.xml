@@ -19,14 +19,14 @@
         <field name="arch" type="xml">
             <form string="Base Substate" name="base_substate">
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
-                    <widget
-                        name="web_ribbon"
-                        title="Archived"
-                        bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
-                    />
-                    <field name="active" invisible="1" />
+                    <div class="oe_button_box" name="button_box">
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
+                    </div>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
                         <h1>
@@ -35,6 +35,7 @@
                     </div>
                     <group>
                         <group name="substate_definition">
+                            <field name="active" invisible="1" />
                             <field name="description" />
                             <field name="sequence" />
                             <field name="target_state_value_id" />
