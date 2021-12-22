@@ -5,11 +5,11 @@ from odoo import fields, models
 
 
 class BaseSubstateType(models.Model):
-    """This model define technical data which precises
+    """This model defines technical data which precises
     for each target model concerned by substate,
     the technical "state" field name.
     Data in this model should be created by import as technical data
-    in the specific module. For exemple in sale_subsatate we can define:
+    in the specific module. For example in sale_substate we can define:
     base.substate.type:
      - name: Sale order Substate
      - model: sale.order
