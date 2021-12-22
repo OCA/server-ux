@@ -48,7 +48,9 @@ class TargetStateValue(models.Model):
         'Ex: for sale order "Quotation", "Sale order", "Locked"...',
     )
     base_substate_type_id = fields.Many2one(
-        "base.substate.type", string="Substate Type", ondelete="restrict",
+        "base.substate.type",
+        string="Substate Type",
+        ondelete="restrict",
     )
     target_state_value = fields.Char(
         required=True,
@@ -80,7 +82,8 @@ class BaseSubstate(models.Model):
     name = fields.Char("Substate Name", required=True, translate=True)
     description = fields.Text(translate=True)
     sequence = fields.Integer(
-        index=True, help="Gives the sequence order when applying the default substate",
+        index=True,
+        help="Gives the sequence order when applying the default substate",
     )
     target_state_value_id = fields.Many2one(
         "target.state.value", string="Target State Value", ondelete="restrict"
