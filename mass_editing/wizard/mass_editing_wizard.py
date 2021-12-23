@@ -172,8 +172,7 @@ class MassEditingWizard(models.TransientModel):
                         values.update({split_key: vals.get(split_key, False)})
 
                     elif val == "set_o2m":
-                        values.update({
-                            split_key: vals.get(split_key, [(6, 0, [])])})
+                        values.update({split_key: vals.get(split_key, [(6, 0, [])])})
 
                     elif val == "remove":
                         values.update({split_key: False})

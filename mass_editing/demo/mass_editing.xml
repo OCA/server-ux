@@ -54,6 +54,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="widget_option">image</field>
     </record>
 
+    <!-- Mass Edit Partner -->
+    <record id="mass_editing_partner" model="ir.actions.server">
+        <field name="state">mass_edit</field>
+        <field name="name">Mass Edit</field>
+        <field name="model_id" ref="base.model_res_partner" />
+    </record>
+    <record id="mass_editing_partner_line_1" model="mass.editing.line">
+        <field name="server_action_id" ref="mass_editing_partner" />
+        <field name="field_id" ref="base.field_res_partner__child_ids" />
+    </record>
+
     <!-- Mass Edit Partner Title -->
     <record id="mass_editing_partner_title" model="ir.actions.server">
         <field name="state">mass_edit</field>
@@ -67,6 +78,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <!-- Add context actions -->
     <function model="ir.actions.server" name="create_action">
-        <value eval="[ref('mass_editing_user'), ref('mass_editing_partner_title')]" />
+        <value
+            eval="[ref('mass_editing_user'), ref('mass_editing_partner'), ref('mass_editing_partner_title')]"
+        />
     </function>
 </odoo>
