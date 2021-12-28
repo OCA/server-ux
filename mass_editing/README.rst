@@ -14,13 +14,13 @@ Mass Editing
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/14.0/mass_editing
+    :target: https://github.com/OCA/server-ux/tree/15.0/mass_editing
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-14-0/server-ux-14-0-mass_editing
+    :target: https://translation.odoo-community.org/projects/server-ux-15-0/server-ux-15-0-mass_editing
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/250/14.0
+    :target: https://runbot.odoo-community.org/runbot/250/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -57,7 +57,7 @@ Configuration
 
 * Select the object and add the fields of that object on which you want to apply mass editing.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/14.0/mass_editing/static/description/mass_editing_form.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/15.0/mass_editing/static/description/mass_editing_form.png
    :width: 70%
 
 * *Add Action*: Click on *Create Contextual Action* to add mass editing in *Action* menu.
@@ -75,17 +75,17 @@ Usage
 
 * *Go for Mass Editing*: select the records which you want to modify and click on *Action* to open mass editing popup.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/14.0/mass_editing/static/description/mass_editing-item_tree.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/15.0/mass_editing/static/description/mass_editing-item_tree.png
    :width: 70%
 
 * Select *Set / Remove* action and write down the value to set or remove the value for the given field.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/14.0/mass_editing/static/description/mass_editing-wizard_form.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/15.0/mass_editing/static/description/mass_editing-wizard_form.png
    :width: 70%
 
 * This way you can set / remove the values of the fields.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-ux/14.0/mass_editing/static/description/mass_editing-item_tree-result.png
+.. image:: https://raw.githubusercontent.com/OCA/server-ux/15.0/mass_editing/static/description/mass_editing-item_tree-result.png
    :width: 70%
 
 Known issues / Roadmap
@@ -99,7 +99,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20mass_editing%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20mass_editing%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -130,6 +130,7 @@ Contributors
 
   * Jairo Llopis
   * Víctor Martínez
+* Tatiana Deribina <tatiana.deribina@spritnit.fi>
 
 Maintainers
 ~~~~~~~~~~~
@@ -144,6 +145,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/14.0/mass_editing>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/15.0/mass_editing>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
