@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,13 +46,13 @@ msgid "Apply"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
-msgid "Apply default domain related to field"
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
+msgid "Apply Domain"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
-msgid "Apply domain"
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
+msgid "Apply default domain related to field"
 msgstr ""
 
 #. module: mass_editing
@@ -79,7 +79,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
 msgid "Display Name"
@@ -96,7 +95,6 @@ msgid "Fields"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 msgid "ID"
@@ -109,7 +107,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
 msgid "Last Modified on"
@@ -176,7 +173,7 @@ msgstr ""
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
-msgid "None of the %d record(s) you have selected can be processed."
+msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
 
 #. module: mass_editing
@@ -232,7 +229,7 @@ msgstr ""
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
-msgid "The treatment will be processed on the %d selected record(s)."
+msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr ""
 
 #. module: mass_editing
@@ -263,6 +260,6 @@ msgstr ""
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid ""
-"You have selected %d record(s) that can not be processed.\n"
-"Only %d record(s) will be processed."
+"You have selected %(origin_amount)d record(s) that can not be processed.\n"
+"Only %(amount)d record(s) will be processed."
 msgstr ""
