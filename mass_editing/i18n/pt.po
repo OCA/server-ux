@@ -1,0 +1,292 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mass_editing
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 01:12+0000\n"
+"PO-Revision-Date: 2021-01-11 01:44+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: mass_editing
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
+msgid ""
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
+msgstr ""
+"<b>AVISO</b>: Tenha em consideração que, se adicionar um campo com um "
+"domínio e não incluir os campos desse domínio da definição da operação, "
+"obterá um erro na tentativa de execução. Certifique-se de que os inclui."
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
+msgid "Action Name"
+msgstr "Nome da Ação"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid "Add"
+msgstr "Adicionar"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
+msgid ""
+"Add widget text that will be used to display the field in the wizard. "
+"Example :\n"
+"'many2many_tags', 'selection'"
+msgstr ""
+"Adicionar texto do widget que será usado para exibir o campo do assistente. "
+"Exemplo:\n"
+"'many2many_tags', 'selection'"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__groups_id
+msgid "Allowed Groups"
+msgstr "Grupos Permitidos"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
+msgid "Apply default domain related to field"
+msgstr "Aplicar domínio pré-definido relacionado com um campo"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
+msgid "Apply domain"
+msgstr "Aplicar domínio"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
+msgid "Apply domain in lines"
+msgstr "Aplicar domínio nas linhas"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__display_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__display_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
+msgid "Display Name"
+msgstr "Nome a Exibir"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
+msgid "Domain"
+msgstr "Domínio"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
+msgid "Field"
+msgstr "Campo"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
+msgid "ID"
+msgstr "Id"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing__message
+msgid "If set, this message will be displayed in the wizard."
+msgstr "Se atribuído, esta mensagem será exibida no assistente."
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line____last_update
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
+msgid "Line"
+msgstr "Linha"
+
+#. module: mass_editing
+#: model:ir.actions.act_window,name:mass_editing.action_mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__mass_editing_id
+#: model:ir.ui.menu,name:mass_editing.menu_mass_editing
+msgid "Mass Editing"
+msgstr "Edição em Massa"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_line
+msgid "Mass Editing Line"
+msgstr "Linha de Edição em Massa"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
+msgid "Message"
+msgstr "Mensagem"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
+msgid "Operation Description Danger"
+msgstr "Perigo da Descrição da Operação"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
+msgid "Operation Description Info"
+msgstr "Info da Descrição da Operação"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
+msgid "Operation Description Warning"
+msgstr "Aviso da Descrição da Operação"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
+msgid "Remaining Item Qty"
+msgstr "Qtd de Itens Restantes"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid "Remove"
+msgstr "Remover"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
+msgid "Selected Item Qty"
+msgstr "Qtd de Itens Selecionados"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid "Set"
+msgstr "Atribuir"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
+msgid "Sidebar Action"
+msgstr "Ação da Barra Lateral"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
+msgid "Widget Option"
+msgstr "Opção do Widget"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_wizard
+msgid "Wizard for mass edition"
+msgstr "Assistente de edição em massa"
+
+#~ msgid "%s (copy)"
+#~ msgstr "%s (cópia)"
+
+#~ msgid "Add Sidebar Button"
+#~ msgstr "Adicionar Botão na Barra Lateral"
+
+#~ msgid "Advanced"
+#~ msgstr "Avançado"
+
+#~ msgid ""
+#~ "Display a button in the sidebar of related documents to open a "
+#~ "composition wizard"
+#~ msgstr ""
+#~ "Apresentar um botão na barra lateral do documento relacionado para abrir "
+#~ "um assistente de composição"
+
+#~ msgid "Mass Editing (%s)"
+#~ msgstr "Edição Múltipla (%s)"
+
+#~ msgid "Mass Editing Object"
+#~ msgstr "Objeto de Edição Múltipla"
+
+#~ msgid "Model List"
+#~ msgstr "Lista de Modelos"
+
+#~ msgid ""
+#~ "Model is used for Selecting Fields. This is editable until Sidebar menu "
+#~ "is not created."
+#~ msgstr ""
+#~ "O modelo é usada para a seleção de campos. É editável até o menu da barra "
+#~ "lateral ser criado."
+
+#~ msgid "Name must be unique!"
+#~ msgstr "O nome tem que ser único!"
+
+#~ msgid "Object"
+#~ msgstr "Objeto"
+
+#~ msgid "Remove Sidebar Button"
+#~ msgstr "Remover Botão na Barra Lateral"
+
+#~ msgid ""
+#~ "Remove the contextual action to use this template on related documents"
+#~ msgstr ""
+#~ "Remover a ação contextual para usar este modelo em documentos relacionados"
+
+#~ msgid ""
+#~ "Sidebar action to make this template available on records of the related "
+#~ "document model."
+#~ msgstr ""
+#~ "Ação de barra lateral para tornar este modelo disponível em registos do "
+#~ "modelos de documento relacionado."
+
+#~ msgid "mass.editing.wizard"
+#~ msgstr "mass.editing.wizard"
+
+#~ msgid "Sidebar button"
+#~ msgstr "Botão da Barra Lateral"
+
+#~ msgid "Sidebar button to open the sidebar action."
+#~ msgstr "Botão da barra lateral para despoletar a ação."
