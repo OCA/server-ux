@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="test.binary" id="test_binary_demo">
+        <field name="name">demo</field>
+    </record>
+</odoo>

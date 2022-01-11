@@ -95,10 +95,7 @@ class BaseBinaryURLImport(models.TransientModel):
             "binary_url_to_import": url,
         }
 
-    def lines_sanity_check(self):
-        """Check if IDs are existing for selected model and we don't have two
-        lines matching same record"""
-        self.ensure_one()
+    def _get_db_and_xml_ids(self):
         db_ids = []
         xml_ids = []
         # Check target IDs are integers or XMLIDs
@@ -106,10 +103,11 @@ class BaseBinaryURLImport(models.TransientModel):
             id_type = wiz_line._get_identifier_type()
             if id_type == "db_id":
                 db_ids.append(int(wiz_line.target_record_identifier))
-                continue
-            if id_type == "xml_id":
+            elif id_type == "xml_id":
                 xml_ids.append(wiz_line.target_record_identifier)
-        # Check DB IDs exist
+        return db_ids, xml_ids
+
+    def _check_db_ids_exist(self, db_ids):
         db_ids_records = self.env[self.target_model_id.model].browse(db_ids).exists()
         unexisting_ids = set(db_ids) - set(db_ids_records.ids)
         if unexisting_ids:
@@ -117,7 +115,8 @@ class BaseBinaryURLImport(models.TransientModel):
                 _("Following IDs do not exist in database:\n %s")
                 % LINE_BREAK_CHAR.join([str(db_id) for db_id in unexisting_ids])
             )
-        # Check we don't have two lines targeting same DB ID
+
+    def _check_db_ids_duplicated(self, db_ids):
         db_ids_set = set(db_ids)
         if len(db_ids_set) != len(db_ids):
             db_ids_counter = Counter(db_ids)
@@ -128,8 +127,8 @@ class BaseBinaryURLImport(models.TransientModel):
                 _("Same database IDs are duplicated:\n %s")
                 % LINE_BREAK_CHAR.join([str(db_id) for db_id in duplicated_db_ids])
             )
-        # Check XML IDs exist and match target model
-        xml_ids_records_ids_map = {}
+
+    def _check_xml_ids_exist(self, xml_ids):
         unexisting_xml_ids = []
         for xml_id in xml_ids:
             xml_id_rec = self.env.ref(xml_id, raise_if_not_found=False)
@@ -145,7 +144,8 @@ class BaseBinaryURLImport(models.TransientModel):
                 _("Following XML IDs do not exist in database:\n %s")
                 % LINE_BREAK_CHAR.join(unexisting_xml_ids)
             )
-        # Check we don't have two lines targeting same XML ID
+
+    def _check_xml_ids_duplicated(self, xml_ids):
         xml_ids_set = set(xml_ids)
         if len(xml_ids_set) != len(xml_ids):
             xml_ids_counter = Counter(xml_ids)
@@ -158,7 +158,13 @@ class BaseBinaryURLImport(models.TransientModel):
                 _("Same XML IDs are duplicated:\n %s")
                 % LINE_BREAK_CHAR.join(duplicated_xml_ids)
             )
-        # Check no intersection between XML IDs and DB IDs
+
+    def _check_db_ids_xml_ids_intersecting(self, db_ids, xml_ids):
+        xml_ids_records_ids_map = {
+            xml_id: self.env.ref(xml_id, raise_if_not_found=False).id
+            for xml_id in xml_ids
+        }
+        db_ids_set = set(db_ids)
         xml_ids_db_ids_set = set(xml_ids_records_ids_map.values())
         intersects = db_ids_set.intersection(xml_ids_db_ids_set)
         if intersects:
@@ -166,6 +172,22 @@ class BaseBinaryURLImport(models.TransientModel):
                 _("Following DB IDs intersect with XML IDs:\n %s")
                 % LINE_BREAK_CHAR.join([str(db_id) for db_id in intersects])
             )
+
+    def lines_sanity_check(self):
+        """Check if IDs are existing for selected model and we don't have two
+        lines matching same record"""
+        self.ensure_one()
+        db_ids, xml_ids = self._get_db_and_xml_ids()
+        # Check DB IDs exist
+        self._check_db_ids_exist(db_ids)
+        # Check we don't have two lines targeting same DB ID
+        self._check_db_ids_duplicated(db_ids)
+        # Check XML IDs exist and match target model
+        self._check_xml_ids_exist(xml_ids)
+        # Check we don't have two lines targeting same XML ID
+        self._check_xml_ids_duplicated(xml_ids)
+        # Check no intersection between XML IDs and DB IDs
+        self._check_db_ids_xml_ids_intersecting(db_ids, xml_ids)
 
     def action_import_lines(self):
         self.ensure_one()
