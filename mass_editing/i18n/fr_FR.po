@@ -19,9 +19,9 @@ msgstr ""
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid ""
-"<b>WARNING</b>: Take into account that adding a field with a domain, and not"
-" including the fields of such domain in this operation definition, will lead"
-" to an error when trying to perform it. Make sure you include them."
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
 msgstr ""
 "<b>Attention</b> : Tenez compte du fait que l'ajout d'un champ avec un "
 "domaine, et le fait de ne pas inclure les champs de ce domaine dans la "
@@ -135,6 +135,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mass_editing
+#: model:ir.actions.server,name:mass_editing.mass_editing_partner
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
@@ -208,7 +209,6 @@ msgstr "Eléments restants"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
 msgstr "Retirer"
@@ -231,7 +231,6 @@ msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
 msgstr "Definir"
@@ -250,7 +249,8 @@ msgid ""
 "- 'Execute Python Code': a block of python code that will be executed\n"
 "- 'Create': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other server actions\n"
+"- 'Execute several actions': define an action that triggers several other "
+"server actions\n"
 "- 'Send Email': automatically send an email (Discuss)\n"
 "- 'Add Followers': add followers to a record (Discuss)\n"
 "- 'Create Next Activity': create an activity (Discuss)"

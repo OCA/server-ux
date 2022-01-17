@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid ""
 "<b>WARNING</b>: Take into account that adding a field with a domain, and not "
 "including the fields of such domain in this operation definition, will lead "
@@ -28,8 +28,9 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
-msgid "Action Name"
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:mass_editing.field_ir_cron__state
+msgid "Action To Do"
 msgstr ""
 
 #. module: mass_editing
@@ -41,14 +42,13 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
 msgid ""
-"Add widget text that will be used to display the field in the wizard. "
-"Example :\n"
-"'many2many_tags', 'selection'"
+"Add widget text that will be used to display the field in the wizard.\n"
+"Example: 'many2many_tags', 'selection', 'image'"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__groups_id
-msgid "Allowed Groups"
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
+msgid "Apply"
 msgstr ""
 
 #. module: mass_editing
@@ -62,35 +62,34 @@ msgid "Apply domain"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_apply_domain_in_lines
+#: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_apply_domain_in_lines
 msgid "Apply domain in lines"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_date
 msgid "Created on"
 msgstr "Creado"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__display_name
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
 msgid "Display Name"
 msgstr "Nombre Público"
-
-#. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
-msgid "Domain"
-msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
@@ -98,49 +97,58 @@ msgid "Field"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
+msgid "Fields"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: mass_editing
-#: model:ir.model.fields,help:mass_editing.field_mass_editing__message
+#: model:ir.model.fields,help:mass_editing.field_ir_actions_server__mass_edit_message
+#: model:ir.model.fields,help:mass_editing.field_ir_cron__mass_edit_message
 msgid "If set, this message will be displayed in the wizard."
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Actualizado por"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_date
 msgid "Last Updated on"
 msgstr "Actualizado"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
-msgid "Line"
+#: model:ir.actions.server,name:mass_editing.mass_editing_partner
+#: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
+#: model:ir.actions.server,name:mass_editing.mass_editing_user
+msgid "Mass Edit"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.actions.act_window,name:mass_editing.action_mass_editing
-#: model:ir.model,name:mass_editing.model_mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__mass_editing_id
-#: model:ir.ui.menu,name:mass_editing.menu_mass_editing
-msgid "Mass Editing"
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_line_ids
+#: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_line_ids
+msgid "Mass Edit Line"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields.selection,name:mass_editing.selection__ir_actions_server__state__mass_edit
+msgid "Mass Edit Records"
 msgstr ""
 
 #. module: mass_editing
@@ -149,21 +157,34 @@ msgid "Mass Editing Line"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
+#: code:addons/mass_editing/models/mass_editing_line.py:0
+#, python-format
+msgid "Mass edit fields should belong to the server action model."
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_message
+#: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
+#: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid "Message"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__model_id
 msgid "Model"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__name
-msgid "Name"
-msgstr "Nombre"
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line__model_id
+msgid "Model on which the server action runs."
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid "None of the %d record(s) you have selected can be processed."
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
@@ -202,14 +223,36 @@ msgid "Sequence"
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model,name:mass_editing.model_ir_actions_server
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__server_action_id
+msgid "Server Action"
+msgstr ""
+
+#. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
-msgid "Sidebar Action"
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid "The treatment will be processed on the %d selected record(s)."
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
+#: model:ir.model.fields,help:mass_editing.field_ir_cron__state
+msgid ""
+"Type of server action. The following values are available:\n"
+"- 'Execute Python Code': a block of python code that will be executed\n"
+"- 'Create': create a new record with new values\n"
+"- 'Update a Record': update the values of a record\n"
+"- 'Execute several actions': define an action that triggers several other "
+"server actions\n"
+"- 'Send Email': automatically send an email (Discuss)\n"
+"- 'Add Followers': add followers to a record (Discuss)\n"
+"- 'Create Next Activity': create an activity (Discuss)"
 msgstr ""
 
 #. module: mass_editing
@@ -221,3 +264,14 @@ msgstr ""
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
 msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid ""
+"You have selected %d record(s) that can not be processed.\n"
+"Only %d record(s) will be processed."
+msgstr ""
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
