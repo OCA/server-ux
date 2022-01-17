@@ -21,12 +21,14 @@ class TestMassEditing(common.SavepointCase):
         self.IrActionsActWindow = self.env["ir.actions.act_window"]
 
         self.mass_editing_user = self.env.ref("mass_editing.mass_editing_user")
+        self.mass_editing_partner = self.env.ref("mass_editing.mass_editing_partner")
         self.mass_editing_partner_title = self.env.ref(
             "mass_editing.mass_editing_partner_title"
         )
 
         self.users = self.env["res.users"].search([])
         self.user = self.env.ref("base.user_demo")
+        self.partner = self.user.partner_id
         self.partner_title = self._create_partner_title()
 
     def _create_partner_title(self):
@@ -178,6 +180,32 @@ class TestMassEditing(common.SavepointCase):
             self.mass_editing_user.write(
                 {"model_id": self.env.ref("base.model_res_country").id}
             )
+
+    def test_mass_edit_o2m_child_ids(self):
+        """Test Case for MASS EDITING which will remove and after add
+        Partner's child_ids and will assert the same."""
+        # Add one child_ids
+        self.env["res.partner"].with_user(self.user).create(
+            {"name": "test", "parent_id": self.partner.id}
+        )
+        self.assertTrue(self.partner.child_ids)
+        # Remove one child_ids
+        vals = {"selection__child_ids": "remove_o2m"}
+        self._create_wizard_and_apply_values(
+            self.mass_editing_partner, self.partner, vals
+        )
+        self.assertFalse(
+            self.partner.child_ids.exists(), "Partner's child_ids should be removed."
+        )
+        # Set one child_ids
+        vals = {
+            "selection__child_ids": "set_o2m",
+            "child_ids": [(0, 0, {"name": "test", "parent_id": self.partner.id})],
+        }
+        self._create_wizard_and_apply_values(
+            self.mass_editing_partner, self.partner, vals
+        )
+        self.assertTrue(self.partner.child_ids, "Partner's log_ids should be set.")
 
     def test_onchanges(self):
         """Test that form onchanges do what they're supposed to"""
