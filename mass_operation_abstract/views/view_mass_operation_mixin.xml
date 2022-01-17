@@ -11,7 +11,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <search>
                 <field name="name" />
                 <field name="model_id" />
-                <field name="groups_id" />
+                <field name="group_ids" />
             </search>
         </field>
     </record>
@@ -21,7 +21,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <tree decoration-muted="(ref_ir_act_window_id == False)">
                 <field name="name" />
                 <field name="model_id" />
-                <field name="groups_id" />
+                <field name="group_ids" />
                 <field name="ref_ir_act_window_id" invisible="1" />
             </tree>
         </field>
@@ -77,10 +77,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 name="domain"
                                 attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"
                             />
-                            <field
-                                name="groups_id"
-                                attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"
-                            />
                         </group>
                         <group>
                             <field name="message" />
@@ -96,6 +92,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     attrs="{'invisible':[('ref_ir_act_window_id', '=', False)]}"
                                 />
                             </group>
+                        </page>
+                        <page string="Security">
+                            <field
+                                name="group_ids"
+                                nolabel="1"
+                                attrs="{'readonly': [('ref_ir_act_window_id', '!=', False)]}"
+                            />
                         </page>
                     </notebook>
                 </sheet>

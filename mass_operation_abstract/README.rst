@@ -36,8 +36,6 @@ operations on any models.
 Known issues / Roadmap
 ======================
 
-* Propose this module in the OCA. (server-tools repository)
-
 * refactor ``mass_editing`` and ``mass_sorting`` OCA modules to depend on
   this module.
 

@@ -15,7 +15,7 @@ class MassOperationMixin(models.AbstractModel):
 
     # To Overwrite Section (Optional)
     def _prepare_action_name(self):
-        return _("Mass Operation (%s)" % (self.name))
+        return _("Mass Operation (%s)") % self.name
 
     def _get_model_domain(self):
         return [("transient", "=", False)]
@@ -45,7 +45,13 @@ class MassOperationMixin(models.AbstractModel):
         copy=False,
     )
 
-    groups_id = fields.Many2one(comodel_name="res.groups", string="Allowed Groups")
+    group_ids = fields.Many2many(
+        comodel_name="res.groups",
+        relation="mass_group_rel",
+        column1="mass_id",
+        column2="group_id",
+        string="Allowed Groups",
+    )
 
     domain = fields.Char(string="Domain", required=True, default="[]")
 
@@ -61,9 +67,11 @@ class MassOperationMixin(models.AbstractModel):
         for mixin in self:
             if not mixin.ref_ir_act_window_id:
                 mixin.ref_ir_act_window_id = action_obj.create(mixin._prepare_action())
+        return True
 
     def disable_mass_operation(self):
         self.mapped("ref_ir_act_window_id").unlink()
+        return True
 
     # Overload Section
     def unlink(self):
@@ -82,7 +90,7 @@ class MassOperationMixin(models.AbstractModel):
             "name": self.action_name,
             "type": "ir.actions.act_window",
             "res_model": self._wizard_model_name,
-            "groups_id": [(6, 0, self.groups_id.ids)],
+            "groups_id": [(6, 0, self.group_ids.ids)],
             "context": """{
                 'mass_operation_mixin_id' : %d,
                 'mass_operation_mixin_name' : '%s',
