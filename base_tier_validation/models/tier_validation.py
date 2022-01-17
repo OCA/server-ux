@@ -105,18 +105,24 @@ class TierValidation(models.AbstractModel):
         assert operator in ("=", "!="), "Invalid domain operator"
         assert value in (True, False), "Invalid domain value"
         pos = self.search([(self._state_field, "in", self._state_from)]).filtered(
-            lambda r: r.review_ids and r.validated == value
+            lambda r: r.validated
         )
-        return [("id", "in", pos.ids)]
+        if value:
+            return [("id", "in", pos.ids)]
+        else:
+            return [("id", "not in", pos.ids)]
 
     @api.model
     def _search_rejected(self, operator, value):
         assert operator in ("=", "!="), "Invalid domain operator"
         assert value in (True, False), "Invalid domain value"
         pos = self.search([(self._state_field, "in", self._state_from)]).filtered(
-            lambda r: r.review_ids and r.rejected == value
+            lambda r: r.rejected
         )
-        return [("id", "in", pos.ids)]
+        if value:
+            return [("id", "in", pos.ids)]
+        else:
+            return [("id", "not in", pos.ids)]
 
     @api.model
     def _search_reviewer_ids(self, operator, value):
@@ -210,11 +216,16 @@ class TierValidation(models.AbstractModel):
                     reviews = rec.request_validation()
                     rec._validate_tier(reviews)
                     if not self._calc_reviews_validated(reviews):
+                        pending_reviews = reviews.filtered(
+                            lambda r: r.status == "pending"
+                        ).mapped("name")
                         raise ValidationError(
                             _(
                                 "This action needs to be validated for at least "
-                                "one record. \nPlease request a validation."
+                                "one record. Reviews pending:\n - %s "
+                                "\nPlease request a validation."
                             )
+                            % "\n - ".join(pending_reviews)
                         )
                 if rec.review_ids and not rec.validated:
                     raise ValidationError(
@@ -229,7 +240,7 @@ class TierValidation(models.AbstractModel):
                 and not rec._check_allow_write_under_validation(vals)
             ):
                 raise ValidationError(_("The operation is under validation."))
-        if vals.get(self._state_field) in self._state_from:
+        if vals.get(self._state_field) in (self._state_from + [self._cancel_state]):
             self.mapped("review_ids").unlink()
         return super(TierValidation, self).write(vals)
 
