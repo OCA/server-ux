@@ -43,7 +43,7 @@ msgid "Add sidebar button"
 msgstr "Aggiungi pulsante laterale"
 
 #. module: mass_operation_abstract
-#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__groups_id
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
 msgid "Allowed Groups"
 msgstr "Gruppi Consentiti"
 
@@ -151,6 +151,11 @@ msgid "Remove sidebar button"
 msgstr "Rimuovi pulsante laterale"
 
 #. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Security"
+msgstr ""
+
+#. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__selected_item_qty
 msgid "Selected Item Qty"
 msgstr "Qta Elementi Selezionati"
@@ -180,18 +185,24 @@ msgstr "L'operazione sarà eseguita sugli %d elementi selezionati."
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
+"There is no more element that corresponds to the rules of the domain.\n"
+" Please refresh your list and try to select again the items."
+msgstr ""
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid ""
 "You have selected %d items that can not be processed. Only %d items will be "
 "processed."
 msgstr ""
 "Hai selezionato %d elementi che non possono essere elaborati. Solo %d "
 "elementi saranno elaborati."
 
-#. module: mass_operation_abstract
-#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
-#, python-format
-msgid ""
-"there is no more element that corresponds to the rules of the domain.\n"
-" Please refresh your list and try to select again the items."
-msgstr ""
-"non ci sono ulteriori elementi che corrispondono alle regole del dominio.\n"
-" Prego aggiornare la lista e provare a selezionare di nuovo gli elementi."
+#~ msgid ""
+#~ "there is no more element that corresponds to the rules of the domain.\n"
+#~ " Please refresh your list and try to select again the items."
+#~ msgstr ""
+#~ "non ci sono ulteriori elementi che corrispondono alle regole del "
+#~ "dominio.\n"
+#~ " Prego aggiornare la lista e provare a selezionare di nuovo gli elementi."
