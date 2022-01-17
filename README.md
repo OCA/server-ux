@@ -39,7 +39,7 @@ addon | version | maintainers | summary
 [document_quick_access](document_quick_access/) | 14.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Document quick access
 [document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 14.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Auto classification of Documents after reading a QR
 [filter_multi_user](filter_multi_user/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined filters filters among several users.
-[mass_editing](mass_editing/) | 14.0.1.0.1 |  | Mass Editing
+[mass_editing](mass_editing/) | 14.0.1.1.0 |  | Mass Editing
 [mass_operation_abstract](mass_operation_abstract/) | 14.0.1.0.0 |  | Abstract Tools used for modules that realize operation on many items
 [multi_step_wizard](multi_step_wizard/) | 14.0.1.0.0 |  | Multi-Steps Wizards
 [sequence_check_digit](sequence_check_digit/) | 14.0.1.0.0 |  | Adds a check digit on sequences
