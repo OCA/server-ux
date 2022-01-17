@@ -526,11 +526,10 @@ msgstr ""
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
-"This action needs to be validated for at least one record. \n"
+"This action needs to be validated for at least one record. Reviews pending:\n"
+" - %s \n"
 "Please request a validation."
 msgstr ""
-"Deze actie moet voor ten minste één record gevalideerd worden.\n"
-"Vraag een validatie aan."
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -664,6 +663,13 @@ msgstr "Validaties"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "bijv. Tier validatie voor..."
+
+#~ msgid ""
+#~ "This action needs to be validated for at least one record. \n"
+#~ "Please request a validation."
+#~ msgstr ""
+#~ "Deze actie moet voor ten minste één record gevalideerd worden.\n"
+#~ "Vraag een validatie aan."
 
 #~ msgid "Any user in a specific group."
 #~ msgstr "Elke gebruiker in een specifieke groep."
