@@ -40,7 +40,7 @@ msgid "Add sidebar button"
 msgstr ""
 
 #. module: mass_operation_abstract
-#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__groups_id
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
 msgid "Allowed Groups"
 msgstr ""
 
@@ -117,7 +117,7 @@ msgstr ""
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
-msgid "None of the {} items you have selected can be processed."
+msgid "None of the %d items you have selected can be processed."
 msgstr ""
 
 #. module: mass_operation_abstract
@@ -146,6 +146,11 @@ msgid "Remove sidebar button"
 msgstr ""
 
 #. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Security"
+msgstr ""
+
+#. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__selected_item_qty
 msgid "Selected Item Qty"
 msgstr ""
@@ -168,7 +173,7 @@ msgstr ""
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
-msgid "The treatment will be processed on the {} selected elements."
+msgid "The treatment will be processed on the %d selected elements."
 msgstr ""
 
 #. module: mass_operation_abstract
@@ -183,6 +188,6 @@ msgstr ""
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
-"You have selected {} items that can not be processed. Only {} items will be "
+"You have selected %d items that can not be processed. Only %d items will be "
 "processed."
 msgstr ""
