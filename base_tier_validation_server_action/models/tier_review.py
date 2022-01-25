@@ -16,8 +16,14 @@ class TierReview(models.Model):
                     server_action = rec.definition_id.server_action_id
                 if rec.status == "rejected":
                     server_action = rec.definition_id.rejected_server_action_id
-                if server_action:
+                server_action_tier = self.env.context.get("server_action_tier")
+                # Don't allow reentrant server action as it will lead to
+                # recursive behaviour
+                if server_action and (
+                    not server_action_tier or server_action_tier != server_action.id
+                ):
                     server_action.with_context(
+                        server_action_tier=server_action.id,
                         active_model=rec.model,
                         active_id=rec.res_id,
                     ).sudo().run()
