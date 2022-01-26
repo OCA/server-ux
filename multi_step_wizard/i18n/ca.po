@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* multi_step_wizard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__allow_back
+msgid "Allow Back"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Go Back"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model:ir.model,name:multi_step_wizard.model_multi_step_wizard_mixin
+msgid "Multi Steps Wizard Mixin"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
+msgid "Next"
+msgstr ""
+
+#. module: multi_step_wizard
+#: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__state
+msgid "State"
+msgstr ""
