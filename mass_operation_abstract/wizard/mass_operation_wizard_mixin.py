@@ -122,4 +122,4 @@ class MassOperationWizardMixin(models.AbstractModel):
 
         if mass_operation.domain != "[]":
             domain = expression.AND([safe_eval(mass_operation.domain), domain])
-        return SrcModel.search(domain)
+        return SrcModel.with_context(active_test=False).search(domain)
