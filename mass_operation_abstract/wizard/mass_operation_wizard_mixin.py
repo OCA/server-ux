@@ -53,9 +53,12 @@ class MassOperationWizardMixin(models.AbstractModel):
             ) % len(active_ids)
         elif len(remaining_items):
             operation_description_warning = _(
-                "You have selected %d items that can not be processed."
-                " Only %d items will be processed."
-            ) % (len(active_ids) - len(remaining_items), len(remaining_items))
+                "You have selected %(items)d items that can not be processed."
+                " Only %(value)d items will be processed."
+            ) % {
+                "items": len(active_ids) - len(remaining_items),
+                "value": len(remaining_items),
+            }
         else:
             operation_description_danger = _(
                 "None of the %d items you have selected can be processed."
