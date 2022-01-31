@@ -26,11 +26,8 @@ class BaseCancelConfirm(models.AbstractModel):
     )
 
     def open_cancel_confirm_wizard(self):
-        action = (
-            self.env.ref("base_cancel_confirm.action_cancel_confirm_wizard")
-            .sudo()
-            .read()[0]
-        )
+        xmlid = "base_cancel_confirm.action_cancel_confirm_wizard"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action["context"] = {
             "cancel_res_model": self._name,
             "cancel_res_ids": self.ids,
