@@ -13,9 +13,9 @@ class ResPartner(models.Model):
     def find_res_partner_by_ref_using_barcode(self, barcode):
         partner = self.search([("ref", "=", barcode)], limit=1)
         if not partner:
-            action = self.env.ref("barcode_action.res_partner_find")
-            result = action.read()[0]
-            context = safe_eval(result["context"])
+            xmlid = "barcode_action.res_partner_find"
+            action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+            context = safe_eval(action["context"])
             context.update(
                 {
                     "default_state": "warning",
@@ -25,11 +25,11 @@ class ResPartner(models.Model):
                     % barcode,
                 }
             )
-            result["context"] = json.dumps(context)
-            return result
-        action = self.env.ref("base.action_partner_form")
-        result = action.read()[0]
+            action["context"] = json.dumps(context)
+            return action
+        xmlid = "base.action_partner_form"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         res = self.env.ref("base.view_partner_form", False)
-        result["views"] = [(res and res.id or False, "form")]
-        result["res_id"] = partner.id
-        return result
+        action["views"] = [(res and res.id or False, "form")]
+        action["res_id"] = partner.id
+        return action
