@@ -1,0 +1,38 @@
+<!-- Copyright 2022 Ecosoft Co., Ltd. (http://ecosoft.co.th)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_bypass_wizard" model="ir.ui.view">
+        <field name="name">Bypass Wizard</field>
+        <field name="model">tier.validation.forward.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Bypass">
+                <group>
+                    <group>
+                        <field name="forward_reviewer_id" invisible="1" />
+                        <field
+                            name="forward_description"
+                            string="Bypass Description"
+                            required="1"
+                        />
+                    </group>
+                    <group>
+                        <field name="has_comment" invisible="1" />
+                        <field name="approve_sequence" invisible="1" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="add_forward"
+                        string="Bypass"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

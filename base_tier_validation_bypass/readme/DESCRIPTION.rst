@@ -1,0 +1,1 @@
+This module allow an authorized user to bypass any document. Bypass is different than Forward in the way that, there is no person to forward to. It just by pass the next approving tier (with the exception of last tier).

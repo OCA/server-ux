@@ -1,0 +1,19 @@
+<odoo>
+    <template
+        id="tier_validation_label_forward"
+        inherit_id="base_tier_validation_forward.tier_validation_label_forward"
+    >
+        <xpath expr="//button[@name='forward_tier']" position="after">
+            <button
+                name="forward_tier"
+                string="Bypass"
+                type="object"
+                class="oe_inline oe_button btn-info"
+                icon="fa-arrow-circle-up"
+                context="{'forward_bypass_only': True}"
+                groups="base_tier_validation_bypass.group_can_bypass_tier_reivew"
+                confirm="You are about to bypass a document, are you sure to continue?"
+            />
+        </xpath>
+    </template>
+</odoo>

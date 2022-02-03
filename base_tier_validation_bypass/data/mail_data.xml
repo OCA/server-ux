@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record
+        id="mt_tier_validation_bypassed"
+        model="mail.message.subtype"
+        forcecreate="1"
+    >
+        <field name="name">Tier Validation Bypass Notification</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="hidden" eval="True" />
+    </record>
+</odoo>

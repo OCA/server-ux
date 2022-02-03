@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_can_bypass_tier_reivew" model="res.groups">
+        <field name="name">Authorized to bypass tier review</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>
