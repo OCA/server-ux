@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo14-addon-base_tier_validation_server_action',
         'odoo14-addon-chained_swapper',
         'odoo14-addon-date_range',
+        'odoo14-addon-date_range_account',
         'odoo14-addon-default_multi_user',
         'odoo14-addon-document_quick_access',
         'odoo14-addon-document_quick_access_folder_auto_classification',
