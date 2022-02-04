@@ -4,7 +4,7 @@
 
 {
     "name": "Barcode action launcher",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Creu Blanca, ForgeFlow, Odoo Community Association (OCA)",
@@ -15,8 +15,13 @@
     "depends": ["barcodes"],
     "data": [
         "security/ir.model.access.csv",
-        "views/barcode_templates.xml",
         "wizard/barcode_action_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "barcode_action/static/src/js/action_barcode_form.js",
+            "barcode_action/static/src/js/action_barcode_widget.js",
+        ],
+    },
     "demo": ["demo/barcode_action_demo.xml"],
 }
