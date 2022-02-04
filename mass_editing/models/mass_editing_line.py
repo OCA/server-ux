@@ -26,6 +26,8 @@ class MassEditingLine(models.Model):
         "('ttype', 'not in', ['reference', 'function']),"
         "('model_id', '=', model_id)"
         "]",
+        ondelete="cascade",
+        required=True,
     )
 
     widget_option = fields.Char(
