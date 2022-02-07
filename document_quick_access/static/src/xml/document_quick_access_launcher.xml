@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="document_quick_access_launcher.view.Menu">
-        <li class="o_mail_navbar_item">
+        <div class="o_mail_systray_item dropdown">
             <a
                 class="dropdown-toggle o-no-caret"
                 data-display="static"
@@ -13,6 +13,6 @@
             >
                 <i class="fa fa-qrcode" />
             </a>
-        </li>
+        </div>
     </t>
 </templates>
