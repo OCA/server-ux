@@ -5,7 +5,7 @@
     "name": "Document Quick Access",
     "summary": """
         Document quick access""",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
@@ -15,7 +15,13 @@
     "data": [
         "security/ir.model.access.csv",
         "views/document_quick_access_rule.xml",
-        "views/assets_backend.xml",
     ],
-    "qweb": ["static/src/xml/document_quick_access_launcher.xml"],
+    "assets": {
+        "web.assets_backend": [
+            "document_quick_access/static/src/js/document_quick_access_launcher.js",
+        ],
+        "web.assets_qweb": [
+            "document_quick_access/static/src/xml/document_quick_access_launcher.xml"
+        ],
+    },
 }
