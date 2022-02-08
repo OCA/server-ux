@@ -2,11 +2,13 @@
 <!-- Copyright 2019 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
+
     <record model="ir.ui.view" id="document_quick_access_missing_form_view">
         <field
             name="name"
-        >document.quick.access.missing.form (in document_quick_access_folder_auto_classification)</field>
-        <field name="model">document.quick.access.missing</field>
+        >edi.exchange.record.form (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
         <field name="arch" type="xml">
             <form create="false" edit="false">
                 <header>
@@ -15,32 +17,37 @@
                         type="action"
                         class="primary"
                         string="Assign"
-                        states="pending"
-                        context="{'default_missing_document_id': active_id}"
+                        attrs="{'invisible': [('edi_exchange_state', '!=', 'input_processed_error')]}"
+                        context="{'default_exchange_record_id': active_id}"
                     />
                     <button
-                        name="reject_assign_document"
+                        name="action_exchange_process"
                         type="object"
                         string="Reject"
-                        states="pending"
+                        attrs="{'invisible': [('edi_exchange_state', '!=', 'input_processed_error')]}"
+                        context="{'document_quick_access_reject_file': True}"
                     />
                     <button
-                        name="access_resource"
+                        name="action_open_related_record"
                         type="object"
-                        string="Access"
-                        attrs="{'invisible': ['|', ('res_id', '=', False), ('model', '=', False)]}"
+                        string="Related record"
+                        attrs="{'invisible': ['|', ('edi_exchange_state', '!=', 'input_processed'), ('model', '=', False)]}"
                     />
-                    <field name="state" widget="statusbar" />
+                    <field
+                        name="edi_exchange_state"
+                        widget="statusbar"
+                        statusbar_visible="input_processed_error,input_processed"
+                    />
                 </header>
                 <sheet>
                     <h1>
-                        <field name="name" />
+                        <field name="exchange_filename" />
                     </h1>
                     <group>
-                        <field name="data" filename="name" />
+                        <field name="exchange_file" filename="exchange_filename" />
                         <field name="res_id" invisible="1" />
                         <field name="model" invisible="1" />
-                        <field name="create_date" />
+                        <field name="exchanged_on" />
                     </group>
                 </sheet>
             </form>
@@ -50,23 +57,24 @@
         <field
             name="name"
         >document.quick.access.missing.search (in document_quick_access_folder_auto_classification)</field>
-        <field name="model">document.quick.access.missing</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
+                <field name="exchange_filename" />
                 <separator />
                 <filter
-                    domain="[('state', '=', 'pending')]"
+                    domain="[('edi_exchange_state', '=', 'input_processed_error')]"
                     help="Pending"
                     name="pending"
                 />
                 <filter
-                    domain="[('state', '=', 'processed')]"
+                    domain="[('edi_exchange_state', '=', 'input_processed'), ('model', '!=', False)]"
                     help="Processed"
                     name="processed"
                 />
                 <filter
-                    domain="[('state', '=', 'deleted')]"
+                    domain="[('edi_exchange_state', '=', 'input_processed'), ('model', '=', False)]"
                     help="Rejected"
                     name="deleted"
                 />
@@ -77,21 +85,30 @@
         <field
             name="name"
         >document.quick.access.missing.tree (in document_quick_access_folder_auto_classification)</field>
-        <field name="model">document.quick.access.missing</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
         <field name="arch" type="xml">
             <tree create="false" delete="false">
-                <field name="name" />
-                <field name="state" />
+                <field name="exchange_filename" />
+                <field name="edi_exchange_state" />
                 <field name="create_date" />
             </tree>
         </field>
     </record>
+
     <record model="ir.actions.act_window" id="document_quick_access_missing_act_window">
         <field name="name">Document Quick Access Missing</field>
-        <field name="res_model">document.quick.access.missing</field>
+        <field name="res_model">edi.exchange.record</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[]</field>
+        <field name="domain">[("type_id.code", "=", "document_quick_access")]</field>
         <field name="context">{'search_default_pending': 1}</field>
+        <field name="search_view_id" ref="document_quick_access_missing_search_view" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('document_quick_access_missing_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('document_quick_access_missing_form_view')})]"
+        />
     </record>
     <menuitem
         id="document_quick_access_missing_menu"

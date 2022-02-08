@@ -1,12 +1,8 @@
 # Copyright 2019 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import base64
 import logging
-import os
-import shutil
 
 from odoo import api, models
-from odoo.modules.registry import Registry
 
 try:
     from odoo.addons.queue_job.job import job
@@ -16,132 +12,44 @@ except ImportError:
 _logger = logging.getLogger(__name__)
 
 
-class OCRException(Exception):
-    __slots__ = "name"
-
-    def __init__(self, name):
-        self.name = name
-
-
 class DocumentQuickAccessRule(models.Model):
     _inherit = "document.quick.access.rule"
 
     @api.model
-    def cron_folder_auto_classification(
-        self, path=False, processing_path=False, limit=False
-    ):
-        if not path:
-            path = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "document_quick_access_auto_classification.path", default=False
-                )
-            )
-        if not path:
-            return False
-        if not processing_path and not self.env.context.get("ignore_process_path"):
-            processing_path = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "document_quick_access_auto_classification.process_path",
-                    default=False,
-                )
-            )
-        elements = [
-            os.path.join(path, f)
-            for f in os.listdir(path)
-            if os.path.isfile(os.path.join(path, f))
-        ]
-        if limit:
-            elements = elements[:limit]
-        for element in elements:
-            obj = self
-            new_element = element
-            if processing_path:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-            try:
-                if processing_path:
-                    new_element = os.path.join(
-                        processing_path, os.path.basename(element)
-                    )
-                    shutil.copy(element, new_element)
-                    obj = (
-                        api.Environment(new_cr, self.env.uid, self.env.context)[
-                            self._name
-                        ]
-                        .browse()
-                        .with_delay(**self._delay_vals())
-                    )
-                obj._process_document(new_element)
-                if processing_path:
-                    new_cr.commit()
-            except Exception:
-                if processing_path:
-                    os.unlink(new_element)
-                    new_cr.rollback()
-                raise
-            finally:
-                if processing_path:
-                    new_cr.close()
-            if processing_path:
-                os.unlink(element)
-        return True
-
-    @api.model
-    def _delay_vals(self):
-        return {}
-
-    @api.model
-    def process_document(self, filename, datas):
-        attachment = self.env["ir.attachment"].create(
-            self._get_attachment_vals(filename, datas)
+    def cron_folder_auto_classification(self, limit=None):
+        backends = self.env["edi.backend"].search(
+            [("backend_type_id.code", "=", "document_quick_access")]
         )
-        return attachment._process_quick_access_rules()
+        new_limit = limit
+        for backend in backends:
+            new_limit = self._cron_folder_auto_classification(backend, new_limit)
 
-    @api.model
-    @job(default_channel="root.document_quick_access_classification")
-    def _process_document(self, element):
-        try:
-            filename = os.path.basename(element)
-            datas = base64.b64encode(open(element, "rb").read())
-            results = self.process_document(filename, datas)
-            return self._postprocess_document(element, results)
-        except OCRException:
-            _logger.warning("Element %s was corrupted" % element)
-            os.unlink(element)
+    def _cron_folder_auto_classification_file(self, backend, file_data):
+        exchange_record = backend.create_record(
+            "document_quick_access",
+            {
+                "edi_exchange_state": "input_received",
+                "exchange_file": backend.storage_id.get(file_data, binary=False),
+                "exchange_filename": file_data,
+            },
+        )
+        backend.storage_id.delete(file_data)
+        backend.with_delay().exchange_process(exchange_record)
+        return exchange_record
 
-    @api.model
-    def _postprocess_document(self, path, results):
-        filename = os.path.basename(path)
-        if any(result.res_id for result in results):
-            new_path = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "document_quick_access_auto_classification.ok_path", default=False
-                )
-            )
-        else:
-            new_path = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "document_quick_access_auto_classification.failure_path",
-                    default=False,
-                )
-            )
-            self.env["document.quick.access.missing"].create(
-                {"name": filename, "attachment_id": results.id}
-            )
-        if new_path:
-            shutil.copy(path, os.path.join(new_path, filename))
-        os.unlink(path)
-        return bool(results)
-
-    def _get_attachment_vals(self, filename, datas):
-        return {"name": filename, "datas": datas}
+    def _cron_folder_auto_classification(self, backend, limit=None):
+        if limit is not None and limit <= 0:
+            return
+        processed = 0
+        storage = backend.storage_id
+        for file_data in storage.list_files():
+            if limit is not None and processed >= limit:
+                break
+            if self._cron_folder_auto_classification_file(backend, file_data):
+                processed += 1
+        if limit is None:
+            return limit
+        return limit - processed
 
     @api.model
     def read_code(self, code):
