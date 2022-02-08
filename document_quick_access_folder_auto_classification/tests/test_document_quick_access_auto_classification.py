@@ -10,7 +10,7 @@ from mock import patch
 from odoo import tools
 from odoo.tools import mute_logger
 
-from odoo.addons.component.tests.common import SavepointComponentRegistryCase
+from odoo.addons.component.tests.common import TransactionComponentRegistryCase
 
 
 class Encoded:
@@ -20,7 +20,7 @@ class Encoded:
         self.data = data
 
 
-class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
+class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -31,7 +31,7 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         )
 
         self = cls
-
+        self._setup_registry(self)
         self._load_module_components(self, "component_event")
         self._load_module_components(self, "edi")
         self._load_module_components(self, "edi_storage")
@@ -62,7 +62,7 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
     @classmethod
     def tearDownClass(cls):
         shutil.rmtree(cls.tmpdir)
-        super().tearDownClass()
+        return super().tearDownClass()
 
     def test_ok_pdf_multi(self):
         partners = self.env["res.partner"].create({"name": "Partner 1"})

@@ -69,7 +69,7 @@ class EdiDocumentQuickAccessProcess(Component):
             buff = StringIO()
             traceback.print_exc(file=buff)
             _logger.warning(buff.getvalue())
-            raise UserError(str(e))
+            raise UserError(str(e)) from e
         for im in images:
             records += self._search_pil_image(im)
         return records
