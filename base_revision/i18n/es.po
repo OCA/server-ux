@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-16 11:46+0000\n"
+"POT-Creation-Date: 2022-02-23 09:21+0000\n"
+"PO-Revision-Date: 2022-02-23 10:22+0100\n"
 "Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__active
@@ -33,7 +34,6 @@ msgstr "Nombre mostrado"
 
 #. module: base_revision
 #: model:ir.model,name:base_revision.model_base_revision
-#, fuzzy
 msgid "Document Revision (abstract)"
 msgstr "Revisión Documento (resumen)"
 
@@ -73,6 +73,11 @@ msgstr "Revisiones antiguas"
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__unrevisioned_name
 msgid "Original Reference"
 msgstr "Referencia original"
+
+#. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_count
+msgid "Previous versions count"
+msgstr "Nº de versiones anteriores"
 
 #. module: base_revision
 #: model:ir.model.constraint,message:base_revision.constraint_base_revision_revision_unique
