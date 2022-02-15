@@ -39,6 +39,12 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
             self, "document_quick_access_folder_auto_classification"
         )
         self.base_dir = os.path.join(self.env["ir.attachment"]._filestore(), "storage")
+        try:
+            os.mkdir(self.base_dir)
+            self.clean_base_dir = True
+        except FileExistsError:
+            # If the directory exists we respect it and do not clean it on teardown.
+            self.clean_base_dir = False
         self.tmpdir = os.path.join(self.base_dir, str(uuid.uuid4()))
         self.storage = self.env["storage.backend"].create(
             {
@@ -62,6 +68,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     @classmethod
     def tearDownClass(cls):
         shutil.rmtree(cls.tmpdir)
+        if cls.clean_base_dir:
+            shutil.rmtree(cls.base_dir)
         return super().tearDownClass()
 
     def test_ok_pdf_multi(self):
