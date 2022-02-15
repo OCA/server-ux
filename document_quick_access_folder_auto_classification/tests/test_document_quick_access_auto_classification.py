@@ -39,6 +39,12 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             self, "document_quick_access_folder_auto_classification"
         )
         self.base_dir = os.path.join(self.env["ir.attachment"]._filestore(), "storage")
+        try:
+            os.mkdir(self.base_dir)
+            self.clean_base_dir = True
+        except FileExistsError:
+            # If the directory exists we respect it and do not clean it on teardown.
+            self.clean_base_dir = False
         self.tmpdir = os.path.join(self.base_dir, str(uuid.uuid4()))
         self.storage = self.env["storage.backend"].create(
             {
@@ -64,6 +70,8 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
     @classmethod
     def tearDownClass(cls):
         shutil.rmtree(cls.tmpdir)
+        if cls.clean_base_dir:
+            shutil.rmtree(cls.base_dir)
         super().tearDownClass()
 
     def test_ok_pdf_multi(self):
@@ -117,8 +125,8 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         )
         self.assertTrue(attachments)
         self.assertEqual(1, len(attachments))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir, "test_file.pdf")))
-        self.assertFalse(os.path.exists(os.path.join(self.tmpdir, "test_file_2.pdf")))
+        self.assertFalse(os.path.exists(os.path.join(self.tmpdir, "test_file.pdf")))
+        self.assertTrue(os.path.exists(os.path.join(self.tmpdir, "test_file_2.pdf")))
 
     @mute_logger("odoo.addons.queue_job.models.base")
     def test_ok_pdf(self, partners=False):

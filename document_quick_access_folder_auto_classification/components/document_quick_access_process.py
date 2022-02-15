@@ -15,8 +15,7 @@ from odoo.addons.component.core import Component
 _logger = logging.getLogger(__name__)
 
 try:
-    from pyzbar.pyzbar import ZBarSymbol
-    from pyzbar.pyzbar import decode
+    from pyzbar.pyzbar import ZBarSymbol, decode
 except (ImportError, IOError) as err:
     _logger.warning(err)
 try:
