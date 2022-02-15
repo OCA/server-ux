@@ -20,11 +20,13 @@ class Users(models.Model):
         review_groups = self.env["tier.review"].read_group(domain, ["model"], ["model"])
         for review_group in review_groups:
             model = review_group["model"]
+            Model = self.env[model]
             reviews = self.env["tier.review"].search(review_group.get("__domain"))
-            if reviews:
+            # Skip Models not having Tier Validation enabled (example: was unistalled)
+            if reviews and hasattr(Model, "can_review"):
                 records = (
-                    self.env[model]
-                    .with_user(self.env.user)
+                    Model.with_user(self.env.user)
+                    .with_context(active_test=False)
                     .search([("id", "in", reviews.mapped("res_id"))])
                     .filtered(lambda x: not x.rejected and x.can_review)
                 )
