@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_ir_filters_group_form" model="ir.ui.view">
+        <field name="name">ir.filters.group.form</field>
+        <field name="model">ir.filters.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="general">
+                        <field name="model_id" />
+                        <field name="type" />
+                    </group>
+                    <group name="filters">
+                        <field
+                            name="filter_ids"
+                            domain="[('model_id', '=', model_id), ('type', '=', type)]"
+                            context="{'default_model_id': model_id, 'default_group_id': id, 'default_type': type}"
+                        >
+                            <tree>
+                                <field name="sequence" widget="handle" />
+                                <field name="name" />
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <div class="oe_title">
+                                        <h1>
+                                            <field name="name" />
+                                        </h1>
+                                    </div>
+                                    <group>
+                                        <field name="model_id" readonly="1" force_save="1"/>
+                                        <field name="type" readonly="1" force_save="1"/>
+                                        <field
+                                            name="domain"
+                                            widget="domain"
+                                            options="{'model': 'model_id'}"
+                                            attrs="{'required': [('type', '=', 'filter')], 'invisible': [('type', '=', 'groupby')]}"
+                                        />
+                                        <field
+                                            name="groupby_field"
+                                            domain="[('model', '=', model_id), ('store', '=', True)]"
+                                            attrs="{'required': [('type', '=', 'groupby')], 'invisible': [('type', '=', 'filter')]}"
+                                        />
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_ir_filters_group_tree" model="ir.ui.view">
+        <field name="name">ir.filters.group.tree</field>
+        <field name="model">ir.filters.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field
+                    name="filter_ids"
+                    widget="many2many_tags"
+                    domain="[('group_id', '=', False), ('type', '!=', 'favorite')]"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="action_ir_filters_group" model="ir.actions.act_window">
+        <field name="name">Custom Filter Groups</field>
+        <field name="res_model">ir.filters.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_ir_filters_group"
+        action="action_ir_filters_group"
+        parent="base_custom_filter.menu_base_custom_filter"
+        sequence="10"
+    />
+</odoo>
