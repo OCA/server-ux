@@ -25,6 +25,7 @@ class Users(models.Model):
                 records = (
                     self.env[model]
                     .with_user(self.env.user)
+                    .with_context(active_test=False)
                     .search([("id", "in", reviews.mapped("res_id"))])
                     .filtered(lambda x: not x.rejected and x.can_review)
                 )

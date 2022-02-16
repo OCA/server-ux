@@ -134,7 +134,7 @@ odoo.define("tier_validation.systray", function (require) {
                 $(event.currentTarget).data(),
                 $(event.target).data()
             );
-            var context = {};
+            var context = {from_review_systray: true, active_test: false};
             this.do_action({
                 type: "ir.actions.act_window",
                 name: data.model_name,
