@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation - Server Action",
     "summary": "Add option to call server action when a tier is validated",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.1.2",
     "development_status": "Alpha",
     "maintainers": ["kittiu"],
     "category": "Tools",
