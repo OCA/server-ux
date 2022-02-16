@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-date_range>=15.0dev,<15.1dev',
         'odoo-addon-default_multi_user>=15.0dev,<15.1dev',
         'odoo-addon-document_quick_access>=15.0dev,<15.1dev',
+        'odoo-addon-filter_multi_user>=15.0dev,<15.1dev',
         'odoo-addon-mass_editing>=15.0dev,<15.1dev',
     ],
     classifiers=[
