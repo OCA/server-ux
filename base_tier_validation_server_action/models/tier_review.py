@@ -9,13 +9,9 @@ class TierReview(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if vals.get("status") in ["approved", "rejected"]:
+        if vals.get("status") == "approved":
             for rec in self:
-                server_action = False
-                if rec.status == "approved":
-                    server_action = rec.definition_id.server_action_id
-                if rec.status == "rejected":
-                    server_action = rec.definition_id.rejected_server_action_id
+                server_action = rec.definition_id.server_action_id
                 server_action_tier = self.env.context.get("server_action_tier")
                 # Don't allow reentrant server action as it will lead to
                 # recursive behaviour
