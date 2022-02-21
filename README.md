@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [base_tier_validation](base_tier_validation/) | 13.0.1.7.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 13.0.1.2.0 |  | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 13.0.1.1.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
-[base_user_locale](base_user_locale/) | 13.0.1.0.0 |  | User Locale Settings
+[base_user_locale](base_user_locale/) | 13.0.1.1.0 |  | User Locale Settings
 [chained_swapper](chained_swapper/) | 13.0.1.0.0 |  | Chained Swapper
 [date_range](date_range/) | 13.0.1.0.2 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
 [default_multi_user](default_multi_user/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined defaults among several users.
