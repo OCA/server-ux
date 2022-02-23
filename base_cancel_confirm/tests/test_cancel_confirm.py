@@ -38,7 +38,7 @@ class TestCancelConfirm(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestCancelConfirm, cls).tearDownClass()
+        return super(TestCancelConfirm, cls).tearDownClass()
 
     def test_01_cancel_confirm_tester(self):
         """Cancel a document, I expect cancel_reason.
@@ -50,7 +50,7 @@ class TestCancelConfirm(common.SavepointCase):
         ctx = res.get("context")
         self.assertEqual(ctx["cancel_method"], "action_cancel")
         self.assertEqual(ctx["default_has_cancel_reason"], "optional")
-        wizard = Form(self.env["cancel.confirm"].with_context(ctx))
+        wizard = Form(self.env["cancel.confirm"].with_context(**ctx))
         wizard.cancel_reason = "Wrong information"
         wiz = wizard.save()
         # Confirm cancel on wizard

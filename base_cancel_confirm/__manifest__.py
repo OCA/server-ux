@@ -3,7 +3,7 @@
 
 {
     "name": "Base Cancel Confirm",
-    "version": "14.0.1.0.3",
+    "version": "15.0.1.0.3",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
