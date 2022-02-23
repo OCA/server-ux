@@ -38,6 +38,22 @@ class BaseRevision(models.AbstractModel):
     )
     active = fields.Boolean(default=True)
     has_old_revisions = fields.Boolean(compute="_compute_has_old_revisions")
+    revision_count = fields.Integer(
+        compute="_compute_revision_count", string="Previous versions count"
+    )
+
+    @api.depends("old_revision_ids")
+    def _compute_revision_count(self):
+        res = self.with_context(active_test=False).read_group(
+            domain=[("current_revision_id", "in", self.ids)],
+            fields=["current_revision_id"],
+            groupby=["current_revision_id"],
+        )
+        revision_dict = {
+            x["current_revision_id"][0]: x["current_revision_id_count"] for x in res
+        }
+        for rec in self:
+            rec.revision_count = revision_dict.get(rec.id, 0)
 
     _sql_constraints = [
         (
@@ -67,6 +83,9 @@ class BaseRevision(models.AbstractModel):
             "old_revision_ids": [(4, self.id, False)],
         }
 
+    def _prepare_revision_data(self, new_revision):
+        return {"active": False, "current_revision_id": new_revision.id}
+
     def copy_revision_with_context(self):
         default_data = self.default_get([])
         new_rev_number = self.revision_number + 1
@@ -74,9 +93,7 @@ class BaseRevision(models.AbstractModel):
         default_data.update(vals)
         new_revision = self.copy(default_data)
         self.old_revision_ids.write({"current_revision_id": new_revision.id})
-        self.write(
-            {"active": False, "state": "cancel", "current_revision_id": new_revision.id}
-        )
+        self.write(self._prepare_revision_data(new_revision))
         return new_revision
 
     @api.model

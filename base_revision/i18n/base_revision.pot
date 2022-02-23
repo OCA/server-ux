@@ -71,6 +71,11 @@ msgid "Original Reference"
 msgstr ""
 
 #. module: base_revision
+#: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_count
+msgid "Previous versions count"
+msgstr ""
+
+#. module: base_revision
 #: model:ir.model.constraint,message:base_revision.constraint_base_revision_revision_unique
 msgid "Reference and revision must be unique."
 msgstr ""
