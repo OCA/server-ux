@@ -24,7 +24,7 @@ class TestBaseRevision(common.TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestBaseRevision, cls).tearDownClass()
+        return super(TestBaseRevision, cls).tearDownClass()
 
     def _create_tester(self):
         return self.revision_model.create({"name": "TEST0001"})
