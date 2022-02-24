@@ -1,8 +1,8 @@
+# Migrated to v14.0 by Ashish Hirpara (https://www.ashish-hirpara.com)
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class IrFiltersGroup(models.Model):
@@ -19,27 +19,18 @@ class IrFiltersGroup(models.Model):
     )
     name = fields.Char(required=True, translate=True)
     type = fields.Selection(
-        selection="_selection_type", string="Type", required=True, default="filter",
+        selection="_selection_type",
+        string="Type",
+        required=True,
+        default="filter",
     )
     filter_ids = fields.One2many(
         comodel_name="ir.filters", inverse_name="group_id", string="Filters"
     )
 
-    @api.constrains("model_id", "filter_ids")
-    def _check_filter_group_model(self):
-        for rec in self:
-            if any(rec.filter_ids.filtered(lambda f: f.model_id != rec.model_id)):
-                raise ValidationError(
-                    _("The group contains filters related to different models.")
-                )
-
-    @api.constrains("type", "filter_ids")
-    def _check_filter_group_type(self):
-        for rec in self:
-            if any(rec.filter_ids.filtered(lambda f: f.type != rec.type)):
-                raise ValidationError(
-                    _("The group contains filters of different types.")
-                )
+    def unlink(self):
+        self.filter_ids.unlink()
+        return super(IrFiltersGroup, self).unlink()
 
     @api.model
     def _list_all_models(self):
