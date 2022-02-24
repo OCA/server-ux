@@ -8,7 +8,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import common
 
 
-class TestBaseRevision(common.SavepointCase):
+class TestBaseRevision(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseRevision, cls).setUpClass()
