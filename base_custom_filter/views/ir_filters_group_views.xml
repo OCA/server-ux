@@ -35,8 +35,16 @@
                                         </h1>
                                     </div>
                                     <group>
-                                        <field name="model_id" readonly="1" />
-                                        <field name="type" readonly="1" />
+                                        <field
+                                            name="model_id"
+                                            readonly="1"
+                                            force_save="1"
+                                        />
+                                        <field
+                                            name="type"
+                                            readonly="1"
+                                            force_save="1"
+                                        />
                                         <field
                                             name="domain"
                                             widget="domain"
@@ -72,6 +80,26 @@
             </tree>
         </field>
     </record>
+
+    <record id="search_ir_filters_group" model="ir.ui.view">
+        <field name="name">search.ir.filters.group</field>
+        <field name="model">ir.filters.group</field>
+        <field name="arch" type="xml">
+            <search string="Search Filters Group">
+                <field name="name" />
+                <filter
+                    string="Without Filters"
+                    name="Without_filters"
+                    domain="[('filter_ids','=',False)]"
+                />
+                <group expand="1" string="Group By">
+                    <filter string="Type" name='user' context="{'group_by':'type'}" />
+
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_ir_filters_group" model="ir.actions.act_window">
         <field name="name">Custom Filter Groups</field>
         <field name="res_model">ir.filters.group</field>
