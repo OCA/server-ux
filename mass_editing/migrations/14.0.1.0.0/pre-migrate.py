@@ -8,7 +8,7 @@ from psycopg2 import sql
 def migrate_mass_editing(env):
     """ Migrates mass.editing to ir.actions.server """
     # Remove FK (mass_editing_id)
-    openupgrade.remove_tables_fks(env.cr, ["mass_editing_line"])
+    openupgrade.remove_tables_fks(env.cr, ["mass_editing"])
     # Add legacy mass_editing_id column to server_actions
     openupgrade.logged_query(
         env.cr,
