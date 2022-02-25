@@ -13,5 +13,5 @@
     "summary": "Adds a check digit on sequences",
     "depends": ["base"],
     "data": ["views/sequence_views.xml"],
-    "external_dependencies": {"python": ["stdnum"]},
+    "external_dependencies": {"python": ["python-stdnum"]},
 }
