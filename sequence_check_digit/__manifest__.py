@@ -3,7 +3,7 @@
 
 {
     "name": "Check Digit on Sequences",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Reporting",
     "website": "https://github.com/OCA/server-ux",
     "author": "Creu Blanca, Odoo Community Association (OCA)",
