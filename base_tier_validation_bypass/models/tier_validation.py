@@ -9,13 +9,6 @@ from odoo.exceptions import UserError
 class TierValidation(models.AbstractModel):
     _inherit = "tier.validation"
 
-    def _add_comment(self, validate_reject, reviews):
-        self.env.ref("base_tier_validation.view_comment_wizard")
-        res = super()._add_comment(validate_reject, reviews)
-        if self.env.context.get("forward_bypass_only"):
-            res["context"]["default_forward_reviewer_id"] = self.env.user.id
-        return res
-
     def _get_sequences_to_approve(self, user):
         if self.env.context.get("forward_bypass_only"):
             # Bypass only the next review in sequence

@@ -10,7 +10,7 @@
                 type="object"
                 class="oe_inline oe_button btn-info"
                 icon="fa-arrow-circle-up"
-                context="{'forward_bypass_only': True}"
+                context="{'forward_bypass_only': True, 'default_forward_reviewer_id': uid}"
                 groups="base_tier_validation_bypass.group_can_bypass_tier_reivew"
                 confirm="You are about to bypass a document, are you sure to continue?"
             />
