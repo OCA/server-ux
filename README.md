@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [mass_editing](mass_editing/) | 14.0.1.1.0 |  | Mass Editing
 [mass_operation_abstract](mass_operation_abstract/) | 14.0.1.0.2 |  | Abstract Tools used for modules that realize operation on many items
 [multi_step_wizard](multi_step_wizard/) | 14.0.1.0.0 |  | Multi-Steps Wizards
-[sequence_check_digit](sequence_check_digit/) | 14.0.1.0.0 |  | Adds a check digit on sequences
+[sequence_check_digit](sequence_check_digit/) | 14.0.1.0.1 |  | Adds a check digit on sequences
 [sequence_range_end](sequence_range_end/) | 14.0.1.0.0 |  | Sequence prefix/suffix option, 'range_end_', to use the beginning of the range
 [sequence_reset_period](sequence_reset_period/) | 14.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 
