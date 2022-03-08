@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- root menu -->
+    <menuitem
+        id="menu_user_permission_reports"
+        parent="base.menu_board_root"
+        name="User Role Analysis"
+        groups="user_permission_reports_group"
+        sequence="6"
+    />
+    <!-- user model report -->
+    <record id="view_user_model_permission_report_search" model="ir.ui.view">
+        <field name="name">user.model.permission.report.search</field>
+        <field name="model">user.model.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <search string="Users">
+                <field name="x_user_id" />
+                <field name="x_group_name" />
+                <field name="x_model_name" />
+            </search>
+        </field>
+    </record>
+    <record id="view_user_model_permission_report_tree" model="ir.ui.view">
+        <field name="name">user.model.permission.report.tree</field>
+        <field name="model">user.model.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <tree string="User Model Permission" create="0" edit="0" delete="0">
+                <field name="x_user_id" />
+                <field name="x_group_name" />
+                <field name="x_model_name" />
+                <field name="x_read" />
+                <field name="x_write" />
+                <field name="x_create" />
+                <field name="x_unlink" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_user_model_permission_report" model="ir.actions.act_window">
+        <field name="name">User Model Permission Report</field>
+        <field name="res_model">user.model.permission.report</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No user model permission.
+            </p>
+            <p>
+                This analysis gives you a fast overview on the user model permissions.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_user_model_permission_report"
+        parent="menu_user_permission_reports"
+        action="action_user_model_permission_report"
+        name="User Model Permission"
+        sequence="1"
+    />
+    <!-- user menu report -->
+    <record id="view_user_menu_permission_report_search" model="ir.ui.view">
+        <field name="name">user.menu.permission.report.search</field>
+        <field name="model">user.menu.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <search string="Users">
+                <field name="x_user_id" />
+                <field name="x_group_name" />
+                <field name="x_menu_complete_name" />
+            </search>
+        </field>
+    </record>
+    <record id="view_user_menu_permission_report_tree" model="ir.ui.view">
+        <field name="name">user.menu.permission.report.tree</field>
+        <field name="model">user.menu.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <tree string="User Menu Permission" create="0" edit="0" delete="0">
+                <field name="x_user_id" />
+                <field name="x_group_name" />
+                <field name="x_menu_complete_name" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_user_menu_permission_report" model="ir.actions.act_window">
+        <field name="name">User Menu Permission Report</field>
+        <field name="res_model">user.menu.permission.report</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No user menu permission.
+            </p>
+            <p>
+                This analysis gives you a fast overview on the user menu permissions.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_user_menu_permission_report"
+        parent="menu_user_permission_reports"
+        action="action_user_menu_permission_report"
+        name="User Menu Permission"
+        sequence="3"
+    />
+    <!-- role model report -->
+    <record id="view_role_model_permission_report_search" model="ir.ui.view">
+        <field name="name">role.model.permission.report.search</field>
+        <field name="model">role.model.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <search string="Roles">
+                <field name="x_role_id" />
+                <field name="x_model_name" />
+            </search>
+        </field>
+    </record>
+    <record id="view_role_model_permission_report_tree" model="ir.ui.view">
+        <field name="name">role.model.permission.report.tree</field>
+        <field name="model">role.model.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <tree string="Role Model Permission" create="0" edit="0" delete="0">
+                <field name="x_role_id" />
+                <field name="x_model_name" />
+                <field name="x_read" />
+                <field name="x_write" />
+                <field name="x_create" />
+                <field name="x_unlink" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_role_model_permission_report" model="ir.actions.act_window">
+        <field name="name">Role Model Permission Report</field>
+        <field name="res_model">role.model.permission.report</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No role model permission.
+            </p>
+            <p>
+                This analysis gives you a fast overview on the role model permissions.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_role_model_permission_report"
+        parent="menu_user_permission_reports"
+        action="action_role_model_permission_report"
+        name="Role Model Permission"
+        sequence="2"
+    />
+    <!-- role menu report -->
+    <record id="view_role_menu_permission_report_search" model="ir.ui.view">
+        <field name="name">role.menu.permission.report.search</field>
+        <field name="model">role.menu.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <search string="Roles">
+                <field name="x_role_id" />
+                <field name="x_group_name" />
+                <field name="x_menu_complete_name" />
+            </search>
+        </field>
+    </record>
+    <record id="view_role_menu_permission_report_tree" model="ir.ui.view">
+        <field name="name">role.menu.permission.report.tree</field>
+        <field name="model">role.menu.permission.report</field>
+        <field eval="10" name="priority" />
+        <field name="arch" type="xml">
+            <tree string="Role Menu Permission" create="0" edit="0" delete="0">
+                <field name="x_role_id" />
+                <field name="x_group_name" />
+                <field name="x_menu_complete_name" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_role_menu_permission_report" model="ir.actions.act_window">
+        <field name="name">Role Menu Permission Report</field>
+        <field name="res_model">role.menu.permission.report</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No role menu permission.
+            </p>
+            <p>
+                This analysis gives you a fast overview on the role menu permissions.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_role_menu_permission_report"
+        parent="menu_user_permission_reports"
+        action="action_role_menu_permission_report"
+        name="Role Menu Permission"
+        sequence="4"
+    />
+</odoo>

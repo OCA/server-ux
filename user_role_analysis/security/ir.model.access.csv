@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_model_permission_report,access_user_model_permission_report,model_user_model_permission_report,base.group_user,1,0,0,0
+access_user_menu_permission_report,access_user_menu_permission_report,model_user_menu_permission_report,base.group_user,1,0,0,0
+access_role_model_permission_report,access_role_model_permission_report,model_role_model_permission_report,base.group_user,1,0,0,0
+access_role_menu_permission_report,access_role_menu_permission_report,model_role_menu_permission_report,base.group_user,1,0,0,0
