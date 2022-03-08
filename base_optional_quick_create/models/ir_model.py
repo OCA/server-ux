@@ -50,4 +50,7 @@ class IrModel(models.Model):
     def write(self, vals):
         res = super().write(vals)
         self._patch_quick_create()
+        if "avoid_quick_create" in vals:
+            self.pool.registry_invalidated = True
+            self.pool.signal_changes()
         return res
