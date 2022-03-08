@@ -3,7 +3,7 @@
 
 {
     'name': 'Optional quick create',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Tools',
     'summary': 'Avoid "quick create" on m2o fields, on a "by model" basis',
     'author': 'Agile Business Group,Odoo Community Association (OCA)',
