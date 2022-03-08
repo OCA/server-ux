@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-02-21 13:16+0000\n"
+"PO-Revision-Date: 2022-03-08 13:17+0000\n"
 "Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
 "Language-Team: none\n"
 "Language: sv\n"
@@ -432,7 +432,7 @@ msgstr "Modell för relaterat dokument"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_buttons
 msgid "Request Validation"
-msgstr "Begär validering"
+msgstr "Begär attestering"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__requested_by
@@ -459,7 +459,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_buttons
 msgid "Restart Validation"
-msgstr "Starta om validering"
+msgstr "Starta om attestering"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -680,7 +680,7 @@ msgstr "Valideringar"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
-msgstr "t.ex. attestvalidering för..."
+msgstr "t.ex. attestering för..."
 
 #~ msgid ""
 #~ "This action needs to be validated for at least one record. \n"
