@@ -6,10 +6,19 @@ from odoo import models
 class CommentWizard(models.TransientModel):
     _inherit = "comment.wizard"
 
+    def _get_server_action(self, review):
+        """ get server action validate or reject """
+        validate_reject = self._context.get("default_validate_reject")
+        return (
+            validate_reject == "validate"
+            and review.definition_id.server_action_id
+            or review.definition_id.rejected_server_action_id
+        )
+
     def add_comment(self):
         res = super().add_comment()
         review = self.review_ids[-1]
-        server_action = review.definition_id.rejected_server_action_id
+        server_action = self._get_server_action(review)
         server_action_tier = self.env.context.get("server_action_tier")
         # Don't allow reentrant server action as it will lead to
         # recursive behaviour
