@@ -153,7 +153,7 @@ class ChainedSwapperSubField(models.Model):
             swap_field = rec.chained_swapper_id.field_id
             chain_field = self.env["ir.model.fields"].search(
                 [
-                    ("model_id", "=", rec.chained_swapper_id.model_id.id),
+                    ("model_id.model", "=", chain_model._name),
                     ("name", "=", chain_field_name),
                 ]
             )
