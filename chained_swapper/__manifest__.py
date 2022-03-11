@@ -3,7 +3,7 @@
 {
     "name": "Chained Swapper",
     "summary": "Chained Swapper",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
