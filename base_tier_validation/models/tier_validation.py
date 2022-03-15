@@ -143,8 +143,12 @@ class TierValidation(models.AbstractModel):
 
     def _compute_validated_rejected(self):
         for rec in self:
-            rec.validated = self._calc_reviews_validated(rec.review_ids)
-            rec.rejected = self._calc_reviews_rejected(rec.review_ids)
+            rec.validated = not self.need_validation and self._calc_reviews_validated(
+                rec.review_ids
+            )
+            rec.rejected = not self.need_validation and self._calc_reviews_rejected(
+                rec.review_ids
+            )
 
     def _compute_next_review(self):
         for rec in self:
@@ -168,11 +172,16 @@ class TierValidation(models.AbstractModel):
     def _compute_need_validation(self):
         for rec in self:
             tiers = self.env["tier.definition"].search([("model", "=", self._name)])
-            valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
+            valid_tiers = any(
+                [
+                    rec.evaluate_tier(tier)
+                    for tier in tiers.filtered(
+                        lambda t: t not in rec.review_ids.mapped("definition_id")
+                    )
+                ]
+            )
             rec.need_validation = (
-                not rec.review_ids
-                and valid_tiers
-                and getattr(rec, self._state_field) in self._state_from
+                valid_tiers and getattr(rec, self._state_field) in self._state_from
             )
 
     def evaluate_tier(self, tier):
@@ -311,6 +320,8 @@ class TierValidation(models.AbstractModel):
             return self._add_comment("validate", reviews)
         self._validate_tier(reviews)
         self._update_counter()
+        if self.need_validation:
+            self.request_validation()
 
     def reject_tier(self):
         self.ensure_one()
@@ -387,8 +398,11 @@ class TierValidation(models.AbstractModel):
                     tier_definitions = td_obj.search(
                         [("model", "=", self._name)], order="sequence desc"
                     )
+                    used_definitions = rec.review_ids.mapped("definition_id")
                     sequence = 0
-                    for td in tier_definitions:
+                    for td in tier_definitions.filtered(
+                        lambda d: d not in used_definitions
+                    ):
                         if rec.evaluate_tier(td):
                             sequence += 1
                             created_trs += tr_obj.create(
