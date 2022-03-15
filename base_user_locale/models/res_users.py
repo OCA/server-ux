@@ -8,19 +8,16 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     date_format = fields.Char(
-        string="Date Format",
         help="See Settings > Translations > Languages and then "
         "click on any language to see the Legends for "
         "supported Date and Time Formats and some examples",
     )
     time_format = fields.Char(
-        string="Time Format",
         help="See Settings > Translations > Languages and then "
         "click on any language to see the Legends for "
         "supported Date and Time Formats and some examples",
     )
     week_start = fields.Selection(
-        string="Week Start",
         selection=[
             ("1", "Monday"),
             ("2", "Tuesday"),
@@ -46,11 +43,8 @@ class ResUsers(models.Model):
         "supported Date and Time Formats and some examples",
     )
 
-    def __init__(self, pool, cr):
-        """Override of __init__ to add access rights.
-        Access rights are disabled by default, but allowed
-        on some specific fields defined in self.SELF_{READ/WRITE}ABLE_FIELDS.
-        """
+    @property
+    def SELF_READABLE_FIELDS(self):
         base_user_locale_readable_fields = [
             "date_format",
             "time_format",
@@ -58,10 +52,7 @@ class ResUsers(models.Model):
             "decimal_point",
             "thousands_sep",
         ]
-        super(ResUsers, self).__init__(pool, cr)
-        type(self).SELF_READABLE_FIELDS = (
-            type(self).SELF_READABLE_FIELDS + base_user_locale_readable_fields
-        )
+        return super().SELF_READABLE_FIELDS + base_user_locale_readable_fields
 
     def preference_save(self):
         super().preference_save()
