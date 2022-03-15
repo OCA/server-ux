@@ -21,12 +21,11 @@ class MassOperationMixin(models.AbstractModel):
         return [("transient", "=", False)]
 
     # Column Section
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
-    action_name = fields.Char(string="Action Name", required=True)
+    action_name = fields.Char(required=True)
 
     message = fields.Text(
-        string="Message",
         help="If set, this message will be displayed in the" " wizard.",
     )
 
@@ -53,7 +52,7 @@ class MassOperationMixin(models.AbstractModel):
         string="Allowed Groups",
     )
 
-    domain = fields.Char(string="Domain", required=True, default="[]")
+    domain = fields.Char(required=True, default="[]")
 
     # Onchange Section
     @api.onchange("name")

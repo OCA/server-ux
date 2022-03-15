@@ -34,8 +34,8 @@ class MassOperationWizardMixin(models.AbstractModel):
     message = fields.Text(readonly=True)
 
     @api.model
-    def default_get(self, fields):
-        res = super().default_get(fields)
+    def default_get(self, default_fields):
+        res = super().default_get(default_fields)
 
         mass_operation = self._get_mass_operation()
 
@@ -53,9 +53,12 @@ class MassOperationWizardMixin(models.AbstractModel):
             ) % len(active_ids)
         elif len(remaining_items):
             operation_description_warning = _(
-                "You have selected %d items that can not be processed."
-                " Only %d items will be processed."
-            ) % (len(active_ids) - len(remaining_items), len(remaining_items))
+                "You have selected %(num1)d items that can not be processed."
+                " Only %(num2)d items will be processed."
+            ) % {
+                "num1": len(active_ids) - len(remaining_items),
+                "num2": len(remaining_items),
+            }
         else:
             operation_description_danger = _(
                 "None of the %d items you have selected can be processed."
