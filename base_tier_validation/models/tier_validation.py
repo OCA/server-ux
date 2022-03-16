@@ -178,10 +178,10 @@ class TierValidation(models.AbstractModel):
 
     def _compute_validated_rejected(self):
         for rec in self:
-            rec.validated = not self.need_validation and self._calc_reviews_validated(
+            rec.validated = not rec.need_validation and rec._calc_reviews_validated(
                 rec.review_ids
             )
-            rec.rejected = not self.need_validation and self._calc_reviews_rejected(
+            rec.rejected = not rec.need_validation and rec._calc_reviews_rejected(
                 rec.review_ids
             )
             rec.validated_message = rec._get_validated_message()
