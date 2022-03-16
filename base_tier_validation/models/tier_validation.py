@@ -37,6 +37,11 @@ class TierValidation(models.AbstractModel):
     rejected = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_rejected"
     )
+    validation_max_sequence = fields.Integer(
+        string="Validation Maximum Sequence",
+        compute="_compute_validation_max_sequence",
+        store=True,
+    )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
         comodel_name="res.users",
@@ -48,6 +53,17 @@ class TierValidation(models.AbstractModel):
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
+
+    @api.depends("review_ids", "review_ids.status")
+    def _compute_validation_max_sequence(self):
+        for rec in self:
+            max_seq = 0
+            approved_reviews = rec.review_ids.filtered(
+                lambda r: r.status == "approved" and r.definition_id.sequence
+            )
+            if approved_reviews:
+                max_seq = max(approved_reviews.mapped("definition_id.sequence"))
+            rec.validation_max_sequence = max_seq
 
     def _compute_has_comment(self):
         for rec in self:
