@@ -57,6 +57,9 @@ class CommonTierValidation(common.SavepointCase):
         cls.test_user_2 = cls.env["res.users"].create(
             {"name": "Mike", "login": "test2"}
         )
+        cls.test_user_3 = cls.env["res.users"].create(
+            {"name": "Judith", "login": "test3", "groups_id": [(6, 0, group_ids)]}
+        )
 
         # Create tier definitions:
         cls.tier_def_obj = cls.env["tier.definition"]
