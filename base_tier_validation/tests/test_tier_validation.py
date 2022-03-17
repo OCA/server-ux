@@ -412,6 +412,40 @@ class TierTierValidation(CommonTierValidation):
         )
         self.assertEquals(len(records), 0)
 
+    def test_18_validation_max_sequence(self):
+        """Check if the validation_max_sequence field is updated when approved"""
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        record.validate_tier()
+        self.assertEqual(record.validation_max_sequence, 30)
+
+    def test_19_sequential_review(self):
+        """Check if Tier Reviews in a sequential review are progressively created"""
+        self.tier_def_obj.create(
+            {
+                "name": "2nd TierValidation",
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_3.id,
+                "definition_domain": """[('validation_max_sequence','=', 30),
+                                         ('test_field', '>', 1.0)]""",
+                "sequence": 40,
+            }
+        )
+        record = self.test_record
+        record.with_user(self.test_user_2.id).request_validation()
+        record.invalidate_cache()
+        record.with_user(self.test_user_1.id).validate_tier()
+        self.assertEqual(record.validation_max_sequence, 30)
+        record.invalidate_cache()
+        self.assertEqual(len(record.review_ids), 2)
+
+        record.with_user(self.test_user_3.id).validate_tier()
+        record.invalidate_cache()
+        self.assertEqual(record.validation_max_sequence, 40)
+        self.assertTrue(record.validated)
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
