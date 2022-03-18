@@ -1,12 +1,23 @@
 # Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import operator as py_operator
 from ast import literal_eval
 
 from lxml import etree
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
+
+OPERATORS = {
+    "<": py_operator.lt,
+    ">": py_operator.gt,
+    "<=": py_operator.le,
+    ">=": py_operator.ge,
+    "==": py_operator.eq,
+    "=": py_operator.eq,
+    "!=": py_operator.ne,
+}
 
 
 class TierValidation(models.AbstractModel):
@@ -40,7 +51,8 @@ class TierValidation(models.AbstractModel):
     validation_max_sequence = fields.Integer(
         string="Validation Maximum Sequence",
         compute="_compute_validation_max_sequence",
-        store=True,
+        search="_search_validation_max_sequence",
+        store=False,
     )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
@@ -53,6 +65,27 @@ class TierValidation(models.AbstractModel):
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
+
+    def _search_validation_max_sequence(self, operator, value):
+        if operator not in OPERATORS:
+            raise UserError(_("Unsupported operator %s") % (operator,))
+        domain = [("status", "=", "approved"), ("model", "=", self._name)]
+        groups = self.env["tier.review"].read_group(
+            domain=domain,
+            fields=[
+                "ids:array_agg(id)",
+                "res_id",
+                "max_definition_sequence:max(definition_sequence)",
+            ],
+            groupby=["res_id"],
+            lazy=False,
+        )
+        res_ids = []
+        for group in groups:
+            operator_func = OPERATORS[operator]
+            if operator_func(group["max_definition_sequence"], value):
+                res_ids.append(group["res_id"])
+        return [("id", "in", res_ids)]
 
     @api.depends("review_ids", "review_ids.status")
     def _compute_validation_max_sequence(self):
