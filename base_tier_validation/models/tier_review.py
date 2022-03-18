@@ -37,6 +37,7 @@ class TierReview(models.Model):
         store=True,
     )
     sequence = fields.Integer(string="Tier")
+    definition_sequence = fields.Integer(related="definition_id.sequence", store=True)
     todo_by = fields.Char(compute="_compute_todo_by", store=True)
     done_by = fields.Many2one(comodel_name="res.users")
     requested_by = fields.Many2one(comodel_name="res.users")
