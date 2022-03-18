@@ -3,7 +3,7 @@
 
 from lxml import etree
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, tagged
 
 from .common import CommonTierValidation
@@ -445,6 +445,32 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_cache()
         self.assertEqual(record.validation_max_sequence, 40)
         self.assertTrue(record.validated)
+
+    def test_20_search_validation_max_sequence(self):
+        self.tier_def_obj.create(
+            {
+                "name": "2nd TierValidation",
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_3.id,
+                "definition_domain": """[('validation_max_sequence','=', 30),
+                                                 ('test_field', '>', 1.0)]""",
+                "sequence": 40,
+            }
+        )
+        record = self.test_record
+        record.with_user(self.test_user_2.id).request_validation()
+        record.invalidate_cache()
+        record.with_user(self.test_user_1.id).validate_tier()
+        self.assertEqual(record.validation_max_sequence, 30)
+        record.invalidate_cache()
+        self.assertEqual(len(record.review_ids), 2)
+
+        result = self.test_model.search([("validation_max_sequence", "=", 30)])
+        self.assertEqual(len(result), 1)
+
+        with self.assertRaises(UserError):
+            self.test_model.search([("validation_max_sequence", "ilike", 30)])
 
 
 @tagged("at_install")
