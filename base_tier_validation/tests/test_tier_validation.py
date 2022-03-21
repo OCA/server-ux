@@ -3,7 +3,7 @@
 
 from lxml import etree
 
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, tagged
 
 from .common import CommonTierValidation
@@ -495,11 +495,6 @@ class TierTierValidation(CommonTierValidation):
 
         with self.assertRaises(UserError):
             self.test_model.search([("validation_max_sequence", "ilike", 30)])
-
-
-
-
-
 
 
 @tagged("at_install")
