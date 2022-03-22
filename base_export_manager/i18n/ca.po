@@ -9,123 +9,124 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-20 12:59+0000\n"
-"PO-Revision-Date: 2019-05-20 12:59+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-03-22 13:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__model_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__model1_id
 msgid "Database model to export."
-msgstr ""
+msgstr "Model de base de dades per exportar."
 
 #. module: base_export_manager
 #. openerp-web
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:18
 #, python-format
 msgid "Export"
-msgstr ""
+msgstr "Exporta"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
-msgstr ""
+msgstr "Accés d'exportació"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__name
 msgid "Export Name"
-msgstr ""
+msgstr "Nom d'exportació"
 
 #. module: base_export_manager
 #: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
 msgid "Export Profile"
-msgstr ""
+msgstr "Perfil d'exportació"
 
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
 #: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
-msgstr ""
+msgstr "Exporta perfils"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports
 msgid "Exports"
-msgstr ""
+msgstr "Exportacions"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "Exports Line"
-msgstr ""
+msgstr "Línia d'exportacions"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:170
 #, python-format
 msgid "Field '%s' already exists"
-msgstr ""
+msgstr "El camp '%s' ja existeix"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:165
 #, python-format
 msgid "Field '%s' does not exist"
-msgstr ""
+msgstr "El camp '%s' no existeix"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:198
 #, python-format
 msgid "Field '%s' not found in model '%s'"
-msgstr ""
+msgstr "No s'ha trobat el camp '%s' al model '%s'"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
 msgid "Field Name"
-msgstr ""
+msgstr "Nom del camp"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__name
 msgid "Field's technical name."
-msgstr ""
+msgstr "Nom tècnic del camp."
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field1_id
 msgid "First field"
-msgstr ""
+msgstr "Primer camp"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model1_id
 msgid "First model"
-msgstr ""
+msgstr "Primer model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field4_id
 msgid "Fourth field"
-msgstr ""
+msgstr "Quart camp"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model4_id
 msgid "Fourth model"
-msgstr ""
+msgstr "Quart model"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_http
 msgid "HTTP Routing"
-msgstr ""
+msgstr "Encaminament HTTP"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:136
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
-msgstr ""
+msgstr "No es permet tenir més de 4 nivells de profunditat: %s"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__label
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__model_id
@@ -135,27 +136,27 @@ msgstr "Model"
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_model_access
 msgid "Model Access"
-msgstr ""
+msgstr "Model d'accés"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__resource
 msgid "Model's technical name."
-msgstr ""
+msgstr "Nom tècnic del model."
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__resource
 msgid "Resource"
-msgstr ""
+msgstr "Recurs"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field2_id
 msgid "Second field"
-msgstr ""
+msgstr "Segon camp"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model2_id
 msgid "Second model"
-msgstr ""
+msgstr "Segon model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__sequence
@@ -165,12 +166,12 @@ msgstr "Seqüència"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__field3_id
 msgid "Third field"
-msgstr ""
+msgstr "Tercer camp"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__model3_id
 msgid "Third model"
-msgstr ""
+msgstr "Tercer model"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_res_users
@@ -181,4 +182,4 @@ msgstr "Usuaris"
 #: code:addons/base_export_manager/models/ir_exports.py:65
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Heu de proporcionar un model o recurs."
