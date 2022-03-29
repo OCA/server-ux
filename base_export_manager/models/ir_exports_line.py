@@ -184,7 +184,8 @@ class IrExportsLine(models.Model):
         )
         if not field.exists():
             raise exceptions.ValidationError(
-                _("Field '%s' not found in model '%s'") % (name, model.model)
+                _("Field '%(name)s' not found in model '%(model)s'")
+                % {"name": name, "model": model.model}
             )
         return field
 
