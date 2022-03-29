@@ -7,10 +7,9 @@
 {
     "name": "Manage model export profiles",
     "category": "Personalization",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "depends": ["web"],
     "data": [
-        "views/assets.xml",
         "views/ir_exports.xml",
         "views/ir_model.xml",
         "views/ir_model_access.xml",
@@ -24,6 +23,12 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
+    "assets": {
+        "web.assets_backend": [
+            "base_export_manager/static/src/js/base_export_manager.js",
+        ],
+        "web.assets_qweb": ["base_export_manager/static/src/xml/base.xml"],
+    },
     "installable": True,
     "application": False,
 }
