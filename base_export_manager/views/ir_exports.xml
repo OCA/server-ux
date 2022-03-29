@@ -17,7 +17,7 @@
         <field name="name">Export Profile tree</field>
         <field name="model">ir.exports</field>
         <field name="arch" type="xml">
-            <tree string="Export Profiles">
+            <tree>
                 <field name="name" />
                 <field name="model_id" />
                 <field name="resource" />
