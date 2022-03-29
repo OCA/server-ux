@@ -5,32 +5,23 @@
 odoo.define("base_export_manager.base_export_manager", function (require) {
     "use strict";
 
-    const core = require("web.core");
-    const Sidebar = require("web.Sidebar");
+    const ListController = require("web.ListController");
     const session = require("web.session");
 
-    const _t = core._t;
-
-    Sidebar.include({
+    ListController.include({
         /**
          * Reject "export" item if the current user has not 'export perm' in
          * the active model
-         *
-         * @override
+         * @private
+         * @returns {Promise}
          */
-        _addItems: function (sectionCode, items) {
-            let _items = items;
+        _getActionMenuItems: function () {
             const is_export_enabled =
-                session.export_models.indexOf(this.env.model) !== -1;
-            if (
-                !session.is_system &&
-                sectionCode === "other" &&
-                items.length &&
-                !is_export_enabled
-            ) {
-                _items = _.reject(_items, {label: _t("Export")});
+                session.export_models.indexOf(this.modelName) !== -1;
+            if (!session.is_system && !is_export_enabled) {
+                this.isExportEnable = false;
             }
-            this._super(sectionCode, _items);
+            return this._super(...arguments);
         },
     });
 });
