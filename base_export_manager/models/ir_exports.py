@@ -27,13 +27,13 @@ class IrExports(models.Model):
 
     @api.depends("model_id")
     def _inverse_model_id(self):
-        """ Gets resource from model """
+        """Gets resource from model"""
         for record in self:
             record.resource = self.model_id.model
 
     @api.depends("resource")
     def _compute_model_id(self):
-        """ Gets resource from model """
+        """Gets resource from model"""
         IrModel = self.env["ir.model"]
         for record in self:
             record.model_id = IrModel._get(record.resource)
