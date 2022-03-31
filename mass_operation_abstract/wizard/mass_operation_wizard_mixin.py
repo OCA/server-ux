@@ -114,4 +114,4 @@ class MassOperationWizardMixin(models.AbstractModel):
             )
         else:
             domain = [("id", "in", active_ids)]
-        return SrcModel.search(domain)
+        return SrcModel.with_context(active_test=False).search(domain)
