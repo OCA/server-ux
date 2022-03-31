@@ -35,7 +35,7 @@ class TestImportSecurityGroup(common.HttpCase):
         self.start_tour("/web", "button_import_ko", login="admin")
 
     def test_access_admin(self):
-        """ Admin user can import data """
+        """Admin user can import data"""
         with mute_logger("odoo.sql_db"):
             res = self.Access.with_user(self.user_admin).load(self.fields, self.data)
         self.assertEqual(res["ids"], False)
@@ -50,7 +50,7 @@ class TestImportSecurityGroup(common.HttpCase):
         )
 
     def test_access_demo(self):
-        """ Demo user cannot import data """
+        """Demo user cannot import data"""
         self.user_test.write({"groups_id": [(4, self.ref("base.group_system"))]})
         self.start_tour("/web", "button_import_ko", login="demo")
         res2 = self.Access.with_user(self.user_test).load(self.fields, self.data)
