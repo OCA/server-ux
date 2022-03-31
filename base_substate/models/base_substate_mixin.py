@@ -46,7 +46,7 @@ class BaseSubstateMixin(models.AbstractModel):
         return res
 
     def _get_default_substate_id(self, state_val=False):
-        """ Gives default substate_id """
+        """Gives default substate_id"""
         search_domain = self._get_default_substate_domain(state_val)
         # perform search, return the first found
         return (

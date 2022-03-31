@@ -52,7 +52,7 @@ class MassEditingLine(models.Model):
 
     @api.constrains("server_action_id", "field_id")
     def _check_field_model(self):
-        """ Check that all fields belong to the action model """
+        """Check that all fields belong to the action model"""
         if any(rec.field_id.model_id != rec.server_action_id.model_id for rec in self):
             raise ValidationError(
                 _("Mass edit fields should belong to the server action model.")

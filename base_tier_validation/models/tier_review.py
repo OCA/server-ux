@@ -84,7 +84,7 @@ class TierReview(models.Model):
 
     @api.depends("reviewer_ids")
     def _compute_todo_by(self):
-        """ Show by group or by abbrev list of names """
+        """Show by group or by abbrev list of names"""
         num_show = 3  # Max number of users to display
         for rec in self:
             todo_by = False

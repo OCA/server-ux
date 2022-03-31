@@ -14,7 +14,7 @@ class TestIrExportsCase(TransactionCase):
         """
         # Emulate creation from JsonRpc, without model_id and field#_id
         data = {
-            "name": u"Test éxport",
+            "name": "Test éxport",
             "resource": "ir.exports",
             "export_fields": [
                 [0, 0, {"name": "export_fields"}],

@@ -6,7 +6,7 @@ from psycopg2 import sql
 
 
 def migrate_mass_editing(env):
-    """ Migrates mass.editing to ir.actions.server """
+    """Migrates mass.editing to ir.actions.server"""
     # Create new context actions
     env.cr.execute(
         sql.SQL(

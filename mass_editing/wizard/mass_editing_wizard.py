@@ -192,7 +192,7 @@ class MassEditingWizard(models.TransientModel):
                                     (
                                         "name",
                                         "=",
-                                        u"{},{}".format(
+                                        "{},{}".format(
                                             server_action.model_id.model, split_key
                                         ),
                                     ),

@@ -29,7 +29,7 @@ class ResUsers(models.Model):
 
     @api.depends("groups_id")
     def _compute_technical_features(self):
-        """ Map user membership to boolean field value """
+        """Map user membership to boolean field value"""
         for user in self:
             user.technical_features = user.has_group(
                 "base_technical_features.group_technical_features"
