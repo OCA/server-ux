@@ -22,7 +22,7 @@ class ValidationForwardWizard(models.TransientModel):
     )
 
     def add_forward(self):
-        """ Add extra step, with specific reviewer """
+        """Add extra step, with specific reviewer"""
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
         prev_comment = self.env["comment.wizard"].browse(
