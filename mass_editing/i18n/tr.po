@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2017-05-17 21:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-03-18 12:17+0000\n"
+"Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
@@ -25,17 +26,20 @@ msgid ""
 "including the fields of such domain in this operation definition, will lead "
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
+"<b> UYARI </b>: Bu işlem tanımına etki alanına sahip bir alan eklemek ve bu "
+"etki alanına ait alanları dahil etmemenin, bunu gerçekleştirmeye çalışırken "
+"bir hataya yol açacağını dikkate alın. Bunları dahil ettiğinizden emin olun."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__action_name
 msgid "Action Name"
-msgstr ""
+msgstr "Eylem Adı"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Ekle"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -44,26 +48,29 @@ msgid ""
 "Example :\n"
 "'many2many_tags', 'selection'"
 msgstr ""
+"Alanı sihirbazda görüntülemek için kullanılacak widget metni ekleyin. Örnek :"
+"\n"
+"'many2many_tags', 'selection'"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__groups_id
 msgid "Allowed Groups"
-msgstr ""
+msgstr "İzin Verilen Gruplar"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
-msgstr ""
+msgstr "Alanla ilgili varsayılan domain uygula"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply domain"
-msgstr ""
+msgstr "Domain uygula"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__apply_domain_in_lines
 msgid "Apply domain in lines"
-msgstr ""
+msgstr "Domain satırlarına uygula"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_uid
@@ -89,13 +96,12 @@ msgstr "Görünen İsim"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domain"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
-#, fuzzy
 msgid "Field"
-msgstr "Alanlar"
+msgstr "Alan"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__id
@@ -107,7 +113,7 @@ msgstr "ID"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing__message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Ayarlanırsa, bu mesaj sihirbazda görüntülenecektir."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing____last_update
@@ -133,7 +139,7 @@ msgstr "Son güncelleme"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Satır"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_editing
@@ -141,19 +147,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__mass_editing_id
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 msgid "Mass Editing"
-msgstr "Toplu düzenleme"
+msgstr "Toplu Düzenleme"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
-#, fuzzy
 msgid "Mass Editing Line"
-msgstr "Toplu düzenleme"
+msgstr "Toplu Düzenleme Satırı"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__model_id
@@ -169,59 +174,59 @@ msgstr "Adı"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Operasyon Tehlike Açıklaması"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Operasyon Bilgi Açıklaması"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Operasyon Uyarı Açıklaması"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Kalan Öğe Miktarı"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "Kaldır"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Seçilen Öğe Adeti"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sıralama"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Ayarla"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__ref_ir_act_window_id
 msgid "Sidebar Action"
-msgstr ""
+msgstr "Kenar Çubuk Eylemi"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Widget Seçeneği"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
-msgstr ""
+msgstr "Toplu düzenleme sihirbazı"
 
 #~ msgid "Advanced"
 #~ msgstr "Gelişmiş"
