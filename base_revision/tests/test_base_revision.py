@@ -3,10 +3,9 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # Copyright 2020 Ecosoft (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo_test_helper import FakeModelLoader
-
 from odoo.tests import common
 
+from odoo_test_helper import FakeModelLoader
 
 class TestBaseRevision(common.TransactionCase):
     @classmethod
