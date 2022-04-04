@@ -3,9 +3,10 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # Copyright 2020 Ecosoft (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo_test_helper import FakeModelLoader
+
 from odoo.tests import common
 
-from odoo_test_helper import FakeModelLoader
 
 class TestBaseRevision(common.TransactionCase):
     @classmethod
@@ -39,7 +40,6 @@ class TestBaseRevision(common.TransactionCase):
         """Check revision process"""
         # Create a Tester document
         tester_1 = self._create_tester()
-        tester_1.message_post(body="body")
 
         # Create a revision of the Tester
         self._revision_tester(tester_1)
@@ -47,7 +47,6 @@ class TestBaseRevision(common.TransactionCase):
         # Check the previous revision of the tester
         revision_1 = tester_1.current_revision_id
         self.assertEqual(tester_1.state, "cancel")
-        self.assertEqual(len(tester_1.message_ids),3)
 
         # Check the current revision of the tester
         self.assertEqual(revision_1.unrevisioned_name, tester_1.name)
@@ -58,7 +57,6 @@ class TestBaseRevision(common.TransactionCase):
         self.assertEqual(revision_1.name.endswith("-01"), True)
         self.assertEqual(revision_1.has_old_revisions, True)
         self.assertEqual(revision_1.revision_count, 1)
-        self.assertEqual(len(revision_1.message_ids),2)
 
         # Create a new revision of the tester
         self._revision_tester(revision_1)
@@ -78,7 +76,6 @@ class TestBaseRevision(common.TransactionCase):
         self.assertEqual(revision_2.name.endswith("-02"), True)
         self.assertEqual(revision_2.has_old_revisions, True)
         self.assertEqual(revision_2.revision_count, 2)
-        self.assertEqual(len(revision_2.message_ids),2)
 
     def test_simple_copy(self):
         """Check copy process"""
