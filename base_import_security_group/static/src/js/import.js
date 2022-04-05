@@ -9,12 +9,12 @@ odoo.define("web.ListImport", function(require) {
         /* eslint-disable no-unused-vars */
         init: function(viewInfo, params) {
             var self = this;
-            var result = self._super.apply(self, arguments);
+            var res = self._super.apply(self, arguments);
             var base_group = "base_import_security_group.group_import_csv";
 
-            session.user_has_group(base_group).then(function(result) {
+            session.user_has_group(base_group).then(function(has_group) {
                 var importEnabled = false;
-                if (result) {
+                if (has_group) {
                     importEnabled = true;
                 }
                 self.controllerParams.importEnabled = importEnabled;
