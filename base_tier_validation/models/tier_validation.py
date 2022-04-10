@@ -30,13 +30,16 @@ class TierValidation(models.AbstractModel):
         domain=lambda self: [("model", "=", self._name)],
         auto_join=True,
     )
+    to_validate_message = fields.Html(compute="_compute_validated_rejected")
     validated = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_validated"
     )
+    validated_message = fields.Html(compute="_compute_validated_rejected")
     need_validation = fields.Boolean(compute="_compute_need_validation")
     rejected = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_rejected"
     )
+    rejected_message = fields.Html(compute="_compute_validated_rejected")
     reviewer_ids = fields.Many2many(
         string="Reviewers",
         comodel_name="res.users",
@@ -135,10 +138,35 @@ class TierValidation(models.AbstractModel):
         )
         return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
 
+    def _get_to_validate_message_name(self):
+        return self._description
+
+    def _get_to_validate_message(self):
+        return (
+            """<i class="fa fa-info-circle" /> %s"""
+            % _("This %s needs to be validated")
+            % self._get_to_validate_message_name()
+        )
+
+    def _get_validated_message(self):
+        msg = """<i class="fa fa-thumbs-down" /> %s""" % _(
+            """Operation has been <b>validated</b>!"""
+        )
+        return self.validated and msg or ""
+
+    def _get_rejected_message(self):
+        msg = """<i class="fa fa-thumbs-down" /> %s""" % _(
+            """Operation has been <b>rejected</b>."""
+        )
+        return self.rejected and msg or ""
+
     def _compute_validated_rejected(self):
         for rec in self:
             rec.validated = self._calc_reviews_validated(rec.review_ids)
+            rec.validated_message = rec._get_validated_message()
             rec.rejected = self._calc_reviews_rejected(rec.review_ids)
+            rec.rejected_message = rec._get_rejected_message()
+            rec.to_validate_message = rec._get_to_validate_message()
 
     def _compute_next_review(self):
         for rec in self:
