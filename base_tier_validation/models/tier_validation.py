@@ -33,10 +33,12 @@ class TierValidation(models.AbstractModel):
     validated = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_validated"
     )
+    validated_message = fields.Html(compute="_compute_validated_rejected")
     need_validation = fields.Boolean(compute="_compute_need_validation")
     rejected = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_rejected"
     )
+    rejected_message = fields.Html(compute="_compute_validated_rejected")
     reviewer_ids = fields.Many2many(
         string="Reviewers",
         comodel_name="res.users",
@@ -46,6 +48,7 @@ class TierValidation(models.AbstractModel):
     can_review = fields.Boolean(
         compute="_compute_can_review", search="_search_can_review"
     )
+    can_review_message = fields.Html(compute="_compute_can_review")
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
 
@@ -72,9 +75,19 @@ class TierValidation(models.AbstractModel):
                 sequences.append(my_sequence)
         return sequences
 
+    def _get_can_review_message(self):
+        return (
+            """<i class="fa fa-info-circle" />%s"""
+            % _("This %s needs to be validated")
+            % self._description
+        )
+
     def _compute_can_review(self):
         for rec in self:
             rec.can_review = rec._get_sequences_to_approve(self.env.user)
+            rec.can_review_note = ""
+            if rec.can_review:
+                rec.can_review_note = rec._get_can_review_note()
 
     @api.model
     def _search_can_review(self, operator, value):
@@ -141,10 +154,24 @@ class TierValidation(models.AbstractModel):
         )
         return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
 
+    def _get_validated_message(self):
+        msg = """<i class="fa fa-thumbs-down" />%s""" % _(
+            """Operation has been <b>validated</b>!"""
+        )
+        return self.validated and msg or ""
+
+    def _get_rejected_message(self):
+        msg = """<i class="fa fa-thumbs-down" />%s""" % _(
+            """Operation has been <b>rejected</b>."""
+        )
+        return self.rejected and msg or ""
+
     def _compute_validated_rejected(self):
         for rec in self:
             rec.validated = self._calc_reviews_validated(rec.review_ids)
+            rec.validated_msg = rec._get_validated_message()
             rec.rejected = self._calc_reviews_rejected(rec.review_ids)
+            rec.rejected_msg = rec._get_validated_message()
 
     def _compute_next_review(self):
         for rec in self:
