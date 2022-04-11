@@ -345,6 +345,18 @@ msgid "Notify Reviewers on Creation"
 msgstr "通知审批人"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>rejected</b>."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>validated</b>!"
+msgstr ""
+
+#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
@@ -367,6 +379,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
 msgid "Rejected"
 msgstr "已拒绝"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected_message
+msgid "Rejected Message"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__res_id
@@ -488,6 +505,12 @@ msgstr ""
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
+msgid "This %s needs to be validated"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
 " - %s \n"
@@ -535,6 +558,11 @@ msgid "Tier Validations"
 msgstr "多级审批"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
 msgid "Todo By"
 msgstr "待办人"
@@ -570,6 +598,11 @@ msgstr "拒绝"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
 msgid "Validated"
 msgstr "已通过"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated_message
+msgid "Validated Message"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type

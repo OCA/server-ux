@@ -348,6 +348,18 @@ msgid "Notify Reviewers on Creation"
 msgstr "Notifica gli approvatori su Creazione"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>rejected</b>."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>validated</b>!"
+msgstr ""
+
+#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
@@ -370,6 +382,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
 msgid "Rejected"
 msgstr "Rifiutato"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected_message
+msgid "Rejected Message"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__res_id
@@ -492,6 +509,12 @@ msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "This %s needs to be validated"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
 #, fuzzy, python-format
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
@@ -545,6 +568,11 @@ msgid "Tier Validations"
 msgstr "Livelli Validazione"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
 #, fuzzy
 msgid "Todo By"
@@ -581,6 +609,11 @@ msgstr "Avallo Negato"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
 msgid "Validated"
 msgstr "Avallato"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated_message
+msgid "Validated Message"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type
