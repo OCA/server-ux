@@ -75,14 +75,14 @@ msgstr "Een beoordeling is geaccepteerd. (%s)"
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
-msgid "A review was rejected by %s."
-msgstr "Een beoordeling is afgewezen door %s."
+msgid "A review was rejected by %(user)s. (%(comment)s)"
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
-msgid "A review was rejected by {}. ({})"
-msgstr "Een beoordeling is afgewezen door {}. ({})"
+msgid "A review was rejected by %s."
+msgstr "Een beoordeling is afgewezen door %s."
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
@@ -221,11 +221,8 @@ msgstr "Omschrijving"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__display_name
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_users__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__display_name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_name
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
 
@@ -269,11 +266,8 @@ msgstr "Heeft commentaar"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__id
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_users__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__id
 msgid "ID"
 msgstr "ID"
 
@@ -288,11 +282,8 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_users____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation____last_update
 msgid "Last Modified on"
 msgstr "Laatst gewijzigd op"
 
@@ -361,6 +352,18 @@ msgid "Notify Reviewers on Creation"
 msgstr "Informeer beoordelaar bij het maken"
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>rejected</b>."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
+msgid "Operation has been <b>validated</b>!"
+msgstr ""
+
+#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to forward a tier validation to other reviewer, and backward"
 msgstr ""
@@ -398,6 +401,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
 msgid "Rejected"
 msgstr "Afgekeurd"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected_message
+msgid "Rejected Message"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__res_id
@@ -486,7 +494,6 @@ msgstr "Beoordelingen"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Volgorde"
@@ -525,6 +532,12 @@ msgstr ""
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
+msgid "This %s needs to be validated"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:0
+#, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
@@ -533,11 +546,15 @@ msgstr ""
 "Vraag een validatie aan."
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
+msgstr "Tier"
+
+#. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
 #: model:ir.model,name:base_tier_validation.model_tier_definition
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_definition
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_tree
 msgid "Tier Definition"
 msgstr "Tier definitie"
 
@@ -558,7 +575,6 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
 msgid "Tier Review"
 msgstr "Tier beoordeling"
 
@@ -605,6 +621,11 @@ msgid "Tier Validations"
 msgstr "Tier-validaties"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
 msgid "Todo By"
 msgstr ""
@@ -642,6 +663,11 @@ msgid "Validated"
 msgstr "Gevalideerd"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated_message
+msgid "Validated Message"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__review_type
 msgid "Validated by"
@@ -665,11 +691,11 @@ msgstr "Validaties"
 msgid "e.g. Tier Validation for..."
 msgstr "bijv. Tier validatie voor..."
 
+#~ msgid "A review was rejected by {}. ({})"
+#~ msgstr "Een beoordeling is afgewezen door {}. ({})"
+
 #~ msgid "Any user in a specific group."
 #~ msgstr "Elke gebruiker in een specifieke groep."
-
-#~ msgid "Tier"
-#~ msgstr "Tier"
 
 #~ msgid "Object"
 #~ msgstr "Object"
