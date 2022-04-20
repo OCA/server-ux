@@ -120,7 +120,7 @@ class TierCorrection(models.Model):
 
     @api.constrains("date_schedule_correct", "date_schedule_revert")
     def _check_date(self):
-        """ Correct Date < Revert Date """
+        """Correct Date < Revert Date"""
         for rec in self:
             now = fields.Datetime.now()
             correct = rec.date_schedule_correct or now
@@ -284,7 +284,7 @@ class TierCorrectionItem(models.Model):
                 message = _(
                     "The Correction '%s', reverted reviewers on '%s' back to '%s'"
                 ) % (self.correction_id.name, reviews, reviewers)
-            getattr(self.resource_ref, post)(
+            getattr(self.resource_ref.sudo(), post)(
                 subtype_xmlid=(
                     "base_tier_validation_correction.mt_tier_validation_correction"
                 ),
