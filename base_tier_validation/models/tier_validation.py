@@ -65,6 +65,19 @@ class TierValidation(models.AbstractModel):
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
 
+    tier_validation_before_write = fields.Boolean(
+        compute="_compute_tier_validation_before_write",
+    )
+
+    @api.depends_context("tier_validation_before_write")
+    def _compute_tier_validation_before_write(self):
+        """
+        This is a technical field in order to represent the validation
+        step.
+        """
+        before_write = self.env.context.get("tier_validation_before_write")
+        self.update({"tier_validation_before_write": before_write})
+
     def _compute_has_comment(self):
         for rec in self:
             has_comment = rec.review_ids.filtered(
@@ -287,7 +300,9 @@ class TierValidation(models.AbstractModel):
                     # try to validate operation
                     reviews = rec.request_validation()
                     validated_reviews |= reviews
-                    rec._validate_tier(reviews)
+                    rec._validate_tier(
+                        reviews.with_context(tier_validation_before_write=True)
+                    )
                     if not self._calc_reviews_validated(reviews):
                         pending_reviews = reviews.filtered(
                             lambda r: r.status == "pending"
@@ -317,7 +332,7 @@ class TierValidation(models.AbstractModel):
             if rec._allow_to_remove_reviews(vals):
                 new_self.mapped("review_ids").unlink()
         res = super(TierValidation, new_self).write(vals)
-        validated_records._post_tier_validation(reviews)
+        validated_records._post_tier_validation(validated_reviews)
         return res
 
     def _post_tier_validation(self, reviews):
@@ -475,7 +490,7 @@ class TierValidation(models.AbstractModel):
                 "reviewed_date": fields.Datetime.now(),
             }
         )
-        for review in user_reviews:
+        for review in user_reviews.exists():
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_rejected_review()
 
