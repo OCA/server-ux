@@ -20,7 +20,9 @@ class TestCancelConfirm(common.SavepointCase):
         cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "cancel.confirm.tester")]
         )
-
+        cls.env["ir.config_parameter"].create(
+            {"key": "cancel.confirm.tester.cancel_confirm_disable", "value": "False"}
+        )
         # Access record:
         cls.env["ir.model.access"].create(
             {
