@@ -14,11 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: document_quick_access_folder_auto_classification
-#: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_form_view
-msgid "Access"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
+#: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_assign_form_view
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_form_view
 msgid "Assign"
 msgstr ""
@@ -29,33 +25,23 @@ msgid "Assigner"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model,name:document_quick_access_folder_auto_classification.model_ir_attachment
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__attachment_id
-msgid "Attachment"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_assign_form_view
 msgid "Cancel"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__create_uid
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__create_date
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__display_name
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__display_name
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_rule__display_name
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_ir_attachment__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -81,42 +67,30 @@ msgid "Documents to process"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__data
-msgid "File Content (base64)"
+#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__exchange_record_id
+msgid "Exchange Record"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__id
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__id
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_rule__id
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_ir_attachment__id
 msgid "ID"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing____last_update
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign____last_update
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_rule____last_update
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_ir_attachment____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__write_uid
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__write_date
 #: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
-#: model:ir.model,name:document_quick_access_folder_auto_classification.model_document_quick_access_missing
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing_assign__missing_document_id
-msgid "Missing Document"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
@@ -125,18 +99,9 @@ msgid "Missing Documents"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__model
-msgid "Model"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__name
-msgid "Name"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
-#: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_assign_form_view
-msgid "OK"
+#: code:addons/document_quick_access_folder_auto_classification/components/document_quick_access_process.py:0
+#, python-format
+msgid "No file found"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
@@ -145,7 +110,6 @@ msgid "Object"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields.selection,name:document_quick_access_folder_auto_classification.selection__document_quick_access_missing__state__pending
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_search_view
 msgid "Pending"
 msgstr ""
@@ -158,7 +122,6 @@ msgid "Process documents"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields.selection,name:document_quick_access_folder_auto_classification.selection__document_quick_access_missing__state__processed
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_search_view
 msgid "Processed"
 msgstr ""
@@ -169,19 +132,13 @@ msgid "Reject"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields.selection,name:document_quick_access_folder_auto_classification.selection__document_quick_access_missing__state__deleted
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_search_view
 msgid "Rejected"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__res_id
-msgid "Res"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
-#: model:ir.model.fields,field_description:document_quick_access_folder_auto_classification.field_document_quick_access_missing__state
-msgid "State"
+#: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_form_view
+msgid "Related record"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
