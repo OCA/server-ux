@@ -20,7 +20,6 @@
         "security/ir.model.access.csv",
         "wizards/document_quick_access_missing_assign.xml",
         "views/edi_exchange_record.xml",
-        "data/cron_data.xml",
     ],
     "maintainers": ["etobella"],
 }
