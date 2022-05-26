@@ -31,6 +31,7 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         )
 
         self = cls
+        self.exchange_model = self.env["edi.exchange.record"]
 
         self._load_module_components(self, "component_event")
         self._load_module_components(self, "edi")
@@ -60,6 +61,7 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
                     "document_quick_access_folder_auto_classification.backend_type"
                 ).id,
                 "storage_id": self.storage.id,
+                "input_dir_pending": self.tmpdir,
             }
         )
         os.mkdir(self.tmpdir)
@@ -78,55 +80,6 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         partners |= self.env["res.partner"].create({"name": "Partner 3"})
         partners |= self.env["res.partner"].create({"name": "Partner 4"})
         self.test_ok_pdf(partners)
-
-    @mute_logger("odoo.addons.queue_job.models.base")
-    def test_ok_pdf_multi_limit(self):
-        """Limit the number of files to process"""
-        partner = self.env["res.partner"].create({"name": "Partner 1"})
-        self.env["document.quick.access.rule"].create(
-            {
-                "model_id": self.model_id.id,
-                "name": "PARTNER",
-                "priority": 1,
-                "barcode_format": "standard",
-            }
-        )
-        file = tools.file_open(
-            "test_file.pdf",
-            mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification" "/tests",
-        ).read()
-        self.env["document.quick.access.rule"].create(
-            {
-                "model_id": self.model_id.id,
-                "name": "PARTNER",
-                "priority": 1,
-                "barcode_format": "standard",
-            }
-        )
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
-        with open(os.path.join(self.tmpdir, "test_file_2.pdf"), "wb") as f:
-            f.write(file)
-        code = [Encoded(partner.get_quick_access_code().encode("utf-8"))]
-        files = os.listdir(self.tmpdir)
-        self.assertEqual(2, len(files))
-        with patch(
-            "odoo.addons.document_quick_access_folder_auto_classification."
-            "components.document_quick_access_process.decode"
-        ) as ptch:
-            ptch.return_value = code
-            self.env["document.quick.access.rule"].with_context(
-                ignore_process_path=True
-            ).cron_folder_auto_classification(limit=1)
-            ptch.assert_called_once()
-        attachments = self.env["ir.attachment"].search(
-            [("res_model", "=", partner._name), ("res_id", "=", partner.id)]
-        )
-        self.assertTrue(attachments)
-        self.assertEqual(1, len(attachments))
-        files = os.listdir(self.tmpdir)
-        self.assertEqual(1, len(files))
 
     @mute_logger("odoo.addons.queue_job.models.base")
     def test_ok_pdf(self, partners=False):
@@ -158,10 +111,11 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             "components.document_quick_access_process.decode"
         ) as ptch:
             ptch.return_value = code
-            self.env["document.quick.access.rule"].with_context(
-                ignore_process_path=True
-            ).cron_folder_auto_classification()
-            ptch.assert_called()
+            self.assertFalse(self.exchange_model.search([]))
+            self.backend._storage_cron_check_pending_input()
+            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend._cron_check_input_exchange_sync()
+            self.assertEqual(ptch.call_count, 1)
         self.assertTrue(partners)
         for partner in partners:
             self.assertTrue(
@@ -180,11 +134,12 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file)
-        self.env["document.quick.access.rule"].with_context(
-            ignore_process_path=True
-        ).cron_folder_auto_classification()
+        self.assertFalse(self.exchange_model.search([]))
+        self.backend._storage_cron_check_pending_input()
+        self.assertEqual(self.exchange_model.search_count([]), 1)
+        self.backend._cron_check_input_exchange_sync()
         self.assertTrue(
-            self.env["edi.exchange.record"].search(
+            self.exchange_model.search(
                 [
                     ("backend_id", "=", self.backend.id),
                     ("exchange_filename", "=", "test_file.pdf"),
@@ -193,7 +148,7 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             )
         )
         partner = self.env["res.partner"].create({"name": "Partner"})
-        missing = self.env["edi.exchange.record"].search(
+        missing = self.exchange_model.search(
             [
                 ("exchange_filename", "=", "test_file.pdf"),
                 ("edi_exchange_state", "=", "input_processed_error"),
@@ -239,9 +194,9 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
                 "components.document_quick_access_process.decode"
             ) as ptch:
                 ptch.return_value = 1
-                self.env["document.quick.access.rule"].with_context(
-                    ignore_process_path=True
-                ).cron_folder_auto_classification()
+                self.backend._storage_cron_check_pending_input()
+                self.assertEqual(self.exchange_model.search_count([]), 1)
+                self.backend._cron_check_input_exchange_sync()
 
     @mute_logger("odoo.addons.queue_job.models.base")
     def test_no_ok_reject(self):
@@ -253,10 +208,10 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file)
-        self.env["document.quick.access.rule"].with_context(
-            ignore_process_path=True
-        ).cron_folder_auto_classification()
-        missing = self.env["edi.exchange.record"].search(
+        self.backend._storage_cron_check_pending_input()
+        self.assertEqual(self.exchange_model.search_count([]), 1)
+        self.backend._cron_check_input_exchange_sync()
+        missing = self.exchange_model.search(
             [
                 ("exchange_filename", "=", "test_file.pdf"),
                 ("edi_exchange_state", "=", "input_processed_error"),
@@ -285,11 +240,11 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             "odoo.addons.document_quick_access_folder_auto_classification."
             "components.document_quick_access_process",
         ):
-            self.env["document.quick.access.rule"].with_context(
-                ignore_process_path=True
-            ).cron_folder_auto_classification()
+            self.backend._storage_cron_check_pending_input()
+            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend._cron_check_input_exchange_sync()
         self.assertTrue(
-            self.env["edi.exchange.record"].search(
+            self.exchange_model.search(
                 [
                     ("backend_id", "=", self.backend.id),
                     ("exchange_filename", "=", "test_file.pdf"),
