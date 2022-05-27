@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-03-17 17:17+0000\n"
+"PO-Revision-Date: 2022-05-27 19:05+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -157,6 +157,8 @@ msgid ""
 "Can review will be marked if the review is pending and the\n"
 "        approve sequence has been achieved"
 msgstr ""
+"\"Può approvare\" sarà attivo se l'approvazione è in sospeso e la\n"
+"        sequenza di approvazione è soddisfatta"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
@@ -194,7 +196,7 @@ msgstr "Azienda"
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_uid
@@ -336,6 +338,7 @@ msgstr "Più Opzioni"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "More reports about tier validations, i.e., summary of all my reviews"
 msgstr ""
+"Altri report sulle approvazioni, es. riassunto di tutte le mie approvazioni"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
@@ -351,13 +354,13 @@ msgstr "Nuovo Livello Approvazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Prossima approvazione"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "Next: %s"
-msgstr ""
+msgstr "Prossimo: %s"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -375,28 +378,31 @@ msgstr "Notifica Approvatori su Creazione"
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "Operation has been <b>rejected</b>."
-msgstr ""
+msgstr "L'operazione è stata <b>rifiutata</b>."
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "Operation has been <b>validated</b>!"
-msgstr ""
+msgstr "L'operazione è stata <b>validata</b>!"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to forward a tier validation to other reviewer, and backward"
 msgstr ""
+"Opzione per inoltrare una approvazione ad un altro approvatore e ritorno"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to trigger server actions on completion of tier reviews"
-msgstr ""
+msgstr "Opzione per attivare azioni del server al completamento di approvazioni"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to use python formula to get reviewers and find documents"
 msgstr ""
+"Opzione per usare una formula python per ottenere approvatori e trovare "
+"documenti"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -409,7 +415,7 @@ msgstr "In sospeso"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__model_id
 msgid "Referenced Model"
-msgstr ""
+msgstr "Modello di riferimento"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -425,17 +431,17 @@ msgstr "Rifiutato"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected_message
 msgid "Rejected Message"
-msgstr ""
+msgstr "Messaggio rifiutato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__res_id
 msgid "Related Document ID"
-msgstr ""
+msgstr "ID documento relazionato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__model
 msgid "Related Document Model"
-msgstr ""
+msgstr "Modello documento relazionato"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_buttons
@@ -456,13 +462,11 @@ msgstr "Richiesta da"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
-#, fuzzy
 msgid "Res"
 msgstr "Res"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_model
-#, fuzzy
 msgid "Res Model"
 msgstr "Res Model"
 
@@ -550,13 +554,13 @@ msgstr "L'approvazione è stata riavviata da %s."
 #: code:addons/base_tier_validation/models/tier_review.py:0
 #, python-format
 msgid "There are no res.users in the selected field"
-msgstr ""
+msgstr "Non ci sono res.users nel campo selezionato"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "This %s needs to be validated"
-msgstr ""
+msgstr "Questo %s deve essere approvato"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
@@ -566,6 +570,10 @@ msgid ""
 " - %s \n"
 "Please request a validation."
 msgstr ""
+"Quest'azione deve essere approvata per almeno un record. Approvazioni in "
+"sospeso:\n"
+" - %s \n"
+"Per favore, richiedi un'approvazione."
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -579,17 +587,17 @@ msgstr "Definizione Livello"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_formula
 msgid "Tier Formula"
-msgstr ""
+msgstr "Formula livello"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_forward
 msgid "Tier Forward & Backward"
-msgstr ""
+msgstr "Livello avanti & indietro"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_report
 msgid "Tier Reports"
-msgstr ""
+msgstr "Report livelli"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
@@ -600,17 +608,17 @@ msgstr "Livello Approvazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_server_action
 msgid "Tier Server Action"
-msgstr ""
+msgstr "Azione server livello"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Tier Validation"
-msgstr ""
+msgstr "Livello approvazione"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Livello Approvazione (astratto)"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
@@ -640,7 +648,7 @@ msgstr "Livelli di Approvazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__to_validate_message
 msgid "To Validate Message"
-msgstr ""
+msgstr "Messaggio da approvare"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
@@ -662,7 +670,7 @@ msgstr "Utenti"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
 msgid "Valid Reviewer Field"
-msgstr ""
+msgstr "Campo approvatore valido"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -682,7 +690,7 @@ msgstr "Approvato"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Messaggio approvato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__review_type
@@ -706,7 +714,7 @@ msgstr "Approvazioni"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
-msgstr ""
+msgstr "es: Approvazione per..."
 
 #~ msgid ""
 #~ "This action needs to be validated for at least one record. \n"
