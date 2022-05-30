@@ -1,0 +1,1 @@
+This module lets you add "Excluded Groups" for Record Rules (ir.rule), when getting the record rules for Groups (res.groups) anywhere, if the user has the group for which a certain rule that should be applying has this group as one of it's Excluded Groups, this record rule won't appply.
