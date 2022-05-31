@@ -50,6 +50,7 @@ addon | version | maintainers | summary
 [sequence_check_digit](sequence_check_digit/) | 14.0.1.0.2 |  | Adds a check digit on sequences
 [sequence_range_end](sequence_range_end/) | 14.0.1.0.0 |  | Sequence prefix/suffix option, 'range_end_', to use the beginning of the range
 [sequence_reset_period](sequence_reset_period/) | 14.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
+[server_action_domain](server_action_domain/) | 14.0.1.0.0 |  | Apply a domain filter before executing server actions on records
 
 [//]: # (end addons)
 
