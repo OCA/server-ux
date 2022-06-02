@@ -48,8 +48,8 @@ patch(
                 const operator = this.OPERATORS[FIELD_TYPES[type]][condition.operator];
                 if (operator.date_range) {
                     const default_range = this.date_ranges[operator.date_range_type][0];
-                    const d_start = moment(`${default_range.date_start} 00:00:00`);
-                    const d_end = moment(`${default_range.date_end} 23:59:59`);
+                    const d_start = moment(`${default_range.date_start} 00:00:00Z`);
+                    const d_end = moment(`${default_range.date_end} 23:59:59Z`);
                     condition.value = [d_start, d_end];
                 } else {
                     super._setDefaultValue(...arguments);
@@ -63,8 +63,8 @@ patch(
                     const eid = parseInt(ev.target.value);
                     const ranges = this.date_ranges[operator.date_range_type];
                     const range = ranges.find((x) => x.id == eid);
-                    const d_start = moment(`${range.date_start} 00:00:00`);
-                    const d_end = moment(`${range.date_end} 23:59:59`);
+                    const d_start = moment(`${range.date_start} 00:00:00Z`);
+                    const d_end = moment(`${range.date_end} 23:59:59Z`);
                     condition.value = [d_start, d_end];
                 } else {
                     super._onValueInputChange(...arguments);
