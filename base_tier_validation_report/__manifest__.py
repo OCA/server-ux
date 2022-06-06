@@ -3,13 +3,14 @@
 {
     "name": "Base Tier Validation - Reports",
     "summary": "Reports related to tier validation",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["base_tier_validation"],
     "data": [
+        "security/groups.xml",
         "reports/tier_review_report.xml",
     ],
     "application": False,
