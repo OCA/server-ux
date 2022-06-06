@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": ["base_tier_validation"],
     "data": [
+        "security/groups.xml",
         "reports/tier_review_report.xml",
     ],
     "application": False,
