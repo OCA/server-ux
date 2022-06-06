@@ -4,21 +4,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-14 10:32+0000\n"
-"PO-Revision-Date: 2020-08-14 12:33+0200\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-06-28 21:43+0000\n"
+"PO-Revision-Date: 2022-06-28 21:43+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:146
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "<b>Chained swap done</b>:"
 msgstr "<b>Cambio encadenado realizado</b>:"
@@ -45,7 +43,8 @@ msgstr "Añadir acción"
 #. module: chained_swapper
 #: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
 msgid ""
-"Add a new contextual action of related documents to open a composition wizard"
+"Add a new contextual action of related documents to open a composition "
+"wizard"
 msgstr ""
 "Añade una acción contextual para los documentos relacionados para abrir un "
 "asistente de intercambio encadenado"
@@ -64,8 +63,8 @@ msgstr "Campos permitidos"
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper_constraint__expression
 msgid ""
 "Boolean python expression. You can use the keyword 'records' as the records "
-"selected to execute the contextual action. Ex.: bool(records."
-"mapped('parent_id'))"
+"selected to execute the contextual action. Ex.: "
+"bool(records.mapped('parent_id'))"
 msgstr ""
 "Expresión Python booleana. Puede usar la palabra clave 'records' para hacer "
 "referencia a los registros seleccionados al ejecutar la acción contextual. "
@@ -89,7 +88,7 @@ msgid "Chained Swapper Sub-field"
 msgstr "Intercambiador encadenado - Sub-campos"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:104
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Chained swap"
 msgstr "Cambio encadenado"
@@ -168,19 +167,25 @@ msgstr "Grupos"
 #: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__id
 #: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__id
 msgid "ID"
-msgstr "ID"
+msgstr "ID (Identificador)"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:151
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
-msgid "Incorrect sub-field expression:"
-msgstr "Expresión de sub-campo incorrecta:"
+msgid "Incorrect sub-field expression: %(sub_field_chain)s. %(error)s"
+msgstr "Expresión incorrecta: %(sub_field_chain)s. %(error)s"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:193
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
-msgid "Invalid constraint expression:  "
-msgstr "Expresión de restricción no válida:"
+msgid "Invalid constraint expression: %(expression)s. %(error)s."
+msgstr "Expresión incorrecta: %(expression)s. %(error)s."
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "Invalid value for %(sub_field_chain)s. %(error)s"
+msgstr "Valor incorrecto para %(sub_field_chain)s. %(error)s"
 
 #. module: chained_swapper
 #: model:chained.swapper,name:chained_swapper.chained_swapper_demo
@@ -217,7 +222,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: chained_swapper
-#: sql_constraint:chained.swapper:0
+#: model:ir.model.constraint,message:chained_swapper.constraint_chained_swapper_model_id_field_id_unique
 msgid "Model and Field must be unique!"
 msgstr "La combinación Modelo-Campo debe ser única!"
 
@@ -227,8 +232,8 @@ msgid ""
 "Model is used for Selecting Field. This is editable until Contextual Action "
 "is not created."
 msgstr ""
-"El modelo se utiliza para seleccionar el campo. Este es editable mientras la "
-"acción contextual no esté creada."
+"El modelo se utiliza para seleccionar el campo. Este es editable mientras la"
+" acción contextual no esté creada."
 
 #. module: chained_swapper
 #: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__name
@@ -237,7 +242,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:32
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr "No es posible cambiar el campo debido a la restricción"
@@ -276,7 +281,7 @@ msgid "Sub-fields"
 msgstr "Sub-campo"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:162
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr "El sub-campo '%s' no es compatible con el campo principal."
