@@ -25,9 +25,12 @@ Base Tier Validation - Reports
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module provide addiontal reports related to Tier Validation
+This module provide additional reports related to Tier Validation
 
 #. My Reviews (pending, approved, rejected)
+#. All Reviews (pending, approved, rejected)
+
+These reports are accessible in Dashboard app
 
 **Table of contents**
 
