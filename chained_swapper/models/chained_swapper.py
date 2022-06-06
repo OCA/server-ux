@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -145,10 +146,16 @@ class ChainedSwapperSubField(models.Model):
                 for name in chain_list:
                     chain_model = chain_model[name]
                 chain_model[chain_field_name]  # pylint: disable=W0104
-            except KeyError:
+            except KeyError as err:
                 raise exceptions.ValidationError(
-                    _("Incorrect sub-field expression:") + " " + rec.sub_field_chain
-                )
+                    _("Incorrect sub-field expression: %(sub_field_chain)s. %(error)s")
+                    % {"sub_field_chain": rec.sub_field_chain, "error": err}
+                ) from err
+            except Exception as err:
+                raise ValidationError(
+                    _("Invalid value for %(sub_field_chain)s. %(error)s")
+                    % {"sub_field_chain": rec.sub_field_chain, "error": err}
+                ) from err
             # Check sub-field and original field are the same type
             swap_field = rec.chained_swapper_id.field_id
             chain_field = self.env["ir.model.fields"].search(
@@ -190,7 +197,8 @@ class ChainedSwapperConstraint(models.Model):
             model = self.env[record.chained_swapper_id.model_id.model]
             try:
                 safe_eval(record.expression, {"records": model})
-            except Exception:
+            except Exception as err:
                 raise exceptions.ValidationError(
-                    _("Invalid constraint expression:" + "  " + record.expression)
-                )
+                    _("Invalid constraint expression: %(expression)s. %(error)s.")
+                    % {"expression": record.expression, "error": err}
+                ) from err
