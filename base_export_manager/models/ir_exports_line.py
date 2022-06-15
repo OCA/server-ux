@@ -10,6 +10,21 @@ class IrExportsLine(models.Model):
     _inherit = "ir.exports.line"
     _order = "sequence,id"
 
+    @api.depends("field1_id")
+    def _compute_field2_id(self):
+        for rec in self:
+            rec.field2_id = False
+
+    @api.depends("field2_id", "field1_id")
+    def _compute_field3_id(self):
+        for rec in self:
+            rec.field3_id = False
+
+    @api.depends("field3_id", "field2_id", "field1_id")
+    def _compute_field4_id(self):
+        for rec in self:
+            rec.field4_id = False
+
     name = fields.Char(
         store=True,
         compute="_compute_name",
@@ -20,13 +35,28 @@ class IrExportsLine(models.Model):
         "ir.model.fields", "First field", domain="[('model_id', '=', model1_id)]"
     )
     field2_id = fields.Many2one(
-        "ir.model.fields", "Second field", domain="[('model_id', '=', model2_id)]"
+        "ir.model.fields",
+        "Second field",
+        domain="[('model_id', '=', model2_id)]",
+        compute="_compute_field2_id",
+        store=True,
+        readonly=False,
     )
     field3_id = fields.Many2one(
-        "ir.model.fields", "Third field", domain="[('model_id', '=', model3_id)]"
+        "ir.model.fields",
+        "Third field",
+        domain="[('model_id', '=', model3_id)]",
+        compute="_compute_field3_id",
+        store=True,
+        readonly=False,
     )
     field4_id = fields.Many2one(
-        "ir.model.fields", "Fourth field", domain="[('model_id', '=', model4_id)]"
+        "ir.model.fields",
+        "Fourth field",
+        domain="[('model_id', '=', model4_id)]",
+        compute="_compute_field4_id",
+        store=True,
+        readonly=False,
     )
     model1_id = fields.Many2one(
         "ir.model",
