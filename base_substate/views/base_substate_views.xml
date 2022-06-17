@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Akretion
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="base_substate_view_tree" model="ir.ui.view">
+        <field name="model">base.substate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+                <field name="sequence" widget="handle" />
+                <field name="target_state_value_id" />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+    <record id="base_substate_view_form" model="ir.ui.view">
+        <field name="model">base.substate</field>
+        <field name="arch" type="xml">
+            <form string="Base Substate" name="base_substate">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="substate_definition">
+                            <field name="active" invisible="1" />
+                            <field name="description" />
+                            <field name="sequence" />
+                            <field name="target_state_value_id" />
+                            <field name="model" />
+                            <field
+                                name="mail_template_id"
+                                domain="[('model', '=', model)]"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_substate_view_search" model="ir.ui.view">
+        <field name="model">base.substate</field>
+        <field name="arch" type="xml">
+            <search string="Base Substate">
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_open_base_substate_view">
+        <field name="name">Base Substate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">base.substate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="base_substate_view_search" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="act_open_base_substate_view_form">
+        <field name="act_window_id" ref="act_open_base_substate_view" />
+        <field name="sequence" eval="20" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base_substate_view_form" />
+    </record>
+    <record model="ir.actions.act_window.view" id="act_open_base_substate_view_tree">
+        <field name="act_window_id" ref="act_open_base_substate_view" />
+        <field name="sequence" eval="10" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base_substate_view_tree" />
+    </record>
+    <menuitem
+        id="menu_base_substate"
+        parent="menu_substate_config"
+        sequence="20"
+        action="act_open_base_substate_view"
+    />
+</odoo>
