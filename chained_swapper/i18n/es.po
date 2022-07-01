@@ -1,0 +1,301 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* chained_swapper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-28 21:43+0000\n"
+"PO-Revision-Date: 2022-06-28 21:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
+#, python-format
+msgid "<b>Chained swap done</b>:"
+msgstr "<b>Cambio encadenado realizado</b>:"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__ref_ir_act_window_id
+msgid "Action"
+msgstr "Acción"
+
+#. module: chained_swapper
+#: model:ir.model.fields,help:chained_swapper.field_chained_swapper__ref_ir_act_window_id
+msgid ""
+"Action to make this template available on records of the related document "
+"model."
+msgstr ""
+"Acción contextual para hacer que esta plantilla esté disponible en los "
+"registros del modelo de documento relacionado."
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Add Action"
+msgstr "Añadir acción"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid ""
+"Add a new contextual action of related documents to open a composition "
+"wizard"
+msgstr ""
+"Añade una acción contextual para los documentos relacionados para abrir un "
+"asistente de intercambio encadenado"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Advanced"
+msgstr "Avanzado"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__allowed_field_ids
+msgid "Allowed Field"
+msgstr "Campos permitidos"
+
+#. module: chained_swapper
+#: model:ir.model.fields,help:chained_swapper.field_chained_swapper_constraint__expression
+msgid ""
+"Boolean python expression. You can use the keyword 'records' as the records "
+"selected to execute the contextual action. Ex.: "
+"bool(records.mapped('parent_id'))"
+msgstr ""
+"Expresión Python booleana. Puede usar la palabra clave 'records' para hacer "
+"referencia a los registros seleccionados al ejecutar la acción contextual. "
+"Ej.: bool(records.mapped('parent_id'))"
+
+#. module: chained_swapper
+#: model:ir.model,name:chained_swapper.model_chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__chained_swapper_id
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__chained_swapper_id
+msgid "Chained Swapper"
+msgstr "Intercambiador encadenado"
+
+#. module: chained_swapper
+#: model:ir.model,name:chained_swapper.model_chained_swapper_constraint
+msgid "Chained Swapper Constraint"
+msgstr "Intercambiador encadenado - Restricciones"
+
+#. module: chained_swapper
+#: model:ir.model,name:chained_swapper.model_chained_swapper_sub_field
+msgid "Chained Swapper Sub-field"
+msgstr "Intercambiador encadenado - Sub-campos"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "Chained swap"
+msgstr "Cambio encadenado"
+
+#. module: chained_swapper
+#: model:ir.actions.act_window,name:chained_swapper.partner_chained_swap_lang_action_demo
+msgid "Chained swap: Language"
+msgstr "Cambio encadenado: Idioma"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_wizard_view_form
+msgid "Change"
+msgstr "Cambiar"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_wizard_view_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__expression
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_constraint_view_form
+msgid "Constraint expression"
+msgstr "Expresión de restricción"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__constraint_ids
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Constraints"
+msgstr "Restricciones"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__create_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__create_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__create_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__create_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__create_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__create_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__display_name
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__display_name
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__display_name
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__field_id
+msgid "Field"
+msgstr "Campo"
+
+#. module: chained_swapper
+#: model:ir.actions.act_window,name:chained_swapper.chained_swapper_action
+#: model:ir.ui.menu,name:chained_swapper.chained_swapper_menu
+#: model:ir.ui.menu,name:chained_swapper.chained_swapper_submenu
+msgid "Field Swaps"
+msgstr "Intercambios de campo"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__group_ids
+msgid "Groups"
+msgstr "Grupos"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__id
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__id
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__id
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__id
+msgid "ID"
+msgstr "ID (Identificador)"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "Incorrect sub-field expression: %(sub_field_chain)s. %(error)s"
+msgstr "Expresión incorrecta: %(sub_field_chain)s. %(error)s"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "Invalid constraint expression: %(expression)s. %(error)s."
+msgstr "Expresión incorrecta: %(expression)s. %(error)s."
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "Invalid value for %(sub_field_chain)s. %(error)s"
+msgstr "Valor incorrecto para %(sub_field_chain)s. %(error)s"
+
+#. module: chained_swapper
+#: model:chained.swapper,name:chained_swapper.chained_swapper_demo
+msgid "Language"
+msgstr "Idioma"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper____last_update
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint____last_update
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field____last_update
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__write_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__write_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__write_uid
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__write_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__write_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__write_date
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: chained_swapper
+#: model:ir.model.constraint,message:chained_swapper.constraint_chained_swapper_model_id_field_id_unique
+msgid "Model and Field must be unique!"
+msgstr "La combinación Modelo-Campo debe ser única!"
+
+#. module: chained_swapper
+#: model:ir.model.fields,help:chained_swapper.field_chained_swapper__model_id
+msgid ""
+"Model is used for Selecting Field. This is editable until Contextual Action "
+"is not created."
+msgstr ""
+"El modelo se utiliza para seleccionar el campo. Este es editable mientras la"
+" acción contextual no esté creada."
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__name
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
+#, python-format
+msgid "Not possible to swap the field due to the constraint"
+msgstr "No es posible cambiar el campo debido a la restricción"
+
+#. module: chained_swapper
+#: model:chained.swapper.constraint,name:chained_swapper.chained_swapper_constraint_demo
+msgid "Only parent company"
+msgstr "Solo compañías padres"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Remove Action"
+msgstr "Eliminar acción"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Remove the contextual action to use this template on related documents"
+msgstr ""
+"Borrar la acción conceptual para usar esta plantilla en documentos "
+"relacionados"
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Security"
+msgstr "Seguridad"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__sub_field_chain
+msgid "Sub Field Chain"
+msgstr "Cadena de sub-campo"
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__sub_field_ids
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Sub-fields"
+msgstr "Sub-campo"
+
+#. module: chained_swapper
+#: code:addons/chained_swapper/models/chained_swapper.py:0
+#, python-format
+msgid "The sub-field '%s' is not compatible with the main field."
+msgstr "El sub-campo '%s' no es compatible con el campo principal."
+
+#. module: chained_swapper
+#: model:ir.model,name:chained_swapper.model_chained_swapper_wizard
+msgid "Wizard chained swapper"
+msgstr "Asistente de intercambiador encadenado"
+
+#. module: chained_swapper
+#: model:ir.model.fields,help:chained_swapper.field_chained_swapper_sub_field__sub_field_chain
+msgid ""
+"You can specify here a field of related fields as dotted names. Ex.: "
+"'child_ids.lang'."
+msgstr ""
+"Puede especificar aquí un campo de campos relacionados como una cadena de "
+"nombres separada por puntos. Ej.: 'child_ids.lang'."
