@@ -149,7 +149,7 @@ class TierValidation(models.AbstractModel):
         )
 
     def _get_validated_message(self):
-        msg = """<i class="fa fa-thumbs-down" /> %s""" % _(
+        msg = """<i class="fa fa-thumbs-up" /> %s""" % _(
             """Operation has been <b>validated</b>!"""
         )
         return self.validated and msg or ""
