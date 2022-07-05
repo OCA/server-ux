@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [document_quick_access](document_quick_access/) | 15.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Document quick access
 [filter_multi_user](filter_multi_user/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined filters filters among several users.
 [mass_editing](mass_editing/) | 15.0.1.0.0 |  | Mass Editing
+[multi_step_wizard](multi_step_wizard/) | 15.0.1.0.0 |  | Multi-Steps Wizards
 
 [//]: # (end addons)
 
