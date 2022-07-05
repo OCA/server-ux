@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-document_quick_access>=15.0dev,<15.1dev',
         'odoo-addon-filter_multi_user>=15.0dev,<15.1dev',
         'odoo-addon-mass_editing>=15.0dev,<15.1dev',
+        'odoo-addon-multi_step_wizard>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
