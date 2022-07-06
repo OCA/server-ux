@@ -59,7 +59,7 @@ def migrate_mass_editing(env):
             'mass_edit',
             me.model_id,
             mo.model,
-            me.domain
+            NULL
         FROM mass_editing me
         LEFT JOIN ir_model mo ON (me.model_id = mo.id)
         """
