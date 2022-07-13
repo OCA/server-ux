@@ -53,6 +53,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
+      - name: Install zbar library
+        run: apt-get install -y python3-zbar poppler-utils # for document_quick_access_folder_auto_classification
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Check licenses
