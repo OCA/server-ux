@@ -1,14 +1,15 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=13.0)
-[![Build Status](https://travis-ci.com/OCA/server-ux.svg?branch=13.0)](https://travis-ci.com/OCA/server-ux)
+[![Pre-commit Status](https://github.com/OCA/server-ux/actions/workflows/pre-commit.yml/badge.svg?branch=13.0)](https://github.com/OCA/server-ux/actions/workflows/pre-commit.yml?query=branch%3A13.0)
+[![Build Status](https://github.com/OCA/server-ux/actions/workflows/test.yml/badge.svg?branch=13.0)](https://github.com/OCA/server-ux/actions/workflows/test.yml?query=branch%3A13.0)
 [![codecov](https://codecov.io/gh/OCA/server-ux/branch/13.0/graph/badge.svg)](https://codecov.io/gh/OCA/server-ux)
 [![Translation Status](https://translation.odoo-community.org/widgets/server-ux-13-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/server-ux-13-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
 
-# Server UX
+# server-ux
 
-Server side features for usability and user experience related
+TODO: add repo description.
 
 <!-- /!\ do not modify below this line -->
 
