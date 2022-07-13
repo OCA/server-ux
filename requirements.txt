@@ -1,3 +1,4 @@
-pyzbar
+# generated from manifests external_dependencies
 pdf2image
-openupgradelib @ git+https://github.com/OCA/openupgradelib.git
+python-stdnum
+pyzbar
