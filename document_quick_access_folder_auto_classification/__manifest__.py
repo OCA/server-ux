@@ -10,7 +10,10 @@
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "depends": ["document_quick_access", "edi_storage_oca"],
-    "external_dependencies": {"python": ["pyzbar"]},
+    "external_dependencies": {
+        "deb": ["libzbar0", "poppler-utils"],
+        "python": ["pyzbar", "pdf2image"],
+    },
     "data": [
         "data/edi_data.xml",
         "security/security.xml",
