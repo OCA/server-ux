@@ -8,6 +8,7 @@
     "version": "13.0.2.0.0",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
+    "development_status": "Alpha",
     "website": "https://github.com/OCA/server-ux",
     "depends": ["document_quick_access", "edi_storage"],
     "data": [
