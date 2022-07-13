@@ -109,6 +109,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
         with open(os.path.join(self.tmpdir, "test_file_2.pdf"), "wb") as f:
             f.write(file)
         code = [Encoded(partner.get_quick_access_code().encode("utf-8"))]
+        files = os.listdir(self.tmpdir)
+        self.assertEqual(2, len(files))
         with patch(
             "odoo.addons.document_quick_access_folder_auto_classification."
             "components.document_quick_access_process.decode"
@@ -123,8 +125,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
         )
         self.assertTrue(attachments)
         self.assertEqual(1, len(attachments))
-        self.assertFalse(os.path.exists(os.path.join(self.tmpdir, "test_file.pdf")))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir, "test_file_2.pdf")))
+        files = os.listdir(self.tmpdir)
+        self.assertEqual(1, len(files))
 
     @mute_logger("odoo.addons.queue_job.models.base")
     def test_ok_pdf(self, partners=False):
