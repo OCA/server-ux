@@ -14,18 +14,18 @@ Document Quick Access Folder Auto Classification
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/14.0/document_quick_access_folder_auto_classification
+    :target: https://github.com/OCA/server-ux/tree/15.0/document_quick_access_folder_auto_classification
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-14-0/server-ux-14-0-document_quick_access_folder_auto_classification
+    :target: https://translation.odoo-community.org/projects/server-ux-15-0/server-ux-15-0-document_quick_access_folder_auto_classification
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/250/14.0
+    :target: https://runbot.odoo-community.org/runbot/250/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module creates a job that scans all files from a folder and attaches them
+This module creates a job that scans all files from a storage and attaches them
 to its record. The record is found using the document quick access rules.
 
 **Table of contents**
@@ -36,10 +36,7 @@ to its record. The record is found using the document quick access rules.
 Configuration
 =============
 
-# Create 3 folders on your odoo system. Odoo will use them for Preprocessing,
-  Store processed (not required), Store failed (not required)
-# Access your system parameters and edit the parameters in order to match your
-  folders
+# Create an storage on your system using the storage project from OCA
 
 Usage
 =====
@@ -62,7 +59,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20document_quick_access_folder_auto_classification%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20document_quick_access_folder_auto_classification%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -101,6 +98,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-etobella| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/14.0/document_quick_access_folder_auto_classification>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/15.0/document_quick_access_folder_auto_classification>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
