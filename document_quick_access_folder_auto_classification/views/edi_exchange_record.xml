@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="document_quick_access_missing_form_view">
+        <field
+            name="name"
+        >edi.exchange.record.form (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                    <button
+                        name="%(document_quick_access_folder_auto_classification.document_quick_access_missing_assign_act_window)s"
+                        type="action"
+                        class="primary"
+                        string="Assign"
+                        attrs="{'invisible': [('edi_exchange_state', '!=', 'input_processed_error')]}"
+                        context="{'default_exchange_record_id': active_id}"
+                    />
+                    <button
+                        name="action_exchange_process"
+                        type="object"
+                        string="Reject"
+                        attrs="{'invisible': [('edi_exchange_state', '!=', 'input_processed_error')]}"
+                        context="{'document_quick_access_reject_file': True}"
+                    />
+                    <button
+                        name="action_open_related_record"
+                        type="object"
+                        string="Related record"
+                        attrs="{'invisible': ['|', ('edi_exchange_state', '!=', 'input_processed'), ('model', '=', False)]}"
+                    />
+                    <field
+                        name="edi_exchange_state"
+                        widget="statusbar"
+                        statusbar_visible="input_processed_error,input_processed"
+                    />
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="exchange_filename" />
+                    </h1>
+                    <group>
+                        <field name="exchange_file" filename="exchange_filename" />
+                        <field name="res_id" invisible="1" />
+                        <field name="model" invisible="1" />
+                        <field name="exchanged_on" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="document_quick_access_missing_search_view">
+        <field
+            name="name"
+        >document.quick.access.missing.search (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="exchange_filename" />
+                <separator />
+                <filter
+                    domain="[('edi_exchange_state', '=', 'input_processed_error')]"
+                    help="Pending"
+                    name="pending"
+                />
+                <filter
+                    domain="[('edi_exchange_state', '=', 'input_processed'), ('model', '!=', False)]"
+                    help="Processed"
+                    name="processed"
+                />
+                <filter
+                    domain="[('edi_exchange_state', '=', 'input_processed'), ('model', '=', False)]"
+                    help="Rejected"
+                    name="deleted"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="document_quick_access_missing_tree_view">
+        <field
+            name="name"
+        >document.quick.access.missing.tree (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false">
+                <field name="exchange_filename" />
+                <field name="edi_exchange_state" />
+                <field name="create_date" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="document_quick_access_missing_act_window">
+        <field name="name">Document Quick Access Missing</field>
+        <field name="res_model">edi.exchange.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("type_id.code", "=", "document_quick_access")]</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="search_view_id" ref="document_quick_access_missing_search_view" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('document_quick_access_missing_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('document_quick_access_missing_form_view')})]"
+        />
+    </record>
+    <menuitem
+        id="document_quick_access_missing_menu"
+        name="Documents to process"
+        sequence="16"
+        groups="document_quick_access_folder_auto_classification.group_missing_document"
+        action="document_quick_access_missing_act_window"
+        web_icon="document_quick_access_folder_auto_classification,static/description/icon.png"
+    />
+</odoo>
