@@ -92,9 +92,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
             }
         )
         file = tools.file_open(
-            "test_file.pdf",
+            "addons/document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification" "/tests",
         ).read()
         self.env["document.quick.access.rule"].create(
             {
@@ -134,9 +133,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
         if not partners:
             partners = self.env["res.partner"].create({"name": "Partner"})
         file = tools.file_open(
-            "test_file.pdf",
+            "addons/document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification" "/tests",
         ).read()
 
         self.env["document.quick.access.rule"].create(
@@ -174,9 +172,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     def test_no_ok_assign(self):
         """Assign failed files"""
         file = tools.file_open(
-            "test_file.pdf",
+            "addons/document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file)
@@ -227,9 +224,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     def test_failure(self):
         """We will check that if a major exception raises all is handled"""
         file = tools.file_open(
-            "test_file.pdf",
+            "addons/document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file)
@@ -247,9 +243,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     def test_no_ok_reject(self):
         """We will check that we can manage and reject failed files"""
         file = tools.file_open(
-            "test_file.pdf",
+            "addons/document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file)
@@ -275,9 +270,8 @@ class TestDocumentQuickAccessClassification(TransactionComponentRegistryCase):
     def test_corrupted(self):
         """We will check that corrupted files are stored also"""
         file = tools.file_open(
-            "test_file.pdf",
+            "document_quick_access_folder_auto_classification/tests/test_file.pdf",
             mode="rb",
-            subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
         with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
             f.write(file[: int(len(file) / 2)])
