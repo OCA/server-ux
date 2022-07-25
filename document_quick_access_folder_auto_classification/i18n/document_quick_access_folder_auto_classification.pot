@@ -112,13 +112,6 @@ msgid "Pending"
 msgstr ""
 
 #. module: document_quick_access_folder_auto_classification
-#: model:ir.actions.server,name:document_quick_access_folder_auto_classification.process_documents_ir_actions_server
-#: model:ir.cron,cron_name:document_quick_access_folder_auto_classification.process_documents
-#: model:ir.cron,name:document_quick_access_folder_auto_classification.process_documents
-msgid "Process documents"
-msgstr ""
-
-#. module: document_quick_access_folder_auto_classification
 #: model_terms:ir.ui.view,arch_db:document_quick_access_folder_auto_classification.document_quick_access_missing_search_view
 msgid "Processed"
 msgstr ""
