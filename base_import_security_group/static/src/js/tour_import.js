@@ -26,10 +26,10 @@ odoo.define("base_import_security_group.tour", function (require) {
             },
             {
                 id: "favorites_dropdown_click",
-                trigger: ".o_favorite_menu > .o_dropdown_toggler_btn",
+                trigger: ".o_favorite_menu > .dropdown-toggle",
             },
             {
-                trigger: "li.o_import_menu",
+                trigger: "span.o_import_menu",
             },
         ]
     );
@@ -56,10 +56,10 @@ odoo.define("base_import_security_group.tour", function (require) {
             },
             {
                 id: "favorites_dropdown_click",
-                trigger: ".o_favorite_menu > .o_dropdown_toggler_btn",
+                trigger: ".o_favorite_menu > .dropdown-toggle",
             },
             {
-                trigger: ".o_dropdown_menu:not(:has(li.o_import_menu))",
+                trigger: ".dropdown-menu:not(:has(span.o_import_menu))",
             },
         ]
     );
