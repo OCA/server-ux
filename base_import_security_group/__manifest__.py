@@ -5,7 +5,7 @@
 
 {
     "name": "Optional CSV import",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Server tools",
     "summary": "Group-based permissions for importing CSV files",
     "license": "AGPL-3",
@@ -14,11 +14,19 @@
     "Onestein",
     "maintainer": "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
-    "depends": ["web", "web_tour", "base_import"],
-    "demo": ["demo/assets.xml"],
+    "depends": [
+        "web",
+        "web_tour",
+        "base_import",
+    ],
     "data": [
         "security/base_import_security_group_security.xml",
-        "views/base_import.xml",
     ],
+    "assets": {
+        "web.assets_backend": ["base_import_security_group/static/src/js/import.js"],
+        "web.assets_tests": [
+            "base_import_security_group/static/src/js/tour_import.js",
+        ],
+    },
     "installable": True,
 }
