@@ -6,7 +6,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import common
 
 
-class CommonTestMultiStepWizard(common.SavepointCase):
+class CommonTestMultiStepWizard(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
