@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: Imre Kristoffer Eilertsen <imreeil42@gmail.com>, 2016\n"
+"PO-Revision-Date: 2022-08-05 16:06+0000\n"
+"Last-Translator: Marius Stedjan <marius@stedjan.com>\n"
 "Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/oca/"
 "teams/23907/nb_NO/)\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_form
@@ -71,21 +72,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_uid
 msgid "Created by"
-msgstr "Laget av"
+msgstr "Opprettet av"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__create_date
 msgid "Created on"
-msgstr "Laget den"
+msgstr "Opprettet"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
 msgid "Display Name"
-msgstr "Vis navn"
+msgstr "Visningsnavn"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__domain
@@ -114,7 +115,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
 msgid "Last Modified on"
-msgstr "Sist endret den"
+msgstr "Sist endret"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_uid
@@ -128,7 +129,7 @@ msgstr "Sist oppdatert av"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_date
 msgid "Last Updated on"
-msgstr "Sist oppdatert den"
+msgstr "Sist oppdatert"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__line_ids
