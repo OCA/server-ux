@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 14.0.1.1.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 14.0.1.0.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 14.0.1.1.1 |  | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 14.0.2.10.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
+[base_tier_validation](base_tier_validation/) | 14.0.2.11.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.1 |  | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 14.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
 [base_tier_validation_report](base_tier_validation_report/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Reports related to tier validation
