@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
 [base_substate](base_substate/) | 15.0.1.0.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 15.0.1.1.0 |  | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 15.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
+[base_tier_validation](base_tier_validation/) | 15.0.1.2.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 15.0.1.0.0 |  | Formulas for Base tier validation
 [chained_swapper](chained_swapper/) | 15.0.1.0.1 |  | Chained Swapper
 [date_range](date_range/) | 15.0.1.0.0 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
