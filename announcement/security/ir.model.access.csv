@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_announcement_management,announcement.manager,model_announcement,announcement.announcemenent_manager,1,1,1,1
+access_announcement_user,announcement.user,model_announcement,base.group_user,1,0,0,0
+access_announcement_log_all,announcement_log_all,model_announcement_log,base.group_user,1,0,1,0

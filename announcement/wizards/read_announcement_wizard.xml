@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Tecnativa - David Vidal
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="read_announcement_wizard_view_tree" model="ir.ui.view">
+        <field name="model">read.announcement.wizard</field>
+        <field name="arch" type="xml">
+            <tree string="Announcement Logs">
+                <field name="date" />
+                <field name="user_id" />
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/announcement/static/src/js/announcement.js"
+            />
+            <script
+                type="text/javascript"
+                src="/announcement/static/src/js/announcement_dialog.js"
+            />
+        </xpath>
+    </template>
+</odoo>
