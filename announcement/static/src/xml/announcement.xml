@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="announcement.AnnouncementMenuPreview">
+        <t t-if="_.isEmpty(announcements)">
+            <div class="dropdown-item-text text-center o_no_activity">
+                <span>No announcements.</span>
+            </div>
+        </t>
+        <t t-foreach="announcements" t-as="announcement">
+            <div
+                class="o_mail_preview"
+                t-att-data-id="announcement.id"
+                t-att-data-name="announcement.name"
+            >
+                <div class="o_mail_preview_image o_mail_preview_app">
+                    <img
+                        src="/announcement/static/description/icon.png"
+                        alt="Announcement"
+                    />
+                </div>
+                <div class="o_preview_info">
+                    <div class="o_preview_title">
+                        <span class="o_preview_name">
+                            <t t-esc="announcement.name" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    <t t-name="announcement.AnnouncementMenu">
+        <li class="o_mail_systray_item">
+            <a
+                class="dropdown-toggle o-no-caret"
+                data-toggle="dropdown"
+                data-display="static"
+                aria-expanded="false"
+                title="Announcements"
+                href="#"
+                role="button"
+            >
+                <i class="fa fa-bullhorn" role="img" aria-label="Activities" />
+                <span class="o_notification_counter badge badge-pill" />
+            </a>
+            <div
+                class="o_mail_systray_dropdown dropdown-menu dropdown-menu-right"
+                role="menu"
+            >
+                <div class="o_mail_systray_dropdown_items" />
+            </div>
+        </li>
+    </t>
+</templates>
