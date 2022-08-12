@@ -8,7 +8,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import common
 
 
-class TestBaseRevision(common.SavepointCase):
+class TestBaseRevision(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseRevision, cls).setUpClass()
@@ -24,7 +24,7 @@ class TestBaseRevision(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestBaseRevision, cls).tearDownClass()
+        return super(TestBaseRevision, cls).tearDownClass()
 
     def _create_tester(self):
         return self.revision_model.create({"name": "TEST0001"})
@@ -56,6 +56,7 @@ class TestBaseRevision(common.SavepointCase):
         self.assertEqual(revision_1.revision_number, 1)
         self.assertEqual(revision_1.name.endswith("-01"), True)
         self.assertEqual(revision_1.has_old_revisions, True)
+        self.assertEqual(revision_1.revision_count, 1)
 
         # Create a new revision of the tester
         self._revision_tester(revision_1)
@@ -74,6 +75,7 @@ class TestBaseRevision(common.SavepointCase):
         self.assertEqual(revision_2.revision_number, 2)
         self.assertEqual(revision_2.name.endswith("-02"), True)
         self.assertEqual(revision_2.has_old_revisions, True)
+        self.assertEqual(revision_2.revision_count, 2)
 
     def test_simple_copy(self):
         """Check copy process"""
