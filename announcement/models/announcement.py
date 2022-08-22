@@ -49,32 +49,38 @@ class Announcement(models.Model):
     )
     notification_date = fields.Datetime()
     notification_expiry_date = fields.Datetime()
+    in_date = fields.Boolean(
+        compute="_compute_in_date", search="_search_in_date", compute_sudo=True
+    )
+    announcement_log_ids = fields.One2many(
+        comodel_name="announcement.log", inverse_name="announcement_id",
+    )
 
     def _inverse_specific_user_ids(self):
-        """Used to set users pendant announcements when they're set in the announcement
+        """Used to set users unread announcements when they're set in the announcement
         itself"""
         for announcement in self:
             for user in announcement.specific_user_ids.filtered(
                 lambda x: announcement
-                not in (x.read_announcement_ids + x.pendant_announcement_ids)
+                not in (x.read_announcement_ids + x.unread_announcement_ids)
             ):
-                user.pendant_announcement_ids |= announcement
+                user.unread_announcement_ids |= announcement
 
     @api.depends("specific_user_ids", "user_group_ids")
     def _compute_allowed_user_ids(self):
         self.allowed_user_ids = False
         self.allowed_users_count = False
-        for announcement in self.filtered(
+        specific_user_announcements = self.filtered(
             lambda x: x.announcement_type == "specific_users"
-        ):
+        )
+        for announcement in specific_user_announcements:
             announcement.allowed_user_ids = announcement.specific_user_ids
             announcement.allowed_users_count = len(announcement.specific_user_ids)
-        for announcement in self.filtered(
-            lambda x: x.announcement_type == "user_group"
-        ):
+        for announcement in self - specific_user_announcements:
             announcement.allowed_user_ids = announcement.user_group_ids.users
             announcement.allowed_users_count = len(announcement.user_group_ids.users)
 
+    @api.depends("announcement_log_ids")
     def _compute_read_announcement_count(self):
         logs = self.env["announcement.log"].read_group(
             [("announcement_id", "in", self.ids)],
@@ -87,24 +93,50 @@ class Announcement(models.Model):
         for announcement in self:
             announcement.read_announcement_count = result.get(announcement.id, 0)
 
+    def _compute_in_date(self):
+        """The announcement is publishable according to date criterias"""
+        self.in_date = False
+        now = fields.Datetime.now()
+        for record in self:
+            date_passed = (
+                not record.notification_date or record.notification_date <= now
+            )
+            date_unexpired = (
+                not record.notification_expiry_date
+                or record.notification_expiry_date >= now
+            )
+            record.in_date = date_passed and date_unexpired
+
+    def _search_in_date(self, operator, value):
+        """Used mainly for record rules as time module values will be cached"""
+        now = fields.Datetime.now()
+        return [
+            "|",
+            ("notification_date", "=", False),
+            ("notification_date", "<=", now),
+            "|",
+            ("notification_expiry_date", "=", False),
+            ("notification_expiry_date", ">=", now),
+        ]
+
     @api.onchange("announcement_type")
     def _onchange_announcement_type(self):
+        """We want to reset the values on screen"""
         if self.announcement_type == "specific_users":
             self.user_group_ids = False
         elif self.announcement_type == "user_group":
             self.specific_user_ids = False
 
     def action_announcement_log(self):
-        """Return a set of fungible transient records to see altogether read logs
-        and pendant users"""
+        """See altogether read logs and unread users"""
         self.ensure_one()
         read_logs = self.env["announcement.log"].search(
             [("announcement_id", "in", self.ids)]
         )
-        pendant_users = self.allowed_user_ids.filtered(
+        unread_users = self.allowed_user_ids.filtered(
             lambda x: x not in read_logs.create_uid
         )
-        read_pendant_log = self.env["read.announcement.wizard"].create(
+        read_unread_log = self.env["read.announcement.wizard"].create(
             [
                 {
                     "user_id": log.create_uid.id,
@@ -115,14 +147,14 @@ class Announcement(models.Model):
                 for log in read_logs
             ]
         )
-        read_pendant_log += self.env["read.announcement.wizard"].create(
-            [{"user_id": user.id, "read_state": "pendant"} for user in pendant_users]
+        read_unread_log += self.env["read.announcement.wizard"].create(
+            [{"user_id": user.id, "read_state": "unread"} for user in unread_users]
         )
         return {
             "type": "ir.actions.act_window",
             "res_model": "read.announcement.wizard",
             "views": [[False, "tree"]],
-            "domain": [("id", "in", read_pendant_log.ids)],
-            "context": dict(self._context, create=False, group_by=["read_state"]),
+            "domain": [("id", "in", read_unread_log.ids)],
+            "context": dict(self.env.context, create=False, group_by=["read_state"]),
             "name": "Read Logs",
         }

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="announcement_user_rule" model="ir.rule">
+        <field name="domain_force">
+            [('active', '=', True), ('allowed_user_ids', 'in', user.id), ('in_date', '=', True)]
+        </field>
+    </record>
+</odoo>
