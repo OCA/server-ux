@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="announcement.AnnouncementDialog">
+        <div
+            role="dialog"
+            t-attf-class="modal o_technical_modal"
+            tabindex="-1"
+            data-backdrop="static"
+            t-att-id="_.uniqueId('modal_')"
+            aria-hidden="true"
+            data-keyboard="false"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h1 class="modal-title"><t t-raw="title" /><span
+                                class="o_subtitle text-muted small"
+                            ><t t-esc="subtitle" /></span></h1>
+                        <!-- Soft compatibility with OCA's `web_dialog_size` -->
+                        <t t-if="resize">
+                            <button type="button" class="dialog_button_extend close">
+                                <i class="fa fa-expand" />
+                            </button>
+                            <button type="button" class="dialog_button_restore close">
+                                <i class="fa fa-compress" />
+                            </button>
+                        </t>
+                    </header>
+                    <main class="modal-body" />
+                    <footer class="modal-footer" />
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
