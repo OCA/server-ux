@@ -34,7 +34,9 @@
         <record id="announcement_user_rule" model="ir.rule">
             <field name="name">User announcements</field>
             <field ref="model_announcement" name="model_id" />
-            <field name="domain_force">[('allowed_user_ids', 'in', user.id)]</field>
+            <field
+                name="domain_force"
+            >[('active', '=', True), ('allowed_user_ids', 'in', user.id), ('in_date', '=', True)]</field>
             <field name="groups" eval="[(4, ref('base.group_user'))]" />
         </record>
         <record id="announcement_manager_rule" model="ir.rule">
