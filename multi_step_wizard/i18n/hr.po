@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-12-04 12:04+0000\n"
+"PO-Revision-Date: 2022-08-22 21:07+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
@@ -15,13 +15,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: multi_step_wizard
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__allow_back
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_test__allow_back
 msgid "Allow Back"
-msgstr ""
+msgstr "Dozvoli povratak"
 
 #. module: multi_step_wizard
 #: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
@@ -47,7 +47,7 @@ msgstr "Naziv"
 #. module: multi_step_wizard
 #: model_terms:ir.ui.view,arch_db:multi_step_wizard.multi_step_wizard_form
 msgid "Go Back"
-msgstr ""
+msgstr "Povratak"
 
 #. module: multi_step_wizard
 #: model:ir.model.fields,field_description:multi_step_wizard.field_multi_step_wizard_mixin__id
