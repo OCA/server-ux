@@ -11,4 +11,4 @@ class ReadAnnouncementWizard(models.TransientModel):
     date = fields.Datetime(string="Read Date")
     user_id = fields.Many2one(comodel_name="res.users")
     announcement_id = fields.Many2one(comodel_name="announcement")
-    read_state = fields.Selection(selection=[("read", "Read"), ("pendant", "Pendant")])
+    read_state = fields.Selection(selection=[("read", "Read"), ("unread", "Unread")])

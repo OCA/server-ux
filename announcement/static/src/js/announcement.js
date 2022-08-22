@@ -6,7 +6,7 @@ odoo.define("announcement.systray", function(require) {
     const session = require("web.session");
     const SystrayMenu = require("web.SystrayMenu");
     const Widget = require("web.Widget");
-    const AnnouncementDialog = require("announment.AnnouncementDialog");
+    const AnnouncementDialog = require("announcement.AnnouncementDialog");
 
     const QWeb = core.qweb;
     const _t = core._t;
@@ -28,15 +28,29 @@ odoo.define("announcement.systray", function(require) {
                 this,
                 this._updateAnnouncementPreview
             );
-            // When the user logs in we show him his pendant announcements
+            let popup_announcement = false;
+            // Let's check if the user just logged in and to decide if we popup the
+            // announcements. This delay is hardcoded to 5 minutes, although we could
+            // allow to configure it in the future.
+            this._rpc({
+                model: "res.users",
+                method: "read",
+                args: [session.uid, ["login_date"]],
+            }).then(user => {
+                const login_date = !_.isEmpty(user) && user[0].login_date;
+                const minutes_since_last_login =
+                    (moment.utc(new Date()).valueOf() -
+                        moment.utc(login_date).valueOf()) /
+                    1000 /
+                    60;
+                popup_announcement = Boolean(minutes_since_last_login < 5);
+            });
+            // When the user logs in we show him his unread announcements
             const _this = this;
             function waitAndCheck() {
                 if (odoo.isReady) {
                     _this._getAnnouncementData().then(() => {
-                        if (
-                            session.popup_announcements &&
-                            !_.isEmpty(_this.announcements)
-                        ) {
+                        if (popup_announcement && !_.isEmpty(_this.announcements)) {
                             _this.announcements[0].dialog.open();
                         }
                     });
@@ -124,7 +138,7 @@ odoo.define("announcement.systray", function(require) {
                 // This one is not being used but it could be handy in future features.
                 a.previous_announcement_id =
                     previous_announcement_id && previous_announcement_id.id;
-                a.dialog = this._builAnnouncementDialog(a);
+                a.dialog = this._buildAnnouncementDialog(a);
             });
         },
         /**
@@ -156,7 +170,7 @@ odoo.define("announcement.systray", function(require) {
          * @param {Object} announcement
          * @returns {Object} dialog - standard odoo dialog
          */
-        _builAnnouncementDialog: function(announcement) {
+        _buildAnnouncementDialog: function(announcement) {
             const next_announcement = announcement.next_announcement_id;
             const dialog = new AnnouncementDialog(this, {
                 title: announcement.name,
@@ -178,7 +192,7 @@ odoo.define("announcement.systray", function(require) {
                                     this._updateAnnouncementPreview();
                                 })
                                 .then(() => {
-                                    // As the announment list is chained in a loop we want
+                                    // As the announcement list is chained in a loop we want
                                     // to avoid opening the same announcement we just closed
                                     if (announcement.id !== next_announcement) {
                                         this._openAnnouncemenId(next_announcement);
