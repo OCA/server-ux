@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-22 14:07+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,75 +15,76 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivan"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__current_revision_id
 msgid "Current revision"
-msgstr ""
+msgstr "Trenutna revizija"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: base_revision
 #: model:ir.model,name:base_revision.model_base_revision
 msgid "Document Revision (abstract)"
-msgstr ""
+msgstr "Revizija dokumenta (apstraktno)"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__has_old_revisions
 msgid "Has Old Revisions"
-msgstr ""
+msgstr "Ima starijih revizija"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: base_revision
 #: code:addons/base_revision/models/base_revision.py:0
 #, python-format
 msgid "New Revisions"
-msgstr ""
+msgstr "Nove revizije"
 
 #. module: base_revision
 #: code:addons/base_revision/models/base_revision.py:0
 #, python-format
 msgid "New revision created: %s"
-msgstr ""
+msgstr "Nova revizija kreirana: %s"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__old_revision_ids
 msgid "Old revisions"
-msgstr ""
+msgstr "Starije revizije"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__unrevisioned_name
 msgid "Original Reference"
-msgstr ""
+msgstr "Originalna referenca"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_count
 msgid "Previous versions count"
-msgstr ""
+msgstr "Broj prethodnih verzija"
 
 #. module: base_revision
 #: model:ir.model.constraint,message:base_revision.constraint_base_revision_revision_unique
 msgid "Reference and revision must be unique."
-msgstr ""
+msgstr "Referenca i revizija moraju biti jedinstvene."
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_number
 msgid "Revision"
-msgstr ""
+msgstr "Revizija"
