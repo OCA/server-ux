@@ -192,19 +192,14 @@ msgid "Notification Expiry Date"
 msgstr "Fecha de caducidad de la notificación"
 
 #. module: announcement
-#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__pendant
-msgid "Pendant"
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
 msgstr "Pendientes"
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__pendant_announcement_ids
-msgid "Pendant Announcement"
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
 msgstr "Anuncio pendiente"
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__popup_announcements
-msgid "Popup Announcements"
-msgstr "Mostrar anuncios"
 
 #. module: announcement
 #: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
