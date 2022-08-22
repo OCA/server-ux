@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-ux Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-announcement',
         'odoo13-addon-barcode_action',
         'odoo13-addon-base_custom_filter',
         'odoo13-addon-base_duplicate_security_group',
