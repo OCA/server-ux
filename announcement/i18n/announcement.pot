@@ -188,18 +188,13 @@ msgid "Notification Expiry Date"
 msgstr ""
 
 #. module: announcement
-#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__pendant
-msgid "Pendant"
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
 msgstr ""
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__pendant_announcement_ids
-msgid "Pendant Announcement"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__popup_announcements
-msgid "Popup Announcements"
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
 msgstr ""
 
 #. module: announcement

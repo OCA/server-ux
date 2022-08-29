@@ -1,4 +1,4 @@
-odoo.define("announment.AnnouncementDialog", function(require) {
+odoo.define("announcement.AnnouncementDialog", function(require) {
     "use strict";
 
     const core = require("web.core");
@@ -39,7 +39,7 @@ odoo.define("announment.AnnouncementDialog", function(require) {
                     this.$modal
                         .find(".dialog_button_restore")
                         .on("click", this.proxy("_restore"));
-                    this._restore();
+                    this._extending();
                 }
                 this.$footer = this.$modal.find(".modal-footer");
                 this.set_buttons(this.buttons);

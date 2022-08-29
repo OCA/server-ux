@@ -40,7 +40,6 @@
                 <field name="sequence" widget="handle" />
             </field>
             <field name="notification_expiry_date" position="after">
-                <field name="notification_expiry_date" />
                 <field name="read_announcement_count" string="Reads" />
                 <field name="allowed_users_count" string="Total users" />
             </field>
