@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2022-08-22 13:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 2.3\n"
 
 #. module: announcement
@@ -63,6 +63,7 @@ msgstr "Anuncio"
 
 #. module: announcement
 #: model:ir.actions.act_window,name:announcement.action_announcement_log
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_log_ids
 msgid "Announcement Log"
 msgstr "Registro del anuncio"
 
@@ -130,16 +131,16 @@ msgid "Groups"
 msgstr "Grupos"
 
 #. module: announcement
-#: model:ir.model,name:announcement.model_ir_http
-msgid "HTTP Routing"
-msgstr "Ruta HTTP"
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__id
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__id
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__in_date
+msgid "In Date"
+msgstr ""
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement____last_update
@@ -190,16 +191,6 @@ msgstr "Fecha de notificación"
 #: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
 msgid "Notification Expiry Date"
 msgstr "Fecha de caducidad de la notificación"
-
-#. module: announcement
-#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
-msgid "Unread"
-msgstr "Pendientes"
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
-msgid "Unread Announcement"
-msgstr "Anuncio pendiente"
 
 #. module: announcement
 #: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
@@ -262,6 +253,16 @@ msgid "Total users"
 msgstr "Total usuarios"
 
 #. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
+msgstr "Pendientes"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
+msgstr "Anuncio pendiente"
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__user_id
 msgid "User"
 msgstr "Usuario\t"
@@ -301,3 +302,6 @@ msgstr "Válido hasta"
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "e.g. Announcement description..."
 msgstr "p.e. Descripción del anuncio..."
+
+#~ msgid "HTTP Routing"
+#~ msgstr "Ruta HTTP"
