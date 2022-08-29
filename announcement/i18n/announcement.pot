@@ -59,6 +59,7 @@ msgstr ""
 
 #. module: announcement
 #: model:ir.actions.act_window,name:announcement.action_announcement_log
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_log_ids
 msgid "Announcement Log"
 msgstr ""
 
@@ -126,15 +127,15 @@ msgid "Groups"
 msgstr ""
 
 #. module: announcement
-#: model:ir.model,name:announcement.model_ir_http
-msgid "HTTP Routing"
-msgstr ""
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__id
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__id
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
 msgid "ID"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__in_date
+msgid "In Date"
 msgstr ""
 
 #. module: announcement
@@ -185,16 +186,6 @@ msgstr ""
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
 msgid "Notification Expiry Date"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
-msgid "Unread"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
-msgid "Unread Announcement"
 msgstr ""
 
 #. module: announcement
@@ -255,6 +246,16 @@ msgstr ""
 #. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
 msgid "Total users"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
 msgstr ""
 
 #. module: announcement
