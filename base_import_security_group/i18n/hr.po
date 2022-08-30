@@ -25,6 +25,11 @@ msgid "Base"
 msgstr ""
 
 #. module: base_import_security_group
+#: model:ir.model,name:base_import_security_group.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: base_import_security_group
 #: model:res.groups,name:base_import_security_group.group_import_csv
 msgid "Import CSV/Excel files"
 msgstr "Uvoz CSV/Excel datoteka"
