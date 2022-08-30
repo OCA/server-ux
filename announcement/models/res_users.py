@@ -52,5 +52,8 @@ class ResUsers(models.Model):
         """Used as a controller for the widget"""
         announcement = self.env["announcement"].browse(int(announcement_id))
         self.env.user.unread_announcement_ids -= announcement
-        self.env.user.read_announcement_ids += announcement
-        self.env["announcement.log"].create({"announcement_id": announcement.id})
+        # Log only the first time. Users with the announcement in multiple windows would
+        # log multiple reads. We're only interested in the first one.
+        if announcement not in self.env.user.read_announcement_ids:
+            self.env.user.read_announcement_ids += announcement
+            self.env["announcement.log"].create({"announcement_id": announcement.id})
