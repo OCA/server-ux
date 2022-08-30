@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,26 +19,11 @@ msgid "Base"
 msgstr ""
 
 #. module: base_import_security_group
-#: model:ir.model.fields,field_description:base_import_security_group.field_ir_http__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: base_import_security_group
 #: model:ir.model,name:base_import_security_group.model_ir_http
 msgid "HTTP Routing"
 msgstr ""
 
 #. module: base_import_security_group
-#: model:ir.model.fields,field_description:base_import_security_group.field_ir_http__id
-msgid "ID"
-msgstr ""
-
-#. module: base_import_security_group
 #: model:res.groups,name:base_import_security_group.group_import_csv
 msgid "Import CSV/Excel files"
-msgstr ""
-
-#. module: base_import_security_group
-#: model:ir.model.fields,field_description:base_import_security_group.field_ir_http____last_update
-msgid "Last Modified on"
 msgstr ""
