@@ -9,6 +9,7 @@
                     <group>
                         <group col="2" colspan="4" string="Parameters">
                             <field name="type_id" />
+                            <field name="company_id" invisible="1" />
                             <field
                                 groups="base.group_multi_company"
                                 name="company_id"

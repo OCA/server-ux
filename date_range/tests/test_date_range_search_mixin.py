@@ -149,7 +149,7 @@ class TestDateRangeearchMixin(TransactionCase):
 
     def test_04_load_views(self):
         """Technical field label is replaced in `load_views`"""
-        field = self.model.load_views([(None, "form")])["fields"][
+        field = self.model.get_views([(None, "form")])["models"][self.model._name][
             "date_range_search_id"
         ]
         self.assertNotIn("technical", field["string"])
