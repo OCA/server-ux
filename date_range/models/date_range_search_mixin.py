@@ -61,13 +61,9 @@ class DateRangeSearchMixin(models.AbstractModel):
         return domain
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """Inject the dummy Many2one field in the search view"""
-        result = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type != "search":
             return result
         root = etree.fromstring(result["arch"])
@@ -94,13 +90,13 @@ class DateRangeSearchMixin(models.AbstractModel):
         return result
 
     @api.model
-    def load_views(self, views, options=None):
+    def get_views(self, views, options=None):
         """Adapt the label of the dummy search field
 
         Ensure the technical name does not show up in the Custom Filter
         fields list (while still showing up in the Export widget)
         """
-        result = super().load_views(views, options=options)
-        if "date_range_search_id" in result["fields"]:
-            result["fields"]["date_range_search_id"]["string"] = _("Period")
+        result = super().get_views(views, options=options)
+        if "date_range_search_id" in result["models"][self._name]:
+            result["models"][self._name]["date_range_search_id"]["string"] = _("Period")
         return result
