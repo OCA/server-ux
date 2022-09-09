@@ -26,6 +26,12 @@ def migrate_mass_editing(env):
     env["ir.actions.act_window"].search(
         [("res_model", "=", "mass.editing.wizard")]
     ).unlink()
+    # Unset the 'inherit_id' value of the 'view_mass_editing_wizard_form'
+    # that still target a view from 'mass_operation_abstract'.
+    # When 'mass_operation_abstract' is uninstalled + the database cleanup
+    # (with 'database_cleanup'), the wizard of 'mass_editing' gets purged
+    # in cascade because of this link.
+    env.ref("mass_editing.view_mass_editing_wizard_form").inherit_id = False
 
 
 @openupgrade.migrate()
