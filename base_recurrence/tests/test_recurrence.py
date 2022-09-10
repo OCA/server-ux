@@ -198,3 +198,31 @@ class RecurrenceTestCommon(SavepointCase):
         self.assertEqual(
             fields.Datetime.to_datetime("2023-07-11"), record.next_recurrency_date,
         )
+
+    @freeze_time("2022-07-11")
+    def test_update_recurrence_yearly(self):
+        """
+        Check recurrence yearly
+        """
+        record = self.env["fake.recurrence"].create(
+            {
+                "name": "Test",
+                "recurrence_type": "yearly",
+                "recurrence_interval": 1,
+                "last_recurrency_date": "2021-07-10",
+            }
+        )
+
+        record._set_next_recurrency_date()
+
+        self.assertEqual(
+            fields.Datetime.to_datetime("2022-07-10"), record.next_recurrency_date,
+        )
+
+        record._update_recurrency_date()
+        self.assertEqual(
+            fields.Datetime.to_datetime("2023-07-10"), record.next_recurrency_date,
+        )
+        self.assertEqual(
+            fields.Datetime.to_datetime("2022-07-10"), record.last_recurrency_date,
+        )

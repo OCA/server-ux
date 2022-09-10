@@ -67,10 +67,29 @@ class RecurrenceMixin(models.AbstractModel):
             self.recurrence_type
         )
 
+    def _update_recurrency_date(self):
+        """
+            Update the last recurrency date from the next recurrency date,
+            then compute the new next recurrency date.
+        """
+        for record in self:
+            record.update(
+                {
+                    record._field_last_recurrency_date: record[
+                        record._field_next_recurrency_date
+                    ],
+                }
+            )
+            record.update(
+                {record._field_next_recurrency_date: record._get_next_recurrency_date()}
+            )
+
     def _set_next_recurrency_date(self, from_now=False):
         """
-            Update the next recurrency date from the last recurrency field value.
+            Set the next recurrency date from the last recurrency field value.
             This method allows to reset that last recurrency date to now().
+
+            Usually, this is used to initialize the record first values.
 
         :param from_now: [description], defaults to False
         :type from_now: bool, optional
@@ -78,6 +97,9 @@ class RecurrenceMixin(models.AbstractModel):
         if from_now:
             self.update({self._field_last_recurrency_date: fields.Datetime.now()})
         for record in self:
+            record[
+                record._field_next_recurrency_date
+            ] = record._get_next_recurrency_date()
             record[
                 record._field_next_recurrency_date
             ] = record._get_next_recurrency_date()
