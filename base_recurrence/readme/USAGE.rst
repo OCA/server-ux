@@ -1,6 +1,6 @@
 
 Supported intervals
-===================
+~~~~~~~~~~~~~~~~~~~
 
 * Day
 * Month
@@ -12,7 +12,7 @@ Supported intervals
 
 
 Example
-=======
+~~~~~~~
 
 .. code-block:: python
 
