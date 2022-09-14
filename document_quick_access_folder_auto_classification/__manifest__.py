@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/server-ux",
     "depends": ["document_quick_access", "edi_storage"],
     "external_dependencies": {
-        "deb": ["libzbar0", "poppler-utils"],
+        "deb": ["libzbar0", "poppler-utils", "libgl1"],
         "python": ["pyzbar", "pdf2image"],
     },
     "data": [

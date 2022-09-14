@@ -27,6 +27,11 @@ try:
     )
 except (ImportError, IOError) as err:
     _logger.warning(err)
+try:
+    import cv2
+    import numpy
+except (ImportError, IOError):
+    cv2 = False
 
 
 class EdiDocumentQuickAccessProcess(Component):
@@ -75,12 +80,20 @@ class EdiDocumentQuickAccessProcess(Component):
         return records
 
     def _search_pil_image(self, image):
-        results = decode(image, symbols=[ZBarSymbol.QRCODE])
+        zbar_results = decode(image, symbols=[ZBarSymbol.QRCODE])
+        results = [zbar_result.data.decode("utf-8") for zbar_result in zbar_results]
+        if not results and cv2:
+            detector = cv2.QRCodeDetector()
+            is_ok, cv2_results, _vertices, _binary = detector.detectAndDecodeMulti(
+                numpy.asarray(image)
+            )
+            if is_ok:
+                results = cv2_results
         records = []
         rule_obj = self.env["document.quick.access.rule"]
         for result in results:
             record = rule_obj.with_context(no_raise_document_access=True).read_code(
-                result.data.decode("utf-8")
+                result
             )
             if record and record not in records:
                 records += record

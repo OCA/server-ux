@@ -5,6 +5,7 @@ import os
 import shutil
 import uuid
 
+import cv2
 from mock import patch
 
 from odoo import tools
@@ -225,6 +226,48 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
         missing.refresh()
         self.assertEqual(missing.edi_exchange_state, "input_processed")
         self.assertFalse(missing.model)
+
+    def test_no_ok_cv2_ok_multi(self):
+        partners = self.env["res.partner"].create({"name": "Partner 1"})
+        partners |= self.env["res.partner"].create({"name": "Partner 2"})
+        partners |= self.env["res.partner"].create({"name": "Partner 3"})
+        partners |= self.env["res.partner"].create({"name": "Partner 4"})
+        self.test_no_ok_cv2_ok(partners)
+
+    @mute_logger("odoo.addons.queue_job.models.base")
+    def test_no_ok_cv2_ok(self, partners=False):
+        if not partners:
+            partners = self.env["res.partner"].create({"name": "Partner"})
+        file = tools.file_open(
+            "test_file.pdf",
+            mode="rb",
+            subdir="addons/document_quick_access_folder_auto_classification/tests",
+        ).read()
+        self.env["document.quick.access.rule"].create(
+            {
+                "model_id": self.model_id.id,
+                "name": "PARTNER",
+                "priority": 1,
+                "barcode_format": "standard",
+            }
+        )
+        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
+            f.write(file)
+        code = [partner.get_quick_access_code() for partner in partners]
+        with patch.object(cv2.QRCodeDetector, "detectAndDecodeMulti") as ptch:
+            ptch.return_value = [True, code, [], []]
+            self.assertFalse(self.exchange_model.search([]))
+            self.backend._storage_cron_check_pending_input()
+            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend._cron_check_input_exchange_sync()
+            self.assertEqual(ptch.call_count, 1)
+        self.assertTrue(partners)
+        for partner in partners:
+            self.assertTrue(
+                self.env["ir.attachment"].search(
+                    [("res_model", "=", partner._name), ("res_id", "=", partner.id)]
+                )
+            )
 
     @mute_logger("odoo.addons.queue_job.models.base")
     def test_corrupted(self):
