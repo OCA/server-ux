@@ -13,11 +13,25 @@ class TierReview(models.Model):
         compute="_compute_resource_ref",
         store=True,
         readonly=True,
+        compute_sudo=True,
+    )
+    resource_type = fields.Selection(
+        selection="_selection_resource_ref",
+        compute_sudo=True,
+    )
+    resource_name = fields.Char(
+        compute="_compute_resource_ref",
+        compute_sudo=True,
+    )
+    next_review = fields.Char(
+        selection="_compute_resource_ref",
+        compute_sudo=True,
     )
 
     def _selection_resource_ref(self):
         models = self.env["tier.definition"]._get_tier_validation_model_names()
-        return [(m, m) for m in models]
+        res = [(m, self.env[m]._description) for m in models]
+        return res
 
     @api.depends("model", "res_id")
     def _compute_resource_ref(self):
@@ -25,6 +39,9 @@ class TierReview(models.Model):
             rec.resource_ref = (
                 "%s,%s" % (rec.model, rec.res_id) if rec.res_id else False
             )
+            rec.resource_name = rec.resource_ref.display_name
+            rec.resource_type = rec.model
+            rec.next_review = rec.resource_ref.next_review
 
     def action_open_resource_ref(self):
         self.ensure_one()

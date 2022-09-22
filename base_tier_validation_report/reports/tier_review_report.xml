@@ -2,6 +2,7 @@
     <record id="tier_review_report_tree" model="ir.ui.view">
         <field name="name">tier.review.report.tree</field>
         <field name="model">tier.review</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <tree
                 string="Tier Review"
@@ -12,7 +13,8 @@
                 delete="0"
                 editable="top"
             >
-                <field name="resource_ref" />
+                <field name="resource_type" />
+                <field name="resource_name" />
                 <button
                     name="action_open_resource_ref"
                     type="object"
@@ -21,13 +23,14 @@
                     class="float-left"
                 />
                 <field name="requested_by" />
-                <field name="review_type" />
-                <field name="name" />
-                <field name="status" />
                 <field name="todo_by" />
-                <field name="done_by" />
-                <field name="reviewed_date" />
-                <field name="comment" />
+                <field name="status" />
+                <field name="review_type" optional="hide" />
+                <field name="name" optional="hide" />
+                <field name="done_by" optional="hide" />
+                <field name="reviewed_date" optional="hide" />
+                <field name="comment" optional="hide" />
+                <field name="next_review" string="" />
             </tree>
         </field>
     </record>
@@ -37,21 +40,38 @@
         <field name="model">tier.review</field>
         <field name="arch" type="xml">
             <form create="0" edit="0" delete="0">
-                <group>
+                <header>
+                    <button
+                        name="action_open_resource_ref"
+                        type="object"
+                        string="Open Resource"
+                        class="oe_highlight"
+                        icon="fa-folder-open-o"
+                    />
+                    <field name="status" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="next_review" readonly="1" />
+                        </h1>
+                    </div>
                     <group>
-                        <field name="resource_ref" />
-                        <field name="requested_by" />
-                        <field name="review_type" />
-                        <field name="name" />
+                        <group>
+                            <field name="resource_type" />
+                            <field name="resource_name" />
+                            <field name="requested_by" />
+                            <field name="review_type" />
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="todo_by" />
+                            <field name="done_by" />
+                            <field name="reviewed_date" />
+                            <field name="comment" />
+                        </group>
                     </group>
-                    <group>
-                        <field name="status" />
-                        <field name="todo_by" />
-                        <field name="done_by" />
-                        <field name="reviewed_date" />
-                        <field name="comment" />
-                    </group>
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -103,7 +123,10 @@
         <field name="context">{}</field>
         <field name="view_id" ref="tier_review_report_tree" />
         <field name="search_view_id" ref="tier_review_report_search" />
-        <field name="groups_id" eval="[(4, ref('base.group_system'))]" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('base_tier_validation_report.group_see_all_reviews'))]"
+        />
     </record>
 
     <menuitem
@@ -123,7 +146,7 @@
         parent="menu_tier_validation_report"
         action="tier_review_all_action"
         sequence="20"
-        groups="base.group_system"
+        groups="base_tier_validation_report.group_see_all_reviews"
     />
 
 </odoo>
