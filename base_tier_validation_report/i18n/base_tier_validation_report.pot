@@ -51,6 +51,12 @@ msgid "My Reviews"
 msgstr ""
 
 #. module: base_tier_validation_report
+#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: base_tier_validation_report
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_form
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_tree
 msgid "Open Resource"
 msgstr ""
@@ -66,14 +72,29 @@ msgid "Requested By"
 msgstr ""
 
 #. module: base_tier_validation_report
+#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_name
+msgid "Resource Name"
+msgstr ""
+
+#. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_ref
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Resource Ref"
 msgstr ""
 
 #. module: base_tier_validation_report
+#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_type
+msgid "Resource Type"
+msgstr ""
+
+#. module: base_tier_validation_report
 #: model:ir.ui.menu,name:base_tier_validation_report.menu_tier_validation_report
 msgid "Reviews"
+msgstr ""
+
+#. module: base_tier_validation_report
+#: model:res.groups,name:base_tier_validation_report.group_see_all_reviews
+msgid "See All Tier Reviews"
 msgstr ""
 
 #. module: base_tier_validation_report
