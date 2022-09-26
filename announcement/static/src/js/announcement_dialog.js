@@ -2,6 +2,7 @@ odoo.define("announcement.AnnouncementDialog", function(require) {
     "use strict";
 
     const core = require("web.core");
+    const rpc = require("web.rpc");
     const Dialog = require("web.Dialog");
 
     const QWeb = core.qweb;
@@ -39,7 +40,16 @@ odoo.define("announcement.AnnouncementDialog", function(require) {
                     this.$modal
                         .find(".dialog_button_restore")
                         .on("click", this.proxy("_restore"));
-                    this._extending();
+                    rpc.query({
+                        model: "ir.config_parameter",
+                        method: "announcement_full_size",
+                    }).then(config_full_size => {
+                        if (config_full_size) {
+                            this._extending();
+                            return;
+                        }
+                        this._restore();
+                    });
                 }
                 this.$footer = this.$modal.find(".modal-footer");
                 this.set_buttons(this.buttons);
