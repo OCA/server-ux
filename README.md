@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[announcement](announcement/) | 13.0.2.0.1 |  | Notify internal users about relevant organization stuff
+[announcement](announcement/) | 13.0.2.1.0 |  | Notify internal users about relevant organization stuff
 [barcode_action](barcode_action/) | 13.0.1.0.0 |  | Allows to use barcodes as a launcher
 [base_custom_filter](base_custom_filter/) | 13.0.1.0.0 | [![JordiMForgeFlow](https://github.com/JordiMForgeFlow.png?size=30px)](https://github.com/JordiMForgeFlow) | Add custom filters in standard filters and group by dropdowns
 [base_duplicate_security_group](base_duplicate_security_group/) | 13.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Adds a security group to restrict which users can copy records
