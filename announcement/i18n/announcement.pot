@@ -239,6 +239,11 @@ msgid "Specific users"
 msgstr ""
 
 #. module: announcement
+#: model:ir.model,name:announcement.model_ir_config_parameter
+msgid "System Parameter"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__name
 msgid "Title"
 msgstr ""
