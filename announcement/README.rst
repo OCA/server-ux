@@ -58,6 +58,12 @@ When your user has such permissions, this is the way to create an announcement:
 #. If the announcement doesn't make sense once a date is passed, you can set a due date.
    From that date, the announcement won't be shown to anyone.
 
+There's a soft compatibility with OCA's `web_dialog_size` module. If the instance has
+the module installed, you'll have the dialog resize controls by default in the
+announcements. Additionally, you can show the announcement dialogs expanded to the
+screen full width by default setting the system parameter key `announcement.full_size`
+with to any value. Remove the parameter record to disable this behavior.
+
 Usage
 =====
 
