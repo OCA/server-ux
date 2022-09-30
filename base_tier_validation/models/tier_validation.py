@@ -222,6 +222,9 @@ class TierValidation(models.AbstractModel):
         return True
 
     def write(self, vals):
+        if len(vals.keys()) == 1 and vals.get('message_main_attachment_id'):
+            # avoid tier validation (error) when only browsing attachments
+            return super(TierValidation, self).write(vals)
         for rec in self:
             if rec._check_state_conditions(vals):
                 if rec.need_validation:
