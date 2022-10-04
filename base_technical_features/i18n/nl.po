@@ -45,6 +45,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "Technische mogelijkheden (zonder debugmodus)"
 
 #. module: base_technical_features
+#. odoo-python
 #: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
@@ -52,8 +53,8 @@ msgstr "De gebruiker heeft geen toegang tot technische mogelijkheden."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
-msgid "Users"
-msgstr "Gebruikers"
+msgid "User"
+msgstr ""
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
@@ -62,3 +63,6 @@ msgid ""
 msgstr ""
 "Geeft aan of het veld Technische mogelijkheden wordt getoond in de "
 "voorkeuren van de gebruiker."
+
+#~ msgid "Users"
+#~ msgstr "Gebruikers"
