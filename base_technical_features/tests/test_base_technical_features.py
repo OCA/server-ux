@@ -23,22 +23,18 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
         """ A technical field is visible when its form is loaded by a user \
         with the technical features group """
 
-        def get_partner_field_invisible():
+        def get_partner_field():
             xml = etree.fromstring(
                 self.env["res.users"]
-                .fields_view_get(view_id=self.env.ref("base.view_users_form").id)[
-                    "arch"
-                ]
+                .get_view(view_id=self.env.ref("base.view_users_form").id)["arch"]
                 .encode("utf-8")
             )
-            return xml.xpath('//div/group/field[@name="partner_id"]')[0].get(
-                "invisible"
-            )
+            return xml.xpath('//div/group/field[@name="partner_id"]')
 
         self.env.user.write({"technical_features": False})
-        self.assertEqual(get_partner_field_invisible(), "1")
+        self.assertEqual(len(get_partner_field()), 0)
         self.env.user.write({"technical_features": True})
-        self.assertEqual(get_partner_field_invisible(), None)
+        self.assertEqual(len(get_partner_field()), 1)
 
     def test03_user_access(self):
         """ Setting the user pref raises an access error if the user is not \
