@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.1 |  | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 14.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
 [base_tier_validation_report](base_tier_validation_report/) | 14.0.1.1.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Reports related to tier validation
-[base_tier_validation_server_action](base_tier_validation_server_action/) | 14.0.1.1.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add option to call server action when a tier is validated
+[base_tier_validation_server_action](base_tier_validation_server_action/) | 14.0.1.1.3 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add option to call server action when a tier is validated
 [base_user_locale](base_user_locale/) | 14.0.1.1.1 |  | User Locale Settings
 [chained_swapper](chained_swapper/) | 14.0.1.0.1 |  | Chained Swapper
 [date_range](date_range/) | 14.0.2.1.1 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
