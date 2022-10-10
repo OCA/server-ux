@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2017-05-17 21:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-10-10 19:34+0000\n"
+"Last-Translator: Razumovskyi Yurii <GarazdCreation@gmail.com>\n"
 "Language-Team: Ukrainian (https://www.transifex.com/oca/teams/23907/uk/)\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
@@ -26,18 +27,21 @@ msgid ""
 "including the fields of such domain in this operation definition, will lead "
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
+"<b>УВАГА</b>: Зверніть увагу, що додаючи поле з фільтром (domain) та не "
+"додаючи поля цього фільтру у визначення поточної операції, призведе до "
+"помилки при спробі виконати його. Переконайтеся, що ви їх додали."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__state
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__state
 msgid "Action To Do"
-msgstr ""
+msgstr "Дія до виконання"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
-msgstr ""
+msgstr "Додати"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__widget_option
@@ -45,32 +49,35 @@ msgid ""
 "Add widget text that will be used to display the field in the wizard.\n"
 "Example: 'many2many_tags', 'selection', 'image'"
 msgstr ""
+"Додайте назву віджета, котрий буде використаний для показу поля у формі "
+"майстра.\n"
+"Наприклад: 'many2many_tags', 'selection', 'image'"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Apply"
-msgstr ""
+msgstr "Застосувати"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
-msgstr ""
+msgstr "Застосувати фільтр за замовчуванням, пов'язаний з полем"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply domain"
-msgstr ""
+msgstr "Застосувати фільтр"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_apply_domain_in_lines
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_apply_domain_in_lines
 msgid "Apply domain in lines"
-msgstr ""
+msgstr "Застосувати фільтр у рядках"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
@@ -94,12 +101,12 @@ msgstr "Назва для відображення"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 msgid "Field"
-msgstr ""
+msgstr "Поле"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid "Fields"
-msgstr ""
+msgstr "Поля"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
@@ -112,7 +119,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__mass_edit_message
 #: model:ir.model.fields,help:mass_editing.field_ir_cron__mass_edit_message
 msgid "If set, this message will be displayed in the wizard."
-msgstr ""
+msgstr "Якщо вказано, то це повідомлення буде відображатися у вікні майстра."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server____last_update
@@ -138,29 +145,30 @@ msgstr "Дата останньої зміни"
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
-msgstr ""
+msgstr "Групова обробка"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_line_ids
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_line_ids
 msgid "Mass Edit Line"
-msgstr ""
+msgstr "Рядок групової обробки"
 
 #. module: mass_editing
 #: model:ir.model.fields.selection,name:mass_editing.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
-msgstr ""
+msgstr "Групова обробка записів"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr ""
+msgstr "Рядок групової обробки"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_editing_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr ""
+"Поля групової обробки повинні належати до моделі, що обрана у серверній дії."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_message
@@ -168,77 +176,77 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__message
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid "Message"
-msgstr ""
+msgstr "Повідомлення"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__model_id
 msgid "Model"
-msgstr ""
+msgstr "Модель"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__model_id
 msgid "Model on which the server action runs."
-msgstr ""
+msgstr "Модель, на котрій буде виконана серверна дія."
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %d record(s) you have selected can be processed."
-msgstr ""
+msgstr "Жоден з вибраних записів не може бути оброблений (вибрано %d записів)."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
 msgid "Operation Description Danger"
-msgstr ""
+msgstr "Опис операції (Небезпека)"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_info
 msgid "Operation Description Info"
-msgstr ""
+msgstr "Опис операції (Повідомлення)"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_warning
 msgid "Operation Description Warning"
-msgstr ""
+msgstr "Опис операції (Застереження)"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
-msgstr ""
+msgstr "Кількість елементів, що залишилось"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
-msgstr ""
+msgstr "Вилучити"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
 msgid "Selected Item Qty"
-msgstr ""
+msgstr "Кількість обраних елементів"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Послідовність"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_ir_actions_server
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__server_action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Дія на сервері"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
-msgstr ""
+msgstr "Встановити"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %d selected record(s)."
-msgstr ""
+msgstr "Обробка буде виконана на %d обраних записах."
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
@@ -254,16 +262,26 @@ msgid ""
 "- 'Add Followers': add followers to a record (Discuss)\n"
 "- 'Create Next Activity': create an activity (Discuss)"
 msgstr ""
+"Тип дії сервера. Наступні значення доступні:\n"
+"- 'Execute Python Code': код на Python, що буде виконаний\n"
+"- 'Create': створити новий запис з новими значеннями\n"
+"- 'Update a Record': оновити значення запису\n"
+"- 'Execute several actions': визначити дію, яка викликає декілька інших дій "
+"сервера\n"
+"- 'Send Email': автоматично надіслати повідомлення на електронну пошту "
+"(Discuss)\n"
+"- 'Add Followers': додати підписників до запису (Discuss)\n"
+"- 'Create Next Activity': створити активність (Discuss)"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
 msgid "Widget Option"
-msgstr ""
+msgstr "Використати віджет"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
-msgstr ""
+msgstr "Майстер для групової обробки"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
@@ -272,6 +290,8 @@ msgid ""
 "You have selected %d record(s) that can not be processed.\n"
 "Only %d record(s) will be processed."
 msgstr ""
+"Обрано %d записів, котрі не можуть бути оброблені.\n"
+"Буде оброблено тільки %d записів."
 
 #~ msgid "Name"
 #~ msgstr "Name"
