@@ -66,6 +66,11 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nombre</span>"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review has been requested by %s."
@@ -136,6 +141,12 @@ msgid "Approval order by the specified sequence number"
 msgstr "Orden de aprobación por el número de secuencia especificado"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence_bypass
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence_bypass
+msgid "Approve Sequence Bypass"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence
 msgid "Approve by sequence"
@@ -145,6 +156,13 @@ msgstr "Aprobar por secuencia"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__approved
 msgid "Approved"
 msgstr "Aprobado"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
+#: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence_bypass
+msgid ""
+"Bypassed (auto validated), if previous tier was validated by same reviewer"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
