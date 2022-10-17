@@ -357,7 +357,9 @@ class TierValidation(models.AbstractModel):
     def validate_tier(self):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
-        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
+        reviews = self.review_ids.filtered(
+            lambda l: l.sequence in sequences or l.approve_sequence_bypass
+        )
         if self.has_comment:
             return self._add_comment("validate", reviews)
         self._validate_tier(reviews)

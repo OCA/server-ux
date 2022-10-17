@@ -305,6 +305,51 @@ class TierTierValidation(CommonTierValidation):
             0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
         )
 
+    def test_12_approve_sequence_same_user_bypassed(self):
+        """Similar to test_12_approve_sequence, with all same users,
+        but approve_sequence_bypass is True"""
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "approve_sequence_bypass": True,
+                "sequence": 20,
+            }
+        )
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "approve_sequence_bypass": True,
+                "sequence": 10,
+            }
+        )
+        # Request validation
+        self.assertFalse(self.test_record.review_ids)
+        reviews = test_record.with_user(self.test_user_1.id).request_validation()
+        self.assertTrue(reviews)
+
+        record1 = test_record.with_user(self.test_user_1.id)
+        record1.invalidate_cache()
+        self.assertTrue(record1.can_review)
+        # When the first tier is validated, all the rest will be approved.
+        self.assertEqual(
+            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+        )
+
     def test_13_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(
             {
