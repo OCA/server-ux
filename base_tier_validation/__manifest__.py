@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "15.0.1.2.0",
+    "version": "16.0.1.0.0",
     "development_status": "Mature",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -25,14 +25,19 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "/base_tier_validation/static/src/js/systray.js",
-            "/base_tier_validation/static/src/js/tier_review_widget.js",
             "/base_tier_validation/static/src/scss/systray.scss",
             "/base_tier_validation/static/src/scss/review.scss",
-        ],
-        "web.assets_qweb": [
-            "base_tier_validation/static/src/xml/systray.xml",
-            "base_tier_validation/static/src/xml/tier_review_template.xml",
+            "/base_tier_validation/static/src/js/main.esm.js",
+            "/base_tier_validation/static/src/js/ir_model.esm.js",
+            "/base_tier_validation/static/src/js/systray_service.esm.js",
+            "/base_tier_validation/static/src/js/systray.esm.js",
+            "/base_tier_validation/static/src/js/review_groups.esm.js",
+            "/base_tier_validation/static/src/js/reviewer_menu_view.esm.js",
+            "/base_tier_validation/static/src/js/tier_review_widget.esm.js",
+            "/base_tier_validation/static/src/js/review_group_view.esm.js",
+            "/base_tier_validation/static/src/js/reviewer_menu_container.esm.js",
+            "/base_tier_validation/static/src/js/review_notification_handler.esm.js",
+            "/base_tier_validation/static/src/xml/**/*",
         ],
     },
 }
