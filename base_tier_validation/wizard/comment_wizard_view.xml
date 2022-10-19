@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <form string="Comment">
                 <group>
-                    <field name="comment" nolabel="1" />
+                    <field colspan="2" name="comment" nolabel="1" />
                 </group>
                 <footer>
                     <button

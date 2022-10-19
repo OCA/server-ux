@@ -28,12 +28,15 @@ class Users(models.Model):
                     .search([("id", "in", reviews.mapped("res_id"))])
                     .filtered(lambda x: not x.rejected and x.can_review)
                 )
-                if len(records):
+                # if len(records):
+                for rec in records:
                     record = self.env[model]
                     user_reviews[model] = {
+                        "id": rec.id,
                         "name": record._description,
                         "model": model,
                         "icon": modules.module.get_module_icon(record._original_module),
+                        "type": "tier_review",
                         "pending_count": len(records),
                     }
         return list(user_reviews.values())
