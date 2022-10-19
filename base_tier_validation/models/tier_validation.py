@@ -7,6 +7,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import frozendict
 
 
 class TierValidation(models.AbstractModel):
@@ -333,7 +334,7 @@ class TierValidation(models.AbstractModel):
         if self.has_comment:
             return self._add_comment("validate", reviews)
         self._validate_tier(reviews)
-        self._update_counter()
+        self._update_counter({"review_deleted": True})
 
     def reject_tier(self):
         self.ensure_one()
@@ -342,7 +343,7 @@ class TierValidation(models.AbstractModel):
         if self.has_comment:
             return self._add_comment("reject", reviews)
         self._rejected_tier(reviews)
-        self._update_counter()
+        self._update_counter({"review_deleted": True})
 
     def _notify_rejected_review_body(self):
         has_comment = self.review_ids.filtered(
@@ -424,7 +425,7 @@ class TierValidation(models.AbstractModel):
                                     "requested_by": self.env.uid,
                                 }
                             )
-                    self._update_counter()
+                    self._update_counter({"review_created": True})
         self._notify_review_requested(created_trs)
         return created_trs
 
@@ -442,16 +443,22 @@ class TierValidation(models.AbstractModel):
     def restart_validation(self):
         for rec in self:
             if getattr(rec, self._state_field) in self._state_from:
+                to_update_counter = (
+                    rec.mapped("review_ids").filtered(lambda a: a.status == "pending")
+                    and True
+                    or False
+                )
                 rec.mapped("review_ids").unlink()
-                self._update_counter()
+                if to_update_counter:
+                    self._update_counter({"review_deleted": True})
             rec._notify_restarted_review()
 
     @api.model
-    def _update_counter(self):
+    def _update_counter(self, review_counter):
         self.review_ids._compute_can_review()
         notifications = []
-        channel = "base.tier.validation"
-        notifications.append([self.env.user.partner_id, channel, {}])
+        channel = "base.tier.validation/updated"
+        notifications.append([self.env.user.partner_id, channel, review_counter])
         self.env["bus.bus"]._sendmany(notifications)
 
     def unlink(self):
@@ -459,24 +466,29 @@ class TierValidation(models.AbstractModel):
         return super().unlink()
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
+
+        View = self.env["ir.ui.view"]
+
+        # Override context for postprocessing
+        if view_id and res.get("base_model", self._name) != self._name:
+            View = View.with_context(base_model_name=res["base_model"])
         if view_type == "form" and not self._tier_validation_manual_config:
             doc = etree.XML(res["arch"])
             params = {
                 "state_field": self._state_field,
                 "state_from": ",".join("'%s'" % state for state in self._state_from),
             }
+            all_models = res["models"].copy()
             for node in doc.xpath(self._tier_validation_buttons_xpath):
                 # By default, after the last button of the header
                 str_element = self.env["ir.qweb"]._render(
                     "base_tier_validation.tier_validation_buttons", params
                 )
                 new_node = etree.fromstring(str_element)
+                new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
+                new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addnext(new_element)
             for node in doc.xpath("/form/sheet"):
@@ -484,21 +496,24 @@ class TierValidation(models.AbstractModel):
                     "base_tier_validation.tier_validation_label", params
                 )
                 new_node = etree.fromstring(str_element)
+                new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
+                new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addprevious(new_element)
                 str_element = self.env["ir.qweb"]._render(
                     "base_tier_validation.tier_validation_reviews", params
                 )
-                node.addnext(etree.fromstring(str_element))
-            View = self.env["ir.ui.view"]
-
-            # Override context for postprocessing
-            if view_id and res.get("base_model", self._name) != self._name:
-                View = View.with_context(base_model_name=res["base_model"])
-            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
-            res["arch"] = new_arch
-            # We don't want to loose previous configuration, so, we only want to add
-            # the new fields
-            new_fields.update(res["fields"])
-            res["fields"] = new_fields
+                new_node = etree.fromstring(str_element)
+                new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
+                for model in new_models:
+                    if model in all_models:
+                        continue
+                    if model not in res["models"]:
+                        all_models[model] = new_models[model]
+                    else:
+                        all_models[model] = res["models"][model]
+                new_node = etree.fromstring(new_arch)
+                node.append(new_node)
+            res["arch"] = etree.tostring(doc)
+            res["models"] = frozendict(all_models)
         return res
