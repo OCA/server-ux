@@ -1,6 +1,8 @@
 # Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -44,6 +46,9 @@ class TierReview(models.Model):
     done_by = fields.Many2one(comodel_name="res.users")
     requested_by = fields.Many2one(comodel_name="res.users")
     reviewed_date = fields.Datetime(string="Validation Date")
+    reviewed_formated_date = fields.Char(
+        string="Validation Formated Date", compute="_compute_reviewed_formated_date"
+    )
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
     comment = fields.Char(string="Comments")
     can_review = fields.Boolean(
@@ -55,6 +60,17 @@ class TierReview(models.Model):
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )
+
+    @api.depends_context("tz")
+    def _compute_reviewed_formated_date(self):
+        timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
+        for review in self:
+            if not review.reviewed_date:
+                review.reviewed_formated_date = False
+                continue
+            requested_date_utc = pytz.timezone(timezone).localize(review.reviewed_date)
+            requested_date = requested_date_utc.astimezone(pytz.timezone(timezone))
+            review.reviewed_formated_date = requested_date.replace(tzinfo=None)
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
