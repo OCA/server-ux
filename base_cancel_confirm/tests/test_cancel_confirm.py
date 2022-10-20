@@ -6,10 +6,10 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import Form, common
 
 
-class TestCancelConfirm(common.SavepointCase):
+class TestCancelConfirm(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestCancelConfirm, cls).setUpClass()
+        super().setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -40,7 +40,7 @@ class TestCancelConfirm(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestCancelConfirm, cls).tearDownClass()
+        return super().tearDownClass()
 
     def test_01_cancel_confirm_tester(self):
         """Cancel a document, I expect cancel_reason.
@@ -52,7 +52,7 @@ class TestCancelConfirm(common.SavepointCase):
         ctx = res.get("context")
         self.assertEqual(ctx["cancel_method"], "action_cancel")
         self.assertEqual(ctx["default_has_cancel_reason"], "optional")
-        wizard = Form(self.env["cancel.confirm"].with_context(ctx))
+        wizard = Form(self.env["cancel.confirm"].with_context(**ctx))
         wizard.cancel_reason = "Wrong information"
         wiz = wizard.save()
         # Confirm cancel on wizard
@@ -63,6 +63,12 @@ class TestCancelConfirm(common.SavepointCase):
         self.test_record.action_draft()
         self.assertEqual(self.test_record.cancel_reason, False)
         self.assertEqual(self.test_record.state, "draft")
+        # Check set no cancel reason, reason should be False
+        wizard.has_cancel_reason = "no"
+        wiz = wizard.save()
+        # Confirm cancel on wizard
+        wiz.confirm_cancel()
+        self.assertFalse(self.test_record.cancel_reason)
 
     def test_view_automatic(self):
         # We need to add a view in order to test fields_view_get()
@@ -83,3 +89,18 @@ class TestCancelConfirm(common.SavepointCase):
             form = etree.fromstring(f._view["arch"])
             self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
             self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
+
+        # Check view difference, it should change base_model from view_id
+        wizard_lang_export = self.env.ref("base.wizard_lang_export")
+        res = self.test_record.fields_view_get(
+            view_id=wizard_lang_export.id,
+            view_type="form",
+        )
+        self.assertEqual(res.get("base_model"), wizard_lang_export.model)
+
+        # Check view type is tree.
+        wizard_lang_export = self.env.ref("base.wizard_lang_export")
+        self.test_record.fields_view_get(
+            view_id=wizard_lang_export.id,
+            view_type="tree",
+        )

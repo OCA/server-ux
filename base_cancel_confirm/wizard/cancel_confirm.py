@@ -7,9 +7,7 @@ class CancelConfirm(models.TransientModel):
     _name = "cancel.confirm"
     _description = "Cancel Confirm"
 
-    cancel_reason = fields.Text(
-        string="Cancel Reason",
-    )
+    cancel_reason = fields.Text()
     has_cancel_reason = fields.Selection(
         selection=[
             ("no", "None"),
