@@ -23,14 +23,14 @@ msgstr ""
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
-msgid "%s is not a valid range (%s > %s)"
-msgstr "%s ليست فترة سليمة (%s > %s)"
+msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
+msgstr ""
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
-msgid "%s overlaps %s"
-msgstr "%s تتداخل مع %s"
+msgid "%(thisname)s overlaps %(dtname)s"
+msgstr ""
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -164,16 +164,6 @@ msgid "Date Ranges Exist"
 msgstr ""
 
 #. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
-msgid "Date range"
-msgstr "الفترة الزمنية"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
-msgid "Date range type"
-msgstr "نوع الفترة الزمنية"
-
-#. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
 msgstr "الفترات الزمنية"
@@ -186,7 +176,6 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__display_name
-#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
@@ -232,7 +221,6 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__id
-#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__id
 msgid "ID"
 msgstr "المعرف"
@@ -251,7 +239,6 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
 msgid "Last Modified on"
 msgstr "آخر تعديل في"
@@ -363,12 +350,6 @@ msgid ""
 msgstr "المؤسسة في الفترة الزمنية وفي نوع الفترة يجب أن تكون متطابقة."
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:0
-#, python-format
-msgid "The Company in the Date Range and in Date Range Type must be the same."
-msgstr "المؤسسة في الفترة الزمنية وفي نوع الفترة يجب أن تكون متطابقة."
-
-#. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
 msgid ""
 "The active field allows you to hide the date range type without removing it."
@@ -454,6 +435,25 @@ msgstr "أسابيع"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "سنوات"
+
+#, python-format
+#~ msgid "%s is not a valid range (%s > %s)"
+#~ msgstr "%s ليست فترة سليمة (%s > %s)"
+
+#, python-format
+#~ msgid "%s overlaps %s"
+#~ msgstr "%s تتداخل مع %s"
+
+#~ msgid "Date range"
+#~ msgstr "الفترة الزمنية"
+
+#~ msgid "Date range type"
+#~ msgstr "نوع الفترة الزمنية"
+
+#, python-format
+#~ msgid ""
+#~ "The Company in the Date Range and in Date Range Type must be the same."
+#~ msgstr "المؤسسة في الفترة الزمنية وفي نوع الفترة يجب أن تكون متطابقة."
 
 #~ msgid "Date Start"
 #~ msgstr "تاريخ البدء"
