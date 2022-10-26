@@ -28,7 +28,6 @@ class TestMassEditing(common.TransactionCase):
         self.MassEditingWizard = self.env["mass.editing.wizard"]
         self.ResPartnerTitle = self.env["res.partner.title"]
         self.ResLang = self.env["res.lang"]
-        self.IrTranslation = self.env["ir.translation"]
         self.IrActionsActWindow = self.env["ir.actions.act_window"]
 
         self.mass_editing_user = self.env.ref("mass_editing.mass_editing_user")
@@ -127,7 +126,7 @@ class TestMassEditing(common.TransactionCase):
         """
         result = self.MassEditingWizard.with_context(
             active_ids=[],
-        ).fields_view_get()
+        ).get_view()
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" not in arch,
@@ -137,7 +136,7 @@ class TestMassEditing(common.TransactionCase):
         result = self.MassEditingWizard.with_context(
             server_action_id=self.mass_editing_user.id,
             active_ids=[],
-        ).fields_view_get()
+        ).get_view()
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
@@ -195,11 +194,11 @@ class TestMassEditing(common.TransactionCase):
 
     def test_wiz_read_fields(self):
         """Test whether read method returns all fields or not."""
-        fields_view = self.MassEditingWizard.with_context(
+        fields = self.MassEditingWizard.with_context(
             server_action_id=self.mass_editing_user.id,
             active_ids=[],
-        ).fields_view_get()
-        fields = list(fields_view["fields"].keys())
+        ).fields_get()
+        fields = list(fields.keys())
         # add a real field
         fields.append("display_name")
         vals = {"selection__email": "remove", "selection__phone": "remove"}
@@ -220,16 +219,9 @@ class TestMassEditing(common.TransactionCase):
         """Test Case for MASS EDITING which will check if translation
         was loaded for new partner title, and if they are removed
         as well as the value for the abbreviation for the partner title."""
-        search_domain = [
-            ("res_id", "=", self.partner_title.id),
-            ("type", "=", "model"),
-            ("name", "=", "res.partner.title,shortcut"),
-            ("lang", "=", "de_DE"),
-        ]
-        translation_ids = self.IrTranslation.search(search_domain)
         self.assertEqual(
-            len(translation_ids),
-            1,
+            self.partner_title.with_context(lang="de_DE").shortcut,
+            "Bots.",
             "Translation for Partner Title's Abbreviation " "was not loaded properly.",
         )
         # Removing partner title with mass edit action
@@ -243,10 +235,9 @@ class TestMassEditing(common.TransactionCase):
             "Partner Title's Abbreviation should be removed.",
         )
         # Checking if translations were also removed
-        translation_ids = self.IrTranslation.search(search_domain)
         self.assertEqual(
-            len(translation_ids),
-            0,
+            self.partner_title.with_context(lang="de_DE").shortcut,
+            False,
             "Translation for Partner Title's Abbreviation " "was not removed properly.",
         )
 

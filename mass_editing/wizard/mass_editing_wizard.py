@@ -62,6 +62,30 @@ class MassEditingWizard(models.TransientModel):
                 "message": server_action.mass_edit_message,
             }
         )
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        if not server_action:
+            return res
+        for line in server_action.mapped("mass_edit_line_ids"):
+            field = line.field_id
+            fields.append("selection__" + field.name)
+            res["selection__" + field.name] = "ignore"
+        return res
+
+    def onchange(self, values, field_name, field_onchange):
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        if not server_action:
+            return super().onchange(values, field_name, field_onchange)
+        dynamic_fields = {}
+        for line in server_action.mapped("mass_edit_line_ids"):
+            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
+                [()], default="ignore"
+            )
+        self._fields.update(dynamic_fields)
+        res = super().onchange(values, field_name, field_onchange)
+        for field in dynamic_fields:
+            self._fields.pop(field)
         return res
 
     @api.model
@@ -70,12 +94,17 @@ class MassEditingWizard(models.TransientModel):
         # Add "selection field (set / add / remove / remove_m2m)
         if field.ttype == "many2many":
             selection = [
+                ("ignore", _("Don't touch")),
                 ("set", _("Set")),
                 ("remove_m2m", _("Remove")),
                 ("add", _("Add")),
             ]
         else:
-            selection = [("set", _("Set")), ("remove", _("Remove"))]
+            selection = [
+                ("ignore", _("Don't touch")),
+                ("set", _("Set")),
+                ("remove", _("Remove")),
+            ]
         result["selection__" + field.name] = {
             "type": "selection",
             "string": field_info["string"],
@@ -83,61 +112,77 @@ class MassEditingWizard(models.TransientModel):
         }
         # Add field info
         result[field.name] = field_info
-        # Patch fields with required extra data
-        for item in result.values():
-            item.setdefault("views", {})
         return result
 
     @api.model
     def _insert_field_in_arch(self, line, field, main_xml_group):
         etree.SubElement(
             main_xml_group,
+            "label",
+            {
+                "for": "selection__" + field.name,
+            },
+        )
+        div = etree.SubElement(
+            main_xml_group,
+            "div",
+            {
+                "class": "d-flex",
+            },
+        )
+        etree.SubElement(
+            div,
             "field",
-            {"name": "selection__" + field.name, "colspan": "2"},
+            {
+                "name": "selection__" + field.name,
+                "modifiers": '{"required": true}',
+                "class": "w-25",
+            },
         )
         field_vals = self._get_field_options(field)
         if line.widget_option:
             field_vals["widget"] = line.widget_option
-        etree.SubElement(main_xml_group, "field", field_vals)
+        etree.SubElement(div, "field", field_vals)
 
     def _get_field_options(self, field):
-        return {"name": field.name, "nolabel": "1", "colspan": "4"}
+        return {
+            "name": field.name,
+            "modifiers": '{"invisible": [["selection__%s", "in", ["ignore", "remove"]]]}'
+            % field.name,
+            "class": "w-75",
+        }
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        result = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
-
+    def get_view(self, view_id=None, view_type="form", **options):
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         if not server_action:
-            return result
-
-        all_fields = {}
-        TargetModel = self.env[server_action.model_id.model]
-        fields_info = TargetModel.fields_get()
-
+            return super().get_view(view_id, view_type, **options)
+        result = super().get_view(view_id, view_type, **options)
         arch = etree.fromstring(result["arch"])
-
         main_xml_group = arch.find('.//group[@name="group_field_list"]')
-
         for line in server_action.mapped("mass_edit_line_ids"):
-            # Field part
+            self._insert_field_in_arch(line, line.field_id, main_xml_group)
+        result["arch"] = etree.tostring(arch, encoding="unicode")
+        return result
+
+    @api.model
+    def fields_get(self, allfields=None, attributes=None):
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        if not server_action:
+            return super().fields_get(allfields, attributes)
+        res = super().fields_get(allfields, attributes)
+        fields_info = self.env[server_action.model_id.model].fields_get()
+        for line in server_action.mapped("mass_edit_line_ids"):
             field = line.field_id
             field_info = self._clean_check_company_field_domain(
-                TargetModel, field, fields_info[field.name]
+                self.env[server_action.model_id.model], field, fields_info[field.name]
             )
             if not line.apply_domain and "domain" in field_info:
                 field_info["domain"] = "[]"
-            all_fields.update(self._prepare_fields(line, field, field_info))
-            # XML Part
-            self._insert_field_in_arch(line, field, main_xml_group)
-        result["arch"] = etree.tostring(arch, encoding="unicode")
-        result["fields"] = all_fields
-        return result
+            res.update(self._prepare_fields(line, field, field_info))
+        return res
 
     @api.model
     def _clean_check_company_field_domain(self, TargetModel, field, field_info):
@@ -153,70 +198,48 @@ class MassEditingWizard(models.TransientModel):
         field_info["domain"] = "[]"
         return field_info
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         active_ids = self.env.context.get("active_ids", [])
         if server_action and active_ids:
-            TargetModel = self.env[server_action.model_id.model]
-            IrModelFields = self.env["ir.model.fields"].sudo()
-            IrTranslation = self.env["ir.translation"]
+            for vals in vals_list:
+                values = {}
+                for key, val in vals.items():
+                    if key.startswith("selection_"):
+                        split_key = key.split("__", 1)[1]
+                        if val == "set":
+                            values.update({split_key: vals.get(split_key, False)})
 
-            values = {}
-            for key, val in vals.items():
-                if key.startswith("selection_"):
-                    split_key = key.split("__", 1)[1]
-                    if val == "set":
-                        values.update({split_key: vals.get(split_key, False)})
+                        elif val == "remove":
+                            values.update({split_key: False})
 
-                    elif val == "remove":
-                        values.update({split_key: False})
+                        elif val == "remove_m2m":
+                            m2m_list = []
+                            if vals.get(split_key):
+                                for m2m_id in vals.get(split_key)[0][2]:
+                                    m2m_list.append((3, m2m_id))
+                            if m2m_list:
+                                values.update({split_key: m2m_list})
+                            else:
+                                values.update({split_key: [(5, 0, [])]})
 
-                        # If field to remove is translatable,
-                        # its translations have to be removed
-                        model_field = IrModelFields.search(
-                            [
-                                ("model", "=", server_action.model_id.model),
-                                ("name", "=", split_key),
-                            ]
-                        )
-                        if model_field and model_field.translate:
-                            translations = IrTranslation.search(
-                                [
-                                    ("res_id", "in", active_ids),
-                                    ("type", "=", "model"),
-                                    (
-                                        "name",
-                                        "=",
-                                        "{},{}".format(
-                                            server_action.model_id.model, split_key
-                                        ),
-                                    ),
-                                ]
-                            )
-                            translations.unlink()
-
-                    elif val == "remove_m2m":
-                        m2m_list = []
-                        if vals.get(split_key):
-                            for m2m_id in vals.get(split_key)[0][2]:
-                                m2m_list.append((3, m2m_id))
-                        if m2m_list:
+                        elif val == "add":
+                            m2m_list = []
+                            for m2m_id in vals.get(split_key, False)[0][2]:
+                                m2m_list.append((4, m2m_id))
                             values.update({split_key: m2m_list})
-                        else:
-                            values.update({split_key: [(5, 0, [])]})
+                if values:
+                    self.env[server_action.model_id.model].browse(active_ids).write(
+                        values
+                    )
+        return super().create([{}])
 
-                    elif val == "add":
-                        m2m_list = []
-                        for m2m_id in vals.get(split_key, False)[0][2]:
-                            m2m_list.append((4, m2m_id))
-                        values.update({split_key: m2m_list})
-            if values:
-                TargetModel.browse(active_ids).write(values)
-        return super().create({})
+    def _prepare_create_values(self, vals_list):
+        return vals_list
 
-    def read(self, fields, load="_classic_read"):
+    def read(self, fields=None, load="_classic_read"):
         """Without this call, dynamic fields build by fields_view_get()
         generate a log warning, i.e.:
         odoo.models:mass.editing.wizard.read() with unknown field 'myfield'

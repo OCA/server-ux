@@ -41,9 +41,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 >
                     <field name="operation_description_danger" />
                 </p>
-                <group>
-                    <group name="group_field_list" colspan="4" col="6">
-                    </group>
+                <group name="group_field_list">
                 </group>
                 <footer>
                     <button
