@@ -1,2 +1,2 @@
 from . import ir_actions_server
-from . import mass_editing_line
+from . import ir_actions_server_mass_edit_line

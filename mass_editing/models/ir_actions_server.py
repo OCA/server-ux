@@ -12,7 +12,7 @@ class IrActionsServer(models.Model):
         ondelete={"mass_edit": "cascade"},
     )
     mass_edit_line_ids = fields.One2many(
-        "mass.editing.line",
+        "ir.actions.server.mass.edit.line",
         "server_action_id",
     )
     mass_edit_apply_domain_in_lines = fields.Boolean(

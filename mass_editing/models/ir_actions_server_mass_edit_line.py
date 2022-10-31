@@ -9,9 +9,9 @@ from odoo.exceptions import ValidationError
 MAGIC_FIELDS = models.MAGIC_COLUMNS + [models.BaseModel.CONCURRENCY_CHECK_FIELD]
 
 
-class MassEditingLine(models.Model):
-    _name = "mass.editing.line"
-    _description = "Mass Editing Line"
+class IrActionsServerMassEditLine(models.Model):
+    _name = "ir.actions.server.mass.edit.line"
+    _description = "Server Actions Mass Edit Lines"
     _order = "sequence, field_id"
 
     sequence = fields.Integer()
