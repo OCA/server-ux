@@ -142,6 +142,11 @@ class TierValidation(models.AbstractModel):
 
     @api.multi
     def _compute_need_validation(self):
+        # Ignore active_test coming from upstream methods
+        if 'active_test' in self._context:
+            context = dict(self._context)
+            del context['active_test']
+            self = self.with_context(context)
         for rec in self:
             tiers = self.env[
                 'tier.definition'].search([('model', '=', self._name)])
