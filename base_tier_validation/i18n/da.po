@@ -35,25 +35,25 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Navn</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:329
+#: code:addons/base_tier_validation/models/tier_validation.py:330
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "%s har anmodet om en godkendelse."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:254
+#: code:addons/base_tier_validation/models/tier_validation.py:255
 #, python-format
 msgid "A review was accepted"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:301
+#: code:addons/base_tier_validation/models/tier_validation.py:302
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "En godkendelse var afvist af %s."
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:187
+#: code:addons/base_tier_validation/models/tier_validation.py:188
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr "En godkendelses proces er stadig igang for mindst en rekord."
@@ -116,14 +116,14 @@ msgid "Cancel"
 msgstr "Annuller"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:204
+#: code:addons/base_tier_validation/models/tier_validation.py:205
 #, python-format
 msgid "Cannot write fields: %s"
 msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:259
+#: code:addons/base_tier_validation/models/tier_validation.py:260
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -430,7 +430,7 @@ msgid "Status"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:194
+#: code:addons/base_tier_validation/models/tier_validation.py:195
 #, python-format
 msgid "The operation is under validation."
 msgstr "Operationen er under godkendelse."
@@ -442,7 +442,7 @@ msgid "There are no res.users in the selected field"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:183
+#: code:addons/base_tier_validation/models/tier_validation.py:184
 #, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
