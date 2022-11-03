@@ -35,25 +35,25 @@ msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">名称</span>"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:330
+#: code:addons/base_tier_validation/models/tier_validation.py:335
 #, python-format
 msgid "A review has been requested by %s."
 msgstr "%s发起审批请求。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:255
+#: code:addons/base_tier_validation/models/tier_validation.py:260
 #, python-format
 msgid "A review was accepted"
 msgstr "审批已通过"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:302
+#: code:addons/base_tier_validation/models/tier_validation.py:307
 #, python-format
 msgid "A review was rejected by %s."
 msgstr "此审批已被%s拒绝。"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:188
+#: code:addons/base_tier_validation/models/tier_validation.py:193
 #, python-format
 msgid "A validation process is still open for at least one record."
 msgstr "至少有一条记录需要审批。"
@@ -116,14 +116,14 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:205
+#: code:addons/base_tier_validation/models/tier_validation.py:210
 #, python-format
 msgid "Cannot write fields: %s"
 msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
-#: code:addons/base_tier_validation/models/tier_validation.py:260
+#: code:addons/base_tier_validation/models/tier_validation.py:265
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:30
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
@@ -429,7 +429,7 @@ msgid "Status"
 msgstr "状态"
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:195
+#: code:addons/base_tier_validation/models/tier_validation.py:200
 #, python-format
 msgid "The operation is under validation."
 msgstr "审批中，无法保存修改。"
@@ -441,7 +441,7 @@ msgid "There are no res.users in the selected field"
 msgstr ""
 
 #. module: base_tier_validation
-#: code:addons/base_tier_validation/models/tier_validation.py:184
+#: code:addons/base_tier_validation/models/tier_validation.py:189
 #, python-format
 msgid ""
 "This action needs to be validated for at least one record. \n"
