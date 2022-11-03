@@ -85,7 +85,9 @@ class TestDocumentQuickAccessClassification(TransactionCase):
             self.tmpdir.name, 'test_file_2.pdf'
         ), 'wb') as f:
             f.write(file)
-        code = [Encoded(partner.get_quick_access_code().encode('utf-8'))]
+        code = [Encoded(partner.get_quick_access_code().encode("utf-8"))]
+        files = os.listdir(self.tmpdir.name)
+        self.assertEqual(2, len(files))
         with patch(
                 'odoo.addons.document_quick_access_folder_auto_classification.'
                 'models.ir_attachment.decode'
@@ -101,14 +103,8 @@ class TestDocumentQuickAccessClassification(TransactionCase):
         ])
         self.assertTrue(attachments)
         self.assertEqual(1, len(attachments))
-        self.assertTrue(os.path.exists(
-            os.path.join(self.ok_tmpdir.name, 'test_file.pdf')))
-        self.assertFalse(os.path.exists(
-            os.path.join(self.ok_tmpdir.name, 'test_file_2.pdf')))
-        self.assertFalse(os.path.exists(
-            os.path.join(self.tmpdir.name, 'test_file.pdf')))
-        self.assertTrue(os.path.exists(
-            os.path.join(self.tmpdir.name, 'test_file_2.pdf')))
+        files = os.listdir(self.tmpdir.name)
+        self.assertEqual(1, len(files))
 
     def test_ok_pdf(self, partners=False):
         """Assign automatically PDFs to their assigned place"""

@@ -13,6 +13,10 @@
         'document_quick_access',
         'queue_job',
     ],
+    "external_dependencies": {
+        "deb": ["libzbar0", "poppler-utils"],
+        "python": ["pyzbar", "pdf2image"],
+    },
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

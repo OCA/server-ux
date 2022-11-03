@@ -13,7 +13,7 @@
               'Alejandro Santana <alejandrosantana@anubia.es>, '
               'Onestein',
     'maintainer': 'Odoo Community Association (OCA)',
-    'website': 'http://odoo-community.org',
+    'website': 'https://github.com/OCA/server-ux',
     'depends': [
         'web_tour',
         'base_import',
