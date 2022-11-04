@@ -28,6 +28,7 @@ addon | version | maintainers | summary
 [base_export_manager](base_export_manager/) | 13.0.1.0.1 |  | Manage model export profiles
 [base_import_security_group](base_import_security_group/) | 13.0.1.0.0 |  | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
+[base_optional_quick_create](base_optional_quick_create/) | 13.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 13.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 13.0.1.1.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 13.0.1.0.1 |  | Access to technical features without activating debug mode
