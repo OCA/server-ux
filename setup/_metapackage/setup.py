@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo13-addon-base_export_manager',
         'odoo13-addon-base_import_security_group',
         'odoo13-addon-base_menu_visibility_restriction',
+        'odoo13-addon-base_optional_quick_create',
         'odoo13-addon-base_search_custom_field_filter',
         'odoo13-addon-base_substate',
         'odoo13-addon-base_technical_features',
