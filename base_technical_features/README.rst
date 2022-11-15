@@ -23,7 +23,7 @@ Technical features group
     :target: https://runbot.odoo-community.org/runbot/250/16.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 ==========================================================
 Access to technical features without activating debug mode
