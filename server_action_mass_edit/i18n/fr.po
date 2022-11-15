@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2022-11-02 09:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,9 +19,9 @@ msgstr ""
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
 msgid ""
-"<b>WARNING</b>: Take into account that adding a field with a domain, and not"
-" including the fields of such domain in this operation definition, will lead"
-" to an error when trying to perform it. Make sure you include them."
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
 msgstr ""
 "<b>WARNING</b> : Tenez compte du fait que l'ajout d'un champ avec un "
 "domaine, et le fait de ne pas inclure les champs de ce domaine dans la "
@@ -95,7 +96,6 @@ msgstr "Afficher Nom"
 
 #. module: server_action_mass_edit
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Don't touch"
 msgstr "Ne pas modifier"
@@ -161,7 +161,9 @@ msgstr "Enregistrements d'édition en ligne"
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
-msgstr "Le champs de l'édition en ligne doit appartenir au modèle de l'action serveur."
+msgstr ""
+"Le champs de l'édition en ligne doit appartenir au modèle de l'action "
+"serveur."
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_message
@@ -185,7 +187,9 @@ msgstr "Modèle executé par l'action serveur."
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
-msgstr "Aucun des %(amount)d enregistrement(s) que vous avez sélectionné ne peuvent être traité"
+msgstr ""
+"Aucun des %(amount)d enregistrement(s) que vous avez sélectionné ne peuvent "
+"être traité"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__operation_description_danger
@@ -209,7 +213,6 @@ msgstr "Eléments restants"
 
 #. module: server_action_mass_edit
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
 msgstr "Retirer"
@@ -225,10 +228,14 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: server_action_mass_edit
-#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__server_action_id
 msgid "Server Action"
 msgstr "Action serveur"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
+msgid "Server Actions"
+msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model,name:server_action_mass_edit.model_ir_actions_server_mass_edit_line
@@ -236,7 +243,6 @@ msgid "Server Actions Mass Edit Lines"
 msgstr "Lignes d'édition en lot d'action serveurs"
 
 #. module: server_action_mass_edit
-#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
@@ -246,7 +252,9 @@ msgstr "Definir"
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
-msgstr "Le traitement doit être réalisé sur les %(amount)d enregistrements sélectionnés"
+msgstr ""
+"Le traitement doit être réalisé sur les %(amount)d enregistrements "
+"sélectionnés"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
@@ -256,7 +264,8 @@ msgid ""
 "- 'Execute Python Code': a block of python code that will be executed\n"
 "- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other server actions\n"
+"- 'Execute several actions': define an action that triggers several other "
+"server actions\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
 "- 'Add Followers': add followers to a record (Discuss)\n"
 "- 'Create Next Activity': create an activity (Discuss)\n"
@@ -264,13 +273,19 @@ msgid ""
 msgstr ""
 "Type d'action du serveur. Les valeurs suivantes sont disponibles :\n"
 "- 'Executer du code Python' : un bloc de code python qui sera exécuté\n"
-"- 'Créer un nouvel enregistrement' : créer un nouvel enregistrement avec de nouvelles valeurs\n"
-"- 'Mettre à jour un enregistrement' : mettre à jour les valeurs d'un enregistrement\n"
-"- 'Exécuter plusieurs actions' : définir une action qui déclenche plusieurs autres actions du serveur\n"
-"- 'Envoyer un email' : poster un message, une note ou envoyer un email (Discussion)\n"
-"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement (Discussion)\n"
+"- 'Créer un nouvel enregistrement' : créer un nouvel enregistrement avec de "
+"nouvelles valeurs\n"
+"- 'Mettre à jour un enregistrement' : mettre à jour les valeurs d'un "
+"enregistrement\n"
+"- 'Exécuter plusieurs actions' : définir une action qui déclenche plusieurs "
+"autres actions du serveur\n"
+"- 'Envoyer un email' : poster un message, une note ou envoyer un email "
+"(Discussion)\n"
+"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement "
+"(Discussion)\n"
 "- 'Créer l'activité suivante' : créer une activité (Discussion)\n"
-"- 'Envoyer un message/SMS': envoyez des SMS, enregistrez-les sur des documents (SMS)"
+"- 'Envoyer un message/SMS': envoyez des SMS, enregistrez-les sur des "
+"documents (SMS)"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -288,5 +303,7 @@ msgstr "Assistant pour l'édition en lot"
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
-msgstr "Vous avez sélectionné %(origin_amount)d enregistrement(s) qui ne peuvent pas être traités.\n"
+msgstr ""
+"Vous avez sélectionné %(origin_amount)d enregistrement(s) qui ne peuvent pas "
+"être traités.\n"
 "Seulement %(amount)d enregistrement(s) seront traités."
