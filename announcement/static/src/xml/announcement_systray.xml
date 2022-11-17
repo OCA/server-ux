@@ -29,7 +29,7 @@
         </t>
     </t>
     <t t-name="announcement.AnnouncementMenu">
-        <li class="o_mail_systray_item">
+        <div class="o_mail_systray_item">
             <a
                 class="dropdown-toggle o-no-caret"
                 data-toggle="dropdown"
@@ -48,6 +48,6 @@
             >
                 <div class="o_mail_systray_dropdown_items" />
             </div>
-        </li>
+        </div>
     </t>
 </templates>
