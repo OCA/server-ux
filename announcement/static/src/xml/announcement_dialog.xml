@@ -13,7 +13,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <header class="modal-header">
-                        <h1 class="modal-title"><t t-raw="title" /><span
+                        <h1 class="modal-title"><t t-out="title" /><span
                                 class="o_subtitle text-muted small"
                             ><t t-esc="subtitle" /></span></h1>
                         <!-- Soft compatibility with OCA's `web_dialog_size` -->

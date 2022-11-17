@@ -7,10 +7,12 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     unread_announcement_ids = fields.Many2many(
-        comodel_name="announcement", relation="unread_announcement_user_rel",
+        comodel_name="announcement",
+        relation="unread_announcement_user_rel",
     )
     read_announcement_ids = fields.Many2many(
-        comodel_name="announcement", relation="read_announcement_user_rel",
+        comodel_name="announcement",
+        relation="read_announcement_user_rel",
     )
 
     @api.model

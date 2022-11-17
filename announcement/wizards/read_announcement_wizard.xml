@@ -5,7 +5,7 @@
     <record id="read_announcement_wizard_view_tree" model="ir.ui.view">
         <field name="model">read.announcement.wizard</field>
         <field name="arch" type="xml">
-            <tree string="Announcement Logs">
+            <tree>
                 <field name="date" />
                 <field name="user_id" />
             </tree>
