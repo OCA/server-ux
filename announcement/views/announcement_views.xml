@@ -5,14 +5,14 @@
     <record id="announcement_log_view_tree" model="ir.ui.view">
         <field name="model">announcement.log</field>
         <field name="arch" type="xml">
-            <tree string="Announcement Logs">
+            <tree>
                 <field name="create_date" />
                 <field name="create_uid" />
             </tree>
         </field>
     </record>
     <record id="action_announcement_log" model="ir.actions.act_window">
-        <field name="name">Announcement Log</field>
+        <field name="name">Announcement Logs</field>
         <field name="res_model">announcement.log</field>
         <field name="context">{}</field>
         <field name="domain">[('announcement_id', '=', active_id)]</field>
@@ -21,7 +21,7 @@
     <record id="announcement_view_tree" model="ir.ui.view">
         <field name="model">announcement</field>
         <field name="arch" type="xml">
-            <tree string="Announcements">
+            <tree>
                 <field name="name" />
                 <field name="notification_date" />
                 <field name="notification_expiry_date" />
@@ -147,7 +147,7 @@
                             <div class="row mb4">
                                 <div class="col-12">
                                     <t t-esc="record.name.value" />
-                                    <t t-raw="record.content.raw_value" />
+                                    <t t-out="record.content.raw_value" />
                                 </div>
                             </div>
                         </div>
