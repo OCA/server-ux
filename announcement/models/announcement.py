@@ -1,6 +1,6 @@
 # Copyright 2022 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class AnnouncementLog(models.Model):
@@ -42,10 +42,13 @@ class Announcement(models.Model):
         store=True,
     )
     allowed_users_count = fields.Integer(
-        compute="_compute_allowed_user_ids", compute_sudo=True, store=True,
+        compute="_compute_allowed_user_ids",
+        compute_sudo=True,
+        store=True,
     )
     read_announcement_count = fields.Integer(
-        compute="_compute_read_announcement_count", store=True,
+        compute="_compute_read_announcement_count",
+        store=True,
     )
     notification_date = fields.Datetime()
     notification_expiry_date = fields.Datetime()
@@ -53,7 +56,8 @@ class Announcement(models.Model):
         compute="_compute_in_date", search="_search_in_date", compute_sudo=True
     )
     announcement_log_ids = fields.One2many(
-        comodel_name="announcement.log", inverse_name="announcement_id",
+        comodel_name="announcement.log",
+        inverse_name="announcement_id",
     )
 
     def _inverse_specific_user_ids(self):
@@ -156,5 +160,5 @@ class Announcement(models.Model):
             "views": [[False, "tree"]],
             "domain": [("id", "in", read_unread_log.ids)],
             "context": dict(self.env.context, create=False, group_by=["read_state"]),
-            "name": "Read Logs",
+            "name": _("Read Logs"),
         }
