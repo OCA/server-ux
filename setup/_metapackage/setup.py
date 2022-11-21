@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo14-addon-base_substate',
         'odoo14-addon-base_technical_features',
         'odoo14-addon-base_tier_validation',
+        'odoo14-addon-base_tier_validation_correction',
         'odoo14-addon-base_tier_validation_formula',
         'odoo14-addon-base_tier_validation_forward',
         'odoo14-addon-base_tier_validation_report',
