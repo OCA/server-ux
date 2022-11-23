@@ -10,7 +10,7 @@ from odoo.tests.common import Form
 from ..hooks import uninstall_hook
 
 
-class TestChainedSwapper(common.SavepointCase):
+class TestChainedSwapper(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestChainedSwapper, cls).setUpClass()
