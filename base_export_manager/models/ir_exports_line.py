@@ -32,7 +32,6 @@ class IrExportsLine(models.Model):
         "ir.model",
         "First model",
         readonly=True,
-        default=lambda self: self._default_model1_id(),
         related="export_id.model_id",
     )
     model2_id = fields.Many2one(
@@ -44,11 +43,6 @@ class IrExportsLine(models.Model):
     )
     sequence = fields.Integer()
     label = fields.Char(compute="_compute_label")
-
-    @api.model
-    def _default_model1_id(self):
-        """Default model depending on context."""
-        return self.env.context.get("default_model1_id", False)
 
     @api.depends("field1_id", "field2_id", "field3_id", "field4_id")
     def _compute_name(self):
