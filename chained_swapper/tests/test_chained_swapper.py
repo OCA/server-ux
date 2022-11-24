@@ -10,11 +10,11 @@ from odoo.tests.common import Form
 from ..hooks import uninstall_hook
 
 
-class TestChainedSwapper(common.SavepointCase):
+class TestChainedSwapper(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestChainedSwapper, cls).setUpClass()
-        cls.env["res.lang"].load_lang("es_ES")
+        cls.env["res.lang"]._activate_lang("es_ES")
         res_partner = cls.env["res.partner"]
         cls.partner_parent = res_partner.create(
             {"name": "parent partner cs", "lang": "en_US"}
