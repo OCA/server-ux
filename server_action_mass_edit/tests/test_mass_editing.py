@@ -6,7 +6,7 @@
 from ast import literal_eval
 
 from odoo.exceptions import ValidationError
-from odoo.tests import Form, common
+from odoo.tests import Form, common, new_test_user
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
 
@@ -36,9 +36,16 @@ class TestMassEditing(common.TransactionCase):
         self.mass_editing_partner_title = self.env.ref(
             "server_action_mass_edit.mass_editing_partner_title"
         )
-
-        self.users = self.env["res.users"].search([])
-        self.user = self.env.ref("base.user_demo")
+        user_admin = self.env.ref("base.user_admin")
+        user_demo = self.env.ref("base.user_demo")
+        self.users = self.env["res.users"].search(
+            [("id", "not in", (user_admin.id, user_demo.id))]
+        )
+        self.user = new_test_user(
+            self.env,
+            login="test-mass_editing-user",
+            groups="base.group_system",
+        )
         self.partner_title = self._create_partner_title()
 
     def _create_partner_title(self):
