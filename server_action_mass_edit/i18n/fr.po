@@ -35,6 +35,7 @@ msgid "Action To Do"
 msgstr "Action à effectuer"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
@@ -95,6 +96,7 @@ msgid "Display Name"
 msgstr "Afficher Nom"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Don't touch"
@@ -158,6 +160,7 @@ msgid "Mass Edit Records"
 msgstr "Enregistrements d'édition en ligne"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
@@ -184,6 +187,7 @@ msgid "Model on which the server action runs."
 msgstr "Modèle executé par l'action serveur."
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
@@ -212,6 +216,7 @@ msgid "Remaining Item Qty"
 msgstr "Eléments restants"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
@@ -228,14 +233,10 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__server_action_id
 msgid "Server Action"
 msgstr "Action serveur"
-
-#. module: server_action_mass_edit
-#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
-msgid "Server Actions"
-msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model,name:server_action_mass_edit.model_ir_actions_server_mass_edit_line
@@ -243,12 +244,14 @@ msgid "Server Actions Mass Edit Lines"
 msgstr "Lignes d'édition en lot d'action serveurs"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
 msgstr "Definir"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
@@ -298,6 +301,7 @@ msgid "Wizard for mass edition"
 msgstr "Assistant pour l'édition en lot"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid ""
