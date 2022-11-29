@@ -6,7 +6,7 @@
 from ast import literal_eval
 
 from odoo.exceptions import ValidationError
-from odoo.tests import Form, common
+from odoo.tests import Form, common, new_test_user
 
 
 @common.tagged("-at_install", "post_install")
@@ -25,9 +25,16 @@ class TestMassEditing(common.SavepointCase):
         self.mass_editing_partner_title = self.env.ref(
             "mass_editing.mass_editing_partner_title"
         )
-
-        self.users = self.env["res.users"].search([])
-        self.user = self.env.ref("base.user_demo")
+        user_admin = self.env.ref("base.user_admin")
+        user_demo = self.env.ref("base.user_demo")
+        self.users = self.env["res.users"].search(
+            [("id", "not in", (user_admin.id, user_demo.id))]
+        )
+        self.user = new_test_user(
+            self.env,
+            login="test-mass_editing-user",
+            groups="base.group_system,base.group_partner_manager",
+        )
         self.partner = self.user.partner_id
         self.partner_title = self._create_partner_title()
 
