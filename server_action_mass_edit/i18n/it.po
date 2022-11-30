@@ -37,6 +37,7 @@ msgid "Action To Do"
 msgstr ""
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
@@ -94,6 +95,7 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Don't touch"
@@ -157,6 +159,7 @@ msgid "Mass Edit Records"
 msgstr ""
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
@@ -181,6 +184,7 @@ msgid "Model on which the server action runs."
 msgstr ""
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
@@ -207,6 +211,7 @@ msgid "Remaining Item Qty"
 msgstr "Qta Elementi Rimanenti"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
@@ -238,12 +243,14 @@ msgid "Server Actions Mass Edit Lines"
 msgstr ""
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
 msgstr "Imposta"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
@@ -276,6 +283,7 @@ msgid "Wizard for mass edition"
 msgstr "Procedura guidata per le modifiche massive"
 
 #. module: server_action_mass_edit
+#. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid ""
