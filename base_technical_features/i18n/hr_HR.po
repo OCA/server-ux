@@ -47,6 +47,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "Tehničke značajke (bez debug načina)"
 
 #. module: base_technical_features
+#. odoo-python
 #: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
@@ -54,14 +55,17 @@ msgstr "Korisnik nema prava pristupa za tehničke značajke."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
-msgid "Users"
-msgstr "Korisnici"
+msgid "User"
+msgstr ""
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr "Pokazati polja tehničke značajke u postavkama korisnika."
+
+#~ msgid "Users"
+#~ msgstr "Korisnici"
 
 #~ msgid "ir.ui.menu"
 #~ msgstr "ir.ui.menu"

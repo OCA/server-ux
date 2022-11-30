@@ -45,6 +45,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "Technische Eigenschaften (ohne Debugmodus)"
 
 #. module: base_technical_features
+#. odoo-python
 #: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
@@ -52,8 +53,8 @@ msgstr "Der Benutzer hat keinen Zugriff auf Technische Eigenschaften."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
-msgid "Users"
-msgstr "Benutzer"
+msgid "User"
+msgstr ""
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
@@ -62,6 +63,9 @@ msgid ""
 msgstr ""
 "Ob das Feld Technische Eigenschaften in den Benutzereinstellungen angezeigt "
 "wird."
+
+#~ msgid "Users"
+#~ msgstr "Benutzer"
 
 #~ msgid "base"
 #~ msgstr "base"
