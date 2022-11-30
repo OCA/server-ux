@@ -21,12 +21,14 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
 msgstr ""
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%(thisname)s overlaps %(dtname)s"
@@ -232,6 +234,7 @@ msgstr ""
 "chevaucher."
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Invalid name expression: %s"
@@ -270,6 +273,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "No ranges to generate with these settings"
@@ -291,18 +295,21 @@ msgid "Parameters"
 msgstr ""
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/models/date_range_search_mixin.py:0
 #, python-format
 msgid "Period"
 msgstr ""
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Please enter an end date, or the number of ranges to generate."
 msgstr ""
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Please set a prefix or an expression to generate the range names."
@@ -343,6 +350,7 @@ msgid "Submit"
 msgstr "Soumettre"
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid ""
@@ -389,6 +397,7 @@ msgid "Until"
 msgstr ""
 
 #. module: date_range
+#. odoo-python
 #: code:addons/date_range/models/date_range_type.py:0
 #, python-format
 msgid ""
