@@ -39,6 +39,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr ""
 
 #. module: base_technical_features
+#. odoo-python
 #: code:addons/base_technical_features/models/res_users.py:0
 #, python-format
 msgid "The user does not have access to technical features."
