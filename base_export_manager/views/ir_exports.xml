@@ -37,6 +37,7 @@
                     <field
                         name="export_fields"
                         nolabel="1"
+                        colspan="2"
                         context="{'default_model1_id': model_id}"
                     >
                         <tree editable="bottom">
