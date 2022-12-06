@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-base_technical_features>=16.0dev,<16.1dev',
         'odoo-addon-date_range>=16.0dev,<16.1dev',
+        'odoo-addon-multi_step_wizard>=16.0dev,<16.1dev',
         'odoo-addon-server_action_mass_edit>=16.0dev,<16.1dev',
     ],
     classifiers=[
