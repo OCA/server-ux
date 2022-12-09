@@ -1,4 +1,5 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2022 XCG Consulting (<https://xcg-consulting.fr>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)nses/agpl).
 
 import datetime
@@ -47,6 +48,31 @@ class DateRangeGeneratorTest(TransactionCase):
         self.assertEqual(range4.date_start, datetime.date(1943, 10, 1))
         self.assertEqual(range4.date_end, datetime.date(1943, 12, 31))
         self.assertEqual(range4.type_id, self.type)
+
+    def test_generate_name_expr(self):
+        """Test generation when using babel in name_expr"""
+        self.type.write(
+            {
+                "name_expr": "babel.dates.format_date(date_start, format='MMMM yyyy', "
+                "locale='fr_FR')",
+                "duration_count": 1,
+                "unit_of_time": str(MONTHLY),
+            }
+        )
+        with Form(self.generator) as generator_form:
+            generator_form.count = 12
+            generator_form.type_id = self.type
+            generator_form.date_start = "2000-01-01"
+        generator = generator_form.save()
+        generator.action_apply()
+        ranges = self.env["date.range"].search([("type_id", "=", self.type.id)])
+        self.assertEqual(len(ranges), 12)
+        self.assertEqual(ranges[0].date_start, datetime.date(2000, 1, 1))
+        self.assertEqual(ranges[-1].date_end, datetime.date(2000, 12, 31))
+
+        self.assertEqual(ranges[0].name, "janvier 2000")
+        self.assertEqual(ranges[7].name, "août 2000")
+        self.assertEqual(ranges[11].name, "décembre 2000")
 
     def test_generator_multicompany_1(self):
         with self.assertRaises(ValidationError):
