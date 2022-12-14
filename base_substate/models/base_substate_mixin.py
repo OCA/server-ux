@@ -123,8 +123,9 @@ class BaseSubstateMixin(models.AbstractModel):
         res = super().write(values)
         return res
 
-    @api.model
-    def create(self, values):
-        values = self._update_before_write_create(values)
-        res = super().create(values)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals = self._update_before_write_create(vals)
+        res = super().create(vals_list)
         return res
