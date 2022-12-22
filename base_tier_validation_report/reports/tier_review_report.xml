@@ -5,7 +5,6 @@
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <tree
-                string="Tier Review"
                 decoration-danger="status=='rejected'"
                 decoration-success="status=='approved'"
                 create="0"
