@@ -8,7 +8,6 @@ class TierReview(models.Model):
     _inherit = "tier.review"
 
     resource_ref = fields.Reference(
-        string="Resource Ref",
         selection="_selection_resource_ref",
         compute="_compute_resource_ref",
         store=True,
