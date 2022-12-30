@@ -229,13 +229,9 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__server_action_id
 msgid "Server Action"
-msgstr ""
-
-#. module: server_action_mass_edit
-#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
-msgid "Server Actions"
 msgstr ""
 
 #. module: server_action_mass_edit
