@@ -71,7 +71,6 @@ msgstr "Sta overlap toe"
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
 #: model:ir.cron,cron_name:date_range.ir_cron_autocreate
-#: model:ir.cron,name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
 msgstr ""
 
