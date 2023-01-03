@@ -43,5 +43,5 @@ class IrUiCustomFilter(models.Model):
         for record in self:
             try:
                 record._get_related_field()
-            except KeyError:
-                raise exceptions.ValidationError(_("Incorrect expression."))
+            except KeyError as e:
+                raise exceptions.ValidationError(_("Incorrect expression.")) from e
