@@ -9,50 +9,50 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2020-12-13 18:36+0000\n"
-"Last-Translator: Stéphane Bidoul (ACSONE) <stephane.bidoul@acsone.eu>\n"
+"PO-Revision-Date: 2023-01-03 15:21+0000\n"
+"Last-Translator: Vincent Hatakeyama <vincent+github@hatakeyama.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
-msgstr ""
+msgstr "%s n’est pas une plage valide (%s > %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s chevauche %s"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "&amp;nbsp;"
-msgstr ""
+msgstr "&amp;nbsp;"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid ""
 ",\n"
 "                                or generate"
-msgstr ""
+msgstr "ou générer"
 
 #. module: date_range
 #: model:ir.model.constraint,message:date_range.constraint_date_range_date_range_uniq
 msgid "A date range must be unique per company !"
-msgstr ""
+msgstr "Une plage de date doit être unique par société !"
 
 #. module: date_range
 #: model:ir.model.constraint,message:date_range.constraint_date_range_type_date_range_type_uniq
 msgid "A date range type must be unique per company !"
-msgstr ""
+msgstr "Un type de plage de date doit être unique par société !"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__active
@@ -63,34 +63,34 @@ msgstr "Actif"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__allow_overlap
 msgid "Allow Overlap"
-msgstr ""
+msgstr "Autoriser le chevauchement"
 
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
 #: model:ir.cron,cron_name:date_range.ir_cron_autocreate
 #: model:ir.cron,name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
-msgstr ""
+msgstr "Générer automatiquement les plages de date"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Auto-generation settings"
-msgstr ""
+msgstr "Configuration de la génération automatique"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__autogeneration_count
 msgid "Autogeneration Count"
-msgstr ""
+msgstr "Nombre d’éléments à générer"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__autogeneration_date_start
 msgid "Autogeneration Start Date"
-msgstr ""
+msgstr "Date de début pour la génération automatique"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__autogeneration_unit
 msgid "Autogeneration Unit"
-msgstr ""
+msgstr "Unité pour la génération automatique"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -107,12 +107,12 @@ msgstr "Société"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__create_uid
@@ -131,55 +131,55 @@ msgstr "Créé le"
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
 msgid "Date Range"
-msgstr ""
+msgstr "Plage de date"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
 msgid "Date Range Generator"
-msgstr ""
+msgstr "Générateur de plage de date"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
-msgstr ""
+msgstr "Type de plage de date"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr ""
+msgstr "Types de plage de date"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr ""
+msgstr "Plages de date"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_ranges_exist
 msgid "Date Ranges Exist"
-msgstr ""
+msgstr "Utilisé dans des plages de date"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
 msgid "Date range"
-msgstr ""
+msgstr "Plage de date"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
 msgid "Date range type"
-msgstr ""
+msgstr "Type de plage de date"
 
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
+msgstr "Plages de date"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Defaults for generating date ranges"
-msgstr ""
+msgstr "Valeurs par défaut pour la génération des plages de date"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__display_name
@@ -187,19 +187,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__display_name
 msgid "Display Name"
-msgstr "Nom d'affichage"
+msgstr "Nom d’affichage"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__duration_count
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__duration_count
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_end
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_end
 msgid "End date"
-msgstr ""
+msgstr "Date de fin"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_generator__name_expr
@@ -209,23 +209,27 @@ msgid ""
 "You can use the Date types 'date_end' and 'date_start', as well as the "
 "'index' variable."
 msgstr ""
+"Expression évaluée. Par exemple « \"FY%s\" % date_start.strftime(\"%Y%m%d\") "
+"»\n"
+"Vous pouvez utiliser les variables date_start, contenant la date de début, "
+"et date_end, contentant la date de fin, ainsi que la variable index."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__date_range_search_id
 msgid "Filter by period (technical field)"
-msgstr ""
+msgstr "Filtre par période (champ technique)"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "Générer des plages de date"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Generation"
-msgstr ""
+msgstr "Génération"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__id
@@ -238,13 +242,13 @@ msgstr "ID"
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__allow_overlap
 msgid "If sets date range of same type must not overlap."
-msgstr ""
+msgstr "Si coché, les plages de dates de ce type ne doivent pas se chevaucher."
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Invalid name expression: %s"
-msgstr ""
+msgstr "Expression invalide pour le nom : %s"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
@@ -271,7 +275,7 @@ msgstr "Mis à jour le"
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_search_mixin
 msgid "Mixin class to add a Many2one style period search field"
-msgstr ""
+msgstr "Classe de mixage pour ajouter un champ de recherche type Many2one"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__name
@@ -283,74 +287,75 @@ msgstr "Nom"
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "No ranges to generate with these settings"
-msgstr ""
+msgstr "Aucune plage à générer avec ces paramètres"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__count
 msgid "Number of ranges to generate"
-msgstr ""
+msgstr "Nombre de plage à générer"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__autogeneration_date_start
 msgid "Only applies when there are no date ranges of this type yet"
-msgstr ""
+msgstr "Ne s’applique que s’il n’y a aucune plage de ce type"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range_search_mixin.py:0
 #, python-format
 msgid "Period"
-msgstr ""
+msgstr "Période"
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Please enter an end date, or the number of ranges to generate."
-msgstr ""
+msgstr "Veuillez entrer la date de fin ou le nombre de plage à générer."
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Please set a prefix or an expression to generate the range names."
 msgstr ""
+"Veuillez entrer un préfixe ou une expression pour générer les noms de plage."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__range_name_preview
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__range_name_preview
 msgid "Range Name Preview"
-msgstr ""
+msgstr "Prévisualisation du nom des plages"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__name_expr
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__name_expr
 msgid "Range name expression"
-msgstr ""
+msgstr "Expression pour le nom des plages"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__name_prefix
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__name_prefix
 msgid "Range name prefix"
-msgstr ""
+msgstr "Préfixe pour les noms de plage"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_range_ids
 msgid "Ranges"
-msgstr ""
+msgstr "Plages"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_start
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_start
 msgid "Start date"
-msgstr ""
+msgstr "Date de début"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Submit"
-msgstr ""
+msgstr "Soumettre"
 
 #. module: date_range
 #: code:addons/date_range/wizard/date_range_generator.py:0
@@ -359,23 +364,27 @@ msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
 msgstr ""
+"La société dans le générateur de plage et dans le type de plage doit être la "
+"même."
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:0
 #, python-format
 msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr ""
+"La société dans la plage de date et dans le type de plage doit être la même."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
 msgid ""
 "The active field allows you to hide the date range type without removing it."
 msgstr ""
+"Le champ actif permet de cacher le type de plage de date sans le supprimer."
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range__active
 msgid "The active field allows you to hide the date range without removing it."
-msgstr ""
+msgstr "Le champ actif permet de cacher la plage de date sans la supprimer."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__type_id
@@ -385,9 +394,8 @@ msgstr "Type"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-#, fuzzy
 msgid "Type Name"
-msgstr "Nom"
+msgstr "Nom du type"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
@@ -398,7 +406,7 @@ msgstr "Unité de temps"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Until"
-msgstr ""
+msgstr "Jusqu’à"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range_type.py:0
@@ -407,47 +415,49 @@ msgid ""
 "You cannot change the company, as this Date Range Type is  assigned to Date "
 "Range (%s)."
 msgstr ""
+"Vous ne pouvez changer la société car ce type est utilisé dans une plage de "
+"date (%s)."
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__3
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__autogeneration_unit__3
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__3
 msgid "days"
-msgstr ""
+msgstr "jours"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "entries."
-msgstr ""
+msgstr "entrées."
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "in advance"
-msgstr ""
+msgstr "en avance"
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__1
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__autogeneration_unit__1
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__1
 msgid "months"
-msgstr ""
+msgstr "mois"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "or enter a complex expression below"
-msgstr ""
+msgstr "ou entrée une expression complexe ci-dessous"
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__2
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__autogeneration_unit__2
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__2
 msgid "weeks"
-msgstr ""
+msgstr "semaines"
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__0
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__autogeneration_unit__0
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
-msgstr ""
+msgstr "années"
