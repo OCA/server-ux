@@ -20,7 +20,6 @@ class IrFiltersGroup(models.Model):
     name = fields.Char(required=True, translate=True)
     type = fields.Selection(
         selection="_selection_type",
-        string="Type",
         required=True,
         default="filter",
     )

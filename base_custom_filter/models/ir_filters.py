@@ -19,7 +19,6 @@ class IrFilters(models.Model):
     sequence = fields.Integer()
     type = fields.Selection(
         selection="_selection_type",
-        string="Type",
         required=True,
         default="favorite",
     )
