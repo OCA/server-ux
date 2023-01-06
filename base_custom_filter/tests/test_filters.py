@@ -1,8 +1,8 @@
-from odoo.tests.common import Form, SavepointCase, tagged
+from odoo.tests.common import Form, TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class Test(SavepointCase):
+class Test(TransactionCase):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
         super().setUpClass()
