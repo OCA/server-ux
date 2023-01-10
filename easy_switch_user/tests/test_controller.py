@@ -3,6 +3,7 @@
 
 from odoo import http
 from odoo.tests.common import TransactionCase
+
 from odoo.addons.easy_switch_user.controllers.main import SwitchController
 
 
@@ -26,5 +27,5 @@ class TestController(TransactionCase):
         old_request = http.request
         http.request = FakeRequest(self.env)
         with self.assertRaises(Exception):
-            self.ctrl.switch('unknown_user', '1234567890')
+            self.ctrl.switch("unknown_user", "1234567890")
         http.request = old_request

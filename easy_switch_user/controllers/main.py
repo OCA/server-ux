@@ -6,9 +6,9 @@ from odoo.http import route
 
 
 class SwitchController(http.Controller):
-    @route('/easy_switch_user/switch', type='json', auth="none")
+    @route("/easy_switch_user/switch", type="json", auth="none")
     def switch(self, login, password):
         request = http.request
         uid = request.session.authenticate(request.db, login, password)
         if uid is False:
-            raise Exception('Login Failed')
+            raise Exception("Login Failed")
