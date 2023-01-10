@@ -3,15 +3,27 @@
 
 {
     "name": "Easy Switch User",
-    "summary": "Lets administrators and developers quickly "
-    "change user to test e.g. access rights",
+    "summary": """Lets administrators and developers quickly
+    change user to test e.g. access rights""",
     "category": "Tools",
-    "version": "11.0.1.0.0",
-    "author": "Onestein, Odoo Community Association (OCA)",
+    "version": "15.0.1.0.0",
+    "author": "Onestein, Vauxoo, Odoo Community Association (OCA)",
+    "maintainers": [
+        "luisg123v",
+        "rolandojduartem",
+    ],
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
-    "depends": ["web"],
-    "qweb": ["static/src/xml/switch_user.xml"],
-    "data": ["templates/assets.xml"],
+    "depends": [
+        "base",
+    ],
+    "assets": {
+        "web.assets_tests": [
+            "easy_switch_user/static/tests/tours/test_switch_user.js",
+        ],
+    },
+    "data": [
+        "views/res_users_views.xml",
+    ],
     "installable": True,
 }

@@ -1,12 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* easy_switch_user
+# 	* easy_switch_user
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-01-11 16:47+0000\n"
+"PO-Revision-Date: 2023-01-11 16:47+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,45 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/js/switch_user.js:131
-#, python-format
-msgid "Cancel"
-msgstr ""
-
-#. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/js/switch_user.js:130
-#: code:addons/easy_switch_user/static/src/xml/switch_user.xml:18
-#, python-format
-msgid "Login"
-msgstr ""
-
-#. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/xml/switch_user.xml:30
-#, python-format
-msgid "Login failed."
-msgstr ""
-
-#. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/xml/switch_user.xml:22
-#, python-format
-msgid "Password"
-msgstr ""
-
-#. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/xml/switch_user.xml:27
-#, python-format
-msgid "Store password (remembers it until you close this tab)"
-msgstr ""
-
-#. module: easy_switch_user
-#. openerp-web
-#: code:addons/easy_switch_user/static/src/js/switch_user.js:127
-#, python-format
+#: model_terms:ir.ui.view,arch_db:easy_switch_user.view_users_form
 msgid "Switch User"
 msgstr ""
 
+#. module: easy_switch_user
+#: model:ir.model,name:easy_switch_user.model_res_users
+msgid "Users"
+msgstr ""
