@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-11 18:46+0000\n"
-"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
+"PO-Revision-Date: 2023-01-11 12:45+0000\n"
+"Last-Translator: Grégory Moka Tourisme <gregory@mokatourisme.fr>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
@@ -26,7 +26,7 @@ msgstr ""
 "<b>Attention</b> : Tenez compte du fait que l'ajout d'un champ avec un "
 "domaine, et le fait de ne pas inclure les champs de ce domaine dans la "
 "définition de cette opération, entraînera une erreur lors de la tentative "
-"d'exécution. Assurez-vous de les inclure."
+"d'exécution. Assurez vous de les inclure."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__state
@@ -46,11 +46,14 @@ msgid ""
 "Add widget text that will be used to display the field in the wizard.\n"
 "Example: 'many2many_tags', 'selection', 'image'"
 msgstr ""
+"Ajouter un texte pour le widget qui sera utilisé pour afficher le champ dans "
+"l'assistant. \n"
+"Exemple : 'many2many_tags', 'selection', 'image'"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
@@ -71,7 +74,7 @@ msgstr "Appliquer le domaine sur les lignes"
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
@@ -100,7 +103,7 @@ msgstr "Champ"
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid "Fields"
-msgstr ""
+msgstr "Champs"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
@@ -138,18 +141,18 @@ msgstr "Dernière mise à jour le"
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
-msgstr ""
+msgstr "Édition en lot"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_line_ids
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_line_ids
 msgid "Mass Edit Line"
-msgstr ""
+msgstr "Ligne d'édition en lot"
 
 #. module: mass_editing
 #: model:ir.model.fields.selection,name:mass_editing.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
-msgstr ""
+msgstr "Enregistrements de l'édition en lot"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
@@ -161,6 +164,7 @@ msgstr "Ligne d'édition en lot"
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr ""
+"Les champs d'édition en lot doivent appartenir au modèle d'Action-Serveur."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_message
@@ -178,13 +182,15 @@ msgstr "Modèle"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__model_id
 msgid "Model on which the server action runs."
-msgstr ""
+msgstr "Modèle sur lequel l'Action-serveur est lancé."
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %d record(s) you have selected can be processed."
 msgstr ""
+"Aucun des %d enregistrement(s) que vous avez sélectionné ne peuvent être mis "
+"à jour."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
@@ -227,7 +233,7 @@ msgstr "Séquence"
 #: model:ir.model,name:mass_editing.model_ir_actions_server
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__server_action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Action-serveur"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
@@ -241,6 +247,7 @@ msgstr "Definir"
 #, python-format
 msgid "The treatment will be processed on the %d selected record(s)."
 msgstr ""
+"L'opération sera appliquée sur le(s) %d enregistrement(s) sélectionné(s)."
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
@@ -255,6 +262,17 @@ msgid ""
 "- 'Add Followers': add followers to a record (Discuss)\n"
 "- 'Create Next Activity': create an activity (Discuss)"
 msgstr ""
+"Type d'action du serveur. Les valeurs suivantes sont disponibles :\n"
+"- 'Exécuter du Code Python' : un bloc de code python qui sera exécuté\n"
+"- 'Créer' : créer un nouvel enregistrement avec de nouvelles valeurs\n"
+"- 'Mettre à jour un enregistrement' : mettre à jour les valeurs d'un "
+"enregistrement\n"
+"- 'Exécuter plusieurs actions' : définir une action qui déclenche plusieurs "
+"autres actions du serveur\n"
+"- 'Envoyer un e-mail' : envoyer automatiquement un e-mail (Messages)\n"
+"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement (Messages)"
+"\n"
+"- 'Créer l'activité suivante' : créer une activité (Messages)"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
@@ -273,3 +291,6 @@ msgid ""
 "You have selected %d record(s) that can not be processed.\n"
 "Only %d record(s) will be processed."
 msgstr ""
+"Vous avez sélectionné %d enregistrement(s) qui ne peuvent pas être modifiés."
+"\n"
+"Seul(s) %d enregistrement(s) le seront."
