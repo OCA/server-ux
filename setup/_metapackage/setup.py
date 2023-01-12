@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-base_menu_visibility_restriction>=15.0dev,<15.1dev',
         'odoo-addon-base_optional_quick_create>=15.0dev,<15.1dev',
         'odoo-addon-base_revision>=15.0dev,<15.1dev',
+        'odoo-addon-base_search_custom_field_filter>=15.0dev,<15.1dev',
         'odoo-addon-base_substate>=15.0dev,<15.1dev',
         'odoo-addon-base_technical_features>=15.0dev,<15.1dev',
         'odoo-addon-base_tier_validation>=15.0dev,<15.1dev',
