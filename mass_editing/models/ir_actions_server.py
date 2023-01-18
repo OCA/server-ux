@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 
+# This is test
 
 class IrActionsServer(models.Model):
     _inherit = "ir.actions.server"
