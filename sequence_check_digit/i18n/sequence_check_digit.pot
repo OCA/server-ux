@@ -24,6 +24,11 @@ msgid "Damm"
 msgstr ""
 
 #. module: sequence_check_digit
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__ean
+msgid "EAN"
+msgstr ""
+
+#. module: sequence_check_digit
 #. odoo-python
 #: code:addons/sequence_check_digit/models/ir_sequence.py:0
 msgid "Format is not accepted"
