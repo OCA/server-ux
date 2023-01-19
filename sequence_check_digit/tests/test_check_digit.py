@@ -9,20 +9,20 @@ from odoo.tests import common
 
 _logger = logging.getLogger(__name__)
 try:
-    from stdnum import damm, luhn, verhoeff
+    from stdnum import damm, luhn, verhoeff, ean
     from stdnum.iso7064 import mod_11_2, mod_11_10, mod_37_2, mod_37_36, mod_97_10
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
 
 class TestSequenceCheckDigit(common.TransactionCase):
-    def get_sequence(self, method):
+    def get_sequence(self, method, padding="5"):
         return self.env["ir.sequence"].create(
             {
                 "name": "Test sequence",
                 "implementation": "standard",
                 "check_digit_formula": method,
-                "padding": "5",
+                "padding": padding,
             }
         )
 
@@ -33,6 +33,12 @@ class TestSequenceCheckDigit(common.TransactionCase):
     def test_null(self):
         sequence = self.get_sequence(None)
         self.assertEqual("00001", sequence.next_by_id())
+
+    def test_ean(self):
+        sequence = self.get_sequence("ean", padding="12")
+        tmp_code = sequence.next_by_id()
+        ean_code = "{}{}".format(tmp_code, sequence.get_check_digit(tmp_code))
+        self.assertTrue(ean.validate(ean_code))
 
     def test_luhn(self):
         sequence = self.get_sequence("luhn")
