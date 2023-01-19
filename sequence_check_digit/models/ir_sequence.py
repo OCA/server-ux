@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 try:
-    from stdnum import damm, luhn, verhoeff
+    from stdnum import damm, ean, luhn, verhoeff
     from stdnum.iso7064 import mod_11_2, mod_11_10, mod_37_2, mod_37_36, mod_97_10
 except (ImportError, IOError) as err:
     _logger.debug(err)
@@ -20,6 +20,7 @@ class IrSequence(models.Model):
     check_digit_formula = fields.Selection(
         selection=[
             ("none", "None"),
+            ("ean", "EAN"),
             ("luhn", "Luhn"),
             ("damm", "Damm"),
             ("verhoeff", "Verhoeff"),
@@ -52,6 +53,7 @@ class IrSequence(models.Model):
     def get_formula_map(self):
         return {
             "none": lambda _: "",
+            "ean": ean.calc_check_digit,
             "luhn": luhn.calc_check_digit,
             "damm": damm.calc_check_digit,
             "verhoeff": verhoeff.calc_check_digit,
