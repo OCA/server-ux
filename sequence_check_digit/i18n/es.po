@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 10:14+0000\n"
+"POT-Creation-Date: 2025-04-21 16:56+0000\n"
 "PO-Revision-Date: 2018-07-13 08:48+0000\n"
 "Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: \n"
@@ -26,6 +26,11 @@ msgstr "Fórmula del Dígito de control"
 #: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__damm
 msgid "Damm"
 msgstr "Damm"
+
+#. module: sequence_check_digit
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__ean
+msgid "EAN"
+msgstr ""
 
 #. module: sequence_check_digit
 #. odoo-python
@@ -78,10 +83,3 @@ msgstr "ir.sequence"
 #: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__verhoeff
 msgid "Verhoeff"
 msgstr "Verhoeff"
-
-#, python-format
-#~ msgid "%s is not an implemented function"
-#~ msgstr "%s no es una función implementada"
-
-#~ msgid "Function not found"
-#~ msgstr "Función no encontrada"
