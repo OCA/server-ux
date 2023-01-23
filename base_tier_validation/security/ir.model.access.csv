@@ -5,7 +5,7 @@ access_tier_review_group_portal,access_tier_review_group_portal,model_tier_revie
 access_tier_definition_group_portal,access_tier_definition_group_portal,model_tier_definition,base.group_portal,1,0,0,0
 access_tier_review,access.tier.review,model_tier_review,base.group_user,1,1,1,1
 access_tier_definition_all,tier.definition.all,model_tier_definition,base.group_user,1,0,0,0
-access_tier_definition_settings,tier.definition.settings,model_tier_definition,base.group_system,1,1,1,1
+access_tier_definition_settings,tier.definition.settings,model_tier_definition,base.group_erp_manager,1,1,1,1
 access_comment_wizard,access.comment.wizard,model_comment_wizard,base.group_user,1,1,1,1
 access_tier_validation_exceptions_all,tier.validation.exceptions,model_tier_validation_exception,,1,0,0,0
 access_tier_validation_exceptions_settings,tier.validation.exceptions,model_tier_validation_exception,base.group_system,1,1,1,1
