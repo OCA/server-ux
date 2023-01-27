@@ -24,7 +24,6 @@ class TierDefinition(models.Model):
         help="Server action triggered as soon as this step is rejected",
     )
     auto_validate = fields.Boolean(
-        string="Auto Validate",
         help="Use schedule job to auto validate if condition is met.\n"
         "- If no user specified, use job's system user to validate\n"
         "- If 1 user matched as reviewer, use the user to validate\n"
