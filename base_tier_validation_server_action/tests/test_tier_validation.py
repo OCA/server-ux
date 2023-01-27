@@ -7,7 +7,7 @@ from odoo.tests.common import tagged
 
 
 @tagged("post_install", "-at_install")
-class TierTierValidation(common.SavepointCase):
+class TierTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
@@ -64,7 +64,7 @@ class TierTierValidation(common.SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TierTierValidation, cls).tearDownClass()
+        super().tearDownClass()
 
     def test_1_auto_validation(self):
         # Create new test record
