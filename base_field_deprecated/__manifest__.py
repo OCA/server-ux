@@ -3,7 +3,7 @@
 {
     "name": "Base Field Deprecated",
     "summary": "Adds the deprecated attribute to the Odoo field model.",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Usability",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-ux",
