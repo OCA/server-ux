@@ -93,8 +93,8 @@ class TierTierValidation(common.TransactionCase):
         self.assertTrue(reviews)
         self.assertEqual(len(reviews), 2)
         record = self.test_record.with_user(self.test_user_1.id)
-        self.test_record.invalidate_cache()
-        record.invalidate_cache()
+        self.test_record.invalidate_recordset()
+        record.invalidate_recordset()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         self.assertIn(self.test_user_2, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_2.id)])
@@ -113,7 +113,7 @@ class TierTierValidation(common.TransactionCase):
         )
         with self.assertRaises(UserError):
             self.test_record.with_user(self.test_user_3).request_validation()
-            self.test_record.review_ids.invalidate_cache()
+            self.test_record.review_ids.invalidate_recordset()
             self.test_record.review_ids._compute_python_reviewer_ids()
 
     def test_03_evaluate_wrong_reviewer_expression(self):
@@ -127,7 +127,7 @@ class TierTierValidation(common.TransactionCase):
         )
         with self.assertRaises(UserError):
             self.test_record.with_user(self.test_user_3).request_validation()
-            self.test_record.review_ids.invalidate_cache()
+            self.test_record.review_ids.invalidate_recordset()
             self.test_record.review_ids._compute_python_reviewer_ids()
 
     def test_04_evaluate_wrong_python_formula_expression(self):
