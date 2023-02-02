@@ -22,21 +22,6 @@ msgid "Daily"
 msgstr "Journalier"
 
 #. module: sequence_reset_period
-#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sequence_reset_period
-#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence__id
-msgid "ID"
-msgstr ""
-
-#. module: sequence_reset_period
-#: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: sequence_reset_period
 #: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__monthly
 msgid "Monthly"
 msgstr "Mensuel"
@@ -60,3 +45,9 @@ msgstr "Hebdomadaire"
 #: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__yearly
 msgid "Yearly"
 msgstr "Annuel"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
