@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Copyright 2023 ForgeFlow S.L.
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+    -->
+    <record id="view_server_action_form" model="ir.ui.view">
+        <field name="name">Server Action - base_action_visibility_restriction</field>
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form" />
+        <field name="arch" type="xml">
+            <field name="groups_id" position="before">
+                <label for="groups_id" />
+            </field>
+            <field name="groups_id" position="after">
+                <label for="excluded_group_ids" />
+                <field name="excluded_group_ids" />
+            </field>
+        </field>
+    </record>
+    <record id="view_window_action_form" model="ir.ui.view">
+        <field
+            name="name"
+        >ir.actions.windows.form - base_action_visibility_restriction</field>
+        <field name="model">ir.actions.act_window</field>
+        <field name="inherit_id" ref="base.view_window_action_form" />
+        <field name="arch" type="xml">
+            <field name="groups_id" position="before">
+                <label for="groups_id" />
+            </field>
+            <field name="groups_id" position="after">
+                <label for="excluded_group_ids" />
+                <field name="excluded_group_ids" />
+            </field>
+        </field>
+    </record>
+</odoo>
