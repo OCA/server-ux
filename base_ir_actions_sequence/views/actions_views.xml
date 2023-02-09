@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgeFlow S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <!-- SERVER ACTIONS -->
+    <record id="view_server_action_form" model="ir.ui.view">
+        <field name="name">Server Action - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form" />
+        <field name="arch" type="xml">
+            <field name="model_id" position="after">
+                <field name="priority" />
+            </field>
+        </field>
+    </record>
+    <record id="view_server_action_tree" model="ir.ui.view">
+        <field name="name">Server Actions - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_tree" />
+        <field name="arch" type="xml">
+            <field name="usage" position="after">
+                <field name="priority" optional="show" />
+            </field>
+        </field>
+    </record>
+    <!-- WINDOW ACTIONS -->
+    <record id="view_window_action_form" model="ir.ui.view">
+        <field
+            name="name"
+        >ir.actions.windows.form - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.act_window</field>
+        <field name="inherit_id" ref="base.view_window_action_form" />
+        <field name="arch" type="xml">
+            <field name="res_model" position="after">
+                <field name="priority" />
+            </field>
+        </field>
+    </record>
+    <record id="view_window_action_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >ir.actions.windows.tree - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.act_window</field>
+        <field name="inherit_id" ref="base.view_window_action_tree" />
+        <field name="arch" type="xml">
+            <field name="context" position="after">
+                <field name="priority" optional="show" />
+            </field>
+        </field>
+    </record>
+    <!-- REPORTS -->
+    <record id="act_report_xml_view" model="ir.ui.view">
+        <field name="name">ir.actions.report - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.report</field>
+        <field name="inherit_id" ref="base.act_report_xml_view" />
+        <field name="arch" type="xml">
+            <field name="report_type" position="after">
+                <field name="priority" />
+            </field>
+        </field>
+    </record>
+    <record id="act_report_xml_view_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >ir.actions.report.tree - base_ir_actions_actions_sequence</field>
+        <field name="model">ir.actions.report</field>
+        <field name="inherit_id" ref="base.act_report_xml_view_tree" />
+        <field name="arch" type="xml">
+            <field name="report_type" position="after">
+                <field name="priority" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
