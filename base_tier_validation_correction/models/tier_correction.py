@@ -207,8 +207,7 @@ class TierCorrection(models.Model):
 
     def view_scheduled_action(self):
         self.ensure_one()
-        action = self.env.ref("base.ir_cron_act")
-        result = action.read()[0]
+        result = self.env["ir.actions.act_window"]._for_xml_id("base.ir_cron_act")
         cron = self.env.ref("base_tier_validation_correction.tier_correction_scheduler")
         result["domain"] = [("id", "in", cron.id)]
         return result
