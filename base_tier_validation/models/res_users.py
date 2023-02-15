@@ -11,6 +11,7 @@ class Users(models.Model):
 
     @api.model
     def review_user_count(self):
+        self = self.with_context(show_all_companies=True)
         user_reviews = {}
         domain = [
             ("status", "=", "pending"),
