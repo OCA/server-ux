@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import {registerPatch} from "@mail/model/model_core";
 import {decrement, increment} from "@mail/model/model_field_command";
+import {registerPatch} from "@mail/model/model_core";
 
 registerPatch({
     name: "MessagingNotificationHandler",
