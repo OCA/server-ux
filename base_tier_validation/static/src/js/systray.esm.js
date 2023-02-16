@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import {registerModel} from "@mail/model/model_core";
 import {attr, many} from "@mail/model/model_field";
+import {registerModel} from "@mail/model/model_core";
 
 import session from "web.session";
 
