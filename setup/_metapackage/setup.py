@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-base_tier_validation_forward',
         'odoo14-addon-base_tier_validation_report',
         'odoo14-addon-base_tier_validation_server_action',
+        'odoo14-addon-base_tier_validation_waiting',
         'odoo14-addon-base_user_locale',
         'odoo14-addon-chained_swapper',
         'odoo14-addon-date_range',
