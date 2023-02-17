@@ -28,7 +28,7 @@ class TestMassEditing(common.TransactionCase):
         self.MassEditingWizard = self.env["mass.editing.wizard"]
         self.ResPartnerTitle = self.env["res.partner.title"]
         self.ResLang = self.env["res.lang"]
-        self.IrTranslation = self.env["ir.translation"]
+        self.IrTranslation = self.env["ir.model.fields"]
         self.IrActionsActWindow = self.env["ir.actions.act_window"]
 
         self.mass_editing_user = self.env.ref("mass_editing.mass_editing_user")
@@ -228,16 +228,14 @@ class TestMassEditing(common.TransactionCase):
         was loaded for new partner title, and if they are removed
         as well as the value for the abbreviation for the partner title."""
         search_domain = [
-            ("res_id", "=", self.partner_title.id),
-            ("type", "=", "model"),
-            ("name", "=", "res.partner.title,shortcut"),
-            ("lang", "=", "de_DE"),
+            ("name", "=", "shortcut"),
+            ("model", "=", "res.partner.title"),
         ]
         translation_ids = self.IrTranslation.search(search_domain)
         self.assertEqual(
             len(translation_ids),
             1,
-            "Translation for Partner Title's Abbreviation " "was not loaded properly.",
+            "Translation for Partner Title's Abbreviation was not loaded properly.",
         )
         # Removing partner title with mass edit action
         vals = {"selection__shortcut": "remove"}
@@ -254,7 +252,7 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             len(translation_ids),
             0,
-            "Translation for Partner Title's Abbreviation " "was not removed properly.",
+            "Translation for Partner Title's Abbreviation was not removed properly.",
         )
 
     def test_mass_edit_email(self):

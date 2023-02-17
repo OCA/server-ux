@@ -161,7 +161,7 @@ class MassEditingWizard(models.TransientModel):
         if server_action and active_ids:
             TargetModel = self.env[server_action.model_id.model]
             IrModelFields = self.env["ir.model.fields"].sudo()
-            IrTranslation = self.env["ir.translation"]
+            IrTranslation = self.env["ir.model.fields"]
 
             values = {}
             for key, val in vals.items():
