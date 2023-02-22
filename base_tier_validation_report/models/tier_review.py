@@ -24,7 +24,7 @@ class TierReview(models.Model):
         compute_sudo=True,
     )
     next_review = fields.Char(
-        selection="_compute_resource_ref",
+        compute="_compute_resource_ref",
         compute_sudo=True,
     )
 
