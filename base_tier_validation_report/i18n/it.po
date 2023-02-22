@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-27 13:07+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-07-03 11:09+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_all_action
@@ -28,24 +28,9 @@ msgid "Approved"
 msgstr "Approvato"
 
 #. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__display_name
-msgid "Display Name"
-msgstr "Nome Visualizzato"
-
-#. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Done By"
 msgstr "Eseguito Da"
-
-#. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_my_action
@@ -56,7 +41,7 @@ msgstr "Le mie approvazioni"
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__next_review
 msgid "Next Review"
-msgstr "Prossima approvazione"
+msgstr "Prossima revisione"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_form
@@ -102,7 +87,6 @@ msgstr "Vedi tutte le approvazioni"
 
 #. module: base_tier_validation_report
 #: model:ir.model,name:base_tier_validation_report.model_tier_review
-#: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_tree
 msgid "Tier Review"
 msgstr "Livello Approvazione"
 
@@ -110,3 +94,12 @@ msgstr "Livello Approvazione"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "To Review"
 msgstr "Da approvare"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome Visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
