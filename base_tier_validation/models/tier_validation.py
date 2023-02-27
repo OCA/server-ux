@@ -243,7 +243,9 @@ class TierValidation(models.AbstractModel):
                         )
                     )
             if (
+                # Only check if a state change is included in vals                
                 rec.review_ids
+                and self._state_field in vals
                 and getattr(rec, self._state_field) in self._state_from
                 and not vals.get(self._state_field)
                 in (self._state_to + [self._cancel_state])
