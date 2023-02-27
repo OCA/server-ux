@@ -27,6 +27,7 @@ msgid "Domain & Formula"
 msgstr "Dominio e Formula"
 
 #. module: base_tier_validation_formula
+#. odoo-python
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #: code:addons/base_tier_validation_formula/models/tier_validation.py:0
 #, python-format
@@ -53,6 +54,7 @@ msgid "Review Expression"
 msgstr "Espressione Approvazione"
 
 #. module: base_tier_validation_formula
+#. odoo-python
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #, python-format
 msgid "Reviewer python expression must return a res.users recordset."
