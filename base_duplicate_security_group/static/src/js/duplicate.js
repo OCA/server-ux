@@ -1,6 +1,6 @@
 // Copyright 2021 Tecnativa - David Vidal
 // License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-odoo.define("base_duplicate_security_group.DuplicateSecurity", function(require) {
+odoo.define("base_duplicate_security_group.DuplicateSecurity", function (require) {
     "use strict";
 
     const FormView = require("web.FormView");
@@ -12,10 +12,10 @@ odoo.define("base_duplicate_security_group.DuplicateSecurity", function(require)
      * If the user has the permission, the internal logic rules will apply.
      **/
     const DuplicateViewMixin = {
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
             const base_group = "base_duplicate_security_group.group_duplicate_records";
-            session.user_has_group(base_group).then(result => {
+            session.user_has_group(base_group).then((result) => {
                 if (!result) {
                     this.controllerParams.activeActions.duplicate = false;
                 }
