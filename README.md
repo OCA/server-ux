@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [announcement](announcement/) | 15.0.1.0.0 |  | Notify internal users about relevant organization stuff
 [barcode_action](barcode_action/) | 15.0.1.0.0 |  | Allows to use barcodes as a launcher
+[base_duplicate_security_group](base_duplicate_security_group/) | 15.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Adds a security group to restrict which users can copy records
 [base_export_manager](base_export_manager/) | 15.0.1.0.1 |  | Manage model export profiles
 [base_import_security_group](base_import_security_group/) | 15.0.1.0.0 |  | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
