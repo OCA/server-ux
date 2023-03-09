@@ -3,7 +3,7 @@
 
 {
     "name": "Base Rule Visibility Restriction",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Extra Tools",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Exclude Record Rules for certain groups",
