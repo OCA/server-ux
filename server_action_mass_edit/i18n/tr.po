@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2022-03-18 12:17+0000\n"
+"PO-Revision-Date: 2023-03-09 12:23+0000\n"
 "Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
@@ -34,7 +34,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
 msgid "Action To Do"
-msgstr ""
+msgstr "Yapılacak İşlem"
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -49,16 +49,19 @@ msgid ""
 "Add widget text that will be used to display the field in the wizard.\n"
 "Example: 'many2many_tags', 'selection', 'image'"
 msgstr ""
+"Alanı sihirbazda görüntülemek için kullanılacak pencere öğesi metnini "
+"ekleyin.\n"
+"Örnek: \"many2many_tags\", \"seçim\", \"resim\""
 
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_mass_editing_wizard_form
 msgid "Apply"
-msgstr ""
+msgstr "Uygula"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__apply_domain
 msgid "Apply Domain"
-msgstr ""
+msgstr "Etki Alanını Uygula"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__apply_domain
@@ -74,7 +77,7 @@ msgstr "Domain satırlarına uygula"
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_mass_editing_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__create_uid
@@ -99,7 +102,7 @@ msgstr "Görünen İsim"
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Don't touch"
-msgstr ""
+msgstr "Dokunmayın"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_id
@@ -109,7 +112,7 @@ msgstr "Alan"
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
 msgid "Fields"
-msgstr ""
+msgstr "Alanlar"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__id
@@ -145,25 +148,25 @@ msgstr "Son güncelleme"
 #: model:ir.actions.server,name:server_action_mass_edit.mass_editing_partner_title
 #: model:ir.actions.server,name:server_action_mass_edit.mass_editing_user
 msgid "Mass Edit"
-msgstr ""
+msgstr "Toplu Düzenleme"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_line_ids
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__mass_edit_line_ids
 msgid "Mass Edit Line"
-msgstr ""
+msgstr "Toplu Düzenleme Satırı"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
-msgstr ""
+msgstr "Toplu Düzenleme Kayıtları"
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
-msgstr ""
+msgstr "Toplu düzenleme alanları sunucu eylem modeline ait olmalıdır."
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_message
@@ -181,14 +184,14 @@ msgstr "Model"
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__model_id
 msgid "Model on which the server action runs."
-msgstr ""
+msgstr "Sunucu eyleminin üzerinde çalıştığı model."
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
-msgstr ""
+msgstr "Seçtiğiniz %(amount)d kayıt(lar)ın hiçbiri işlenemiyor."
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__operation_description_danger
@@ -231,12 +234,12 @@ msgstr "Sıralama"
 #: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__server_action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Sunucu İşlemi"
 
 #. module: server_action_mass_edit
 #: model:ir.model,name:server_action_mass_edit.model_ir_actions_server_mass_edit_line
 msgid "Server Actions Mass Edit Lines"
-msgstr ""
+msgstr "Sunucu Eylemleri Toplu Düzenleme Satırları"
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -250,7 +253,7 @@ msgstr "Ayarla"
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
-msgstr ""
+msgstr "İşlem seçilen %(amount)d kayıtta işlenecektir."
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
@@ -267,6 +270,17 @@ msgid ""
 "- 'Create Next Activity': create an activity (Discuss)\n"
 "- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
 msgstr ""
+"Sunucu eylemi türü. Aşağıdaki değerler mevcuttur:\n"
+"- 'Python Kodunu Yürüt': yürütülecek bir python kodu bloğu\n"
+"- 'Yeni Kayıt Oluştur': yeni değerlerle yeni bir kayıt oluşturun\n"
+"- 'Bir Kaydı Güncelle': bir kaydın değerlerini güncelleyin\n"
+"- 'Birkaç eylem yürütün': diğer birkaç sunucu eylemini tetikleyen bir eylem "
+"tanımlayın\n"
+"- 'E-posta Gönder': bir mesaj, not gönderin veya bir e-posta gönderin "
+"(Tartış)\n"
+"- 'Takipçi Ekle': bir kayda takipçi ekleyin (Tartış)\n"
+"- 'Sonraki Etkinlik Oluştur': bir etkinlik oluşturun (Tartış)\n"
+"- 'SMS Metin Mesajı Gönder': SMS gönderin, belgelere kaydedin (SMS)"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -286,6 +300,8 @@ msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
 msgstr ""
+"İşlenemeyen %(origin_amount)d kayıt seçtiniz.\n"
+"Yalnızca %(amount)d kayıt(lar) işlenecek."
 
 #~ msgid "Action Name"
 #~ msgstr "Eylem Adı"
