@@ -12,6 +12,7 @@ odoo.define("barcode_action.form", function (require) {
                     model: record.data.model,
                     method: record.data.method,
                     args: [[record.data.res_id], barcode],
+                    context: this.renderer.state.getContext(),
                 })
                 .then(function (action) {
                     if (action) {
