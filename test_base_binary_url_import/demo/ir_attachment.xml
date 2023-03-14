@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.attachment" id="demo_attachment_01">
+        <field name="name">XML Demo1</field>
+        <field name="type">binary</field>
+    </record>
+    <record model="ir.attachment" id="demo_attachment_02">
+        <field name="name">XML Demo2</field>
+        <field name="type">binary</field>
+    </record>
+</odoo>

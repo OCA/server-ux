@@ -1,8 +1,8 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
-    "name": "Base Binary URL Import",
-    "summary": "Wizard to import binary files from URL on existing records",
+    "name": "Test Base Binary URL Import",
+    "summary": "Unittests for Base Binary URL Import module",
     "version": "16.0.1.0.0",
     "development_status": "Alpha",
     "category": "Uncategorized",
@@ -11,11 +11,10 @@
     "license": "AGPL-3",
     "installable": True,
     "application": False,
-    "depends": ["base", "base_import", "web_domain_field"],
-    "data": [
-        "security/ir.model.access.csv",
-        "data/ir_config_parameter.xml",
-        "wizard/base_binary_url_import_view.xml",
+    "depends": ["base_binary_url_import"],
+    "data": ["security/ir.model.access.csv", "views/test_binary.xml"],
+    "demo": [
+        "demo/demo_test_binary.xml",
+        "demo/ir_attachment.xml",
     ],
-    "external_dependencies": {"python": ["pyrfc6266"]},
 }
