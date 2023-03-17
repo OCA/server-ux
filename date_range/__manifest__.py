@@ -29,7 +29,4 @@
     },
     "development_status": "Mature",
     "maintainers": ["lmignon"],
-    "external_dependencies": {
-        "python": ["odoo_test_helper"],
-    },
 }
