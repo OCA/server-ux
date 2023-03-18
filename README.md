@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
 [base_optional_quick_create](base_optional_quick_create/) | 14.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_revision](base_revision/) | 14.0.1.1.0 |  | Keep track of revised document
+[base_rule_visibility_restriction](base_rule_visibility_restriction/) | 14.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Exclude Record Rules for certain groups
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 14.0.1.1.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 14.0.1.0.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 14.0.1.1.1 |  | Access to technical features without activating debug mode
