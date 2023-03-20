@@ -51,7 +51,7 @@ class ResUsers(models.Model):
         Access rights are disabled by default, but allowed
         on some specific fields defined in self.SELF_{READ/WRITE}ABLE_FIELDS.
         """
-        base_user_locale_readable_fields = [
+        base_user_locale_fields = [
             "date_format",
             "time_format",
             "week_start",
@@ -59,9 +59,10 @@ class ResUsers(models.Model):
             "thousands_sep",
         ]
         super(ResUsers, self).__init__(pool, cr)
-        type(self).SELF_READABLE_FIELDS = (
-            type(self).SELF_READABLE_FIELDS + base_user_locale_readable_fields
-        )
+        type(self).SELF_WRITEABLE_FIELDS = list(self.SELF_WRITEABLE_FIELDS)
+        type(self).SELF_WRITEABLE_FIELDS.extend(base_user_locale_fields)
+        type(self).SELF_READABLE_FIELDS = list(self.SELF_READABLE_FIELDS)
+        type(self).SELF_READABLE_FIELDS.extend(base_user_locale_fields)
 
     def preference_save(self):
         super().preference_save()
