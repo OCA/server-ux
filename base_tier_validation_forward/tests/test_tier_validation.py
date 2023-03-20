@@ -86,12 +86,12 @@ class TierTierValidation(TransactionCase):
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         record.validate_tier()
         self.assertFalse(record.can_forward)
         # User 2 forward to user 1
         record = test_record.with_user(self.test_user_2.id)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         self.assertTrue(record.can_forward)
         res = record.forward_tier()
         ctx = res.get("context")
@@ -106,7 +106,7 @@ class TierTierValidation(TransactionCase):
         wiz.add_forward()
         # Newly created forwarded review will have no definition
         record = test_record.with_user(self.test_user_2.id)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         self.assertTrue(record.review_ids.filtered(lambda l: not l.definition_id))
         # User 1 validate
         res = record.with_user(self.test_user_1.id).validate_tier()

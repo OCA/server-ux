@@ -50,5 +50,5 @@ class ValidationForwardWizard(models.TransientModel):
                 "approve_sequence": self.approve_sequence,
             }
         )
-        rec.invalidate_cache()
+        rec.invalidate_recordset()
         rec.review_ids._compute_can_review()

@@ -11,5 +11,5 @@ class CommentWizard(models.TransientModel):
         rec = self.env[self.res_model].browse(self.res_id)
         if self.validate_reject == "forward":
             rec._forward_tier(self.review_ids)
-        rec._update_counter()
+        rec._update_counter({"review_created": True})
         return self.review_ids
