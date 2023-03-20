@@ -14,7 +14,7 @@ Default Multi User
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/15.0/default_multi_user
+    :target: https://github.com/OCA/server-ux/tree/16.0/default_multi_user
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-ux-15-0/server-ux-15-0-default_multi_user
@@ -64,6 +64,7 @@ Contributors
 
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -86,6 +87,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/15.0/default_multi_user>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/default_multi_user>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
