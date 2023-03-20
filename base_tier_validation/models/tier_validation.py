@@ -274,6 +274,7 @@ class TierValidation(models.AbstractModel):
                 rec.review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
+                and not rec._context.get("skip_validation_check")
             ):
                 raise ValidationError(_("The operation is under validation."))
         if vals.get(new_self._state_field) in (
