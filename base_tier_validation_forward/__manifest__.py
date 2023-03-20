@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation Forward",
     "summary": "Forward option for base tiers",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Ecosoft,Odoo Community Association (OCA)",
@@ -21,8 +21,8 @@
     "application": False,
     "installable": True,
     "assets": {
-        "web.assets_qweb": [
-            "base_tier_validation_forward/static/src/xml/tier_review_template.xml"
+        "web.assets_backend": [
+            "base_tier_validation_forward/static/src/xml/tier_review_template.xml",
         ],
     },
     "uninstall_hook": "uninstall_hook",
