@@ -54,6 +54,17 @@ class ResUsers(models.Model):
         ]
         return super().SELF_READABLE_FIELDS + base_user_locale_readable_fields
 
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        base_user_locale_writeable_fields = [
+            "date_format",
+            "time_format",
+            "week_start",
+            "decimal_point",
+            "thousands_sep",
+        ]
+        return super().SELF_WRITEABLE_FIELDS + base_user_locale_writeable_fields
+
     def preference_save(self):
         super().preference_save()
         # Do a "full" reload instead of just a context_reload to apply locale
