@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-03-07 19:22+0000\n"
+"PO-Revision-Date: 2023-03-21 18:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -86,7 +86,7 @@ msgstr "Campo '%s' non trovato nel modello '%s'"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
 msgid "Field Name"
-msgstr "Nome Campo"
+msgstr "Nome campo"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line__name
