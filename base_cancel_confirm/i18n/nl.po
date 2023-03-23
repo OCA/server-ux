@@ -60,12 +60,6 @@ msgid "Cancel Reason"
 msgstr "Annuleringsreden"
 
 #. module: base_cancel_confirm
-#: code:addons/base_cancel_confirm/model/base_cancel_confirm.py:0
-#, python-format
-msgid "Configuration Error (%s), should be 'True' or 'False'"
-msgstr ""
-
-#. module: base_cancel_confirm
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "Confirm"
 msgstr "Bevestig"

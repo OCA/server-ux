@@ -4,8 +4,9 @@ import inspect
 
 from lxml import etree
 
-from odoo import _, fields, models, tools
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import frozendict
 
 
 class BaseCancelConfirm(models.AbstractModel):
@@ -22,7 +23,6 @@ class BaseCancelConfirm(models.AbstractModel):
         help="A flag signify that this document is confirmed for cancellation",
     )
     cancel_reason = fields.Text(
-        string="Cancel Reason",
         copy=False,
         help="An optional cancel reason",
     )
@@ -52,29 +52,26 @@ class BaseCancelConfirm(models.AbstractModel):
     def clear_cancel_confirm_data(self):
         self.write({"cancel_confirm": False, "cancel_reason": False})
 
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id=view_id, view_type=view_type, options=options)
+        View = self.env["ir.ui.view"]
+        if view_id and res.get("base_model", self._name) != self._name:
+            View = View.with_context(base_model_name=res["base_model"])
         if view_type == "form":
             doc = etree.XML(res["arch"])
+            all_models = res["models"].copy()
             for node in doc.xpath(self._cancel_reason_xpath):
                 str_element = self.env["ir.qweb"]._render(
                     "base_cancel_confirm.cancel_reason_template"
                 )
                 new_node = etree.fromstring(str_element)
+                new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
+                new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
-                    node.addnext(new_element)
-            # Override context for postprocessing
-            View = self.env["ir.ui.view"]
-            if view_id and res.get("base_model", self._name) != self._name:
-                View = View.with_context(base_model_name=res["base_model"])
-            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
-            res["arch"] = new_arch
-            # We don't want to loose previous configuration, so, we only want to add
-            # the new fields
-            new_fields.update(res["fields"])
-            res["fields"] = new_fields
+                    node.addprevious(new_element)
+                new_node = etree.fromstring(new_arch)
+                node.append(new_node)
+            res["arch"] = etree.tostring(doc)
+            res["models"] = frozendict(all_models)
         return res
