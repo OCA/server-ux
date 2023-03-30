@@ -1,4 +1,5 @@
 # generated from manifests external_dependencies
+openupgradelib
 pdf2image
 python-stdnum
 pyzbar

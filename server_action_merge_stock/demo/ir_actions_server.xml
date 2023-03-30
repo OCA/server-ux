@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+
+<record id="server_action_merge_products" model="ir.actions.server">
+    <field name="name">Merge products</field>
+    <field name="state">merge</field>
+    <field name="model_id" ref="product.model_product_product" />
+    <field name="merge_sudo" eval="True" />
+</record>
+
+<function
+        name="create_action"
+        model="ir.actions.server"
+        eval="[ref('server_action_merge_products')]"
+    />
+
+</data>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+
+<record id="view_server_action_merge_wizard_form" model="ir.ui.view">
+    <field name="model">server.action.merge.wizard</field>
+    <field name="arch" type="xml">
+        <form>
+            <field name="xmlid_count" invisible="True" />
+            <div
+                    class="alert alert-primary"
+                    role="alert"
+                    attrs="{'invisible': [('xmlid_count', '&lt;', 2)]}"
+                >
+                You attempt to merge multiple records that have been provided by the system.
+                Please double check this is really what you want, as generally this is asking for trouble.
+            </div>
+            <field name="target_line_xmlid" invisible="True" />
+            <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': ['|', ('target_line_xmlid', '!=', False), ('xmlid_count', '&lt;', 1)]}"
+                >
+                You have selected a record provided by the system to be merged into one not provided by the system.
+                Please double check this is really what you want, probably you rather should merge into the record provided by the system.
+            </div>
+            <group>
+                <field
+                        name="target_line_id"
+                        domain="[('id', 'in', line_ids)]"
+                        options='{"no_create": true, "no_open": true}'
+                        required="True"
+                    />
+                <field name="line_ids">
+                    <tree create="false" editable="bottom">
+                        <field name="sequence" widget="handle" />
+                        <field name="record" readonly="True" />
+                        <field name="xmlid" readonly="True" />
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button
+                        name="action_merge"
+                        type="object"
+                        string="Merge records"
+                        class="oe_highlight"
+                    />
+                <button special="cancel" string="Cancel" />
+            </footer>
+        </form>
+    </field>
+</record>
+
+</data>

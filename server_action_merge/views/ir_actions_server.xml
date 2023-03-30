@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+
+    <record id="view_server_action_form" model="ir.ui.view">
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form" />
+        <field name="arch" type="xml">
+            <page position="before">
+                <page
+                    name="merge"
+                    string="Merge"
+                    attrs="{'invisible': [('state', '!=', 'merge')]}"
+                >
+                    <group>
+                        <field name="merge_method" />
+                        <field name="merge_handling" />
+                        <field name="merge_sudo" />
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</data>

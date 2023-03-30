@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+
+<record id="view_server_action_merge_wizard_form" model="ir.ui.view">
+    <field name="model">server.action.merge.wizard</field>
+    <field
+            name="inherit_id"
+            ref="server_action_merge.view_server_action_merge_wizard_form"
+        />
+    <field name="arch" type="xml">
+        <group position="before">
+            <field name="product_uom_different_factor" invisible="True" />
+            <div
+                    class="alert alert-primary"
+                    role="alert"
+                    attrs="{'invisible': [('product_uom_different_factor', '=', False)]}"
+                >
+                You attempt to merge products with different UoMs. Your stock quantities will be converted
+                to the target product's UoM.
+            </div>
+            <field name="product_uom_different_category" invisible="True" />
+            <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': [('product_uom_different_category', '=', False)]}"
+                >
+                You attempt to merge products with different UoM categories. As it is not possible to convert
+                quantities of different UoM catgories, all quantities of the source product(s) will be coerced
+                to the target product's UoM.<br />
+                This can result in wrong stock levels / quantities on order lines, move lines etc.
+            </div>
+        </group>
+    </field>
+</record>
+
+</data>
