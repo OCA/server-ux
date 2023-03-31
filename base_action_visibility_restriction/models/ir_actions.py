@@ -5,7 +5,6 @@ from odoo.exceptions import AccessError
 
 
 class IrActions(models.Model):
-
     _inherit = "ir.actions.actions"
 
     @api.model
@@ -29,7 +28,6 @@ class IrActions(models.Model):
 
 
 class IrActionsServer(models.Model):
-
     _inherit = "ir.actions.server"
 
     excluded_group_ids = fields.Many2many(
@@ -56,7 +54,6 @@ class IrActionsServer(models.Model):
 
 
 class IrActionsActWindow(models.Model):
-
     _inherit = "ir.actions.act_window"
 
     excluded_group_ids = fields.Many2many(
