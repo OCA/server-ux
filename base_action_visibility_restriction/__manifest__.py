@@ -3,7 +3,7 @@
 
 {
     "name": "Base Action Visibility Restriction",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Extra Tools",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Restrict (with groups) action visibilty",
