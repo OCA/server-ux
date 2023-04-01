@@ -60,6 +60,12 @@ msgid "Cancel Reason"
 msgstr "Annuleringsreden"
 
 #. module: base_cancel_confirm
+#: code:addons/base_cancel_confirm/model/base_cancel_confirm.py:0
+#, python-format
+msgid "Configuration Error (%s), should be 'True' or 'False'"
+msgstr ""
+
+#. module: base_cancel_confirm
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "Confirm"
 msgstr "Bevestig"
@@ -75,7 +81,6 @@ msgid "Created on"
 msgstr "Aangemaakt op"
 
 #. module: base_cancel_confirm
-#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
@@ -86,13 +91,11 @@ msgid "Has Cancel Reason"
 msgstr "Heeft annuleringsreden"
 
 #. module: base_cancel_confirm
-#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__id
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_cancel_confirm
-#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm____last_update
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm____last_update
 msgid "Last Modified on"
 msgstr "Laatst bijgewerk op"
