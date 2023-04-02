@@ -1,0 +1,1 @@
+This module does not provide functionality by itself but an abstract models to control which fields to display in a report from the available fields  to be applied to different models (sale order, purchase, ...).

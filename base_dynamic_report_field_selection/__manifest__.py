@@ -1,0 +1,15 @@
+{
+    "name": "Base Dynamic Report Field Selection",
+    "summary": "Base Dynamic Report Field Selection",
+    "version": "14.0.1.0.0",
+    "license": "AGPL-3",
+    "category": "Tools",
+    "author": "Ooops404, Cetmix, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-ux",
+    "maintainers": ["geomer198", "CetmixGitDrone"],
+    "depends": ["base"],
+    "data": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+}
