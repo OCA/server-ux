@@ -1,6 +1,7 @@
 # Copyright 2020 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2023 Amitaujas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from lxml import etree
@@ -30,13 +31,9 @@ class Base(models.AbstractModel):
         return res
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """Inject fields field in search views."""
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+        res = super().get_view(view_id, view_type, **options)
         if view_type == "search":
             custom_filters = self.env["ir.ui.custom.field.filter"].search(
                 [("model_name", "=", res.get("model"))]
@@ -46,23 +43,18 @@ class Base(models.AbstractModel):
         return res
 
     @api.model
-    def load_views(self, views, options=None):
+    def get_views(self, views, options=None):
         """Inject fake field definition for having custom filters available."""
-        res = super(
-            Base,
-            self.with_context(
-                custom_field_filter=True,
-            ),
-        ).load_views(views, options=options)
+        res = super().get_views(views, options)
         custom_filters = self.env["ir.ui.custom.field.filter"].search(
             [("model_name", "=", self._name)]
         )
         for custom_filter in custom_filters:
             field = custom_filter._get_related_field()
             field_name = custom_filter.expression
-            res["fields"][field_name] = field.get_description(self.env)
+            res["models"][self._name][field_name] = field.get_description(self.env)
             # force this for avoiding to appear on the rest of the UI
-            res["fields"][field_name]["selectable"] = False
-            res["fields"][field_name]["sortable"] = False
-            res["fields"][field_name]["store"] = False
+            res["models"][self._name][field_name]["selectable"] = False
+            res["models"][self._name][field_name]["sortable"] = False
+            res["models"][self._name][field_name]["store"] = False
         return res

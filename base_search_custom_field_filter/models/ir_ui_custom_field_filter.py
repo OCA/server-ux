@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import ustr
 
 
 class IrUiCustomFilter(models.Model):
@@ -44,4 +45,6 @@ class IrUiCustomFilter(models.Model):
             try:
                 record._get_related_field()
             except KeyError as e:
-                raise exceptions.ValidationError(_("Incorrect expression.")) from e
+                raise exceptions.ValidationError(
+                    _("Incorrect expression: %s.") % (ustr(e))
+                ) from e
