@@ -59,10 +59,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_search_custom_field_filter
+#. odoo-python
 #: code:addons/base_search_custom_field_filter/models/ir_ui_custom_field_filter.py:0
 #, python-format
-msgid "Incorrect expression."
-msgstr "Expresión incorrecta."
+msgid "Incorrect expression: %s."
+msgstr "Expresión incorrecta: %s."
 
 #. module: base_search_custom_field_filter
 #: model:ir.ui.custom.field.filter,name:base_search_custom_field_filter.custom_field_filter_demo
