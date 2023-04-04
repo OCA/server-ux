@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-13 16:32+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-04-04 15:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_calendar_event
 msgid "Calendar Event"
-msgstr "Calendario eventi"
+msgstr "Evento calendario"
 
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_res_company
