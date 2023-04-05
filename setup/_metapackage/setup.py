@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-barcode_action',
+        'odoo14-addon-base_action_visibility_restriction',
         'odoo14-addon-base_cancel_confirm',
         'odoo14-addon-base_custom_filter',
         'odoo14-addon-base_export_manager',
