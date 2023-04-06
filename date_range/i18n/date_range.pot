@@ -190,7 +190,7 @@ msgstr ""
 #: model:ir.model.fields,help:date_range.field_date_range_type__name_expr
 msgid ""
 "Evaluated expression. E.g. \"'FY%s' % date_start.strftime('%Y%m%d')\"\n"
-"You can use the Date types 'date_end' and 'date_start', as well as the 'index' variable."
+"You can use the Date types 'date_end' and 'date_start', as well as the 'index' variable, and also babel.dates.format_date method."
 msgstr ""
 
 #. module: date_range
