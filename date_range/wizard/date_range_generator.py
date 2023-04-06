@@ -1,14 +1,16 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # Copyright 2021 Opener B.V. (<https://opener.amsterdam>)
+# Copyright 2022 XCG Consulting (<https://xcg-consulting.fr>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
+from typing import Any
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.safe_eval import safe_eval
+from odoo.tools.safe_eval import safe_eval, wrap_module
 
 _logger = logging.getLogger(__name__)
 
@@ -26,7 +28,7 @@ class DateRangeGenerator(models.TransientModel):
             "Evaluated expression. E.g. "
             "\"'FY%s' % date_start.strftime('%Y%m%d')\"\nYou can "
             "use the Date types 'date_end' and 'date_start', as well as "
-            "the 'index' variable."
+            "the 'index' variable, and also babel.dates.format_date method."
         ),
     )
     name_prefix = fields.Char(
@@ -157,9 +159,10 @@ class DateRangeGenerator(models.TransientModel):
         self.ensure_one()
         return self._generate_names(vals, self.name_expr, self.name_prefix)
 
-    @staticmethod
-    def _generate_names(vals, name_expr, name_prefix):
+    @classmethod
+    def _generate_names(cls, vals, name_expr, name_prefix):
         """Generate the names for the given intervals and naming parameters"""
+        base_dict: dict[str, Any] = cls._generate_name_safe_eval_dict()
         names = []
         count_digits = len(str(len(vals) - 1))
         for idx, dt_start in enumerate(vals[:-1]):
@@ -173,11 +176,12 @@ class DateRangeGenerator(models.TransientModel):
                     names.append(
                         safe_eval(
                             name_expr,
-                            {
-                                "date_end": date_end,
-                                "date_start": date_start,
-                                "index": index,
-                            },
+                            dict(
+                                **base_dict,
+                                date_end=date_end,
+                                date_start=date_start,
+                                index=index,
+                            ),
                         )
                     )
                 except (SyntaxError, ValueError) as e:
@@ -192,6 +196,13 @@ class DateRangeGenerator(models.TransientModel):
                     )
                 )
         return names
+
+    @classmethod
+    def _generate_name_safe_eval_dict(cls):
+        """Return globals dict that will be used when generating the range names."""
+        return {
+            "babel": wrap_module(__import__("babel"), {"dates": ["format_date"]}),
+        }
 
     @api.depends("name_expr", "name_prefix")
     def _compute_range_name_preview(self):

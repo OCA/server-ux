@@ -39,7 +39,7 @@ class DateRangeType(models.Model):
             "Evaluated expression. E.g. "
             "\"'FY%s' % date_start.strftime('%Y%m%d')\"\nYou can "
             "use the Date types 'date_end' and 'date_start', as well as "
-            "the 'index' variable."
+            "the 'index' variable, and also babel.dates.format_date method."
         ),
     )
     range_name_preview = fields.Char(compute="_compute_range_name_preview", store=True)

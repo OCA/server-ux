@@ -3,3 +3,4 @@
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Stefan Rijnhart <stefan@opener.amsterdam>
+* Vincent Hatakeyama <vincent.hatakeyama@xcg-consulting.fr>
