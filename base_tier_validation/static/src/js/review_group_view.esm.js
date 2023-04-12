@@ -22,7 +22,10 @@ registerModel({
                     res_model: data.res_model,
                     search_view_id: [false],
                     type: "ir.actions.act_window",
-                    domain: [["can_review", "=", true]],
+                    domain: [
+                        ["can_review", "=", true],
+                        ["active", "in", [true, false]],
+                    ],
                     views: this.reviewGroup.irModel.availableWebViews.map(
                         (viewName) => [false, viewName]
                     ),
