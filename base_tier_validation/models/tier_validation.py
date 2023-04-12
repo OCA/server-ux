@@ -88,6 +88,7 @@ class TierValidation(models.AbstractModel):
                     ("review_ids.status", "=", "pending"),
                     ("review_ids.can_review", "=", True),
                     ("rejected", "=", False),
+                    ("active", "in", [True, False]),
                 ]
             )
             .filtered("can_review")
