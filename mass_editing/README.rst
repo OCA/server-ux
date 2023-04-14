@@ -23,7 +23,7 @@ Mass Editing
     :target: https://runbot.odoo-community.org/runbot/250/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module provides the following features:
 
@@ -131,6 +131,7 @@ Contributors
   * Jairo Llopis
   * Víctor Martínez
 * Tatiana Deribina <tatiana.deribina@spritnit.fi>
+* Hieu, Vo Minh Bao <hieu.vmb@komit-consulting.com>
 
 Maintainers
 ~~~~~~~~~~~

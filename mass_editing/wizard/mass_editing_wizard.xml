@@ -52,6 +52,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         type="object"
                         class="oe_highlight"
                     />
+                    <label for="write_record_by_record" />
+                        <field name="write_record_by_record" />
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
