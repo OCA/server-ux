@@ -10,6 +10,7 @@
 
   * Daniel Reis
   * Chandresh Thakkar
+  * Sandip Vyas
 
 * `Opener B.V. <https://opener.amsterdam/>`_:
 

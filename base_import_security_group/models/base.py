@@ -18,11 +18,10 @@ class Base(models.AbstractModel):
         if current user belongs to the group allowed for CSV data import.
         An exception is raised otherwise, and also log the import attempt.
         """
-        current_user = self.env.user
         allowed_group = "base_import_security_group.group_import_csv"
         allowed_group_id = self.env.ref(allowed_group, raise_if_not_found=False)
-        if not allowed_group_id or current_user.has_group(allowed_group):
-            res = super().load(fields=fields, data=data)
+        if not allowed_group_id or self.env.user.has_group(allowed_group):
+            res = super(Base, self).load(fields, data)
         else:
             msg = ("User (ID: %s) is not allowed to import data " "in model %s.") % (
                 self.env.uid,
@@ -30,7 +29,6 @@ class Base(models.AbstractModel):
             )
             _logger.info(msg)
             messages = []
-            info = {}
-            messages.append(dict(info, type="error", message=msg, moreinfo=None))
-            res = {"ids": None, "messages": messages}
+            messages.append(dict({}, type="error", message=msg, moreinfo=None))
+            res = {"ids": None, "messages": messages, "nextrow": False}
         return res

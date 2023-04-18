@@ -1,24 +1,19 @@
-/*
- * Copyright 2021 Stefan Rijnhart <stefan@opener.amsterdam>
- * Copyright 2021 Chandresh Thakkar OSI <cthakkar@opensourceintegrators.com>
- * Copyright 2019 Iryna Vushnevska <i.vyshnevska@mobilunity.com>
- * Copyright 2017 Antonio Esposito <a.esposito@onestein.nl>
- * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
- *
- * Patch the method on the ImportMenu class that determines whether the
- * import button under Favorites will be displayed to return false if the
- * user does not belong to this module's access group.
- */
-odoo.define("base_import_security_group.group_import", function (require) {
-    "use strict";
+/** @odoo-module **/
 
-    const ImportMenu = require("base_import.ImportMenu");
-    const shouldBeDisplayed_orig = ImportMenu.shouldBeDisplayed;
+import {ImportRecords} from "@base_import/import_records/import_records";
+import {registry} from "@web/core/registry";
+import {useService} from "@web/core/utils/hooks";
+const {Component, onWillStart, useState} = owl;
+import {patch} from "@web/core/utils/patch";
 
-    ImportMenu.shouldBeDisplayed = function (env) {
-        return (
-            shouldBeDisplayed_orig(env) &&
-            env.session.base_import_security_group__allow_import === 1
-        );
-    };
+patch(ImportRecords.prototype, "base_import_security_group/static/src/js/import.js", {
+    setup() {
+        this._super();
+        this.user = useService("user");
+        onWillStart(async () => {
+            this.hasImportRecords = await this.user.hasGroup(
+                "base_import_security_group.group_import_csv"
+            );
+        });
+    },
 });
