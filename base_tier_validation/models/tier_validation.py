@@ -9,6 +9,7 @@ from psycopg2.extensions import AsIs
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv.expression import is_leaf
 from odoo.tools import SQL
 from odoo.tools.misc import frozendict
 
@@ -247,11 +248,9 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             rec.hide_reviews = rec[self._state_field] not in self._state_from
 
+    @api.depends(lambda self: self._compute_need_validation_dependencies())
     def _compute_need_validation(self):
         for rec in self:
-            if isinstance(rec.id, models.NewId):
-                rec.need_validation = False
-                continue
             tiers = (
                 self.env["tier.definition"]
                 .with_context(active_test=True)
@@ -266,6 +265,40 @@ class TierValidation(models.AbstractModel):
             rec.need_validation = (
                 not rec.review_ids and valid_tiers and rec._check_state_from_condition()
             )
+
+    def _compute_need_validation_dependencies(self):
+        """Return the fields the validation flag depends on"""
+        if self._abstract:
+            return []
+        tiers = self.env["tier.definition"].search([("model", "=", self._name)])
+        tier_domains = sum(
+            # we can't browse because this is called during updates too
+            (
+                literal_eval(
+                    tier.read(["definition_domain"])[0]["definition_domain"] or "[]"
+                )
+                for tier in tiers
+            ),
+            [],
+        )
+        dependencies = []
+        for leaf in tier_domains:
+            if not is_leaf(leaf):
+                continue
+            field_name = leaf[0]
+            model = self
+            while "." in field_name:
+                field_name, tail = field_name.split(".", 1)
+                if field_name in model._fields:
+                    model = self.env[model._fields[field_name].comodel_name]
+                    field_name = tail
+                else:
+                    break
+            else:
+                if field_name in model._fields:
+                    dependencies.append(leaf[0])
+
+        return set(dependencies)
 
     def evaluate_tier(self, tier):
         if tier.definition_domain:

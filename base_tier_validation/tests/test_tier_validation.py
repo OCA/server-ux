@@ -1412,6 +1412,57 @@ class TierTierValidation(CommonTierValidation):
         # Review_ids should not be copied when duplicating a user
         self.assertFalse(new_user.review_ids.ids)
 
+    def test_35_update_registry(self):
+        """
+        Test that changes to the tier definition changes dependency of the
+        need_validation flag
+        """
+        tier = self.env["tier.definition"].search(
+            [
+                ("model_id", "=", self.tester_model.id),
+            ]
+        )
+        view = self.env["ir.ui.view"].search([("model", "=", self.tester_model.model)])
+        view.write(
+            {
+                "arch": """
+                <form>
+                    <field name="user_id" />
+                    <field name="test_field" />
+                    <field name="need_validation" />
+                </form>
+                """,
+            }
+        )
+        with Form(self.test_model, view=view) as form:
+            self.assertFalse(form.need_validation)
+            form.test_field = 1
+            self.assertTrue(form.need_validation)
+        tier.write(
+            {
+                "definition_domain": "['|', ('user_id', '!=', False), "
+                "('user_id.name', '=', 'test')]"
+            }
+        )
+        Model = self.env[tier.model_id.model]
+        field = Model._fields["need_validation"]
+        self.assertItemsEqual(
+            self.env.registry.field_depends[field], ("user_id", "user_id.name")
+        )
+        with Form(self.test_model, view=view) as form:
+            self.assertFalse(form.need_validation)
+            form.test_field = 1
+            self.assertFalse(form.need_validation)
+            form.user_id = self.env.user
+            self.assertTrue(form.need_validation)
+        tier.unlink()
+        with Form(self.test_model, view=view) as form:
+            self.assertFalse(form.need_validation)
+            form.test_field = 1
+            form.user_id = self.env.user
+            self.assertFalse(form.need_validation)
+        self.assertTrue(self.env.registry.registry_invalidated)
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
