@@ -7,6 +7,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv.expression import is_leaf
 from odoo.tools.misc import frozendict
 
 
@@ -185,16 +186,29 @@ class TierValidation(models.AbstractModel):
         """Override for different rejection policy."""
         return any([s == "rejected" for s in reviews.mapped("status")])
 
+    @api.depends(lambda self: self._compute_need_validation_dependencies())
     def _compute_need_validation(self):
         for rec in self:
-            if isinstance(rec.id, models.NewId):
-                rec.need_validation = False
-                continue
             tiers = self.env["tier.definition"].search([("model", "=", self._name)])
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
                 not rec.review_ids and valid_tiers and rec._check_state_from_condition()
             )
+
+    def _compute_need_validation_dependencies(self):
+        """Return the fields the validation flag depends on"""
+        if self._abstract:
+            return []
+        tiers = self.env["tier.definition"].search([("model", "=", self._name)])
+        tier_domains = sum(
+            (literal_eval(tier.definition_domain or "[]") for tier in tiers),
+            [],
+        )
+        return list(
+            leaf[0]
+            for leaf in tier_domains
+            if is_leaf(leaf) and leaf[0] in self._fields
+        )
 
     def evaluate_tier(self, tier):
         if tier.definition_domain:

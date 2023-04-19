@@ -436,6 +436,22 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
 
+    def test_19_update_registry(self):
+        """Test that changes to the tier definition reloads the registry"""
+        tier = self.env["tier.definition"].search(
+            [
+                ("model_id", "=", self.tester_model.id),
+            ]
+        )
+        field = self.env[self.test_model._name]._fields["need_validation"]
+        self.assertIn("test_field", self.env.registry.field_depends[field])
+        tier.write({"definition_domain": "[]"})
+        self.assertNotIn("test_field", self.env.registry.field_depends[field])
+        tier.unlink()
+        self.assertNotIn("test_field", self.env.registry.field_depends[field])
+        self.assertTrue(self.env.registry.registry_invalidated)
+        self.env.registry.registry_invalidated = False
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
