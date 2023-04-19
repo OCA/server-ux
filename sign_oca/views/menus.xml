@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="sign_oca_menu"
+        name="Sign"
+        web_icon="sign_oca,static/description/icon.png"
+    />
+    <menuitem
+        id="sign_oca_requests_menu"
+        parent="sign_oca_menu"
+        name="Requests"
+        sequence="10"
+        action="sign_request_action"
+    />
+</odoo>

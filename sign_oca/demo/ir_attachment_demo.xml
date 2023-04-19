@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="attachment_sign_oca_signature_demo" model="ir.attachment">
+        <field name="name">test-signature.png</field>
+        <field name="type">binary</field>
+        <field name="datas" type="base64" file="sign_oca/demo/data/signature.png" />
+    </record>
+</odoo>

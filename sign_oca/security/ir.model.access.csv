@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sign_request_base_user,sign.request.base.user,model_sign_request,base.group_user,1,1,0,0
+access_sign_request_user,sign.request.user,model_sign_request,sign_oca_group_user,1,1,1,0
+access_sign_request_manager,sign.request.manager,model_sign_request,sign_oca_group_manager,1,1,1,1

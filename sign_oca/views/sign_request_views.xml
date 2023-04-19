@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sign_request_view_search" model="ir.ui.view">
+        <field name="name">sign.request.search</field>
+        <field name="model">sign.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="user_id" />
+                <filter
+                    name="draft_filter"
+                    string="Draft"
+                    domain="[('state','=', 'draft')]"
+                />
+                <filter
+                    name="in_progress_filter"
+                    string="Requested"
+                    domain="[('state','=', 'in_progress')]"
+                />
+                <filter
+                    name="done_filter"
+                    string="Signed"
+                    domain="[('state','=', 'done')]"
+                />
+                <separator />
+                <group string="Group By" name="group_by">
+                    <filter
+                        string="Partner"
+                        name="partner_id_group_by"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Responsible"
+                        name="user_id_group_by"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="state_group_by"
+                        context="{'group_by':'state'}"
+                    />
+                    <filter
+                        string="Date"
+                        name="date_group_by"
+                        context="{'group_by':'date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="sign_request_view_tree" model="ir.ui.view">
+        <field name="name">sign.request.tree</field>
+        <field name="model">sign.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="date" />
+                <field name="signed_on" />
+                <field name="user_id" />
+                <field name="partner_id" />
+                <field name="record_ref" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="sign_request_view_form" model="ir.ui.view">
+        <field name="name">sign.request.form</field>
+        <field name="model">sign.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        type="object"
+                        string="Request"
+                        name="action_confirm"
+                        attrs="{'invisible':[('state','!=','draft')]}"
+                        class="btn-primary"
+                    />
+                    <button
+                        type="object"
+                        string="Confirm"
+                        name="action_done"
+                        attrs="{'invisible':[('state','!=','in_progress')]}"
+                        class="btn-primary"
+                    />
+                    <field name="state" widget="statusbar" readonly="True" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="left_group">
+                            <field name="partner_id" />
+                            <field name="date" />
+                            <field name="user_id" />
+                            <field
+                                name="record_ref"
+                                attrs="{'invisible':[('record_ref','=',False),('state', '!=', 'draft')]}"
+                            />
+                            <field
+                                name="signed_on"
+                                attrs="{'invisible': [('signed_on', '=', False)]}"
+                            />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="right_group">
+                            <field
+                                name="signature"
+                                widget="signature"
+                                attrs="{'invisible': [('state', '=', 'draft')]}"
+                            />
+                            <field
+                                name="signed_on"
+                                attrs="{'invisible':[('signed_on','=',False)]}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="description_page" string="Description">
+                            <field name="description" type="html" />
+                            <div class="d-none oe_clear" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="sign_request_action" model="ir.actions.act_window">
+        <field name="name">Requests</field>
+        <field name="res_model">sign.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_in_progress_filter': 1}</field>
+    </record>
+    <record id="sign_request_all_action" model="ir.actions.act_window">
+        <field name="name">All Requests</field>
+        <field name="res_model">sign.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
