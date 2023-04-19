@@ -29,7 +29,7 @@ class TierValidation(models.AbstractModel):
         """extend base tier validation method to allow bypass of waiting
         sequences as pending state is hardcoded"""
         self.ensure_one()
-        super(TierValidation, self)._validate_tier(tiers)
+        res = super(TierValidation, self)._validate_tier(tiers)
         tier_reviews = tiers or self.review_ids
         waiting_reviews = tier_reviews.filtered(
             lambda r: r.status == "waiting"
@@ -47,3 +47,4 @@ class TierValidation(models.AbstractModel):
             for review in waiting_reviews:
                 rec = self.env[review.model].browse(review.res_id)
                 rec._notify_accepted_reviews()
+        return res
