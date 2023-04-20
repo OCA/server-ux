@@ -144,10 +144,7 @@ odoo.define("tier_validation.systray", function (require) {
                     [false, "form"],
                 ],
                 search_view_id: [false],
-                domain: [
-                    ["can_review", "=", true],
-                    ["active", "in", [true, false]],
-                ],
+                domain: [["can_review", "=", true]],
                 context: context,
             });
         },
