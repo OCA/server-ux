@@ -43,6 +43,7 @@
                             class="o_ActivityMenuView_activityGroup"
                             t-att-data-res_model="reviewGroupView.reviewGroup.irModel.model"
                             t-att-data-model_name="reviewGroupView.reviewGroup.irModel.name"
+                            t-att-data-active_field="reviewGroupView.reviewGroup.irModel.active_field"
                             t-att-data-domain="reviewGroupView.reviewGroup.domain"
                             data-filter='my'
                             t-att-data-activity-group-view-local-id="reviewGroupView.localId"
