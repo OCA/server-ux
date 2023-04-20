@@ -35,6 +35,7 @@ class Users(models.Model):
                     user_reviews[model] = {
                         "name": record._description,
                         "model": model,
+                        "active_field": "active" in record._fields,
                         "icon": modules.module.get_module_icon(record._original_module),
                         "pending_count": len(records),
                     }

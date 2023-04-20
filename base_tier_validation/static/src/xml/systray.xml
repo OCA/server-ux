@@ -11,6 +11,7 @@
                 class="o_mail_preview"
                 t-att-data-res_model="review.model"
                 t-att-data-model_name="review.name"
+                t-att-data-active_field="review.active_field"
             >
                 <div class="o_mail_preview_image o_mail_preview_app">
                     <img t-att-src="review.icon" alt="Review" />
