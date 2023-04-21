@@ -81,19 +81,15 @@ class TierValidation(models.AbstractModel):
 
     @api.model
     def _search_can_review(self, operator, value):
-        res_ids = (
-            self.search(
-                [
-                    ("review_ids.reviewer_ids", "=", self.env.user.id),
-                    ("review_ids.status", "=", "pending"),
-                    ("review_ids.can_review", "=", True),
-                    ("rejected", "=", False),
-                    ("active", "in", [True, False]),
-                ]
-            )
-            .filtered("can_review")
-            .ids
-        )
+        domain = [
+            ("review_ids.reviewer_ids", "=", self.env.user.id),
+            ("review_ids.status", "=", "pending"),
+            ("review_ids.can_review", "=", True),
+            ("rejected", "=", False),
+        ]
+        if "active" in self._fields:
+            domain.append(("active", "in", [True, False]))
+        res_ids = self.search(domain).filtered("can_review").ids
         return [("id", "in", res_ids)]
 
     @api.depends("review_ids")
