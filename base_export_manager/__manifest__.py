@@ -7,7 +7,7 @@
 {
     "name": "Manage model export profiles",
     "category": "Personalization",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.0",
     "depends": ["web"],
     "data": [
         "views/ir_exports.xml",
@@ -26,8 +26,8 @@
     "assets": {
         "web.assets_backend": [
             "base_export_manager/static/src/js/base_export_manager.js",
+            "base_export_manager/static/src/xml/base.xml",
         ],
-        "web.assets_qweb": ["base_export_manager/static/src/xml/base.xml"],
     },
     "installable": True,
     "application": False,
