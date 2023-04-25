@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo-addon-date_range>=16.0dev,<16.1dev',
         'odoo-addon-date_range_account>=16.0dev,<16.1dev',
         'odoo-addon-multi_step_wizard>=16.0dev,<16.1dev',
+        'odoo-addon-sequence_reset_period>=16.0dev,<16.1dev',
         'odoo-addon-server_action_mass_edit>=16.0dev,<16.1dev',
     ],
     classifiers=[
