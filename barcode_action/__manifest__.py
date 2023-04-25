@@ -19,8 +19,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "barcode_action/static/src/js/action_barcode_form.js",
-            "barcode_action/static/src/js/action_barcode_widget.js",
+            "barcode_action/static/src/js/action_barcode_widget.esm.js",
         ],
     },
     "demo": ["demo/barcode_action_demo.xml"],
