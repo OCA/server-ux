@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [multi_step_wizard](multi_step_wizard/) | 16.0.1.0.0 |  | Multi-Steps Wizards
 [sequence_reset_period](sequence_reset_period/) | 16.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [server_action_mass_edit](server_action_mass_edit/) | 16.0.2.0.1 |  | Mass Editing
+[user_all_groups](user_all_groups/) | 16.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Automatically add admin user to all the groups
 
 [//]: # (end addons)
 
