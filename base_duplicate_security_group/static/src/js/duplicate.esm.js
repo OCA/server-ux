@@ -11,11 +11,14 @@ import session from "web.session";
  * If the user has the permission, the internal logic rules will apply.
  **/
 export const DuplicateViewMixin = {
-    async willStart() {
-        this.controllerParams.activeActions.duplicate = await session.user_has_group(
-            "base_duplicate_security_group.group_duplicate_records"
-        );
-        return this._super(...arguments);
+    init() {
+        this._super(...arguments);
+        const base_group = "base_duplicate_security_group.group_duplicate_records";
+        session.user_has_group(base_group).then((result) => {
+            if (!result) {
+                this.controllerParams.activeActions.duplicate = false;
+            }
+        });
     },
 };
 
