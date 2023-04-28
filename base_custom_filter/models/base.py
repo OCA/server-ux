@@ -55,13 +55,9 @@ class Base(models.AbstractModel):
         return res
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """Add filters in search views."""
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "search":
             filter_groups = self.env["ir.filters.group"].search(
                 [
