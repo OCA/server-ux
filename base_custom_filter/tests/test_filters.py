@@ -49,5 +49,5 @@ class Test(TransactionCase):
                     "base_custom_filter.field_ir_filters_group__name"
                 )
 
-        filters_group_obj.fields_view_get(view_type="search")
+        filters_group_obj.get_view(view_type="search")
         filter_group.unlink()

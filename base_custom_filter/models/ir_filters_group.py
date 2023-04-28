@@ -33,5 +33,4 @@ class IrFiltersGroup(models.Model):
 
     @api.model
     def _list_all_models(self):
-        self._cr.execute("SELECT model, name FROM ir_model ORDER BY name")
-        return self._cr.fetchall()
+        return self.env["ir.filters"]._list_all_models()
