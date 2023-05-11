@@ -28,7 +28,7 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(doc_user1.can_review)
         # Change Reviewer from user 1 -> user 2
         ctx = {"active_id": doc_user1.id, "active_model": doc_user1._name}
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertFalse(res["domain"])  # No existing correction, create new
         correction = self.env["tier.correction"].create(
             {
@@ -77,7 +77,7 @@ class TierTierValidation(CommonTierValidation):
         doc_user2.invalidate_cache()
         self.assertFalse(doc_user2.can_review)
         # From the document, view tier correction once again
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertEqual(res["domain"][0][2], [correction.id])
 
     def test_01_tier_correction_by_scheduler(self):
@@ -97,7 +97,7 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(doc_user1.can_review)
         # Change Reviewer from user 1 -> user 2
         ctx = {"active_id": doc_user1.id, "active_model": doc_user1._name}
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertFalse(res["domain"])  # No existing correction, create new
         correction = self.env["tier.correction"].create(
             {

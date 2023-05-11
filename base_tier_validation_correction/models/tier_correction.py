@@ -38,7 +38,6 @@ class TierCorrection(models.Model):
         selection=[
             ("reviewer", "Reassign Reviewer(s)"),
         ],
-        string="Correction Type",
         default="reviewer",
         required=True,
         readonly=True,
@@ -274,15 +273,17 @@ class TierCorrectionItem(models.Model):
             reviewers = ", ".join(
                 tier_reviews.reviewer_ids.filtered("name").mapped("name")
             )
-            message = _("The Correction '%s', corrrected reviewers on '%s' to '%s'") % (
+            message = _(
+                "The Correction '{}', corrrected reviewers on '{}' to '{}'"
+            ).format(
                 self.correction_id.name,
                 reviews,
                 reviewers,
             )
             if ttype == "revert":
                 message = _(
-                    "The Correction '%s', reverted reviewers on '%s' back to '%s'"
-                ) % (self.correction_id.name, reviews, reviewers)
+                    "The Correction '{}', reverted reviewers on '{}' back to '{}'"
+                ).format(self.correction_id.name, reviews, reviewers)
             getattr(self.resource_ref.sudo(), post)(
                 subtype_xmlid=(
                     "base_tier_validation_correction.mt_tier_validation_correction"
