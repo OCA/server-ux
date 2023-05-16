@@ -5,13 +5,13 @@
             <button
                 name="request_validation"
                 string="Request Validation"
-                t-attf-attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('#{state_field}', 'not in', [#{state_from}])]}"
+                t-attf-attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('#{state_field}', '#{state_operator}', #{state_value})]}"
                 type="object"
             />
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                t-attf-attrs="{'invisible': ['|',('review_ids', '=', []),('#{state_field}', 'not in', [#{state_from}])]}"
+                t-attf-attrs="{'invisible': ['|',('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}"
                 type="object"
             />
         </div>
@@ -25,7 +25,7 @@
                 class="alert alert-warning"
                 role="alert"
                 t-attf-attrs="{'invisible': ['|', '|', '|',
-             ('validated', '=', True), ('#{state_field}', 'not in', [#{state_from}]),
+             ('validated', '=', True), ('#{state_field}', '#{state_operator}', #{state_value}),
              ('rejected', '=', True), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
@@ -56,7 +56,7 @@
         <div
                 class="alert alert-success"
                 role="alert"
-                t-attf-attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('#{state_field}', 'not in', [#{state_from}]), ('review_ids', '=', [])]}"
+                t-attf-attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('#{state_field}', '#{state_operator}', #{state_value}), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -69,7 +69,7 @@
         <div
                 class="alert alert-danger"
                 role="alert"
-                t-attf-attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('#{state_field}', 'not in', [#{state_from}]), ('review_ids', '=', [])]}"
+                t-attf-attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('#{state_field}', '#{state_operator}', #{state_value}), ('review_ids', '=', [])]}"
                 style="margin-bottom:0px;"
             >
             <p>
