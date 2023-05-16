@@ -193,9 +193,7 @@ class TierValidation(models.AbstractModel):
             tiers = self.env["tier.definition"].search([("model", "=", self._name)])
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
-                not rec.review_ids
-                and valid_tiers
-                and getattr(rec, self._state_field) in self._state_from
+                not rec.review_ids and valid_tiers and rec._check_state_from_condition()
             )
 
     def evaluate_tier(self, tier):
@@ -253,10 +251,16 @@ class TierValidation(models.AbstractModel):
             self.mapped("review_ids").unlink()
         return super(TierValidation, self).write(vals)
 
+    def _check_state_from_condition(self):
+        return self.env.context.get("skip_check_state_condition") or (
+            self._state_field in self._fields
+            and getattr(self, self._state_field) in self._state_from
+        )
+
     def _check_state_conditions(self, vals):
         self.ensure_one()
         return (
-            getattr(self, self._state_field) in self._state_from
+            self._check_state_from_condition()
             and vals.get(self._state_field) in self._state_to
         )
 
@@ -405,7 +409,7 @@ class TierValidation(models.AbstractModel):
         td_obj = self.env["tier.definition"]
         tr_obj = created_trs = self.env["tier.review"]
         for rec in self:
-            if getattr(rec, self._state_field) in self._state_from:
+            if rec._check_state_from_condition():
                 if rec.need_validation:
                     tier_definitions = td_obj.search(
                         [("model", "=", self._name)], order="sequence desc"
@@ -463,6 +467,27 @@ class TierValidation(models.AbstractModel):
         self.mapped("review_ids").unlink()
         return super().unlink()
 
+    def _add_tier_validation_buttons(self, node, params):
+        str_element = self.env["ir.qweb"]._render(
+            "base_tier_validation.tier_validation_buttons", params
+        )
+        new_node = etree.fromstring(str_element)
+        return new_node
+
+    def _add_tier_validation_label(self, node, params):
+        str_element = self.env["ir.qweb"]._render(
+            "base_tier_validation.tier_validation_label", params
+        )
+        new_node = etree.fromstring(str_element)
+        return new_node
+
+    def _add_tier_validation_reviews(self, node, params):
+        str_element = self.env["ir.qweb"]._render(
+            "base_tier_validation.tier_validation_reviews", params
+        )
+        new_node = etree.fromstring(str_element)
+        return new_node
+
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(view_id=view_id, view_type=view_type, **options)
@@ -476,32 +501,27 @@ class TierValidation(models.AbstractModel):
             doc = etree.XML(res["arch"])
             params = {
                 "state_field": self._state_field,
-                "state_from": ",".join("'%s'" % state for state in self._state_from),
+                "state_operator": "not in",
+                "state_value": self._state_from,
             }
             all_models = res["models"].copy()
             for node in doc.xpath(self._tier_validation_buttons_xpath):
                 # By default, after the last button of the header
-                str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_buttons", params
-                )
-                new_node = etree.fromstring(str_element)
+                # _add_tier_validation_buttons process
+                new_node = self._add_tier_validation_buttons(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
                 new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addnext(new_element)
             for node in doc.xpath("/form/sheet"):
-                str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_label", params
-                )
-                new_node = etree.fromstring(str_element)
+                # _add_tier_validation_label process
+                new_node = self._add_tier_validation_label(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
                 new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addprevious(new_element)
-                str_element = self.env["ir.qweb"]._render(
-                    "base_tier_validation.tier_validation_reviews", params
-                )
-                new_node = etree.fromstring(str_element)
+                # _add_tier_validation_reviews process
+                new_node = self._add_tier_validation_reviews(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
                 for model in new_models:
                     if model in all_models:
