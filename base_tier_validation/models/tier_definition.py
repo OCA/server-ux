@@ -23,10 +23,14 @@ class TierDefinition(models.Model):
         default=lambda self: self._get_default_name(),
         translate=True,
     )
+    allowed_model_ids = fields.Many2many(
+        comodel_name="ir.model",
+        compute="_compute_allowed_model_ids",
+    )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",
-        domain=lambda self: [("model", "in", self._get_tier_validation_model_names())],
+        domain="[('id', 'in', allowed_model_ids)]",
     )
     model = fields.Char(related="model_id.model", index=True, store=True)
     review_type = fields.Selection(
@@ -81,6 +85,15 @@ class TierDefinition(models.Model):
     def onchange_review_type(self):
         self.reviewer_id = None
         self.reviewer_group_id = None
+
+    @api.depends("review_type")
+    def _compute_allowed_model_ids(self):
+        """We create this field to use it in other modules
+        (base_changest_tier_validation for example).
+        review_type depends is a trick to compute in form view."""
+        self.allowed_model_ids = self.env["ir.model"].search(
+            [("model", "in", self._get_tier_validation_model_names())]
+        )
 
     @api.depends("review_type", "model_id")
     def _compute_domain_reviewer_field(self):
