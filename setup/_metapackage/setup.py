@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-announcement',
         'odoo13-addon-barcode_action',
         'odoo13-addon-base_action_visibility_restriction',
+        'odoo13-addon-base_binary_url_import',
         'odoo13-addon-base_custom_filter',
         'odoo13-addon-base_duplicate_security_group',
         'odoo13-addon-base_export_manager',
@@ -38,6 +39,7 @@ setuptools.setup(
         'odoo13-addon-multi_step_wizard',
         'odoo13-addon-sequence_check_digit',
         'odoo13-addon-sequence_reset_period',
+        'odoo13-addon-test_base_binary_url_import',
     ],
     classifiers=[
         'Programming Language :: Python',
