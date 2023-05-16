@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record model="ir.config_parameter" id="binary_url_import_max_size_parameter">
+        <field name="key">binary.url.import.max.size</field>
+        <field name="value">10485760</field>
+    </record>
+    <record model="ir.config_parameter" id="binary_url_import_timeout_parameter">
+        <field name="key">binary.url.import.timeout</field>
+        <field name="value">5</field>
+    </record>
+</odoo>
