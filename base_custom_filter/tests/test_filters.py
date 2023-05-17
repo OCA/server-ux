@@ -14,14 +14,28 @@ class Test(SavepointCase):
         filters_group.groupby_field = cls.env.ref(
             "base_custom_filter.field_ir_filters_group__name"
         )
-        filters_group = filters_group.save()
+        cls.filters_groupby = filters_group.save()
 
         filters_group = Form(filters_obj)
         filters_group.name = "Test No filters group"
         filters_group.type = "filter"
         filters_group.model_id = "ir.filters.group"
         filters_group.domain = '[["id","=",1]]'
-        filters_group = filters_group.save()
+        cls.filters_filter = filters_group.save()
+
+        filters_group = Form(filters_obj)
+        filters_group.name = "Test favorite"
+        filters_group.type = "favorite"
+        filters_group.model_id = "ir.filters.group"
+        filters_group.domain = '[["id","=",1]]'
+        cls.filters_favorite = filters_group.save()
+
+    def test_filters_favorite(self):
+        res = self.env["ir.filters"].get_filters("ir.filters.group")
+        res_ids = [item["id"] for item in res]
+        self.assertNotIn(self.filters_groupby.id, res_ids)
+        self.assertNotIn(self.filters_filter.id, res_ids)
+        self.assertIn(self.filters_favorite.id, res_ids)
 
     def test_sale_order_line(self):
         filters_group_obj = self.env["ir.filters.group"]
