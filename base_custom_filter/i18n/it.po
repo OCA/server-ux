@@ -45,7 +45,6 @@ msgid "Custom Filters"
 msgstr "Filtri Personalizzati"
 
 #. module: base_custom_filter
-#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__display_name
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__display_name
 msgid "Display Name"
 msgstr "Nome Visualizzato"
@@ -77,13 +76,11 @@ msgid "Group By Field"
 msgstr "Raggruppa per campo"
 
 #. module: base_custom_filter
-#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__id
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_custom_filter
-#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters____last_update
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
