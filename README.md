@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [base_tier_validation_forward](base_tier_validation_forward/) | 12.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
 [base_user_locale](base_user_locale/) | 12.0.1.0.0 |  | User Locale Settings
 [chained_swapper](chained_swapper/) | 12.0.1.0.1 |  | Chained Swapper
-[date_range](date_range/) | 12.0.2.0.2 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
+[date_range](date_range/) | 12.0.2.1.0 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
 [default_multi_user](default_multi_user/) | 12.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined defaults among several users.
 [document_quick_access](document_quick_access/) | 12.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Document quick access
 [document_quick_access_folder_auto_classification](document_quick_access_folder_auto_classification/) | 12.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Auto classification of Documents after reading a QR
