@@ -36,9 +36,13 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo12.0:latest
+            # See: See: https://github.com/OCA/server-ux/pull/654
+            exclude: "base_import_security_group,base_duplicate_security_group"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb12.0:latest
+            # See: See: https://github.com/OCA/server-ux/pull/654
+            exclude: "base_import_security_group,base_duplicate_security_group"
             name: test with OCB
     services:
       postgres:
@@ -49,6 +53,9 @@ jobs:
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
     steps:
       - uses: actions/checkout@v2
         with:
