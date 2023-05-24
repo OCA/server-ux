@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2021-11-08 19:35+0000\n"
+"PO-Revision-Date: 2023-05-24 11:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
@@ -34,7 +34,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__state
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__state
 msgid "Action To Do"
-msgstr ""
+msgstr "Azione da compiere"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
@@ -48,11 +48,14 @@ msgid ""
 "Add widget text that will be used to display the field in the wizard.\n"
 "Example: 'many2many_tags', 'selection', 'image'"
 msgstr ""
+"Aggiungi testo alla widget che sarà usato per mostrare il campo nella "
+"wizard. \n"
+"Esempio: 'many2many_tags', 'selection', 'image'"
 
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
@@ -73,7 +76,7 @@ msgstr "Applica dominio alle righe"
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_mass_editing_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__create_uid
@@ -102,7 +105,7 @@ msgstr "Campo"
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid "Fields"
-msgstr ""
+msgstr "Campi"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
@@ -141,18 +144,18 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
-msgstr ""
+msgstr "Modifica massiva"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_line_ids
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_line_ids
 msgid "Mass Edit Line"
-msgstr ""
+msgstr "Riga modifica massiva"
 
 #. module: mass_editing
 #: model:ir.model.fields.selection,name:mass_editing.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
-msgstr ""
+msgstr "Modifica massivamente records"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
@@ -163,7 +166,7 @@ msgstr "Riga Modifiche massive"
 #: code:addons/mass_editing/models/mass_editing_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
-msgstr ""
+msgstr "I campi modifica massiva devono appartenere al modello azione server."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_message
@@ -181,13 +184,13 @@ msgstr "Modello"
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__model_id
 msgid "Model on which the server action runs."
-msgstr ""
+msgstr "Modello sul quale l'azione del server si applica."
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "None of the %d record(s) you have selected can be processed."
-msgstr ""
+msgstr "Nessuno dei %d record selezionati possono essere elaborati."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
@@ -229,7 +232,7 @@ msgstr "Sequenza"
 #: model:ir.model,name:mass_editing.model_ir_actions_server
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__server_action_id
 msgid "Server Action"
-msgstr ""
+msgstr "Azione server"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
@@ -241,7 +244,7 @@ msgstr "Imposta"
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "The treatment will be processed on the %d selected record(s)."
-msgstr ""
+msgstr "L'operazione sarà eseguita sui %d record selezionati."
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
@@ -275,6 +278,8 @@ msgid ""
 "You have selected %d record(s) that can not be processed.\n"
 "Only %d record(s) will be processed."
 msgstr ""
+"Hai selezionato %d record che non possono essere elaborati.\n"
+"Solo %d record saranno elaborati."
 
 #~ msgid "Action Name"
 #~ msgstr "Nome Azione"
