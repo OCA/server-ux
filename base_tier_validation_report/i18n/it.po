@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-27 13:07+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-05-29 16:08+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_all_action
@@ -93,7 +93,7 @@ msgstr "Tipo risorsa"
 #. module: base_tier_validation_report
 #: model:ir.ui.menu,name:base_tier_validation_report.menu_tier_validation_report
 msgid "Reviews"
-msgstr "Approvazioni"
+msgstr "Revisioni"
 
 #. module: base_tier_validation_report
 #: model:res.groups,name:base_tier_validation_report.group_see_all_reviews
