@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-17 16:34+0000\n"
+"PO-Revision-Date: 2023-05-29 16:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -316,7 +316,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
 msgid "Need Validation"
-msgstr "Richiede Approvazione"
+msgstr "Richiede approvazione"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_definition.py:0
@@ -444,7 +444,7 @@ msgstr "Revisione"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_id
 msgid "Reviewer"
-msgstr "Approvatore"
+msgstr "Revisore"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
@@ -462,7 +462,7 @@ msgstr "Gruppo approvatori"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__reviewer_ids
 msgid "Reviewers"
-msgstr "Approvatori"
+msgstr "Revisori"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -533,7 +533,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_tree
 msgid "Tier Definition"
-msgstr "Definizione Livello"
+msgstr "Definizione livello"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
