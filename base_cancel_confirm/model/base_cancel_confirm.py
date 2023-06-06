@@ -51,11 +51,14 @@ class BaseCancelConfirm(models.AbstractModel):
     def clear_cancel_confirm_data(self):
         self.write({"cancel_confirm": False, "cancel_reason": False})
 
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    def get_view(
+        self,
+        view_id=None,
+        view_type="form",
     ):
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        res = super().get_view(
+            view_id=view_id,
+            view_type=view_type,
         )
         if view_type == "form":
             doc = etree.XML(res["arch"])
@@ -67,13 +70,14 @@ class BaseCancelConfirm(models.AbstractModel):
                 for new_element in new_node:
                     node.addnext(new_element)
             # Override context for postprocessing
-            View = self.env["ir.ui.view"]
-            if view_id and res.get("base_model", self._name) != self._name:
-                View = View.with_context(base_model_name=res["base_model"])
-            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
+            view_env = self.env["ir.ui.view"]
+            if view_id:
+                view = view_env.search([("id", "=", view_id)])
+                res["model"] = view.model if view else res["model"]
+            new_arch, new_fields = view_env.postprocess_and_fields(doc, self._name)
             res["arch"] = new_arch
             # We don't want to loose previous configuration, so, we only want to add
             # the new fields
-            new_fields.update(res["fields"])
-            res["fields"] = new_fields
+            new_fields.update(res["models"])
+            res["models"] = new_fields
         return res
