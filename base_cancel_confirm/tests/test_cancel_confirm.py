@@ -64,10 +64,24 @@ class TestCancelConfirm(common.TransactionCase):
         self.assertEqual(self.test_record.cancel_reason, False)
         self.assertEqual(self.test_record.state, "draft")
         # Check set no cancel reason, reason should be False
-        wizard.has_cancel_reason = "no"
+        # wizard.has_cancel_reason = "no" Invisible field cant write
         wiz = wizard.save()
         # Confirm cancel on wizard
         wiz.confirm_cancel()
+        self.assertTrue(self.test_record.cancel_reason)
+
+    def test_02_cancel_confirm_tester(self):
+        self.test_record.action_confirm()
+        res = self.test_record.action_cancel()
+        ctx = res.get("context")
+        # Check set no cancel reason, reason should be "no"
+        ctx["default_has_cancel_reason"] = "no"
+        wizard = Form(self.env["cancel.confirm"].with_context(**ctx))
+        self.assertEqual(wizard.has_cancel_reason, "no")
+        wiz = wizard.save()
+        # Confirm cancel on wizard
+        wiz.confirm_cancel()
+        self.test_record.action_confirm()
         self.assertFalse(self.test_record.cancel_reason)
 
     def test_view_automatic(self):
@@ -92,15 +106,15 @@ class TestCancelConfirm(common.TransactionCase):
 
         # Check view difference, it should change base_model from view_id
         wizard_lang_export = self.env.ref("base.wizard_lang_export")
-        res = self.test_record.fields_view_get(
+        res = self.test_record.get_view(
             view_id=wizard_lang_export.id,
             view_type="form",
         )
-        self.assertEqual(res.get("base_model"), wizard_lang_export.model)
+        self.assertEqual(res["model"], wizard_lang_export.model)
 
         # Check view type is tree.
         wizard_lang_export = self.env.ref("base.wizard_lang_export")
-        self.test_record.fields_view_get(
+        self.test_record.get_view(
             view_id=wizard_lang_export.id,
             view_type="tree",
         )
