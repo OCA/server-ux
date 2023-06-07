@@ -19,7 +19,10 @@ class IrFiltersGroup(models.Model):
     )
     name = fields.Char(required=True, translate=True)
     type = fields.Selection(
-        selection="_selection_type", string="Type", required=True, default="filter",
+        selection="_selection_type",
+        string="Type",
+        required=True,
+        default="filter",
     )
     filter_ids = fields.One2many(
         comodel_name="ir.filters", inverse_name="group_id", string="Filters"

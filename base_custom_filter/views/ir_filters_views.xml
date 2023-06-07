@@ -65,7 +65,7 @@
             </field>
             <field name="action_id" position="after">
                 <field name="type" />
-                <field name="groupby_field" optional="hide" />
+                <field name="groupby_field" />
             </field>
         </field>
     </record>
@@ -79,8 +79,8 @@
                 <field name="model_id" />
                 <field name="type" />
                 <field name="group_id" />
-                <field name="domain" optional="hide" />
-                <field name="groupby_field" optional="hide" />
+                <field name="domain" />
+                <field name="groupby_field" />
             </tree>
         </field>
     </record>

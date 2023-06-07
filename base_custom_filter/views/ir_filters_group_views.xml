@@ -35,8 +35,16 @@
                                         </h1>
                                     </div>
                                     <group>
-                                        <field name="model_id" readonly="1" />
-                                        <field name="type" readonly="1" />
+                                        <field
+                                            name="model_id"
+                                            readonly="1"
+                                            force_save="1"
+                                        />
+                                        <field
+                                            name="type"
+                                            readonly="1"
+                                            force_save="1"
+                                        />
                                         <field
                                             name="domain"
                                             widget="domain"
