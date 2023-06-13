@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [base_custom_filter](base_custom_filter/) | 16.0.1.0.0 | [![AshishHirapara](https://github.com/AshishHirapara.png?size=30px)](https://github.com/AshishHirapara) [![ForgeFlow](https://github.com/ForgeFlow.png?size=30px)](https://github.com/ForgeFlow) | Add custom filters in standard filters and group by dropdowns
 [base_optional_quick_create](base_optional_quick_create/) | 16.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_revision](base_revision/) | 16.0.1.0.0 |  | Keep track of revised document
+[base_substate](base_substate/) | 16.0.1.0.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 16.0.1.0.0 |  | Access to technical features without activating debug mode
 [base_tier_validation](base_tier_validation/) | 16.0.1.0.4 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
 [base_tier_validation_formula](base_tier_validation_formula/) | 16.0.1.0.0 |  | Formulas for Base tier validation
