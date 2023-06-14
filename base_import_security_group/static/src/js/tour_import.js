@@ -10,10 +10,12 @@ odoo.define("base_import_security_group.tour", function (require) {
             url: "/web",
         },
         [
-            tour.stepUtils.showAppsMenuItem(),
+            {
+                trigger: ".o_navbar_apps_menu > button.dropdown-toggle",
+            },
             {
                 id: "settings_menu_click",
-                trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
+                trigger: '[data-menu-xmlid="base.menu_administration"]',
             },
             {
                 id: "settings_menu_users_and_companies",
@@ -40,10 +42,12 @@ odoo.define("base_import_security_group.tour", function (require) {
             url: "/web",
         },
         [
-            tour.stepUtils.showAppsMenuItem(),
+            {
+                trigger: ".o_navbar_apps_menu > button.dropdown-toggle",
+            },
             {
                 id: "settings_menu_click",
-                trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
+                trigger: '[data-menu-xmlid="base.menu_administration"]',
             },
             {
                 id: "settings_menu_users_and_companies",
