@@ -1,5 +1,5 @@
 # Copyright 2021 Opener B.V. <stefan@opener.amsterdam>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from lxml import etree
 
 from odoo import _, api, fields, models
