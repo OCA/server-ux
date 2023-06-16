@@ -33,7 +33,7 @@
             <field name="domain" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('type', '=', 'groupby')]}</attribute>
+                >{'invisible': [('type', 'in', ['search', 'groupby'])]}</attribute>
             </field>
             <field name="domain" position="after">
                 <field
