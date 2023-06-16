@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Studio73 - Pablo Fuentes (https://www.studio73.es)
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
 <template>
     <t t-inherit="web.CustomFilterItem" t-inherit-mode="extension">
         <xpath expr="//span[hasclass('o_generator_menu_value')]" position="replace">
