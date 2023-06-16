@@ -76,8 +76,6 @@ class Base(models.AbstractModel):
             )
             if search_field.filter_domain:
                 new_field.set("filter_domain", search_field.filter_domain)
-            if search_field.domain:
-                new_field.set("domain", search_field.domain)
             xml_arch.append(new_field)
         res["arch"] = etree.tostring(xml_arch)
         return res

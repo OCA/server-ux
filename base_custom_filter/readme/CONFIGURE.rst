@@ -6,7 +6,6 @@
 
       * Search Field (``name``)
       * Filter Domain (``filter_domain``)
-      * Domain (``domain``)
       * User Groups (``groups``)
 
    Filter:
