@@ -1,6 +1,6 @@
 /* Copyright 2016 ACSONE SA/NV (<https://acsone.eu>)
  * Copyright 2021 Studio73 - Pablo Fuentes (https://www.studio73.es)
- * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
+ * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). */
 
 odoo.define("date_range.CustomFilterItem", function (require) {
     "use strict";
