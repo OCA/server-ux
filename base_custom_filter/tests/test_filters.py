@@ -41,7 +41,7 @@ class Test(TransactionCase):
         # Test get_view() content
         view_dict = self.filters_group_obj.get_view(view_type="search")
         view_content = view_dict.get("arch", b"").decode("utf-8")
-        search_string = '<field name="display_name" filter_domain="[\'display_name\', \'ilike\', self]" domain="[]"/>'  # noqa: B950
+        search_string = "<field name=\"display_name\" filter_domain=\"['display_name', 'ilike', self]\"/>"  # noqa: B950
         self.assertIn(
             search_string, view_content, "The string is not in the returned view"
         )
