@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo13-addon-base_ir_actions_sequence',
         'odoo13-addon-base_menu_visibility_restriction',
         'odoo13-addon-base_optional_quick_create',
+        'odoo13-addon-base_recurrence',
         'odoo13-addon-base_rule_visibility_restriction',
         'odoo13-addon-base_search_custom_field_filter',
         'odoo13-addon-base_substate',
