@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mass_operation_abstract.access_mass_operation_mixin,access_mass_operation_mixin,mass_operation_abstract.model_mass_operation_mixin,base.group_user,1,1,1,1
+mass_operation_abstract.access_mass_operation_wizard_mixin,access_mass_operation_wizard_mixin,mass_operation_abstract.model_mass_operation_wizard_mixin,base.group_user,1,1,1,1

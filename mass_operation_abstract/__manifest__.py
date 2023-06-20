@@ -5,7 +5,7 @@
 
 {
     "name": "Mass Operation Abstract",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "author": "GRAP, " "Odoo Community Association (OCA)",
     "summary": "Abstract Tools used for modules that realize operation on many items",
     "category": "Tools",
@@ -13,9 +13,10 @@
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
+        "security/ir.model.access.csv",
         "views/menu.xml",
-        "views/view_mass_operation_mixin.xml",
-        "views/view_mass_operation_wizard_mixin.xml",
+        "wizard/view_mass_operation_mixin.xml",
+        "wizard/view_mass_operation_wizard_mixin.xml",
     ],
     "demo": ["demo/res_groups.xml"],
 }

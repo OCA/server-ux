@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-01 16:46+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2020-12-28 23:44+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:0
@@ -43,7 +43,7 @@ msgid "Add sidebar button"
 msgstr "Aggiungi pulsante laterale"
 
 #. module: mass_operation_abstract
-#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__groups_id
 msgid "Allowed Groups"
 msgstr "Gruppi Consentiti"
 
@@ -61,7 +61,7 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__display_name
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr "Nome Visualizzato"
 
 #. module: mass_operation_abstract
 #: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
@@ -151,11 +151,6 @@ msgid "Remove sidebar button"
 msgstr "Rimuovi pulsante laterale"
 
 #. module: mass_operation_abstract
-#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
-msgid "Security"
-msgstr ""
-
-#. module: mass_operation_abstract
 #: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__selected_item_qty
 msgid "Selected Item Qty"
 msgstr "Qta Elementi Selezionati"
@@ -185,24 +180,18 @@ msgstr "L'operazione sarà eseguita sugli %d elementi selezionati."
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
 #, python-format
 msgid ""
-"There is no more element that corresponds to the rules of the domain.\n"
-" Please refresh your list and try to select again the items."
-msgstr ""
-
-#. module: mass_operation_abstract
-#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
-#, python-format
-msgid ""
 "You have selected %d items that can not be processed. Only %d items will be "
 "processed."
 msgstr ""
 "Hai selezionato %d elementi che non possono essere elaborati. Solo %d "
 "elementi saranno elaborati."
 
-#~ msgid ""
-#~ "there is no more element that corresponds to the rules of the domain.\n"
-#~ " Please refresh your list and try to select again the items."
-#~ msgstr ""
-#~ "non ci sono ulteriori elementi che corrispondono alle regole del "
-#~ "dominio.\n"
-#~ " Prego aggiornare la lista e provare a selezionare di nuovo gli elementi."
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid ""
+"there is no more element that corresponds to the rules of the domain.\n"
+" Please refresh your list and try to select again the items."
+msgstr ""
+"non ci sono ulteriori elementi che corrispondono alle regole del dominio.\n"
+" Prego aggiornare la lista e provare a selezionare di nuovo gli elementi."
