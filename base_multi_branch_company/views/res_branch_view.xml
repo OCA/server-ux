@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_branch_view_tree" model="ir.ui.view">
+        <field name="name">res.branch.view.tree</field>
+        <field name="model">res.branch</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+    <record id="res_branch_view_search" model="ir.ui.view">
+        <field name="name">res.branch.view.search</field>
+        <field name="model">res.branch</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="Branch"
+                    filter_domain="[('name','ilike',self)]"
+                />
+                <filter
+                    name="active"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group string="Group By" name="groupby">
+                    <filter
+                        string="Company"
+                        name="groupby_company"
+                        context="{'group_by': 'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="res_branch_view_form" model="ir.ui.view">
+        <field name="name">res.branch.view.form</field>
+        <field name="model">res.branch</field>
+        <field name="arch" type="xml">
+            <form string="Branch">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <label for="street" string="Address" />
+                            <div class="o_address_format">
+                                <field
+                                    name="street"
+                                    placeholder="Street..."
+                                    class="o_address_street"
+                                />
+                                <field
+                                    name="street2"
+                                    placeholder="Street 2..."
+                                    class="o_address_street"
+                                />
+                                <field
+                                    name="city"
+                                    placeholder="City"
+                                    class="o_address_city"
+                                />
+                                <field
+                                    name="state_id"
+                                    class="o_address_state"
+                                    placeholder="State"
+                                    options='{"no_open": True}'
+                                />
+                                <field
+                                    name="zip"
+                                    placeholder="ZIP"
+                                    class="o_address_zip"
+                                />
+                                <field
+                                    name="country_id"
+                                    placeholder="Country"
+                                    class="o_address_country"
+                                    options='{"no_open": True, "no_create": True}'
+                                />
+                            </div>
+                            <field name="email" />
+                            <field name="phone" />
+                        </group>
+                        <group>
+                            <field name="company_id" />
+                            <field name="active" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_res_branch" model="ir.actions.act_window">
+        <field name="name">Branches</field>
+        <field name="view_id" ref="res_branch_view_tree" />
+        <field name="res_model">res.branch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_action_res_branch"
+        parent="base.menu_users"
+        action="action_res_branch"
+    />
+</odoo>
