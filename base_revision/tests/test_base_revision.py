@@ -88,3 +88,13 @@ class TestBaseRevision(common.TransactionCase):
         tester_3 = tester_2.copy({"name": "TEST0002"})
         # Check the 'Reference' of the copied tester
         self.assertEqual(tester_3.name, tester_3.unrevisioned_name)
+
+    def test_create_multiple(self):
+        """Check copy process"""
+        # Create a tester
+        tester_2 = self.revision_model.create(
+            [{"name": "TEST0001"}, {"name": "TEST0002"}]
+        )
+        # Check the 'Order Reference' of the tester
+        for tester in tester_2:
+            self.assertEqual(tester.name, tester.unrevisioned_name)
