@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_custom_filter](base_custom_filter/) | 16.0.1.0.0 | [![AshishHirapara](https://github.com/AshishHirapara.png?size=30px)](https://github.com/AshishHirapara) [![ForgeFlow](https://github.com/ForgeFlow.png?size=30px)](https://github.com/ForgeFlow) | Add custom filters in standard filters and group by dropdowns
+[base_menu_visibility_restriction](base_menu_visibility_restriction/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
 [base_optional_quick_create](base_optional_quick_create/) | 16.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_revision](base_revision/) | 16.0.1.0.0 |  | Keep track of revised document
 [base_substate](base_substate/) | 16.0.1.0.0 |  | Base Sub State
