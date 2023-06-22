@@ -24,11 +24,11 @@ class TierTierValidation(CommonTierValidation):
         self.assertFalse(doc_user2.can_review)
         # User 1, is the reviewer as specified in the tier.definition
         doc_user1 = self.test_record.with_user(self.test_user_1.id)
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertTrue(doc_user1.can_review)
         # Change Reviewer from user 1 -> user 2
         ctx = {"active_id": doc_user1.id, "active_model": doc_user1._name}
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertFalse(res["domain"])  # No existing correction, create new
         correction = self.env["tier.correction"].create(
             {
@@ -66,18 +66,18 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(reviews)
         # Make correction, now user 2 can review
         correction.action_done()
-        doc_user2.invalidate_cache()
+        doc_user2._invalidate_cache()
         self.assertTrue(doc_user2.can_review)
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertFalse(doc_user1.can_review)
         # Make reversion, now user 1 can reivew
         correction.action_revert()
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertTrue(doc_user1.can_review)
-        doc_user2.invalidate_cache()
+        doc_user2._invalidate_cache()
         self.assertFalse(doc_user2.can_review)
         # From the document, view tier correction once again
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertEqual(res["domain"][0][2], [correction.id])
 
     def test_01_tier_correction_by_scheduler(self):
@@ -93,11 +93,11 @@ class TierTierValidation(CommonTierValidation):
         self.assertFalse(doc_user2.can_review)
         # User 1, is the reviewer as specified in the tier.definition
         doc_user1 = self.test_record.with_user(self.test_user_1.id)
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertTrue(doc_user1.can_review)
         # Change Reviewer from user 1 -> user 2
         ctx = {"active_id": doc_user1.id, "active_model": doc_user1._name}
-        res = doc_user1.with_context(ctx).view_tier_correction()
+        res = doc_user1.with_context(**ctx).view_tier_correction()
         self.assertFalse(res["domain"])  # No existing correction, create new
         correction = self.env["tier.correction"].create(
             {
@@ -116,9 +116,9 @@ class TierTierValidation(CommonTierValidation):
         correction.action_prepare()
         self.assertEqual(correction.state, "prepare")
         scheduler.method_direct_trigger()
-        doc_user2.invalidate_cache()
+        doc_user2._invalidate_cache()
         self.assertTrue(doc_user2.can_review)
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertFalse(doc_user1.can_review)
         # Run Schedulder, to revert
         with self.assertRaises(ValidationError):
@@ -129,7 +129,7 @@ class TierTierValidation(CommonTierValidation):
         )
         self.assertEqual(correction.state, "done")
         scheduler.method_direct_trigger()
-        doc_user2.invalidate_cache()
+        doc_user2._invalidate_cache()
         self.assertTrue(doc_user1.can_review)
-        doc_user1.invalidate_cache()
+        doc_user1._invalidate_cache()
         self.assertFalse(doc_user2.can_review)
