@@ -496,6 +496,7 @@ msgstr "İncelemeler"
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Sıra"
@@ -551,11 +552,6 @@ msgid ""
 msgstr ""
 "Bu eylemin en az bir kayıt için doğrulanması gerekir.\n"
 "Lütfen doğrulama isteğinde bulunun."
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
-msgstr "Seviye"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -675,3 +671,6 @@ msgstr "Doğrulamalar"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ör. Şunun için Seviye Doğrulaması..."
+
+#~ msgid "Tier"
+#~ msgstr "Seviye"
