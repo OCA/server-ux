@@ -142,8 +142,7 @@ class IrExportsLine(models.Model):
             if any(parts):
                 # invalidate_cache -> in order to get actual value of field 'label'
                 # in function '_check_name'
-                self.invalidate_cache(ids=one.ids)
-                one._check_name()
+                self.env.invalidate_all()
 
     @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
