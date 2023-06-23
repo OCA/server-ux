@@ -7,20 +7,19 @@ from odoo.tests.common import TransactionCase
 
 
 class TestIrExportsLineCase(TransactionCase):
-    def setUp(self):
-        super(TestIrExportsLineCase, self).setUp()
-        m_ir_exports = self.env["ir.exports"]
-        self.export = m_ir_exports.create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        m_ir_exports = cls.env["ir.exports"]
+        cls.export = m_ir_exports.create(
             {"name": "Partner Test", "resource": "res.partner"}
         )
-        self.partner_model = self.env["ir.model"].search(
-            [("model", "=", "res.partner")]
+        cls.partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
+        cls.field_parent_id = cls.env["ir.model.fields"].search(
+            [("name", "=", "parent_id"), ("model_id", "=", cls.partner_model.id)]
         )
-        self.field_parent_id = self.env["ir.model.fields"].search(
-            [("name", "=", "parent_id"), ("model_id", "=", self.partner_model.id)]
-        )
-        self.field_name = self.env["ir.model.fields"].search(
-            [("name", "=", "name"), ("model_id", "=", self.partner_model.id)]
+        cls.field_name = cls.env["ir.model.fields"].search(
+            [("name", "=", "name"), ("model_id", "=", cls.partner_model.id)]
         )
 
     def _record_create(self, field_name):
