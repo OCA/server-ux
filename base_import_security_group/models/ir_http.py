@@ -13,6 +13,7 @@ class Http(models.AbstractModel):
         res = super().session_info()
         allowed_group = "base_import_security_group.group_import_csv"
         allowed_group_id = request.env.ref(allowed_group, raise_if_not_found=False)
-        if not allowed_group_id or request.env.user.has_group(allowed_group):
-            res["base_import_security_group__allow_import"] = 1
+        res["base_import_security_group__allow_import"] = (
+            1 if allowed_group_id and request.env.user.has_group(allowed_group) else 0
+        )
         return res
