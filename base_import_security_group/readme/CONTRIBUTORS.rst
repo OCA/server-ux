@@ -14,3 +14,7 @@
 * `Opener B.V. <https://opener.amsterdam/>`_:
 
   * Stefan Rijnhart <stefan@opener.amsterdam>
+
+* `ACSONE SA/NV <https://acsone.eu/>`_:
+
+  * Souheil Bejaoui <souheil.bejaoui@acsone.eu>
