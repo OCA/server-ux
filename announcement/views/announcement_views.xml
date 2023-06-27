@@ -67,6 +67,9 @@
                         </h1>
                     </div>
                     <group>
+                        <field name="is_general_announcement" />
+                    </group>
+                    <group>
                         <field name="active" invisible="1" />
                         <group name="announcement_validity">
                             <field name="notification_date" string="Announce at" />
@@ -115,7 +118,10 @@
                 </button>
             </xpath>
             <group name="announcement_validity" position="before">
-                <group name="announcement_scope">
+                <group
+                    name="announcement_scope"
+                    attrs="{'invisible': [('is_general_announcement', '=', True)]}"
+                >
                     <field name="announcement_type" />
                     <field
                         name="specific_user_ids"

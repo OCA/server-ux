@@ -20,6 +20,7 @@ class Announcement(models.Model):
     sequence = fields.Integer()
     name = fields.Char(string="Title", required=True)
     content = fields.Html()
+    is_general_announcement = fields.Boolean("General Announcement")
     announcement_type = fields.Selection(
         selection=[
             ("specific_users", "Specific users"),
@@ -33,7 +34,12 @@ class Announcement(models.Model):
         domain=[("share", "=", False)],
         inverse="_inverse_specific_user_ids",
     )
-    user_group_ids = fields.Many2many(comodel_name="res.groups")
+    user_group_ids = fields.Many2many(
+        comodel_name="res.groups",
+        compute="_compute_user_group_ids",
+        store=True,
+        readonly=False,
+    )
     allowed_user_ids = fields.Many2many(
         comodel_name="res.users",
         relation="announcement_res_users_allowed_rel",
@@ -83,6 +89,16 @@ class Announcement(models.Model):
         for announcement in self - specific_user_announcements:
             announcement.allowed_user_ids = announcement.user_group_ids.users
             announcement.allowed_users_count = len(announcement.user_group_ids.users)
+
+    @api.depends("is_general_announcement")
+    def _compute_user_group_ids(self):
+        for announcement in self:
+            if announcement.is_general_announcement:
+                announcement.announcement_type = "user_group"
+                announcement.user_group_ids = self.env.ref("base.group_user")
+            else:
+                announcement.specific_user_ids = False
+                announcement.user_group_ids = False
 
     @api.depends("announcement_log_ids")
     def _compute_read_announcement_count(self):
