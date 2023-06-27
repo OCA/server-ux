@@ -8,7 +8,7 @@ from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval
 
 
-class MassOperationWizardMixin(models.Model):
+class MassOperationWizardMixin(models.AbstractModel):
     _name = "mass.operation.wizard.mixin"
     _description = "Abstract Mass Operations Wizard"
 
@@ -35,7 +35,7 @@ class MassOperationWizardMixin(models.Model):
 
     @api.model
     def default_get(self, fields):
-        res = super().default_get(fields)
+        res = super(MassOperationWizardMixin, self).default_get(fields)
 
         mass_operation = self._get_mass_operation()
 
@@ -49,22 +49,20 @@ class MassOperationWizardMixin(models.Model):
 
         if len(active_ids) == len(remaining_items):
             operation_description_info = _(
-                "The treatment will be processed on the {} selected"
-                " elements.".format(len(active_ids))
-            )
+                "The treatment will be processed on the %d selected elements."
+            ) % len(active_ids)
         elif len(remaining_items):
             operation_description_warning = _(
-                "You have selected {} items that can not be processed."
-                " Only {} items will be processed.".format(
-                    len(active_ids) - len(remaining_items), len(remaining_items)
-                )
-            )
+                "You have selected %(items)d items that can not be processed."
+                " Only %(value)d items will be processed."
+            ) % {
+                "items": len(active_ids) - len(remaining_items),
+                "value": len(remaining_items),
+            }
         else:
             operation_description_danger = _(
-                "None of the {} items you have selected can be processed.".format(
-                    len(active_ids)
-                )
-            )
+                "None of the %d items you have selected can be processed."
+            ) % len(active_ids)
 
         res.update(
             {
