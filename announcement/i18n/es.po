@@ -123,6 +123,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
+msgid "General Announcement"
+msgstr ""
+
+#. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
 msgid "Groups"
 msgstr "Grupos"
@@ -138,6 +143,16 @@ msgstr "ID (identificación)"
 #: model:ir.model.fields,field_description:announcement.field_announcement__in_date
 msgid "In Date"
 msgstr "En fecha"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__archive_date
+msgid "Last Archived on"
+msgstr ""
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement____last_update
