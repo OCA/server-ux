@@ -1,0 +1,235 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_binary_url_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_binary_url_import
+#: model:ir.actions.act_window,name:base_binary_url_import.action_wizard_base_binary_url_import
+#: model:ir.ui.menu,name:base_binary_url_import.menu_binary_url_import
+msgid "Binary Import From URL"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
+msgid "Cancel"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid "Could not retrieve URL: %(url)s : %(error)s"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__create_uid
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__create_date
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__display_name
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid "File size exceeds configured maximum (%s bytes)"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"Following DB IDs intersect with XML IDs:\n"
+" %s"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"Following IDs do not exist in database:\n"
+" %s"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"Following XML IDs do not exist in database:\n"
+" %s"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__id
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__id
+msgid "ID"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid "Identifier %s is not an Integer or XMLID"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.ui.menu,name:base_binary_url_import.menu_import
+#: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
+msgid "Import"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model,name:base_binary_url_import.model_base_binary_url_import
+msgid "Import of binaries from URL wizard"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model,name:base_binary_url_import.model_base_binary_url_import_line
+msgid "Import of binaries from URL wizard line"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__is_target_record_identifier_required
+msgid "Is Target Record Identifier Required"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import____last_update
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__write_uid
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__write_date
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
+msgid "Record ID or XMLID"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"Same XML IDs are duplicated:\n"
+" %s"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"Same database IDs are duplicated:\n"
+" %s"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_field_id
+msgid "Target Binary Field"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_field_domain
+msgid "Target Binary Field Domain"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_filename_field_id
+msgid "Target Binary Filename Field"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_filename_field_domain
+msgid "Target Binary Filename Field Domain"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_model_id
+msgid "Target Model"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__target_record_identifier
+msgid "Target record ID"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__binary_url_to_import
+msgid "URL to import"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid "Updated records"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: base_binary_url_import
+#: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
+msgid "Write your lines one by one or copy paste a CSV-like list with ID,URL."
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"XML ID %(xml_id)s matches a record of model %(model_name)s instead of model "
+"%(tagert_model_name)s"
+msgstr ""
+
+#. module: base_binary_url_import
+#. odoo-python
+#: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
+#, python-format
+msgid ""
+"You can not import files via URL, check with your administrator for the "
+"reason."
+msgstr ""
