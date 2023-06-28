@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[base_binary_url_import](base_binary_url_import/) | 16.0.1.0.0 |  | Wizard to import binary files from URL on existing records
 [base_cancel_confirm](base_cancel_confirm/) | 16.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Base Cancel Confirm
 [base_custom_filter](base_custom_filter/) | 16.0.1.0.0 | [![AshishHirapara](https://github.com/AshishHirapara.png?size=30px)](https://github.com/AshishHirapara) [![ForgeFlow](https://github.com/ForgeFlow.png?size=30px)](https://github.com/ForgeFlow) | Add custom filters in standard filters and group by dropdowns
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
@@ -36,6 +37,7 @@ addon | version | maintainers | summary
 [multi_step_wizard](multi_step_wizard/) | 16.0.1.0.0 |  | Multi-Steps Wizards
 [sequence_reset_period](sequence_reset_period/) | 16.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [server_action_mass_edit](server_action_mass_edit/) | 16.0.2.0.1 |  | Mass Editing
+[test_base_binary_url_import](test_base_binary_url_import/) | 16.0.1.0.0 |  | Unittests for Base Binary URL Import module
 [user_all_groups](user_all_groups/) | 16.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Automatically add admin user to all the groups
 
 [//]: # (end addons)
