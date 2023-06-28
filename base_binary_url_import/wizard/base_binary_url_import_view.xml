@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="base_binary_url_import_form">
+        <field name="name">base.binary.url.import.form</field>
+        <field name="model">base.binary.url.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="target_model_id" options="{'no_create': True}" />
+                        <field
+                            name="target_binary_field_id"
+                            options="{'no_create': True}"
+                            domain="target_binary_field_domain"
+                        />
+                        <field name="target_binary_field_domain" invisible="1" />
+                        <field
+                            name="target_binary_filename_field_id"
+                            options="{'no_create': True}"
+                            domain="target_binary_filename_field_domain"
+                        />
+                        <field
+                            name="target_binary_filename_field_domain"
+                            invisible="1"
+                        />
+                    </group>
+                    <field name="line_ids">
+                        <tree editable="bottom">
+                            <field
+                                name="target_record_identifier"
+                                placeholder="Record ID or XMLID"
+                                attrs="{'required': [('is_target_record_identifier_required', '=', True)]}"
+                            />
+                            <field
+                                name="is_target_record_identifier_required"
+                                invisible="1"
+                            />
+                            <field
+                                name="binary_url_to_import"
+                                widget="text"
+                                placeholder="Write your lines one by one or copy paste a CSV-like list with ID,URL."
+                            />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="action_import_lines"
+                        string="Import"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_wizard_base_binary_url_import">
+        <field name="name">Binary Import From URL</field>
+        <field name="res_model">base.binary.url.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="menu_import"
+        name="Import"
+        sequence="50"
+        action="action_wizard_base_binary_url_import"
+        parent="base.menu_custom"
+    />
+    <menuitem
+        id="menu_binary_url_import"
+        name="Binary Import From URL"
+        sequence="10"
+        action="action_wizard_base_binary_url_import"
+        parent="menu_import"
+    />
+</odoo>
