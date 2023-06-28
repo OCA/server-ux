@@ -1,22 +1,43 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-
-from odoo_test_helper import FakeModelLoader
-
 from odoo.tests import common
+
+from .tier_validation_tester import TierValidationTester, TierValidationTester2
+
+
+def setup_test_model(env, model_clses):
+    for model_cls in model_clses:
+        model_cls._build_model(env.registry, env.cr)
+
+    env.registry.setup_models(env.cr)
+    env.registry.init_models(
+        env.cr,
+        [model_cls._name for model_cls in model_clses],
+        dict(env.context, update_custom_fields=True),
+    )
+
+
+def teardown_test_model(env, model_clses):
+    for model_cls in model_clses:
+        del env.registry.models[model_cls._name]
+    env.registry.setup_models(env.cr)
 
 
 class CommonTierValidation(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(CommonTierValidation, cls).setUpClass()
-
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .tier_validation_tester import TierValidationTester, TierValidationTester2
-
-        cls.loader.update_registry((TierValidationTester, TierValidationTester2))
-
+        super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
+        setup_test_model(cls.env, [TierValidationTester, TierValidationTester2])
         cls.test_model = cls.env[TierValidationTester._name]
         cls.test_model_2 = cls.env[TierValidationTester2._name]
 
@@ -75,5 +96,5 @@ class CommonTierValidation(common.SavepointCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super(CommonTierValidation, cls).tearDownClass()
+        teardown_test_model(cls.env, [TierValidationTester, TierValidationTester2])
+        return super().tearDownClass()

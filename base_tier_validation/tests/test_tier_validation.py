@@ -481,9 +481,6 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
 
-
-@tagged("at_install")
-class TierTierValidationView(CommonTierValidation):
     def test_view_manual(self):
         # We need to add a view in order to ensure that an automatic view with all
         # fields is not created
