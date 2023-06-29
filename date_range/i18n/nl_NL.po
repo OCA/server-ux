@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
 "PO-Revision-Date: 2021-04-18 11:46+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
-"23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,6 +163,18 @@ msgstr "ID"
 msgid "If sets date range of same type must not overlap."
 msgstr ""
 "Indien ingesteld ogen datum bereiken van hetzelfde type niet overlappen."
+
+#. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range__archive_uid
+#: model:ir.model.fields,field_description:date_range.field_date_range_type__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range__archive_date
+#: model:ir.model.fields,field_description:date_range.field_date_range_type__archive_date
+msgid "Last Archived on"
+msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
