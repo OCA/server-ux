@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [announcement](announcement/) | 13.0.2.1.0 |  | Notify internal users about relevant organization stuff
 [barcode_action](barcode_action/) | 13.0.1.0.0 |  | Allows to use barcodes as a launcher
 [base_action_visibility_restriction](base_action_visibility_restriction/) | 13.0.1.0.0 | [![JordiMForgeFlow](https://github.com/JordiMForgeFlow.png?size=30px)](https://github.com/JordiMForgeFlow) | Restrict (with groups) action visibilty
+[base_archive_date](base_archive_date/) | 13.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Adds an archive timestamp and user doing the archiving to all models.
 [base_binary_url_import](base_binary_url_import/) | 13.0.1.0.0 |  | Wizard to import binary files from URL on existing records
 [base_custom_filter](base_custom_filter/) | 13.0.1.0.0 | [![JordiMForgeFlow](https://github.com/JordiMForgeFlow.png?size=30px)](https://github.com/JordiMForgeFlow) | Add custom filters in standard filters and group by dropdowns
 [base_duplicate_security_group](base_duplicate_security_group/) | 13.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Adds a security group to restrict which users can copy records
@@ -54,6 +55,7 @@ addon | version | maintainers | summary
 [sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 |  | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [test_base_binary_url_import](test_base_binary_url_import/) | 13.0.1.0.0 |  | Unittests for Base Binary URL Import module
+[web_archive_date](web_archive_date/) | 13.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
 
 [//]: # (end addons)
 
