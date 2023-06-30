@@ -119,6 +119,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
+msgid "General Announcement"
+msgstr ""
+
+#. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
 msgid "Groups"
 msgstr ""
