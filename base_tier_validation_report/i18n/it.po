@@ -28,24 +28,9 @@ msgid "Approved"
 msgstr "Approvato"
 
 #. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__display_name
-msgid "Display Name"
-msgstr "Nome Visualizzato"
-
-#. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Done By"
 msgstr "Eseguito Da"
-
-#. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_tier_validation_report
-#: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_my_action
@@ -102,7 +87,6 @@ msgstr "Vedi tutte le approvazioni"
 
 #. module: base_tier_validation_report
 #: model:ir.model,name:base_tier_validation_report.model_tier_review
-#: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_tree
 msgid "Tier Review"
 msgstr "Livello Approvazione"
 
@@ -110,3 +94,12 @@ msgstr "Livello Approvazione"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "To Review"
 msgstr "Da approvare"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome Visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
