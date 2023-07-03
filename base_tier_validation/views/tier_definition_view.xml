@@ -55,6 +55,7 @@
                             <field name="model_id" options="{'no_create': True}" />
                             <field name="model" invisible="1" />
                             <field name="review_type" />
+                            <field name="allow_write_for_reviewer" />
                             <field
                                 name="reviewer_id"
                                 invisible="review_type != 'individual'"

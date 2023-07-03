@@ -38,6 +38,10 @@ class TierDefinition(models.Model):
             ("field", "Field in related record"),
         ],
     )
+    allow_write_for_reviewer = fields.Boolean(
+        string="Allow Write For Reviewers",
+        default=False,
+    )
     reviewer_id = fields.Many2one(comodel_name="res.users", string="Reviewer")
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"

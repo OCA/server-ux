@@ -310,7 +310,13 @@ class TierValidation(models.AbstractModel):
 
     def _check_allow_write_under_validation(self, vals):
         """Allow to add exceptions for fields that are allowed to be written
-        even when the record is under validation."""
+        or for reviewers for all fields, even when the record is under
+        validation."""
+        if (
+            all(self.review_ids.mapped("definition_id.allow_write_for_reviewer"))
+            and self.env.user in self.reviewer_ids
+        ):
+            return True
         exceptions = self._get_under_validation_exceptions()
         for val in vals:
             if val not in exceptions:
