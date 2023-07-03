@@ -5,7 +5,7 @@
     "summary": """
         Adds an archive timestamp and user doing the archiving to all models.
     """,
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Usability",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-ux",
