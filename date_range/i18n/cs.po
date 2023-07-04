@@ -234,6 +234,18 @@ msgid "Invalid name expression: %s"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range__archive_uid
+#: model:ir.model.fields,field_description:date_range.field_date_range_type__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range__archive_date
+#: model:ir.model.fields,field_description:date_range.field_date_range_type__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
