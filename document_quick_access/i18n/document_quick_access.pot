@@ -72,6 +72,16 @@ msgid "ID"
 msgstr ""
 
 #. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule____last_update
 msgid "Last Modified on"
 msgstr ""
