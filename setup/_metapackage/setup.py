@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-announcement>=15.0dev,<15.1dev',
         'odoo-addon-barcode_action>=15.0dev,<15.1dev',
+        'odoo-addon-base_archive_date>=15.0dev,<15.1dev',
         'odoo-addon-base_cancel_confirm>=15.0dev,<15.1dev',
         'odoo-addon-base_custom_filter>=15.0dev,<15.1dev',
         'odoo-addon-base_duplicate_security_group>=15.0dev,<15.1dev',
