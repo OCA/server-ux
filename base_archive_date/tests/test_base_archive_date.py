@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestBaseArchiveDate(SavepointCase):
+class TestBaseArchiveDate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

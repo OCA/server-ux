@@ -26,8 +26,8 @@ class Base(models.AbstractModel):
         return now.replace(tzinfo=None)
 
     @api.model
-    def _add_magic_fields(self):
-        result = super(Base, self)._add_magic_fields()
+    def _setup_base(self):
+        result = super(Base, self)._setup_base()
         if self._log_access and "active" in self._fields:
             self._add_field(
                 LOG_ARCHIVE_DATE,
