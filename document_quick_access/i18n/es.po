@@ -22,6 +22,11 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: document_quick_access
+#: model_terms:ir.ui.view,arch_db:document_quick_access.document_quick_access_rule_form_view
+msgid "Archived"
+msgstr ""
+
+#. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__barcode_format
 msgid "Barcode Format"
 msgstr "Formato"
@@ -68,6 +73,16 @@ msgstr "No se ha encontrado documento"
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__id
 msgid "ID"
 msgstr "ID"
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: document_quick_access
+#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_date
+msgid "Last Archived on"
+msgstr ""
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule____last_update
