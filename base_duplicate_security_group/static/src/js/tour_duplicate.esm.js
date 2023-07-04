@@ -5,10 +5,12 @@
 import tour from "web_tour.tour";
 
 const commonSteps = [
-    tour.stepUtils.showAppsMenuItem(),
+    {
+        trigger: ".o_navbar_apps_menu > button.dropdown-toggle",
+    },
     {
         content: "Open the settings menu",
-        trigger: '.o_app[data-menu-xmlid="base.menu_administration"]',
+        trigger: '[data-menu-xmlid="base.menu_administration"]',
     },
     {
         content: "Open the Users and Companies menu",
