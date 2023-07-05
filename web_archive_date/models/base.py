@@ -19,5 +19,8 @@ class Base(models.AbstractModel):
             return merged_list
 
         result = super(Base, self).get_metadata()
-        archive_dict = self.read([LOG_ARCHIVE_DATE, LOG_ARCHIVE_UID])
-        return merge_lists_of_dicts(result, archive_dict, "id")
+        fields_list = list(self._fields)
+        if LOG_ARCHIVE_DATE in fields_list and LOG_ARCHIVE_UID in fields_list:
+            archive_dict = self.read([LOG_ARCHIVE_DATE, LOG_ARCHIVE_UID])
+            return merge_lists_of_dicts(result, archive_dict, "id")
+        return result
