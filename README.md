@@ -55,7 +55,7 @@ addon | version | maintainers | summary
 [sequence_check_digit](sequence_check_digit/) | 13.0.1.0.0 |  | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 13.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [test_base_binary_url_import](test_base_binary_url_import/) | 13.0.1.0.0 |  | Unittests for Base Binary URL Import module
-[web_archive_date](web_archive_date/) | 13.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
+[web_archive_date](web_archive_date/) | 13.0.1.0.1 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
 
 [//]: # (end addons)
 
