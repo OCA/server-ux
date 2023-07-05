@@ -5,7 +5,7 @@
     "summary": """
         Reflects the Latest Archived Date and Latest Archived by on the record metadata.
     """,
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.1",
     "category": "Usability",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-ux",
