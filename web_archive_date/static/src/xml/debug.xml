@@ -2,16 +2,16 @@
 <!-- # Copyright 2023 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
 <template id="template" xml:space="preserve">
-    <t t-extend="WebClient.DebugViewLog">
-        <t t-jquery="tr:last" t-operation='after'>
-            <tr t-if="perm.archive_date">
+    <t t-inherit="web.DebugMenu.getMetadataBody" t-inherit-mode="extension" owl="1">
+        <xpath expr="//tr[last()]" position="after">
+            <tr t-if="state.archive_date">
                 <th>Latest Archived Date:</th>
-                <td><t t-esc="perm.archive_date" /></td>
+                <td><t t-esc="state.archive_date" /></td>
             </tr>
-            <tr t-if="perm.archive_uid">
+            <tr t-if="state.archive_uid">
                 <th>Latest Archived by:</th>
-                <td><t t-esc="perm.archive_uid[1]" /></td>
+                <td><t t-esc="state.archive_uid" /></td>
             </tr>
-        </t>
+        </xpath>
     </t>
 </template>
