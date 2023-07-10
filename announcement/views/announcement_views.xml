@@ -25,6 +25,12 @@
                 <field name="name" />
                 <field name="notification_date" />
                 <field name="notification_expiry_date" />
+                <field
+                    name="tag_ids"
+                    optional="hide"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
             </tree>
         </field>
     </record>
@@ -76,6 +82,12 @@
                             <field
                                 name="notification_expiry_date"
                                 string="Valid up to"
+                            />
+                            <field
+                                name="tag_ids"
+                                widget="many2many_tags"
+                                options="{'color_field': 'color'}"
+                                placeholder="Tags..."
                             />
                         </group>
                     </group>
@@ -171,6 +183,11 @@
                 <field name="specific_user_ids" />
                 <field name="content" />
                 <field name="active" />
+                <field
+                    name="tag_ids"
+                    string="Tag"
+                    filter_domain="[('tag_ids', 'child_of', self)]"
+                />
                 <separator />
                 <filter
                     string="Active"
