@@ -20,6 +20,12 @@ class Announcement(models.Model):
     sequence = fields.Integer()
     name = fields.Char(string="Title", required=True)
     content = fields.Html()
+    tag_ids = fields.Many2many(
+        comodel_name="announcement.tag",
+        column1="announcement_id",
+        column2="tag_id",
+        string="Tags",
+    )
     is_general_announcement = fields.Boolean("General Announcement")
     announcement_type = fields.Selection(
         selection=[
