@@ -1,4 +1,5 @@
 # Copyright (C) 2020 - Iván Todorovich <ivan.todorovich@gmail.com>
+# Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openupgradelib import openupgrade
@@ -39,6 +40,10 @@ def migrate_mass_editing(env):
             """
         INSERT INTO ir_act_server (
             {},
+            create_uid,
+            create_date,
+            write_uid,
+            write_date,
             name,
             type,
             usage,
@@ -51,6 +56,10 @@ def migrate_mass_editing(env):
         )
         SELECT
             me.id,
+            create_uid,
+            create_date,
+            write_uid,
+            write_date,
             COALESCE(me.action_name, me.name),
             'ir.actions.server',
             'ir_actions_server',
@@ -63,6 +72,20 @@ def migrate_mass_editing(env):
         FROM mass_editing me
         LEFT JOIN ir_model mo ON (me.model_id = mo.id)
         """
+        ).format(sql.Identifier(openupgrade.get_legacy_name("mass_editing_id"))),
+    )
+    # Migrate security group
+    openupgrade.logged_query(
+        env.cr,
+        sql.SQL(
+            """
+            INSERT INTO ir_act_server_group_rel
+            (act_id, gid)
+            SELECT ias.id, me.groups_id
+            FROM ir_act_server ias
+            JOIN mass_editing me ON me.id = ias.{}
+            WHERE me.groups_id IS NOT NULL
+            """
         ).format(sql.Identifier(openupgrade.get_legacy_name("mass_editing_id"))),
     )
     # Migrate mass.editing.line
