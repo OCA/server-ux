@@ -56,10 +56,10 @@ def migrate_mass_editing(env):
         )
         SELECT
             me.id,
-            create_uid,
-            create_date,
-            write_uid,
-            write_date,
+            me.create_uid,
+            me.create_date,
+            me.write_uid,
+            me.write_date,
             COALESCE(me.action_name, me.name),
             'ir.actions.server',
             'ir_actions_server',
