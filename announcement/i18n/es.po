@@ -191,6 +191,16 @@ msgid "In Date"
 msgstr "En fecha"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement____last_update
 #: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
