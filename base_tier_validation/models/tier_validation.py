@@ -201,7 +201,13 @@ class TierValidation(models.AbstractModel):
             return []
         tiers = self.env["tier.definition"].search([("model", "=", self._name)])
         tier_domains = sum(
-            (literal_eval(tier.definition_domain or "[]") for tier in tiers),
+            # we can't browse because this is called during updates too
+            (
+                literal_eval(
+                    tier.read(["definition_domain"])[0]["definition_domain"] or "[]"
+                )
+                for tier in tiers
+            ),
             [],
         )
         return list(
