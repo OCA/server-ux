@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 09:12+0000\n"
-"PO-Revision-Date: 2022-12-15 11:45+0000\n"
+"POT-Creation-Date: 2023-07-10 11:37+0000\n"
+"PO-Revision-Date: 2023-07-10 13:38+0200\n"
 "Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,12 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
 msgid "<span class=\"o_stat_text\">Read(s)</span>"
 msgstr "<span class=\"o_stat_text\">Leído(s)</span>"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_3
+msgid "Accounting"
+msgstr "Contabilidad"
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__active
@@ -77,6 +82,13 @@ msgid "Announcement Manager"
 msgstr "Responsable de anuncios"
 
 #. module: announcement
+#: model:ir.actions.act_window,name:announcement.announcement_tag_action
+#: model:ir.model,name:announcement.model_announcement_tag
+#: model:ir.ui.menu,name:announcement.menu_announcement_tag_management
+msgid "Announcement Tags"
+msgstr "Etiquetas de anuncios"
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__announcement_type
 msgid "Announcement Type"
 msgstr "Tipo de anuncio"
@@ -96,6 +108,26 @@ msgid "Archived"
 msgstr "Archivado"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
+msgid "Color"
+msgstr "Color"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_1
+msgid "Company information"
+msgstr "Información de la compañía"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement_tag__company_id
+msgid "Company related to this tag"
+msgstr "Compañía relacionado con esta etiqueta"
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__content
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "Content"
@@ -104,6 +136,7 @@ msgstr "Contenido"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__create_uid
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_uid
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -111,6 +144,7 @@ msgstr "Creado por"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__create_date
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_date
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_date
 msgid "Created on"
 msgstr "Creado en"
@@ -118,9 +152,20 @@ msgstr "Creado en"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__display_name
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__display_name
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_2
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__full_name
+msgid "Full Name"
+msgstr "Nombre completo"
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
@@ -135,6 +180,7 @@ msgstr "Grupos"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__id
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__id
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
 msgid "ID"
 msgstr "ID (identificación)"
@@ -145,18 +191,9 @@ msgid "In Date"
 msgstr "En fecha"
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement__archive_uid
-msgid "Last Archived by"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement__archive_date
-msgid "Last Archived on"
-msgstr ""
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement____last_update
 #: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
@@ -164,6 +201,7 @@ msgstr "Última modificación en"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_uid
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
@@ -171,6 +209,7 @@ msgstr "Última actualización de"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__write_date
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_date
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
@@ -181,11 +220,21 @@ msgid "Log user reads"
 msgstr "Registrar lecturas de usuario"
 
 #. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_5
+msgid "Manufacturing"
+msgstr "Fabricación"
+
+#. module: announcement
 #. openerp-web
 #: code:addons/announcement/static/src/js/announcement_systray.esm.js:0
 #, python-format
 msgid "Mark as read"
 msgstr "Marcar como leído"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__name
+msgid "Name"
+msgstr "Nombre"
 
 #. module: announcement
 #. openerp-web
@@ -203,6 +252,11 @@ msgstr "Fecha de notificación"
 #: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
 msgid "Notification Expiry Date"
 msgstr "Fecha de caducidad de la notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__parent_id
+msgid "Parent Tag"
+msgstr "Etiqueta padre"
 
 #. module: announcement
 #: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
@@ -241,6 +295,11 @@ msgid "Reads"
 msgstr "Lecturas"
 
 #. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_4
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -264,6 +323,26 @@ msgstr "Usuarios específicos"
 #: model:ir.model,name:announcement.model_ir_config_parameter
 msgid "System Parameter"
 msgstr "Parámetro del sistema"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: announcement
+#: model:ir.model.constraint,message:announcement.constraint_announcement_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "¡El nombre de etiqueta ya existe!"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__tag_ids
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Tags..."
+msgstr "Etiquetas..."
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__name
@@ -320,6 +399,12 @@ msgstr "Usuarios autorizados a administrar y configurar anuncios."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "Valid up to"
 msgstr "Válido hasta"
+
+#. module: announcement
+#: code:addons/announcement/models/announcement_tag.py:0
+#, python-format
+msgid "You cannot create recursive tags."
+msgstr "No puedes crear etiquetas recursivas."
 
 #. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form

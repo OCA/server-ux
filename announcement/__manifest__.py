@@ -14,7 +14,11 @@
         "security/announcement_security.xml",
         "security/ir.model.access.csv",
         "views/announcement_views.xml",
+        "views/announcement_tag_views.xml",
         "wizards/read_announcement_wizard.xml",
+    ],
+    "demo": [
+        "demo/announcement_tag_demo.xml",
     ],
     "assets": {
         "web.assets_backend": ["announcement/static/src/**/*.js"],
