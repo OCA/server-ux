@@ -94,7 +94,7 @@ class TierTierValidation(common.TransactionCase):
         # Request validation
         test_record.with_user(self.test_user_2).request_validation()
         record = test_record.with_user(self.test_user_1)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         # Auto validate, 1st tier, not auto validated
         self.tier_def_obj._cron_auto_tier_validation()
         self.assertEqual(
@@ -138,7 +138,7 @@ class TierTierValidation(common.TransactionCase):
         # Request validation
         test_record.with_user(self.test_user_2).request_validation()
         record = test_record.with_user(self.test_user_1)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         # Auto validate, 1st tier, not auto validated
         self.tier_def_obj._cron_auto_tier_validation()
         self.assertEqual(record.review_ids.mapped("status"), ["pending", "pending"])
@@ -174,7 +174,7 @@ class TierTierValidation(common.TransactionCase):
         # Request validation
         test_record.with_user(self.test_user_2).request_validation()
         record = test_record.with_user(self.test_user_1)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         record.validate_tier()
         self.assertTrue(record.test_bool)
 
@@ -203,6 +203,6 @@ class TierTierValidation(common.TransactionCase):
         # Request rejection
         test_record.with_user(self.test_user_2).request_validation()
         record = test_record.with_user(self.test_user_1)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         record.reject_tier()
         self.assertTrue(record.test_bool)
