@@ -103,7 +103,6 @@ class Announcement(models.Model):
                 announcement.announcement_type = "user_group"
                 announcement.user_group_ids = self.env.ref("base.group_user")
             else:
-                announcement.specific_user_ids = False
                 announcement.user_group_ids = False
 
     @api.depends("announcement_log_ids")
