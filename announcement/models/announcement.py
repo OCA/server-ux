@@ -1,4 +1,5 @@
 # Copyright 2022 Tecnativa - David Vidal
+# Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 
@@ -27,6 +28,11 @@ class Announcement(models.Model):
         string="Tags",
     )
     is_general_announcement = fields.Boolean("General Announcement")
+    attachment_ids = fields.Many2many(
+        comodel_name="ir.attachment",
+        string="Attachment",
+        help="You can attach the copy of your Letter",
+    )
     announcement_type = fields.Selection(
         selection=[
             ("specific_users", "Specific users"),
