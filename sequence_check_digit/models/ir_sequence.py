@@ -37,17 +37,17 @@ class IrSequence(models.Model):
         try:
             self.get_next_char(0)
         except Exception:
-            raise ValidationError(_("Format is not accepted"))
+            raise ValidationError(_("Format is not accepted")) from None
 
     def get_check_digit(self, code):
         try:
             return self.get_formula_map()[self.check_digit_formula](code)
         except KeyError:
             raise ValidationError(
-                _("%s is not an implemented function" % self.check_digit_formula)
-            )
+                _("%s is not an implemented function") % self.check_digit_formula
+            ) from None
         except Exception:
-            raise ValidationError(_("Format is not accepted"))
+            raise ValidationError(_("Format is not accepted")) from None
 
     def get_formula_map(self):
         return {
