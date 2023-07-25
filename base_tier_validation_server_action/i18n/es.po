@@ -34,24 +34,6 @@ msgid "Automatic Tier Validation"
 msgstr ""
 
 #. module: base_tier_validation_server_action
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition__display_name
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_review__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: base_tier_validation_server_action
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition__id
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_review__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_tier_validation_server_action
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition____last_update
-#: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_review____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: base_tier_validation_server_action
 #: model:ir.model.fields,field_description:base_tier_validation_server_action.field_tier_definition__server_action_id
 msgid "Post Approve Action"
 msgstr ""
@@ -94,3 +76,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_server_action.tier_definition_view_form
 msgid "if pass condition"
 msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
