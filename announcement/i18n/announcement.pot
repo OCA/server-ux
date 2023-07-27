@@ -104,6 +104,11 @@ msgid "Archived"
 msgstr ""
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
 msgid "Color"
 msgstr ""
@@ -404,6 +409,11 @@ msgstr ""
 #. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "Valid up to"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__attachment_ids
+msgid "You can attach the copy of your Letter"
 msgstr ""
 
 #. module: announcement
