@@ -1,5 +1,9 @@
 # Copyright 2022 Tecnativa - David Vidal
+# Copyright 2022 Tecnativa - Pilar Vargas
+# Copyright 2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from markupsafe import Markup
+
 from odoo import api, fields, models
 
 
@@ -44,10 +48,30 @@ class ResUsers(models.Model):
             {
                 "id": announcement.id,
                 "name": announcement.name,
-                "content": announcement.content,
+                "content": self._add_attachment_links(announcement),
             }
             for announcement in announcements.sorted(lambda k: k.sequence)
         ]
+
+    def _add_attachment_links(self, announcement):
+        """In case the announcement has attachments, show the list below the
+        modal content"""
+        content = announcement.content
+        attachment_links = ""
+        if announcement.attachment_ids:
+            attachment_links += "<div class='list-group'>"
+            for attachment in announcement.attachment_ids:
+                attachment_url = "/web/content/%s?download=false" % attachment.id
+                attachment_link = """<a href="%s" class="list-group-item list-group-item-action"
+                    target="_blank"><i class="fa fa-download" /> %s</a>""" % (
+                    attachment_url,
+                    attachment.name,
+                )
+                attachment_links += attachment_link
+            attachment_links += "</div>"
+        if attachment_links:
+            content += Markup("<br/>") + Markup(attachment_links)
+        return content
 
     @api.model
     def mark_announcement_as_read(self, announcement_id):

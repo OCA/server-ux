@@ -1,4 +1,5 @@
 # Copyright 2022 Tecnativa - David Vidal
+# Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 
@@ -27,6 +28,11 @@ class Announcement(models.Model):
         string="Tags",
     )
     is_general_announcement = fields.Boolean("General Announcement")
+    attachment_ids = fields.Many2many(
+        comodel_name="ir.attachment",
+        string="Attachments",
+        help="You can attach the copy of your Letter",
+    )
     announcement_type = fields.Selection(
         selection=[
             ("specific_users", "Specific users"),
@@ -143,6 +149,47 @@ class Announcement(models.Model):
             ("notification_expiry_date", "=", False),
             ("notification_expiry_date", ">=", now),
         ]
+
+    def _process_attachments(self, vals):
+        """Assign attachments owner (if not yet set) or create a copy of the added
+        attachments for making sure that they are accessible to the users that read
+        the announcement.
+        """
+        if self.env.context.get("bypass_attachment_process"):
+            return
+        for command in vals.get("attachment_ids", []):
+            to_process = []
+            if command[0] == 4:
+                to_process.append(command[1])
+            elif command[0] == 6:
+                to_process += command[2]
+            for attachment_id in to_process:
+                attachment = self.env["ir.attachment"].browse(attachment_id)
+                for record in self:
+                    if not attachment.res_id:
+                        attachment.res_id = record.id
+                        attachment.res_model = record._name
+                    else:
+                        new_attachment = attachment.copy(
+                            {"res_id": record.id, "res_model": record._name}
+                        )
+                        record.with_context(
+                            bypass_attachment_process=True
+                        ).attachment_ids = [(3, attachment_id), (4, new_attachment.id)]
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Adjust attachments for being accesible to receivers of the announcement."""
+        records = super().create(vals_list)
+        for vals in vals_list:
+            records._process_attachments(vals)
+        return records
+
+    def write(self, vals):
+        """Adjust attachments for being accesible to receivers of the announcement."""
+        res = super().write(vals)
+        self._process_attachments(vals)
+        return res
 
     @api.onchange("announcement_type")
     def _onchange_announcement_type(self):
