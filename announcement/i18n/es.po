@@ -108,6 +108,11 @@ msgid "Archived"
 msgstr "Archivado"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
 msgid "Color"
 msgstr "Color"
@@ -409,6 +414,11 @@ msgstr "Usuarios autorizados a administrar y configurar anuncios."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "Valid up to"
 msgstr "Válido hasta"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__attachment_ids
+msgid "You can attach the copy of your Letter"
+msgstr ""
 
 #. module: announcement
 #: code:addons/announcement/models/announcement_tag.py:0
