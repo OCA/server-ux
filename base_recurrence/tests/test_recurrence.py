@@ -36,7 +36,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date(from_now=True)
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-07-18"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-07-18"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -56,7 +57,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-07-18"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-07-18"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -76,7 +78,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-07-12"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-07-12"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -96,7 +99,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-08-11"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-08-11"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -116,7 +120,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-08-31"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-08-31"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-01-11")
@@ -136,7 +141,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-02-28"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-02-28"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -156,7 +162,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-10-01"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-10-01"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -176,7 +183,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2023-01-01"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2023-01-01"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -196,7 +204,8 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2023-07-11"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2023-07-11"),
+            record.next_recurrency_date,
         )
 
     @freeze_time("2022-07-11")
@@ -216,13 +225,16 @@ class RecurrenceTestCommon(SavepointCase):
         record._set_next_recurrency_date()
 
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-07-10"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2022-07-10"),
+            record.next_recurrency_date,
         )
 
         record._update_recurrency_date()
         self.assertEqual(
-            fields.Datetime.to_datetime("2023-07-10"), record.next_recurrency_date,
+            fields.Datetime.to_datetime("2023-07-10"),
+            record.next_recurrency_date,
         )
         self.assertEqual(
-            fields.Datetime.to_datetime("2022-07-10"), record.last_recurrency_date,
+            fields.Datetime.to_datetime("2022-07-10"),
+            record.last_recurrency_date,
         )
