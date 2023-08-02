@@ -5,7 +5,7 @@
     "name": "Base Recurrence",
     "summary": """
         Allows to define base methods for recurrence computation""",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
