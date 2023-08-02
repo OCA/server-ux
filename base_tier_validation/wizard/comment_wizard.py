@@ -17,7 +17,8 @@ class CommentWizard(models.TransientModel):
     def add_comment(self):
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
-        self.review_ids.write({"comment": self.comment})
+        reviews_tocomment = self.review_ids.filtered(lambda r: r.status == "pending")
+        reviews_tocomment.write({"comment": self.comment})
         if self.validate_reject == "validate":
             rec._validate_tier(self.review_ids)
         if self.validate_reject == "reject":
