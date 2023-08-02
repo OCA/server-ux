@@ -40,24 +40,31 @@ class RecurrenceMixin(models.AbstractModel):
             raise NotImplementedError()
 
     # HELPER FUNCTIONS #
+    @api.model
     def _recurring_rule_type_daily(self, interval):
         return relativedelta(days=interval)
 
+    @api.model
     def _recurring_rule_type_weekly(self, interval):
         return relativedelta(weeks=interval)
 
+    @api.model
     def _recurring_rule_type_monthly(self, interval):
         return relativedelta(months=interval)
 
+    @api.model
     def _recurring_rule_type_monthlylastday(self, interval):
         return relativedelta(months=interval, day=31)
 
+    @api.model
     def _recurring_rule_type_quarterly(self, interval):
         return relativedelta(months=3 * interval, day=1)
 
+    @api.model
     def _recurring_rule_type_semesterly(self, interval):
         return relativedelta(months=6 * interval, day=1)
 
+    @api.model
     def _recurring_rule_type_yearly(self, interval):
         return relativedelta(years=interval)
 
