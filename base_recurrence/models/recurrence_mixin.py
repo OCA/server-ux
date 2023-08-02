@@ -69,8 +69,8 @@ class RecurrenceMixin(models.AbstractModel):
 
     def _update_recurrency_date(self):
         """
-            Update the last recurrency date from the next recurrency date,
-            then compute the new next recurrency date.
+        Update the last recurrency date from the next recurrency date,
+        then compute the new next recurrency date.
         """
         for record in self:
             record.update(
