@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [base_import_security_group](base_import_security_group/) | 15.0.1.0.1 |  | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
 [base_optional_quick_create](base_optional_quick_create/) | 15.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
+[base_recurrence](base_recurrence/) | 15.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to define base methods for recurrence computation
 [base_revision](base_revision/) | 15.0.1.0.0 |  | Keep track of revised document
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 15.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 15.0.1.0.0 |  | Base Sub State
