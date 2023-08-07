@@ -25,7 +25,7 @@
     "license": "AGPL-3",
     "assets": {
         "web.assets_backend": [
-            "base_export_manager/static/src/views/list/list_controller.js",
+            "base_export_manager/static/src/views/list/list_controller.esm.js",
             "base_export_manager/static/src/xml/base.xml",
         ],
     },
