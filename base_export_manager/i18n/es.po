@@ -28,16 +28,14 @@ msgid "Database model to export."
 msgstr "Modelo de la base de datos a exportar."
 
 #. module: base_export_manager
-#. openerp-web
-#: code:addons/base_export_manager/static/src/js/base_export_manager.js:0
-#, python-format
-msgid "Export"
-msgstr "Exportar"
-
-#. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
 msgstr "Acceso Exportación"
+
+#. module: base_export_manager
+#: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
+msgid "Export Fields"
+msgstr ""
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports__name
@@ -52,7 +50,6 @@ msgstr "Perfil de exportación"
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
-#: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
 msgstr "Perfiles de exportación"
 
@@ -67,22 +64,25 @@ msgid "Exports Line"
 msgstr "ir.exports.line"
 
 #. module: base_export_manager
+#. odoo-python
+#: code:addons/base_export_manager/models/ir_exports_line.py:0
+#, python-format
+msgid "Field '%(name)s' not found in model '%(model)s'"
+msgstr ""
+
+#. module: base_export_manager
+#. odoo-python
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "El campo '%s' ya existe"
 
 #. module: base_export_manager
+#. odoo-python
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "El campo '%s' no existe"
-
-#. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:0
-#, python-format
-msgid "Field '%s' not found in model '%s'"
-msgstr "Campo '%s' no encontrado en el modelo '%s'"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
@@ -120,6 +120,7 @@ msgid "HTTP Routing"
 msgstr "Enrutamiento HTTP"
 
 #. module: base_export_manager
+#. odoo-python
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
@@ -177,11 +178,23 @@ msgstr "Tercer modelo"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_res_users
-msgid "Users"
-msgstr "Usuarios"
+msgid "User"
+msgstr ""
 
 #. module: base_export_manager
+#. odoo-python
 #: code:addons/base_export_manager/models/ir_exports.py:0
 #, python-format
 msgid "You must supply a model or resource."
 msgstr "Debe proporcionar un modelo o recurso."
+
+#, python-format
+#~ msgid "Export"
+#~ msgstr "Exportar"
+
+#, python-format
+#~ msgid "Field '%s' not found in model '%s'"
+#~ msgstr "Campo '%s' no encontrado en el modelo '%s'"
+
+#~ msgid "Users"
+#~ msgstr "Usuarios"
