@@ -13,6 +13,7 @@ class IrExportsLine(models.Model):
     name = fields.Char(
         store=True,
         compute="_compute_name",
+        compute_sudo=True,
         inverse="_inverse_name",
         help="Field's technical name.",
     )
@@ -33,13 +34,16 @@ class IrExportsLine(models.Model):
         "First model",
         readonly=True,
         related="export_id.model_id",
+        related_sudo=True,
     )
     model2_id = fields.Many2one(
-        "ir.model", "Second model", compute="_compute_model2_id"
+        "ir.model", "Second model", compute="_compute_model2_id", compute_sudo=True
     )
-    model3_id = fields.Many2one("ir.model", "Third model", compute="_compute_model3_id")
+    model3_id = fields.Many2one(
+        "ir.model", "Third model", compute="_compute_model3_id", compute_sudo=True
+    )
     model4_id = fields.Many2one(
-        "ir.model", "Fourth model", compute="_compute_model4_id"
+        "ir.model", "Fourth model", compute="_compute_model4_id", compute_sudo=True
     )
     sequence = fields.Integer()
     label = fields.Char(compute="_compute_label")
