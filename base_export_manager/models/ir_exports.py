@@ -16,6 +16,7 @@ class IrExports(models.Model):
         store=True,
         inverse="_inverse_model_id",
         compute="_compute_model_id",
+        compute_sudo=True,
         domain=[("transient", "=", False)],
         help="Database model to export.",
     )
