@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-base_binary_url_import>=16.0dev,<16.1dev',
         'odoo-addon-base_cancel_confirm>=16.0dev,<16.1dev',
         'odoo-addon-base_custom_filter>=16.0dev,<16.1dev',
+        'odoo-addon-base_export_manager>=16.0dev,<16.1dev',
         'odoo-addon-base_menu_visibility_restriction>=16.0dev,<16.1dev',
         'odoo-addon-base_optional_quick_create>=16.0dev,<16.1dev',
         'odoo-addon-base_revision>=16.0dev,<16.1dev',
