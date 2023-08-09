@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [base_cancel_confirm](base_cancel_confirm/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Base Cancel Confirm
 [base_custom_filter](base_custom_filter/) | 15.0.1.0.0 | [![AshishHirapara](https://github.com/AshishHirapara.png?size=30px)](https://github.com/AshishHirapara) [![ForgeFlow](https://github.com/ForgeFlow.png?size=30px)](https://github.com/ForgeFlow) | Add custom filters in standard filters and group by dropdowns
 [base_duplicate_security_group](base_duplicate_security_group/) | 15.0.1.0.1 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Adds a security group to restrict which users can copy records
-[base_export_manager](base_export_manager/) | 15.0.1.0.1 |  | Manage model export profiles
+[base_export_manager](base_export_manager/) | 15.0.1.0.2 |  | Manage model export profiles
 [base_field_deprecated](base_field_deprecated/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Adds the deprecated attribute to the Odoo field model.
 [base_import_security_group](base_import_security_group/) | 15.0.1.0.1 |  | Group-based permissions for importing CSV files
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Restrict (with groups) menu visibilty
