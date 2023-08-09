@@ -353,7 +353,10 @@ class TierValidation(models.AbstractModel):
             lambda l: l.sequence in sequences or l.approve_sequence_bypass
         )
         if self.has_comment:
-            return self._add_comment("validate", reviews)
+            user_reviews = reviews.filtered(
+                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            )
+            return self._add_comment("validate", user_reviews)
         self._validate_tier(reviews)
         self._update_counter()
 
