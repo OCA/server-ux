@@ -4,13 +4,13 @@ from freezegun import freeze_time
 from odoo_test_helper import FakeModelLoader
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class RecurrenceTestCommon(TransactionCase):
+class RecurrenceTestCommon(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(RecurrenceTestCommon, cls).setUpClass()
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
 
