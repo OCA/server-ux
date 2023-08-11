@@ -411,7 +411,7 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             if rec._check_state_from_condition():
                 if rec.need_validation:
-                    tier_definitions = td_obj.search(
+                    tier_definitions = td_obj.sudo().search(
                         [("model", "=", self._name)], order="sequence desc"
                     )
                     sequence = 0
