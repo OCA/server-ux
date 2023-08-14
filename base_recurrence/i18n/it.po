@@ -22,6 +22,21 @@ msgid "Daily"
 msgstr "Giornaliero"
 
 #. module: base_recurrence
+#: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_recurrence
+#: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: base_recurrence
+#: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_recurrence
 #: model:ir.model.fields.selection,name:base_recurrence.selection__recurrence_mixin__recurrence_type__monthly
 msgid "Monthly"
 msgstr "Mensile"
