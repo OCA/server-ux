@@ -538,6 +538,7 @@ msgstr "Vérifications"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr ""
@@ -583,15 +584,9 @@ msgstr ""
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
-"This action needs to be validated for at least one record. Reviews "
-"pending:\n"
+"This action needs to be validated for at least one record. Reviews pending:\n"
 " - %s \n"
 "Please request a validation."
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation
