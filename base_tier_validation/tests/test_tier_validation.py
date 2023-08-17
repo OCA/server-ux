@@ -481,6 +481,17 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
 
+    def test_19_allow_write_for_reviewers(self):
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_cache()
+        with self.assertRaises(ValidationError):
+            record.with_user(self.test_user_1.id).write({"test_field": 0.3})
+        reviews.definition_id.with_user(self.test_user_1.id).write(
+            {"allow_write_for_reviewer": True}
+        )
+        record.with_user(self.test_user_1.id).write({"test_field": 0.3})
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
