@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-05 11:11+0000\n"
+"PO-Revision-Date: 2023-08-18 12:09+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -24,17 +24,17 @@ msgstr "Giornaliero"
 #. module: base_recurrence
 #: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: base_recurrence
 #: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_recurrence
 #: model:ir.model.fields,field_description:base_recurrence.field_recurrence_mixin____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: base_recurrence
 #: model:ir.model.fields.selection,name:base_recurrence.selection__recurrence_mixin__recurrence_type__monthly
