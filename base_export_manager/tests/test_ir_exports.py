@@ -17,10 +17,12 @@ class TestIrExportsCase(TransactionCase):
             "name": "Test éxport",
             "resource": "ir.exports",
             "export_fields": [
+                [0, 0, {"name": ".id"}],
                 [0, 0, {"name": "export_fields"}],
                 [0, 0, {"name": "export_fields/create_uid"}],
                 [0, 0, {"name": "export_fields/create_date"}],
                 [0, 0, {"name": "export_fields/field1_id"}],
+                [0, 0, {"name": "export_fields/field1_id/.id"}],
             ],
         }
         virt_record = self.env["ir.exports"].new(data)

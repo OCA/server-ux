@@ -138,6 +138,10 @@ class IrExportsLine(models.Model):
                     one.with_context(skip_check=True)[one.field_n(num, True)] = False
                     continue
                 field_name = parts[num - 1]
+                # Odoo make difference between bank_ids/.id and bank_ids/id, the
+                # former refer to xml id the second the postgresql id column
+                # here we want to find the id field is user request for `.id`
+                field_name = field_name.replace(".id", "id")
                 model = one.model_n(num)
                 # You could get to failing constraint while populating the
                 # fields, so we skip the uniqueness check and manually check
