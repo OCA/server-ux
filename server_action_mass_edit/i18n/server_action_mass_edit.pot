@@ -30,6 +30,7 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Add"
 msgstr ""
@@ -87,6 +88,7 @@ msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -233,6 +235,7 @@ msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format

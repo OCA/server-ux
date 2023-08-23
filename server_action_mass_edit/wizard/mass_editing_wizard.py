@@ -2,9 +2,16 @@
 # Copyright (C) 2020 Iván Todorovich (https://twitter.com/ivantodorovich)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
+
 from lxml import etree
 
 from odoo import _, api, fields, models
+
+from odoo.addons.base.models.ir_ui_view import (
+    transfer_modifiers_to_node,
+    transfer_node_to_modifiers,
+)
 
 
 class MassEditingWizard(models.TransientModel):
@@ -99,6 +106,12 @@ class MassEditingWizard(models.TransientModel):
                 ("remove_m2m", _("Remove")),
                 ("add", _("Add")),
             ]
+        if field.ttype == "one2many":
+            selection = [
+                ("ignore", _("Don't touch")),
+                ("set_o2m", _("Set")),
+                ("add_o2m", _("Add")),
+            ]
         else:
             selection = [
                 ("ignore", _("Don't touch")),
@@ -142,7 +155,32 @@ class MassEditingWizard(models.TransientModel):
         field_vals = self._get_field_options(field)
         if line.widget_option:
             field_vals["widget"] = line.widget_option
-        etree.SubElement(div, "field", field_vals)
+        field_element = etree.SubElement(div, "field", field_vals)
+        if field.ttype == "one2many":
+            comodel = self.env[field.relation]
+            dummy, form_view = comodel._get_view(view_type="form")
+            dummy, tree_view = comodel._get_view(view_type="tree")
+            field_context = {}
+            if form_view:
+                field_context["form_view_ref"] = form_view.xml_id
+            if tree_view:
+                field_context["tree_view_ref"] = tree_view.xml_id
+            if field_context:
+                field_element.attrib["context"] = json.dumps(field_context)
+            else:
+                model_arch, dummy = self.env[field.model]._get_view(view_type="form")
+                embedded_tree = None
+                for node in model_arch.xpath(
+                    "//field[@name='%s'][./tree]" % field.name
+                ):
+                    embedded_tree = node.xpath("./tree")[0]
+                    break
+                if embedded_tree is not None:
+                    for node in embedded_tree.xpath("./*"):
+                        modifiers = {}
+                        transfer_node_to_modifiers(node, modifiers)
+                        transfer_modifiers_to_node(modifiers, node)
+                    field_element.insert(0, embedded_tree)
 
     def _get_field_options(self, field):
         return {
@@ -163,6 +201,11 @@ class MassEditingWizard(models.TransientModel):
         main_xml_group = arch.find('.//group[@name="group_field_list"]')
         for line in server_action.mapped("mass_edit_line_ids"):
             self._insert_field_in_arch(line, line.field_id, main_xml_group)
+            if line.field_id.ttype == "one2many":
+                comodel = self.env[line.field_id.relation]
+                result["models"] = dict(
+                    result["models"], **{comodel._name: tuple(comodel.fields_get())}
+                )
         result["arch"] = etree.tostring(arch, encoding="unicode")
         return result
 
@@ -179,6 +222,7 @@ class MassEditingWizard(models.TransientModel):
             field_info = self._clean_check_company_field_domain(
                 self.env[server_action.model_id.model], field, fields_info[field.name]
             )
+            field_info["relation_field"] = False
             if not line.apply_domain and "domain" in field_info:
                 field_info["domain"] = "[]"
             res.update(self._prepare_fields(line, field, field_info))
@@ -209,8 +253,13 @@ class MassEditingWizard(models.TransientModel):
                 for key, val in vals.items():
                     if key.startswith("selection_"):
                         split_key = key.split("__", 1)[1]
-                        if val == "set":
+                        if val == "set" or val == "add_o2m":
                             values.update({split_key: vals.get(split_key, False)})
+
+                        elif val == "set_o2m":
+                            values.update(
+                                {split_key: [(6, 0, [])] + vals.get(split_key, [])}
+                            )
 
                         elif val == "remove":
                             values.update({split_key: False})
@@ -230,10 +279,11 @@ class MassEditingWizard(models.TransientModel):
                             for m2m_id in vals.get(split_key, False)[0][2]:
                                 m2m_list.append((4, m2m_id))
                             values.update({split_key: m2m_list})
+
                 if values:
-                    self.env[server_action.model_id.model].browse(active_ids).write(
-                        values
-                    )
+                    self.env[server_action.model_id.model].browse(
+                        active_ids
+                    ).with_context(mass_edit=True,).write(values)
         return super().create([{}])
 
     def _prepare_create_values(self, vals_list):
