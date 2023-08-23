@@ -152,6 +152,25 @@ class TestMassEditing(common.TransactionCase):
             "Fields view get must return architecture with fields" "created dynamicaly",
         )
 
+        # test the code path where we extract an embedded tree for o2m fields
+        self.env["ir.ui.view"].search(
+            [
+                ("model", "in", ("res.partner.bank", "res.partner", "res.users")),
+                ("id", "!=", self.env.ref("base.res_partner_view_form_private").id),
+            ]
+        ).unlink()
+        self.env.ref("base.res_partner_view_form_private").model = "res.users"
+        result = self.MassEditingWizard.with_context(
+            server_action_id=self.mass_editing_user.id,
+            active_ids=[],
+        ).get_view()
+        arch = result.get("arch", "")
+        self.assertIn(
+            "<tree editable=",
+            arch,
+            "Fields view get must return architecture with embedded tree",
+        )
+
     def test_wzd_clean_check_company_field_domain(self):
         """
         Test company field domain replacement
@@ -261,6 +280,36 @@ class TestMassEditing(common.TransactionCase):
         vals = {"selection__email": "set", "email": "sample@mycompany.com"}
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertNotEqual(self.user.email, False, "User's Email should be set.")
+
+    def test_mass_edit_o2m_banks(self):
+        """Test Case for MASS EDITING which will remove and add
+        Partner's bank o2m."""
+        # Set another bank (must replace existing one)
+        bank_vals = {"acc_number": "account number"}
+        self.user.write(
+            {
+                "bank_ids": [(6, 0, []), (0, 0, bank_vals)],
+            }
+        )
+        vals = {
+            "selection__bank_ids": "set_o2m",
+            "bank_ids": [(0, 0, dict(bank_vals, acc_number="new number"))],
+        }
+        self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
+        self.assertEqual(self.user.bank_ids.acc_number, "new number")
+        # Add bank (must keep existing one)
+        vals = {
+            "selection__bank_ids": "add_o2m",
+            "bank_ids": [(0, 0, dict(bank_vals, acc_number="new number2"))],
+        }
+        self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
+        self.assertEqual(
+            self.user.bank_ids.mapped("acc_number"), ["new number", "new number2"]
+        )
+        # Set empty list (must remove all banks)
+        vals = {"selection__bank_ids": "set_o2m"}
+        self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
+        self.assertFalse(self.user.bank_ids)
 
     def test_mass_edit_m2m_categ(self):
         """Test Case for MASS EDITING which will remove and add
