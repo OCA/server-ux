@@ -53,6 +53,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="field_id" ref="base.field_res_users__image_1920" />
         <field name="widget_option">image</field>
     </record>
+    <record id="mass_editing_user_line_11" model="ir.actions.server.mass.edit.line">
+        <field name="server_action_id" ref="mass_editing_user" />
+        <field name="field_id" ref="base.field_res_users__bank_ids" />
+    </record>
 
     <!-- Mass Edit Partner Title -->
     <record id="mass_editing_partner_title" model="ir.actions.server">
