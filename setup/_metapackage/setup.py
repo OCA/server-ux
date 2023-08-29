@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo14-addon-sequence_range_end',
         'odoo14-addon-sequence_reset_period',
         'odoo14-addon-server_action_domain',
+        'odoo14-addon-web_archive_date',
     ],
     classifiers=[
         'Programming Language :: Python',
