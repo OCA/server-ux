@@ -51,6 +51,7 @@ addon | version | maintainers | summary
 [mass_editing](mass_editing/) | 15.0.1.0.1 |  | Mass Editing
 [multi_step_wizard](multi_step_wizard/) | 15.0.1.0.1 |  | Multi-Steps Wizards
 [sequence_reset_period](sequence_reset_period/) | 15.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
+[web_archive_date](web_archive_date/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
 
 [//]: # (end addons)
 
