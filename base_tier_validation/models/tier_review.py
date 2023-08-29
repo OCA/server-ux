@@ -50,6 +50,12 @@ class TierReview(models.Model):
         string="Validation Formated Date", compute="_compute_reviewed_formated_date"
     )
     has_comment = fields.Boolean(related="definition_id.has_comment", readonly=True)
+    comment_required_validate = fields.Boolean(
+        related="definition_id.comment_required_validate", readonly=True
+    )
+    comment_required_reject = fields.Boolean(
+        related="definition_id.comment_required_reject", readonly=True
+    )
     comment = fields.Char(string="Comments")
     can_review = fields.Boolean(
         compute="_compute_can_review",

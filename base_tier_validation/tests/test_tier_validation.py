@@ -160,6 +160,7 @@ class TierTierValidation(CommonTierValidation):
         wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
+        self.assertTrue(wiz.comment_required)
         wiz.add_comment()
         self.assertTrue(test_record.review_ids.mapped("comment"))
         # Check notify
@@ -183,6 +184,7 @@ class TierTierValidation(CommonTierValidation):
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "has_comment": True,
+                "comment_required_reject": False,
             }
         )
         # Request validation
@@ -195,6 +197,7 @@ class TierTierValidation(CommonTierValidation):
         wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
+        self.assertFalse(wiz.comment_required)
         wiz.add_comment()
         self.assertTrue(test_record.review_ids.mapped("comment"))
         # Check notify

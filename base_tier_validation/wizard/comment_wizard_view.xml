@@ -9,7 +9,13 @@
         <field name="arch" type="xml">
             <form string="Comment">
                 <group>
-                    <field colspan="2" name="comment" nolabel="1" />
+                    <field name="comment_required" invisible="True" />
+                    <field
+                        colspan="2"
+                        name="comment"
+                        nolabel="1"
+                        attrs="{'required': [('comment_required', '=', True)]}"
+                    />
                 </group>
                 <footer>
                     <button

@@ -100,6 +100,14 @@
                                 <group name="notify">
                                     <field name="notify_on_create" />
                                     <field name="has_comment" />
+                                    <field
+                                        name="comment_required_validate"
+                                        attrs="{'invisible': [('has_comment', '=', False)]}"
+                                    />
+                                    <field
+                                        name="comment_required_reject"
+                                        attrs="{'invisible': [('has_comment', '=', False)]}"
+                                    />
                                 </group>
                             </group>
                         </page>

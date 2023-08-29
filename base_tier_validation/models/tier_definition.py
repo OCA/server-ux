@@ -68,6 +68,12 @@ class TierDefinition(models.Model):
         "this definition is triggered.",
     )
     has_comment = fields.Boolean(string="Comment", default=False)
+    comment_required_validate = fields.Boolean(
+        string="Comment required for validation", default=True
+    )
+    comment_required_reject = fields.Boolean(
+        string="Comment required for rejection", default=True
+    )
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
         default=False,
