@@ -1,12 +1,14 @@
 # Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import json
 from ast import literal_eval
 
 from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv.expression import OR
 from odoo.tools.misc import frozendict
 
 
@@ -632,6 +634,21 @@ class TierValidation(models.AbstractModel):
                         all_models[model] = res["models"][model]
                 new_node = etree.fromstring(new_arch)
                 node.append(new_node)
+            excepted_fields = self._get_under_validation_exceptions()
+            for node in doc.xpath("//field[@name][not(ancestor::field)]"):
+                if node.attrib.get("name") in excepted_fields:
+                    continue
+                modifiers = json.loads(
+                    node.attrib.get("modifiers", '{"readonly": false}')
+                )
+                if modifiers.get("readonly") is not True:
+                    modifiers["readonly"] = OR(
+                        [
+                            modifiers.get("readonly", []) or [],
+                            [("review_ids", "!=", [])],
+                        ]
+                    )
+                    node.attrib["modifiers"] = json.dumps(modifiers)
             res["arch"] = etree.tostring(doc)
             res["models"] = frozendict(all_models)
         return res
