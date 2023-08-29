@@ -553,7 +553,7 @@ class TierValidation(models.AbstractModel):
                         all_models[model] = res["models"][model]
                 new_node = etree.fromstring(new_arch)
                 node.append(new_node)
-            for node in doc.xpath("//field[@name]"):
+            for node in doc.xpath("//field[@name][not(ancestor::field)]"):
                 modifiers = json.loads(
                     node.attrib.get("modifiers", '{"readonly": false}')
                 )
