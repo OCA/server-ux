@@ -270,9 +270,24 @@ class TierValidation(models.AbstractModel):
                 and not rec._context.get("skip_validation_check")
             ):
                 raise ValidationError(_("The operation is under validation."))
-        if vals.get(self._state_field) in (self._state_from + [self._cancel_state]):
-            self.mapped("review_ids").unlink()
+            if rec._allow_to_remove_reviews(vals):
+                rec.mapped("review_ids").unlink()
         return super(TierValidation, self).write(vals)
+
+    def _allow_to_remove_reviews(self, values):
+        """Method for deciding whether the elimination of revisions is necessary."""
+        self.ensure_one()
+        state_to = values.get(self._state_field)
+        if not state_to:
+            return False
+        state_from = self[self._state_field]
+        # If you change to _cancel_state
+        if state_to in (self._cancel_state):
+            return True
+        # If it is changed to _state_from and it was not in _state_from
+        if state_to in self._state_from and state_from not in self._state_from:
+            return True
+        return False
 
     def _check_state_from_condition(self):
         return self.env.context.get("skip_check_state_condition") or (
