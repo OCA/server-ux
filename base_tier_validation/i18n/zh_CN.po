@@ -308,6 +308,16 @@ msgid ""
 msgstr "如果设置，则触发此定义规则时将通过电子邮件通知所有的审批人。"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users____last_update
