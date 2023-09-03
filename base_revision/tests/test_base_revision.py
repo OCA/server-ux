@@ -26,8 +26,13 @@ class TestBaseRevision(common.TransactionCase):
         cls.loader.restore_registry()
         return super(TestBaseRevision, cls).tearDownClass()
 
-    def _create_tester(self):
-        return self.revision_model.create({"name": "TEST0001"})
+    def _create_tester(self, vals_list=None):
+        if not vals_list:
+            vals_list = [{}]
+        for vals in vals_list:
+            if "name" not in vals:
+                vals["name"] = "TEST0001"
+        return self.revision_model.create(vals_list)
 
     @staticmethod
     def _revision_tester(tester):
@@ -88,3 +93,11 @@ class TestBaseRevision(common.TransactionCase):
         tester_3 = tester_2.copy({"name": "TEST0002"})
         # Check the 'Reference' of the copied tester
         self.assertEqual(tester_3.name, tester_3.unrevisioned_name)
+
+    def test_create_multiple(self):
+        """Check copy process"""
+        # Create a tester
+        tester_2 = self._create_tester([{"name": "TEST0001"}, {"name": "TEST0002"}])
+        # Check the 'Order Reference' of the tester
+        for tester in tester_2:
+            self.assertEqual(tester.name, tester.unrevisioned_name)
