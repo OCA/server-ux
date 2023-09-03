@@ -96,13 +96,14 @@ class BaseRevision(models.AbstractModel):
         self.write(self._prepare_revision_data(new_revision))
         return new_revision
 
-    @api.model
-    def create(self, values):
-        rec = super().create(values)
-        if "unrevisioned_name" not in values:
-            name_field = self._context.get("revision_name_field", "name")
-            rec.write({"unrevisioned_name": rec[name_field]})
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        name_field = self._context.get("revision_name_field", "name")
+        for vals in vals_list:
+            if "unrevisioned_name" not in vals:
+                vals["unrevisioned_name"] = vals[name_field]
+
+        return super().create(vals_list)
 
     def create_revision(self):
         revision_ids = []
