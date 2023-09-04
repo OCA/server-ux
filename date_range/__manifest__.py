@@ -22,8 +22,6 @@
     "assets": {
         "web.assets_backend": [
             "date_range/static/src/js/date_range.esm.js",
-        ],
-        "web.assets_qweb": [
             "date_range/static/src/xml/date_range.xml",
         ],
     },
