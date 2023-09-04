@@ -8,7 +8,10 @@
                 t-if="(fieldType === 'date' || fieldType === 'datetime') &amp;&amp; selectedOperator.date_range"
             >
                 <span class="o_generator_menu_value">
-                    <select class="o_input" t-on-change="_onValueInput(condition)">
+                    <select
+                        class="o_input"
+                        t-on-change="ev => this.onValueChange(condition, ev)"
+                    >
                         <option
                             t-foreach="date_ranges[selectedOperator.date_range_type]"
                             t-as="option"
