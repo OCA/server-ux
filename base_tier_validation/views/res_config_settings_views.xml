@@ -2,7 +2,7 @@
 <odoo>
     <!-- Uncomment me when related modules are migrated-->
 
-    <!-- <record id="res_config_settings_view_form_budget" model="ir.ui.view">
+    <record id="res_config_settings_view_form_budget" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.budget</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="25" />
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div
+                        <!-- <div
                             class="col-12 col-lg-6 o_setting_box"
                             id="module_base_tier_validation_server_action"
                         >
@@ -46,7 +46,7 @@
                                     Option to trigger server actions on completion of tier reviews
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div
                             class="col-12 col-lg-6 o_setting_box"
                             id="module_base_tier_validation_forward"
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div
+                        <!-- <div
                             class="col-12 col-lg-6 o_setting_box"
                             id="module_base_tier_validation_report"
                         >
@@ -74,10 +74,10 @@
                                     More reports about tier validations, i.e., summary of all my reviews
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </xpath>
         </field>
-    </record> -->
+    </record>
 </odoo>
