@@ -33,6 +33,25 @@
             <field name="review_type" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <field name="comment" position="after">
+                <field name="allow_review" invisible="1" />
+            </field>
+            <tree position="inside">
+                <button
+                    name="validate_tier"
+                    type="object"
+                    class="oe_inline oe_button btn-success"
+                    icon="fa-thumbs-up"
+                    attrs="{'invisible': [('allow_review', '=', False)]}"
+                />
+                <button
+                    name="reject_tier"
+                    type="object"
+                    class="btn-icon btn-danger"
+                    icon="fa-thumbs-down"
+                    attrs="{'invisible': [('allow_review', '=', False)]}"
+                />
+            </tree>
         </field>
     </record>
 </odoo>

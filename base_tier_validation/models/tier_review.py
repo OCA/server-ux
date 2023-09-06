@@ -52,6 +52,10 @@ class TierReview(models.Model):
         help="""Can review will be marked if the review is pending and the
         approve sequence has been achieved""",
     )
+    allow_review = fields.Boolean(
+        compute="_compute_allow_review",
+        help="Allow review if it is the correct sequence and the user is a reviewer",
+    )
     approve_sequence = fields.Boolean(
         related="definition_id.approve_sequence", readonly=True
     )
@@ -63,6 +67,13 @@ class TierReview(models.Model):
     def _compute_can_review(self):
         for record in self:
             record.can_review = record._can_review_value()
+
+    @api.depends("can_review", "reviewer_ids")
+    def _compute_allow_review(self):
+        for item in self:
+            item.allow_review = bool(
+                item.can_review and self.env.user in item.reviewer_ids
+            )
 
     def _can_review_value(self):
         if self.status != "pending":
@@ -110,3 +121,15 @@ class TierReview(models.Model):
             if not reviewer_field or not reviewer_field._name == "res.users":
                 raise ValidationError(_("There are no res.users in the selected field"))
         return reviewer_field
+
+    def validate_tier(self):
+        self.ensure_one()
+        record = self.env[self.model].browse(self.res_id)
+        record._validate_tier(tiers=self)
+        record._update_counter()
+
+    def reject_tier(self):
+        self.ensure_one()
+        record = self.env[self.model].browse(self.res_id)
+        record._rejected_tier(tiers=self)
+        record._update_counter()
