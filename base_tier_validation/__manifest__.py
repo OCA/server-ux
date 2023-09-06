@@ -24,5 +24,5 @@
         "wizard/comment_wizard_view.xml",
         "templates/tier_validation_templates.xml",
     ],
-    "qweb": ["static/src/xml/systray.xml", "static/src/xml/tier_review_template.xml"],
+    "qweb": ["static/src/xml/systray.xml"],
 }

@@ -82,10 +82,32 @@
         </div>
     </template>
     <template id="tier_validation_reviews">
-        <field
-            name="review_ids"
-            widget="tier_validation"
+        <div
+            class="o_form_sheet panel-group"
             attrs="{'invisible':[('review_ids', '=', [])]}"
-        />
+        >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a
+                            class="o_info_btn"
+                            data-toggle="collapse"
+                            href="#"
+                            data-target="#collapse1"
+                        >
+                            Reviews
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body o_review">
+                        <field
+                            name="review_ids"
+                            context="{'tree_view_ref': 'base_tier_validation.tier_review_view_tree_custom'}"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
     </template>
 </odoo>

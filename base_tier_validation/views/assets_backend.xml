@@ -6,10 +6,6 @@
                 type="text/javascript"
                 src="/base_tier_validation/static/src/js/systray.js"
             />
-            <script
-                type="text/javascript"
-                src="/base_tier_validation/static/src/js/tier_review_widget.js"
-            />
             <link
                 rel="stylesheet"
                 href="/base_tier_validation/static/src/scss/systray.scss"

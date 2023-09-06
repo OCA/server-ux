@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-06 11:11+0000\n"
+"PO-Revision-Date: 2023-09-06 11:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -173,9 +175,7 @@ msgid "Cancel"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__has_comment
@@ -231,11 +231,8 @@ msgid "Definition Domain"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
-#, python-format
 msgid "Description"
 msgstr ""
 
@@ -257,13 +254,6 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__done_by
 msgid "Done By"
-msgstr ""
-
-#. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
-#, python-format
-msgid "Done by"
 msgstr ""
 
 #. module: base_tier_validation
@@ -302,16 +292,6 @@ msgstr ""
 msgid ""
 "If set, all possible reviewers will be notified by email when this "
 "definition is triggered."
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
-msgid "Last Archived by"
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
-msgid "Last Archived on"
 msgstr ""
 
 #. module: base_tier_validation
@@ -465,13 +445,6 @@ msgid "Requested By"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
-#, python-format
-msgid "Requested by"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__res_id
 msgid "Res"
 msgstr ""
@@ -521,18 +494,14 @@ msgstr ""
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_reviews
 #, python-format
 msgid "Reviews"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-#, python-format
 msgid "Sequence"
 msgstr ""
 
@@ -542,10 +511,7 @@ msgid "Specific user"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__status
-#, python-format
 msgid "Status"
 msgstr ""
 
@@ -580,6 +546,11 @@ msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
 " - %s \n"
 "Please request a validation."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation
@@ -663,13 +634,6 @@ msgid "Todo By"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
-#, python-format
-msgid "Todo by"
-msgstr ""
-
-#. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_users
 msgid "Users"
 msgstr ""
@@ -706,10 +670,7 @@ msgid "Validated by"
 msgstr ""
 
 #. module: base_tier_validation
-#. openerp-web
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewed_date
-#, python-format
 msgid "Validation Date"
 msgstr ""
 

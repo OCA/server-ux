@@ -23,4 +23,16 @@
             </tree>
         </field>
     </record>
+    <!-- Custom tree !-->
+    <record id="tier_review_view_tree_custom" model="ir.ui.view">
+        <field name="name">tier.review.tree</field>
+        <field name="model">tier.review</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_review_view_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="review_type" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>

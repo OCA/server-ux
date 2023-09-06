@@ -41,6 +41,7 @@ class Users(models.Model):
                     }
         return list(user_reviews.values())
 
+    # TODO: No longer used. To be removed in v17
     @api.model
     def get_reviews(self, data):
         review_obj = self.env["tier.review"].with_context(lang=self.env.user.lang)
