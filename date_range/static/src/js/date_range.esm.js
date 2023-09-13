@@ -1,6 +1,6 @@
 /** @odoo-module **/
-import {FIELD_OPERATORS, FIELD_TYPES} from "web.searchUtils";
 import {CustomFilterItem} from "@web/search/filter_menu/custom_filter_item";
+import {FIELD_TYPES} from "web.searchUtils";
 import {_lt} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
 import {useService} from "@web/core/utils/hooks";
@@ -15,9 +15,6 @@ patch(CustomFilterItem.prototype, "date_range.CustomFilterItem", {
     },
 
     async _computeDateRangeOperators() {
-        this.OPERATORS = Object.assign({}, FIELD_OPERATORS);
-        this.OPERATORS.date = [...FIELD_OPERATORS.date];
-        this.OPERATORS.datetime = [...FIELD_OPERATORS.datetime];
         this.date_ranges = {};
         const result = await this.orm.searchRead(
             "date.range",
