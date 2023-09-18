@@ -384,6 +384,20 @@ msgid "Operation has been <b>validated</b>!"
 msgstr ""
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Option to forward a tier validation to other reviewer, and backward"
+msgstr ""
+"Alternativ för att vidarebefordra en attestering till en annan granskare och "
+"bakåt"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Option to use python formula to get reviewers and find documents"
+msgstr ""
+"Alternativ för att använda python-formel för att få fram granskare och hitta "
+"dokument"
+
+#. module: base_tier_validation
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
@@ -562,9 +576,24 @@ msgid "Tier Definition"
 msgstr "Attestdefinition"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_formula
+msgid "Tier Formula"
+msgstr "Attestformel"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_forward
+msgid "Tier Forward & Backward"
+msgstr "Attest framåt och bakåt"
+
+#. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
 msgid "Tier Review"
 msgstr "Attestgranskning"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
+msgid "Tier Validation"
+msgstr "Attestering"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
@@ -681,34 +710,15 @@ msgstr "t.ex. attestvalidering för..."
 #~ "Fler rapporter om attesteringar, dvs. en sammanfattning av alla mina "
 #~ "granskningar"
 
-#~ msgid "Option to forward a tier validation to other reviewer, and backward"
-#~ msgstr ""
-#~ "Alternativ för att vidarebefordra en attestering till en annan granskare "
-#~ "och bakåt"
-
 #~ msgid "Option to trigger server actions on completion of tier reviews"
 #~ msgstr ""
 #~ "Alternativ för att utlösa serveråtgärder när attesteringar har slutförts"
-
-#~ msgid "Option to use python formula to get reviewers and find documents"
-#~ msgstr ""
-#~ "Alternativ för att använda python-formel för att få fram granskare och "
-#~ "hitta dokument"
-
-#~ msgid "Tier Formula"
-#~ msgstr "Attestformel"
-
-#~ msgid "Tier Forward & Backward"
-#~ msgstr "Attest framåt och bakåt"
 
 #~ msgid "Tier Reports"
 #~ msgstr "Attestrapporter"
 
 #~ msgid "Tier Server Action"
 #~ msgstr "Attestserveråtgärd"
-
-#~ msgid "Tier Validation"
-#~ msgstr "Attestering"
 
 #~ msgid "Users"
 #~ msgstr "Användare"
