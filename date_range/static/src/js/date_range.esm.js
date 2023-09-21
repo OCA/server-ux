@@ -1,6 +1,5 @@
 /** @odoo-module **/
 import {CustomFilterItem} from "@web/search/filter_menu/custom_filter_item";
-import {FIELD_TYPES} from "web.searchUtils";
 import {_lt} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
 import {useService} from "@web/core/utils/hooks";
@@ -41,7 +40,7 @@ patch(CustomFilterItem.prototype, "date_range.CustomFilterItem", {
 
     setDefaultValue(condition) {
         const type = this.fields[condition.field].type;
-        const operator = this.OPERATORS[FIELD_TYPES[type]][condition.operator];
+        const operator = this.OPERATORS[this.FIELD_TYPES[type]][condition.operator];
         if (operator.date_range) {
             const default_range = this.date_ranges[operator.date_range_type][0];
             const d_start = DateTime.fromSQL(`${default_range.date_start} 00:00:00`);
@@ -54,7 +53,7 @@ patch(CustomFilterItem.prototype, "date_range.CustomFilterItem", {
 
     onValueChange(condition, ev) {
         const type = this.fields[condition.field].type;
-        const operator = this.OPERATORS[FIELD_TYPES[type]][condition.operator];
+        const operator = this.OPERATORS[this.FIELD_TYPES[type]][condition.operator];
         if (operator.date_range) {
             const eid = parseInt(ev.target.value);
             const ranges = this.date_ranges[operator.date_range_type];
