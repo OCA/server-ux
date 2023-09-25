@@ -134,6 +134,7 @@ Contributors
   * Jairo Llopis
   * Víctor Martínez
 * Tatiana Deribina <tatiana.deribina@spritnit.fi>
+* Hieu, Vo Minh Bao <hieu.vmb@komit-consulting.com>
 
 Maintainers
 ~~~~~~~~~~~
