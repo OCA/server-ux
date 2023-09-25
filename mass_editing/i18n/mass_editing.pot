@@ -85,6 +85,15 @@ msgid "Display Name"
 msgstr ""
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid ""
+"Failed to process the %(model_name)s  \"%(name)s\" [id: %(id)s]:\n"
+"\n"
+"%(ue)s"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
 msgid "Field"
 msgstr ""
@@ -125,6 +134,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.actions.server,name:mass_editing.mass_editing_partner
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
@@ -233,6 +243,14 @@ msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_wizard__write_record_by_record
+msgid ""
+"This option will write the records one by one, instead of all at once.\n"
+"This is useful when you are editing a lot of records and one of the records raises an error. \n"
+"  With this option, the error message will be more specific to facillitate the undertanding of the error."
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
 #: model:ir.model.fields,help:mass_editing.field_ir_cron__state
 msgid ""
@@ -254,6 +272,11 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "Wizard for mass edition"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_record_by_record
+msgid "Write Record By Record"
 msgstr ""
 
 #. module: mass_editing
