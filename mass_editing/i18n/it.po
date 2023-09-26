@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2023-06-13 14:08+0000\n"
+"PO-Revision-Date: 2023-09-28 17:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -127,7 +127,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr "Ultimo aggiornamento il"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__write_date
@@ -200,7 +200,7 @@ msgstr "RImuovi"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__use_active_domain
 msgid "Search results"
-msgstr ""
+msgstr "Risultati ricerca"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__selected_item_qty
@@ -229,6 +229,9 @@ msgid ""
 "Thick if you want to use the custom domain (+ domain of the mass edition) "
 "instead of select all items manually."
 msgstr ""
+"Spuntare se si vuole utilizzare il dominio personalizzato (+ dominio "
+"dell'edizione di massa) al posto di selezionare tutti gli elementi "
+"manualmente."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__widget_option
