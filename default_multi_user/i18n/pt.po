@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* default_multi_user
+# 	* default_multi_user
 #
 msgid ""
 msgstr ""
