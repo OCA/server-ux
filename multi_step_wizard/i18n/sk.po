@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* multi_step_wizard
+# 	* multi_step_wizard
 #
 msgid ""
 msgstr ""
