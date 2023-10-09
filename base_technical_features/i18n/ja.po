@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_technical_features
+# 	* base_technical_features
 #
 msgid ""
 msgstr ""
@@ -54,5 +54,6 @@ msgstr "ユーザ"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
-msgid "Whether to display the technical features field in the user preferences."
+msgid ""
+"Whether to display the technical features field in the user preferences."
 msgstr "ユーザ個人設定に技術機能項目を表示するか否か。"
