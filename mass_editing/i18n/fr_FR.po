@@ -19,9 +19,9 @@ msgstr ""
 #. module: mass_editing
 #: model_terms:ir.ui.view,arch_db:mass_editing.view_server_action_form
 msgid ""
-"<b>WARNING</b>: Take into account that adding a field with a domain, and not"
-" including the fields of such domain in this operation definition, will lead"
-" to an error when trying to perform it. Make sure you include them."
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
 msgstr ""
 "<b>Attention</b> : Tenez compte du fait que l'ajout d'un champ avec un "
 "domaine, et le fait de ne pas inclure les champs de ce domaine dans la "
@@ -56,14 +56,14 @@ msgid "Apply"
 msgstr "Appliquer"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
+msgid "Apply Domain"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_editing_line__apply_domain
 msgid "Apply default domain related to field"
 msgstr "Appliquer le domaine par défaut lié au champ"
-
-#. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__apply_domain
-msgid "Apply domain"
-msgstr "Appliquer le domaine"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_apply_domain_in_lines
@@ -89,11 +89,19 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__display_name
 msgid "Display Name"
 msgstr "Afficher Nom"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
+#, python-format
+msgid ""
+"Failed to process the %(model_name)s  \"%(name)s\" [id: %(id)s]:\n"
+"\n"
+"%(ue)s"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__field_id
@@ -106,7 +114,6 @@ msgid "Fields"
 msgstr "Champs"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line__id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__id
 msgid "ID"
@@ -119,7 +126,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Si ce champ est défini, le message sera affiché dans l'assistant."
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line____last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard____last_update
 msgid "Last Modified on"
@@ -138,6 +144,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mass_editing
+#: model:ir.actions.server,name:mass_editing.mass_editing_partner
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
@@ -187,10 +194,8 @@ msgstr "Modèle sur lequel l'Action-serveur est lancé."
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
-msgid "None of the %d record(s) you have selected can be processed."
+msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
-"Aucun des %d enregistrement(s) que vous avez sélectionné ne peuvent être mis "
-"à jour."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__operation_description_danger
@@ -214,7 +219,6 @@ msgstr "Eléments restants"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Remove"
 msgstr "Retirer"
@@ -237,7 +241,6 @@ msgstr "Action-serveur"
 
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
-#: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid "Set"
 msgstr "Definir"
@@ -245,9 +248,18 @@ msgstr "Definir"
 #. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
-msgid "The treatment will be processed on the %d selected record(s)."
+msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr ""
-"L'opération sera appliquée sur le(s) %d enregistrement(s) sélectionné(s)."
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_wizard__write_record_by_record
+msgid ""
+"This option will write the records one by one, instead of all at once.\n"
+"This is useful when you are editing a lot of records and one of the records "
+"raises an error. \n"
+"  With this option, the error message will be more specific to facillitate "
+"the undertanding of the error."
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_ir_actions_server__state
@@ -257,7 +269,8 @@ msgid ""
 "- 'Execute Python Code': a block of python code that will be executed\n"
 "- 'Create': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other server actions\n"
+"- 'Execute several actions': define an action that triggers several other "
+"server actions\n"
 "- 'Send Email': automatically send an email (Discuss)\n"
 "- 'Add Followers': add followers to a record (Discuss)\n"
 "- 'Create Next Activity': create an activity (Discuss)"
@@ -270,8 +283,8 @@ msgstr ""
 "- 'Exécuter plusieurs actions' : définir une action qui déclenche plusieurs "
 "autres actions du serveur\n"
 "- 'Envoyer un e-mail' : envoyer automatiquement un e-mail (Messages)\n"
-"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement (Messages)"
-"\n"
+"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement "
+"(Messages)\n"
 "- 'Créer l'activité suivante' : créer une activité (Messages)"
 
 #. module: mass_editing
@@ -285,12 +298,37 @@ msgid "Wizard for mass edition"
 msgstr "Assistant pour l'édition en lot"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard__write_record_by_record
+msgid "Write Record By Record"
+msgstr ""
+
+#. module: mass_editing
 #: code:addons/mass_editing/wizard/mass_editing_wizard.py:0
 #, python-format
 msgid ""
-"You have selected %d record(s) that can not be processed.\n"
-"Only %d record(s) will be processed."
+"You have selected %(origin_amount)d record(s) that can not be processed.\n"
+"Only %(amount)d record(s) will be processed."
 msgstr ""
-"Vous avez sélectionné %d enregistrement(s) qui ne peuvent pas être modifiés."
-"\n"
-"Seul(s) %d enregistrement(s) le seront."
+
+#~ msgid "Apply domain"
+#~ msgstr "Appliquer le domaine"
+
+#, python-format
+#~ msgid "None of the %d record(s) you have selected can be processed."
+#~ msgstr ""
+#~ "Aucun des %d enregistrement(s) que vous avez sélectionné ne peuvent être "
+#~ "mis à jour."
+
+#, python-format
+#~ msgid "The treatment will be processed on the %d selected record(s)."
+#~ msgstr ""
+#~ "L'opération sera appliquée sur le(s) %d enregistrement(s) sélectionné(s)."
+
+#, python-format
+#~ msgid ""
+#~ "You have selected %d record(s) that can not be processed.\n"
+#~ "Only %d record(s) will be processed."
+#~ msgstr ""
+#~ "Vous avez sélectionné %d enregistrement(s) qui ne peuvent pas être "
+#~ "modifiés.\n"
+#~ "Seul(s) %d enregistrement(s) le seront."
