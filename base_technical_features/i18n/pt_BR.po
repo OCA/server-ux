@@ -26,6 +26,24 @@ msgid "Base"
 msgstr "Suporte"
 
 #. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_ir_ui_menu____last_update
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "Menu"
 msgstr "Menú"
