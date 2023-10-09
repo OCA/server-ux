@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:146
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "<b>Chained swap done</b>:"
 msgstr "<b>Cambio encadenado realizado</b>:"
@@ -89,7 +89,7 @@ msgid "Chained Swapper Sub-field"
 msgstr "Intercambiador encadenado - Sub-campos"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:104
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Chained swap"
 msgstr "Cambio encadenado"
@@ -171,13 +171,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:151
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Incorrect sub-field expression:"
 msgstr "Expresión de sub-campo incorrecta:"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:193
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "Invalid constraint expression:  "
 msgstr "Expresión de restricción no válida:"
@@ -217,7 +217,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: chained_swapper
-#: sql_constraint:chained.swapper:0
+#: model:ir.model.constraint,message:chained_swapper.constraint_chained_swapper_model_id_field_id_unique
 msgid "Model and Field must be unique!"
 msgstr "La combinación Modelo-Campo debe ser única!"
 
@@ -237,7 +237,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:32
+#: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
 #, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr "No es posible cambiar el campo debido a la restricción"
@@ -276,7 +276,7 @@ msgid "Sub-fields"
 msgstr "Sub-campo"
 
 #. module: chained_swapper
-#: code:addons/chained_swapper/models/chained_swapper.py:162
+#: code:addons/chained_swapper/models/chained_swapper.py:0
 #, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr "El sub-campo '%s' no es compatible con el campo principal."
