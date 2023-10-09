@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mass_operation_abstract
+# 	* mass_operation_abstract
 #
 msgid ""
 msgstr ""
@@ -186,13 +186,16 @@ msgstr "İşlem, seçilen %d element üzerinde işlenecektir."
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:60
 #, python-format
-msgid "You have selected %d items that can not be processed. Only %d items will be processed."
+msgid ""
+"You have selected %d items that can not be processed. Only %d items will be "
+"processed."
 msgstr "İşlenemeyen %d öge seçtiniz. Sadece %d öge işlenecektir."
 
 #. module: mass_operation_abstract
 #: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:84
 #, python-format
-msgid "there is no more element that corresponds to the rules of the domain.\n"
+msgid ""
+"there is no more element that corresponds to the rules of the domain.\n"
 " Please refresh your list and try to select again the items."
 msgstr ""
 "alanın kurallarına karşılık gelen başka bir öge yoktur.\n"
