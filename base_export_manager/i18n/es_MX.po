@@ -26,13 +26,6 @@ msgid "Database model to export."
 msgstr ""
 
 #. module: base_export_manager
-#. openerp-web
-#: code:addons/base_export_manager/static/src/js/base_export_manager.js:0
-#, python-format
-msgid "Export"
-msgstr ""
-
-#. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
 msgstr ""
@@ -50,7 +43,6 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
-#: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
 msgstr ""
 
@@ -67,6 +59,12 @@ msgstr ""
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
+msgid "Field '%(name)s' not found in model '%(model)s'"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:0
+#, python-format
 msgid "Field '%s' already exists"
 msgstr ""
 
@@ -74,12 +72,6 @@ msgstr ""
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
 msgid "Field '%s' does not exist"
-msgstr ""
-
-#. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:0
-#, python-format
-msgid "Field '%s' not found in model '%s'"
 msgstr ""
 
 #. module: base_export_manager

@@ -28,13 +28,6 @@ msgid "Database model to export."
 msgstr "Model iz baze za izvoz."
 
 #. module: base_export_manager
-#. openerp-web
-#: code:addons/base_export_manager/static/src/js/base_export_manager.js:0
-#, python-format
-msgid "Export"
-msgstr "Izvoz"
-
-#. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access__perm_export
 msgid "Export Access"
 msgstr "Pristup izvozu"
@@ -52,7 +45,6 @@ msgstr "Profil izvoza"
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
-#: model_terms:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
 msgstr "Profili izvoza"
 
@@ -69,6 +61,12 @@ msgstr "ir.exports.line"
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
 #, python-format
+msgid "Field '%(name)s' not found in model '%(model)s'"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:0
+#, python-format
 msgid "Field '%s' already exists"
 msgstr "Polje  '%s' već postoji"
 
@@ -77,12 +75,6 @@ msgstr "Polje  '%s' već postoji"
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Polje '%s' ne postoji"
-
-#. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:0
-#, python-format
-msgid "Field '%s' not found in model '%s'"
-msgstr "Polje '%s' nije pronađeno u modelu '%s'"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line__name
@@ -185,3 +177,11 @@ msgstr "Korisnici"
 #, python-format
 msgid "You must supply a model or resource."
 msgstr "Morate odabrati model ili reurs."
+
+#, python-format
+#~ msgid "Export"
+#~ msgstr "Izvoz"
+
+#, python-format
+#~ msgid "Field '%s' not found in model '%s'"
+#~ msgstr "Polje '%s' nije pronađeno u modelu '%s'"
