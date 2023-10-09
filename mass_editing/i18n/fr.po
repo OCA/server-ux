@@ -25,8 +25,8 @@ msgid ""
 "to an error when trying to perform it. Make sure you include them."
 msgstr ""
 "<b>AVERTISSEMENT</b> : Prenez en compte que l’ajout d’un champ avec un "
-"domaine, et ne pas inclure les champs de ce domaine dans cette définition d’"
-"opération, entraînera une erreur lors de la tentative d’exécution. Assurez-"
+"domaine, et ne pas inclure les champs de ce domaine dans cette définition "
+"d’opération, entraînera une erreur lors de la tentative d’exécution. Assurez-"
 "vous de les inclure."
 
 #. module: mass_editing
