@@ -28,11 +28,6 @@ msgid "Current revision"
 msgstr "Revisión actual"
 
 #. module: base_revision
-#: model:ir.model.fields,field_description:base_revision.field_base_revision__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: base_revision
 #: model:ir.model,name:base_revision.model_base_revision
 msgid "Document Revision (abstract)"
 msgstr "Revisión Documento (resumen)"
@@ -41,16 +36,6 @@ msgstr "Revisión Documento (resumen)"
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__has_old_revisions
 msgid "Has Old Revisions"
 msgstr "Tiene revisiones antiguas"
-
-#. module: base_revision
-#: model:ir.model.fields,field_description:base_revision.field_base_revision__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_revision
-#: model:ir.model.fields,field_description:base_revision.field_base_revision____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: base_revision
 #: code:addons/base_revision/models/base_revision.py:0
@@ -88,3 +73,12 @@ msgstr "Referencia y revisión deben ser únicas."
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_number
 msgid "Revision"
 msgstr "Revisión"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
