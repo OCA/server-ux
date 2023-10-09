@@ -54,6 +54,7 @@ msgstr "Kreirano"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__display_name
+#: model:ir.model.fields,field_description:barcode_action.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Naziv"
 
@@ -74,11 +75,13 @@ msgstr "Nađi partnere"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__id
+#: model:ir.model.fields,field_description:barcode_action.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
 #. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action____last_update
+#: model:ir.model.fields,field_description:barcode_action.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Zadnje modificirano"
 
