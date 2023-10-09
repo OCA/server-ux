@@ -33,21 +33,6 @@ msgid "Default Values"
 msgstr "Valores por defecto"
 
 #. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default__id
-msgid "ID"
-msgstr "ID"
-
-#. module: default_multi_user
-#: model:ir.model.fields,field_description:default_multi_user.field_ir_default____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: default_multi_user
 #: model_terms:ir.ui.view,arch_db:default_multi_user.ir_default_view_form
 msgid "Owner"
 msgstr "Propietario"
@@ -56,3 +41,12 @@ msgstr "Propietario"
 #: model:ir.model.fields,field_description:default_multi_user.field_ir_default__user_ids
 msgid "Users"
 msgstr "Usuarios"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
