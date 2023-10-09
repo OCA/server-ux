@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:45
+#: code:addons/sequence_check_digit/models/ir_sequence.py:0
 #, python-format
 msgid "%s is not an implemented function"
 msgstr "%s no es una función implementada"
@@ -29,49 +29,48 @@ msgid "Check Digit Formula"
 msgstr "Fórmula del Dígito de control"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__damm
 msgid "Damm"
 msgstr "Damm"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:39
-#: code:addons/sequence_check_digit/models/ir_sequence.py:48
+#: code:addons/sequence_check_digit/models/ir_sequence.py:0
 #, python-format
 msgid "Format is not accepted"
 msgstr "El formato no está aceptado"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_11_10
 msgid "ISO 7064 Mod 11, 10"
 msgstr "ISO 7064 Mod 11, 10"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_11_2
 msgid "ISO 7064 Mod 11, 2"
 msgstr "ISO 7064 Mod 11, 2"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_37_2
 msgid "ISO 7064 Mod 37, 2"
 msgstr "ISO 7064 Mod 37, 2"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_37_36
 msgid "ISO 7064 Mod 37, 36"
 msgstr "ISO 7064 Mod 37, 36"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_97_10
 msgid "ISO 7064 Mod 97, 10"
 msgstr "ISO 7064 Mod 97, 10"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__luhn
 msgid "Luhn"
 msgstr "Luhn"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__none
 msgid "None"
 msgstr "Ninguno"
 
@@ -81,7 +80,7 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: sequence_check_digit
-#: selection:ir.sequence,check_digit_formula:0
+#: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__verhoeff
 msgid "Verhoeff"
 msgstr "Verhoeff"
 
