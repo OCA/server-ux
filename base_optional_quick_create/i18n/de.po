@@ -27,7 +27,7 @@ msgid "Avoid Quick Create"
 msgstr "Unterbinde Schnellanlage"
 
 #. module: base_optional_quick_create
-#: code:addons/base_optional_quick_create/models/ir_model.py:21
+#: code:addons/base_optional_quick_create/models/ir_model.py:0
 #, python-format
 msgid ""
 "Can't create %s with name %s quickly.\n"
@@ -35,6 +35,21 @@ msgid ""
 msgstr ""
 "Kann %s mit Name %s nicht schnell anlegen.\n"
 "Sprechen Sie mit dem Administrator, um dieses Verhalten abzustellen."
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__id
+msgid "ID"
+msgstr ""
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
