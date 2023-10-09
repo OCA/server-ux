@@ -22,6 +22,13 @@ msgid "Definition"
 msgstr "定义"
 
 #. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__display_name
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__display_name
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_validation__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
 msgid "Domain & Formula"
 msgstr "域和公式"
@@ -41,6 +48,20 @@ msgstr ""
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__formula
 msgid "Formula"
 msgstr "公式"
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__id
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__id
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_validation__id
+msgid "ID"
+msgstr ""
+
+#. module: base_tier_validation_formula
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition____last_update
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review____last_update
+#: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_validation____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__review_type__expression
