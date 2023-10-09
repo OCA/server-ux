@@ -17,13 +17,13 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:90
 #, python-format
 msgid "A review was forwarded by %s."
 msgstr "审批已转交给 %s."
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:88
 #, python-format
 msgid "A review was forwarded from {} {}"
 msgstr "审批已转交自 {} {}"
@@ -53,6 +53,11 @@ msgstr "审批按指定顺序"
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__approve_sequence
 msgid "Approve by sequence"
 msgstr "按顺序审批"
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Approved"
+msgstr ""
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__can_forward
@@ -95,7 +100,7 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: base_tier_validation_forward
-#: code:addons/base_tier_validation_forward/models/tier_validation.py:0
+#: code:addons/base_tier_validation_forward/models/tier_validation.py:41
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
 #, python-format
 msgid "Forward"
@@ -112,7 +117,7 @@ msgid "Forward Wizard"
 msgstr "转交向导"
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields.selection,name:base_tier_validation_forward.selection__tier_review__status__forwarded
+#: selection:tier.review,status:0
 msgid "Forwarded"
 msgstr "已转交"
 
@@ -140,6 +145,16 @@ msgstr "最近更新时间"
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_reviewer_id
 msgid "Next Reviewer"
 msgstr "下个审批人"
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Pending"
+msgstr ""
+
+#. module: base_tier_validation_forward
+#: selection:tier.review,status:0
+msgid "Rejected"
+msgstr ""
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_id
