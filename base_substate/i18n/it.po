@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 07:57+0000\n"
+"PO-Revision-Date: 2023-10-17 18:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -209,6 +209,9 @@ msgid ""
 "Target state translateble name.\n"
 "Ex: for sale order \"Quotation\", \"Sale order\", \"Locked\"..."
 msgstr ""
+"Nome traducibile dello stato obiettivo.\n"
+"Es: per ordine di vendita \"Preventivo\", \"Ordine di vendita\", \"Bloccato\""
+"..."
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_base_substate_type__target_state_field
@@ -216,6 +219,8 @@ msgid ""
 "Technical target state field name. Ex for sale order \"state\" for other "
 "\"status\" ... "
 msgstr ""
+"Nome tecnico del campo obiettivo dello stato. Es: per Ordine di vendita "
+"\"state\", per altri \"status\" ... "
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_target_state_value__target_state_value
@@ -223,6 +228,8 @@ msgid ""
 "Technical target state value.\n"
 "Ex: for sale order \"draft\", \"sale\", \"done\", ..."
 msgstr ""
+"Valore obiettivo dello stato (tecnico).\n"
+"Es: per Ordine di vendita \"draft\", \"sale\", \"done\", ..."
 
 #. module: base_substate
 #: code:addons/base_substate/models/base_substate_mixin.py:0
