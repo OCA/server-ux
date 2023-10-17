@@ -12,7 +12,7 @@ msgstr ""
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
@@ -400,6 +400,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
 msgid "Pending"
 msgstr "Pendiente"
@@ -417,6 +418,7 @@ msgstr "Rechazar"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__rejected
 msgid "Rejected"
 msgstr "Rechazado"
 
@@ -509,7 +511,6 @@ msgstr "Revisiones"
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Secuencia"
@@ -565,6 +566,11 @@ msgid ""
 msgstr ""
 "Esta acción necesita ser validada para algún registro.\n"
 "Por favor, solicita una validación."
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
+msgstr "Nivel"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -663,6 +669,7 @@ msgstr "Validar Rechazar"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__validated
 msgid "Validated"
 msgstr "Validado"
 
@@ -691,38 +698,21 @@ msgid "Validation Formated Date"
 msgstr "Fecha de Validación Formateada"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
+msgid "Validation Status"
+msgstr "Estado de validación"
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr "Validaciones"
 
 #. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
+msgid "Without validation"
+msgstr "Sin validación"
+
+#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ej. Validación de Nivel por..."
-
-#~ msgid "Tier"
-#~ msgstr "Nivel"
-
-#, python-format
-#~ msgid "Activities"
-#~ msgstr "Actividades"
-
-#~ msgid "Users"
-#~ msgstr "Usuarios"
-
-#~ msgid "A review was rejected by {}. ({})"
-#~ msgstr "Una revisión fue rechaza por {}. ({})"
-
-#~ msgid "Any user in a specific group."
-#~ msgstr "Cualquier usuario en el grupo especificado."
-
-#, fuzzy
-#~| msgid "Sequence"
-#~ msgid "Approve Sequence"
-#~ msgstr "Secuencia"
-
-#~ msgid "Formula"
-#~ msgstr "Fórmula"
-
-#~ msgid "Python Expression"
-#~ msgstr "Expresión Python"

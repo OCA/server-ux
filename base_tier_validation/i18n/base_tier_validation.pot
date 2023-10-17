@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-24 06:38+0000\n"
+"PO-Revision-Date: 2023-10-24 06:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -379,6 +381,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
 msgid "Pending"
 msgstr ""
@@ -396,6 +399,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__rejected
 msgid "Rejected"
 msgstr ""
 
@@ -489,7 +493,6 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr ""
@@ -542,6 +545,11 @@ msgstr ""
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation
@@ -641,6 +649,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__validated
 msgid "Validated"
 msgstr ""
 
@@ -669,8 +678,18 @@ msgid "Validation Formated Date"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
+msgid "Without validation"
 msgstr ""
 
 #. module: base_tier_validation
