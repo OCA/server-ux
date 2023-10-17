@@ -32,15 +32,28 @@ class TierValidation(models.AbstractModel):
         auto_join=True,
     )
     to_validate_message = fields.Html(compute="_compute_validated_rejected")
+    # TODO: Delete in v17 in favor of validation_status field
     validated = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_validated"
     )
     validated_message = fields.Html(compute="_compute_validated_rejected")
     need_validation = fields.Boolean(compute="_compute_need_validation")
+    # TODO: Delete in v17 in favor of validation_status field
     rejected = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_rejected"
     )
     rejected_message = fields.Html(compute="_compute_validated_rejected")
+    # Informative field (used in purchase_tier_validation), will be reliable as of v17
+    validation_status = fields.Selection(
+        selection=[
+            ("no", "Without validation"),
+            ("pending", "Pending"),
+            ("rejected", "Rejected"),
+            ("validated", "Validated"),
+        ],
+        default="no",
+        compute="_compute_validation_status",
+    )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
         comodel_name="res.users",
@@ -165,6 +178,21 @@ class TierValidation(models.AbstractModel):
             rec.rejected = self._calc_reviews_rejected(rec.review_ids)
             rec.rejected_message = rec._get_rejected_message()
             rec.to_validate_message = rec._get_to_validate_message()
+
+    def _compute_validation_status(self):
+        for item in self:
+            if item.validated and not item.rejected:
+                item.validation_status = "validated"
+            elif not item.validated and item.rejected:
+                item.validation_status = "rejected"
+            elif (
+                not item.validated
+                and not item.rejected
+                and any(item.review_ids.filtered(lambda x: x.status == "pending"))
+            ):
+                item.validation_status = "pending"
+            else:
+                item.validation_status = "no"
 
     def _compute_next_review(self):
         for rec in self:
