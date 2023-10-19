@@ -11,7 +11,7 @@ class TierTierValidation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
-
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
