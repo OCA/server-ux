@@ -30,14 +30,16 @@ patch(CustomFilterItem.prototype, "date_range.CustomFilterItem", {
                     date_range: true,
                     date_range_type: range_type,
                 };
-                var dateExistingOption = this.OPERATORS.date.find(function(option) {
+                var dateExistingOption = this.OPERATORS.date.find(function (option) {
                     return option.date_range_type === r.date_range_type;
                 });
                 if (!dateExistingOption) {
                     this.OPERATORS.date.push(r);
                 }
 
-                var datetimeExistingOption = this.OPERATORS.datetime.find(function(option) {
+                var datetimeExistingOption = this.OPERATORS.datetime.find(function (
+                    option
+                ) {
                     return option.date_range_type === r.date_range_type;
                 });
                 if (!datetimeExistingOption) {
