@@ -30,8 +30,19 @@ patch(CustomFilterItem.prototype, "date_range.CustomFilterItem", {
                     date_range: true,
                     date_range_type: range_type,
                 };
-                this.OPERATORS.date.push(r);
-                this.OPERATORS.datetime.push(r);
+                var dateExistingOption = this.OPERATORS.date.find(function(option) {
+                    return option.date_range_type === r.date_range_type;
+                });
+                if (!dateExistingOption) {
+                    this.OPERATORS.date.push(r);
+                }
+
+                var datetimeExistingOption = this.OPERATORS.datetime.find(function(option) {
+                    return option.date_range_type === r.date_range_type;
+                });
+                if (!datetimeExistingOption) {
+                    this.OPERATORS.datetime.push(r);
+                }
                 this.date_ranges[range_type] = [];
             }
             this.date_ranges[range_type].push(range);
