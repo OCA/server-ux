@@ -123,5 +123,5 @@ class TierTierValidation(TransactionCase):
         self.assertTrue(review)
         review_1 = tier_review_obj.browse(review.ids[0])
         self.assertTrue(review_1.status == "waiting")
-        review_1._compute_can_review()
+        # review_1._compute_can_review()
         self.assertTrue(review_1.status == "pending")
