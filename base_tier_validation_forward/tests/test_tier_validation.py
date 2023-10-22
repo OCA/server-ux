@@ -6,13 +6,15 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase, tagged
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 @tagged("post_install", "-at_install")
 class TierTierValidation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
-
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
@@ -45,13 +47,18 @@ class TierTierValidation(TransactionCase):
         # Create users:
         group_ids = cls.env.ref("base.group_system").ids
         cls.test_user_1 = cls.env["res.users"].create(
-            {"name": "John", "login": "test1", "groups_id": [(6, 0, group_ids)]}
+            {
+                "name": "John",
+                "login": "test1",
+                "groups_id": [(6, 0, group_ids)],
+                "email": "john@yourcompany.example.com",
+            }
         )
         cls.test_user_2 = cls.env["res.users"].create(
-            {"name": "Mike", "login": "test2"}
+            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
         )
         cls.test_user_3 = cls.env["res.users"].create(
-            {"name": "Mary", "login": "test3"}
+            {"name": "Mary", "login": "test3", "email": "mary@yourcompany.example.com"}
         )
 
         # Create tier definitions:
@@ -90,7 +97,8 @@ class TierTierValidation(TransactionCase):
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_recordset()
+        record.invalidate_cache()
+        record.review_ids[0]._compute_can_review()
         record.validate_tier()
         self.assertFalse(record.can_forward)
         # User 2 forward to user 1
