@@ -50,13 +50,18 @@ class TierTierValidation(common.TransactionCase):
         # Create users:
         group_ids = cls.env.ref("base.group_system").ids
         cls.test_user_1 = cls.env["res.users"].create(
-            {"name": "John", "login": "test1", "groups_id": [(6, 0, group_ids)]}
+            {
+                "name": "John",
+                "login": "test1",
+                "groups_id": [(6, 0, group_ids)],
+                "email": "john@yourcompany.example.com",
+            }
         )
         cls.test_user_2 = cls.env["res.users"].create(
-            {"name": "Mike", "login": "test2"}
+            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
         )
         cls.test_user_3 = cls.env["res.users"].create(
-            {"name": "Mary", "login": "test3"}
+            {"name": "Mary", "login": "test3", "email": "mary@yourcompany.example.com"}
         )
 
         # Create tier definitions:
@@ -103,6 +108,8 @@ class TierTierValidation(common.TransactionCase):
         record = self.test_record.with_user(self.test_user_1.id)
         self.test_record.invalidate_cache()
         record.invalidate_cache()
+        record.review_ids[0]._compute_can_review()
+        record.review_ids[1]._compute_can_review()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         self.assertIn(self.test_user_2, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_2.id)])
