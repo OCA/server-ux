@@ -70,6 +70,18 @@ class TierTierValidation(SavepointCase):
                 "name": "Test definition 2 -  user 2",
             }
         )
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_1.id,
+                "definition_domain": "[('test_field', '<', 1.0)]",
+                "approve_sequence": False,
+                "notify_on_pending": True,
+                "sequence": 10,
+                "name": "Test definition 3 -  user 1 - no sequence",
+            }
+        )
 
         cls.test_record = cls.test_model.create({"test_field": 2.5})
 
@@ -99,3 +111,15 @@ class TierTierValidation(SavepointCase):
         record.validate_tier()
         self.assertTrue(review_1.status == "approved")
         self.assertTrue(review_2.status == "pending")
+
+    def test_02_no_sequence(self):
+        # Create new test record
+        tier_review_obj = self.env["tier.review"]
+        test_record2 = self.test_model.create({"test_field": 0.5})
+        # request validation
+        review = test_record2.request_validation()
+        self.assertTrue(review)
+        review_1 = tier_review_obj.browse(review.ids[0])
+        self.assertTrue(review_1.status == "waiting")
+        review_1._compute_can_review()
+        self.assertTrue(review_1.status == "pending")
