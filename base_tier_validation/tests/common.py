@@ -58,10 +58,15 @@ class CommonTierValidation(common.TransactionCase):
         # Create users:
         group_ids = cls.env.ref("base.group_system").ids
         cls.test_user_1 = cls.env["res.users"].create(
-            {"name": "John", "login": "test1", "groups_id": [(6, 0, group_ids)]}
+            {
+                "name": "John",
+                "login": "test1",
+                "email": "john@yourcompany.example.com",
+                "groups_id": [(6, 0, group_ids)],
+            }
         )
         cls.test_user_2 = cls.env["res.users"].create(
-            {"name": "Mike", "login": "test2"}
+            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
         )
 
         # Create tier definitions:
