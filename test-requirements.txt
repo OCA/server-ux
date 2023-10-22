@@ -1,2 +1,2 @@
-odoo_test_helper
-responses
+mock
+odoo-test-helper
