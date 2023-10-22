@@ -35,8 +35,8 @@ class TierReview(models.Model):
                 if record.approve_sequence:
                     if record.sequence == next_seq:
                         record.status = "pending"
-                # else, move forward any waiting review
-                else:
+                # if there is no approval sequence go directly to pending state
+                elif not record.approve_sequence:
                     record.status = "pending"
                 # notify if state has changed
                 if record.status == "pending":
