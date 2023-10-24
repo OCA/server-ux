@@ -16,10 +16,14 @@ class TierTierValidation(TransactionCase):
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
+            TierDefinition,
             TierValidationTester,
+            TierValidationTester2,
         )
 
-        cls.loader.update_registry((TierValidationTester,))
+        cls.loader.update_registry(
+            (TierValidationTester, TierValidationTester2, TierDefinition)
+        )
         cls.test_model = cls.env[TierValidationTester._name]
 
         cls.tester_model = cls.env["ir.model"].search(
