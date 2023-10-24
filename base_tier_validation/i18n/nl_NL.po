@@ -384,6 +384,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
 msgid "Pending"
 msgstr "In afwachting"
@@ -401,6 +402,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__rejected
 msgid "Rejected"
 msgstr "Afgekeurd"
 
@@ -649,6 +651,7 @@ msgstr "Valideren weigeren"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__validated
 msgid "Validated"
 msgstr "Gevalideerd"
 
@@ -677,9 +680,19 @@ msgid "Validation Formated Date"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr "Validaties"
+
+#. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
+msgid "Without validation"
+msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
