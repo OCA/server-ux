@@ -28,23 +28,6 @@ class BaseSubstateMixin(models.AbstractModel):
                     }
                 )
 
-    def _track_template(self, changes):
-        res = super()._track_template(changes)
-        track = self[0]
-        if "substate_id" in changes and track.substate_id.mail_template_id:
-            res["substate_id"] = (
-                track.substate_id.mail_template_id,
-                {
-                    "composition_mode": "comment",
-                    "auto_delete": True,
-                    "subtype_id": self.env["ir.model.data"]._xmlid_to_res_id(
-                        "mail.mt_note"
-                    ),
-                    "email_layout_xmlid": "mail.mail_notification_light",
-                },
-            )
-        return res
-
     def _get_default_substate_id(self, state_val=False):
         """Gives default substate_id"""
         search_domain = self._get_default_substate_domain(state_val)
@@ -116,6 +99,19 @@ class BaseSubstateMixin(models.AbstractModel):
         if values.get(state_field) and not values.get("substate_id"):
             state_val = values.get(state_field)
             values["substate_id"] = self._get_default_substate_id(state_val)
+        # Send mail if substate has mail template
+        if values.get("substate_id"):
+            substate = self.env["base.substate"].browse(values["substate_id"])
+            if (
+                hasattr(self, "message_post_with_template")
+                and substate.mail_template_id
+            ):
+                self.message_post_with_template(
+                    substate.mail_template_id.id,
+                    subtype_id=self.env["ir.model.data"]._xmlid_to_res_id(
+                        "mail.mt_note"
+                    ),
+                )
         return values
 
     def write(self, values):
