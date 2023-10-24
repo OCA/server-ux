@@ -28,23 +28,6 @@ class BaseSubstateMixin(models.AbstractModel):
                     }
                 )
 
-    def _track_template(self, tracking):
-        res = super()._track_template(tracking)
-        first_rec = self[0]
-        changes, tracking_value_ids = tracking[first_rec.id]
-        if "substate_id" in changes and first_rec.substate_id.mail_template_id:
-            res["substate_id"] = (
-                first_rec.substate_id.mail_template_id,
-                {
-                    "auto_delete_message": True,
-                    "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
-                        "mail.mt_note"
-                    ),
-                    "notif_layout": "mail.mail_notification_light",
-                },
-            )
-        return res
-
     def _get_default_substate_id(self, state_val=False):
         """Gives default substate_id"""
         search_domain = self._get_default_substate_domain(state_val)

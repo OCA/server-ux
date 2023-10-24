@@ -6,8 +6,8 @@ from .models_mixin import TestMixin
 
 
 class SaleTest(models.Model, TestMixin):
-    _inherit = "base.substate.mixin"
     _name = "base.substate.test.sale"
+    _inherit = ["mail.thread", "base.substate.mixin"]
     _description = "Base substate Test Model"
 
     name = fields.Char(required=True)
