@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 06:38+0000\n"
-"PO-Revision-Date: 2023-10-24 06:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -296,6 +294,16 @@ msgid ""
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
@@ -511,6 +519,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr ""
@@ -558,11 +567,6 @@ msgstr ""
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation
