@@ -1,7 +1,7 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class TierValidationTester(models.Model):
@@ -44,3 +44,14 @@ class TierValidationTester2(models.Model):
 
     def action_confirm(self):
         self.write({"state": "confirmed"})
+
+
+class TierDefinition(models.Model):
+    _inherit = "tier.definition"
+
+    @api.model
+    def _get_tier_validation_model_names(self):
+        res = super()._get_tier_validation_model_names()
+        res.append("tier.validation.tester")
+        res.append("tier.validation.tester2")
+        return res
