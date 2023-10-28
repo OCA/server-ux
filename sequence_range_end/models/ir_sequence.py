@@ -52,11 +52,11 @@ class IrSequence(models.Model):
                 "sec": "%S",
             }
             res = {}
-            for key, format in sequences.items():
-                res[key] = effective_date.strftime(format)
-                res["current_" + key] = now.strftime(format)
-                res["range_" + key] = range_date.strftime(format)
-                res["range_end_" + key] = range_end_date.strftime(format)
+            for key, sequence_format in sequences.items():
+                res[key] = effective_date.strftime(sequence_format)
+                res["current_" + key] = now.strftime(sequence_format)
+                res["range_" + key] = range_date.strftime(sequence_format)
+                res["range_end_" + key] = range_end_date.strftime(sequence_format)
             return res
 
         self.ensure_one()
