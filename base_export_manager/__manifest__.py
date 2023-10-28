@@ -7,7 +7,7 @@
 {
     "name": "Manage model export profiles",
     "category": "Personalization",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "depends": ["web"],
     "data": [
         "views/assets.xml",
