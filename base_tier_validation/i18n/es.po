@@ -326,6 +326,16 @@ msgstr ""
 "email cuando esta definición se ejecute."
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users____last_update
@@ -548,6 +558,7 @@ msgstr "Revisiones"
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Secuencia"
@@ -593,23 +604,16 @@ msgstr ""
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid ""
-"This action needs to be validated for at least one record. Reviews "
-"pending:\n"
+"This action needs to be validated for at least one record. Reviews pending:\n"
 " - %s \n"
 "Please request a validation."
 msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
-msgstr "Nivel"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
 #: model:ir.model,name:base_tier_validation.model_tier_definition
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_definition
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_tree
 msgid "Tier Definition"
 msgstr "Definición de Nivel"
 
@@ -630,7 +634,6 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
 msgid "Tier Review"
 msgstr "Revisión de Nivel"
 
@@ -759,3 +762,6 @@ msgstr "Sin validación"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ej. Validación de Nivel por..."
+
+#~ msgid "Tier"
+#~ msgstr "Nivel"
