@@ -162,16 +162,6 @@ msgid "Date Ranges Exist"
 msgstr ""
 
 #. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
-msgid "Date range"
-msgstr ""
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
-msgid "Date range type"
-msgstr ""
-
-#. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
 msgstr ""

@@ -163,16 +163,6 @@ msgid "Date Ranges Exist"
 msgstr ""
 
 #. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
-msgid "Date range"
-msgstr "日期范围"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
-msgid "Date range type"
-msgstr "日期范围类型"
-
-#. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
 msgstr "日期范围"
@@ -463,6 +453,12 @@ msgstr "周"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "年"
+
+#~ msgid "Date range"
+#~ msgstr "日期范围"
+
+#~ msgid "Date range type"
+#~ msgstr "日期范围类型"
 
 #~ msgid "Date Start"
 #~ msgstr "开始日期"

@@ -163,16 +163,6 @@ msgid "Date Ranges Exist"
 msgstr ""
 
 #. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_tree
-msgid "Date range"
-msgstr "Data final"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_tree
-msgid "Date range type"
-msgstr "Tipo de intervalo de data"
-
-#. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
 msgstr "Períodos"
@@ -465,6 +455,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr ""
+
+#~ msgid "Date range"
+#~ msgstr "Data final"
+
+#~ msgid "Date range type"
+#~ msgstr "Tipo de intervalo de data"
 
 #~ msgid "Date Start"
 #~ msgstr "Data incial"
