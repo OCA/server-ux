@@ -99,7 +99,6 @@ msgstr ""
 
 #. module: base_tier_validation_report
 #: model:ir.model,name:base_tier_validation_report.model_tier_review
-#: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_tree
 msgid "Tier Review"
 msgstr ""
 
