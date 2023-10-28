@@ -538,7 +538,6 @@ msgstr ""
 
 #. module: base_tier_validation_correction
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_correction.tier_correction_view_form
-#: model_terms:ir.ui.view,arch_db:base_tier_validation_correction.tier_correction_view_tree
 msgid "Tier Correction"
 msgstr ""
 
