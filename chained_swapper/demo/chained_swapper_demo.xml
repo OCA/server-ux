@@ -33,6 +33,7 @@
         }"
         />
     </record>
+    <!-- oca-hooks:disable=xml-duplicate-record-id -->
     <!-- pylint:disable=duplicate-xml-record-id -->
     <record id="chained_swapper_demo" model="chained.swapper">
         <field
