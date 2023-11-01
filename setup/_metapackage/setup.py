@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo-addon-base_field_deprecated>=15.0dev,<15.1dev',
         'odoo-addon-base_import_security_group>=15.0dev,<15.1dev',
         'odoo-addon-base_menu_visibility_restriction>=15.0dev,<15.1dev',
+        'odoo-addon-base_multi_branch_company>=15.0dev,<15.1dev',
         'odoo-addon-base_optional_quick_create>=15.0dev,<15.1dev',
         'odoo-addon-base_recurrence>=15.0dev,<15.1dev',
         'odoo-addon-base_revision>=15.0dev,<15.1dev',
