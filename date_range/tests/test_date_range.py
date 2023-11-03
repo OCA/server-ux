@@ -3,7 +3,7 @@
 
 import datetime
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -128,7 +128,7 @@ class DateRangeTest(TransactionCase):
         )
 
     def test_date_range_multicompany_1(self):
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             self.date_range.create(
                 {
                     "name": "FS2016",
