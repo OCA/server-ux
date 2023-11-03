@@ -69,6 +69,14 @@ msgid "Allow Overlap"
 msgstr "Autoriser les chevauchements"
 
 #. module: date_range
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_form_view
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_search
+msgid "Archived"
+msgstr ""
+
+#. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
 #: model:ir.cron,cron_name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
@@ -103,6 +111,7 @@ msgstr "Annuler"
 #: model:ir.model.fields,field_description:date_range.field_date_range__company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__company_id
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
 msgid "Company"
 msgstr "Société"
 
@@ -187,6 +196,11 @@ msgid "Duration"
 msgstr "Durée"
 
 #. module: date_range
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
+msgid "End Date"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_end
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_end
 msgid "End date"
@@ -204,6 +218,11 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_search_mixin__date_range_search_id
 msgid "Filter by period (technical field)"
+msgstr ""
+
+#. module: date_range
+#: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
+msgid "Generate"
 msgstr ""
 
 #. module: date_range
@@ -227,10 +246,8 @@ msgstr "ID"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__allow_overlap
-msgid "If sets date range of same type must not overlap."
+msgid "If set, date ranges of same type must not overlap."
 msgstr ""
-"Si elle est définie, les plages de dates de même type ne doivent pas se "
-"chevaucher."
 
 #. module: date_range
 #. odoo-python
@@ -338,15 +355,15 @@ msgid "Ranges"
 msgstr "Plages"
 
 #. module: date_range
+#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
+msgid "Start Date"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_start
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__date_start
 msgid "Start date"
 msgstr "Date de début"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
-msgid "Submit"
-msgstr "Soumettre"
 
 #. module: date_range
 #. odoo-python
@@ -400,11 +417,9 @@ msgstr ""
 #: code:addons/date_range/models/date_range_type.py:0
 #, python-format
 msgid ""
-"You cannot change the company, as this Date Range Type is  assigned to Date "
-"Range (%s)."
+"You cannot change the company, as this Date Range Type is assigned to Date "
+"Range '%s'."
 msgstr ""
-"Vous ne pouvez pas modifier la société, car ce type de plage de dates est "
-"attribué à la plage de dates (%s)."
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__3
@@ -449,6 +464,22 @@ msgstr "semaines"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "années"
+
+#~ msgid "If sets date range of same type must not overlap."
+#~ msgstr ""
+#~ "Si elle est définie, les plages de dates de même type ne doivent pas se "
+#~ "chevaucher."
+
+#~ msgid "Submit"
+#~ msgstr "Soumettre"
+
+#, python-format
+#~ msgid ""
+#~ "You cannot change the company, as this Date Range Type is  assigned to "
+#~ "Date Range (%s)."
+#~ msgstr ""
+#~ "Vous ne pouvez pas modifier la société, car ce type de plage de dates est "
+#~ "attribué à la plage de dates (%s)."
 
 #, python-format
 #~ msgid "%s is not a valid range (%s > %s)"
