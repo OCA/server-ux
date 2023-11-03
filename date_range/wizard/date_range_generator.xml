@@ -57,7 +57,7 @@
                     <button
                         class="btn btn-sm btn-primary"
                         name="action_apply"
-                        string="Submit"
+                        string="Generate"
                         type="object"
                     />
                     <button
