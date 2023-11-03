@@ -20,12 +20,8 @@ msgstr ""
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range
-msgid "Date Ranges"
-msgstr ""
-
-#. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_root
-msgid "Date ranges"
+msgid "Date Ranges"
 msgstr ""
 
 #. module: date_range_account
