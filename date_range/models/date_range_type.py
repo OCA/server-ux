@@ -19,7 +19,7 @@ class DateRangeType(models.Model):
 
     name = fields.Char(required=True, translate=True)
     allow_overlap = fields.Boolean(
-        help="If sets date range of same type must not overlap.", default=False
+        help="If set, date ranges of same type must not overlap.", default=False
     )
     active = fields.Boolean(
         help="The active field allows you to hide the date range type "
@@ -89,10 +89,9 @@ class DateRangeType(models.Model):
                     raise ValidationError(
                         _(
                             "You cannot change the company, as this "
-                            "Date Range Type is  assigned to Date Range "
-                            "(%s)."
+                            "Date Range Type is assigned to Date Range '%s'."
                         )
-                        % (rec.date_range_ids.name_get()[0][1])
+                        % (rec.date_range_ids.display_name)
                     )
 
     @api.depends("name_expr", "name_prefix")
