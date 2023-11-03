@@ -3,7 +3,7 @@
 
         <menuitem
         id="menu_date_range_root"
-        name="Date ranges"
+        name="Date Ranges"
         parent="account.menu_finance_configuration"
         sequence="200"
     />
