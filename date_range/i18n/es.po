@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2023-08-27 16:07+0000\n"
+"PO-Revision-Date: 2023-11-11 14:21+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -75,7 +75,7 @@ msgstr "Permitir solapamiento"
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_search
 msgid "Archived"
-msgstr ""
+msgstr "Archivado"
 
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
@@ -199,7 +199,7 @@ msgstr "Duración"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
 msgid "End Date"
-msgstr ""
+msgstr "Fecha Finalización"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_end
@@ -227,7 +227,7 @@ msgstr "Filtrar por periodo (campo técnico)"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Generate"
-msgstr ""
+msgstr "Generar"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
@@ -252,6 +252,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:date_range.field_date_range_type__allow_overlap
 msgid "If set, date ranges of same type must not overlap."
 msgstr ""
+"Si se establece, los intervalos de fechas del mismo tipo no deben solaparse."
 
 #. module: date_range
 #. odoo-python
@@ -363,7 +364,7 @@ msgstr "Rangos"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
 msgid "Start Date"
-msgstr ""
+msgstr "Fecha de Inicio"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__date_start
@@ -423,6 +424,8 @@ msgid ""
 "You cannot change the company, as this Date Range Type is assigned to Date "
 "Range '%s'."
 msgstr ""
+"No puede cambiar la empresa, ya que este Tipo de intervalo de fechas está "
+"asignado al Intervalo de fechas '%s'."
 
 #. module: date_range
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_generator__unit_of_time__3
