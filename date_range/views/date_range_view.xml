@@ -9,7 +9,7 @@
                 <field name="type_id" />
                 <field name="date_start" />
                 <field name="date_end" />
-                <!-- pylint : disable=duplicate-xml-fields -->
+                <!-- pylint : oca-disable=duplicate-xml-fields -->
                 <field name="company_id" invisible="1" />
                 <field
                     name="company_id"
@@ -36,7 +36,7 @@
                     <field name="type_id" />
                     <field name="date_start" />
                     <field name="date_end" />
-                    <!-- pylint : disable=duplicate-xml-fields -->
+                    <!-- pylint : oca-disable=duplicate-xml-fields -->
                     <field name="company_id" invisible="1" />
                     <field
                         name="company_id"
