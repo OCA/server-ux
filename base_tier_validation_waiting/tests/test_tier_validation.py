@@ -122,7 +122,7 @@ class TierTierValidation(TransactionCase):
         self.assertFalse(test_record.message_ids)
         self.assertTrue(review_2.status == "waiting")
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_cache()
+        record.invalidate_model()
         record.validate_tier()
         self.assertTrue(review_1.status == "approved")
         self.assertTrue(review_2.status == "pending")
@@ -132,9 +132,9 @@ class TierTierValidation(TransactionCase):
             self.test_user_1.id
         )._notify_requested_review_body()
         self.assertIn(request, msg)
-        record.invalidate_cache()
+        record.invalidate_model()
         record = test_record.with_user(self.test_user_2.id)
-        record.invalidate_cache()
+        record.invalidate_model()
         record.validate_tier()
         self.assertTrue(review_2.status == "approved")
 

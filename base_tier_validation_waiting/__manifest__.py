@@ -4,7 +4,7 @@
     "name": "Base Tier Validation - Waiting status",
     "summary": "Base Tier Validation Extension to add waiting status",
     "category": "Tools",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "brain-tec AG, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
