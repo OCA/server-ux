@@ -23,15 +23,14 @@ msgstr "Types de plages de dates"
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range
-msgid "Date Ranges"
-msgstr "Plages de dates"
-
-#. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_root
-msgid "Date ranges"
+msgid "Date Ranges"
 msgstr "Plages de dates"
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_generator
 msgid "Generate Date Ranges"
 msgstr "Générer les plages de dates"
+
+#~ msgid "Date ranges"
+#~ msgstr "Plages de dates"
