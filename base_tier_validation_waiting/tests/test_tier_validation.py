@@ -3,11 +3,11 @@
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests.common import SavepointCase, tagged
+from odoo.tests.common import TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class TierTierValidation(SavepointCase):
+class TierTierValidation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
@@ -19,7 +19,9 @@ class TierTierValidation(SavepointCase):
         )
 
         cls.loader.update_registry((TierValidationTester,))
-        cls.test_model = cls.env[TierValidationTester._name]
+        cls.test_model = cls.env[TierValidationTester._name].with_context(
+            tracking_disable=True, no_reset_password=True
+        )
 
         cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
@@ -88,7 +90,7 @@ class TierTierValidation(SavepointCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TierTierValidation, cls).tearDownClass()
+        super().tearDownClass()
 
     def test_01_waiting_tier(self):
         # Create new test record
