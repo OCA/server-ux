@@ -61,6 +61,9 @@ class Base(models.AbstractModel):
             field = custom_filter._get_related_field()
             field_name = custom_filter.expression
             res["fields"][field_name] = field.get_description(self.env)
+            # Force name for avoiding error accesing to this field from pivot and graph
+            # (needed for owl framework)
+            res["fields"][field_name]["name"] = field_name
             # force this for avoiding to appear on the rest of the UI
             res["fields"][field_name]["selectable"] = False
             res["fields"][field_name]["sortable"] = False
