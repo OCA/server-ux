@@ -1,0 +1,241 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_substate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-11 15:17+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__model
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__model
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__model
+msgid "Apply on"
+msgstr "Aplicar sobre"
+
+#. module: base_substate
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_view_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: base_substate
+#: model:ir.actions.act_window,name:base_substate.act_open_base_substate_view
+#: model:ir.model,name:base_substate.model_base_substate
+#: model:ir.ui.menu,name:base_substate.menu_base_substate
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_view_form
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_view_search
+msgid "Base Substate"
+msgstr "Subestado Base"
+
+#. module: base_substate
+#: model:ir.model,name:base_substate.model_base_substate_type
+msgid "Base Substate Type"
+msgstr "Tipo de Subestado Base"
+
+#. module: base_substate
+#: model:ir.model,name:base_substate.model_base_substate_mixin
+msgid "BaseSubstate Mixin"
+msgstr "Mezcla de subestado base"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__create_uid
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__create_uid
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__create_date
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__create_date
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__display_name
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__display_name
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__mail_template_id
+msgid "Email Template"
+msgstr "Plantilla de Correo Electrónico"
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_base_substate__sequence
+msgid "Gives the sequence order when applying the default substate"
+msgstr "Indica el orden de secuencia al aplicar el subestado por defecto"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__id
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__id
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_base_substate__mail_template_id
+msgid ""
+"If set, an email will be sent to the partner when the object reaches this "
+"substate."
+msgstr ""
+"Si se establece, se enviará un correo electrónico al socio cuando el objeto "
+"alcance este subestado."
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate____last_update
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type____last_update
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__write_uid
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__write_uid
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por Última vez por"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__write_date
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__write_date
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_base_substate__model
+#: model:ir.model.fields,help:base_substate.field_target_state_value__model
+msgid "Model for technical use"
+msgstr "Modelo para uso técnico"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_mixin__substate_id
+msgid "Sub State"
+msgstr "Sub Estado"
+
+#. module: base_substate
+#: model:ir.ui.menu,name:base_substate.menu_substate_config
+msgid "Sub State Configuration"
+msgstr "Configuración del Sub Estado"
+
+#. module: base_substate
+#: model:ir.actions.act_window,name:base_substate.act_open_base_substate_type_view
+#: model:ir.ui.menu,name:base_substate.menu_base_substate_type
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_type_view_form
+#: model_terms:ir.ui.view,arch_db:base_substate.base_substate_type_view_search
+msgid "Sub State Type"
+msgstr "Tipo de Sub Estado"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__name
+msgid "Substate Name"
+msgstr "Nombre del Subestado"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__base_substate_type_id
+msgid "Substate Type"
+msgstr "Tipo de Subestado"
+
+#. module: base_substate
+#: model:res.groups,name:base_substate.group_substate_manager
+msgid "Substate manager"
+msgstr "Gerente del Subestado"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_type__target_state_field
+msgid "Target State Field"
+msgstr "Objetivo Campo del Estado"
+
+#. module: base_substate
+#: model:ir.actions.act_window,name:base_substate.act_open_target_state_value_view
+#: model:ir.model,name:base_substate.model_target_state_value
+#: model:ir.model.fields,field_description:base_substate.field_base_substate__target_state_value_id
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__target_state_value
+#: model:ir.ui.menu,name:base_substate.menu_target_state_value
+#: model_terms:ir.ui.view,arch_db:base_substate.target_state_value_view_form
+#: model_terms:ir.ui.view,arch_db:base_substate.target_state_value_view_search
+msgid "Target State Value"
+msgstr "Valor Objetivo del Estado"
+
+#. module: base_substate
+#: model:ir.model.fields,field_description:base_substate.field_target_state_value__name
+msgid "Target state Name"
+msgstr "Nombre del Estado objetivo"
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_target_state_value__name
+msgid ""
+"Target state translateble name.\n"
+"Ex: for sale order \"Quotation\", \"Sale order\", \"Locked\"..."
+msgstr ""
+"Nombre traducible del estado de destino.\n"
+"Ej: para orden de venta \"Quotation\", \"Sale order\", \"Locked\"..."
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_base_substate_type__target_state_field
+msgid ""
+"Technical target state field name. Ex for sale order \"state\" for other "
+"\"status\" ... "
+msgstr ""
+"Nombre de campo de estado de destino técnico. Ej para pedido de venta \"state"
+" \" para otro \"status \" ... "
+
+#. module: base_substate
+#: model:ir.model.fields,help:base_substate.field_target_state_value__target_state_value
+msgid ""
+"Technical target state value.\n"
+"Ex: for sale order \"draft\", \"sale\", \"done\", ..."
+msgstr ""
+"Valor de estado del objetivo técnico.\n"
+"Ej: para pedido de venta \"draft \", \"sale \", \"done \", ..."
+
+#. module: base_substate
+#. odoo-python
+#: code:addons/base_substate/models/base_substate_mixin.py:0
+#, python-format
+msgid ""
+"The substate %(name)s is not defined for the state %(state)s but for "
+"%(target_state)s "
+msgstr ""
+"El subestado %(name)s no está definido para el estado %(state)s sino para "
+"%(target_state)s "
+
+#. module: base_substate
+#. odoo-python
+#: code:addons/base_substate/models/base_substate_mixin.py:0
+#, python-format
+msgid "This substate is not define for this object but for %s"
+msgstr "Este subestado no está definido para este objeto sino para %s"
