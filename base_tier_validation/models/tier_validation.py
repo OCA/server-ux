@@ -217,7 +217,12 @@ class TierValidation(models.AbstractModel):
             if isinstance(rec.id, models.NewId):
                 rec.need_validation = False
                 continue
-            tiers = self.env["tier.definition"].search([("model", "=", self._name)])
+            tiers = self.env["tier.definition"].search(
+                [
+                    ("model", "=", self._name),
+                    ("company_id", "in", [False] + self.env.company.ids),
+                ]
+            )
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
                 not rec.review_ids and valid_tiers and rec._check_state_from_condition()
@@ -456,7 +461,11 @@ class TierValidation(models.AbstractModel):
             if rec._check_state_from_condition():
                 if rec.need_validation:
                     tier_definitions = td_obj.search(
-                        [("model", "=", self._name)], order="sequence desc"
+                        [
+                            ("model", "=", self._name),
+                            ("company_id", "in", [False] + self.env.company.ids),
+                        ],
+                        order="sequence desc",
                     )
                     sequence = 0
                     for td in tier_definitions:
