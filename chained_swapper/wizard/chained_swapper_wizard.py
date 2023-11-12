@@ -40,18 +40,15 @@ class ChainedSwapperWizard(models.TransientModel):
         return super().default_get(fields)
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """As we don't have any field in this model, result['fields']
         and result['arch'] are modified to add dynamically the
         corresponding field.
         """
-        res = super().fields_view_get(
+        res = super().get_view(
             view_id=view_id,
             view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
+            **options,
         )
         if not self.env.context.get("chained_swapper_id"):
             return res
@@ -155,7 +152,7 @@ class ChainedSwapperWizard(models.TransientModel):
             )
 
     def read(self, fields, load="_classic_read"):
-        """Without this call, dynamic fields build by fields_view_get()
+        """Without this call, dynamic fields build by get_view()
         generate a crash and warning, i.e.: read() with unknown field 'myfield'
         """
         real_fields = set(fields) & set(self._fields)
