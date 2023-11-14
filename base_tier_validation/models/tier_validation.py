@@ -195,7 +195,12 @@ class TierValidation(models.AbstractModel):
 
     def _compute_need_validation(self):
         for rec in self:
-            tiers = self.env["tier.definition"].search([("model", "=", self._name)])
+            tiers = self.env["tier.definition"].search(
+                [
+                    ("model", "=", self._name),
+                    ("company_id", "in", [False] + self.env.company.ids),
+                ]
+            )
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
                 not rec.review_ids
@@ -413,7 +418,11 @@ class TierValidation(models.AbstractModel):
             if getattr(rec, self._state_field) in self._state_from:
                 if rec.need_validation:
                     tier_definitions = td_obj.search(
-                        [("model", "=", self._name)], order="sequence desc"
+                        [
+                            ("model", "=", self._name),
+                            ("company_id", "in", [False] + self.env.company.ids),
+                        ],
+                        order="sequence desc",
                     )
                     sequence = 0
                     for td in tier_definitions:
