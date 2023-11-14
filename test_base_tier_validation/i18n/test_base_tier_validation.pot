@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* test_base_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-14 15:08+0000\n"
+"PO-Revision-Date: 2023-11-14 15:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__can_review
+msgid "Can Review"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model,name:test_base_tier_validation.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__display_name
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_tier_definition__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields.selection,name:test_base_tier_validation.selection__res_partner__test_state_tier_validation__done
+msgid "Done"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields.selection,name:test_base_tier_validation.selection__res_partner__test_state_tier_validation__draft
+msgid "Draft"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__has_comment
+msgid "Has Comment"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__id
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_tier_definition__id
+msgid "ID"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields.selection,name:test_base_tier_validation.selection__res_partner__test_state_tier_validation__sent
+msgid "In progress"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner____last_update
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_tier_definition____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__need_validation
+msgid "Need Validation"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__rejected_message
+msgid "Rejected Message"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__reviewer_ids
+msgid "Reviewers"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__test_state_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_users__test_state_tier_validation
+msgid "State tier validation"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:tier.definition,name:test_base_tier_validation.test_partner_tier_definition
+msgid "Test Partner Tier Definition"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model,name:test_base_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__validated
+msgid "Validated"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__validated_message
+msgid "Validated Message"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__review_ids
+msgid "Validations"
+msgstr ""
