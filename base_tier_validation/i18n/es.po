@@ -440,6 +440,7 @@ msgstr ""
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__res_partner__validation_status__pending
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
@@ -458,6 +459,7 @@ msgstr "Rechazar"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__res_partner__validation_status__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__rejected
 msgid "Rejected"
@@ -720,6 +722,7 @@ msgstr "Validado"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__res_partner__validation_status__validated
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__validated
 msgid "Validated"
 msgstr "Validado"
@@ -754,6 +757,7 @@ msgid "Validations"
 msgstr "Validaciones"
 
 #. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__res_partner__validation_status__no
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
 msgid "Without validation"
 msgstr "Sin validación"
