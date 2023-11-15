@@ -36,7 +36,7 @@ addon | version | maintainers | summary
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 14.0.1.1.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Add custom filters for fields via UI
 [base_substate](base_substate/) | 14.0.1.0.0 |  | Base Sub State
 [base_technical_features](base_technical_features/) | 14.0.1.1.1 |  | Access to technical features without activating debug mode
-[base_tier_validation](base_tier_validation/) | 14.0.2.14.3 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
+[base_tier_validation](base_tier_validation/) | 14.0.2.14.4 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Implement a validation process based on tiers.
 [base_tier_validation_correction](base_tier_validation_correction/) | 14.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Correct tier.review data after it has been created.
 [base_tier_validation_formula](base_tier_validation_formula/) | 14.0.2.0.1 |  | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 14.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [sequence_range_end](sequence_range_end/) | 14.0.1.0.1 |  | Sequence prefix/suffix option, 'range_end_', to use the beginning of the range
 [sequence_reset_period](sequence_reset_period/) | 14.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [server_action_domain](server_action_domain/) | 14.0.1.0.0 |  | Apply a domain filter before executing server actions on records
+[test_base_tier_validation](test_base_tier_validation/) | 14.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Test Base Tier Validation
 [web_archive_date](web_archive_date/) | 14.0.1.0.1 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
 
 [//]: # (end addons)

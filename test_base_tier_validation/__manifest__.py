@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Test Base Tier Validation",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Tecnativa, Odoo Community Association (OCA)",
