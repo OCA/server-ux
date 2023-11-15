@@ -6,14 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 15:08+0000\n"
-"PO-Revision-Date: 2023-11-14 15:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: test_base_tier_validation
+#: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__can_forward
+msgid "Can Forward"
+msgstr ""
 
 #. module: test_base_tier_validation
 #: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__can_review
@@ -92,11 +95,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_base_tier_validation.field_res_partner__test_state_tier_validation
 #: model:ir.model.fields,field_description:test_base_tier_validation.field_res_users__test_state_tier_validation
 msgid "State tier validation"
-msgstr ""
-
-#. module: test_base_tier_validation
-#: model:tier.definition,name:test_base_tier_validation.test_partner_tier_definition
-msgid "Test Partner Tier Definition"
 msgstr ""
 
 #. module: test_base_tier_validation
