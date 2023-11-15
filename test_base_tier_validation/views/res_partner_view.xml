@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <field
+                        name="test_state_tier_validation"
+                        widget="statusbar"
+                        options="{'clickable': True}"
+                    />
+                    <!-- We need this trick to base_tier_validation auto-add-buttons -->
+                    <button invisible="1" />
+                </header>
+            </sheet>
+        </field>
+    </record>
+</odoo>
