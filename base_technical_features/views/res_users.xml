@@ -11,7 +11,7 @@
                 <field
                     name="technical_features"
                     readonly="0"
-                    attrs="{'invisible': [('show_technical_features', '=', False)]}"
+                    invisible="not show_technical_features"
                 />
                 <field name="show_technical_features" invisible="1" />
             </field>
