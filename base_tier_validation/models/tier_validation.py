@@ -442,7 +442,7 @@ class TierValidation(models.AbstractModel):
         subscribe = "message_subscribe"
         post = "message_post"
         if hasattr(self, post) and hasattr(self, subscribe):
-            for rec in self:
+            for rec in self.sudo():
                 users_to_notify = tier_reviews.filtered(
                     lambda r: r.definition_id.notify_on_create and r.res_id == rec.id
                 ).mapped("reviewer_ids")
