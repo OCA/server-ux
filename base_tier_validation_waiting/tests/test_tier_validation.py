@@ -12,7 +12,12 @@ class TierTierValidation(TransactionCase):
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
         cls.env = cls.env(
-            context=dict(cls.env.context, tracking_disable=True, no_reset_password=True)
+            context=dict(
+                cls.env.context,
+                tracking_disable=True,
+                no_reset_password=True,
+                testing_base_tier_validation_waiting=True,
+            )
         )
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
