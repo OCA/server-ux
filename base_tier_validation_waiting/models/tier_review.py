@@ -2,14 +2,25 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.tools import config
 
 
 class TierReview(models.Model):
     _inherit = "tier.review"
 
+    def _default_status(self):
+        if (
+            not config["test_enable"]
+            or config["test_enable"]
+            and self.env.context.get("testing_base_tier_validation_waiting")
+        ):
+            return "waiting"
+        else:
+            return "pending"
+
     status = fields.Selection(
         selection_add=[("waiting", "Waiting")],
-        default="waiting",
+        default=_default_status,
         ondelete={"waiting": "set default"},
     )
 

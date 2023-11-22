@@ -13,7 +13,13 @@ class TierTierValidation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TierTierValidation, cls).setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                **DISABLED_MAIL_CONTEXT,
+                testing_base_tier_validation_waiting=True
+            )
+        )
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
