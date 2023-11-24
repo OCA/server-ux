@@ -5,8 +5,11 @@
 
 from ast import literal_eval
 
+import psycopg2
+
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, common, new_test_user
+from odoo.tools.misc import mute_logger
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
 
@@ -403,9 +406,8 @@ class TestMassEditing(common.TransactionCase):
             active_model=self.invoice_partner._name,
             active_ids=self.invoice_partner.ids,
         ).run()
-        try:
-            self.env[action["res_model"]].with_context(
-                **literal_eval(action["context"]),
-            ).create(vals)
-        except Exception as e:
-            self.assertEqual(type(e), UserError)
+        with self.assertRaises(psycopg2.IntegrityError):
+            with mute_logger("odoo.sql_db"), self.cr.savepoint():
+                self.env[action["res_model"]].with_context(
+                    **literal_eval(action["context"]),
+                ).create(vals)
