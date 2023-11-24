@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_technical_features
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-09-27 11:00+0000\n"
+"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>\n"
+"Language-Team: none\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "Menu"
+msgstr "メニュー"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
+msgid "Show field Technical Features"
+msgstr "技術機能項目を表示"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
+msgid "Technical Features"
+msgstr "技術機能"
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr "技術機能(開発者モードの有効化なし)"
+
+#. module: base_technical_features
+#. odoo-python
+#: code:addons/base_technical_features/models/res_users.py:0
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr "ユーザは技術機能へのアクセスがありません。"
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
+msgid ""
+"Whether to display the technical features field in the user preferences."
+msgstr "ユーザ個人設定に技術機能項目を表示するか否か。"
+
+#~ msgid "Users"
+#~ msgstr "ユーザ"
