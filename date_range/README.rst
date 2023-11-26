@@ -17,22 +17,22 @@ Date Range
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/date_range
+    :target: https://github.com/OCA/server-ux/tree/17.0/date_range
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-date_range
+    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-date_range
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module lets you define global date ranges that can be used to filter
-your values in tree views.
+This module lets you define global date ranges that can be used to
+filter your values in tree views.
 
-It also provides a mixin model for developers that extends the model's search
-view so that date ranges can be search as any relational field.
+It also provides a mixin model for developers that extends the model's
+search view so that date ranges can be search as any relational field.
 
 **Table of contents**
 
@@ -42,93 +42,96 @@ view so that date ranges can be search as any relational field.
 Installation
 ============
 
-The addon use the daterange method from postgres. This method is supported as of postgresql 9.2
+The addon use the daterange method from postgres. This method is
+supported as of postgresql 9.2
 
 Configuration
 =============
 
-For regular usage, see `Usage` below. This section is to clarify optional
+For regular usage, see Usage below. This section is to clarify optional
 functionality to developers.
 
-To configure a model to use the Many2one style search field, make the model
-inherit from `date.range.search.mixin`:
+To configure a model to use the Many2one style search field, make the
+model inherit from \`date.range.search.mixin\`:
 
-.. code-block::
+::
 
-    class AccountMove(models.Model):
-        _name = "account.move"
-        _inherit = ["account.move", "date.range.search.mixin"]
+   class AccountMove(models.Model):
+       _name = "account.move"
+       _inherit = ["account.move", "date.range.search.mixin"]
 
-This will make a `Period` field show up in the search view:
+This will make a Period field show up in the search view:
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/12.0/date_range/static/description/date_range_many2one_search_field.png
-     :scale: 80 %
-     :alt: Date range Many2one search field
+   |image1|
 
-By default, the mixin works on the `date` field. If you want the mixin to work
-on a field with a different name, you can set a property on your model:
+By default, the mixin works on the date field. If you want the mixin to
+work on a field with a different name, you can set a property on your
+model:
 
-.. code-block::
+::
 
    _date_range_search_field = "invoice_date"
+
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/date_range/static/description/date_range_many2one_search_field.png
 
 Usage
 =====
 
 To configure this module, you need to:
 
-* Go to Settings > Technical > Date ranges > Date Range Types where
-  you can create types of date ranges.
+-  Go to Settings > Technical > Date ranges > Date Range Types where you
+   can create types of date ranges.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_create.png
-     :scale: 80 %
-     :alt: Create a type of date range
+   |image1|
 
-* Go to Settings > Technical > Date ranges >  Date Ranges where
-  you can create date ranges.
+-  Go to Settings > Technical > Date ranges > Date Ranges where you can
+   create date ranges.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_create.png
-     :scale: 80 %
-     :alt: Date range creation
+   |image2|
 
-  It's also possible to launch a wizard from the 'Generate Date Ranges' menu.
+   It's also possible to launch a wizard from the 'Generate Date Ranges'
+   menu.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_wizard.png
-     :scale: 80 %
-     :alt: Date range wizard
+   |image3|
 
-  The wizard is useful to generate recurring periods. Set an end date or enter the number of ranges to create.
+   The wizard is useful to generate recurring periods. Set an end date
+   or enter the number of ranges to create.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_wizard_result.png
-     :scale: 80 %
-     :alt: Date range wizard result
+   |image4|
 
-* Your date ranges are now available in the search filter for any date or datetime fields
+-  Your date ranges are now available in the search filter for any date
+   or datetime fields
 
-  Date range types are proposed as a filter operator
+   Date range types are proposed as a filter operator
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_as_filter.png
-     :scale: 80 %
-     :alt: Date range type available as filter operator
+   |image5|
 
-  Once a type is selected, date ranges of this type are porposed as a filter value
+   Once a type is selected, date ranges of this type are porposed as a
+   filter value
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_as_filter.png
-     :scale: 80 %
-     :alt: Date range as filter value
+   |image6|
 
-  And the dates specified into the date range are used to filter your result.
+   And the dates specified into the date range are used to filter your
+   result.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_as_filter_result.png
-     :scale: 80 %
-     :alt: Date range as filter result
+   |image7|
 
-* You can configure date range types with default values for the generation wizard on the `Generation` tab.
-  In the same tab you can also configure date range types for auto-generation. New ranges for types configured for this are generated by a scheduled task that runs daily.
+-  You can configure date range types with default values for the
+   generation wizard on the Generation tab. In the same tab you can also
+   configure date range types for auto-generation. New ranges for types
+   configured for this are generated by a scheduled task that runs
+   daily.
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_autogeneration.png
-     :scale: 80 %
-     :alt: Configure a date range for auto-generaton
+   |image8|
+
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_create.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_create.png
+.. |image3| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_wizard.png
+.. |image4| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_wizard_result.png
+.. |image5| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_as_filter.png
+.. |image6| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_as_filter.png
+.. |image7| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_as_filter_result.png
+.. |image8| image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/date_range/static/description/date_range_type_autogeneration.png
 
 Bug Tracker
 ===========
@@ -136,7 +139,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20date_range%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20date_range%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -144,21 +147,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Laurent Mignon <laurent.mignon@acsone.eu>
-* Alexis de Lattre <alexis.delattre@akretion.com>
-* Miquel Raïch <miquel.raich@forgeflow.com>
-* Andrea Stirpe <a.stirpe@onestein.nl>
-* Stefan Rijnhart <stefan@opener.amsterdam>
+-  Laurent Mignon <laurent.mignon@acsone.eu>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
+-  Miquel Raïch <miquel.raich@forgeflow.com>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -178,6 +181,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/date_range>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/date_range>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
