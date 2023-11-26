@@ -34,7 +34,9 @@ class DateRange(models.Model):
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
         "removing it.",
-        default=True,
+        compute="_compute_active",
+        readonly=False,
+        store=True,
     )
 
     _sql_constraints = [
@@ -44,6 +46,14 @@ class DateRange(models.Model):
             "A date range must be unique per company !",
         )
     ]
+
+    @api.depends("type_id.active")
+    def _compute_active(self):
+        for date in self:
+            if date.type_id.active:
+                date.active = True
+            else:
+                date.active = False
 
     @api.constrains("type_id", "date_start", "date_end", "company_id")
     def _validate_range(self):

@@ -83,7 +83,8 @@ class DateRangeType(models.Model):
                     continue
                 if bool(
                     rec.date_range_ids.filtered(
-                        lambda r: r.company_id and r.company_id != rec.company_id
+                        lambda r, drt=rec: r.company_id
+                        and r.company_id != drt.company_id
                     )
                 ):
                     raise ValidationError(
@@ -144,5 +145,5 @@ class DateRangeType(models.Model):
             except Exception as e:
                 logger.warning(
                     "Error autogenerating ranges for date range type "
-                    "%s: %s" % (dr_type.name, e)
+                    f"{dr_type.name}: {e}"
                 )

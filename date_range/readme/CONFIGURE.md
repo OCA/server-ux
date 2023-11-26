@@ -12,7 +12,7 @@ class AccountMove(models.Model):
 
 This will make a Period field show up in the search view:
 
-> ![](https://raw.githubusercontent.com/OCA/server-tools/12.0/date_range/static/description/date_range_many2one_search_field.png)
+> ![search_view](https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_many2one_search_field.png)
 
 By default, the mixin works on the date field. If you want the mixin to
 work on a field with a different name, you can set a property on your
