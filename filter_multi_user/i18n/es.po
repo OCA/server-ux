@@ -28,24 +28,9 @@ msgid "Available for Users"
 msgstr "Disponible para Usuarios"
 
 #. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: filter_multi_user
 #: model:ir.model,name:filter_multi_user.model_ir_filters
 msgid "Filters"
 msgstr "Filtros"
-
-#. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__id
-msgid "ID"
-msgstr "ID"
-
-#. module: filter_multi_user
-#: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: filter_multi_user
 #: model_terms:ir.ui.view,arch_db:filter_multi_user.ir_filters_view_form
@@ -56,3 +41,12 @@ msgstr "Propietario"
 #: model:ir.model.fields,field_description:filter_multi_user.field_ir_filters__user_ids
 msgid "Users"
 msgstr "Usuarios"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
