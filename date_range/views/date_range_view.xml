@@ -10,7 +10,7 @@
                 <field name="date_start" />
                 <field name="date_end" />
                 <!-- pylint : oca-disable=duplicate-xml-fields -->
-                <field name="company_id" invisible="1" />
+                <field name="company_id" column_invisible="1" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -29,7 +29,7 @@
                     name="web_ribbon"
                     title="Archived"
                     bg_color="bg-danger"
-                    attrs="{'invisible': [('active', '=', True)]}"
+                    invisible="not active"
                 />
                 <group col="4">
                     <field name="name" />
@@ -104,12 +104,6 @@
         <field name="model">date.range.type</field>
         <field name="arch" type="xml">
             <form string="Date Range Type">
-                <widget
-                    name="web_ribbon"
-                    title="Archived"
-                    bg_color="bg-danger"
-                    attrs="{'invisible': [('active', '=', True)]}"
-                />
                 <notebook>
                     <page name="main" string="Configuration">
                         <group>
@@ -144,12 +138,12 @@
                                     <field
                                         name="name_prefix"
                                         class="oe_inline"
-                                        attrs="{'required': [('unit_of_time', '!=', False), ('name_expr', '=', False)]}"
+                                        required="unit_of_time and not name_expr"
                                     /> or enter a complex expression below
                                 </div>
                                 <field
                                     name="name_expr"
-                                    attrs="{'required': [('unit_of_time', '!=', False), ('name_prefix', '=', False)]}"
+                                    required="unit_of_time and not name_prefix"
                                 />
                                 <field name="range_name_preview" />
                             </group>
@@ -157,7 +151,7 @@
                                 <field name="date_ranges_exist" invisible="1" />
                                 <field
                                     name="autogeneration_date_start"
-                                    attrs="{'invisible': [('date_ranges_exist', '=', True)]}"
+                                    invisible="date_ranges_exist"
                                 />
                                 <label for="autogeneration_count" string="Create" />
                                 <div>
