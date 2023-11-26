@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo-addon-filter_multi_user>=15.0dev,<15.1dev',
         'odoo-addon-mass_editing>=15.0dev,<15.1dev',
         'odoo-addon-multi_step_wizard>=15.0dev,<15.1dev',
+        'odoo-addon-sequence_check_digit>=15.0dev,<15.1dev',
         'odoo-addon-sequence_reset_period>=15.0dev,<15.1dev',
         'odoo-addon-web_archive_date>=15.0dev,<15.1dev',
     ],
