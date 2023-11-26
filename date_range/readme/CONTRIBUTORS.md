@@ -3,3 +3,5 @@
 - Miquel Raïch \<<miquel.raich@forgeflow.com>\>
 - Andrea Stirpe \<<a.stirpe@onestein.nl>\>
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- David Ramia \<<@ramiadavid>\>
+- Son Ho \<<sonhd@trobz.com>\>

@@ -11,7 +11,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class DateRangeGeneratorTest(TransactionCase):
     def setUp(self):
-        super(DateRangeGeneratorTest, self).setUp()
+        super().setUp()
         self.generator = self.env["date.range.generator"]
         self.type = self.env["date.range.type"].create(
             {"name": "Fiscal year", "company_id": False, "allow_overlap": False}
