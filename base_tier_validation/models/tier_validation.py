@@ -454,6 +454,15 @@ class TierValidation(models.AbstractModel):
                     body=rec._notify_requested_review_body(),
                 )
 
+    def _prepare_tier_review_vals(self, definition, sequence):
+        return {
+            "model": self._name,
+            "res_id": self.id,
+            "definition_id": definition.id,
+            "requested_by": self.env.uid,
+            "sequence": sequence,
+        }
+
     def request_validation(self):
         td_obj = self.env["tier.definition"]
         tr_obj = created_trs = self.env["tier.review"]
@@ -471,15 +480,8 @@ class TierValidation(models.AbstractModel):
                     for td in tier_definitions:
                         if rec.evaluate_tier(td):
                             sequence += 1
-                            created_trs += tr_obj.create(
-                                {
-                                    "model": self._name,
-                                    "res_id": rec.id,
-                                    "definition_id": td.id,
-                                    "sequence": sequence,
-                                    "requested_by": self.env.uid,
-                                }
-                            )
+                            vals = rec._prepare_tier_review_vals(td, sequence)
+                            created_trs += tr_obj.create(vals)
                     self._update_counter()
         self._notify_review_requested(created_trs)
         return created_trs
