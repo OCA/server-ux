@@ -97,7 +97,7 @@ class TierTierValidation(TransactionCase):
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         record.review_ids[0]._compute_can_review()
         record.validate_tier()
         self.assertFalse(record.can_forward)
