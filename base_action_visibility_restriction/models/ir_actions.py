@@ -42,7 +42,7 @@ class IrActionsServer(models.Model):
         """
         Prevent action running for excluded groups
         """
-        for action in self:
+        for action in self.sudo():
             action_excluded_groups = action.excluded_group_ids
             if action_excluded_groups and (
                 action_excluded_groups & self.env.user.groups_id
