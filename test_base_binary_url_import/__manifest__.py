@@ -17,4 +17,5 @@
         "demo/demo_test_binary.xml",
         "demo/ir_attachment.xml",
     ],
+    "external_dependencies": {"python": ["responses"]},
 }
