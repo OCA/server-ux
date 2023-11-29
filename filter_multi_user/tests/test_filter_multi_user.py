@@ -45,7 +45,7 @@ class TestFilterMultiUser(common.TransactionCase):
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)
-        test_filter.invalidate_cache()
+        test_filter.invalidate_recordset()
         with self.assertRaises(AccessError):
             self.assertTrue(test_filter.with_user(self.user_2).name)
 
@@ -59,7 +59,7 @@ class TestFilterMultiUser(common.TransactionCase):
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)
-        test_filter.invalidate_cache()
+        test_filter.invalidate_recordset()
         self.assertTrue(test_filter.with_user(self.user_2).name)
 
     def test_03_get_filters(self):
@@ -120,8 +120,8 @@ class TestFilterMultiUser(common.TransactionCase):
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)
-        test_filter.invalidate_cache()
+        test_filter.invalidate_recordset()
         with self.assertRaises(AccessError):
             self.assertTrue(test_filter.with_user(self.user_2).name)
-        test_filter.invalidate_cache()
+        test_filter.invalidate_recordset()
         self.assertTrue(test_filter.with_user(self.user_3).name)
