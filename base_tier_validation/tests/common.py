@@ -5,12 +5,14 @@ from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import common
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class CommonTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(CommonTierValidation, cls).setUpClass()
-
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from .tier_validation_tester import (
