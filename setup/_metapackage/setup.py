@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-ux Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-barcode_action>=16.0dev,<16.1dev',
         'odoo-addon-base_binary_url_import>=16.0dev,<16.1dev',
         'odoo-addon-base_cancel_confirm>=16.0dev,<16.1dev',
         'odoo-addon-base_custom_filter>=16.0dev,<16.1dev',
