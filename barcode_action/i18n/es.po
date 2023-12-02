@@ -103,6 +103,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: barcode_action
+#. odoo-python
 #: code:addons/barcode_action/models/res_partner.py:0
 #, python-format
 msgid "Partner with Internal Reference %s cannot be found"
