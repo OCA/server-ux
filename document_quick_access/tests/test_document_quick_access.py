@@ -7,19 +7,20 @@ from odoo.tests.common import TransactionCase, tagged
 
 @tagged("post_install", "-at_install")
 class TestDocumentQuickAccess(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.model = "res.partner"
-        self.model_id = self.env.ref("base.model_res_partner")
-        self.rule = self.env["document.quick.access.rule"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.model = "res.partner"
+        cls.model_id = cls.env.ref("base.model_res_partner")
+        cls.rule = cls.env["document.quick.access.rule"].create(
             {
-                "model_id": self.model_id.id,
+                "model_id": cls.model_id.id,
                 "name": "PARTNER",
                 "priority": 1,
                 "barcode_format": "standard",
             }
         )
-        self.partner = self.env["res.partner"].create({"name": "Partner test"})
+        cls.partner = cls.env["res.partner"].create({"name": "Partner test"})
 
     def test_generation(self):
         code = self.partner.get_quick_access_code()
