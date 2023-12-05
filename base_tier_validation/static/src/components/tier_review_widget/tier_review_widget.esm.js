@@ -4,11 +4,10 @@ import {registry} from "@web/core/registry";
 
 import {useService} from "@web/core/utils/hooks";
 
-const {Component, useState} = owl;
+const {Component} = owl;
 
 export class ReviewsTable extends Component {
     setup() {
-        this.docs = useState({});
         this.collapse = false;
         this.orm = useService("orm");
         this.reviews = [];
@@ -33,4 +32,9 @@ export class ReviewsTable extends Component {
 }
 
 ReviewsTable.template = "base_tier_validation.Collapse";
-registry.category("fields").add("form.tier_validation", ReviewsTable);
+
+export const reviewsTableComponent = {
+    component: ReviewsTable,
+};
+
+registry.category("fields").add("form.tier_validation", reviewsTableComponent);
