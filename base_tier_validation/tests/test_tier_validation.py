@@ -403,11 +403,11 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # When the first tier is validated, all the rest will be approved.
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            3, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
 
     def test_13_onchange_review_type(self):
