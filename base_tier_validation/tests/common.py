@@ -89,4 +89,4 @@ class CommonTierValidation(common.TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        return super(CommonTierValidation, cls).tearDownClass()
+        return super().tearDownClass()

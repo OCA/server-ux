@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-    <t t-name="base_tier_validation.Collapse" owl="1">
+    <t t-name="base_tier_validation.Collapse">
         <div class="o_form_sheet panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
