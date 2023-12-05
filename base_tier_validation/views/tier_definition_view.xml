@@ -30,7 +30,7 @@
                         name="web_ribbon"
                         text="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <span class="oe_edit_only">Name</span>
@@ -50,15 +50,15 @@
                             <field name="review_type" />
                             <field
                                 name="reviewer_id"
-                                attrs="{'invisible': [('review_type', '!=', 'individual')]}"
+                                invisible="review_type != 'individual'"
                             />
                             <field
                                 name="reviewer_group_id"
-                                attrs="{'invisible': [('review_type', '!=', 'group')]}"
+                                invisible="review_type != 'group'"
                             />
                             <field
                                 name="reviewer_field_id"
-                                attrs="{'invisible': [('review_type', '!=', 'field')]}"
+                                invisible="review_type != 'field'"
                                 options="{'no_create': True}"
                             />
                             <field name="valid_reviewer_field_ids" invisible="1" />
@@ -75,7 +75,7 @@
                             <div
                                 name="approve_sequence_bypass_div"
                                 class="o_row"
-                                attrs="{'invisible': [('approve_sequence', '=', False)]}"
+                                invisible="approve_sequence == False"
                             >
                                 <field name="approve_sequence_bypass" />
                                 <span
@@ -91,7 +91,7 @@
                                     name="definition_domain"
                                     widget="domain"
                                     options="{'model': 'model'}"
-                                    attrs="{'invisible': [('definition_type', '!=', 'domain')]}"
+                                    invisible="definition_type != 'domain'"
                                 />
                             </group>
                         </page>
@@ -113,6 +113,7 @@
         <field name="model">tier.definition</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name" />
                 <field name="model_id" />
                 <field name="reviewer_id" />
                 <field name="reviewer_group_id" />
