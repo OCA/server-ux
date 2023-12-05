@@ -197,7 +197,7 @@ class TierValidation(models.AbstractModel):
     def _compute_next_review(self):
         for rec in self:
             review = rec.review_ids.sorted("sequence").filtered(
-                lambda l: l.status == "pending"
+                lambda x: x.status == "pending"
             )[:1]
             rec.next_review = review and _("Next: %s") % review.name or ""
 
@@ -282,7 +282,7 @@ class TierValidation(models.AbstractModel):
                 raise ValidationError(_("The operation is under validation."))
             if rec._allow_to_remove_reviews(vals):
                 rec.mapped("review_ids").unlink()
-        return super(TierValidation, self).write(vals)
+        return super().write(vals)
 
     def _allow_to_remove_reviews(self, values):
         """Method for deciding whether the elimination of revisions is necessary."""
@@ -381,7 +381,7 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
         reviews = self.review_ids.filtered(
-            lambda l: l.sequence in sequences or l.approve_sequence_bypass
+            lambda x: x.sequence in sequences or x.approve_sequence_bypass
         )
         if self.has_comment:
             return self._add_comment("validate", reviews)
@@ -391,7 +391,7 @@ class TierValidation(models.AbstractModel):
     def reject_tier(self):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
-        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
+        reviews = self.review_ids.filtered(lambda x: x.sequence in sequences)
         if self.has_comment:
             return self._add_comment("reject", reviews)
         self._rejected_tier(reviews)
@@ -444,7 +444,7 @@ class TierValidation(models.AbstractModel):
         if hasattr(self, post) and hasattr(self, subscribe):
             for rec in self.sudo():
                 users_to_notify = tier_reviews.filtered(
-                    lambda r: r.definition_id.notify_on_create and r.res_id == rec.id
+                    lambda r: r.definition_id.notify_on_create and r.res_id == rec.id  # noqa: B023
                 ).mapped("reviewer_ids")
                 # Subscribe reviewers and notify
                 getattr(rec, subscribe)(

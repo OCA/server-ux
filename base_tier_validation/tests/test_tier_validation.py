@@ -4,7 +4,8 @@
 from lxml import etree
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, tagged
+from odoo.tests import Form
+from odoo.tests.common import tagged
 
 from .common import CommonTierValidation
 
@@ -290,19 +291,19 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # Validation will be all by sequence
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            3, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            2, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            2, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            1, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
 
     def test_12_approve_sequence_same_user_bypassed(self):
@@ -343,11 +344,11 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # When the first tier is validated, all the rest will be approved.
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            3, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
 
     def test_13_onchange_review_type(self):
@@ -502,9 +503,10 @@ class TierTierValidationView(CommonTierValidation):
             </form>""",
             }
         )
+        view = self.env[self.test_record._name].get_view(False, "form")
         with Form(self.test_record) as f:
             self.assertNotIn("review_ids", f._values)
-            form = etree.fromstring(f._view["arch"])
+            form = etree.fromstring(view["arch"])
             self.assertFalse(form.xpath("//field[@name='review_ids']"))
             self.assertFalse(form.xpath("//field[@name='can_review']"))
             self.assertFalse(form.xpath("//button[@name='request_validation']"))
@@ -527,9 +529,10 @@ class TierTierValidationView(CommonTierValidation):
             </form>""",
             }
         )
+        view = self.env[self.test_record_2._name].get_view(False, "form")
         with Form(self.test_record_2) as f:
             self.assertIn("review_ids", f._values)
-            form = etree.fromstring(f._view["arch"])
+            form = etree.fromstring(view["arch"])
             self.assertTrue(form.xpath("//field[@name='review_ids']"))
             self.assertTrue(form.xpath("//field[@name='can_review']"))
             self.assertTrue(form.xpath("//button[@name='request_validation']"))
