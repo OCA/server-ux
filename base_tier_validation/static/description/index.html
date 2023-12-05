@@ -369,17 +369,19 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:3c99283c1cbe012ac999d2d137da0709058da9741d5ef328511110563c7ee61b
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/16.0/base_tier_validation"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-base_tier_validation"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Validating some operations is a common need across different areas in a company
-and sometimes it also involves several people and stages in the process. With
-this module you will be able to define your custom validation workflows for
-any Odoo document.</p>
-<p>This module does not provide a functionality by itself but an abstract model
-to implement a validation process based on tiers on other models (e.g.
-purchase orders, sales orders, budgets, expenses…).</p>
-<p><strong>Note:</strong> To be able to use this module in a new model you will need some
-development.</p>
-<p>See <a class="reference external" href="https://github.com/OCA/purchase-workflow">purchase_tier_validation</a> as an example of implementation.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/17.0/base_tier_validation"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_tier_validation"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Validating some operations is a common need across different areas in a
+company and sometimes it also involves several people and stages in the
+process. With this module you will be able to define your custom
+validation workflows for any Odoo document.</p>
+<p>This module does not provide a functionality by itself but an abstract
+model to implement a validation process based on tiers on other models
+(e.g. purchase orders, sales orders, budgets, expenses…).</p>
+<p><strong>Note:</strong> To be able to use this module in a new model you will need
+some development.</p>
+<p>See
+<a class="reference external" href="https://github.com/OCA/purchase-workflow">purchase_tier_validation</a>
+as an example of implementation.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -421,29 +423,34 @@ functionality.</li>
 </ol>
 <p><strong>Note:</strong></p>
 <ul class="simple">
-<li>If check <em>Notify Reviewers on Creation</em>, all possible reviewers will be notified by email when this definition is triggered.</li>
-<li>If check <em>Comment</em>, reviewers can comment after click Validate or Reject.</li>
-<li>If check <em>Approve by sequence</em>, reviewers is forced to review by specified sequence.</li>
+<li>If check <em>Notify Reviewers on Creation</em>, all possible reviewers will
+be notified by email when this definition is triggered.</li>
+<li>If check <em>Comment</em>, reviewers can comment after click Validate or
+Reject.</li>
+<li>If check <em>Approve by sequence</em>, reviewers is forced to review by
+specified sequence.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
-<p>This is the list of known issues for this module. Any proposal for improvement will
-be very valuable.</p>
+<p>This is the list of known issues for this module. Any proposal for
+improvement will be very valuable.</p>
 <ul>
 <li><p class="first"><strong>Issue:</strong></p>
-<p>When using <cite>approve_sequence</cite> option in any tier.definition there can be inconsistencies
-in the systray notifications.</p>
+<p>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications.</p>
 <p><strong>Description:</strong></p>
-<p>Field <cite>can_review</cite> in tier.review is used to filter out, in the systray notifications,
-the reviews a user can approve. This <cite>can_review</cite> field is updated <strong>in the database</strong>
-in method <cite>review_user_count</cite>, this can make it very inconsistent for databases
-with a lot of users and recurring updates that can change the expected behavior.</p>
+<p>Field can_review in tier.review is used to filter out, in the systray
+notifications, the reviews a user can approve. This can_review field
+is updated <strong>in the database</strong> in method review_user_count, this can
+make it very inconsistent for databases with a lot of users and
+recurring updates that can change the expected behavior.</p>
 </li>
 <li><p class="first"><strong>Migration to 15.0:</strong></p>
-<p>The parameter _tier_validation_manual_config will become False, on 14.0, the default
-value is True, as the change is applied after the migration. In order to use the new
-behavior we need to modify the value on our expected model.</p>
+<p>The parameter _tier_validation_manual_config will become False, on
+14.0, the default value is True, as the change is applied after the
+migration. In order to use the new behavior we need to modify the
+value on our expected model.</p>
 </li>
 </ul>
 </div>
@@ -457,8 +464,10 @@ behavior we need to modify the value on our expected model.</p>
 <h2><a class="toc-backref" href="#toc-entry-5">13.0.1.2.2 (2020-08-30)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
-<li>When using approve_sequence option in any tier.definition there can be inconsistencies in the systray notifications</li>
-<li>When using approve_sequence, still not approve only the needed sequence, but also other sequence for the same approver</li>
+<li>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications</li>
+<li>When using approve_sequence, still not approve only the needed
+sequence, but also other sequence for the same approver</li>
 </ul>
 </div>
 <div class="section" id="section-3">
@@ -542,7 +551,7 @@ behavior we need to modify the value on our expected model.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-ux/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -574,7 +583,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/LoisRForgeFlow"><img alt="LoisRForgeFlow" src="https://github.com/LoisRForgeFlow.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/16.0/base_tier_validation">OCA/server-ux</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/17.0/base_tier_validation">OCA/server-ux</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

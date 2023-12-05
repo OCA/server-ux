@@ -113,7 +113,7 @@ class TierReview(models.Model):
                 todo_by = ", ".join(rec.reviewer_ids[:num_show].mapped("display_name"))
                 num_users = len(rec.reviewer_ids)
                 if num_users > num_show:
-                    todo_by = "{} (and {} more)".format(todo_by, num_users - num_show)
+                    todo_by = f"{todo_by} (and {num_users - num_show} more)"
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
