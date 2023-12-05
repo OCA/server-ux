@@ -5,28 +5,27 @@
             <button
                 name="request_validation"
                 string="Request Validation"
-                t-attf-attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('#{state_field}', '#{state_operator}', #{state_value})]}"
+                t-attf-invisible="not need_validation or rejected or hide_reviews"
                 type="object"
             />
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                t-attf-attrs="{'invisible': ['|',('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}"
+                invisible="not review_ids or hide_reviews"
                 type="object"
             />
         </div>
     </template>
     <template id="tier_validation_label">
         <div>
-        <field name="need_validation" invisible="1" />
-        <field name="validated" invisible="1" />
-        <field name="rejected" invisible="1" />
+            <field name="hide_reviews" invisible="1" />
+            <field name="need_validation" invisible="1" />
+            <field name="validated" invisible="1" />
+            <field name="rejected" invisible="1" />
         <div
                 class="alert alert-warning"
                 role="alert"
-                t-attf-attrs="{'invisible': ['|', '|', '|',
-             ('validated', '=', True), ('#{state_field}', '#{state_operator}', #{state_value}),
-             ('rejected', '=', True), ('review_ids', '=', [])]}"
+                t-attf-invisible="validated or hide_reviews or rejected or not review_ids"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -37,7 +36,7 @@
                 <button
                         name="validate_tier"
                         string="Validate"
-                        attrs="{'invisible': [('can_review', '=', False)]}"
+                        invisible="not can_review"
                         type="object"
                         class="oe_inline oe_button btn-success"
                         icon="fa-thumbs-up"
@@ -45,7 +44,7 @@
                 <button
                         name="reject_tier"
                         string="Reject"
-                        attrs="{'invisible': [('can_review', '=', False)]}"
+                        invisible="not can_review"
                         type="object"
                         class="btn-icon btn-danger"
                         icon="fa-thumbs-down"
@@ -56,7 +55,7 @@
         <div
                 class="alert alert-success"
                 role="alert"
-                t-attf-attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('#{state_field}', '#{state_operator}', #{state_value}), ('review_ids', '=', [])]}"
+                t-attf-invisible="validated != True or hide_reviews or not review_ids"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -69,7 +68,7 @@
         <div
                 class="alert alert-danger"
                 role="alert"
-                t-attf-attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('#{state_field}', '#{state_operator}', #{state_value}), ('review_ids', '=', [])]}"
+                t-attf-invisible="not rejected or hide_reviews or not review_ids"
                 style="margin-bottom:0px;"
             >
             <p>
@@ -85,7 +84,7 @@
         <field
             name="review_ids"
             widget="tier_validation"
-            attrs="{'invisible':[('review_ids', '=', [])]}"
+            invisible="not review_ids"
             style="width:100%%; margin-top: 10px;"
         >
         <tree>
