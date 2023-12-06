@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-28 17:41+0000\n"
+"PO-Revision-Date: 2023-12-06 13:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -189,7 +189,7 @@ msgstr "Avallo Livello (riassunto)"
 #. module: base_tier_validation_forward
 #: model:mail.message.subtype,name:base_tier_validation_forward.mt_tier_validation_forwarded
 msgid "Tier Validation Forward Notification"
-msgstr "Livello Avallo Notifica Inoltro"
+msgstr "Notifica inoltro validazione livello"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
