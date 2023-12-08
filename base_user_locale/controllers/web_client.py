@@ -3,9 +3,11 @@
 
 import json
 
-from odoo.http import request, route
+from odoo import http
+from odoo.http import request
 
-from odoo.addons.web.controllers.main import WebClient, ensure_db
+from odoo.addons.web.controllers.utils import ensure_db
+from odoo.addons.web.controllers.webclient import WebClient
 
 
 class WebClient(WebClient):
@@ -28,7 +30,12 @@ class WebClient(WebClient):
             res.update({"thousands_sep": sep_thousands})
         return res
 
-    @route()
+    @http.route(
+        "/web/webclient/translations/<string:unique>",
+        type="http",
+        auth="public",
+        cors="*",
+    )
     def translations(self, unique, mods=None, lang=None):
         res = super().translations(unique, mods, lang)
         if "uid" in request.session:
