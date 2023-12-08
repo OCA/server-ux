@@ -4,7 +4,7 @@
 
 {
     "name": "User Locale Settings",
-    "version": "15.0.1.1.0",
+    "version": "16.0.1.1.0",
     "author": "CorporateHub, Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
