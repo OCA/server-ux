@@ -47,6 +47,18 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_custom_filter
+#: model:ir.model.fields,help:base_custom_filter.field_ir_filters__filter_domain
+msgid ""
+"Enter a filter domain expression if necessary.\n"
+"        Example: [('default_code', 'ilike', self)]"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__filter_domain
+msgid "Filter Domain"
+msgstr ""
+
+#. module: base_custom_filter
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_id
 msgid "Filter Group"
 msgstr ""
@@ -103,6 +115,11 @@ msgid "Name"
 msgstr ""
 
 #. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__search_field_id
+msgid "Search Field"
+msgstr ""
+
+#. module: base_custom_filter
 #: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
 msgid "Search Filters Group"
 msgstr ""
@@ -118,6 +135,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__type
 #: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
 msgid "Type"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_ids
+msgid "User Groups"
 msgstr ""
 
 #. module: base_custom_filter
