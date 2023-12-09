@@ -1,15 +1,22 @@
 #. Go to *Settings > Custom Filters*.
-#. Create a new Custom Filter, and define following information:
+#. Create a record assigning model, type (search/filter/groupby) and necessary attributes.
+   Available fields and corresponding attributes (in brackets) for each type are as follows:
 
-   * The **Model** for which you are defining the filter.
-   * The **Type** depending on whether you want to add a filter or a grouping by
-     by a field.
-   * The **Domain** that will be applied with the filter.
-   * The **Group By Field** used to perform the group by.
-   * The **Group** to have filters under the same separator.
+   Search:
 
-#. You can reorder records from the list view with the arrow handle. This will
-   determine the order in which they appear in the filters/groupby menu.
-#. A separator is added between each custom filter added. You can create Custom
-   Filter Groups to group filters that you want to have displayed under the same
-   separator.
+      * Search Field (``name``)
+      * Filter Domain (``filter_domain``)
+      * User Groups (``groups``)
+
+   Filter:
+
+      * Domain (``domain``)
+      * User Groups (``groups``)
+
+   Group By:
+
+      * Group By Field (field to be assigned to ``group_by`` context)
+      * User Groups (``groups``)
+
+   See `the official documentation <https://www.odoo.com/documentation/16.0/developer/reference/backend/views.html#search>`_ for the definition of each attribute.
+   Additionally, filter and group-by records can be respectively grouped together with "Group" assignment (there will be a separator in between groups).

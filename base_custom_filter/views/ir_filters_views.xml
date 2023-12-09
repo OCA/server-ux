@@ -10,16 +10,30 @@
             <field name="active" position="after">
                 <field name="type" />
                 <field
+                    name="search_field_id"
+                    domain="[('model', '=', model_id)]"
+                    attrs="{'required': [('type', '=', 'search')], 'invisible': [('type', '!=', 'search')]}"
+                />
+                <field
+                    name="filter_domain"
+                    attrs="{'invisible': [('type', '!=', 'search')]}"
+                />
+                <field
+                    name="group_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('type', '=', 'favorite')]}"
+                />
+                <field
                     name="group_id"
                     domain="[('model_id', '=', model_id), ('type', '=', type)]"
                     context="{'default_model_id': model_id, 'default_type': type}"
-                    attrs="{'invisible': [('type', '=', 'favorite')]}"
+                    attrs="{'invisible': [('type', 'in', ['favorite', 'search'])]}"
                 />
             </field>
             <field name="domain" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('type', '=', 'groupby')]}</attribute>
+                >{'invisible': [('type', 'in', ['search', 'groupby'])]}</attribute>
             </field>
             <field name="domain" position="after">
                 <field
