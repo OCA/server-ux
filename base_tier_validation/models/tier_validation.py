@@ -447,13 +447,14 @@ class TierValidation(models.AbstractModel):
                     lambda r: r.definition_id.notify_on_create and r.res_id == rec.id
                 ).mapped("reviewer_ids")
                 # Subscribe reviewers and notify
-                getattr(rec, subscribe)(
-                    partner_ids=users_to_notify.mapped("partner_id").ids
-                )
-                getattr(rec, post)(
-                    subtype_xmlid=self._get_requested_notification_subtype(),
-                    body=rec._notify_requested_review_body(),
-                )
+                if len(users_to_notify) > 0:
+                    getattr(rec, subscribe)(
+                        partner_ids=users_to_notify.mapped("partner_id").ids
+                    )
+                    getattr(rec, post)(
+                        subtype_xmlid=self._get_requested_notification_subtype(),
+                        body=rec._notify_requested_review_body(),
+                    )
 
     def _prepare_tier_review_vals(self, definition, sequence):
         return {
