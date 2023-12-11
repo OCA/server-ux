@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo-addon-base_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-base_tier_validation_formula>=16.0dev,<16.1dev',
         'odoo-addon-base_tier_validation_forward>=16.0dev,<16.1dev',
+        'odoo-addon-base_user_locale>=16.0dev,<16.1dev',
         'odoo-addon-date_range>=16.0dev,<16.1dev',
         'odoo-addon-date_range_account>=16.0dev,<16.1dev',
         'odoo-addon-filter_multi_user>=16.0dev,<16.1dev',
