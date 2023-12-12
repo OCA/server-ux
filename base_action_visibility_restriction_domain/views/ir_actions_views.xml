@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_server_action_form" model="ir.ui.view">
+        <field name="name">Server Action - restriction_domain</field>
+        <field name="model">ir.actions.server</field>
+        <field
+            name="inherit_id"
+            ref="base_action_visibility_restriction.view_server_action_form"
+        />
+        <field name="arch" type="xml">
+            <label for="excluded_group_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <field name="excluded_group_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="excluded_group_ids" position="after">
+                <label for="restriction_ids" string="Restrictions" />
+                <field
+                    name="restriction_ids"
+                    context="{'default_server_action_id': id}"
+                    default="{'default_server_action_id': id}"
+                >
+                <tree>
+                    <field name="group_id" />
+                    <field name="condition_domain" />
+                </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_window_action_form" model="ir.ui.view">
+        <field name="name">Window Action - restriction_domain</field>
+        <field name="model">ir.actions.act_window</field>
+        <field
+            name="inherit_id"
+            ref="base_action_visibility_restriction.view_window_action_form"
+        />
+        <field name="arch" type="xml">
+            <label for="excluded_group_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <field name="excluded_group_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="excluded_group_ids" position="after">
+                <label for="restriction_ids" string="Restrictions" />
+                <field
+                    name="restriction_ids"
+                    context="{'default_window_action_id': id}"
+                    default="{'default_window_action_id': id}"
+                >
+                    <tree>
+                        <field name="group_id" />
+                        <field name="condition_domain" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ir_actions_restriction_form_view">
+        <field name="name">ir.actions.restriction.form.view</field>
+        <field name="model">ir.actions.restriction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="group_id" />
+                            <field name="model" />
+                            <div class="text-muted">
+                                Domain defines records on which group can run action
+                            </div>
+                        </group>
+                            <field
+                            name="condition_domain"
+                            widget="domain"
+                            options='{"model": "model"}'
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
