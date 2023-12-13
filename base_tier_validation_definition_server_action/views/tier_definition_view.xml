@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgeFlow S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_definition_view_form" model="ir.ui.view">
+        <field name="name">tier.definition.form</field>
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <field name="definition_domain" position="after">
+                <field
+                    name="definition_server_action_id"
+                    domain="[('usage', '=', 'ir_actions_server'),('model_id', '=', model_id)]"
+                    attrs="{'invisible': [('definition_type', 'not in', ('server_action'))]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
