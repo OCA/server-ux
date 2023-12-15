@@ -109,6 +109,7 @@ msgid "Attachments"
 msgstr ""
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__color
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
 msgid "Color"
 msgstr ""
@@ -260,8 +261,18 @@ msgid "Notification Date"
 msgstr ""
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_end_date
+msgid "Notification End Date"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
 msgid "Notification Expiry Date"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_start_date
+msgid "Notification Start Date"
 msgstr ""
 
 #. module: announcement
@@ -356,6 +367,17 @@ msgid "Tags..."
 msgstr ""
 
 #. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__notification_end_date
+#: model:ir.model.fields,help:announcement.field_announcement__notification_start_date
+msgid "Technical field to display announcements in the calendar view"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__color
+msgid "Technical field to display items by color in the calendar"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__name
 msgid "Title"
 msgstr ""
@@ -425,4 +447,9 @@ msgstr ""
 #. module: announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "e.g. Announcement description..."
+msgstr ""
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
+msgid "name"
 msgstr ""
