@@ -70,6 +70,18 @@ class Announcement(models.Model):
     )
     notification_date = fields.Datetime()
     notification_expiry_date = fields.Datetime()
+    notification_start_date = fields.Datetime(
+        compute="_compute_notification_start_date",
+        help="Technical field to display announcements in the calendar view",
+    )
+    notification_end_date = fields.Datetime(
+        compute="_compute_notification_end_date",
+        help="Technical field to display announcements in the calendar view",
+    )
+    color = fields.Integer(
+        compute="_compute_color",
+        help="Technical field to display items by color in the calendar",
+    )
     in_date = fields.Boolean(
         compute="_compute_in_date", search="_search_in_date", compute_sudo=True
     )
@@ -123,6 +135,35 @@ class Announcement(models.Model):
         }
         for announcement in self:
             announcement.read_announcement_count = result.get(announcement.id, 0)
+
+    @api.depends("notification_date")
+    def _compute_notification_start_date(self):
+        """This is a technical field that we'll use so we're able to render
+        announcements with no defined start date. Otherwise they don't show up"""
+        for announcement in self:
+            announcement.notification_start_date = (
+                announcement.notification_date or announcement.create_date
+            )
+
+    @api.depends("notification_expiry_date", "notification_date")
+    def _compute_notification_end_date(self):
+        """This is a technical field that we'll use so we're able to render no end
+        announcements in the calendar"""
+        for announcement in self:
+            announcement.notification_end_date = (
+                announcement.notification_expiry_date
+                # We don't want undefined end announment appearing forever in the
+                # calendar just because one user didn't read them. So we just
+                # show them in the date they start
+                or announcement.notification_start_date
+            )
+
+    @api.depends("tag_ids")
+    def _compute_color(self):
+        """Get the first tag color if any. Used in the calendar"""
+        self.color = False
+        for announcement in self.filtered("tag_ids"):
+            announcement.color = announcement.tag_ids[0].color
 
     def _compute_in_date(self):
         """The announcement is publishable according to date criterias"""
