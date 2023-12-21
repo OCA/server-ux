@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_tier_validation_definition_server_action
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_tier_validation_definition_server_action
+#: model:ir.model.fields,field_description:base_tier_validation_definition_server_action.field_tier_definition__definition_type
+msgid "Definition"
+msgstr ""
+
+#. module: base_tier_validation_definition_server_action
+#. odoo-python
+#: code:addons/base_tier_validation_definition_server_action/models/tier_validation.py:0
+#, python-format
+msgid ""
+"Error evaluating tier validation conditions.\n"
+" %s"
+msgstr ""
+
+#. module: base_tier_validation_definition_server_action
+#: model:ir.model.fields,field_description:base_tier_validation_definition_server_action.field_tier_definition__definition_server_action_id
+#: model:ir.model.fields.selection,name:base_tier_validation_definition_server_action.selection__tier_definition__definition_type__server_action
+msgid "Server Action"
+msgstr ""
+
+#. module: base_tier_validation_definition_server_action
+#: model:ir.model.fields,help:base_tier_validation_definition_server_action.field_tier_definition__definition_server_action_id
+msgid "Server action to add validation on object"
+msgstr ""
+
+#. module: base_tier_validation_definition_server_action
+#: model:ir.model,name:base_tier_validation_definition_server_action.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation_definition_server_action
+#: model:ir.model,name:base_tier_validation_definition_server_action.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr ""
