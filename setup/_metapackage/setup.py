@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo-addon-base_substate>=16.0dev,<16.1dev',
         'odoo-addon-base_technical_features>=16.0dev,<16.1dev',
         'odoo-addon-base_tier_validation>=16.0dev,<16.1dev',
+        'odoo-addon-base_tier_validation_definition_server_action>=16.0dev,<16.1dev',
         'odoo-addon-base_tier_validation_formula>=16.0dev,<16.1dev',
         'odoo-addon-base_tier_validation_forward>=16.0dev,<16.1dev',
         'odoo-addon-base_user_locale>=16.0dev,<16.1dev',
