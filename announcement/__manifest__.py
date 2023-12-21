@@ -3,7 +3,7 @@
 
 {
     "name": "Announcement",
-    "version": "15.0.2.1.0",
+    "version": "15.0.2.1.1",
     "summary": "Notify internal users about relevant organization stuff",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
