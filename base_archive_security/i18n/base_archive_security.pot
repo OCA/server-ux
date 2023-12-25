@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-29 12:57+0000\n"
-"PO-Revision-Date: 2023-11-29 12:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_archive_security
+#: model:ir.model,name:base_archive_security.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_archive_security
 #: model:res.groups,name:base_archive_security.group_can_archive
 msgid "Can archive records"
 msgstr ""
 
 #. module: base_archive_security
 #. odoo-python
-#: code:addons/base_archive_security/models/model.py:0
+#: code:addons/base_archive_security/models/base.py:0
 #, python-format
 msgid "Only users belonging to the \"%s\" group can archive or unarchive records."
 msgstr ""
