@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2023-11-27 11:36+0000\n"
+"PO-Revision-Date: 2023-12-28 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -152,7 +152,7 @@ msgstr "Modifiche massive"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr "Riga Modifica Massiva"
+msgstr "Riga modifica di massa"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing__message
