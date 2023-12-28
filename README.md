@@ -38,6 +38,7 @@ addon | version | maintainers | summary
 [base_tier_validation_definition_server_action](base_tier_validation_definition_server_action/) | 16.0.1.0.0 |  | Server action for Base tier validation
 [base_tier_validation_formula](base_tier_validation_formula/) | 16.0.1.0.2 |  | Formulas for Base tier validation
 [base_tier_validation_forward](base_tier_validation_forward/) | 16.0.1.1.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Forward option for base tiers
+[base_tier_validation_waiting](base_tier_validation_waiting/) | 16.0.1.0.0 |  | Base Tier Validation Extension to add waiting status
 [base_user_locale](base_user_locale/) | 16.0.1.1.0 |  | User Locale Settings
 [date_range](date_range/) | 16.0.1.0.9 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
 [date_range_account](date_range_account/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add Date Range menu entry in Invoicing app
