@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-07 13:17+0000\n"
+"PO-Revision-Date: 2023-12-28 15:22+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -55,11 +55,13 @@ msgid ""
 "Enter a filter domain expression if necessary.\n"
 "        Example: [('default_code', 'ilike', self)]"
 msgstr ""
+"Se necessaio inserire un espressione filtro dominio.\n"
+"        Esempio: [('default_code', 'ilike', self)]"
 
 #. module: base_custom_filter
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__filter_domain
 msgid "Filter Domain"
-msgstr ""
+msgstr "Filtra dominio"
 
 #. module: base_custom_filter
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_id
@@ -120,7 +122,7 @@ msgstr "Nome"
 #. module: base_custom_filter
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__search_field_id
 msgid "Search Field"
-msgstr ""
+msgstr "Campo ricerca"
 
 #. module: base_custom_filter
 #: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
@@ -143,7 +145,7 @@ msgstr "Tipo"
 #. module: base_custom_filter
 #: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_ids
 msgid "User Groups"
-msgstr ""
+msgstr "Gruppi utente"
 
 #. module: base_custom_filter
 #: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
