@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2023-10-29 17:39+0000\n"
+"PO-Revision-Date: 2023-12-28 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -144,29 +144,29 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.actions.server,name:mass_editing.mass_editing_partner_title
 #: model:ir.actions.server,name:mass_editing.mass_editing_user
 msgid "Mass Edit"
-msgstr "Modifica massiva"
+msgstr "Modifica di massa"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_line_ids
 #: model:ir.model.fields,field_description:mass_editing.field_ir_cron__mass_edit_line_ids
 msgid "Mass Edit Line"
-msgstr "Riga modifica massiva"
+msgstr "Riga modifica di massa"
 
 #. module: mass_editing
 #: model:ir.model.fields.selection,name:mass_editing.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
-msgstr "Modifica massivamente records"
+msgstr "Modifica di massa record"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_line
 msgid "Mass Editing Line"
-msgstr "Riga Modifiche massive"
+msgstr "Riga modifica di massa"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_editing_line.py:0
 #, python-format
 msgid "Mass edit fields should belong to the server action model."
-msgstr "I campi modifica massiva devono appartenere al modello azione server."
+msgstr "I campi modifica di massa devono appartenere al modello azione server."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_ir_actions_server__mass_edit_message
