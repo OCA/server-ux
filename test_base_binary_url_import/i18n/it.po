@@ -6,76 +6,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-29 15:19+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: test_base_binary_url_import
 #: model_terms:ir.ui.view,arch_db:test_base_binary_url_import.test_binary_form
 msgid "Binary name"
-msgstr ""
+msgstr "Nome binario"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__file
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__file_name
 msgid "File Name"
-msgstr ""
+msgstr "Nome file"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: test_base_binary_url_import
 #: model:ir.model.fields,field_description:test_base_binary_url_import.field_test_binary__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: test_base_binary_url_import
 #: model:ir.ui.menu,name:test_base_binary_url_import.menu_test_binary
 msgid "Test Binaries"
-msgstr ""
+msgstr "Testa binari"
 
 #. module: test_base_binary_url_import
 #: model:ir.actions.act_window,name:test_base_binary_url_import.action_list_test_binary
 #: model:ir.model,name:test_base_binary_url_import.model_test_binary
 msgid "Test Binary"
-msgstr ""
+msgstr "Testa binario"
