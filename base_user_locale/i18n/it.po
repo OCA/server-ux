@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-20 11:52+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-31 20:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
@@ -45,15 +45,12 @@ msgstr "Impostazioni configurazione"
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Configure global override of date format for all users."
-msgstr ""
-"Configura sovrascrittura globale del formato settimanale per tutti gli "
-"utenti."
+msgstr "Configura sovrascrittura globale del formato data per tutti gli utenti."
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Configure global override of time format for all users."
-msgstr ""
-"Configura sovrascrittura globale del formato temporale per tutti gli utenti."
+msgstr "Configura sovrascrittura globale del formato ora per tutti gli utenti."
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
@@ -140,9 +137,9 @@ msgid ""
 "See Settings > Translations > Languages and then click on any language to "
 "see the Legends for supported Date and Time Formats and some examples"
 msgstr ""
-"Vedi Impostazioni > Traduzioni > Lingue e poi clicca su una lingua qualsiasi "
-"per vedere le legende per i formati di data e tempo supportati e alcuni "
-"esempi"
+"Vedere Impostazioni > Traduzioni > Lingue e poi fare clic su una lingua "
+"qualsiasi per vedere le legende per i formati di data e tempo supportati e "
+"alcuni esempi"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__7
@@ -155,7 +152,7 @@ msgstr "Domenica"
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__thousands_sep
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__thousands_sep
 msgid "Thousands Separator"
-msgstr "Separatore delle migliaia"
+msgstr "Separatore migliaia"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__4
@@ -168,7 +165,7 @@ msgstr "Giovedì"
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__time_format
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__time_format
 msgid "Time Format"
-msgstr "Formato temporale"
+msgstr "Formato ora"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__2
