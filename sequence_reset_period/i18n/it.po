@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-31 17:24+0000\n"
+"PO-Revision-Date: 2023-12-31 19:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -29,19 +29,19 @@ msgstr "Mensile"
 #. module: sequence_reset_period
 #: model:ir.model.fields,field_description:sequence_reset_period.field_ir_sequence__range_reset
 msgid "Range Reset"
-msgstr ""
+msgstr "Resetta intervallo"
 
 #. module: sequence_reset_period
 #: model:ir.model,name:sequence_reset_period.model_ir_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: sequence_reset_period
 #: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__weekly
 msgid "Weekly"
-msgstr ""
+msgstr "Settimanale"
 
 #. module: sequence_reset_period
 #: model:ir.model.fields.selection,name:sequence_reset_period.selection__ir_sequence__range_reset__yearly
 msgid "Yearly"
-msgstr ""
+msgstr "Annuale"
