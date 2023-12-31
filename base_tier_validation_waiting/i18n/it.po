@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_tier_validation_waiting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: base_tier_validation_waiting
+#: model:ir.model.fields,help:base_tier_validation_waiting.field_tier_definition__notify_on_pending
+msgid ""
+"If set, all possible reviewers will be notified by email when this "
+"definition is triggered."
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model.fields,field_description:base_tier_validation_waiting.field_tier_definition__notify_on_pending
+msgid "Notify Reviewers on reaching Pending"
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model.fields,field_description:base_tier_validation_waiting.field_tier_review__status
+msgid "Status"
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model,name:base_tier_validation_waiting.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model,name:base_tier_validation_waiting.model_tier_review
+msgid "Tier Review"
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model,name:base_tier_validation_waiting.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr ""
+
+#. module: base_tier_validation_waiting
+#: model:ir.model.fields.selection,name:base_tier_validation_waiting.selection__tier_review__status__waiting
+msgid "Waiting"
+msgstr ""
