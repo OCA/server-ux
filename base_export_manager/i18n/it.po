@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-03-21 18:23+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-31 18:52+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports__model_id
@@ -63,7 +63,7 @@ msgstr "Esportazioni"
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "Exports Line"
-msgstr "Linea Esportazioni"
+msgstr "Riga esportazioni"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:0
@@ -183,4 +183,4 @@ msgstr "Utenti"
 #: code:addons/base_export_manager/models/ir_exports.py:0
 #, python-format
 msgid "You must supply a model or resource."
-msgstr "Devi fornire un modello o una risorsa."
+msgstr "Bisogna fornire un modello o una risorsa."
