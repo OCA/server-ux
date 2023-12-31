@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-31 19:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation_waiting
 #: model:ir.model.fields,help:base_tier_validation_waiting.field_tier_definition__notify_on_pending
@@ -20,33 +22,35 @@ msgid ""
 "If set, all possible reviewers will be notified by email when this "
 "definition is triggered."
 msgstr ""
+"Se impostata, tutti i possibili revisori saranno avvisati via e-mail quando "
+"la definizione è attivata."
 
 #. module: base_tier_validation_waiting
 #: model:ir.model.fields,field_description:base_tier_validation_waiting.field_tier_definition__notify_on_pending
 msgid "Notify Reviewers on reaching Pending"
-msgstr ""
+msgstr "Notifica i revisori quando passa a \"In sospeso\""
 
 #. module: base_tier_validation_waiting
 #: model:ir.model.fields,field_description:base_tier_validation_waiting.field_tier_review__status
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #. module: base_tier_validation_waiting
 #: model:ir.model,name:base_tier_validation_waiting.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Definizione livello"
 
 #. module: base_tier_validation_waiting
 #: model:ir.model,name:base_tier_validation_waiting.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Livello revisione"
 
 #. module: base_tier_validation_waiting
 #: model:ir.model,name:base_tier_validation_waiting.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Validazione livello (sintesi)"
 
 #. module: base_tier_validation_waiting
 #: model:ir.model.fields.selection,name:base_tier_validation_waiting.selection__tier_review__status__waiting
 msgid "Waiting"
-msgstr ""
+msgstr "In attesa"
