@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-29 15:19+0000\n"
+"PO-Revision-Date: 2023-12-31 19:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -320,8 +320,8 @@ msgid ""
 "If set, all possible reviewers will be notified by email when this "
 "definition is triggered."
 msgstr ""
-"Se impostato, tutti i possibili approvatori saranno notificati via email "
-"quando la definizione è attivata."
+"Se impostata, tutti i possibili revisori saranno avvisati via e-mail quando "
+"la definizione è attivata."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
@@ -611,7 +611,7 @@ msgstr "Aumente e riduci livello"
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_review
 msgid "Tier Review"
-msgstr "Livello Approvazione"
+msgstr "Livello revisione"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
@@ -621,7 +621,7 @@ msgstr "Validazione livello"
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr "Validazione livello (astratto)"
+msgstr "Validazione livello (sintesi)"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
