@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-02 12:36+0000\n"
+"PO-Revision-Date: 2024-01-02 15:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -31,12 +31,12 @@ msgstr "Un avallo è stato inoltrato da {} {}"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__has_comment
 msgid "Allow Comment"
-msgstr "Consenti Commenti"
+msgstr "Consenti commenti"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_definition__has_forward
 msgid "Allow Forward"
-msgstr "Consenti Inoltro"
+msgstr "Consenti inoltro"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,help:base_tier_validation_forward.field_tier_definition__has_forward
@@ -46,7 +46,7 @@ msgstr "Consente l'opzione di 'Inoltro' ad una persona differente."
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,help:base_tier_validation_forward.field_tier_review__approve_sequence
 msgid "Approval order by the specified sequence number"
-msgstr "Ordine di approvazione in base al numero di sequenza"
+msgstr "Ordine di approvazione specificato da numero sequenza"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__approve_sequence
@@ -57,7 +57,7 @@ msgstr "Approva in sequenza"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__can_forward
 msgid "Can Forward"
-msgstr "Può essere inoltrato"
+msgstr "Può inoltrare"
 
 #. module: base_tier_validation_forward
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
@@ -72,7 +72,7 @@ msgstr "Commento"
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_comment_wizard
 msgid "Comment Wizard"
-msgstr "Wizard Commento"
+msgstr "Procedura guidata commento"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_uid
@@ -104,17 +104,17 @@ msgstr "Inoltra"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_description
 msgid "Forward Description"
-msgstr "Descrizione Inoltro"
+msgstr "Descrizione inoltro"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_validation_forward_wizard
 msgid "Forward Wizard"
-msgstr "Wizard Inoltro"
+msgstr "Procedura guidata Inoltro"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields.selection,name:base_tier_validation_forward.selection__tier_review__status__forwarded
 msgid "Forwarded"
-msgstr "Inoltrato"
+msgstr "Inoltrata"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__id
@@ -159,7 +159,7 @@ msgstr "Revisore"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
-msgstr "Gruppo Approvatori"
+msgstr "Gruppo revisore"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
