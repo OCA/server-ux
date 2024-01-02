@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-31 18:52+0000\n"
+"PO-Revision-Date: 2024-01-02 12:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
 #, python-format
 msgid "A review was forwarded by %s."
-msgstr "Un avallo è stato inoltrato a %s."
+msgstr "Una revisione è stata inoltrata da %s."
 
 #. module: base_tier_validation_forward
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
