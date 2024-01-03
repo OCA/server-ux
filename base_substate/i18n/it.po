@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-17 18:36+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-01-03 09:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Tipo substato base"
 #. module: base_substate
 #: model:ir.model,name:base_substate.model_base_substate_mixin
 msgid "BaseSubstate Mixin"
-msgstr "BaseSubstate Mixin"
+msgstr "Mixin substato base"
 
 #. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__create_uid
@@ -98,7 +98,7 @@ msgid ""
 "If set, an email will be sent to the partner when the object reaches this "
 "substate."
 msgstr ""
-"Se impostato, verrà mandata una mail al partner quando record raggiunge "
+"Se impostato, verrà mandata una e-mail al partner quando l'oggetto raggiunge "
 "questo substato."
 
 #. module: base_substate
@@ -180,7 +180,7 @@ msgstr "Tipo substato"
 #. module: base_substate
 #: model:res.groups,name:base_substate.group_substate_manager
 msgid "Substate manager"
-msgstr "Manager substati"
+msgstr "Responsabile substato"
 
 #. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate_type__target_state_field
@@ -228,8 +228,8 @@ msgid ""
 "Technical target state value.\n"
 "Ex: for sale order \"draft\", \"sale\", \"done\", ..."
 msgstr ""
-"Valore obiettivo dello stato (tecnico).\n"
-"Es: per Ordine di vendita \"draft\", \"sale\", \"done\", ..."
+"Valore tecnico dello stato obiettivo.\n"
+"Es: per ordine di vendita \"draft\", \"sale\", \"done\", ..."
 
 #. module: base_substate
 #: code:addons/base_substate/models/base_substate_mixin.py:0
