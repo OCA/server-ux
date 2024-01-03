@@ -4,7 +4,7 @@
 {
     "name": "Archive Security",
     "summary": "Controls who can archive or unarchive records",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "website": "https://github.com/OCA/server-ux",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["imlopes", "ivantodorovich"],
