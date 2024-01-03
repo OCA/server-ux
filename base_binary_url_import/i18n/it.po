@@ -6,49 +6,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-01-03 09:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_binary_url_import
 #: model:ir.actions.act_window,name:base_binary_url_import.action_wizard_base_binary_url_import
 #: model:ir.ui.menu,name:base_binary_url_import.menu_binary_url_import
 msgid "Binary Import From URL"
-msgstr ""
+msgstr "Importazione binaria da URL"
 
 #. module: base_binary_url_import
 #: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: base_binary_url_import
 #. odoo-python
 #: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
 #, python-format
 msgid "Could not retrieve URL: %(url)s : %(error)s"
-msgstr ""
+msgstr "Impossibile recuperare URL: %(url)s : %(error)s"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__create_uid
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__create_date
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__display_name
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -56,7 +58,7 @@ msgstr ""
 #: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
 #, python-format
 msgid "File size exceeds configured maximum (%s bytes)"
-msgstr ""
+msgstr "La dimensione del file supera il massimo configurato (%s byte)"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -66,6 +68,8 @@ msgid ""
 "Following DB IDs intersect with XML IDs:\n"
 " %s"
 msgstr ""
+"I seguenti ID del DB coincidono con gli ID XML:\n"
+" %s"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -75,6 +79,8 @@ msgid ""
 "Following IDs do not exist in database:\n"
 " %s"
 msgstr ""
+"I seguenti ID non esistono nel database:\n"
+" %s"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -84,68 +90,70 @@ msgid ""
 "Following XML IDs do not exist in database:\n"
 " %s"
 msgstr ""
+"I seguenti ID XML non esistono nel database:\n"
+" %s"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__id
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_binary_url_import
 #. odoo-python
 #: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
 #, python-format
 msgid "Identifier %s is not an Integer or XMLID"
-msgstr ""
+msgstr "L'identificativo %s non è un intero o un ID XML"
 
 #. module: base_binary_url_import
 #: model:ir.ui.menu,name:base_binary_url_import.menu_import
 #: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
 msgid "Import"
-msgstr ""
+msgstr "Importa"
 
 #. module: base_binary_url_import
 #: model:ir.model,name:base_binary_url_import.model_base_binary_url_import
 msgid "Import of binaries from URL wizard"
-msgstr ""
+msgstr "Procedura guidata importazione binari da URL"
 
 #. module: base_binary_url_import
 #: model:ir.model,name:base_binary_url_import.model_base_binary_url_import_line
 msgid "Import of binaries from URL wizard line"
-msgstr ""
+msgstr "Riga procedura guidata importazione binari da URL"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__is_target_record_identifier_required
 msgid "Is Target Record Identifier Required"
-msgstr ""
+msgstr "È richiesto l'identificativo del record obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import____last_update
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__write_uid
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__write_date
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Riga"
 
 #. module: base_binary_url_import
 #: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
 msgid "Record ID or XMLID"
-msgstr ""
+msgstr "ID record o ID XML"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -155,6 +163,8 @@ msgid ""
 "Same XML IDs are duplicated:\n"
 " %s"
 msgstr ""
+"Alcuni ID XML sono duplicati:\n"
+" %s"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -164,58 +174,61 @@ msgid ""
 "Same database IDs are duplicated:\n"
 " %s"
 msgstr ""
+"Alcuni ID database sono duplicati:\n"
+" %s"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_field_id
 msgid "Target Binary Field"
-msgstr ""
+msgstr "Campo binario obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_field_domain
 msgid "Target Binary Field Domain"
-msgstr ""
+msgstr "Dominio campo binario obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_filename_field_id
 msgid "Target Binary Filename Field"
-msgstr ""
+msgstr "Campo nome file binario obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_binary_filename_field_domain
 msgid "Target Binary Filename Field Domain"
-msgstr ""
+msgstr "Dominio campo nome file binario obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import__target_model_id
 msgid "Target Model"
-msgstr ""
+msgstr "Modello obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__target_record_identifier
 msgid "Target record ID"
-msgstr ""
+msgstr "ID record obiettivo"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__binary_url_to_import
 msgid "URL to import"
-msgstr ""
+msgstr "URL da importare"
 
 #. module: base_binary_url_import
 #. odoo-python
 #: code:addons/base_binary_url_import/wizard/base_binary_url_import.py:0
 #, python-format
 msgid "Updated records"
-msgstr ""
+msgstr "Record aggiornati"
 
 #. module: base_binary_url_import
 #: model:ir.model.fields,field_description:base_binary_url_import.field_base_binary_url_import_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: base_binary_url_import
 #: model_terms:ir.ui.view,arch_db:base_binary_url_import.base_binary_url_import_form
 msgid "Write your lines one by one or copy paste a CSV-like list with ID,URL."
 msgstr ""
+"Scrivere le righe una per uno o incollare una lista tipo CSV con ID,URL."
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -225,6 +238,8 @@ msgid ""
 "XML ID %(xml_id)s matches a record of model %(model_name)s instead of model "
 "%(tagert_model_name)s"
 msgstr ""
+"L'ID XML %(xml_id)s corrisponde ad un record del modello %(model_name)s "
+"anzichè del modello %(tagert_model_name)s"
 
 #. module: base_binary_url_import
 #. odoo-python
@@ -234,3 +249,5 @@ msgid ""
 "You can not import files via URL, check with your administrator for the "
 "reason."
 msgstr ""
+"Non è possibile importare file da URL, verificare il motivo con "
+"l'amministratore."
