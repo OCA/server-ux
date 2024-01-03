@@ -622,16 +622,21 @@ class TierValidation(models.AbstractModel):
                 new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addprevious(new_element)
+                for model in new_models:
+                    if model in all_models:
+                        all_models[model] = set(all_models[model])
+                        all_models[model] = all_models[model].union(new_models[model])
+                    else:
+                        all_models[model] = new_models[model]
                 # _add_tier_validation_reviews process
                 new_node = self._add_tier_validation_reviews(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
                 for model in new_models:
                     if model in all_models:
-                        continue
-                    if model not in res["models"]:
-                        all_models[model] = new_models[model]
+                        all_models[model] = set(all_models[model])
+                        all_models[model] = all_models[model].union(new_models[model])
                     else:
-                        all_models[model] = res["models"][model]
+                        all_models[model] = new_models[model]
                 new_node = etree.fromstring(new_arch)
                 node.append(new_node)
             excepted_fields = self._get_under_validation_exceptions()
