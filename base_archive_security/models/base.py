@@ -9,8 +9,14 @@ class Base(models.AbstractModel):
     _inherit = "base"
 
     def toggle_active(self):
-        # check if the user is in the group that can archive/unarchive the record
-        if not self.env.user.has_group("base_archive_security.group_can_archive"):
+        # skip check if special bypass context key exist in env
+        if self.env.context.get("bypass_archive_security"):
+            return super().toggle_active()
+        # skip check on empty recordset
+        # and check if the user is in the group that can archive/unarchive the record
+        if self and not self.env.user.has_group(
+            "base_archive_security.group_can_archive"
+        ):
             group = self.env.ref("base_archive_security.group_can_archive")
             raise AccessError(
                 _(
