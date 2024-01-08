@@ -14,7 +14,7 @@ from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 class TierTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TierTierValidation, cls).setUpClass()
+        super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -41,19 +41,9 @@ class TierTierValidation(common.TransactionCase):
             }
         )
 
+        cls.test_user_1 = cls.env.ref("base.user_admin")
+        cls.test_user_2 = cls.env.ref("base.user_demo")
         # Create users:
-        group_ids = cls.env.ref("base.group_system").ids
-        cls.test_user_1 = cls.env["res.users"].create(
-            {
-                "name": "John",
-                "login": "test1",
-                "groups_id": [(6, 0, group_ids)],
-                "email": "john@yourcompany.example.com",
-            }
-        )
-        cls.test_user_2 = cls.env["res.users"].create(
-            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
-        )
         cls.test_user_3 = cls.env["res.users"].create(
             {"name": "Mary", "login": "test3", "email": "mary@yourcompany.example.com"}
         )
@@ -74,7 +64,7 @@ class TierTierValidation(common.TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        return super(TierTierValidation, cls).tearDownClass()
+        return super().tearDownClass()
 
     def test_01_reviewer_from_python_expression(self):
         tier_definition = self.tier_def_obj.create(

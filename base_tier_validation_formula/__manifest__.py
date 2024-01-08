@@ -5,8 +5,10 @@
     "name": "Base Tier Validation Formula",
     "summary": """
         Formulas for Base tier validation""",
-    "version": "16.0.1.0.2",
+    "version": "17.0.1.0.0",
+    "category": "Tools",
     "license": "AGPL-3",
+    "development_status": "Mature",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "depends": ["base_tier_validation"],
