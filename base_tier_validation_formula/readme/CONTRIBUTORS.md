@@ -9,3 +9,4 @@
 - [Trobz](https://trobz.com):
 
   > - Hoang Diep \<<hoang@trobz.com>\>
+  > - Son Ho \<<sonhd@trobz.com>\>

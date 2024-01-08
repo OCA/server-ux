@@ -10,9 +10,9 @@ Base Tier Validation Formula
    !! source digest: sha256:30cc4c107c35bd82290d5c45d91bed36c8ee05555a66524b8381fa67848c99ba
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
@@ -78,6 +78,7 @@ Contributors
 -  `Trobz <https://trobz.com>`__:
 
       -  Hoang Diep <hoang@trobz.com>
+      -  Son Ho <sonhd@trobz.com>
 
 Other credits
 -------------

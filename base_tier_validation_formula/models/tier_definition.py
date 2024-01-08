@@ -29,7 +29,7 @@ class TierDefinition(models.Model):
 
     @api.onchange("review_type")
     def onchange_review_type(self):
-        res = super(TierDefinition, self).onchange_review_type()
+        res = super().onchange_review_type()
         self.reviewer_expression = (
             "# Available locals:\n"
             "#  - rec: current record\n"
