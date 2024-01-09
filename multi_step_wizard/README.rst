@@ -17,19 +17,19 @@ Multi-Steps Wizards
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/multi_step_wizard
+    :target: https://github.com/OCA/server-ux/tree/17.0/multi_step_wizard
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-multi_step_wizard
+    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-multi_step_wizard
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module is a base for creating multi-steps wizards. It does nothing by
-itself.
+This module is a base for creating multi-steps wizards. It does nothing
+by itself.
 
 **Table of contents**
 
@@ -43,91 +43,91 @@ Example of class:
 
 .. code:: python
 
-  class MyWizard(models.TransientModel):
-      _name = 'my.wizard'
-      _inherit = ['multi.step.wizard.mixin']
+   class MyWizard(models.TransientModel):
+       _name = 'my.wizard'
+       _inherit = ['multi.step.wizard.mixin']
 
-      project_id = fields.Many2one(
-          comodel_name='project.project',
-          name="Project",
-          required=True,
-          ondelete='cascade',
-          default=lambda self: self._default_project_id(),
-      )
-      name = fields.Char()
-      field1 = fields.Char()
-      field2 = fields.Char()
-      field3 = fields.Char()
+       project_id = fields.Many2one(
+           comodel_name='project.project',
+           name="Project",
+           required=True,
+           ondelete='cascade',
+           default=lambda self: self._default_project_id(),
+       )
+       name = fields.Char()
+       field1 = fields.Char()
+       field2 = fields.Char()
+       field3 = fields.Char()
 
-      @api.model
-      def _selection_state(self):
-          return [
-              ('start', 'Start'),
-              ('configure', 'Configure'),
-              ('custom', 'Customize'),
-              ('final', 'Final'),
-          ]
+       @api.model
+       def _selection_state(self):
+           return [
+               ('start', 'Start'),
+               ('configure', 'Configure'),
+               ('custom', 'Customize'),
+               ('final', 'Final'),
+           ]
 
-      @api.model
-      def _default_project_id(self):
-          return self.env.context.get('active_id')
+       @api.model
+       def _default_project_id(self):
+           return self.env.context.get('active_id')
 
-      def state_exit_start(self):
-          self.state = 'configure'
+       def state_exit_start(self):
+           self.state = 'configure'
 
-      def state_exit_configure(self):
-          self.state = 'custom'
+       def state_exit_configure(self):
+           self.state = 'custom'
 
-      def state_exit_custom(self):
-          self.state = 'final'
+       def state_exit_custom(self):
+           self.state = 'final'
 
 Example of view (note the mode, must be primary):
 
 .. code:: xml
 
-  <?xml version="1.0" encoding="utf-8"?>
-  <odoo>
+   <?xml version="1.0" encoding="utf-8"?>
+   <odoo>
 
-    <record id="my_wizard_form" model="ir.ui.view">
-      <field name="name">my.wizard.form</field>
-      <field name="model">my.wizard</field>
-      <field name="mode">primary</field>
-      <field name="inherit_id" ref="multi_step_wizard.multi_step_wizard_form"/>
-      <field name="arch" type="xml">
-        <xpath expr="//footer" position="before">
-          <h1>
-            <field name="name"
-                  attrs="{'readonly': [('state', '!=', 'start')]}"
-                  class="oe_inline"
-                  placeholder="Name"/>
-          </h1>
-          <group name="configure" attrs="{'invisible': [('state', '!=', 'configure')]}">
-            <group>
-              <field name="field1"/>
-              <field name="field2"/>
-            </group>
-          </group>
-          <group name="custom" attrs="{'invisible': [('state', '!=', 'custom')]}">
-            <group>
-              <field name="field3"/>
-            </group>
-          </group>
-          <div name="final" attrs="{'invisible': [('state', '!=', 'final')]}">
-            <p>The project is now configured.</p>
-          </div>
-        </xpath>
-      </field>
-    </record>
+     <record id="my_wizard_form" model="ir.ui.view">
+       <field name="name">my.wizard.form</field>
+       <field name="model">my.wizard</field>
+       <field name="mode">primary</field>
+       <field name="inherit_id" ref="multi_step_wizard.multi_step_wizard_form"/>
+       <field name="arch" type="xml">
+         <xpath expr="//footer" position="before">
+           <h1>
+             <field name="name"
+                   attrs="{'readonly': [('state', '!=', 'start')]}"
+                   class="oe_inline"
+                   placeholder="Name"/>
+           </h1>
+           <group name="configure" attrs="{'invisible': [('state', '!=', 'configure')]}">
+             <group>
+               <field name="field1"/>
+               <field name="field2"/>
+             </group>
+           </group>
+           <group name="custom" attrs="{'invisible': [('state', '!=', 'custom')]}">
+             <group>
+               <field name="field3"/>
+             </group>
+           </group>
+           <div name="final" attrs="{'invisible': [('state', '!=', 'final')]}">
+             <p>The project is now configured.</p>
+           </div>
+         </xpath>
+       </field>
+     </record>
 
-    <record id="open_my_wizard" model="ir.actions.act_window">
-        <field name="name">My Wizard</field>
-        <field name="res_model">my.wizard</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="binding_model_id" ref="project.model_project_project" />
-        <field name="binding_view_types">form</field>
-    </record>
-  </odoo>
+     <record id="open_my_wizard" model="ir.actions.act_window">
+         <field name="name">My Wizard</field>
+         <field name="res_model">my.wizard</field>
+         <field name="view_mode">form</field>
+         <field name="target">new</field>
+         <field name="binding_model_id" ref="project.model_project_project" />
+         <field name="binding_view_types">form</field>
+     </record>
+   </odoo>
 
 Bug Tracker
 ===========
@@ -135,7 +135,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20multi_step_wizard%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20multi_step_wizard%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -143,21 +143,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camptocamp
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Guewen Baconnier <guewen.baconnier@camptocamp.com>
-* `CorporateHub <https://corporatehub.eu/>`__
+-  Guewen Baconnier <guewen.baconnier@camptocamp.com>
+-  `CorporateHub <https://corporatehub.eu/>`__
 
-  * Alexey Pelykh <alexey.pelykh@corphub.eu>
-* Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
+
+-  Sunanda Chhatbar <sunanda.chhatbar@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -169,6 +170,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/multi_step_wizard>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/multi_step_wizard>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
