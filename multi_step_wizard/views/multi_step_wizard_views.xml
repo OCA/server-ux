@@ -14,14 +14,14 @@
                             string="Next"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible': [('state', '=', 'final')]}"
+                            invisible="state == 'final'"
                         />
                         <button
                             name="open_previous"
                             string="Go Back"
                             type="object"
                             class="btn btn-default"
-                            attrs="{'invisible': [('allow_back', '=', False)]}"
+                            invisible="not allow_back"
                         />
                         <button
                             string="Cancel"
