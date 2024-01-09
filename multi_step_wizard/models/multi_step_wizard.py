@@ -52,20 +52,16 @@ class MultiStepWizard(models.AbstractModel):
         return [("start", "Start"), ("final", "Final")]
 
     def open_next(self):
-        state_method = getattr(self, "state_exit_{}".format(self.state), None)
+        state_method = getattr(self, f"state_exit_{self.state}", None)
         if state_method is None:
-            raise NotImplementedError(
-                "No method defined for state {}".format(self.state)
-            )
+            raise NotImplementedError(f"No method defined for state {self.state}")
         state_method()
         return self._reopen_self()
 
     def open_previous(self):
-        state_method = getattr(self, "state_previous_{}".format(self.state), None)
+        state_method = getattr(self, f"state_previous_{self.state}", None)
         if state_method is None:
-            raise NotImplementedError(
-                "No method defined for state {}".format(self.state)
-            )
+            raise NotImplementedError(f"No method defined for state {self.state}")
         state_method()
         return self._reopen_self()
 
