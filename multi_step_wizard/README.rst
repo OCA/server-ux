@@ -97,22 +97,22 @@ Example of view (note the mode, must be primary):
          <xpath expr="//footer" position="before">
            <h1>
              <field name="name"
-                   attrs="{'readonly': [('state', '!=', 'start')]}"
+                   readonly="state != 'start'"
                    class="oe_inline"
                    placeholder="Name"/>
            </h1>
-           <group name="configure" attrs="{'invisible': [('state', '!=', 'configure')]}">
+           <group name="configure" invisible="state != 'configure'">
              <group>
                <field name="field1"/>
                <field name="field2"/>
              </group>
            </group>
-           <group name="custom" attrs="{'invisible': [('state', '!=', 'custom')]}">
+           <group name="custom" invisible="state != 'custom'">
              <group>
                <field name="field3"/>
              </group>
            </group>
-           <div name="final" attrs="{'invisible': [('state', '!=', 'final')]}">
+           <div name="final" invisible="state != 'final'">
              <p>The project is now configured.</p>
            </div>
          </xpath>
