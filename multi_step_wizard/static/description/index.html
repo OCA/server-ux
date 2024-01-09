@@ -441,22 +441,22 @@ by itself.</p>
       </span><span class="nt">&lt;xpath</span><span class="w"> </span><span class="na">expr=</span><span class="s">&quot;//footer&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;before&quot;</span><span class="nt">&gt;</span><span class="w">
         </span><span class="nt">&lt;h1&gt;</span><span class="w">
           </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="w">
-                </span><span class="na">attrs=</span><span class="s">&quot;{'readonly': [('state', '!=', 'start')]}&quot;</span><span class="w">
+                </span><span class="na">readonly=</span><span class="s">&quot;state != 'start'&quot;</span><span class="w">
                 </span><span class="na">class=</span><span class="s">&quot;oe_inline&quot;</span><span class="w">
                 </span><span class="na">placeholder=</span><span class="s">&quot;Name&quot;</span><span class="nt">/&gt;</span><span class="w">
         </span><span class="nt">&lt;/h1&gt;</span><span class="w">
-        </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;configure&quot;</span><span class="w"> </span><span class="na">attrs=</span><span class="s">&quot;{'invisible': [('state', '!=', 'configure')]}&quot;</span><span class="nt">&gt;</span><span class="w">
+        </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;configure&quot;</span><span class="w"> </span><span class="na">invisible=</span><span class="s">&quot;state != 'configure'&quot;</span><span class="nt">&gt;</span><span class="w">
           </span><span class="nt">&lt;group&gt;</span><span class="w">
             </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;field1&quot;</span><span class="nt">/&gt;</span><span class="w">
             </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;field2&quot;</span><span class="nt">/&gt;</span><span class="w">
           </span><span class="nt">&lt;/group&gt;</span><span class="w">
         </span><span class="nt">&lt;/group&gt;</span><span class="w">
-        </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;custom&quot;</span><span class="w"> </span><span class="na">attrs=</span><span class="s">&quot;{'invisible': [('state', '!=', 'custom')]}&quot;</span><span class="nt">&gt;</span><span class="w">
+        </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;custom&quot;</span><span class="w"> </span><span class="na">invisible=</span><span class="s">&quot;state != 'custom'&quot;</span><span class="nt">&gt;</span><span class="w">
           </span><span class="nt">&lt;group&gt;</span><span class="w">
             </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;field3&quot;</span><span class="nt">/&gt;</span><span class="w">
           </span><span class="nt">&lt;/group&gt;</span><span class="w">
         </span><span class="nt">&lt;/group&gt;</span><span class="w">
-        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;final&quot;</span><span class="w"> </span><span class="na">attrs=</span><span class="s">&quot;{'invisible': [('state', '!=', 'final')]}&quot;</span><span class="nt">&gt;</span><span class="w">
+        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;final&quot;</span><span class="w"> </span><span class="na">invisible=</span><span class="s">&quot;state != 'final'&quot;</span><span class="nt">&gt;</span><span class="w">
           </span><span class="nt">&lt;p&gt;</span>The<span class="w"> </span>project<span class="w"> </span>is<span class="w"> </span>now<span class="w"> </span>configured.<span class="nt">&lt;/p&gt;</span><span class="w">
         </span><span class="nt">&lt;/div&gt;</span><span class="w">
       </span><span class="nt">&lt;/xpath&gt;</span><span class="w">
