@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-09 15:35+0000\n"
+"PO-Revision-Date: 2024-01-10 19:19+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -30,69 +30,72 @@ msgstr ""
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_calendar_event
 msgid "Calendar Event"
-msgstr ""
+msgstr "Calendario de Eventos"
 
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes de Config"
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Configure global override of date format for all users."
 msgstr ""
+"Configurar la anulación global del formato de fecha para todos los usuarios."
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Configure global override of time format for all users."
 msgstr ""
+"Configurar la anulación global del formato de hora para todos los usuarios."
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Configure global override of week start for all users."
 msgstr ""
+"Configurar la anulación global del inicio de semana para todos los usuarios."
 
 #. module: base_user_locale
 #: model:ir.model.fields,field_description:base_user_locale.field_res_company__date_format
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__date_format
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__date_format
 msgid "Date Format"
-msgstr ""
+msgstr "Formato de Fecha"
 
 #. module: base_user_locale
 #: model:ir.model.fields,field_description:base_user_locale.field_res_company__decimal_point
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__decimal_point
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__decimal_point
 msgid "Decimal Separator"
-msgstr ""
+msgstr "Separador Decimal"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__5
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__5
 msgid "Friday"
-msgstr ""
+msgstr "Viernes"
 
 #. module: base_user_locale
 #: model_terms:ir.ui.view,arch_db:base_user_locale.res_config_settings_view_form
 msgid "Locale"
-msgstr ""
+msgstr "Local"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__1
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__1
 msgid "Monday"
-msgstr ""
+msgstr "Lunes"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__6
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__6
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #. module: base_user_locale
 #: model:ir.model.fields,help:base_user_locale.field_res_company__date_format
@@ -111,53 +114,56 @@ msgid ""
 "See Settings > Translations > Languages and then click on any language to "
 "see the Legends for supported Date and Time Formats and some examples"
 msgstr ""
+"Consulte Configuración > Traducciones > Idiomas y, a continuación, haga clic "
+"en cualquier idioma para ver las leyendas de los formatos de fecha y hora "
+"admitidos y algunos ejemplos"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__7
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__7
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #. module: base_user_locale
 #: model:ir.model.fields,field_description:base_user_locale.field_res_company__thousands_sep
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__thousands_sep
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__thousands_sep
 msgid "Thousands Separator"
-msgstr ""
+msgstr "Separador de Miles"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__4
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__4
 msgid "Thursday"
-msgstr ""
+msgstr "Jueves"
 
 #. module: base_user_locale
 #: model:ir.model.fields,field_description:base_user_locale.field_res_company__time_format
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__time_format
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__time_format
 msgid "Time Format"
-msgstr ""
+msgstr "Formato de Hora"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__2
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__2
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #. module: base_user_locale
 #: model:ir.model,name:base_user_locale.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: base_user_locale
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_company__week_start__3
 #: model:ir.model.fields.selection,name:base_user_locale.selection__res_users__week_start__3
 msgid "Wednesday"
-msgstr ""
+msgstr "Miércoles"
 
 #. module: base_user_locale
 #: model:ir.model.fields,field_description:base_user_locale.field_res_company__week_start
 #: model:ir.model.fields,field_description:base_user_locale.field_res_config_settings__week_start
 #: model:ir.model.fields,field_description:base_user_locale.field_res_users__week_start
 msgid "Week Start"
-msgstr ""
+msgstr "Inicio de Semana"
