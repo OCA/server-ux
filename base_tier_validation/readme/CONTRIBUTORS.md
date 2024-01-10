@@ -6,3 +6,5 @@
 - Kitti U. \<<kittiu@ecosoft.co.th>\>
 - Saran Lim. \<<saranl@ecosoft.co.th>\>
 - Carlos Lopez \<<celm1990@gmail.com>\>
+- Javier Colmeiro \<<javier.colmeiro@braintec.com>\>
+- bosd
