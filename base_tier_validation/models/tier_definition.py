@@ -67,6 +67,13 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
         "this definition is triggered.",
     )
+    notify_on_pending = fields.Boolean(
+        string="Notify Reviewers on reaching Pending",
+        help="If set, all possible reviewers will be notified by email when "
+        "this status is reached."
+        "Usefull in an Approve by sequence scenario. "
+        "An notification request to review is sent out when it's their turn to review.",
+    )
     has_comment = fields.Boolean(string="Comment", default=False)
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
