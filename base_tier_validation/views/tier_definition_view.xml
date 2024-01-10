@@ -99,6 +99,7 @@
                             <group name="more_option">
                                 <group name="notify">
                                     <field name="notify_on_create" />
+                                    <field name="notify_on_pending" />
                                     <field name="has_comment" />
                                 </group>
                             </group>

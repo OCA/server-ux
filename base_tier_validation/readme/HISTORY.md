@@ -1,3 +1,9 @@
+## 17.0.1.0.0 (2024-01-10)
+
+Migrated to Odoo 17.
+Merged module with tier_validation_waiting.
+To support sending messages in a validation sequence when it is their turn to validate.
+
 ## 14.0.1.0.0 (2020-11-19)
 
 Migrated to Odoo 14.

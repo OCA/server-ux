@@ -9,6 +9,8 @@ To configure this module, you need to:
 
 - If check *Notify Reviewers on Creation*, all possible reviewers will
   be notified by email when this definition is triggered.
+- If check *Notify reviewers on reaching pending* if you want to send a notification when pending status is reached.
+  This is usefull in a approve by sequence scenario to only notify reviewers when it is their turn in the sequence.
 - If check *Comment*, reviewers can comment after click Validate or
   Reject.
 - If check *Approve by sequence*, reviewers is forced to review by

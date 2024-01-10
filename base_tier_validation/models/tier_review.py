@@ -13,12 +13,13 @@ class TierReview(models.Model):
 
     name = fields.Char(related="definition_id.name", readonly=True)
     status = fields.Selection(
-        selection=[
+        [
+            ("waiting", "Waiting"),
             ("pending", "Pending"),
             ("rejected", "Rejected"),
             ("approved", "Approved"),
         ],
-        default="pending",
+        default="waiting",
     )
     model = fields.Char(string="Related Document Model", index=True)
     res_id = fields.Integer(string="Related Document ID", index=True)
@@ -77,11 +78,26 @@ class TierReview(models.Model):
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
+        reviews = self.filtered(lambda rev: rev.status in ["waiting", "pending"])
+        if reviews:
+            # get minimum sequence of all to prevent jumps
+            next_seq = min(reviews.mapped("sequence"))
+            for record in reviews:
+                # if approve by sequence, check sequence has been reached
+                if record.approve_sequence:
+                    if record.sequence == next_seq:
+                        record.status = "pending"
+                # if there is no approval sequence go directly to pending state
+                elif not record.approve_sequence:
+                    record.status = "pending"
+                if record.status == "pending":
+                    if record.definition_id.notify_on_pending:
+                        record._notify_pending_status(record)
         for record in self:
             record.can_review = record._can_review_value()
 
     def _can_review_value(self):
-        if self.status != "pending":
+        if self.status not in ("pending", "waiting"):
             return False
         if not self.approve_sequence:
             return True
@@ -126,3 +142,8 @@ class TierReview(models.Model):
             if not reviewer_field or not reviewer_field._name == "res.users":
                 raise ValidationError(_("There are no res.users in the selected field"))
         return reviewer_field
+
+    def _notify_pending_status(self, review_ids):
+        """Method to call and reuse abstract notification method"""
+        resource = self.env[self.model].browse(self.res_id)
+        resource._notify_review_available(review_ids)

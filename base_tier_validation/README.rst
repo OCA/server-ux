@@ -62,6 +62,10 @@ To configure this module, you need to:
 
 -  If check *Notify Reviewers on Creation*, all possible reviewers will
    be notified by email when this definition is triggered.
+-  If check *Notify reviewers on reaching pending* if you want to send a
+   notification when pending status is reached. This is usefull in a
+   approve by sequence scenario to only notify reviewers when it is
+   their turn in the sequence.
 -  If check *Comment*, reviewers can comment after click Validate or
    Reject.
 -  If check *Approve by sequence*, reviewers is forced to review by
@@ -95,6 +99,13 @@ improvement will be very valuable.
 
 Changelog
 =========
+
+17.0.1.0.0 (2024-01-10)
+-----------------------
+
+Migrated to Odoo 17. Merged module with tier_validation_waiting. To
+support sending messages in a validation sequence when it is their turn
+to validate.
 
 14.0.1.0.0 (2020-11-19)
 -----------------------
@@ -206,6 +217,7 @@ Credits
 Authors
 -------
 
+* brain-tec AG
 * ForgeFlow
 
 Contributors
@@ -219,6 +231,8 @@ Contributors
 -  Kitti U. <kittiu@ecosoft.co.th>
 -  Saran Lim. <saranl@ecosoft.co.th>
 -  Carlos Lopez <celm1990@gmail.com>
+-  Javier Colmeiro <javier.colmeiro@braintec.com>
+-  bosd
 
 Maintainers
 -----------
