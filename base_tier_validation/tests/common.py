@@ -78,13 +78,51 @@ class CommonTierValidation(common.TransactionCase):
                 "model_id": cls.tester_model.id,
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_1.id,
-                "definition_domain": "[('test_field', '>', 1.0)]",
+                "definition_domain": "[('test_field', '=', 1.0)]",
                 "sequence": 30,
             }
         )
 
-        cls.test_record = cls.test_model.create({"test_field": 2.5})
-        cls.test_record_2 = cls.test_model_2.create({"test_field": 2.5})
+        cls.test_record = cls.test_model.create({"test_field": 1.0})
+        cls.test_record_2 = cls.test_model_2.create({"test_field": 1.0})
+
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 3.0)]",
+                "approve_sequence": True,
+                "notify_on_pending": False,
+                "sequence": 20,
+                "name": "Definition for test 19 - sequence - user 1",
+            }
+        )
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 3.0)]",
+                "approve_sequence": True,
+                "notify_on_pending": True,
+                "sequence": 10,
+                "name": "Definition for test 19 - sequence - user 2",
+            }
+        )
+        # Create definition for test 20
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_1.id,
+                "definition_domain": "[('test_field', '=', 0.9)]",
+                "approve_sequence": False,
+                "notify_on_pending": True,
+                "sequence": 10,
+                "name": "Definition for test 20 - no sequence -  user 1 - no sequence",
+            }
+        )
 
     @classmethod
     def tearDownClass(cls):

@@ -1,4 +1,5 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright (c) 2022 brain-tec AG (https://braintec.com)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from lxml import etree
@@ -73,6 +74,7 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
+        record.invalidate_recordset()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.id)])
         self.assertTrue(res)
@@ -291,15 +293,21 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # Validation will be all by sequence
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+            2, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+        )
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
-            2, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
-        record1.validate_tier()
         self.assertEqual(
             1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
         record1.validate_tier()
         self.assertEqual(
@@ -344,11 +352,17 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # When the first tier is validated, all the rest will be approved.
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+            2, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+        )
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
             0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
 
     def test_13_onchange_review_type(self):
@@ -413,18 +427,18 @@ class TierTierValidation(CommonTierValidation):
     def test_16_review_user_count_on_rejected(self):
         """If document is rejected, it should always removed from tray"""
         # Create new test record
-        test_record = self.test_model.create({"test_field": 2.5})
+        test_record3 = self.test_model.create({"test_field": 1.0})
         # Create tier definitions
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
                 "review_type": "individual",
                 "reviewer_id": self.test_user_2.id,
-                "definition_domain": "[('test_field', '>', 1.0)]",
+                "definition_domain": "[('test_field', '=', 1.0)]",
             }
         )
-        test_record.with_user(self.test_user_2).request_validation()
-        record1 = test_record.with_user(self.test_user_1)
+        test_record3.with_user(self.test_user_2).request_validation()
+        record1 = test_record3.with_user(self.test_user_1)
         record1.invalidate_model()
         self.assertTrue(record1.can_review)
         self.assertTrue(
@@ -451,13 +465,11 @@ class TierTierValidation(CommonTierValidation):
             [("reviewer_ids", "=", False)]
         )
         self.assertEqual(len(records), 1)
-        self.test_record.with_user(self.test_user_2.id).request_validation()
-        record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
-        records = self.env["tier.validation.tester"].search(
-            [("reviewer_ids", "=", False)]
-        )
-        self.assertEqual(len(records), 0)
+        review = self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(review)
+        self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
+        self.assertTrue(self.test_user_1.review_ids)
+        self.test_record.with_user(self.test_user_1.id).request_validation()
 
     def test_18_test_review_by_res_users_field(self):
         selected_field = self.env["ir.model.fields"].search(
@@ -481,6 +493,49 @@ class TierTierValidation(CommonTierValidation):
         review = reviews.filtered(lambda r: r.definition_id == definition)
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
+
+    def test_19_waiting_tier(self):
+        # Create new test record
+        tier_review_obj = self.env["tier.review"]
+        test_record = self.test_model.create({"test_field": 3.5})
+        # Request validation
+        review = test_record.request_validation()
+
+        self.assertTrue(review)
+        # both reviews should be waiting when created
+        review_1 = tier_review_obj.browse(review.ids[0])
+        review_2 = tier_review_obj.browse(review.ids[1])
+        self.assertTrue(review_1.status == "waiting")
+        self.assertTrue(review_2.status == "waiting")
+        # and then normal workflow will follow...
+        review_1.invalidate_model()
+        review_1._compute_can_review()
+        self.assertTrue(review_1.status == "pending")
+        # first reviewer does not want notifications
+        # chatter should be empty
+        self.assertFalse(test_record.message_ids)
+        self.assertTrue(review_2.status == "waiting")
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_model()
+        record.validate_tier()
+        self.assertTrue(review_1.status == "approved")
+        self.assertTrue(review_2.status == "pending")
+
+    def test_20_no_sequence(self):
+        # Create new test record
+        tier_review_obj = self.env["tier.review"]
+        test_record2 = self.test_model.create({"test_field": 0.9})
+        # request validation
+        review = test_record2.request_validation()
+        self.assertTrue(review)
+        review_1 = tier_review_obj.browse(review.ids[0])
+        self.assertTrue(review_1.status == "waiting")
+        review_1.invalidate_model()
+        review_1._compute_can_review()
+        self.assertTrue(review_1.status == "pending")
+        msg2 = test_record2.message_ids[0].body
+        request = test_record2._notify_requested_review_body()
+        self.assertIn(request, msg2)
 
 
 @tagged("at_install")
