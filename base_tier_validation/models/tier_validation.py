@@ -70,7 +70,7 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             has_comment = rec.review_ids.filtered(
                 lambda r: r.status in ("waiting", "pending")
-                and (self.env.user in r.reviewer_ids)
+                and self.env.user in r.reviewer_ids
             ).mapped("has_comment")
             rec.has_comment = True in has_comment
 
@@ -330,7 +330,7 @@ class TierValidation(models.AbstractModel):
         waiting_reviews = tier_reviews.filtered(
             lambda r: r.status == "waiting"
             or r.approve_sequence_bypass
-            and (self.env.user in r.reviewer_ids)
+            and self.env.user in r.reviewer_ids
         )
         if waiting_reviews:
             waiting_reviews.write(
@@ -449,7 +449,7 @@ class TierValidation(models.AbstractModel):
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
             lambda r: r.status in ("waiting", "pending")
-            and (self.env.user in r.reviewer_ids)
+            and self.env.user in r.reviewer_ids
         )
         user_reviews.write(
             {
@@ -636,10 +636,10 @@ class TierValidation(models.AbstractModel):
                     and r.res_id == x.id
                 ).mapped("reviewer_ids")
                 # Subscribe reviewers and notify
-                getattr(rec, subscribe)(
+                rec.message_subscribe(
                     partner_ids=users_to_notify.mapped("partner_id").ids
                 )
-                getattr(rec, post)(
+                rec.message_post(
                     subtype_xmlid=self._get_requested_notification_subtype(),
                     body=rec._notify_requested_review_body(),
                 )
