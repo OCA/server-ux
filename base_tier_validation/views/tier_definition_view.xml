@@ -7,14 +7,21 @@
         <field name="model">tier.definition</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="sequence" widget="handle" />
                 <field name="model_id" />
                 <field name="name" />
                 <field name="review_type" />
                 <field name="reviewer_id" />
                 <field name="reviewer_group_id" />
                 <field name="reviewer_field_id" />
-                <field name="sequence" />
-                <field name="company_id" groups="base.group_multi_company" />
+                <field name="notify_on_create" optional="show" />
+                <field name="notify_on_pending" optional="show" />
+                <field name="has_comment" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
                 <field name="active" />
             </tree>
         </field>
@@ -25,7 +32,7 @@
         <field name="arch" type="xml">
             <form string="Tier Definition">
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
+                    <div class="o_form_label" name="button_box" />
                     <widget
                         name="web_ribbon"
                         title="Archived"
@@ -70,16 +77,22 @@
                                 options="{'no_create': True}"
                             />
                             <field name="sequence" />
+
                             <field name="approve_sequence" />
-                            <label for="approve_sequence_bypass" invisible="1" />
+                            <label
+                                for="approve_sequence_bypass"
+                                class="o_form_label"
+                                invisible="approve_sequence == False"
+                            />
+
                             <div
                                 name="approve_sequence_bypass_div"
-                                class="o_row"
+                                class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0"
                                 invisible="approve_sequence == False"
                             >
                                 <field name="approve_sequence_bypass" />
                                 <span
-                                >Bypassed, if previous tier was validated by same reviewer</span>
+                                >Bypass, if previous tier was validated by same reviewer</span>
                             </div>
                         </group>
                     </group>

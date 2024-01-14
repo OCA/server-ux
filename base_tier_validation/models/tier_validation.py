@@ -62,7 +62,10 @@ class TierValidation(models.AbstractModel):
     can_review = fields.Boolean(
         compute="_compute_can_review", search="_search_can_review"
     )
-    has_comment = fields.Boolean(compute="_compute_has_comment")
+    has_comment = fields.Boolean(
+        compute="_compute_has_comment",
+        help="If set, Allow the reviewer to leave a comment on the review.",
+    )
     next_review = fields.Char(compute="_compute_next_review")
     hide_reviews = fields.Boolean(compute="_compute_hide_reviews")
 
