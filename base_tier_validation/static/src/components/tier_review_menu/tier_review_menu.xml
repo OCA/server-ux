@@ -10,7 +10,7 @@
             class="discussSystray.class"
         >
         <t t-set-slot="toggler">
-            <i class="fa fa-pencil-square-o" role="img" aria-label="Reviews" />
+            <i class="fa fa-lg fa-pencil-square-o" role="img" aria-label="Reviews" />
                 <span
                     t-if="store.tierReviewCounter > 0"
                     class="o-mail-ActivityMenu-counter badge rounded-pill"

@@ -38,7 +38,8 @@ export class TierReviewMenu extends Component {
         ];
     }
     openReviewGroup(group) {
-        document.body.click(); // Hack to close dropdown
+        document.body.click();
+        // Hack to close dropdown
         const context = {};
         var domain = [["can_review", "=", true]];
         if (group.active_field) {
