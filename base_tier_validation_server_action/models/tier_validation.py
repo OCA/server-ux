@@ -23,6 +23,7 @@ class TierValidation(models.AbstractModel):
                     server_action_tier=server_action.id,
                     active_model=self._name,
                     active_id=self.id,
+                    active_ids=self.ids,
                 ).sudo().run()
 
     def _validate_tier(self, tiers=False):
