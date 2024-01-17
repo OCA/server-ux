@@ -34,10 +34,11 @@ class IrSequence(models.Model):
 
     @api.constrains("check_digit_formula", "prefix", "suffix")
     def check_check_digit_formula(self):
-        try:
-            self.get_next_char(0)
-        except Exception:
-            raise ValidationError(_("Format is not accepted")) from None
+        for rec in self:
+            try:
+                rec.get_next_char(0)
+            except Exception as e:
+                raise ValidationError(_("Format is not accepted")) from e
 
     def get_check_digit(self, code):
         try:
@@ -46,8 +47,8 @@ class IrSequence(models.Model):
             raise ValidationError(
                 _("%s is not an implemented function") % self.check_digit_formula
             ) from None
-        except Exception:
-            raise ValidationError(_("Format is not accepted")) from None
+        except Exception as e:
+            raise ValidationError(_("Format is not accepted")) from e
 
     def get_formula_map(self):
         return {
