@@ -8,3 +8,4 @@
 - Carlos Lopez \<<celm1990@gmail.com>\>
 - Javier Colmeiro \<<javier.colmeiro@braintec.com>\>
 - bosd
+- Evan Soh \<<evan.soh@omnisoftsolution.com>\>
