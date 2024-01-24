@@ -71,7 +71,7 @@ class TierReview(models.Model):
             if not review.reviewed_date:
                 review.reviewed_formated_date = False
                 continue
-            requested_date_utc = pytz.timezone(timezone).localize(review.reviewed_date)
+            requested_date_utc = pytz.timezone("UTC").localize(review.reviewed_date)
             requested_date = requested_date_utc.astimezone(pytz.timezone(timezone))
             review.reviewed_formated_date = requested_date.replace(tzinfo=None)
 
