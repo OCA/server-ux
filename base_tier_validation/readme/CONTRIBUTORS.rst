@@ -5,3 +5,4 @@
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 * Kitti U. <kittiu@ecosoft.co.th>
 * Saran Lim. <saranl@ecosoft.co.th>
+* Evan Soh <evan.soh@omnisoftsolution.com>
