@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-10 11:37+0000\n"
-"PO-Revision-Date: 2023-07-10 13:38+0200\n"
+"POT-Creation-Date: 2024-01-25 15:17+0000\n"
+"PO-Revision-Date: 2024-01-25 16:18+0100\n"
 "Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -103,6 +103,7 @@ msgid "Announcements"
 msgstr "Anuncios"
 
 #. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
 msgid "Archived"
 msgstr "Archivado"
@@ -110,9 +111,10 @@ msgstr "Archivado"
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
 msgid "Attachments"
-msgstr ""
+msgstr "Adjuntos"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__color
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
 msgid "Color"
 msgstr "Color"
@@ -196,16 +198,6 @@ msgid "In Date"
 msgstr "En fecha"
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement__archive_uid
-msgid "Last Archived by"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement__archive_date
-msgid "Last Archived on"
-msgstr ""
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement____last_update
 #: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
@@ -264,9 +256,19 @@ msgid "Notification Date"
 msgstr "Fecha de notificación"
 
 #. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_end_date
+msgid "Notification End Date"
+msgstr "Fecha fin de notificación"
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
 msgid "Notification Expiry Date"
 msgstr "Fecha de caducidad de la notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_start_date
+msgid "Notification Start Date"
+msgstr "Fecha inicio de notificación"
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__parent_id
@@ -360,6 +362,17 @@ msgid "Tags..."
 msgstr "Etiquetas..."
 
 #. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__notification_end_date
+#: model:ir.model.fields,help:announcement.field_announcement__notification_start_date
+msgid "Technical field to display announcements in the calendar view"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__color
+msgid "Technical field to display items by color in the calendar"
+msgstr ""
+
+#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__name
 msgid "Title"
 msgstr "Título"
@@ -430,3 +443,8 @@ msgstr "No puedes crear etiquetas recursivas."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 msgid "e.g. Announcement description..."
 msgstr "p.e. Descripción del anuncio..."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
+msgid "name"
+msgstr "nombre"
