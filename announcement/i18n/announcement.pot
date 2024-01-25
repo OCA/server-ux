@@ -99,6 +99,7 @@ msgid "Announcements"
 msgstr ""
 
 #. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
 msgid "Archived"
 msgstr ""
