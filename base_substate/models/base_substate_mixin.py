@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 
 class BaseSubstateMixin(models.AbstractModel):
     _name = "base.substate.mixin"
+    _inherit = "mail.thread"
     _description = "BaseSubstate Mixin"
     _state_field = "state"
 
@@ -27,6 +28,23 @@ class BaseSubstateMixin(models.AbstractModel):
                         "target_state": _(rec_states[target_state]),
                     }
                 )
+
+    def _track_template(self, changes):
+        res = super()._track_template(changes)
+        first_rec = self[0]
+        if "substate_id" in changes and first_rec.substate_id.mail_template_id:
+            res["substate_id"] = (
+                first_rec.substate_id.mail_template_id,
+                {
+                    "composition_mode": "comment",
+                    "auto_delete_message": True,
+                    "subtype_id": self.env["ir.model.data"]._xmlid_to_res_id(
+                        "mail.mt_note"
+                    ),
+                    "email_layout_xmlid": "mail.mail_notification_light",
+                },
+            )
+        return res
 
     def _get_default_substate_id(self, state_val=False):
         """Gives default substate_id"""
