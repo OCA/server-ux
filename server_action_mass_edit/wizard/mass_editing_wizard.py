@@ -39,7 +39,8 @@ class MassEditingWizard(models.TransientModel):
             }
         elif len(original_active_ids):
             operation_description_warning = _(
-                "You have selected %(origin_amount)d record(s) that can not be processed.\n"
+                "You have selected %(origin_amount)d "
+                "record(s) that can not be processed.\n"
                 "Only %(amount)d record(s) will be processed."
             ) % {
                 "origin_amount": len(original_active_ids) - len(active_ids),
@@ -147,7 +148,8 @@ class MassEditingWizard(models.TransientModel):
     def _get_field_options(self, field):
         return {
             "name": field.name,
-            "modifiers": '{"invisible": [["selection__%s", "in", ["ignore", "remove"]]]}'
+            "modifiers": '{"invisible": "\
+            "[["selection__%s", "in", ["ignore", "remove"]]]}'
             % field.name,
             "class": "w-75",
         }

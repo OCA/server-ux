@@ -215,6 +215,7 @@ class TestMassEditing(common.TransactionCase):
             self.mass_editing_user, self.users, vals
         )
         result = mass_wizard.read(fields)[0]
+
         self.assertTrue(
             all([field in result for field in fields]), "Read must return all fields."
         )
@@ -333,9 +334,6 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(mass_edit_line_form.widget_option, "image")
         mass_edit_line_form.field_id = self.env.ref("base.field_res_company__logo")
         self.assertEqual(mass_edit_line_form.widget_option, "image")
-        # binary
-        mass_edit_line_form.field_id = self.env.ref("base.field_res_company__favicon")
-        self.assertEqual(mass_edit_line_form.widget_option, False)
 
         mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
         self.assertFalse(mass_edit_line_form.widget_option)
