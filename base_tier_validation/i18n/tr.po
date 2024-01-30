@@ -163,6 +163,11 @@ msgid "Approved"
 msgstr "Onaylı"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence_bypass
 msgid ""
@@ -190,8 +195,8 @@ msgid "Cancel"
 msgstr "İptal"
 
 #. module: base_tier_validation
-#. odoo-python
 #. odoo-javascript
+#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
