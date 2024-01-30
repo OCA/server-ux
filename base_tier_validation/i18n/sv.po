@@ -451,6 +451,11 @@ msgid "Pending"
 msgstr "Väntande"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__record_id
+msgid "Record"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__model_id
 msgid "Referenced Model"
 msgstr "Refererad modell"
@@ -658,6 +663,11 @@ msgstr "Attestering (sammanfattning)"
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
 msgid "Tier Validation Accepted Notification"
 msgstr "Meddelande vid accepterad attestering"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__tier_validation_before_write
+msgid "Tier Validation Before Write"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected

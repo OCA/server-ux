@@ -445,6 +445,11 @@ msgid "Pending"
 msgstr "Pendiente"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__record_id
+msgid "Record"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__model_id
 msgid "Referenced Model"
 msgstr "Modelo referenciado"
@@ -652,6 +657,11 @@ msgstr "Validación de nivel (resumen)"
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
 msgid "Tier Validation Accepted Notification"
 msgstr "Notificación de validación de nivel aceptada"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__tier_validation_before_write
+msgid "Tier Validation Before Write"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
