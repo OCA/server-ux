@@ -65,6 +65,19 @@ class TierValidation(models.AbstractModel):
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
 
+    tier_validation_before_write = fields.Boolean(
+        compute="_compute_tier_validation_before_write",
+    )
+
+    @api.depends_context("tier_validation_before_write")
+    def _compute_tier_validation_before_write(self):
+        """
+        This is a technical field in order to represent the validation
+        step.
+        """
+        before_write = self.env.context.get("tier_validation_before_write")
+        self.update({"tier_validation_before_write": before_write})
+
     def _compute_has_comment(self):
         for rec in self:
             has_comment = rec.review_ids.filtered(
@@ -271,12 +284,25 @@ class TierValidation(models.AbstractModel):
         ) in (self._state_to + [self._cancel_state])
 
     def write(self, vals):
-        for rec in self:
+        new_self = self
+        if (
+            "from_review_systray" in self.env.context
+            and "active_test" in self.env.context
+        ):
+            context = self.env.context.copy()
+            context.pop("active_test")
+            new_self = self.with_context(context)
+        validated_records = new_self.browse()
+        validated_reviews = self.env["tier.review"].browse()
+        for rec in new_self:
             if rec._check_state_conditions(vals):
                 if rec.need_validation:
                     # try to validate operation
                     reviews = rec.request_validation()
-                    rec._validate_tier(reviews)
+                    validated_reviews |= reviews
+                    rec._validate_tier(
+                        reviews.with_context(tier_validation_before_write=True)
+                    )
                     if not self._calc_reviews_validated(reviews):
                         pending_reviews = reviews.filtered(
                             lambda r: r.status == "pending"
@@ -304,8 +330,16 @@ class TierValidation(models.AbstractModel):
             ):
                 raise ValidationError(_("The operation is under validation."))
             if rec._allow_to_remove_reviews(vals):
-                rec.mapped("review_ids").unlink()
-        return super(TierValidation, self).write(vals)
+                new_self.mapped("review_ids").unlink()
+        res = super(TierValidation, new_self).write(vals)
+        validated_records._post_tier_validation(validated_reviews)
+        return res
+
+    def _post_tier_validation(self, reviews):
+        """
+        This is a hook to add some actions after the reviews
+        """
+        return True
 
     def _allow_to_remove_reviews(self, values):
         """Method for deciding whether the elimination of revisions is necessary."""
@@ -456,7 +490,7 @@ class TierValidation(models.AbstractModel):
                 "reviewed_date": fields.Datetime.now(),
             }
         )
-        for review in user_reviews:
+        for review in user_reviews.exists():
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_rejected_review()
 
