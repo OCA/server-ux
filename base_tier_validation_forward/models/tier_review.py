@@ -38,7 +38,7 @@ class TierReview(models.Model):
     @api.depends(
         "definition_id.name",
         "definition_id.review_type",
-        "definition_id.reviewer_id",
+        "definition_id.reviewer_ids",
         "definition_id.reviewer_group_id",
         "definition_id.has_comment",
         "definition_id.approve_sequence",
@@ -47,7 +47,7 @@ class TierReview(models.Model):
         for rec in self:
             rec.name = rec.definition_id.name
             rec.review_type = rec.definition_id.review_type
-            rec.reviewer_id = rec.definition_id.reviewer_id
+            rec.definition_reviewer_ids = rec.definition_id.reviewer_ids
             rec.reviewer_group_id = rec.definition_id.reviewer_group_id
             rec.has_comment = rec.definition_id.has_comment
             rec.approve_sequence = rec.definition_id.approve_sequence

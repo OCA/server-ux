@@ -44,8 +44,8 @@ class ValidationForwardWizard(models.TransientModel):
         review.write(
             {
                 "name": self.forward_description,
-                "review_type": "individual",
-                "reviewer_id": self.forward_reviewer_id.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(4, self.forward_reviewer_id.id)],
                 "has_comment": self.has_comment,
                 "approve_sequence": self.approve_sequence,
             }

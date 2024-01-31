@@ -31,14 +31,14 @@ class TierDefinition(models.Model):
     model = fields.Char(related="model_id.model", index=True, store=True)
     review_type = fields.Selection(
         string="Validated by",
-        default="individual",
+        default="individuals",
         selection=[
-            ("individual", "Specific user"),
+            ("individuals", "Specific users"),
             ("group", "Any user in a specific group"),
             ("field", "Field in related record"),
         ],
     )
-    reviewer_id = fields.Many2one(comodel_name="res.users", string="Reviewer")
+    reviewer_ids = fields.Many2many(comodel_name="res.users", string="Reviewers")
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"
     )
@@ -79,7 +79,7 @@ class TierDefinition(models.Model):
 
     @api.onchange("review_type")
     def onchange_review_type(self):
-        self.reviewer_id = None
+        self.reviewer_ids = None
         self.reviewer_group_id = None
 
     @api.depends("review_type", "model_id")

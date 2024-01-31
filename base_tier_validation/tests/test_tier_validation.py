@@ -73,7 +73,7 @@ class TierTierValidation(CommonTierValidation):
         record = self.test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
         self.assertIn(self.test_user_1, record.reviewer_ids)
-        res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.id)])
+        res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.ids)])
         self.assertTrue(res)
 
     def test_08_search_validated(self):
@@ -101,24 +101,24 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model_2.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
@@ -144,8 +144,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "has_comment": True,
             }
@@ -179,8 +179,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "has_comment": True,
             }
@@ -214,8 +214,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "sequence": 30,
@@ -224,8 +224,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_2.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_2.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "sequence": 10,
@@ -263,8 +263,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "sequence": 20,
@@ -273,8 +273,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "sequence": 10,
@@ -314,8 +314,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "approve_sequence_bypass": True,
@@ -325,8 +325,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "approve_sequence_bypass": True,
@@ -354,31 +354,31 @@ class TierTierValidation(CommonTierValidation):
         tier_def_id = self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
             }
         )
-        self.assertTrue(tier_def_id.reviewer_id)
+        self.assertTrue(tier_def_id.reviewer_ids)
         tier_def_id.review_type = "group"
         tier_def_id.onchange_review_type()
-        self.assertFalse(tier_def_id.reviewer_id)
+        self.assertFalse(tier_def_id.reviewer_ids)
 
     def test_14_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
             }
         )
-        self.assertTrue(tier_def_id.reviewer_id)
+        self.assertTrue(tier_def_id.reviewer_ids)
         tier_def_id.review_type = "group"
         tier_def_id.onchange_review_type()
-        self.assertFalse(tier_def_id.reviewer_id)
+        self.assertFalse(tier_def_id.reviewer_ids)
 
     def test_15_review_user_count(self):
         # Create new test record
@@ -387,8 +387,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "has_comment": True,
             }
@@ -417,8 +417,8 @@ class TierTierValidation(CommonTierValidation):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_2.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_2.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )

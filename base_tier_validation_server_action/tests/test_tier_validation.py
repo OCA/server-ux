@@ -52,8 +52,8 @@ class TierTierValidation(common.TransactionCase):
         cls.tier_def_obj.create(
             {
                 "model_id": cls.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": cls.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, cls.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "sequence": 30,
             }
@@ -73,8 +73,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "sequence": 20,
                 "approve_sequence": True,
                 "auto_validate": True,
@@ -83,8 +83,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "sequence": 10,
                 "approve_sequence": True,
                 "auto_validate": True,
@@ -128,7 +128,7 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
+                "review_type": "individuals",
                 "reviewer_group_id": self.group_system.id,
                 "sequence": 20,
                 "approve_sequence": True,
@@ -165,8 +165,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "sequence": 20,
                 "server_action_id": server_action.id,  # Server Action
             }
@@ -194,8 +194,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "sequence": 20,
                 "rejected_server_action_id": rejected_server_action.id,
             }

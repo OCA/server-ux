@@ -66,8 +66,8 @@ class TierTierValidation(TransactionCase):
         cls.tier_def_obj.create(
             {
                 "model_id": cls.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": cls.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, cls.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
@@ -86,8 +86,8 @@ class TierTierValidation(TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_2.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_2.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "has_forward": True,

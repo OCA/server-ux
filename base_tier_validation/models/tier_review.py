@@ -28,7 +28,9 @@ class TierReview(models.Model):
         store=True,
     )
     review_type = fields.Selection(related="definition_id.review_type", readonly=True)
-    reviewer_id = fields.Many2one(related="definition_id.reviewer_id", readonly=True)
+    definition_reviewer_ids = fields.Many2many(
+        related="definition_id.reviewer_ids", readonly=True
+    )
     reviewer_group_id = fields.Many2one(
         related="definition_id.reviewer_group_id", readonly=True
     )
@@ -94,7 +96,11 @@ class TierReview(models.Model):
 
     @api.model
     def _get_reviewer_fields(self):
-        return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.users"]
+        return [
+            "definition_reviewer_ids",
+            "reviewer_group_id",
+            "reviewer_group_id.users",
+        ]
 
     @api.depends(lambda self: self._get_reviewer_fields())
     def _compute_reviewer_ids(self):
@@ -117,8 +123,8 @@ class TierReview(models.Model):
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
-        if self.reviewer_id or self.reviewer_group_id.users:
-            return self.reviewer_id + self.reviewer_group_id.users
+        if self.definition_reviewer_ids or self.reviewer_group_id.users:
+            return self.definition_reviewer_ids + self.reviewer_group_id.users
         reviewer_field = self.env["res.users"]
         if self.reviewer_field_id:
             resource = self.env[self.model].browse(self.res_id)

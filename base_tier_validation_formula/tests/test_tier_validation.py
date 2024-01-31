@@ -63,8 +63,8 @@ class TierTierValidation(common.TransactionCase):
         cls.tier_def_obj.create(
             {
                 "model_id": cls.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": cls.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, cls.test_user_1.ids)],
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
@@ -80,8 +80,8 @@ class TierTierValidation(common.TransactionCase):
         tier_definition = self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_type": "formula",
                 "python_code": "rec.test_field > 1.0",
             }
@@ -157,8 +157,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_type": "domain_formula",
                 "definition_domain": '[("test_field", "<", 5.0)]',
                 "python_code": "rec.test_field > 1.0",

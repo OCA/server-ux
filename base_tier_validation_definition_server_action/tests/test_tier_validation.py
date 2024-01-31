@@ -77,8 +77,8 @@ class TierTierValidation(common.TransactionCase):
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
+                "review_type": "individuals",
+                "reviewer_ids": [(6, 0, self.test_user_1.ids)],
                 "definition_type": "server_action",
                 "definition_server_action_id": server_action.id,
             }
