@@ -17,13 +17,6 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: base_tier_validation
-#. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
-#, python-format
-msgid "0 Pending"
-msgstr "0 In afwachting"
-
-#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
 msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
@@ -108,7 +101,7 @@ msgstr "Actief"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #, python-format
 msgid "Activity"
 msgstr ""
@@ -152,6 +145,11 @@ msgid "Approved"
 msgstr "Goedgekeurd"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence_bypass
 msgid ""
@@ -180,7 +178,7 @@ msgstr "Annuleer"
 #. odoo-javascript
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__has_comment
@@ -237,7 +235,7 @@ msgstr "Definitiedomein"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 #, python-format
@@ -263,7 +261,7 @@ msgstr "Gedaan door"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Done by"
 msgstr "Gedaan door"
@@ -291,6 +289,11 @@ msgid "Has Comment"
 msgstr "Heeft commentaar"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__hide_reviews
+msgid "Hide Reviews"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
@@ -305,13 +308,6 @@ msgid ""
 msgstr ""
 "Indien ingesteld, worden alle mogelijke reviewers per e-mail op de hoogte "
 "gebracht wanneer deze definitie wordt geactiveerd."
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
-msgid "Last Modified on"
-msgstr "Laatst gewijzigd op"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -364,7 +360,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #, python-format
 msgid "No reviews to do."
 msgstr "Geen beoordelingen te doen."
@@ -390,17 +386,12 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
-msgid "Option to forward a tier validation to other reviewer, and backward"
-msgstr ""
-
-#. module: base_tier_validation
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to use python formula to get reviewers and find documents"
 msgstr ""
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
@@ -451,7 +442,7 @@ msgstr "Aangevraagd door"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Requested by"
 msgstr "Aangevraagd door"
@@ -502,8 +493,8 @@ msgstr "Beoordelaars"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
 #, python-format
 msgid "Reviews"
@@ -511,9 +502,8 @@ msgstr "Beoordelingen"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Volgorde"
@@ -525,7 +515,7 @@ msgstr "Specifieke gebruiker"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__status
 #, python-format
 msgid "Status"
@@ -571,6 +561,11 @@ msgstr ""
 "Vraag een validatie aan."
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
+msgstr "Tier"
+
+#. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
 #: model:ir.model,name:base_tier_validation.model_tier_definition
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_definition
@@ -581,11 +576,6 @@ msgstr "Tier definitie"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_formula
 msgid "Tier Formula"
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_forward
-msgid "Tier Forward & Backward"
 msgstr ""
 
 #. module: base_tier_validation
@@ -642,7 +632,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Todo by"
 msgstr ""
@@ -686,7 +676,7 @@ msgstr "Gevalideerd door"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewed_date
 #, python-format
 msgid "Validation Date"
@@ -717,8 +707,12 @@ msgstr ""
 msgid "e.g. Tier Validation for..."
 msgstr "bijv. Tier validatie voor..."
 
-#~ msgid "Tier"
-#~ msgstr "Tier"
+#, python-format
+#~ msgid "0 Pending"
+#~ msgstr "0 In afwachting"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst gewijzigd op"
 
 #, fuzzy, python-format
 #~ msgid "Activities"
