@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-02 15:34+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-01-31 11:34+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -169,6 +169,8 @@ msgstr "Approvato"
 msgid ""
 "Bypassed (auto validated), if previous tier was validated by same reviewer"
 msgstr ""
+"Saltato (auto validato), se il livello precedente è stato validato dallo "
+"stesso revisore"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
@@ -327,12 +329,12 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
 msgid "Last Archived by"
-msgstr ""
+msgstr "Ultima archiviazione di"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
 msgid "Last Archived on"
-msgstr ""
+msgstr "Ultima archiviazione il"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
@@ -453,7 +455,7 @@ msgstr "In attesa"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__record_id
 msgid "Record"
-msgstr ""
+msgstr "Record"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__model_id
@@ -671,7 +673,7 @@ msgstr "Notifica accettazione livello approvazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__tier_validation_before_write
 msgid "Tier Validation Before Write"
-msgstr ""
+msgstr "Validazione livello prima della scrittura"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
@@ -759,7 +761,7 @@ msgstr "Data approvazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Stato validazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
@@ -770,7 +772,7 @@ msgstr "Validazioni"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__res_partner__validation_status__no
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
 msgid "Without validation"
-msgstr ""
+msgstr "Senza validazione"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
