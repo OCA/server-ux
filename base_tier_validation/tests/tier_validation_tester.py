@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class TierValidationTester(models.Model):
     _name = "tier.validation.tester"
     _description = "Tier Validation Tester"
-    _inherit = ["tier.validation"]
+    _inherit = ["tier.validation", "mail.thread"]
     _tier_validation_manual_config = True
 
     state = fields.Selection(
@@ -28,7 +28,7 @@ class TierValidationTester(models.Model):
 class TierValidationTester2(models.Model):
     _name = "tier.validation.tester2"
     _description = "Tier Validation Tester 2"
-    _inherit = ["tier.validation"]
+    _inherit = ["tier.validation", "mail.thread"]
     _tier_validation_manual_config = False
 
     state = fields.Selection(

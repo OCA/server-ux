@@ -1,0 +1,9 @@
+<templates>
+
+    <t t-extend="tier.review.ReviewsTable">
+        <t t-jquery="table.table-condensed tbody t tr" t-operation="before">
+            <t t-if="review.status == 'waiting'" t-set="status_class" t-value="" />
+        </t>
+    </t>
+
+</templates>
