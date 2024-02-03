@@ -69,14 +69,12 @@ msgstr ""
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_search
 msgid "Archived"
 msgstr ""
 
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
-#: model:ir.cron,cron_name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
 msgstr ""
 
@@ -253,13 +251,6 @@ msgstr ""
 #, python-format
 msgid "Invalid name expression: %s"
 msgstr ""
-
-#. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
-msgid "Last Modified on"
-msgstr "最終更新日"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__write_uid
@@ -458,3 +449,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "最終更新日"
