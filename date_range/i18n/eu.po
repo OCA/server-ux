@@ -69,14 +69,12 @@ msgstr ""
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_search
 msgid "Archived"
 msgstr ""
 
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
-#: model:ir.cron,cron_name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
 msgstr ""
 
@@ -252,13 +250,6 @@ msgstr ""
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Invalid name expression: %s"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: date_range
