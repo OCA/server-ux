@@ -17,13 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation
-#. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
-#, python-format
-msgid "0 Pending"
-msgstr "0 In attesa"
-
-#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
 msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
@@ -119,7 +112,7 @@ msgstr "Attivo"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #, python-format
 msgid "Activity"
 msgstr ""
@@ -163,6 +156,11 @@ msgid "Approved"
 msgstr "Approvato"
 
 #. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__approve_sequence_bypass
 msgid ""
@@ -191,7 +189,7 @@ msgstr "Annulla"
 #. odoo-javascript
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__has_comment
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__has_comment
@@ -248,7 +246,7 @@ msgstr "Dominio Definizione"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 #, python-format
@@ -274,7 +272,7 @@ msgstr "Eseguito Da"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Done by"
 msgstr "Eseguito da"
@@ -302,6 +300,11 @@ msgid "Has Comment"
 msgstr "Ha commenti"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__hide_reviews
+msgid "Hide Reviews"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__id
@@ -316,13 +319,6 @@ msgid ""
 msgstr ""
 "Se impostato, tutti i possibili approvatori saranno notificati via email "
 "quando la definizione è attivata."
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
-msgid "Last Modified on"
-msgstr "Ultima Modifica il"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -375,7 +371,7 @@ msgstr ""
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #, python-format
 msgid "No reviews to do."
 msgstr "Nessuna approvazione da fare."
@@ -401,17 +397,12 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
-msgid "Option to forward a tier validation to other reviewer, and backward"
-msgstr ""
-
-#. module: base_tier_validation
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
 msgid "Option to use python formula to get reviewers and find documents"
 msgstr ""
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
@@ -462,7 +453,7 @@ msgstr "Richiesta Da"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Requested by"
 msgstr "Richiesta da"
@@ -515,8 +506,8 @@ msgstr "Revisori"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/systray.xml:0
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_menu/tier_review_menu.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_users__review_ids
 #, python-format
 msgid "Reviews"
@@ -524,9 +515,8 @@ msgstr "Revisioni"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Sequenza"
@@ -538,7 +528,7 @@ msgstr "Utente specifico"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__status
 #, python-format
 msgid "Status"
@@ -584,6 +574,11 @@ msgstr ""
 "Prego richiedere un'approvazione."
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
 #: model:ir.model,name:base_tier_validation.model_tier_definition
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_definition
@@ -594,11 +589,6 @@ msgstr "Definizione livello"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_formula
 msgid "Tier Formula"
-msgstr ""
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_res_config_settings__module_base_tier_validation_forward
-msgid "Tier Forward & Backward"
 msgstr ""
 
 #. module: base_tier_validation
@@ -653,7 +643,7 @@ msgstr "Incaricati"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #, python-format
 msgid "Todo by"
 msgstr "Incaricati"
@@ -697,7 +687,7 @@ msgstr "Approvato da"
 
 #. module: base_tier_validation
 #. odoo-javascript
-#: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
+#: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewed_date
 #, python-format
 msgid "Validation Date"
@@ -727,6 +717,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr ""
+
+#, python-format
+#~ msgid "0 Pending"
+#~ msgstr "0 In attesa"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima Modifica il"
 
 #, python-format
 #~ msgid "Activities"
