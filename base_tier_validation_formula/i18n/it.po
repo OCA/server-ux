@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-29 16:10+0000\n"
+"PO-Revision-Date: 2024-02-04 22:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -58,7 +58,7 @@ msgstr "Espressione Approvazione"
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 #, python-format
 msgid "Reviewer python expression must return a res.users recordset."
-msgstr ""
+msgstr "L'esppressione Python revisore deve restituire un recordset res.user."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
@@ -96,6 +96,8 @@ msgid ""
 "Write Python code that defines the reviewer. The result of executing the "
 "expression must be a res.users recordset."
 msgstr ""
+"Scrivere il codice Python che definisce il revisore. Il risultato "
+"dell'esecuzione dell'espressione deve essere un recordset res.user."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
@@ -103,3 +105,5 @@ msgid ""
 "Write Python code that defines when this tier confirmation will be needed. "
 "The result of executing the expresion must be a boolean."
 msgstr ""
+"Scrivere codice Python che definisce quando questa conferma sarà necessaria. "
+"Il risultato dell'espressione deve essere un booleano."
