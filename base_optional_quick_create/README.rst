@@ -20,7 +20,7 @@ Optional quick create
     :target: https://github.com/OCA/server-ux/tree/17.0/base_optional_quick_create
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_optional_quick_create
+    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-base_optional_quick_create
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
     :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
@@ -28,10 +28,11 @@ Optional quick create
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to avoid to *quick create* new records, through
-many2one fields, for a specific model. You can configure which models
-should allow *quick create*. When specified, the *quick create* option
-will always open the standard create form.
+This module allows to avoid to *quick create* new records, through many2one
+fields, for a specific model.
+You can configure which models should allow *quick create*.
+When specified, the *quick create* option will always open the standard create
+form.
 
 Got the idea from https://twitter.com/nbessi/status/337869826028605441
 
@@ -45,10 +46,9 @@ Usage
 
 To use this module, you need to:
 
-   -  go into the menu of *ir_model*,
-   -  select the model for which you want to disable the quick create
-      option,
-   -  enable the option *Avoid quick create*.
+ * go into the menu of *ir_model*,
+ * select the model for which you want to disable the quick create option,
+ * enable the option *Avoid quick create*.
 
 Bug Tracker
 ===========
@@ -64,26 +64,27 @@ Credits
 =======
 
 Authors
--------
+~~~~~~~
 
 * Agile Business Group
 
 Contributors
-------------
+~~~~~~~~~~~~
 
--  Jonathan Nemry jonathan.nemry@acsone.eu
--  Lorenzo Battistini lorenzo.battistini@agilebg.com
--  Alexis de Lattre alexis.delattre@akretion.com
--  Gilles Meyomesse gilles.meyomesse@acsone.eu (https://acsone.eu)
--  Carmen Rondon Regalado crondon@archeti.com
+* Jonathan Nemry jonathan.nemry@acsone.eu
+* Lorenzo Battistini lorenzo.battistini@agilebg.com
+* Alexis de Lattre alexis.delattre@akretion.com
+* Gilles Meyomesse gilles.meyomesse@acsone.eu (https://acsone.eu)
+* Carmen Rondon Regalado crondon@archeti.com
 
 Other credits
--------------
+~~~~~~~~~~~~~
 
-This module is maintained by: \* Odoo Community Association
+This module is maintained by:
+* Odoo Community Association
 
 Maintainers
------------
+~~~~~~~~~~~
 
 This module is maintained by the OCA.
 
