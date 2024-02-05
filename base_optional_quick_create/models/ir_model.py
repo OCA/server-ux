@@ -12,6 +12,53 @@ class IrModel(models.Model):
 
     avoid_quick_create = fields.Boolean()
 
+    # brought back these methods `_patch_method` and `_revert_method`
+    # From this following PR these methods are removed since
+    # there is no any proper use for these methods in odoo.
+    # refer this bellow PR for more info.
+    # https://github.com/odoo/odoo/pull/110370
+    # But since we use this to patch the original_method
+    # I added back again.
+    @staticmethod
+    def _patch_method(model_obj, name, method):
+        """Monkey-patch a method for all instances of this model. This replaces
+        the method called ``name`` by ``method`` in the given class.
+        The original method is then accessible via ``method.origin``, and it
+        can be restored with :meth:`~._revert_method`.
+
+        Example::
+
+            def do_write(self, values):
+                # do stuff, and call the original method
+                return do_write.origin(self, values)
+
+            # patch method write of model
+            model._patch_method('write', do_write)
+
+            # this will call do_write
+            records = model.search([...])
+            records.write(...)
+
+            # restore the original method
+            model._revert_method('write')
+        """
+        cls = type(model_obj)
+        origin = getattr(cls, name)
+        method.origin = origin
+        # propagate decorators from origin to method, and apply api decorator
+        wrapped = api.propagate(origin, method)
+        wrapped.origin = origin
+        setattr(cls, name, wrapped)
+
+    @staticmethod
+    def _revert_method(model_obj, name):
+        """Revert the original method called ``name`` in the given class.
+        See :meth:`~._patch_method`.
+        """
+        cls = type(model_obj)
+        method = getattr(cls, name)
+        setattr(cls, name, method.origin)
+
     def _patch_quick_create(self):
         def _wrap_name_create():
             @api.model
@@ -31,11 +78,13 @@ class IrModel(models.Model):
         for model in self:
             model_obj = self.env.get(model.model)
             if model.avoid_quick_create and model_obj is not None:
-                model_obj._patch_method(method_name, _wrap_name_create())
+                # _wrap_name_create().origin = getattr(model_obj, method_name)
+                # setattr(model_obj, method_name, _wrap_name_create())
+                self._patch_method(model_obj, method_name, _wrap_name_create())
             else:
                 method = getattr(model_obj, method_name, None)
                 if method and hasattr(method, "origin"):
-                    model_obj._revert_method(method_name)
+                    self._revert_method(model_obj, method_name)
         return True
 
     def _register_hook(self):
