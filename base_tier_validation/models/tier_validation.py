@@ -22,8 +22,6 @@ class TierValidation(models.AbstractModel):
     _state_to = ["confirmed"]
     _cancel_state = "cancel"
 
-    # TODO: step by step validation?
-
     review_ids = fields.One2many(
         comodel_name="tier.review",
         inverse_name="res_id",
@@ -47,6 +45,7 @@ class TierValidation(models.AbstractModel):
     validation_status = fields.Selection(
         selection=[
             ("no", "Without validation"),
+            ("waiting", "Waiting"),
             ("pending", "Pending"),
             ("rejected", "Rejected"),
             ("validated", "Validated"),
@@ -70,12 +69,15 @@ class TierValidation(models.AbstractModel):
     def _compute_has_comment(self):
         for rec in self:
             has_comment = rec.review_ids.filtered(
-                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+                lambda r: r.status in ("waiting", "pending")
+                and self.env.user in r.reviewer_ids
             ).mapped("has_comment")
             rec.has_comment = True in has_comment
 
     def _get_sequences_to_approve(self, user):
-        all_reviews = self.review_ids.filtered(lambda r: r.status == "pending")
+        all_reviews = self.review_ids.filtered(
+            lambda r: r.status in ("waiting", "pending")
+        )
         my_reviews = all_reviews.filtered(lambda r: user in r.reviewer_ids)
         # Include all my_reviews with approve_sequence = False
         sequences = my_reviews.filtered(lambda r: not r.approve_sequence).mapped(
@@ -98,7 +100,7 @@ class TierValidation(models.AbstractModel):
     def _search_can_review(self, operator, value):
         domain = [
             ("review_ids.reviewer_ids", "=", self.env.user.id),
-            ("review_ids.status", "=", "pending"),
+            ("review_ids.status", "in", ["pending", "waiting"]),
             ("review_ids.can_review", "=", True),
             ("rejected", "=", False),
         ]
@@ -111,7 +113,7 @@ class TierValidation(models.AbstractModel):
     def _compute_reviewer_ids(self):
         for rec in self:
             rec.reviewer_ids = rec.review_ids.filtered(
-                lambda r: r.status == "pending"
+                lambda r: r.status in ("waiting", "pending")
             ).mapped("reviewer_ids")
 
     @api.model
@@ -145,7 +147,6 @@ class TierValidation(models.AbstractModel):
                 ("model", "=", self._name),
                 ("reviewer_ids", operator, value),
                 ("can_review", "=", True),
-                ("status", "=", "pending"),
             ]
         )
         return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
@@ -192,6 +193,12 @@ class TierValidation(models.AbstractModel):
                 and any(item.review_ids.filtered(lambda x: x.status == "pending"))
             ):
                 item.validation_status = "pending"
+            elif (
+                not item.validated
+                and not item.rejected
+                and any(item.review_ids.filtered(lambda x: x.status == "waiting"))
+            ):
+                item.validation_status = "waiting"
             else:
                 item.validation_status = "no"
 
@@ -320,6 +327,20 @@ class TierValidation(models.AbstractModel):
     def _validate_tier(self, tiers=False):
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
+        waiting_reviews = tier_reviews.filtered(
+            lambda r: r.status == "waiting"
+            or r.approve_sequence_bypass
+            and self.env.user in r.reviewer_ids
+        )
+        if waiting_reviews:
+            waiting_reviews.write(
+                {
+                    "status": "pending",
+                    "done_by": self.env.user.id,
+                    "reviewed_date": fields.Datetime.now(),
+                }
+            )
+
         user_reviews = tier_reviews.filtered(
             lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
         )
@@ -427,7 +448,8 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
-            lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            lambda r: r.status in ("waiting", "pending")
+            and self.env.user in r.reviewer_ids
         )
         user_reviews.write(
             {
@@ -440,10 +462,16 @@ class TierValidation(models.AbstractModel):
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_rejected_review()
 
+    def _notify_created_review_body(self):
+        return _("A record to be reviewed has been created by %s.") % (
+            self.env.user.name
+        )
+
     def _notify_requested_review_body(self):
         return _("A review has been requested by %s.") % (self.env.user.name)
 
     def _notify_review_requested(self, tier_reviews):
+        """method to notify when tier validation is created"""
         subscribe = "message_subscribe"
         post = "message_post"
         if hasattr(self, post) and hasattr(self, subscribe):
@@ -459,7 +487,7 @@ class TierValidation(models.AbstractModel):
                     )
                     getattr(rec, post)(
                         subtype_xmlid=self._get_requested_notification_subtype(),
-                        body=rec._notify_requested_review_body(),
+                        body=rec._notify_created_review_body(),
                     )
 
     def _prepare_tier_review_vals(self, definition, sequence):
@@ -509,7 +537,9 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             if getattr(rec, self._state_field) in self._state_from:
                 to_update_counter = (
-                    rec.mapped("review_ids").filtered(lambda a: a.status == "pending")
+                    rec.mapped("review_ids").filtered(
+                        lambda a: a.status in ("waiting", "pending")
+                    )
                     and True
                     or False
                 )
@@ -594,3 +624,22 @@ class TierValidation(models.AbstractModel):
             res["arch"] = etree.tostring(doc)
             res["models"] = frozendict(all_models)
         return res
+
+    def _notify_review_available(self, tier_reviews):
+        """method to notify when reaching pending"""
+        subscribe = "message_subscribe"
+        post = "message_post"
+        if hasattr(self, post) and hasattr(self, subscribe):
+            for rec in self.sudo():
+                users_to_notify = tier_reviews.filtered(
+                    lambda r, x=rec: r.definition_id.notify_on_pending
+                    and r.res_id == x.id
+                ).mapped("reviewer_ids")
+                # Subscribe reviewers and notify
+                rec.message_subscribe(
+                    partner_ids=users_to_notify.mapped("partner_id").ids
+                )
+                rec.message_post(
+                    subtype_xmlid=self._get_requested_notification_subtype(),
+                    body=rec._notify_requested_review_body(),
+                )
