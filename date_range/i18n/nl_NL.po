@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2023-11-21 09:35+0000\n"
+"PO-Revision-Date: 2024-02-08 13:37+0000\n"
 "Last-Translator: Yung-Wa <yw.ng@onestein.nl>\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
 "23907/nl_NL/)\n"
@@ -37,7 +37,6 @@ msgstr "%(thisname)s overlapt %(dtname)s"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
-#, fuzzy
 msgid "&amp;nbsp;"
 msgstr "&amp;nbsp;"
 
@@ -68,7 +67,6 @@ msgstr "Actief"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__allow_overlap
-#, fuzzy
 msgid "Allow Overlap"
 msgstr "Sta overlap toe"
 
@@ -363,9 +361,8 @@ msgstr "Bereik naam prefix"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_range_ids
-#, fuzzy
 msgid "Ranges"
-msgstr "Datumbereiken"
+msgstr "Datumreeksen"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
@@ -391,7 +388,6 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type__active
-#, fuzzy
 msgid ""
 "The active field allows you to hide the date range type without removing it."
 msgstr ""
@@ -419,7 +415,6 @@ msgstr "Type Naam"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
-#, fuzzy
 msgid "Unit Of Time"
 msgstr "Eenheid van tijd"
 
