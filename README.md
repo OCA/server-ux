@@ -9,7 +9,7 @@
 
 # server-ux
 
-TODO: add repo description.
+Server side features for usability and user experience related.
 
 <!-- /!\ do not modify below this line -->
 
