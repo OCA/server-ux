@@ -17,7 +17,7 @@ odoo_version: 17.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
-repo_description: 'TODO: add repo description.'
+repo_description: Server side features for usability and user experience related.
 repo_name: server-ux
 repo_slug: server-ux
 repo_website: https://github.com/OCA/server-ux
