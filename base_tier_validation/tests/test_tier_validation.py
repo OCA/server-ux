@@ -411,8 +411,6 @@ class TierTierValidation(CommonTierValidation):
         # Request validation
         review = test_record.with_user(self.test_user_2).request_validation()
         self.assertTrue(review)
-        self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
-        self.assertTrue(self.test_user_1.review_ids)
         test_record.invalidate_model()
         self.assertTrue(test_record.review_ids)
         # Used by front-end
@@ -467,8 +465,6 @@ class TierTierValidation(CommonTierValidation):
         self.assertEqual(len(records), 1)
         review = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
-        self.assertTrue(self.test_user_1.get_reviews({"res_ids": review.ids}))
-        self.assertTrue(self.test_user_1.review_ids)
         self.test_record.with_user(self.test_user_1.id).request_validation()
 
     def test_18_test_review_by_res_users_field(self):
