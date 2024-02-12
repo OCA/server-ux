@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-18 17:35+0000\n"
+"PO-Revision-Date: 2024-02-12 22:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -23,6 +23,9 @@ msgid ""
 "                This Record needs to be\n"
 "                validated."
 msgstr ""
+"<i class=\"fa fa-lg fa-info-circle\"/>\n"
+"                Este registro debe ser\n"
+"                validado."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -32,6 +35,10 @@ msgid ""
 "                <b>rejected</b>\n"
 "                ."
 msgstr ""
+"<i class=\"fa fa-lg fa-thumbs-down\"/>\n"
+"                La operación ha sido\n"
+"                <b>rechazada</b>\n"
+"                ."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -41,6 +48,10 @@ msgid ""
 "                <b>validated</b>\n"
 "                !"
 msgstr ""
+"<i class=\"fa fa-lg fa-thumbs-up\"/>\n"
+"                La operación ha sido\n"
+"                <b>validada</b>\n"
+"                !"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
@@ -51,13 +62,14 @@ msgstr "<span class=\"oe_edit_only\">Nombre</span>"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span>Bypass, if previous tier was validated by same reviewer</span>"
 msgstr ""
+"<span>Omitir, si el nivel anterior fue validado por el mismo revisor</span>"
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A record to be reviewed has been created by %s."
-msgstr ""
+msgstr "Un registro a revisar ha sido creado por %s."
 
 #. module: base_tier_validation
 #. odoo-python
@@ -154,7 +166,7 @@ msgstr "Aprobado"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "Archived"
-msgstr ""
+msgstr "Archivado"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -301,7 +313,7 @@ msgstr "Ha comentado"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__hide_reviews
 msgid "Hide Reviews"
-msgstr ""
+msgstr "Ocultar Reseñas"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__id
@@ -314,6 +326,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:base_tier_validation.field_tier_validation__has_comment
 msgid "If set, Allow the reviewer to leave a comment on the review."
 msgstr ""
+"Si se establece, permite al revisor dejar un comentario sobre la reseña."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_create
@@ -331,6 +344,10 @@ msgid ""
 "reached.Usefull in an Approve by sequence scenario. An notification request "
 "to review is sent out when it's their turn to review."
 msgstr ""
+"Si se establece, todos los posibles revisores recibirán una notificación por "
+"correo electrónico cuando se alcance este estado. Es útil en un escenario de "
+"aprobación por secuencia. Se envía una solicitud de notificación de revisión "
+"cuando les toca revisar."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -396,7 +413,7 @@ msgstr "Notificar a los revisores en la creación"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_pending
 msgid "Notify Reviewers on reaching Pending"
-msgstr ""
+msgstr "Notificar a los Revisores sobre la recepción de Pendientes"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -729,7 +746,7 @@ msgstr "Validaciones"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__waiting
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Esperando"
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
