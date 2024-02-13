@@ -1,6 +1,7 @@
 # Copyright 2024 ForgeFlow S.L.  <https://www.forgeflow.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class TierReview(models.Model):
@@ -50,3 +51,108 @@ class TierReview(models.Model):
             "views": [(vid, "form")],
         }
         return response
+
+    @api.model
+    def _search(
+        self,
+        args,
+        offset=0,
+        limit=None,
+        order=None,
+        count=False,
+        access_rights_uid=None,
+    ):
+        # Rules do not apply to administrator
+        if self.env.is_superuser():
+            return super(TierReview, self)._search(
+                args,
+                offset=offset,
+                limit=limit,
+                order=order,
+                count=count,
+                access_rights_uid=access_rights_uid,
+            )
+        # Perform a super with count as False, to have the ids, not a counter
+        ids = super(TierReview, self)._search(
+            args,
+            offset=offset,
+            limit=limit,
+            order=order,
+            count=False,
+            access_rights_uid=access_rights_uid,
+        )
+        if not ids and count:
+            return 0
+        elif not ids:
+            return ids
+
+        super(
+            TierReview, self.with_user(access_rights_uid or self._uid)
+        ).check_access_rights("read")
+
+        self.flush_model(["model", "res_id"])
+        reviews_to_check = []
+        for sub_ids in self._cr.split_for_in_conditions(ids):
+            self._cr.execute(
+                """
+                SELECT DISTINCT review.id, review.model, review.res_id
+                FROM "%s" review
+                WHERE review.id = ANY (%%(ids)s) AND review.res_id != 0"""
+                % self._table,
+                dict(ids=list(sub_ids)),
+            )
+            reviews_to_check += self._cr.dictfetchall()
+
+        review_to_documents = {}
+        for review in reviews_to_check:
+            review_to_documents.setdefault(review["model"], set()).add(review["res_id"])
+
+        allowed_ids = set()
+        for doc_model, doc_ids in review_to_documents.items():
+            doc_operation = "read"
+            DocumentModel = self.env[doc_model].with_user(
+                access_rights_uid or self._uid
+            )
+            right = DocumentModel.check_access_rights(
+                doc_operation, raise_exception=False
+            )
+            if right:
+                valid_docs = DocumentModel.browse(doc_ids)._filter_access_rules(
+                    doc_operation
+                )
+                valid_doc_ids = set(valid_docs.ids)
+                allowed_ids.update(
+                    review["id"]
+                    for review in reviews_to_check
+                    if review["model"] == doc_model
+                    and review["res_id"] in valid_doc_ids
+                )
+
+        if count:
+            return len(allowed_ids)
+        else:
+            id_list = [id for id in ids if id in allowed_ids]
+            return id_list
+
+    @api.model
+    def _read_group_raw(
+        self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True
+    ):
+        # Rules do not apply to administrator
+        if not self.env.is_superuser():
+            allowed_ids = self._search(domain, count=False)
+            if allowed_ids:
+                domain = expression.AND([domain, [("id", "in", allowed_ids)]])
+            else:
+                # force void result if no allowed ids found
+                domain = expression.AND([domain, [(0, "=", 1)]])
+
+        return super(TierReview, self)._read_group_raw(
+            domain=domain,
+            fields=fields,
+            groupby=groupby,
+            offset=offset,
+            limit=limit,
+            orderby=orderby,
+            lazy=lazy,
+        )
