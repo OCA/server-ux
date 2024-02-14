@@ -339,8 +339,6 @@ class TierValidation(models.AbstractModel):
             waiting_reviews.write(
                 {
                     "status": "pending",
-                    "done_by": self.env.user.id,
-                    "reviewed_date": fields.Datetime.now(),
                 }
             )
 
