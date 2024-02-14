@@ -514,12 +514,20 @@ class TierTierValidation(CommonTierValidation):
         # first reviewer does not want notifications
         # chatter should be empty
         self.assertFalse(test_record.message_ids)
+        self.assertTrue(review_1.done_by.id is False)
+        self.assertTrue(review_1.reviewed_date is False)
         self.assertTrue(review_2.status == "waiting")
+        self.assertTrue(review_2.done_by.id is False)
+        self.assertTrue(review_2.reviewed_date is False)
         record = test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
         record.validate_tier()
         self.assertTrue(review_1.status == "approved")
+        self.assertFalse(review_1.reviewed_date is False)
+        self.assertTrue(review_1.done_by.id == self.test_user_1.id)
         self.assertTrue(review_2.status == "pending")
+        self.assertTrue(review_2.done_by.id is False)
+        self.assertTrue(review_2.reviewed_date is False)
 
     def test_20_no_sequence(self):
         # Create new test record
