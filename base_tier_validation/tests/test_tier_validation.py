@@ -420,6 +420,8 @@ class TierTierValidation(CommonTierValidation):
         self.assertEqual(len(count), 1)
         # False Review
         self.assertFalse(self.test_record._calc_reviews_validated(False))
+        # test notification message bodies
+        self.assertIn("created", self.test_record._notify_created_review_body())
         self.assertIn("requested", self.test_record._notify_requested_review_body())
         self.assertIn("rejected", self.test_record._notify_rejected_review_body())
         self.assertIn("accepted", self.test_record._notify_accepted_reviews_body())
