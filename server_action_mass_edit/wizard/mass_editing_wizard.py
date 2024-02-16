@@ -106,7 +106,7 @@ class MassEditingWizard(models.TransientModel):
                 ("remove_m2m", _("Remove")),
                 ("add", _("Add")),
             ]
-        if field.ttype == "one2many":
+        elif field.ttype == "one2many":
             selection = [
                 ("ignore", _("Don't touch")),
                 ("set_o2m", _("Set")),
