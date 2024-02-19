@@ -33,7 +33,7 @@ class ResUsers(models.Model):
                 ],
                 limit=1,
             )
-            if group_board and group_board != board:
+            if not board or group_board and group_board != board:
                 continue
             self.env["ir.ui.view.custom"].sudo().create(
                 {
