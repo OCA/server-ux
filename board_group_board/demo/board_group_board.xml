@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="board_admin" model="board.group.board">
+        <field name="sequence">1</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_erp_manager')])]" />
+        <field name="arch" type="xml">
+            <form string="My Dashboard">
+                <board style="1-1-1">
+                    <column>
+                        <action
+                            name="37"
+                            string="Apps"
+                            view_mode="kanban"
+                            context="{&#x27;lang&#x27;: &#x27;en_US&#x27;, &#x27;tz&#x27;: &#x27;Europe/Amsterdam&#x27;, &#x27;uid&#x27;: 2, &#x27;params&#x27;: {&#x27;menu_id&#x27;: 5, &#x27;action&#x27;: 37}, &#x27;group_by&#x27;: [], &#x27;orderedBy&#x27;: [], &#x27;dashboard_merge_domains_contexts&#x27;: False}"
+                            domain="[[&#x27;application&#x27;, &#x27;=&#x27;, True]]"
+                            modifiers="{}"
+                            id="action_0_1"
+                        />
+                    </column>
+                    <column>
+                        <action
+                            name="55"
+                            string="Companies"
+                            view_mode="list"
+                            context="{&#x27;lang&#x27;: &#x27;en_US&#x27;, &#x27;tz&#x27;: &#x27;Europe/Amsterdam&#x27;, &#x27;uid&#x27;: 2, &#x27;group_by&#x27;: [], &#x27;orderedBy&#x27;: [], &#x27;dashboard_merge_domains_contexts&#x27;: False}"
+                            domain="[]"
+                            modifiers="{}"
+                            id="action_0_0"
+                        />
+                    </column>
+                    <column>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+    <record id="board_all" model="board.group.board">
+        <field name="sequence">2</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user')])]" />
+        <field name="arch" type="xml">
+            <form string="My Dashboard">
+                <board style="1-1-1">
+                    <column>
+                        <action
+                            name="55"
+                            string="Companies"
+                            view_mode="list"
+                            context="{&#x27;lang&#x27;: &#x27;en_US&#x27;, &#x27;tz&#x27;: &#x27;Europe/Amsterdam&#x27;, &#x27;uid&#x27;: 2, &#x27;group_by&#x27;: [], &#x27;orderedBy&#x27;: [], &#x27;dashboard_merge_domains_contexts&#x27;: False}"
+                            domain="[]"
+                            modifiers="{}"
+                            id="action_0_0"
+                        />
+                    </column>
+                    <column>
+                    </column>
+                    <column>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+</data>

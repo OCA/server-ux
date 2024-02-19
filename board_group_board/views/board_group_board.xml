@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="board_group_board_view_form" model="ir.ui.view">
+        <field name="model">board.group.board</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_impose_all_users"
+                        string="Impose on existing users"
+                        type="object"
+                    />
+                </header>
+                <group>
+                    <field name="arch" />
+                    <field name="group_ids" widget="many2many_tags" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="board_group_board_view_tree" model="ir.ui.view">
+        <field name="model">board.group.board</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="display_name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="board_group_board_view_search" model="ir.ui.view">
+        <field name="model">board.group.board</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="arch" />
+                <field name="group_ids" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_board_group_board" model="ir.actions.act_window">
+        <field name="name">Group dashboards</field>
+        <field name="res_model">board.group.board</field>
+    </record>
+
+    <menuitem
+        id="menu_board_group_board"
+        parent="base.menu_custom"
+        action="action_board_group_board"
+    />
+
+</data>
