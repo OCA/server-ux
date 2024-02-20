@@ -41,6 +41,7 @@ class TierReview(models.Model):
         compute="_compute_reviewer_ids",
         store=True,
     )
+    display_status = fields.Char(compute="_compute_display_status")
     sequence = fields.Integer(string="Tier")
     todo_by = fields.Char(compute="_compute_todo_by", store=True)
     done_by = fields.Many2one(comodel_name="res.users")
@@ -63,6 +64,17 @@ class TierReview(models.Model):
     approve_sequence_bypass = fields.Boolean(
         related="definition_id.approve_sequence_bypass", readonly=True
     )
+
+    @api.depends("status")
+    def _compute_display_status(self):
+        """
+        Compute the display status based on the current status value to get the
+        translated status value.
+        """
+        selection = self.fields_get(["status"])["status"]["selection"]
+        selection_dict = dict(selection)
+        for record in self:
+            record.display_status = selection_dict[record.status]
 
     @api.depends_context("tz")
     def _compute_reviewed_formated_date(self):

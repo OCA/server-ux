@@ -94,6 +94,7 @@
             <field name="sequence" />
             <field name="requested_by" />
             <field name="status" />
+            <field name="display_status" />
             <field name="todo_by" />
             <field name="done_by" />
             <field name="reviewed_date" />
