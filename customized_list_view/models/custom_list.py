@@ -11,6 +11,7 @@ class CustomListView(models.Model):
     _name = "custom.list.view"
     _description = "Custom List View"
 
+    active = fields.Boolean(default=True)
     name = fields.Char(required=True)
     model_id = fields.Many2one("ir.model", required=True, ondelete="cascade")
     model_name = fields.Char(related="model_id.model", store=True)

@@ -7,6 +7,6 @@ from odoo import SUPERUSER_ID, api
 def uninstall_hook(cr, registry):
     # Restore views
     env = api.Environment(cr, SUPERUSER_ID, {})
-    customizations = env["custom.list.view"].search([])
+    customizations = env["custom.list.view"].with_context(active_test=False).search([])
     for cust in customizations:
         cust.button_roll_back()
