@@ -68,7 +68,8 @@ msgstr "<span class=\"oe_edit_only\">Namn</span>"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
-msgstr "<span>Förbigås om föregående nivå validerades av samma granskare</span>"
+msgstr ""
+"<span>Förbigås om föregående nivå validerades av samma granskare</span>"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -197,8 +198,8 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 #. module: base_tier_validation
-#. odoo-python
 #. odoo-javascript
+#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
