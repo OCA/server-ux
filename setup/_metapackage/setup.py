@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo-addon-multi_step_wizard>=16.0dev,<16.1dev',
         'odoo-addon-sequence_reset_period>=16.0dev,<16.1dev',
         'odoo-addon-server_action_mass_edit>=16.0dev,<16.1dev',
+        'odoo-addon-template_content_swapper>=16.0dev,<16.1dev',
         'odoo-addon-test_base_binary_url_import>=16.0dev,<16.1dev',
         'odoo-addon-user_all_groups>=16.0dev,<16.1dev',
     ],
