@@ -481,6 +481,376 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         self.assertEqual(review.reviewer_ids, self.test_user_2)
 
+    def test_19_notify_on_create(self):
+        # notify on create
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": True,
+                "notify_on_accepted": False,
+                "notify_on_rejected": False,
+                "notify_on_restarted": False,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+        test_record_1 = self.test_model.create({"test_field": 2.5})
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_1.request_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # do not notify on create
+        tier_definition.write({"notify_on_create": False})
+        test_record_2 = self.test_model.create({"test_field": 2.5})
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.request_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+    def test_20_notify_on_accepted(self):
+        self.test_user_2.write(
+            {
+                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+            }
+        )
+
+        # notify on accepted
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": False,
+                "notify_on_accepted": True,
+                "notify_on_rejected": False,
+                "notify_on_restarted": False,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+        test_record_1 = self.test_model.create({"test_field": 2.5})
+        test_record_1.request_validation()
+        test_record_1.invalidate_model()
+        record = test_record_1.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.validate_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # do not notify on accepted
+        tier_definition.write({"notify_on_accepted": False})
+        test_record_2 = self.test_model.create({"test_field": 2.5})
+        test_record_2.request_validation()
+        test_record_2.invalidate_model()
+        test_record_2.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.validate_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+    def test_21_notify_on_rejected(self):
+        self.test_user_2.write(
+            {
+                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+            }
+        )
+
+        # notify on rejected
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": False,
+                "notify_on_accepted": False,
+                "notify_on_rejected": True,
+                "notify_on_restarted": False,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+        test_record_1 = self.test_model.create({"test_field": 2.5})
+        test_record_1.request_validation()
+        test_record_1.invalidate_model()
+        record = test_record_1.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.reject_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # do not notify on rejected
+        tier_definition.write({"notify_on_rejected": False})
+        test_record_2 = self.test_model.create({"test_field": 2.5})
+        test_record_2.request_validation()
+        test_record_2.invalidate_model()
+        test_record_2.with_user(self.test_user_2.id)
+
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.reject_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+    def test_22_notify_on_restarted(self):
+        self.test_user_2.write(
+            {
+                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+            }
+        )
+
+        # notify on restarted
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": False,
+                "notify_on_accepted": False,
+                "notify_on_rejected": False,
+                "notify_on_restarted": True,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+        test_record_1 = self.test_model.create({"test_field": 2.5})
+        test_record_1.request_validation()
+        test_record_1.invalidate_model()
+        record = test_record_1.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.restart_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # do not notify on restarted
+        tier_definition.write({"notify_on_restarted": False})
+        test_record_2 = self.test_model.create({"test_field": 2.5})
+        test_record_2.request_validation()
+        test_record_2.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.restart_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+    def test_23_all_notification(self):
+        self.test_user_2.write(
+            {
+                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+            }
+        )
+
+        # notify on restarted
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": True,
+                "notify_on_accepted": True,
+                "notify_on_rejected": True,
+                "notify_on_restarted": True,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+
+        test_record = self.test_model.create({"test_field": 2.5})
+
+        # request validation
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record.request_validation()
+        test_record.invalidate_model()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # accept validation
+        record = test_record.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.validate_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # restart validation
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.restart_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # reject validation
+        record.request_validation()
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.reject_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+    def test_24_no_notification(self):
+        self.test_user_2.write(
+            {
+                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+            }
+        )
+
+        # notify on restarted
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
+            {
+                "notify_on_create": False,
+                "notify_on_accepted": False,
+                "notify_on_rejected": False,
+                "notify_on_restarted": False,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
+            }
+        )
+
+        test_record = self.test_model.create({"test_field": 2.5})
+
+        # request validation
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record.request_validation()
+        test_record.invalidate_model()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+        # accept validation
+        record = test_record.with_user(self.test_user_2.id)
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.validate_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+        # restart validation
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.restart_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
+        # reject validation
+        record.request_validation()
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        record.reject_tier()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):

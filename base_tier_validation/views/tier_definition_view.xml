@@ -99,6 +99,9 @@
                             <group name="more_option">
                                 <group name="notify">
                                     <field name="notify_on_create" />
+                                    <field name="notify_on_accepted" />
+                                    <field name="notify_on_rejected" />
+                                    <field name="notify_on_restarted" />
                                     <field name="has_comment" />
                                 </group>
                             </group>
