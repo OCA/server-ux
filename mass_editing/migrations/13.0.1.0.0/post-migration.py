@@ -7,6 +7,10 @@ def migrate(cr, version):
     if not version:
         return
     # Don't execute if already migrated in v12
+    cr.execute("SELECT 1 FROM pg_class WHERE relname = %s", ("mass_field_rel",))
+    if not cr.fetchone():
+        return
+
     cr.execute("SELECT COUNT(*) FROM mass_editing_line")
     if cr.fetchone()[0] > 0:
         return
