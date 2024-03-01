@@ -62,7 +62,7 @@ Configuration
 -  Select the object and add the fields of that object on which you want
    to apply mass editing.
 
-|image|
+|Configuration|
 
 -  *Add Action*: Click on *Create Contextual Action* to add mass editing
    in *Action* menu.
@@ -73,7 +73,7 @@ Configuration
 -  This module plays nicely with server_action_domain, allowing you to
    limit the mass editing action with a domain.
 
-.. |image| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing_form.png
+.. |Configuration| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing_form.png
 
 Usage
 =====
@@ -81,20 +81,20 @@ Usage
 -  *Go for Mass Editing*: select the records which you want to modify
    and click on *Action* to open mass editing popup.
 
-|image|
+|Action|
 
 -  Select *Set / Remove* action and write down the value to set or
    remove the value for the given field.
 
-|image1|
+|Wizard Form|
 
 -  This way you can set / remove the values of the fields.
 
-|image2|
+|Wizard Result|
 
-.. |image| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-item_tree.png
-.. |image1| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-wizard_form.png
-.. |image2| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-item_tree-result.png
+.. |Action| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-item_tree.png
+.. |Wizard Form| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-wizard_form.png
+.. |Wizard Result| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/server_action_mass_edit/static/description/mass_editing-item_tree-result.png
 
 Known issues / Roadmap
 ======================

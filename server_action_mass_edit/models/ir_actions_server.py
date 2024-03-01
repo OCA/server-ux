@@ -50,11 +50,23 @@ class IrActionsServer(models.Model):
         """Show report label wizard"""
         context = dict(self.env.context)
         context.update({"server_action_id": self.id})
+        view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
+        view_id.mass_server_action_id = self.id
+        if view_id:
+            view_temp = view_id.copy(
+                {
+                    "name": "Temporary Mass Editing Wizard",
+                    "type": "form",
+                    "model": "mass.editing.wizard",
+                }
+            )
+
         return {
             "name": self.name,
             "type": "ir.actions.act_window",
             "res_model": "mass.editing.wizard",
             "context": str(context),
             "view_mode": "form",
+            "views": [[view_temp.id, "form"]],
             "target": "new",
         }
