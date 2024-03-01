@@ -523,15 +523,6 @@ class TierValidation(models.AbstractModel):
             "sequence": sequence,
         }
 
-    def _prepare_tier_review_vals(self, definition, sequence):
-        return {
-            "model": self._name,
-            "res_id": self.id,
-            "definition_id": definition.id,
-            "requested_by": self.env.uid,
-            "sequence": sequence,
-        }
-
     def request_validation(self):
         td_obj = self.env["tier.definition"]
         tr_obj = self.env["tier.review"]
