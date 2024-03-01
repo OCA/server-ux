@@ -133,19 +133,21 @@ class TestMassEditing(common.TransactionCase):
         """Test whether fields_view_get method returns arch.
         with dynamic fields.
         """
+        view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
+        view_id.mass_server_action_id = False
         result = self.MassEditingWizard.with_context(
             active_ids=[],
-        ).get_view()
+        ).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" not in arch,
             "Fields view get must return architecture w/o fields" "created dynamicaly",
         )
-
+        view_id.mass_server_action_id = self.mass_editing_user
         result = self.MassEditingWizard.with_context(
             server_action_id=self.mass_editing_user.id,
             active_ids=[],
-        ).get_view()
+        ).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
@@ -163,7 +165,7 @@ class TestMassEditing(common.TransactionCase):
         result = self.MassEditingWizard.with_context(
             server_action_id=self.mass_editing_user.id,
             active_ids=[],
-        ).get_view()
+        ).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertIn(
             "<tree editable=",
@@ -325,7 +327,7 @@ class TestMassEditing(common.TransactionCase):
         vend_categ_id = self.env.ref("base.res_partner_category_0").id
         vals = {
             "selection__category_id": "add",
-            "category_id": [[6, 0, [dist_categ_id, vend_categ_id]]],
+            "category_id": [(4, dist_categ_id), (4, vend_categ_id)],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
@@ -338,7 +340,7 @@ class TestMassEditing(common.TransactionCase):
         # Remove one m2m category
         vals = {
             "selection__category_id": "remove_m2m",
-            "category_id": [[6, 0, [vend_categ_id]]],
+            "category_id": [[4, vend_categ_id]],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
@@ -382,9 +384,6 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(mass_edit_line_form.widget_option, "image")
         mass_edit_line_form.field_id = self.env.ref("base.field_res_company__logo")
         self.assertEqual(mass_edit_line_form.widget_option, "image")
-        # binary
-        mass_edit_line_form.field_id = self.env.ref("base.field_res_company__favicon")
-        self.assertEqual(mass_edit_line_form.widget_option, False)
 
         mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
         self.assertFalse(mass_edit_line_form.widget_option)

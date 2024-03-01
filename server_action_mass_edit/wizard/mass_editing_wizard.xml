@@ -11,33 +11,27 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <form>
                 <header />
-                <p
-                    class="oe_grey"
-                    attrs="{'invisible':
-                    [('message', '=', False)]}"
-                >
+                <p class="oe_grey" invisible="not message">
                     <field name="message" />
                 </p>
                 <p
                     class="alert alert-info"
                     role="alert"
-                    attrs="{'invisible':
-                    [('operation_description_info', '=', False)]}"
+                    invisible="not operation_description_info"
                 >
                     <field name="operation_description_info" />
                 </p>
                 <p
                     class="alert alert-warning"
                     role="alert"
-                    attrs="{'invisible':
-                    [('operation_description_warning', '=', False)]}"
+                    invisible="not operation_description_warning"
                 >
                     <field name="operation_description_warning" />
                 </p>
                 <p
                     class="alert alert-danger"
                     role="alert"
-                    attrs="{'invisible': [('operation_description_danger', '=', False)]}"
+                    invisible="not operation_description_danger"
                 >
                     <field name="operation_description_danger" />
                 </p>
