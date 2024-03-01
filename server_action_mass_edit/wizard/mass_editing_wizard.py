@@ -8,11 +8,6 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 
-from odoo.addons.base.models.ir_ui_view import (
-    transfer_modifiers_to_node,
-    transfer_node_to_modifiers,
-)
-
 
 class MassEditingWizard(models.TransientModel):
     _name = "mass.editing.wizard"
@@ -26,15 +21,16 @@ class MassEditingWizard(models.TransientModel):
     message = fields.Text(readonly=True)
 
     @api.model
-    def default_get(self, fields, active_ids=None):
+    def default_get(self, fields):
         res = super().default_get(fields)
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
-        # Compute items quantity
-        # Compatibility with server_actions_domain
-        active_ids = self.env.context.get("active_ids")
+
+        if not server_action:
+            return res
+
+        active_ids = self.env.context.get("active_ids") or self.env["ir.actions.server"]
         original_active_ids = self.env.context.get("original_active_ids", active_ids)
-        # Compute operation messages
         operation_description_info = False
         operation_description_warning = False
         operation_description_danger = False
@@ -46,7 +42,8 @@ class MassEditingWizard(models.TransientModel):
             }
         elif len(original_active_ids):
             operation_description_warning = _(
-                "You have selected %(origin_amount)d record(s) that can not be processed.\n"
+                "You have selected %(origin_amount)d "
+                "record(s) that can not be processed.\n"
                 "Only %(amount)d record(s) will be processed."
             ) % {
                 "origin_amount": len(original_active_ids) - len(active_ids),
@@ -69,28 +66,43 @@ class MassEditingWizard(models.TransientModel):
                 "message": server_action.mass_edit_message,
             }
         )
-        server_action_id = self.env.context.get("server_action_id")
-        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
-        if not server_action:
-            return res
-        for line in server_action.mapped("mass_edit_line_ids"):
-            field = line.field_id
-            fields.append("selection__" + field.name)
-            res["selection__" + field.name] = "ignore"
+
         return res
 
-    def onchange(self, values, field_name, field_onchange):
+    def onchange(self, values, field_names, fields_spec):
+        first_call = not field_names
+        if first_call:
+            field_names = [fname for fname in values if fname != "id"]
+            missing_names = [fname for fname in fields_spec if fname not in values]
+            defaults = self.default_get(missing_names)
+            for field_name in missing_names:
+                values[field_name] = defaults.get(field_name, False)
+                if field_name in defaults:
+                    field_names.append(field_name)
+
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         if not server_action:
-            return super().onchange(values, field_name, field_onchange)
+            return super().onchange(values, field_names, fields_spec)
         dynamic_fields = {}
+
         for line in server_action.mapped("mass_edit_line_ids"):
+            values["selection__" + line.field_id.name] = "ignore"
+            values[line.field_id.name] = False
+
             dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
                 [()], default="ignore"
             )
+
+            dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
+
         self._fields.update(dynamic_fields)
-        res = super().onchange(values, field_name, field_onchange)
+
+        res = super().onchange(values, field_names, fields_spec)
+        if not res["value"]:
+            value = {key: value for key, value in values.items() if value is not False}
+            res["value"] = value
+
         for field in dynamic_fields:
             self._fields.pop(field)
         return res
@@ -162,38 +174,49 @@ class MassEditingWizard(models.TransientModel):
             dummy, tree_view = comodel._get_view(view_type="tree")
             field_context = {}
             if form_view:
-                field_context["form_view_ref"] = form_view.xml_id
+                field_context["form_view_ref"] = form_view.id
             if tree_view:
-                field_context["tree_view_ref"] = tree_view.xml_id
+                field_context["tree_view_ref"] = tree_view.id
             if field_context:
                 field_element.attrib["context"] = json.dumps(field_context)
             else:
                 model_arch, dummy = self.env[field.model]._get_view(view_type="form")
                 embedded_tree = None
-                for node in model_arch.xpath(
-                    "//field[@name='%s'][./tree]" % field.name
-                ):
+                for node in model_arch.xpath(f"//field[@name='{field.name}'][./tree]"):
                     embedded_tree = node.xpath("./tree")[0]
                     break
                 if embedded_tree is not None:
                     for node in embedded_tree.xpath("./*"):
-                        modifiers = {}
-                        transfer_node_to_modifiers(node, modifiers)
-                        transfer_modifiers_to_node(modifiers, node)
+                        modifiers = node.get("modifiers")
+                        if modifiers:
+                            node.attrib["modifiers"] = modifiers
                     field_element.insert(0, embedded_tree)
+
+        return field_element
 
     def _get_field_options(self, field):
         return {
             "name": field.name,
-            "modifiers": '{"invisible": [["selection__%s", "in", ["ignore", "remove"]]]}'
+            "modifiers": '{"invisible": "\
+            "[["selection__%s", "in", ["ignore", "remove"]]]}'
             % field.name,
             "class": "w-75",
         }
 
     @api.model
+    def get_views(self, views, options=None):
+        for view, _type in views:
+            if view:
+                view = self.env["ir.ui.view"].browse(view)
+                server_action = view.mass_server_action_id
+                self = self.with_context(server_action_id=server_action.id)
+        return super().get_views(views, options)
+
+    @api.model
     def get_view(self, view_id=None, view_type="form", **options):
-        server_action_id = self.env.context.get("server_action_id")
-        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        view = self.env["ir.ui.view"].browse(view_id)
+        server_action = view.mass_server_action_id
+        self = self.with_context(server_action_id=server_action.id)
         if not server_action:
             return super().get_view(view_id, view_type, **options)
         result = super().get_view(view_id, view_type, **options)
@@ -267,7 +290,8 @@ class MassEditingWizard(models.TransientModel):
                         elif val == "remove_m2m":
                             m2m_list = []
                             if vals.get(split_key):
-                                for m2m_id in vals.get(split_key)[0][2]:
+                                vals[split_key][0] = vals[split_key][0][1:]
+                                for m2m_id in vals.get(split_key, False)[0]:
                                     m2m_list.append((3, m2m_id))
                             if m2m_list:
                                 values.update({split_key: m2m_list})
@@ -276,8 +300,9 @@ class MassEditingWizard(models.TransientModel):
 
                         elif val == "add":
                             m2m_list = []
-                            for m2m_id in vals.get(split_key, False)[0][2]:
-                                m2m_list.append((4, m2m_id))
+                            vals[split_key][0] = vals[split_key][0][1:]
+                            for m2m_id in vals.get(split_key, False)[0]:
+                                m2m_list.append(m2m_id)
                             values.update({split_key: m2m_list})
 
                 if values:
