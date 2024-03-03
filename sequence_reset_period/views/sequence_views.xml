@@ -5,10 +5,7 @@
         <field name="inherit_id" ref="base.sequence_view" />
         <field name="arch" type="xml">
             <field name="use_date_range" position="after">
-                <field
-                    name="range_reset"
-                    attrs="{'invisible': [('use_date_range','=', False)]}"
-                />
+                <field name="range_reset" invisible="not use_date_range" />
             </field>
         </field>
     </record>
