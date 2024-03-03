@@ -1,7 +1,8 @@
 # Copyright (C) 2017 Creu Blanca
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from datetime import date as datetime_date, timedelta
+from datetime import date as datetime_date
+from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
 
