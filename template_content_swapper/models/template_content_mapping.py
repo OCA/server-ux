@@ -22,6 +22,7 @@ class TemplateContentMapping(models.Model):
         compute="_compute_template_id",
         store=True,
         readonly=False,
+        precompute=True,
         help="Select the main template of the report / frontend page to be modified.",
     )
     lang = fields.Selection(
