@@ -67,6 +67,21 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
         "this definition is triggered.",
     )
+    notify_on_accepted = fields.Boolean(
+        string="Notify Reviewers on Accepted",
+        help="If set, reviewers will be notified by email when a review related "
+        "to this definition is accepted.",
+    )
+    notify_on_rejected = fields.Boolean(
+        string="Notify Reviewers on Rejected",
+        help="If set, reviewers will be notified by email when a review related "
+        "to this definition is rejected.",
+    )
+    notify_on_restarted = fields.Boolean(
+        string="Notify Reviewers on Restarted",
+        help="If set, reviewers will be notified by email when a reviews related "
+        "to this definition are restarted.",
+    )
     has_comment = fields.Boolean(string="Comment", default=False)
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
