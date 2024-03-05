@@ -3,7 +3,7 @@
 
 {
     "name": "Announcement",
-    "version": "15.0.2.2.0",
+    "version": "16.0.1.0.0",
     "summary": "Notify internal users about relevant organization stuff",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -21,7 +21,13 @@
         "demo/announcement_tag_demo.xml",
     ],
     "assets": {
-        "web.assets_backend": ["announcement/static/src/**/*.js"],
-        "web.assets_qweb": ["announcement/static/src/**/*.xml"],
+        "web.assets_backend": [
+            # "announcement/static/src/js/systray_service.js",
+            # "announcement/static/src/js/models/**/*",
+            # "announcement/static/src/js/announcement_menu_view/**/*",
+            # "announcement/static/src/js/announcement_menu_container/**/*",
+            "announcement/static/src/js/announcement_service/**/*",
+            "announcement/static/src/js/announcement_menu/**/*",
+        ],
     },
 }
