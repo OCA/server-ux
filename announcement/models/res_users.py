@@ -53,6 +53,14 @@ class ResUsers(models.Model):
             for announcement in announcements.sorted(lambda k: k.sequence)
         ]
 
+    @api.model
+    def get_announcements(self):
+        announcements = self.announcement_user_count()
+        return {
+            "data": announcements,
+            "count": len(announcements),
+        }
+
     def _add_attachment_links(self, announcement):
         """In case the announcement has attachments, show the list below the
         modal content"""

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="announcement.AnnouncementMenu" owl="1">
+        <Dropdown position="'bottom-end'" menuClass="`p-2 pb-3`">
+            <t t-set-slot="toggler">
+                <i class="fa fa-bullhorn" role="img" aria-label="Announcements"/>
+                <span class="badge bg-warning" t-esc="announcements.count" />
+            </t>
+            <t t-set-slot="content">
+                <div class="o_att_menu_container d-flex flex-column gap-4">
+                    No announcements.
+                </div>
+            </t>
+        </Dropdown>
+    </t>
+</templates>
