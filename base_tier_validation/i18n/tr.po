@@ -195,8 +195,8 @@ msgid "Cancel"
 msgstr "İptal"
 
 #. module: base_tier_validation
-#. odoo-javascript
 #. odoo-python
+#. odoo-javascript
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
@@ -268,6 +268,11 @@ msgstr "Açıklama"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_name
 msgid "Display Name"
 msgstr "Görünüm Adı"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_status
+msgid "Display Status"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__definition_type__domain
