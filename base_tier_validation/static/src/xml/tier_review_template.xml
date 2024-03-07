@@ -87,7 +87,7 @@
                                             <span t-esc="review.name" />
                                         </td>
                                         <td name="td_display_status" class="text-right">
-                                            <span t-esc="review.status" />
+                                            <span t-esc="review.display_status" />
                                         </td>
                                         <td name="td_todo_by" class="text-right">
                                             <span t-esc="review.todo_by" />
