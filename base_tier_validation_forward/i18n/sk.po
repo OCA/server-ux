@@ -6,71 +6,73 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-08 23:59+0000\n"
+"Last-Translator: Peter Dovicovic <dovicovic@gmail.com>\n"
 "Language-Team: none\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation_forward
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
 #, python-format
 msgid "A review was forwarded by %s."
-msgstr ""
+msgstr "Schváľovanie bolo postúpené s"
 
 #. module: base_tier_validation_forward
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
 #, python-format
 msgid "A review was forwarded from {} {}"
-msgstr ""
+msgstr "Schvaľovanie bolo postúpené z {} {}"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__has_comment
 msgid "Allow Comment"
-msgstr ""
+msgstr "Povoliť komentovanie"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_definition__has_forward
 msgid "Allow Forward"
-msgstr ""
+msgstr "Povoliť Postúpenie"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,help:base_tier_validation_forward.field_tier_definition__has_forward
 msgid "Allow option to 'Forward' to different person."
-msgstr ""
+msgstr "Povoliť možnosť 'Postúpiť' na inú osobu."
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,help:base_tier_validation_forward.field_tier_review__approve_sequence
 msgid "Approval order by the specified sequence number"
-msgstr ""
+msgstr "Schvaľovanie podľa špecifickej postupnosti"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__approve_sequence
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__approve_sequence
 msgid "Approve by sequence"
-msgstr ""
+msgstr "Schváliť podľa postupnosti"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__can_forward
 msgid "Can Forward"
-msgstr ""
+msgstr "Môže postúpiť"
 
 #. module: base_tier_validation_forward
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__has_comment
 msgid "Comment"
-msgstr ""
+msgstr "Poznámka"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_comment_wizard
 msgid "Comment Wizard"
-msgstr ""
+msgstr "Zápis poznámky"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_uid
@@ -150,7 +152,7 @@ msgstr ""
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_reviewer_id
 msgid "Next Reviewer"
-msgstr ""
+msgstr "Nasledovný schvaľovateľ"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_id
