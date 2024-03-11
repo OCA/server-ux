@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-08 23:59+0000\n"
+"PO-Revision-Date: 2024-03-11 08:16+0000\n"
 "Last-Translator: Peter Dovicovic <dovicovic@gmail.com>\n"
 "Language-Team: none\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
 #, python-format
 msgid "A review was forwarded by %s."
-msgstr "Schváľovanie bolo postúpené s"
+msgstr "Schváľovanie bolo postúpené s %s."
 
 #. module: base_tier_validation_forward
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
@@ -77,17 +77,17 @@ msgstr "Zápis poznámky"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Vytvoril"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Vytvorené"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__name
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_comment_wizard__display_name
@@ -96,7 +96,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__display_name
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Zobraziť meno"
 
 #. module: base_tier_validation_forward
 #: code:addons/base_tier_validation_forward/models/tier_validation.py:0
@@ -104,22 +104,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_forward.view_forward_wizard
 #, python-format
 msgid "Forward"
-msgstr ""
+msgstr "Postúpiť"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_description
 msgid "Forward Description"
-msgstr ""
+msgstr "Správa pre postúpenie"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_validation_forward_wizard
 msgid "Forward Wizard"
-msgstr ""
+msgstr "Výber nového schvaľovateľa"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields.selection,name:base_tier_validation_forward.selection__tier_review__status__forwarded
 msgid "Forwarded"
-msgstr ""
+msgstr "Postúpené"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_comment_wizard__id
@@ -128,7 +128,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation__id
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_comment_wizard____last_update
@@ -137,17 +137,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation____last_update
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Posledná modifikácia"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Naposledy upravil"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Naposledy upravené"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__forward_reviewer_id
@@ -157,54 +157,54 @@ msgstr "Nasledovný schvaľovateľ"
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_id
 msgid "Res"
-msgstr ""
+msgstr "Zdroj"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Model zdroja"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__reviewer_id
 msgid "Reviewer"
-msgstr ""
+msgstr "Schvaľovateľ"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
-msgstr ""
+msgstr "Schvaľovateľská skupina"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Poradie"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Schvaľovanie - Definícia kroku"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Úrovne schválenia"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Schvaľovanie (abstrakt)"
 
 #. module: base_tier_validation_forward
 #: model:mail.message.subtype,name:base_tier_validation_forward.mt_tier_validation_forwarded
 msgid "Tier Validation Forward Notification"
-msgstr ""
+msgstr "Schvaľovanie - správa postúpenia"
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
 msgid "Validated by"
-msgstr ""
+msgstr "Schválené s"
