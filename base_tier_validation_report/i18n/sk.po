@@ -6,104 +6,106 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-11 07:29+0000\n"
+"Last-Translator: Peter Dovicovic <dovicovic@gmail.com>\n"
 "Language-Team: none\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_all_action
 #: model:ir.ui.menu,name:base_tier_validation_report.menu_tier_review_report_all
 msgid "All Reviews"
-msgstr ""
+msgstr "Všetky schválenia"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Approved"
-msgstr ""
+msgstr "Schválené"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Názov"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Done By"
-msgstr ""
+msgstr "Realizované od"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Posledná modifikácia"
 
 #. module: base_tier_validation_report
 #: model:ir.actions.act_window,name:base_tier_validation_report.tier_review_my_action
 #: model:ir.ui.menu,name:base_tier_validation_report.menu_tier_review_report_my
 msgid "My Reviews"
-msgstr ""
+msgstr "Moje Schválenia"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Nasledujúce Schválenie"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_form
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_tree
 msgid "Open Resource"
-msgstr ""
+msgstr "Otvoriť dokument"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Rejected"
-msgstr ""
+msgstr "Zamietnuté"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Requested By"
-msgstr ""
+msgstr "Požiadavka od"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_name
 msgid "Resource Name"
-msgstr ""
+msgstr "Názov dokumentu"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_ref
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "Resource Ref"
-msgstr ""
+msgstr "Referencia zdroja"
 
 #. module: base_tier_validation_report
 #: model:ir.model.fields,field_description:base_tier_validation_report.field_tier_review__resource_type
 msgid "Resource Type"
-msgstr ""
+msgstr "Typ zdroja"
 
 #. module: base_tier_validation_report
 #: model:ir.ui.menu,name:base_tier_validation_report.menu_tier_validation_report
 msgid "Reviews"
-msgstr ""
+msgstr "Schválenia"
 
 #. module: base_tier_validation_report
 #: model:res.groups,name:base_tier_validation_report.group_see_all_reviews
 msgid "See All Tier Reviews"
-msgstr ""
+msgstr "Zobraziť Všetky úrovne schválenia"
 
 #. module: base_tier_validation_report
 #: model:ir.model,name:base_tier_validation_report.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Úrovne schválenia"
 
 #. module: base_tier_validation_report
 #: model_terms:ir.ui.view,arch_db:base_tier_validation_report.tier_review_report_search
 msgid "To Review"
-msgstr ""
+msgstr "Na Schválenie"
