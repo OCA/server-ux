@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -369,24 +368,27 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:3db67a7a0060d60c004bb472e44d95b2e690b0586185f43dae608ea424575198
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/16.0/base_revision"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-base_revision"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/17.0/base_revision"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_revision"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Making revision(s) of a document is a common need across many area.</p>
-<p>This module does not provide a functionality by itself but an abstract model
-to implement revision capality in other models
-(e.g. purchase orders, sales orders, budgets, expenses…).</p>
-<p><strong>Note:</strong> To be able to use this module in a new model you will need some
-development.</p>
-<p>See <a class="reference external" href="https://github.com/OCA/sale-workflow">sale_order_revision</a> as an example of implementation.</p>
+<p>This module does not provide a functionality by itself but an abstract
+model to implement revision capality in other models (e.g. purchase
+orders, sales orders, budgets, expenses…).</p>
+<p><strong>Note:</strong> To be able to use this module in a new model you will need
+some development.</p>
+<p>See <a class="reference external" href="https://github.com/OCA/sale-workflow">sale_order_revision</a> as an
+example of implementation.</p>
 <p>Example with sale_order_revision installed,</p>
-<p>On a cancelled orders, you can click on the “New copy of Quotation” button. This
-will create a new revision of the quotation, with the same base number and a
-‘-revno’ suffix appended. A message is added in the chatter saying that a new
-revision was created.</p>
-<p>In the form view, a new tab is added that lists the previous revisions, with
-the date they were made obsolete and the user who performed the action.</p>
+<p>On a cancelled orders, you can click on the “New copy of Quotation”
+button. This will create a new revision of the quotation, with the same
+base number and a ‘-revno’ suffix appended. A message is added in the
+chatter saying that a new revision was created.</p>
+<p>In the form view, a new tab is added that lists the previous revisions,
+with the date they were made obsolete and the user who performed the
+action.</p>
 <p>The old revisions of a sale order are flagged as inactive, so they don’t
 clutter up searches.</p>
-<p><strong>Special Remarks:</strong> Starting on version 14, this module was splitted from sale_order_revision to,</p>
+<p><strong>Special Remarks:</strong> Starting on version 14, this module was splitted
+from sale_order_revision to,</p>
 <ul class="simple">
 <li>base_revision</li>
 <li>sale_order_revision</li>
@@ -408,7 +410,7 @@ clutter up searches.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-ux/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_revision%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_revision%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -445,7 +447,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/16.0/base_revision">OCA/server-ux</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/17.0/base_revision">OCA/server-ux</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
