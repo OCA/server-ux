@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_field_access_right_tree" model="ir.ui.view">
+        <field name="name">field.access.right.tree</field>
+        <field name="model">field.access.right</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="model_id" />
+                <field name="field_id" />
+                <field name="group_ids" widget="many2many_tags" />
+                <field name="readonly" />
+                <field name="readonly_domain" />
+                <field name="required" />
+                <field name="required_domain" />
+                <field name="invisible" />
+                <field name="invisible_domain" />
+                <field name="exportable" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_field_access_right_form_view" model="ir.ui.view">
+        <field name="name">field.access.right.form</field>
+        <field name="model">field.access.right</field>
+        <field name="arch" type="xml">
+            <form>
+                <group col="4">
+                    <field name="model_id" />
+                    <field name="field_id" />
+                    <field name="group_ids" widget="many2many_tags" />
+                    <field name="readonly" />
+                    <field name="readonly_domain" />
+                    <field name="required" />
+                    <field name="required_domain" />
+                    <field name="invisible" />
+                    <field name="invisible_domain" />
+                    <field name="exportable" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="field_access_right_action" model="ir.actions.act_window">
+        <field name="name">Field Attribute Rules</field>
+        <field name="res_model">field.access.right</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_field_access_right_tree" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="menu_field_access_right"
+        name="Field Access Rights"
+        action="field_access_right_action"
+        parent="base.menu_security"
+    />
+
+</odoo>
