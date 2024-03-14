@@ -12,7 +12,7 @@ inherit from `date.range.search.mixin`:
 
 This will make a `Period` field show up in the search view:
 
-  .. figure:: https://raw.githubusercontent.com/OCA/server-tools/12.0/date_range/static/description/date_range_many2one_search_field.png
+  .. figure:: ../static/description/date_range_many2one_search_field.png
      :scale: 80 %
      :alt: Date range Many2one search field
 
