@@ -33,11 +33,10 @@ class Users(models.Model):
                     records = records.filtered(
                         lambda x: x[x._state_field] != x._cancel_state
                     )
-                # if len(records):
-                for rec in records:
+                if records:
                     record = self.env[model]
                     user_reviews[model] = {
-                        "id": rec.id,
+                        "id": records[0].id,
                         "name": record._description,
                         "model": model,
                         "active_field": "active" in record._fields,
