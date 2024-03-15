@@ -978,23 +978,6 @@ class TierTierValidation(CommonTierValidation):
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
     def test_view_manual(self):
-        # We need to add a view in order to ensure that an automatic view with all
-        # fields is not created
-        self.env["ir.ui.view"].create(
-            {
-                "model": self.test_record._name,
-                "name": "Demo view",
-                "arch": """<form>
-            <header>
-                <button name="action_confirm" type="object" string="Confirm" />
-                <field name="state" widget="statusbar" />
-            </header>
-            <sheet>
-                <field name="test_field" />
-            </sheet>
-            </form>""",
-            }
-        )
         view = self.env[self.test_record._name].get_view(False, "form")
         with Form(self.test_record) as f:
             self.assertNotIn("review_ids", f._values)
@@ -1004,23 +987,6 @@ class TierTierValidationView(CommonTierValidation):
             self.assertFalse(form.xpath("//button[@name='request_validation']"))
 
     def test_view_automatic(self):
-        # We need to add a view in order to ensure that an automatic view with all
-        # fields is not created
-        self.env["ir.ui.view"].create(
-            {
-                "model": self.test_record_2._name,
-                "name": "Demo view",
-                "arch": """<form>
-            <header>
-                <button name="action_confirm" type="object" string="Confirm" />
-                <field name="state" widget="statusbar" />
-            </header>
-            <sheet>
-                <field name="test_field" />
-            </sheet>
-            </form>""",
-            }
-        )
         view = self.env[self.test_record_2._name].get_view(False, "form")
         with Form(self.test_record_2) as f:
             self.assertIn("review_ids", f._values)
@@ -1028,3 +994,13 @@ class TierTierValidationView(CommonTierValidation):
             self.assertTrue(form.xpath("//field[@name='review_ids']"))
             self.assertTrue(form.xpath("//field[@name='can_review']"))
             self.assertTrue(form.xpath("//button[@name='request_validation']"))
+
+    def test_get_view(self):
+        view = self.test_record_2.get_view()
+        model = "tier.validation.tester2"
+        self.assertEqual(view["model"], model)
+        self.assertEqual(view["models"].keys(), {model, "tier.review"})
+        self.assertIn("id", view["models"][model])
+        self.assertIn("need_validation", view["models"][model])
+        self.assertIn("next_review", view["models"][model])
+        self.assertIn("review_ids", view["models"][model])
