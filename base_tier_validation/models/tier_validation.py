@@ -749,16 +749,11 @@ class TierValidation(models.AbstractModel):
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(view_id=view_id, view_type=view_type, **options)
-
         View = self.env["ir.ui.view"]
-
-        # Override context for postprocessing
-        if view_id and res.get("base_model", self._name) != self._name:
-            View = View.with_context(base_model_name=res["base_model"])
         if view_type == "form" and not self._tier_validation_manual_config:
             doc = etree.XML(res["arch"])
             params = {}
-            all_models = res["models"].copy()
+            all_models = res["models"].copy()  # {modelname(str) ➔ fields(tuple)}
             for node in doc.xpath(self._tier_validation_buttons_xpath):
                 # By default, after the last button of the header
                 # _add_tier_validation_buttons process
@@ -767,6 +762,7 @@ class TierValidation(models.AbstractModel):
                 new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addnext(new_element)
+                _merge_view_fields(all_models, new_models)
             for node in doc.xpath("/form/sheet"):
                 # _add_tier_validation_label process
                 new_node = self._add_tier_validation_label(node, params)
@@ -774,18 +770,13 @@ class TierValidation(models.AbstractModel):
                 new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addprevious(new_element)
+                _merge_view_fields(all_models, new_models)
                 # _add_tier_validation_reviews process
                 new_node = self._add_tier_validation_reviews(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
-                for model in new_models:
-                    if model in all_models:
-                        continue
-                    if model not in res["models"]:
-                        all_models[model] = new_models[model]
-                    else:
-                        all_models[model] = res["models"][model]
                 new_node = etree.fromstring(new_arch)
                 node.append(new_node)
+                _merge_view_fields(all_models, new_models)
             excepted_fields = self._get_all_validation_exceptions()
             for node in doc.xpath("//field[@name][not(ancestor::field)]"):
                 if node.attrib.get("name") in excepted_fields:
@@ -817,3 +808,12 @@ class TierValidation(models.AbstractModel):
                     subtype_xmlid=self._get_requested_notification_subtype(),
                     body=rec._notify_requested_review_body(),
                 )
+
+
+def _merge_view_fields(all_models: dict, new_models: dict):
+    """Merge new_models into all_models. Both are {modelname(str) ➔ fields(tuple)}."""
+    for model, view_fields in new_models.items():
+        if model in all_models:
+            all_models[model] = tuple(set(all_models[model]) | set(view_fields))
+        else:
+            all_models[model] = tuple(view_fields)
