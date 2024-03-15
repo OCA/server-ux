@@ -57,6 +57,24 @@ class CommonTierValidation(common.TransactionCase):
             }
         )
 
+        # Define views to avoid automatic views with all fields.
+        for model in cls.test_model._name, cls.test_model_2._name:
+            cls.env["ir.ui.view"].create(
+                {
+                    "model": model,
+                    "name": f"Demo view for {model}",
+                    "arch": """<form>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <field name="test_field" />
+                    </sheet>
+                    </form>""",
+                }
+            )
+
         # Create users:
         group_ids = cls.env.ref("base.group_system").ids
         cls.test_user_1 = cls.env["res.users"].create(
