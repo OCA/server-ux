@@ -325,18 +325,18 @@ class TierValidation(models.AbstractModel):
                 "reviewed_date": fields.Datetime.now(),
             }
         )
-        reviews_to_nofity = user_reviews.filtered(
+        reviews_to_notify = user_reviews.filtered(
             lambda r: r.definition_id.notify_on_accepted
         )
-        if reviews_to_nofity:
+        if reviews_to_notify:
             subscribe = "message_subscribe"
             if hasattr(self, subscribe):
                 getattr(self, subscribe)(
-                    partner_ids=reviews_to_nofity.mapped("reviewer_ids")
+                    partner_ids=reviews_to_notify.mapped("reviewer_ids")
                     .mapped("partner_id")
                     .ids
                 )
-            for review in reviews_to_nofity:
+            for review in reviews_to_notify:
                 rec = self.env[review.model].browse(review.res_id)
                 rec._notify_accepted_reviews()
 
@@ -446,18 +446,18 @@ class TierValidation(models.AbstractModel):
             }
         )
 
-        reviews_to_nofity = user_reviews.filtered(
+        reviews_to_notify = user_reviews.filtered(
             lambda r: r.definition_id.notify_on_rejected
         )
-        if reviews_to_nofity:
+        if reviews_to_notify:
             subscribe = "message_subscribe"
             if hasattr(self, subscribe):
                 getattr(self, subscribe)(
-                    partner_ids=reviews_to_nofity.mapped("reviewer_ids")
+                    partner_ids=reviews_to_notify.mapped("reviewer_ids")
                     .mapped("partner_id")
                     .ids
                 )
-            for review in reviews_to_nofity:
+            for review in reviews_to_notify:
                 rec = self.env[review.model].browse(review.res_id)
                 rec._notify_rejected_review()
 
@@ -534,12 +534,12 @@ class TierValidation(models.AbstractModel):
                     and True
                     or False
                 )
-                reviews_to_nofity = rec.review_ids.filtered(
+                reviews_to_notify = rec.review_ids.filtered(
                     lambda r: r.definition_id.notify_on_restarted
                 )
-                if reviews_to_nofity:
+                if reviews_to_notify:
                     partners_to_notify_ids = (
-                        reviews_to_nofity.mapped("reviewer_ids")
+                        reviews_to_notify.mapped("reviewer_ids")
                         .mapped("partner_id")
                         .ids
                     )
@@ -548,7 +548,7 @@ class TierValidation(models.AbstractModel):
                     self._update_counter({"review_deleted": True})
             if partners_to_notify_ids:
                 subscribe = "message_subscribe"
-                reviews_to_nofity = rec.review_ids.filtered(
+                reviews_to_notify = rec.review_ids.filtered(
                     lambda r: r.definition_id.notify_on_restarted
                 )
                 if hasattr(self, subscribe):
