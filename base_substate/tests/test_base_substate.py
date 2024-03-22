@@ -17,6 +17,14 @@ class TestBaseSubstate(common.TransactionCase):
         cls.substate_test_sale = cls.env["base.substate.test.sale"]
         cls.substate_test_sale_line = cls.env["base.substate.test.sale.line"]
 
+        cls.mail_template = cls.env["mail.template"].create(
+            {
+                "name": "Waiting for legal documents",
+                "model_id": cls.substate_test_sale.id,
+                "subject": "Test Email Substate",
+            }
+        )
+
         cls.base_substate = cls.env["base.substate.mixin"]
         cls.substate_type = cls.env["base.substate.type"]
 
@@ -68,6 +76,7 @@ class TestBaseSubstate(common.TransactionCase):
                 "name": "Waiting for legal documents",
                 "sequence": 2,
                 "target_state_value_id": cls.substate_val_sale.id,
+                "mail_template_id": cls.mail_template.id,
             }
         )
 
@@ -106,12 +115,13 @@ class TestBaseSubstate(common.TransactionCase):
         )
         self.assertTrue(so_test1.state == "draft")
         self.assertTrue(so_test1.substate_id == self.substate_under_negotiation)
-
         # Test that validation of sale order change substate_id
         so_test1.button_confirm()
         self.assertTrue(so_test1.state == "sale")
         self.assertTrue(so_test1.substate_id == self.substate_wait_docs)
-
+        # Test track template
+        res = so_test1._track_template({"substate_id"})
+        self.assertEqual(res["substate_id"][0], self.mail_template)
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
         so_test1.button_cancel()
