@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="tier_review_view_form_board" model="ir.ui.view">
+        <field name="name">tier.review.boards.view.form</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" delete="false">
+                <sheet>
+                    <button
+                        name="open_origin"
+                        type="object"
+                        class="centre oe_link"
+                        nolabel="1"
+                    >
+                        <field name="res_name" invisible="1" />
+                        <h1>
+                            <field name="related_model_instance" />
+                        </h1>
+                    </button>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="sequence" />
+                            <field name="requested_by" />
+                            <field name="todo_by" />
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="done_by" />
+                            <field name="reviewed_date" />
+                            <field name="comment" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tier_review_view_kanban" model="ir.ui.view">
+        <field name="name">tier.review.boards.view.kanban</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <kanban
+                default_group_by="status"
+                class="o_kanban_small_column"
+                create="0"
+                quick_create="0"
+                edit="0"
+                _order="create_date"
+                group_create="false"
+                group_delete="false"
+                group_edit="false"
+            >
+                <field name="requested_by" />
+                <field name="todo_by" />
+                <field name="done_by" />
+                <field name="comment" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="o_kanban_record_subtitle">
+                                        <field name="name" />
+                                    </strong>
+                                </div>
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="res_name" />
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <div>
+                                            <div>
+                                                <strong>Requsted by: </strong>
+                                                <field name="requested_by" />
+                                            </div>
+                                            <div>
+                                                <strong>Todo by: </strong>
+                                                <field name="todo_by" />
+                                            </div>
+                                            <div t-if="comment">
+                                                <strong>Comment: </strong>
+                                                <field name="comment" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="tier_review_view_search" model="ir.ui.view">
+        <field name="name">tier.review.boards.view.search</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name', 'ilike', self)]" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="open_boards_tier_reviews">
+        <field name="name">Tier Reviews</field>
+        <field name="res_model">tier.review</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('tier_review_view_kanban')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('base_tier_validation.tier_review_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('tier_review_view_form_board')}),
+                          (0, 0, {'view_mode': 'pivot'}),
+                          (0, 0, {'view_mode': 'graph'})]"
+        />
+        <field name="search_view_id" ref="tier_review_view_search" />
+    </record>
+
+
+    <menuitem
+        id="board_menu_tier_reviews"
+        name="Tier Reviews"
+        parent="spreadsheet_dashboard.spreadsheet_dashboard_menu_root"
+        action="open_boards_tier_reviews"
+        groups="group_show_tier_review_board"
+        sequence="1"
+    />
+
+</odoo>

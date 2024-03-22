@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="res.groups" id="group_show_tier_review_board">
+        <field name="name">Show tier review board</field>
+        <field
+            name="users"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
+    </record>
+</odoo>
