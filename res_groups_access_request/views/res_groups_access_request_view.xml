@@ -1,0 +1,153 @@
+<odoo>
+    <!-- Access Request Form View -->
+    <record id="view_res_groups_access_request_form" model="ir.ui.view">
+        <field name="name">res.groups.access.request.form</field>
+        <field name="model">res.groups.access.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        states="pending"
+                        name="button_approve"
+                        groups="base.group_system"
+                    />
+                    <button
+                        string="Reject"
+                        type="object"
+                        class="oe_highlight"
+                        states="pending"
+                        name="button_reject"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="pending,approved,rejected"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="user_id" />
+                        <field name="validate_user_id" />
+                        <field name="reason" widget="text" />
+                        <field name="group_id" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Access Request Tree View -->
+    <record id="view_res_groups_access_request_tree" model="ir.ui.view">
+        <field name="name">res.groups.access.request.tree</field>
+        <field name="model">res.groups.access.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id" />
+                <field name="group_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Access Request Action Window -->
+    <record id="action_res_groups_access_request" model="ir.actions.act_window">
+        <field name="name">Group Access Requests To Validate</field>
+        <field name="res_model">res.groups.access.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]" />
+        <field
+            name="context"
+            eval="{
+                'search_default_my_validates':1,
+            }"
+        />
+        <field
+            name="view_id"
+            ref="res_groups_access_request.view_res_groups_access_request_tree"
+        />
+    </record>
+    <record id="action_res_groups_my_access_request" model="ir.actions.act_window">
+        <field name="name">My Group Access Requests</field>
+        <field name="res_model">res.groups.access.request</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="context"
+            eval="{
+                'search_default_my_requests':1,
+            }"
+        />
+        <field
+            name="view_id"
+            ref="res_groups_access_request.view_res_groups_access_request_tree"
+        />
+    </record>
+
+    <record id="view_access_request_search" model="ir.ui.view">
+        <field name="name">res.groups.access.request.search</field>
+        <field name="model">res.groups.access.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id" />
+                <field name="validate_user_id" />
+                <field name="group_id" />
+                <separator />
+                <filter
+                    name="my_requests"
+                    domain="[('user_id','=', uid)]"
+                    help="My requests"
+                />
+                <filter
+                    name="my_validates"
+                    domain="[('validate_user_id','=', uid)]"
+                    help="My Validations"
+                />
+                <filter
+                    name="pending"
+                    string="Pending"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Access Request Menu Item -->
+    <menuitem
+        id="menuitem_res_groups_access_request"
+        name="Group Access Requests"
+        parent="base.menu_users"
+        sequence="30"
+    />
+    <menuitem
+        id="menuitem_res_groups_my_access_request_list"
+        name="My Group Access Requests"
+        parent="menuitem_res_groups_access_request"
+        action="action_res_groups_my_access_request"
+    />
+    <menuitem
+        id="menuitem_res_groups_access_request_list"
+        name="Group Access Requests to Validate"
+        parent="menuitem_res_groups_access_request"
+        groups="base.group_system"
+        action="action_res_groups_access_request"
+    />
+
+</odoo>
