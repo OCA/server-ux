@@ -1,0 +1,15 @@
+<odoo noupdate="1">
+
+    <record id="group_see_all_reviews" model="res.groups">
+        <field name="name">See All Tier Reviews</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('base_tier_validation_report.group_see_all_reviews'))]"
+        />
+    </record>
+
+</odoo>
