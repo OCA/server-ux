@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Le Filament
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="delegation_rule" model="ir.rule">
+        <field name="name">Users can act on their own delegations only</field>
+        <field name="model_id" ref="model_delegation" />
+        <field name="domain_force">[('delegator_id', '=', user.id)]</field>
+        <field
+            name="groups"
+            eval="[
+            (4, ref('base.group_user')),
+        ]"
+        />
+        <field name="perm_read" eval="False" />
+    </record>
+</odoo>

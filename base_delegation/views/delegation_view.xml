@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Le Filament
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <!-- Search View -->
+    <record id="delegation_search_view" model="ir.ui.view">
+        <field name="name">delegation.search</field>
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+            <search string="Délégations">
+                <field name="delegator_id" />
+                <field name="delegate_id" />
+                <field name="model_id" />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Delegator"
+                        name="group_delegator"
+                        context="{'group_by':'delegator_id'}"
+                    />
+                    <filter
+                        string="Delegate"
+                        name="group_delegate"
+                        context="{'group_by':'delegate_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="delegation_tree_view" model="ir.ui.view">
+        <field name="name">delegation.tree</field>
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-it="valid == False"
+                decoration-muted="valid == False"
+                editable="top"
+            >
+                <field name="sequence" widget="handle" />
+                <field name="delegator_id" readonly="True" />
+                <field name="delegate_id" />
+                <field name="model_id" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="valid" readonly="True" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="delegation_act_window" model="ir.actions.act_window">
+        <field name="name">Delegations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">delegation</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+    <menuitem
+        name="Delegations"
+        id="delegation_menu"
+        action="delegation_act_window"
+        web_icon="base_delegation,static/description/menu_icon.png"
+    />
+</odoo>
