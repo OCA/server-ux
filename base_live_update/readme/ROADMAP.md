@@ -1,0 +1,3 @@
+- provide a helper that does an in-place update of a dataset given an update notification
+- see how to deal with non-stored fields in the write case
+- measure the performance impact of this

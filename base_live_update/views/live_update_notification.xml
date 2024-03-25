@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="view_live_update_notification_tree" model="ir.ui.view">
+        <field name="model">live.update.notification</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="active" />
+                <field name="model_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_live_update_notification" model="ir.actions.act_window">
+        <field name="name">Live update notifications</field>
+        <field name="res_model">live.update.notification</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem
+        id="menu_live_update_notification"
+        parent="base.menu_custom"
+        action="action_live_update_notification"
+    />
+</data>
