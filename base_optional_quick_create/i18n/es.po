@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_optional_quick_create
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2023-08-27 16:07+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
+msgid "Avoid Quick Create"
+msgstr "Evitar la creación rápida"
+
+#. module: base_optional_quick_create
+#. odoo-python
+#: code:addons/base_optional_quick_create/models/ir_model.py:0
+#, python-format
+msgid ""
+"Can't create %(model)s with name %(name)s quickly.\n"
+"Please contact your system administrator to disable this behaviour."
+msgstr ""
+"No se pueden crear %(model)s con nombre %(name)s rápidamente.\n"
+"Ponte en contacto con el administrador del sistema para desactivar este "
+"comportamiento."
+
+#. module: base_optional_quick_create
+#: model:ir.model,name:base_optional_quick_create.model_ir_model
+msgid "Models"
+msgstr "Modelos"
