@@ -12,12 +12,22 @@ class CommentWizard(models.TransientModel):
     res_model = fields.Char()
     res_id = fields.Integer()
     review_ids = fields.Many2many(comodel_name="tier.review")
-    comment = fields.Char(required=True)
+    comment = fields.Char()
+    comment_required = fields.Boolean(compute="_compute_comment_required")
+
+    def _compute_comment_required(self):
+        for this in self:
+            this.comment_required = all(
+                this.review_ids.mapped(
+                    "definition_id.comment_required_%s" % this.validate_reject
+                )
+            )
 
     def add_comment(self):
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
-        self.review_ids.write({"comment": self.comment})
+        if self.comment:
+            self.review_ids.write({"comment": self.comment})
         if self.validate_reject == "validate":
             rec._validate_tier(self.review_ids)
         if self.validate_reject == "reject":
