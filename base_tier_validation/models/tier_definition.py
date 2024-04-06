@@ -78,6 +78,14 @@ class TierDefinition(models.Model):
         default=False,
         help="Approval order by the specified sequence number",
     )
+    notify_by_sequence = fields.Boolean(
+        string="Notify reviewer by sequence",
+        help="Use with 'Approve by sequence' to ensure that, the next reviewer "
+        "will be notified only when he/she is the next approver in sequence.\n"
+        "Note:\n* This works independently from 'Notify reviewers on creation', "
+        "so it shouldn't be used together.\n* This method will not add subscription "
+        "and will not notify any other followers except the reviewer",
+    )
     approve_sequence_bypass = fields.Boolean(
         help="Bypassed (auto validated), if previous tier was validated by same reviewer",
     )

@@ -327,6 +327,7 @@ class TierValidation(models.AbstractModel):
         for review in user_reviews:
             rec = self.env[review.model].browse(review.res_id)
             rec._notify_accepted_reviews()
+        self._notify_by_sequence()
 
     def _get_requested_notification_subtype(self):
         return "base_tier_validation.mt_tier_validation_requested"
@@ -389,6 +390,7 @@ class TierValidation(models.AbstractModel):
             return self._add_comment("validate", user_reviews)
         self._validate_tier(reviews)
         self._update_counter()
+        self._notify_by_sequence()
 
     def reject_tier(self):
         self.ensure_one()
@@ -457,6 +459,39 @@ class TierValidation(models.AbstractModel):
                     body=rec._notify_requested_review_body(),
                 )
 
+    def _notify_by_sequence_body(self):
+        return _("A review is requested from %(requester)s (sent by %(sender)s)") % {
+            "requester": self.review_ids[0].requested_by.name,
+            "sender": self.env.user.name,
+        }
+
+    def _notify_by_sequence(self):
+        """
+        This nofitication will only send message to approver in sequence
+        and do nothing else, no subscribe, no notify to followers
+        """
+        self.refresh()  # ensure new tier reviews is loaded
+        self = self.with_context(mail_post_autofollow=False).sudo()
+        post = "message_post"
+        if hasattr(self, post):
+            for rec in self:
+                users = rec.review_ids.mapped("reviewer_ids")
+                sequences = []
+                for user in users:
+                    sequences += rec._get_sequences_to_approve(user)
+                reviews_to_notify = rec.review_ids.filtered(
+                    lambda r: r.definition_id.notify_by_sequence
+                    and r.definition_id.approve_sequence
+                    and r.sequence in sequences
+                    and r.res_id == rec.id
+                )
+                users_to_notify = reviews_to_notify.mapped("reviewer_ids")
+                if len(users_to_notify) > 0:
+                    getattr(rec, post)(
+                        body=rec._notify_by_sequence_body(),
+                        partner_ids=users_to_notify.mapped("partner_id").ids,
+                    )
+
     def _prepare_tier_review_vals(self, definition, sequence):
         return {
             "model": self._name,
@@ -487,6 +522,7 @@ class TierValidation(models.AbstractModel):
                             created_trs += tr_obj.create(vals)
                     self._update_counter()
         self._notify_review_requested(created_trs)
+        self._notify_by_sequence()
         return created_trs
 
     def _notify_restarted_review_body(self):
