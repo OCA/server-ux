@@ -389,6 +389,7 @@ class TierValidation(models.AbstractModel):
             return self._add_comment("validate", user_reviews)
         self._validate_tier(reviews)
         self._update_counter()
+        self._notify_review_requested()
 
     def reject_tier(self):
         self.ensure_one()
@@ -440,14 +441,31 @@ class TierValidation(models.AbstractModel):
     def _notify_requested_review_body(self):
         return _("A review has been requested by %s.") % (self.env.user.name)
 
-    def _notify_review_requested(self, tier_reviews):
+    def _notify_review_requested(self):
+        self.refresh()  # ensure new tier reviews is loaded
+        self = self.sudo()
         subscribe = "message_subscribe"
         post = "message_post"
         if hasattr(self, post) and hasattr(self, subscribe):
             for rec in self:
-                users_to_notify = tier_reviews.filtered(
-                    lambda r: r.definition_id.notify_on_create and r.res_id == rec.id
-                ).mapped("reviewer_ids")
+                users = rec.review_ids.mapped("reviewer_ids")
+                # tier reviews for notify_on_create
+                reviews_to_notify = rec.review_ids.filtered(
+                    lambda r: r.definition_id.notify_on_create
+                    and r.res_id == rec.id
+                    and not r.notified
+                )
+                # tier reviews for notify_by_sequence
+                sequences = []
+                for user in users:
+                    sequences += rec._get_sequences_to_approve(user)
+                reviews_to_notify += rec.review_ids.filtered(
+                    lambda r: r.sequence in sequences
+                    and r.res_id == rec.id
+                    and not r.notified
+                )
+                # --
+                users_to_notify = reviews_to_notify.mapped("reviewer_ids")
                 # Subscribe reviewers and notify
                 getattr(rec, subscribe)(
                     partner_ids=users_to_notify.mapped("partner_id").ids
@@ -456,6 +474,8 @@ class TierValidation(models.AbstractModel):
                     subtype_xmlid=self._get_requested_notification_subtype(),
                     body=rec._notify_requested_review_body(),
                 )
+                # Mark as notified
+                reviews_to_notify.write({"notified": True})
 
     def _prepare_tier_review_vals(self, definition, sequence):
         return {
@@ -486,7 +506,7 @@ class TierValidation(models.AbstractModel):
                             vals = rec._prepare_tier_review_vals(td, sequence)
                             created_trs += tr_obj.create(vals)
                     self._update_counter()
-        self._notify_review_requested(created_trs)
+        self._notify_review_requested()
         return created_trs
 
     def _notify_restarted_review_body(self):

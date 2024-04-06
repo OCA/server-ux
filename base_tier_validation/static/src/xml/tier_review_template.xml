@@ -33,6 +33,7 @@
                     <th name="th_done_by" class="text-right">Done by</th>
                     <th name="th_reviewed_date" class="text-right">Validation Date</th>
                     <th name="th_comment" class="text-right">Comment</th>
+                    <th name="th_notified" class="text-right">Notified</th>
                 </tr>
             </thead>
             <tbody class="sale_tbody">
@@ -79,6 +80,11 @@
                         <td name="td_comment" class="text-left">
                             <t t-if="review.comment">
                                 <span t-esc="review.comment" />
+                            </t>
+                        </td>
+                        <td name="td_notified" class="text-right">
+                            <t t-if="review.notified">
+                                <span t-esc="review.notified and 'Yes' or 'No'" />
                             </t>
                         </td>
                     </tr>

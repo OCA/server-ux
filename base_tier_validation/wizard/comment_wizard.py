@@ -23,3 +23,4 @@ class CommentWizard(models.TransientModel):
         if self.validate_reject == "reject":
             rec._rejected_tier(self.review_ids)
         rec._update_counter()
+        rec._notify_review_requested()

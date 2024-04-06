@@ -58,6 +58,7 @@ class TierReview(models.Model):
     approve_sequence_bypass = fields.Boolean(
         related="definition_id.approve_sequence_bypass", readonly=True
     )
+    notified = fields.Boolean(default=False, help="The reviewer was notified by email.")
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):

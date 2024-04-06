@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class TierDefinition(models.Model):
@@ -67,6 +68,11 @@ class TierDefinition(models.Model):
         help="If set, all possible reviewers will be notified by email when "
         "this definition is triggered.",
     )
+    notify_by_sequence = fields.Boolean(
+        string="Notify Reviewers by Sequence",
+        help="If set, all possible reviewers will be notified by email when "
+        "just prior to their turn to approve (by sequence)",
+    )
     has_comment = fields.Boolean(string="Comment", default=False)
     approve_sequence = fields.Boolean(
         string="Approve by sequence",
@@ -76,6 +82,12 @@ class TierDefinition(models.Model):
     approve_sequence_bypass = fields.Boolean(
         help="Bypassed (auto validated), if previous tier was validated by same reviewer",
     )
+
+    @api.constrains("notify_on_create", "notify_by_sequence")
+    def _check_notify_option(self):
+        for rec in self:
+            if rec.notify_on_create and rec.notify_by_sequence:
+                raise ValidationError(_("Please select only 1 notify option"))
 
     @api.onchange("review_type")
     def onchange_review_type(self):

@@ -19,6 +19,7 @@
                 <field name="done_by" />
                 <field name="reviewed_date" />
                 <field name="comment" />
+                <field name="notified" />
             </tree>
         </field>
     </record>
