@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="announcement.AnnouncementMenu" owl="1">
+        <div class="o_ActivityMenuView dropdown" t-ref="root">
+            <a
+                class="o_ActivityMenuView_dropdownToggle dropdown-toggle o-no-caret o-dropdown--narrow"
+                t-att-aria-expanded="announcementMenuView.isOpen ? 'true' : 'false'"
+                title="Announcements"
+                href="#"
+                role="button"
+                t-on-click="onClickDropdownToggle"
+            >
+                <i
+                    class="fa fa-lg fa-bullhorn"
+                    role="img"
+                    aria-label="Announcements"
+                /> <span
+                    t-if="announcements.count > 0"
+                    class="badge bg-warning"
+                    t-out="announcements.count"
+                />
+            </a>
+            <div
+                t-if="announcementMenuView.isOpen"
+                class="o_ActivityMenuView_dropdownMenu o-dropdown-menu dropdown-menu-end show bg-view"
+                role="menu"
+            >
+                <div class="o_ActivityMenuView_activityGroups">
+                    <t t-if="announcements.count > 0">
+                        <t
+                            t-foreach="announcements.data"
+                            t-as="announcement"
+                            t-key="announcement.id"
+                        >
+                            <div
+                                class="o_ActivityMenuView_activityGroup"
+                                t-on-click="() => this.openAnnouncement(announcement)"
+                            >
+                                <div
+                                    class="o_ActivityMenuView_activityGroupIconContainer"
+                                >
+                                    <img
+                                        src="/announcement/static/description/icon.png"
+                                        alt="Announcement"
+                                    />
+                                </div>
+                                <div class="o_ActivityMenuView_activityGroupInfo">
+                                    <div class="o_ActivityMenuView_activityGroupTitle">
+                                        <span
+                                            class="o_ActivityMenuView_activityGroupName"
+                                        >
+                                            <t t-esc="announcement.name" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <div
+                            class="o_ActivityMenuView_noActivity dropdown-item-text text-center d-flex justify-content-center"
+                        >
+                            <span>No announcements.</span>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+<!--  -->
