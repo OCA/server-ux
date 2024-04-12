@@ -99,7 +99,12 @@
                             <group>
                                 <!-- TIP: We could use website widgets in the same way website.mass_mailing.popup does.
                                 A compatibility module should be made thou -->
-                                <field name="content" widget="html" />
+                                <field
+                                    name="content"
+                                    nolabel="1"
+                                    colspan="2"
+                                    placeholder="Set here the content of the announcement."
+                                />
                             </group>
                         </page>
                     </notebook>
