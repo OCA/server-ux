@@ -64,7 +64,7 @@ class ResUsers(models.Model):
     def _add_attachment_links(self, announcement):
         """In case the announcement has attachments, show the list below the
         modal content"""
-        content = announcement.content
+        content = announcement.content or Markup("")
         attachment_links = ""
         if announcement.attachment_ids:
             attachment_links += "<div class='list-group'>"
