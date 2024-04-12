@@ -17,7 +17,7 @@
                         string="if pass condition"
                         widget="domain"
                         options="{'model': 'model'}"
-                        attrs="{'invisible': [('auto_validate', '=', False)]}"
+                        invisible="not auto_validate"
                     />
                 </group>
             </xpath>

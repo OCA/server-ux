@@ -10,7 +10,7 @@ from odoo.tests.common import tagged
 class TierTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TierTierValidation, cls).setUpClass()
+        super().setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()

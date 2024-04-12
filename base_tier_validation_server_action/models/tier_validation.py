@@ -28,13 +28,13 @@ class TierValidation(models.AbstractModel):
     def _validate_tier(self, tiers=False):
         self.ensure_one()
         res = super()._validate_tier(tiers)
-        reviews = self.review_ids.filtered(lambda l: l.status == "approved")
+        reviews = self.review_ids.filtered(lambda r: r.status == "approved")
         self._server_action_tier(reviews, "approved")
         return res
 
     def _rejected_tier(self, tiers=False):
         self.ensure_one()
         res = super()._rejected_tier(tiers)
-        reviews = self.review_ids.filtered(lambda l: l.status == "rejected")
+        reviews = self.review_ids.filtered(lambda r: r.status == "rejected")
         self._server_action_tier(reviews, "rejected")
         return res
