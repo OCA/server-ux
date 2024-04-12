@@ -3,7 +3,7 @@
 from operator import attrgetter
 
 
-class TestMixin(object):
+class TestMixin:
     """Mixin to setup fake models for tests.
 
     Usage - the model:
