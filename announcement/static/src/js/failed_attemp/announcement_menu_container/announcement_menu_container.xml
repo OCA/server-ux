@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates>
-    <t t-name="announcement.AnnouncementMenuContainer" owl="1">
-        <t t-if="announcementMenuView">
-            <AnnouncementMenuView record="announcementMenuView"/>
-        </t>
-    </t>
-</templates>

@@ -11,6 +11,7 @@ class AnnouncementLog(models.Model):
 
     announcement_id = fields.Many2one(comodel_name="announcement")
 
+
 class Announcement(models.Model):
     _name = "announcement"
     _description = "User announcements"
