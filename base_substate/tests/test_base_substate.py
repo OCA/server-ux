@@ -10,7 +10,7 @@ from .sale_test import LineTest, SaleTest
 class TestBaseSubstate(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestBaseSubstate, cls).setUpClass()
+        super().setUpClass()
         SaleTest._test_setup_models(cls.env, [SaleTest, LineTest])
         LineTest._test_setup_model(cls.env)
 
