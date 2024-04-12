@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='global']/.." position="after">
                 <group string="Excluded Groups">
-                    <field name="excluded_group_ids" nolabel="1" colspan="4" />
+                    <field name="excluded_group_ids" nolabel="1" colspan="2" />
                 </group>
             </xpath>
         </field>

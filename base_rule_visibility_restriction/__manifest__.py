@@ -1,9 +1,10 @@
 # 2022 Copyright ForgeFlow, S.L. (https://www.forgeflow.com)
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Base Rule Visibility Restriction",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Extra Tools",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Exclude Record Rules for certain groups",
