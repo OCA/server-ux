@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-announcement>=16.0dev,<16.1dev',
+        'odoo-addon-announcement_dialog_size>=16.0dev,<16.1dev',
         'odoo-addon-barcode_action>=16.0dev,<16.1dev',
         'odoo-addon-base_archive_security>=16.0dev,<16.1dev',
         'odoo-addon-base_binary_url_import>=16.0dev,<16.1dev',
