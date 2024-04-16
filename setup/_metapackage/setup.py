@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo-addon-base_tier_validation_report>=15.0dev,<15.1dev',
         'odoo-addon-base_tier_validation_server_action>=15.0dev,<15.1dev',
         'odoo-addon-base_user_locale>=15.0dev,<15.1dev',
+        'odoo-addon-base_warn_option>=15.0dev,<15.1dev',
         'odoo-addon-chained_swapper>=15.0dev,<15.1dev',
         'odoo-addon-date_range>=15.0dev,<15.1dev',
         'odoo-addon-default_multi_user>=15.0dev,<15.1dev',
