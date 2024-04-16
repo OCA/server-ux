@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_warn_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-15 08:59+0000\n"
+"PO-Revision-Date: 2024-04-15 08:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Warning Options</span>"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__active
+msgid "Active"
+msgstr ""
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_search
+msgid "Alert"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields.selection,name:base_warn_option.selection__warn_option__allowed_warning_usage__all
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_search
+msgid "All"
+msgstr ""
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_search
+msgid "Allowed Warning Location"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__allowed_warning_type
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_search
+msgid "Allowed Warning Type"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__allowed_warning_usage
+msgid "Allowed Warning Usage"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,help:base_warn_option.field_warn_option__allowed_warning_usage
+msgid "Allows to choose where the message can be selected"
+msgstr ""
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields.selection,name:base_warn_option.selection__warn_option__allowed_warning_type__block
+#: model_terms:ir.ui.view,arch_db:base_warn_option.warn_option_search
+msgid "Block"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,help:base_warn_option.field_warn_option__allowed_warning_type
+msgid "Choose the type of warning message"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__id
+msgid "ID"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.res_config_settings_view_form
+msgid "Manage Warning Options"
+msgstr ""
+
+#. module: base_warn_option
+#: model_terms:ir.ui.view,arch_db:base_warn_option.res_config_settings_view_form
+msgid ""
+"Manage predefined Warning Options to maintain consistency between the "
+"warning or blocking messages"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__name
+msgid "Name"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,help:base_warn_option.field_warn_option__name
+msgid "This text will be the warning message."
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model,name:base_warn_option.model_warn_option
+msgid "Warn Option"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.actions.act_window,name:base_warn_option.warn_option_action
+msgid "Warn Options"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields.selection,name:base_warn_option.selection__warn_option__allowed_warning_type__warning
+msgid "Warning"
+msgstr ""

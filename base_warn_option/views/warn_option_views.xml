@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="warn_option_action" model="ir.actions.act_window">
+        <field name="name">Warn Options</field>
+        <field name="res_model">warn.option</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_grp_allowed_warning_usage': 1}</field>
+    </record>
+
+    <record id="warn_option_form" model="ir.ui.view">
+        <field name="name">warn.option.form</field>
+        <field name="model">warn.option</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <label for="name" colspan="2" />
+                        <field name="name" colspan="2" nolabel="1" />
+                    </group>
+                    <group>
+                        <field name="active" invisible="1" />
+                        <field name="allowed_warning_usage" widget="radio" />
+                        <field name="allowed_warning_type" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="warn_option_tree" model="ir.ui.view">
+        <field name="name">warn.option.tree</field>
+        <field name="model">warn.option</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name="allowed_warning_usage" />
+                <field name="allowed_warning_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="warn_option_search" model="ir.ui.view">
+        <field name="name">warn.option.search</field>
+        <field name="model">warn.option</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="allowed_warning_usage" />
+                <separator />
+                <filter
+                    name="flt_warning_type_all"
+                    string="All"
+                    domain="[('allowed_warning_type', '=', False)]"
+                />
+                <filter
+                    name="flt_warning_type_alert"
+                    string="Alert"
+                    domain="[('allowed_warning_type', '=', 'alert')]"
+                />
+                <filter
+                    name="flt_warning_type_block"
+                    string="Block"
+                    domain="[('allowed_warning_type', '=', 'block')]"
+                />
+                <group>
+                    <filter
+                        name="grp_allowed_warning_usage"
+                        string="Allowed Warning Location"
+                        context="{'group_by': 'allowed_warning_usage'}"
+                    />
+                    <filter
+                        name="grp_allowed_warning_type"
+                        string="Allowed Warning Type"
+                        context="{'group_by': 'allowed_warning_type'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</data>
