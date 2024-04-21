@@ -53,10 +53,11 @@
                         class="btn-sm btn-danger mx-1"
                         icon="fa-thumbs-down"
                     />
-                    <field name="next_review" readonly="1" class="float-end pt-1" />
-                </p>
-            </div>
-            <div
+                <br /><field name="next_review" readonly="1" />
+                <br /><field name="reviewer_helper_message" readonly="1" />
+            </p>
+        </div>
+        <div
                 class="alert alert-success mb-0 pb-1 px-4"
                 role="alert"
                 t-attf-attrs="{'invisible': ['|', '|',
