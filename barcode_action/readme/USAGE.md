@@ -1,33 +1,32 @@
-Actions must be configured with the following data in the context:
-* model: Model where we can find the method (required)
-* method: Method to execute (required)
-* res_id: Id as base (optional)
+Actions must be configured with the following data in the context: \*
+model: Model where we can find the method (required) \* method: Method
+to execute (required) \* res_id: Id as base (optional)
 
-The method must return an action. Installing this module with demo data will
-install a demo application that allows the system administrator to find a
-partner by the external reference encoded in a barcode.
+The method must return an action. Installing this module with demo data
+will install a demo application that allows the system administrator to
+find a partner by the external reference encoded in a barcode.
 
 Go to *Settings / Find partners* and scan a barcode that contains the
-internal reference of an existing partner. As soon as you read the barcode
-the system will redirect you to that partner's form view.
+internal reference of an existing partner. As soon as you read the
+barcode the system will redirect you to that partner's form view.
 
 Technical implementation of this example:
 
-Action::
+Action:
 
-        <act_window id="res_partner_find"
-            name="Find Partner"
-            res_model="barcode.action"
-            view_mode="form"
-            view_type="form"
-            context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
-            target="new"/>
+    <act_window id="res_partner_find"
+        name="Find Partner"
+        res_model="barcode.action"
+        view_mode="form"
+        view_type="form"
+        context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
+        target="new"/>
 
-        <menuitem id="menu_orders_customers" name="Find partners"
-            action="res_partner_find"
-            parent="base.menu_administration"/>
+    <menuitem id="menu_orders_customers" name="Find partners"
+        action="res_partner_find"
+        parent="base.menu_administration"/>
 
-Python code::
+Python code:
 
     import json
     from odoo import api, models, _
