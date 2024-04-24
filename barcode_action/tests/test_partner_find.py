@@ -16,7 +16,7 @@ class TestPartnerFind(TransactionCase):
         )
         # No partner is found, then there is no res_id on the result
         self.assertFalse(
-            partner_obj.find_res_partner_by_ref_using_barcode(
-                "{}-{}".format(ref, ref)
-            ).get("res_id", False)
+            partner_obj.find_res_partner_by_ref_using_barcode(f"{ref}-{ref}").get(
+                "res_id", False
+            )
         )
