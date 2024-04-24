@@ -17,20 +17,21 @@ Barcode action launcher
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/barcode_action
+    :target: https://github.com/OCA/server-ux/tree/17.0/barcode_action
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-barcode_action
+    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-barcode_action
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to use barcodes as launchers of actions.
 
-The action will launch a function that uses the barcode in order to return an action.
+The action will launch a function that uses the barcode in order to
+return an action.
 
 **Table of contents**
 
@@ -40,65 +41,68 @@ The action will launch a function that uses the barcode in order to return an ac
 Usage
 =====
 
-Actions must be configured with the following data in the context:
-* model: Model where we can find the method (required)
-* method: Method to execute (required)
-* res_id: Id as base (optional)
+Actions must be configured with the following data in the context: \*
+model: Model where we can find the method (required) \* method: Method
+to execute (required) \* res_id: Id as base (optional)
 
-The method must return an action. Installing this module with demo data will
-install a demo application that allows the system administrator to find a
-partner by the external reference encoded in a barcode.
+The method must return an action. Installing this module with demo data
+will install a demo application that allows the system administrator to
+find a partner by the external reference encoded in a barcode.
 
 Go to *Settings / Find partners* and scan a barcode that contains the
-internal reference of an existing partner. As soon as you read the barcode
-the system will redirect you to that partner's form view.
+internal reference of an existing partner. As soon as you read the
+barcode the system will redirect you to that partner's form view.
 
 Technical implementation of this example:
 
-Action::
+Action:
 
-        <act_window id="res_partner_find"
-            name="Find Partner"
-            res_model="barcode.action"
-            view_mode="form"
-            view_type="form"
-            context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
-            target="new"/>
+::
 
-        <menuitem id="menu_orders_customers" name="Find partners"
-            action="res_partner_find"
-            parent="base.menu_administration"/>
+   <act_window id="res_partner_find"
+       name="Find Partner"
+       res_model="barcode.action"
+       view_mode="form"
+       view_type="form"
+       context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
+       target="new"/>
 
-Python code::
+   <menuitem id="menu_orders_customers" name="Find partners"
+       action="res_partner_find"
+       parent="base.menu_administration"/>
 
-    import json
-    from odoo import api, models, _
-    from odoo.tools.safe_eval import safe_eval
+Python code:
+
+::
+
+   import json
+   from odoo import api, models, _
+   from odoo.tools.safe_eval import safe_eval
 
 
-    class ResPartner(models.Model):
-        _inherit = 'res.partner'
+   class ResPartner(models.Model):
+       _inherit = 'res.partner'
 
-        @api.multi
-        def find_res_partner_by_ref_using_barcode(self, barcode):
-            partner = self.search([('ref', '=', barcode)], limit=1)
-            if not partner:
-                action = self.env.ref('res_partner_find')
-                result = action.read()[0]
-                context = safe_eval(result['context'])
-                context.update({
-                    'default_state': 'warning',
-                    'default_status': _('Partner with Internal Reference '
-                                        '%s cannot be found') % barcode
-                })
-                result['context'] = json.dumps(context)
-                return result
-            action = self.env.ref('base.action_partner_form')
-            result = action.read()[0]
-            res = self.env.ref('base.view_partner_form', False)
-            result['views'] = [(res and res.id or False, 'form')]
-            result['res_id'] = partner.id
-            return result
+       @api.multi
+       def find_res_partner_by_ref_using_barcode(self, barcode):
+           partner = self.search([('ref', '=', barcode)], limit=1)
+           if not partner:
+               action = self.env.ref('res_partner_find')
+               result = action.read()[0]
+               context = safe_eval(result['context'])
+               context.update({
+                   'default_state': 'warning',
+                   'default_status': _('Partner with Internal Reference '
+                                       '%s cannot be found') % barcode
+               })
+               result['context'] = json.dumps(context)
+               return result
+           action = self.env.ref('base.action_partner_form')
+           result = action.read()[0]
+           res = self.env.ref('base.view_partner_form', False)
+           result['views'] = [(res and res.id or False, 'form')]
+           result['res_id'] = partner.id
+           return result
 
 Bug Tracker
 ===========
@@ -106,7 +110,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20barcode_action%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20barcode_action%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -114,21 +118,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Creu Blanca
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Enric Tobella <etobella@creublanca.es>
-* Jordi Ballester <jordi.ballester@forgeflow.com>
-* Foram Shah <foram.shah@initos.com>
-* Dhara Solanki <dhara.solanki@initos.com>
+-  Enric Tobella <etobella@creublanca.es>
+-  Jordi Ballester <jordi.ballester@forgeflow.com>
+-  Foram Shah <foram.shah@initos.com>
+-  Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -140,6 +144,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/barcode_action>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/barcode_action>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
