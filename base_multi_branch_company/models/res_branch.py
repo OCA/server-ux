@@ -26,4 +26,6 @@ class ResBranch(models.Model):
     phone = fields.Char()
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [("name_uniq", "unique(name)", "Branch must be unique!")]
+    _sql_constraints = [
+        ("name_uniq", "unique(name, company_id)", "Branch/Company must be unique!")
+    ]
