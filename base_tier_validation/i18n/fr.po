@@ -6,21 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-12-04 18:36+0000\n"
-"Last-Translator: Valaeys Stéphane <svalaeys@fiefmanage.ch>\n"
+"PO-Revision-Date: 2024-04-25 14:37+0000\n"
+"Last-Translator: Simon Maillard <simon@ogesta.fr>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_review.py:111
 #, python-format
 msgid "%s (and %s more)"
-msgstr ""
+msgstr "%s (et %s de plus)"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -80,7 +80,7 @@ msgstr "Toutes"
 #. module: base_tier_validation
 #: selection:tier.definition,review_type:0
 msgid "Any user in a specific group"
-msgstr ""
+msgstr "N'importe quel utilisateur dans un groupe spécifique"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence
@@ -123,7 +123,7 @@ msgstr "Annuler"
 #: code:addons/base_tier_validation/models/tier_validation.py:210
 #, python-format
 msgid "Cannot write fields: %s"
-msgstr ""
+msgstr "Impossible d'écrire les champs : %s"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -219,7 +219,7 @@ msgstr "Fait par"
 #. module: base_tier_validation
 #: selection:tier.definition,review_type:0
 msgid "Field in related record"
-msgstr ""
+msgstr "Champ de l'enregistrement lié"
 
 #. module: base_tier_validation
 #: selection:tier.definition,definition_type:0
@@ -229,13 +229,13 @@ msgstr "Formule"
 #. module: base_tier_validation
 #: selection:tier.review,status:0
 msgid "Forwarded"
-msgstr ""
+msgstr "Transféré"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_review.py:104
 #, python-format
 msgid "Group %s"
-msgstr ""
+msgstr "Groupe %s"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
@@ -389,7 +389,7 @@ msgstr "Validateur"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_field_id
 msgid "Reviewer field"
-msgstr ""
+msgstr "Champ du validateur"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
@@ -444,7 +444,7 @@ msgstr "Cette opération est en train d'être validée."
 #: code:addons/base_tier_validation/models/tier_review.py:123
 #, python-format
 msgid "There are no res.users in the selected field"
-msgstr ""
+msgstr "Il n'y a pas d'utilisateurs dans le champ sélectionné"
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:189
@@ -474,7 +474,7 @@ msgstr "Validation de palier"
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Validation par paliers (abstract)"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_accepted
@@ -489,7 +489,7 @@ msgstr "Notification de rejet de validation par palier"
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
 msgid "Tier Validation Requested"
-msgstr ""
+msgstr "Validation par paliers demandée"
 
 #. module: base_tier_validation
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
@@ -499,14 +499,14 @@ msgstr "Validations par palier"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__todo_by
 msgid "Todo By"
-msgstr ""
+msgstr "A faire part"
 
 #. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:27
 #, python-format
 msgid "Todo by"
-msgstr ""
+msgstr "A faire par"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_users
@@ -515,8 +515,9 @@ msgstr "Utilisateurs"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
+#, fuzzy
 msgid "Valid Reviewer Field"
-msgstr ""
+msgstr "Champs de validateur valide"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__validate_reject
