@@ -130,6 +130,9 @@ Contributors
 -  Jordi Ballester <jordi.ballester@forgeflow.com>
 -  Foram Shah <foram.shah@initos.com>
 -  Dhara Solanki <dhara.solanki@initos.com>
+-  `APSL <https://apsl.tech>`__:
+
+   -  Miquel Pascual <mpascual@apsl.net>
 
 Maintainers
 -----------
