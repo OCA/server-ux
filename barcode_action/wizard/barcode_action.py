@@ -6,12 +6,10 @@ class BarcodeAction(models.TransientModel):
     _inherit = "barcodes.barcode_events_mixin"
     _description = "Barcode Action"
 
-    model = fields.Char(required=True, readonly=True)
+    model = fields.Char(required=True)
     res_id = fields.Integer()
-    method = fields.Char(required=True, readonly=True)
+    method = fields.Char(required=True)
     state = fields.Selection(
-        [("waiting", "Waiting"), ("warning", "Warning")],
-        default="waiting",
-        readonly=True,
+        [("waiting", "Waiting"), ("warning", "Warning")], default="waiting"
     )
-    status = fields.Text(readonly=True, default="Start scanning")
+    status = fields.Text(default="Start scanning")
