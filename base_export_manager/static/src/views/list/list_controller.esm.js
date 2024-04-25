@@ -5,9 +5,9 @@ const {onWillRender} = owl;
 import {patch} from "@web/core/utils/patch";
 import {session} from "@web/session";
 
-patch(ListController.prototype, "base_export_manager", {
+patch(ListController.prototype, {
     setup() {
-        this._super(...arguments);
+        super.setup(...arguments);
         onWillRender(async () => {
             if (this.isExportEnable) {
                 const is_export_enabled =
