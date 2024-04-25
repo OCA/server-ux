@@ -4,7 +4,7 @@ import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useBus, useService} from "@web/core/utils/hooks";
 
-const {Component, xml} = owl;
+import {Component, xml} from "@odoo/owl";
 
 export class ActionBarcodeField extends Component {
     setup() {
@@ -30,4 +30,8 @@ export class ActionBarcodeField extends Component {
 ActionBarcodeField.template = xml``;
 ActionBarcodeField.props = {...standardFieldProps};
 
-registry.category("fields").add("action_barcode_handler", ActionBarcodeField);
+export const actionBarcodeField = {
+    component: ActionBarcodeField,
+};
+
+registry.category("fields").add("action_barcode_handler", actionBarcodeField);
