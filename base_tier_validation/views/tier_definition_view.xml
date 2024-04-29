@@ -101,6 +101,7 @@
                                 <group name="notify">
                                     <field name="notify_on_create" />
                                     <field name="has_comment" />
+                                    <field name="notify_reminder_delay" />
                                 </group>
                             </group>
                         </page>

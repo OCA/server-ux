@@ -69,7 +69,7 @@ class CommonTierValidation(common.SavepointCase):
 
         # Create tier definitions:
         cls.tier_def_obj = cls.env["tier.definition"]
-        cls.tier_def_obj.create(
+        cls.tier_definition = cls.tier_def_obj.create(
             {
                 "model_id": cls.tester_model.id,
                 "review_type": "individual",
