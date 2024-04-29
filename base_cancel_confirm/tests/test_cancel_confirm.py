@@ -1,6 +1,5 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-from lxml import etree
 from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import Form, common
@@ -100,9 +99,8 @@ class TestCancelConfirm(common.TransactionCase):
             }
         )
         with Form(self.test_record) as f:
-            form = etree.fromstring(f._view["arch"])
-            self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
-            self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
+            self.assertTrue(f._view["fields"].get("cancel_confirm"))
+            self.assertTrue(f._view["fields"].get("cancel_reason"))
 
         # Check view difference, it should change base_model from view_id
         wizard_lang_export = self.env.ref("base.wizard_lang_export")

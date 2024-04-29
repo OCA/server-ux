@@ -10,8 +10,8 @@
                     <field name="has_cancel_reason" invisible="1" />
                     <field
                         name="cancel_reason"
-                        attrs="{'invisible': [('has_cancel_reason', '=', 'no')],
-                                                        'required': [('has_cancel_reason', '=', 'required')]}"
+                        invisible="has_cancel_reason == 'no'"
+                        required="has_cancel_reason == 'required'"
                     />
                 </group>
                 <footer>

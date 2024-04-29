@@ -3,12 +3,12 @@
 
 {
     "name": "Base Cancel Confirm",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-ux",
-    "depends": ["base"],
+    "depends": ["base", "web"],
     "data": [
         "wizard/cancel_confirm.xml",
         "security/ir.model.access.csv",

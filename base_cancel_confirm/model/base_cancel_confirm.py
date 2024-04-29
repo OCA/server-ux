@@ -51,15 +51,8 @@ class BaseCancelConfirm(models.AbstractModel):
     def clear_cancel_confirm_data(self):
         self.write({"cancel_confirm": False, "cancel_reason": False})
 
-    def get_view(
-        self,
-        view_id=None,
-        view_type="form",
-    ):
-        res = super().get_view(
-            view_id=view_id,
-            view_type=view_type,
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
             doc = etree.XML(res["arch"])
             for node in doc.xpath(self._cancel_reason_xpath):
