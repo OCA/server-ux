@@ -40,4 +40,22 @@
         <field name="internal" eval="True" />
         <field name="hidden" eval="True" />
     </record>
+    <record
+        id="mt_tier_validation_reminder"
+        model="mail.message.subtype"
+        forcecreate="1"
+    >
+        <field name="name">Tier Validation Reminder</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="hidden" eval="True" />
+    </record>
+    <record
+        id="mail_act_tier_validation_reminder"
+        model="mail.activity.type"
+        forcecreate="1"
+    >
+        <field name="name">Tier Validation Reminder</field>
+        <field name="icon">fa-bell</field>
+    </record>
 </odoo>
