@@ -48,6 +48,7 @@ setuptools.setup(
         'odoo14-addon-server_action_domain',
         'odoo14-addon-test_base_tier_validation',
         'odoo14-addon-web_archive_date',
+        'odoo14-addon-web_tree_customized_field_list',
     ],
     classifiers=[
         'Programming Language :: Python',

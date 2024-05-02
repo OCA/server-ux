@@ -61,6 +61,7 @@ addon | version | maintainers | summary
 [server_action_domain](server_action_domain/) | 14.0.1.0.0 |  | Apply a domain filter before executing server actions on records
 [test_base_tier_validation](test_base_tier_validation/) | 14.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Test Base Tier Validation
 [web_archive_date](web_archive_date/) | 14.0.1.0.1 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Reflects the Latest Archived Date and Latest Archived by on the record metadata.
+[web_tree_customized_field_list](web_tree_customized_field_list/) | 14.0.1.0.0 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Add fields into list view
 
 [//]: # (end addons)
 
