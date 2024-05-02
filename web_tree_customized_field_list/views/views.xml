@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_custom_list_view_form" model="ir.ui.view">
+        <field name="name">custom.list.view.form.view</field>
+        <field name="model">custom.list.view</field>
+        <field name="arch" type="xml">
+            <form string="Customized List View">
+                <header>
+                    <button
+                        name="button_apply_changes"
+                        type="object"
+                        string="Apply"
+                        groups="base.group_system"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="button_roll_back"
+                        type="object"
+                        string="Restore Original"
+                        groups="base.group_system"
+                        class="btn-secondary"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="model_id" />
+                            <field name="model_name" />
+                            <field
+                                name="list_view_id"
+                                domain="[('model', '=', model_name), ('type', '=', 'tree'), ('mode', '=', 'primary')]"
+                                attrs="{'readonly': [('model_name', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <tree editable="top">
+                            <field name="model_id" invisible="1" />
+                            <field name="custom_list_view_id" invisible="1" />
+                            <field name="model_name" />
+                            <field
+                                name="field_id"
+                                domain="[('model_id', '=', model_id)]"
+                            />
+                            <field name="label" />
+                            <field name="use_widget" />
+                            <field name="optional" />
+                            <field name="fields_domain" invisible="1" />
+                            <field
+                                name="before"
+                                attrs="{'required': [('after', '=', False)],
+                                        'readonly': [('after', '!=', False)]}"
+                                domain="fields_domain"
+                            />
+                            <field
+                                name="after"
+                                domain="fields_domain"
+                                attrs="{'required': [('before', '=', False)],
+                                        'readonly': [('before', '!=', False)]}"
+                            />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_custom_list_view_tree" model="ir.ui.view">
+        <field name="name">custom.list.view.tree.view</field>
+        <field name="model">custom.list.view</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="model_id" />
+                <field name="list_view_id" />
+            </tree>
+        </field>
+    </record>
+
+     <record id="action_custom_list_view_tree" model="ir.actions.act_window">
+        <field name="name">Customized List Views</field>
+        <field name="res_model">custom.list.view</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem
+        id="menu_custom_list_view_tree"
+        name="Customized List Views"
+        action="action_custom_list_view_tree"
+        parent="base.menu_administration"
+        sequence="20"
+    />
+
+</odoo>
