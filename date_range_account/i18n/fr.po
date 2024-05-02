@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* date_range_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-03 20:38+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_type
+msgid "Date Range Types"
+msgstr "Types de plages de dates"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_root
+msgid "Date Ranges"
+msgstr "Plages de dates"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_generator
+msgid "Generate Date Ranges"
+msgstr "Générer les plages de dates"
+
+#~ msgid "Date ranges"
+#~ msgstr "Plages de dates"
