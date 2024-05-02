@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-25 10:37+0000\n"
+"PO-Revision-Date: 2024-05-02 13:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -533,7 +533,7 @@ msgstr "Richiedi validazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__requested_by
 msgid "Requested By"
-msgstr "Richiesta Da"
+msgstr "Richiesta da"
 
 #. module: base_tier_validation
 #. odoo-javascript
