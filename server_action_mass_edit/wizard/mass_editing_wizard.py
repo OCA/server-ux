@@ -283,7 +283,9 @@ class MassEditingWizard(models.TransientModel):
                 if values:
                     self.env[server_action.model_id.model].browse(
                         active_ids
-                    ).with_context(mass_edit=True,).write(values)
+                    ).with_context(
+                        mass_edit=True,
+                    ).write(values)
         return super().create([{}])
 
     def _prepare_create_values(self, vals_list):
