@@ -55,6 +55,9 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_model()
         with self.assertRaises(ValidationError):
             record.write({"test_field": 0.5})
+        # Sudo writes always allowed
+        record.sudo().write({"test_field": 0.5})
+        self.assertEqual(record.test_field, 0.5)
 
     def test_06_validation_process_open(self):
         """Operation forbidden while a validation process is open."""
