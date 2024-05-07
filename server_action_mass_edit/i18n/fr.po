@@ -30,12 +30,6 @@ msgstr ""
 "d'exécution. Assurez-vous de les inclure."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
-msgid "Action To Do"
-msgstr "Action à effectuer"
-
-#. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -126,12 +120,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Si ce champ est défini, le message sera affiché dans l'assistant."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line____last_update
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
@@ -159,6 +147,11 @@ msgstr "Ligne d'édition en lot"
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
 msgstr "Modification en lot"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
+msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -261,35 +254,33 @@ msgstr ""
 "sélectionnés"
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
 msgid ""
 "Type of server action. The following values are available:\n"
-"- 'Execute Python Code': a block of python code that will be executed\n"
-"- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other "
-"server actions\n"
+"- 'Create Activity': create an activity (Discuss)\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
-"- 'Add Followers': add followers to a record (Discuss)\n"
-"- 'Create Next Activity': create an activity (Discuss)\n"
-"- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
 msgstr ""
-"Type d'action du serveur. Les valeurs suivantes sont disponibles :\n"
-"- 'Executer du code Python' : un bloc de code python qui sera exécuté\n"
-"- 'Créer un nouvel enregistrement' : créer un nouvel enregistrement avec de "
-"nouvelles valeurs\n"
-"- 'Mettre à jour un enregistrement' : mettre à jour les valeurs d'un "
-"enregistrement\n"
-"- 'Exécuter plusieurs actions' : définir une action qui déclenche plusieurs "
-"autres actions du serveur\n"
-"- 'Envoyer un email' : poster un message, une note ou envoyer un email "
-"(Discussion)\n"
-"- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement "
-"(Discussion)\n"
-"- 'Créer l'activité suivante' : créer une activité (Discussion)\n"
-"- 'Envoyer un message/SMS': envoyez des SMS, enregistrez-les sur des "
-"documents (SMS)"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
+msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -312,3 +303,37 @@ msgstr ""
 "Vous avez sélectionné %(origin_amount)d enregistrement(s) qui ne peuvent pas "
 "être traités.\n"
 "Seulement %(amount)d enregistrement(s) seront traités."
+
+#~ msgid "Action To Do"
+#~ msgstr "Action à effectuer"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid ""
+#~ "Type of server action. The following values are available:\n"
+#~ "- 'Execute Python Code': a block of python code that will be executed\n"
+#~ "- 'Create a new Record': create a new record with new values\n"
+#~ "- 'Update a Record': update the values of a record\n"
+#~ "- 'Execute several actions': define an action that triggers several other "
+#~ "server actions\n"
+#~ "- 'Send Email': post a message, a note or send an email (Discuss)\n"
+#~ "- 'Add Followers': add followers to a record (Discuss)\n"
+#~ "- 'Create Next Activity': create an activity (Discuss)\n"
+#~ "- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+#~ msgstr ""
+#~ "Type d'action du serveur. Les valeurs suivantes sont disponibles :\n"
+#~ "- 'Executer du code Python' : un bloc de code python qui sera exécuté\n"
+#~ "- 'Créer un nouvel enregistrement' : créer un nouvel enregistrement avec "
+#~ "de nouvelles valeurs\n"
+#~ "- 'Mettre à jour un enregistrement' : mettre à jour les valeurs d'un "
+#~ "enregistrement\n"
+#~ "- 'Exécuter plusieurs actions' : définir une action qui déclenche "
+#~ "plusieurs autres actions du serveur\n"
+#~ "- 'Envoyer un email' : poster un message, une note ou envoyer un email "
+#~ "(Discussion)\n"
+#~ "- 'Ajouter des abonnés' : ajouter des abonnés à un enregistrement "
+#~ "(Discussion)\n"
+#~ "- 'Créer l'activité suivante' : créer une activité (Discussion)\n"
+#~ "- 'Envoyer un message/SMS': envoyez des SMS, enregistrez-les sur des "
+#~ "documents (SMS)"

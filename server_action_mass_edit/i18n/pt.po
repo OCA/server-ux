@@ -32,12 +32,6 @@ msgstr ""
 "obterá um erro na tentativa de execução. Certifique-se de que os inclui."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
-msgid "Action To Do"
-msgstr ""
-
-#. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -125,12 +119,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Se atribuído, esta mensagem será exibida no assistente."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line____last_update
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
-
-#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
@@ -157,6 +145,11 @@ msgstr ""
 #. module: server_action_mass_edit
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
+msgstr ""
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
 msgstr ""
 
 #. module: server_action_mass_edit
@@ -254,19 +247,32 @@ msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr ""
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
 msgid ""
 "Type of server action. The following values are available:\n"
-"- 'Execute Python Code': a block of python code that will be executed\n"
-"- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other "
-"server actions\n"
+"- 'Create Activity': create an activity (Discuss)\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
-"- 'Add Followers': add followers to a record (Discuss)\n"
-"- 'Create Next Activity': create an activity (Discuss)\n"
-"- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
+msgstr ""
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
 msgstr ""
 
 #. module: server_action_mass_edit
@@ -287,6 +293,9 @@ msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
 
 #~ msgid "Action Name"
 #~ msgstr "Nome da Ação"

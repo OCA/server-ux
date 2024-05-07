@@ -31,12 +31,6 @@ msgstr ""
 "errore quando si cercherà di eseguirlo. Accertati di includerli."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
-msgid "Action To Do"
-msgstr "Azione da compiere"
-
-#. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -127,12 +121,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Se impostato, questo messaggio sarà mostrato nel wizard."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line____last_update
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
@@ -160,6 +148,11 @@ msgstr "Riga modifica di massa"
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
 msgstr "Modifica di massa record"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
+msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -257,31 +250,33 @@ msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr "L'operazione sarà eseguita sui %(amount)d record selezionati."
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
 msgid ""
 "Type of server action. The following values are available:\n"
-"- 'Execute Python Code': a block of python code that will be executed\n"
-"- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other "
-"server actions\n"
+"- 'Create Activity': create an activity (Discuss)\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
-"- 'Add Followers': add followers to a record (Discuss)\n"
-"- 'Create Next Activity': create an activity (Discuss)\n"
-"- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
 msgstr ""
-"Tipo di azione server. Sono disponibili i seguenti valori:\n"
-"- 'Esegue codice Python': un blocco di codice Python che verrà eseguito\n"
-"- 'Crea un nuovo record': crea un nuovo record con nuovi valori\n"
-"- 'Aggiorna un record': aggiorna i valori di un record\n"
-"- 'Esegue diverse azioni': definisce un'azione che attiva diverse altre "
-"azioni\n"
-"- 'Invia e-mail': inva un messagio, una nota o inviauna e-mail "
-"(Discussione)\n"
-"- 'Aggiunge chi segue': aggiunge chi segue ad un record (Discussione)\n"
-"- 'Crea attività successiva': crea un'attività (Discussione)\n"
-"- 'Invia SMS': invia SMS, registrandoli nei documenti (SMS)"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
+msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -304,6 +299,36 @@ msgstr ""
 "Sono stati selezionati %(origin_amount)d record che non possono essere "
 "elaborati.\n"
 "Solo %(amount)d record saranno elaborati."
+
+#~ msgid "Action To Do"
+#~ msgstr "Azione da compiere"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid ""
+#~ "Type of server action. The following values are available:\n"
+#~ "- 'Execute Python Code': a block of python code that will be executed\n"
+#~ "- 'Create a new Record': create a new record with new values\n"
+#~ "- 'Update a Record': update the values of a record\n"
+#~ "- 'Execute several actions': define an action that triggers several other "
+#~ "server actions\n"
+#~ "- 'Send Email': post a message, a note or send an email (Discuss)\n"
+#~ "- 'Add Followers': add followers to a record (Discuss)\n"
+#~ "- 'Create Next Activity': create an activity (Discuss)\n"
+#~ "- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+#~ msgstr ""
+#~ "Tipo di azione server. Sono disponibili i seguenti valori:\n"
+#~ "- 'Esegue codice Python': un blocco di codice Python che verrà eseguito\n"
+#~ "- 'Crea un nuovo record': crea un nuovo record con nuovi valori\n"
+#~ "- 'Aggiorna un record': aggiorna i valori di un record\n"
+#~ "- 'Esegue diverse azioni': definisce un'azione che attiva diverse altre "
+#~ "azioni\n"
+#~ "- 'Invia e-mail': inva un messagio, una nota o inviauna e-mail "
+#~ "(Discussione)\n"
+#~ "- 'Aggiunge chi segue': aggiunge chi segue ad un record (Discussione)\n"
+#~ "- 'Crea attività successiva': crea un'attività (Discussione)\n"
+#~ "- 'Invia SMS': invia SMS, registrandoli nei documenti (SMS)"
 
 #~ msgid "Action Name"
 #~ msgstr "Nome Azione"

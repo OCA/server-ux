@@ -31,12 +31,6 @@ msgstr ""
 "bir hataya yol açacağını dikkate alın. Bunları dahil ettiğinizden emin olun."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
-msgid "Action To Do"
-msgstr "Yapılacak İşlem"
-
-#. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -127,12 +121,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Ayarlanırsa, bu mesaj sihirbazda görüntülenecektir."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line____last_update
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard____last_update
-msgid "Last Modified on"
-msgstr "Son değişiklik"
-
-#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
@@ -160,6 +148,11 @@ msgstr "Toplu Düzenleme Satırı"
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
 msgstr "Toplu Düzenleme Kayıtları"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
+msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -256,31 +249,33 @@ msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr "İşlem seçilen %(amount)d kayıtta işlenecektir."
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
 msgid ""
 "Type of server action. The following values are available:\n"
-"- 'Execute Python Code': a block of python code that will be executed\n"
-"- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other "
-"server actions\n"
+"- 'Create Activity': create an activity (Discuss)\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
-"- 'Add Followers': add followers to a record (Discuss)\n"
-"- 'Create Next Activity': create an activity (Discuss)\n"
-"- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
 msgstr ""
-"Sunucu eylemi türü. Aşağıdaki değerler mevcuttur:\n"
-"- 'Python Kodunu Yürüt': yürütülecek bir python kodu bloğu\n"
-"- 'Yeni Kayıt Oluştur': yeni değerlerle yeni bir kayıt oluşturun\n"
-"- 'Bir Kaydı Güncelle': bir kaydın değerlerini güncelleyin\n"
-"- 'Birkaç eylem yürütün': diğer birkaç sunucu eylemini tetikleyen bir eylem "
-"tanımlayın\n"
-"- 'E-posta Gönder': bir mesaj, not gönderin veya bir e-posta gönderin "
-"(Tartış)\n"
-"- 'Takipçi Ekle': bir kayda takipçi ekleyin (Tartış)\n"
-"- 'Sonraki Etkinlik Oluştur': bir etkinlik oluşturun (Tartış)\n"
-"- 'SMS Metin Mesajı Gönder': SMS gönderin, belgelere kaydedin (SMS)"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
+msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -302,6 +297,36 @@ msgid ""
 msgstr ""
 "İşlenemeyen %(origin_amount)d kayıt seçtiniz.\n"
 "Yalnızca %(amount)d kayıt(lar) işlenecek."
+
+#~ msgid "Action To Do"
+#~ msgstr "Yapılacak İşlem"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Son değişiklik"
+
+#~ msgid ""
+#~ "Type of server action. The following values are available:\n"
+#~ "- 'Execute Python Code': a block of python code that will be executed\n"
+#~ "- 'Create a new Record': create a new record with new values\n"
+#~ "- 'Update a Record': update the values of a record\n"
+#~ "- 'Execute several actions': define an action that triggers several other "
+#~ "server actions\n"
+#~ "- 'Send Email': post a message, a note or send an email (Discuss)\n"
+#~ "- 'Add Followers': add followers to a record (Discuss)\n"
+#~ "- 'Create Next Activity': create an activity (Discuss)\n"
+#~ "- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+#~ msgstr ""
+#~ "Sunucu eylemi türü. Aşağıdaki değerler mevcuttur:\n"
+#~ "- 'Python Kodunu Yürüt': yürütülecek bir python kodu bloğu\n"
+#~ "- 'Yeni Kayıt Oluştur': yeni değerlerle yeni bir kayıt oluşturun\n"
+#~ "- 'Bir Kaydı Güncelle': bir kaydın değerlerini güncelleyin\n"
+#~ "- 'Birkaç eylem yürütün': diğer birkaç sunucu eylemini tetikleyen bir "
+#~ "eylem tanımlayın\n"
+#~ "- 'E-posta Gönder': bir mesaj, not gönderin veya bir e-posta gönderin "
+#~ "(Tartış)\n"
+#~ "- 'Takipçi Ekle': bir kayda takipçi ekleyin (Tartış)\n"
+#~ "- 'Sonraki Etkinlik Oluştur': bir etkinlik oluşturun (Tartış)\n"
+#~ "- 'SMS Metin Mesajı Gönder': SMS gönderin, belgelere kaydedin (SMS)"
 
 #~ msgid "Action Name"
 #~ msgstr "Eylem Adı"

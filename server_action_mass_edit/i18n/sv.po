@@ -32,12 +32,6 @@ msgstr ""
 "inkluderar dem."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
-msgid "Action To Do"
-msgstr "Åtgärder att vidta"
-
-#. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
 #, python-format
@@ -127,12 +121,6 @@ msgid "If set, this message will be displayed in the wizard."
 msgstr "Om detta anges kommer meddelandet att visas i guiden."
 
 #. module: server_action_mass_edit
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line____last_update
-#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard____last_update
-msgid "Last Modified on"
-msgstr "Senast redigerad"
-
-#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
 msgid "Last Updated by"
@@ -160,6 +148,11 @@ msgstr "Massredigera rad"
 #: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
 msgid "Mass Edit Records"
 msgstr "Massredigera poster"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
+msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -257,32 +250,33 @@ msgstr ""
 "Behandlingen kommer att behandlas på den %(amount)d utvalda posten/posterna."
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
 msgid ""
 "Type of server action. The following values are available:\n"
-"- 'Execute Python Code': a block of python code that will be executed\n"
-"- 'Create a new Record': create a new record with new values\n"
 "- 'Update a Record': update the values of a record\n"
-"- 'Execute several actions': define an action that triggers several other "
-"server actions\n"
+"- 'Create Activity': create an activity (Discuss)\n"
 "- 'Send Email': post a message, a note or send an email (Discuss)\n"
-"- 'Add Followers': add followers to a record (Discuss)\n"
-"- 'Create Next Activity': create an activity (Discuss)\n"
-"- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
 msgstr ""
-"Typ av serveråtgärd. Följande värden är tillgängliga:\n"
-"- \"Execute Python Code\": ett block med Python-kod som kommer att "
-"exekveras\n"
-"- 'Skapa en ny post': skapa en ny post med nya värden\n"
-"- 'Uppdatera en post': uppdatera värdena för en post\n"
-"- \"Utför flera åtgärder\": definiera en åtgärd som utlöser flera andra "
-"serveråtgärder\n"
-"- 'Skicka e-post': posta ett meddelande, en anteckning eller skicka ett e-"
-"postmeddelande (Discuss)\n"
-"- \"Lägg till följare\": lägg till följare till en post (Diskutera)\n"
-"- 'Skapa nästa aktivitet': skapa en aktivitet (Diskutera)\n"
-"- \"Skicka SMS\": skicka SMS, logga dem på dokument (SMS)"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
+msgstr ""
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
@@ -304,6 +298,37 @@ msgid ""
 msgstr ""
 "Du har valt %(origin_amount)d post(er) som inte kan bearbetas.\n"
 "Endast %(amount)d post(er) kommer att behandlas."
+
+#~ msgid "Action To Do"
+#~ msgstr "Åtgärder att vidta"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Senast redigerad"
+
+#~ msgid ""
+#~ "Type of server action. The following values are available:\n"
+#~ "- 'Execute Python Code': a block of python code that will be executed\n"
+#~ "- 'Create a new Record': create a new record with new values\n"
+#~ "- 'Update a Record': update the values of a record\n"
+#~ "- 'Execute several actions': define an action that triggers several other "
+#~ "server actions\n"
+#~ "- 'Send Email': post a message, a note or send an email (Discuss)\n"
+#~ "- 'Add Followers': add followers to a record (Discuss)\n"
+#~ "- 'Create Next Activity': create an activity (Discuss)\n"
+#~ "- 'Send SMS Text Message': send SMS, log them on documents (SMS)"
+#~ msgstr ""
+#~ "Typ av serveråtgärd. Följande värden är tillgängliga:\n"
+#~ "- \"Execute Python Code\": ett block med Python-kod som kommer att "
+#~ "exekveras\n"
+#~ "- 'Skapa en ny post': skapa en ny post med nya värden\n"
+#~ "- 'Uppdatera en post': uppdatera värdena för en post\n"
+#~ "- \"Utför flera åtgärder\": definiera en åtgärd som utlöser flera andra "
+#~ "serveråtgärder\n"
+#~ "- 'Skicka e-post': posta ett meddelande, en anteckning eller skicka ett e-"
+#~ "postmeddelande (Discuss)\n"
+#~ "- \"Lägg till följare\": lägg till följare till en post (Diskutera)\n"
+#~ "- 'Skapa nästa aktivitet': skapa en aktivitet (Diskutera)\n"
+#~ "- \"Skicka SMS\": skicka SMS, logga dem på dokument (SMS)"
 
 #~ msgid "Name"
 #~ msgstr "Namn"
