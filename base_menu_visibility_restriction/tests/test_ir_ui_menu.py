@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestIrUiMenuCase(TransactionCase):
     def setUp(self):
-        super(TestIrUiMenuCase, self).setUp()
+        super().setUp()
         self.user_admin = self.browse_ref("base.user_admin").id
         self.group_hide_menu = self.env["res.groups"].create(
             {"name": "Hide menu items custom", "users": [(4, self.user_admin)]}
