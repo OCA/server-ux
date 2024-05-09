@@ -4,7 +4,6 @@ from odoo import api, fields, models, tools
 
 
 class IrUiMenu(models.Model):
-
     _inherit = "ir.ui.menu"
 
     excluded_group_ids = fields.Many2many(
