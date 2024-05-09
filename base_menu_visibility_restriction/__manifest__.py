@@ -3,7 +3,7 @@
 
 {
     "name": "Base Menu Visibility Restriction",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Extra Tools",
     "development_status": "Production/Stable",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -13,6 +13,5 @@
     "depends": ["web_tour"],
     "maintainers": ["victoralmau"],
     "data": ["views/ir_ui_menu.xml"],
-    "demo": ["demo/res_group.xml", "demo/ir_ui_menu.xml"],
     "installable": True,
 }
