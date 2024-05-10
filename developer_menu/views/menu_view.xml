@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<menuitem
+        id="conf_tech"
+        parent="base.menu_administration"
+        name="🧰 Dev"
+        groups="base.group_erp_manager"
+        sequence="0"
+    >
+    <menuitem id="model" name="Models" action="base.action_model_model" sequence="10" />
+    <menuitem
+            id="fields"
+            name="Fields"
+            action="base.action_model_fields"
+            sequence="10"
+        />
+    <menuitem
+            id="rec_rule"
+            name="📑 Record Rules"
+            action="base.action_rule"
+            sequence="20"
+        />
+    <menuitem id="view" name="Views" action="base.action_ui_view" sequence="30" />
+    <menuitem id="menu" name="📃 Menus" action="base.grant_menu_access" sequence="40" />
+    <menuitem
+            id="model_data"
+            name="Model Data"
+            action="base.action_model_data"
+            sequence="50"
+        />
+    <menuitem id="cron" name="📅 Crons" action="base.ir_cron_act" sequence="70" />
+    <menuitem
+            id="window"
+            name="Actions Window"
+            action="base.ir_action_window"
+            sequence="80"
+        />
+    <menuitem
+            id="server"
+            name="⚙ Actions Server"
+            action="base.action_server_action"
+            sequence="90"
+        />
+    <menuitem
+            id="report"
+            name="📄 Reports"
+            action="base.ir_action_report"
+            sequence="100"
+        />
+    <menuitem
+            id="param"
+            name="Parameters"
+            action="base.ir_config_list_action"
+            sequence="110"
+        />
+    <menuitem
+            id="seq"
+            name="🔢 Sequences"
+            action="base.ir_sequence_form"
+            sequence="115"
+        />
+    <menuitem
+            id="property"
+            name="Properties"
+            action="base.ir_property_form"
+            sequence="120"
+        />
+    <menuitem
+            id="mail_tmpl"
+            name="📧 Mail Templates"
+            action="mail.action_email_template_tree_all"
+            sequence="140"
+        />
+</menuitem>
+
+
+</odoo>

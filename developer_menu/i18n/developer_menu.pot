@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* developer_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.window
+msgid "Actions Window"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.fields
+msgid "Fields"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.model_data
+msgid "Model Data"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.model
+msgid "Models"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.param
+msgid "Parameters"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.property
+msgid "Properties"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.view
+msgid "Views"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.server
+msgid "⚙ Actions Server"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.menu
+msgid "📃 Menus"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.report
+msgid "📄 Reports"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.cron
+msgid "📅 Crons"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.rec_rule
+msgid "📑 Record Rules"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.mail_tmpl
+msgid "📧 Mail Templates"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.seq
+msgid "🔢 Sequences"
+msgstr ""
+
+#. module: developer_menu
+#: model:ir.ui.menu,name:developer_menu.conf_tech
+msgid "🧰 Dev"
+msgstr ""
