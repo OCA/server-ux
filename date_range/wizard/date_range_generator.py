@@ -40,7 +40,12 @@ class DateRangeGenerator(models.TransientModel):
         store=True,
         required=True,
     )
-    date_end = fields.Date("End date", compute="_compute_date_end", readonly=False)
+    date_end = fields.Date(
+        "End date",
+        compute="_compute_date_end",
+        readonly=False,
+        store=True,
+    )
     type_id = fields.Many2one(
         comodel_name="date.range.type",
         string="Type",
