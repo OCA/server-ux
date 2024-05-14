@@ -6,16 +6,16 @@
         <field name="name">tier.definition.tree</field>
         <field name="model">tier.definition</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree default_order="sequence">
+                <field name="sequence" widget="handle" />
                 <field name="model_id" />
                 <field name="name" />
                 <field name="review_type" />
                 <field name="reviewer_id" />
                 <field name="reviewer_group_id" />
                 <field name="reviewer_field_id" />
-                <field name="sequence" />
                 <field name="company_id" groups="base.group_multi_company" />
-                <field name="active" />
+                <field name="active" widget="boolean_toggle" />
             </tree>
         </field>
     </record>
@@ -132,6 +132,9 @@
                         context="{'group_by':'model_id'}"
                     />
                 </group>
+                <searchpanel>
+                    <field name="model_id" />
+                </searchpanel>
             </search>
         </field>
     </record>
