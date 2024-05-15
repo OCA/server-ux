@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2023-12-28 15:22+0000\n"
+"PO-Revision-Date: 2024-05-15 09:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -152,7 +152,7 @@ msgstr "Modifica di massa record"
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
 msgid "Mass Server Action"
-msgstr ""
+msgstr "Azione server di massa"
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -253,7 +253,7 @@ msgstr "L'operazione sarà eseguita sui %(amount)d record selezionati."
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
@@ -272,11 +272,25 @@ msgid ""
 "- 'Execute Existing Actions': define an action that triggers several other "
 "server actions\n"
 msgstr ""
+"Tipi si azioni server. Sono disponibili i seguenti valori:\n"
+"- 'Aggiorna record': aggiorna il valore di un record\n"
+"- 'Crea attività': crea una attività (Discussione)\n"
+"- 'Invia e.mail': inserisce un messaggio, una nota o invia una e-mail "
+"(Discussione)\n"
+"- 'Invia SMS': invia SMS, ne tiene traccia nei documenti (SMS)\n"
+"- 'Aggiungi/rimuiovi chi segue': aggiunge o rimuiove chi segue un record "
+"(Discussione)\n"
+"- 'Crea record': crea un nuovo record con valori nuovi\n"
+"- 'Esegui codice': un blocco di codice Python che verrà eseguito\n"
+"- 'Invia notivica webhook': invia una richiesta POST ad un sistema esterno, "
+"conosciuto come un webhook\n"
+"- 'Esegue azioni esistenti': definisce una azione che esegue diverse altre "
+"azioni\n"
 
 #. module: server_action_mass_edit
 #: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
 msgid "View"
-msgstr ""
+msgstr "Vista"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
