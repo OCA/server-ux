@@ -1,4 +1,4 @@
-# Copyright 2024 Quartile Limited
+# Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -9,16 +9,13 @@ class TestTemplateStringSwapper(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.view_obj = cls.env["ir.ui.view"]
-        ja = (
-            cls.env["res.lang"]
-            .with_context(active_test=False)
-            .search([("code", "=", "ja_JP")])
-        )
-        cls.env["base.language.install"].create({"lang_ids": ja.ids}).lang_install()
+        cls.env["base.language.install"].create(
+            {"lang": "ja_JP", "overwrite": True}
+        ).lang_install()
 
     def test_template_string_swapper(self):
         template = "web.external_layout"
-        view = self.view_obj._get(template).sudo()
+        view = self.view_obj.browse(self.view_obj.get_view_id(template)).sudo()
         values = {"company": self.env.company, "report_type": "pdf", "o": view}
         result = self.view_obj._render_template(template, values)
         self.assertTrue("Page:" in str(result))

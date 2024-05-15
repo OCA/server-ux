@@ -10,6 +10,7 @@
                 <field
                     name="template_id"
                     attrs="{'readonly':[('report_id','!=',False)]}"
+                    force_save="1"
                 />
                 <field
                     name="lang"

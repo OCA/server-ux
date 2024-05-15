@@ -1,4 +1,4 @@
-# Copyright 2024 Quartile Limited
+# Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
@@ -24,7 +24,7 @@ class IrUiView(models.Model):
             lang_match = re.search(r'data-oe-lang="([^"]+)"', result_str)
             if lang_match:
                 lang_code = lang_match.group(1)
-        view = self._get(template).sudo()
+        view = self.browse(self.get_view_id(template)).sudo()
         content_mappings = (
             self.env["template.content.mapping"]
             .sudo()

@@ -1,4 +1,4 @@
-# Copyright 2024 Quartile Limited
+# Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -19,10 +19,6 @@ class TemplateContentMapping(models.Model):
         "ir.ui.view",
         domain=[("type", "=", "qweb")],
         required=True,
-        compute="_compute_template_id",
-        store=True,
-        readonly=False,
-        precompute=True,
         help="Select the main template of the report / frontend page to be modified.",
     )
     lang = fields.Selection(
@@ -50,13 +46,13 @@ class TemplateContentMapping(models.Model):
                     f"{record.content_from or ''} -> {record.content_to or ''}"
                 )
 
-    @api.depends("report_id")
-    def _compute_template_id(self):
-        for rec in self:
-            rec.template_id = False
-            if rec.report_id:
-                report_name = rec.report_id.report_name
-                rec.template_id = self.env["ir.ui.view"]._get(report_name).sudo()
+    @api.onchange("report_id")
+    def _onchange_report_id(self):
+        self.template_id = False
+        if self.report_id:
+            report_name = self.report_id.report_name
+            view = self.env["ir.ui.view"]
+            self.template_id = view.browse(view.get_view_id(report_name)).sudo()
 
     @api.depends("lang")
     def _compute_active_lang_count(self):
