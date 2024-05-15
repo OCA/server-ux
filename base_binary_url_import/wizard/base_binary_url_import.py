@@ -5,12 +5,13 @@ import json
 import logging
 from collections import Counter
 
-import pyrfc6266
 import requests
 from requests.exceptions import HTTPError
 
 from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, UserError
+
+from ..libs import pyrfc6266
 
 DEFAULT_BINARY_CHUNK_SIZE = 32768
 DEFAULT_BINARY_IMPORT_TIMEOUT = 5

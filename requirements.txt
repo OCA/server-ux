@@ -1,3 +1,2 @@
 # generated from manifests external_dependencies
-pyrfc6266
 responses

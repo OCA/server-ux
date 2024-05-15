@@ -17,5 +17,4 @@
         "data/ir_config_parameter.xml",
         "wizard/base_binary_url_import_view.xml",
     ],
-    "external_dependencies": {"python": ["pyrfc6266"]},
 }
