@@ -14,7 +14,7 @@ export class ReviewsTable extends Component {
         this.reviews = [];
     }
     _getReviewData() {
-        const records = this.env.model.root.data.review_ids.records;
+        const records = this.props.record.data.review_ids.records;
         const reviews = [];
         for (var i = 0; i < records.length; i++) {
             reviews.push(records[i].data);
