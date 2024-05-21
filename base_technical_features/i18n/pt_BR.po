@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-21 04:22+0000\n"
-"PO-Revision-Date: 2019-09-03 03:24+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-21 00:23+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
@@ -55,7 +56,7 @@ msgstr "O usuário não tem acesso aos recursos técnicos."
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Usuário"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
