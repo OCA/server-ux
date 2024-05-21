@@ -253,6 +253,7 @@ class MassEditingWizard(models.TransientModel):
                 self.env[server_action.model_id.model], field, fields_info[field.name]
             )
             field_info["relation_field"] = False
+            field_info["readonly"] = False
             if not line.apply_domain and "domain" in field_info:
                 field_info["domain"] = "[]"
             res.update(self._prepare_fields(line, field, field_info))
