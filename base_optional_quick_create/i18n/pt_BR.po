@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-22 11:41+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
-#, fuzzy
 msgid "Avoid Quick Create"
 msgstr "Evite criação rápida"
 
@@ -33,6 +34,9 @@ msgid ""
 "Can't create %(model)s with name %(name)s quickly.\n"
 "Please contact your system administrator to disable this behaviour."
 msgstr ""
+"Não é possível criar %(model)s com o nome %(name)s rapidamente.\n"
+"Entre em contato com o administrador do sistema para desativar esse "
+"comportamento."
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
