@@ -11,7 +11,7 @@
                 <group>
                     <group>
                         <field name="forward_reviewer_id" />
-                        <field name="forward_description" required="1" />
+                        <field name="forward_description" />
                     </group>
                     <group>
                         <field name="has_comment" invisible="1" />

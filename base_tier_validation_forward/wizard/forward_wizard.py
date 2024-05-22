@@ -12,6 +12,7 @@ class ValidationForwardWizard(models.TransientModel):
     forward_reviewer_id = fields.Many2one(
         comodel_name="res.users",
         string="Next Reviewer",
+        domain="[('id', '!=', uid)]",
         required=True,
     )
     forward_description = fields.Char()
