@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <template
+        id="tier_validation_label"
+        inherit_id="base_tier_validation.tier_validation_label"
+    >
+        <xpath expr="//div[@role='alert']" position="after">
+            <div
+                class="alert alert-warning"
+                role="alert"
+                t-attf-attrs="{'invisible':[('on_update_message','=', False)]}"
+                style="margin-bottom:0px;"
+            >
+                <field name="on_update_message" readonly="1" />
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='alert alert-warning']" position="attributes">
+            <attribute name="t-attf-attrs">{'invisible': [ '|', '|',
+             ('validated', '=', True),
+             ('rejected', '=', True), ('review_ids', '=', [])]}
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@class='alert alert-success']" position="attributes">
+            <attribute name="t-attf-attrs">{'invisible': ['|',
+             ('validated', '!=', True),('review_ids', '=', [])]}
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@class='alert alert-danger']" position="attributes">
+            <attribute name="t-attf-attrs">{'invisible': ['|',
+             ('rejected', '!=', True),('review_ids', '=', [])]}
+            </attribute>
+        </xpath>
+    </template>
+</odoo>
