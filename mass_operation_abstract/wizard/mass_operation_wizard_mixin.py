@@ -1,5 +1,5 @@
 # Copyright (C) 2018 - Today: GRAP (http://www.grap.coop)
-# @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+# Author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -24,13 +24,10 @@ class MassOperationWizardMixin(models.AbstractModel):
 
     # Column Section
     selected_item_qty = fields.Integer(readonly=True)
-
     remaining_item_qty = fields.Integer(readonly=True)
-
     operation_description_info = fields.Text(readonly=True)
     operation_description_warning = fields.Text(readonly=True)
     operation_description_danger = fields.Text(readonly=True)
-
     message = fields.Text(readonly=True)
 
     @api.model
@@ -49,17 +46,20 @@ class MassOperationWizardMixin(models.AbstractModel):
 
         if len(active_ids) == len(remaining_items):
             operation_description_info = _(
-                "The treatment will be processed on the %d selected elements."
-            ) % len(active_ids)
+                "The treatment will be processed on the %(count)d selected elements."
+            ) % {"count": len(active_ids)}
         elif len(remaining_items):
             operation_description_warning = _(
-                "You have selected %d items that can not be processed."
-                " Only %d items will be processed."
-            ) % (len(active_ids) - len(remaining_items), len(remaining_items))
+                "You have selected %(not_processed)d items that can not be processed."
+                " Only %(processed)d items will be processed."
+            ) % {
+                "not_processed": len(active_ids) - len(remaining_items),
+                "processed": len(remaining_items),
+            }
         else:
             operation_description_danger = _(
-                "None of the %d items you have selected can be processed."
-            ) % len(active_ids)
+                "None of the %(count)d items you have selected can be processed."
+            ) % {"count": len(active_ids)}
 
         res.update(
             {
