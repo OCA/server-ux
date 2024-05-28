@@ -65,7 +65,9 @@ class IrSequence(models.Model):
             interpolated_prefix = _interpolate(self.prefix, d)
             interpolated_suffix = _interpolate(self.suffix, d)
         except ValueError:
-            raise UserError(_("Invalid prefix or suffix for sequence '%s'") % self.name)
+            raise UserError(
+                _("Invalid prefix or suffix for sequence '%s'") % self.name
+            ) from None
         return interpolated_prefix, interpolated_suffix
 
 
