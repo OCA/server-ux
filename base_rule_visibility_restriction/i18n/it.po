@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_rule_visibility_restriction
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-09-04 18:39+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_rule_visibility_restriction
+#: model:ir.model.fields,field_description:base_rule_visibility_restriction.field_ir_rule__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: base_rule_visibility_restriction
+#: model:ir.model.fields,field_description:base_rule_visibility_restriction.field_ir_rule__excluded_group_ids
+#: model_terms:ir.ui.view,arch_db:base_rule_visibility_restriction.view_rule_form
+msgid "Excluded Groups"
+msgstr "Gruppi esclusi"
+
+#. module: base_rule_visibility_restriction
+#: model:ir.model.fields,field_description:base_rule_visibility_restriction.field_ir_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_rule_visibility_restriction
+#: model:ir.model.fields,field_description:base_rule_visibility_restriction.field_ir_rule____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: base_rule_visibility_restriction
+#: model:ir.model,name:base_rule_visibility_restriction.model_ir_rule
+msgid "Record Rule"
+msgstr "Regola su record"
