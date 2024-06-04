@@ -12,6 +12,7 @@ from odoo.exceptions import ValidationError
 class DateRangeType(models.Model):
     _name = "date.range.type"
     _description = "Date Range Type"
+    _order = "name,id"
 
     @api.model
     def _default_company(self):
