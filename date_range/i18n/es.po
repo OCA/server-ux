@@ -392,11 +392,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-msgid "Type Name"
-msgstr "Nombre del tipo"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 msgid "Unit Of Time"
@@ -461,6 +456,9 @@ msgstr "semanas"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "años"
+
+#~ msgid "Type Name"
+#~ msgstr "Nombre del tipo"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Modificado por última vez el"

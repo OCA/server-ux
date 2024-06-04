@@ -326,7 +326,8 @@ msgstr "Inserire la data fine o il numero di intervalli da generare."
 #: code:addons/date_range/wizard/date_range_generator.py:0
 #, python-format
 msgid "Please set a prefix or an expression to generate the range names."
-msgstr "Impostare un prefisso o una espressione per generare i nomi intervallo."
+msgstr ""
+"Impostare un prefisso o una espressione per generare i nomi intervallo."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__range_name_preview
@@ -394,11 +395,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-msgid "Type Name"
-msgstr "Nome tipo"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 msgid "Unit Of Time"
@@ -463,6 +459,9 @@ msgstr "settimane"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "anni"
+
+#~ msgid "Type Name"
+#~ msgstr "Nome tipo"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
