@@ -381,12 +381,6 @@ msgid "Type"
 msgstr "Mota"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-#, fuzzy
-msgid "Type Name"
-msgstr "Izena"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 msgid "Unit Of Time"
@@ -449,3 +443,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Type Name"
+#~ msgstr "Izena"
