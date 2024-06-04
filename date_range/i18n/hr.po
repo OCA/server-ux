@@ -386,12 +386,6 @@ msgid "Type"
 msgstr "Tip"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-#, fuzzy
-msgid "Type Name"
-msgstr "Ime"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 #, fuzzy
@@ -455,6 +449,10 @@ msgstr "tjedana"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "godina"
+
+#, fuzzy
+#~ msgid "Type Name"
+#~ msgstr "Ime"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnje modificirano"

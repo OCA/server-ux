@@ -403,11 +403,6 @@ msgid "Type"
 msgstr "Type"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-msgid "Type Name"
-msgstr "Type Naam"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 #, fuzzy
@@ -473,6 +468,9 @@ msgstr "weken"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "jaren"
+
+#~ msgid "Type Name"
+#~ msgstr "Type Naam"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Laatst gewijzigd op"
