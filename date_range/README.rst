@@ -72,7 +72,7 @@ model:
 
    _date_range_search_field = "invoice_date"
 
-.. |search_view| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_many2one_search_field.png
+.. |search_view| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_many2one_search_field.png
 
 Usage
 =====
@@ -124,14 +124,14 @@ To configure this module, you need to:
 
    |image8|
 
-.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_type_create.png
-.. |image2| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_create.png
-.. |image3| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_wizard.png
-.. |image4| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_wizard_result.png
-.. |image5| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_type_as_filter.png
-.. |image6| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_as_filter.png
-.. |image7| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_as_filter_result.png
-.. |image8| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/date_range/static/description/date_range_type_autogeneration.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_type_create.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_create.png
+.. |image3| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_wizard.png
+.. |image4| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_wizard_result.png
+.. |image5| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_type_as_filter.png
+.. |image6| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_as_filter.png
+.. |image7| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_as_filter_result.png
+.. |image8| image:: https://raw.githubusercontent.com/OCA/server-ux/17.0/date_range/static/description/date_range_type_autogeneration.png
 
 Bug Tracker
 ===========
