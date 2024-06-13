@@ -1,4 +1,4 @@
-# Copyright 2022 Camptocamp SA
+# Copyright 2022 Camptocamp
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
     "name": "Test Base Binary URL Import",
