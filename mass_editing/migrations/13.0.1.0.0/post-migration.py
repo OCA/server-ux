@@ -10,6 +10,19 @@ def migrate(cr, version):
     cr.execute("SELECT COUNT(*) FROM mass_editing_line")
     if cr.fetchone()[0] > 0:
         return
+
+    # Don't execute if the old mass_field_rel does not exists
+    # In the case that the migration is done in 12 but
+    # mass_editing_line is empty
+    cr.execute(
+        """SELECT 1 FROM information_schema.tables
+            WHERE table_schema = 'public'
+            AND table_name = 'mass_field_rel';
+        """
+    )
+    if cr.fetchone() is None:
+        return
+
     # Rename table for consistency reason
     cr.execute(
         """
