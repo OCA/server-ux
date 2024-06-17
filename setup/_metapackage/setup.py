@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-date_range_account>=16.0dev,<16.1dev',
         'odoo-addon-developer_menu>=16.0dev,<16.1dev',
         'odoo-addon-filter_multi_user>=16.0dev,<16.1dev',
+        'odoo-addon-misc_settings>=16.0dev,<16.1dev',
         'odoo-addon-multi_step_wizard>=16.0dev,<16.1dev',
         'odoo-addon-sequence_reset_period>=16.0dev,<16.1dev',
         'odoo-addon-server_action_mass_edit>=16.0dev,<16.1dev',
