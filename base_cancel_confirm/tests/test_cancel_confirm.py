@@ -103,18 +103,3 @@ class TestCancelConfirm(common.TransactionCase):
             form = etree.fromstring(f._view["arch"])
             self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
             self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
-
-        # Check view difference, it should change base_model from view_id
-        wizard_lang_export = self.env.ref("base.wizard_lang_export")
-        res = self.test_record.get_view(
-            view_id=wizard_lang_export.id,
-            view_type="form",
-        )
-        self.assertEqual(res["model"], wizard_lang_export.model)
-
-        # Check view type is tree.
-        wizard_lang_export = self.env.ref("base.wizard_lang_export")
-        self.test_record.get_view(
-            view_id=wizard_lang_export.id,
-            view_type="tree",
-        )

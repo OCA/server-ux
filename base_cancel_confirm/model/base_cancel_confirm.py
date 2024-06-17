@@ -6,6 +6,7 @@ from lxml import etree
 
 from odoo import _, fields, models, tools
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import frozendict
 
 
 class BaseCancelConfirm(models.AbstractModel):
@@ -51,33 +52,27 @@ class BaseCancelConfirm(models.AbstractModel):
     def clear_cancel_confirm_data(self):
         self.write({"cancel_confirm": False, "cancel_reason": False})
 
-    def get_view(
-        self,
-        view_id=None,
-        view_type="form",
-    ):
-        res = super().get_view(
-            view_id=view_id,
-            view_type=view_type,
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
+            View = self.env["ir.ui.view"]
+            if view_id and res.get("base_model", self._name) != self._name:
+                View = View.with_context(base_model_name=res["base_model"])
             doc = etree.XML(res["arch"])
+            all_models = res["models"].copy()
             for node in doc.xpath(self._cancel_reason_xpath):
                 str_element = self.env["ir.qweb"]._render(
                     "base_cancel_confirm.cancel_reason_template"
                 )
                 new_node = etree.fromstring(str_element)
+                new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
+                new_node = etree.fromstring(new_arch)
                 for new_element in new_node:
                     node.addnext(new_element)
-            # Override context for postprocessing
-            view_env = self.env["ir.ui.view"]
-            if view_id:
-                view = view_env.search([("id", "=", view_id)])
-                res["model"] = view.model if view else res["model"]
-            new_arch, new_fields = view_env.postprocess_and_fields(doc, self._name)
-            res["arch"] = new_arch
-            # We don't want to loose previous configuration, so, we only want to add
-            # the new fields
-            new_fields.update(res["models"])
-            res["models"] = new_fields
+                for model in new_models:
+                    if model in all_models:
+                        continue
+                    all_models[model] = new_models[model]
+            res["arch"] = etree.tostring(doc)
+            res["models"] = frozendict(all_models)
         return res
