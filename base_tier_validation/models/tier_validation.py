@@ -590,6 +590,9 @@ class TierValidation(models.AbstractModel):
         new_node = etree.fromstring(str_element)
         return new_node
 
+    def _get_tier_validation_readonly_domain(self):
+        return [("review_ids", "!=", [])]
+
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(view_id=view_id, view_type=view_type, **options)
@@ -645,7 +648,7 @@ class TierValidation(models.AbstractModel):
                     modifiers["readonly"] = OR(
                         [
                             modifiers.get("readonly", []) or [],
-                            [("review_ids", "!=", [])],
+                            self._get_tier_validation_readonly_domain(),
                         ]
                     )
                     node.attrib["modifiers"] = json.dumps(modifiers)
