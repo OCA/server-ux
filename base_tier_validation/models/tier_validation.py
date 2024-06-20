@@ -236,11 +236,15 @@ class TierValidation(models.AbstractModel):
             if isinstance(rec.id, models.NewId):
                 rec.need_validation = False
                 continue
-            tiers = self.env["tier.definition"].search(
-                [
-                    ("model", "=", self._name),
-                    ("company_id", "in", [False] + self.env.company.ids),
-                ]
+            tiers = (
+                self.env["tier.definition"]
+                .with_context(active_test=True)
+                .search(
+                    [
+                        ("model", "=", self._name),
+                        ("company_id", "in", [False] + self.env.company.ids),
+                    ]
+                )
             )
             valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
             rec.need_validation = (
