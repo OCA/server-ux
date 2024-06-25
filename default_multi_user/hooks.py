@@ -1,4 +1,4 @@
-# Copyright 2020 ForgeFlow S.L.
+# Copyright 2020-24 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import json
@@ -10,7 +10,7 @@ from odoo.addons.base.models.ir_default import IrDefault
 
 def post_load_hook():
     @api.model
-    @tools.ormcache("self.env.uid", "model_name", "condition")
+    @tools.ormcache("self.env.uid", "self.env.company.id", "model_name", "condition")
     def new_get_model_defaults(self, model_name, condition=False):
         if not hasattr(self, "_get_model_defaults_query_and_params"):
             return self.get_model_defaults_original(model_name, condition=condition)
