@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_tier_validation_board
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_tier_validation_board
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_board.tier_review_view_kanban
+msgid "<strong>Comment: </strong>"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_board.tier_review_view_kanban
+msgid "<strong>Requsted by: </strong>"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model_terms:ir.ui.view,arch_db:base_tier_validation_board.tier_review_view_kanban
+msgid "<strong>Todo by: </strong>"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model:ir.model.fields,field_description:base_tier_validation_board.field_tier_review__related_model_instance
+msgid "Document"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model:ir.model.fields,field_description:base_tier_validation_board.field_tier_review__res_name
+msgid "Resource Name"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model:res.groups,name:base_tier_validation_board.group_show_tier_review_board
+msgid "Show tier review board"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model:ir.model,name:base_tier_validation_board.model_tier_review
+msgid "Tier Review"
+msgstr ""
+
+#. module: base_tier_validation_board
+#: model:ir.actions.act_window,name:base_tier_validation_board.open_boards_tier_reviews
+#: model:ir.ui.menu,name:base_tier_validation_board.board_menu_tier_reviews
+msgid "Tier Reviews"
+msgstr ""
