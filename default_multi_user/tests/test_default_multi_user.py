@@ -1,4 +1,4 @@
-# Copyright 2020 ForgeFlow S.L.
+# Copyright 2020-24 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import json
@@ -148,3 +148,33 @@ class TestDefaultMultiUser(common.TransactionCase):
         self.user_1.company_id = self.other_company
         rec_3 = self.partner_model.with_user(self.user_1).create({"name": "Test"})
         self.assertNotEqual(rec_3.phone, self.test_value)
+
+    def test_06_user_switch_company(self):
+        """Test defaults changing when a user switches company"""
+        global_value = "+34 666 555 444"
+        self.default_model.create(
+            {
+                "field_id": self.field.id,
+                "json_value": json.dumps(global_value, ensure_ascii=False),
+            }
+        )
+        self.default_model.create(
+            {
+                "field_id": self.field.id,
+                "json_value": json.dumps(self.test_value, ensure_ascii=False),
+                "company_id": self.main_company.id,
+            }
+        )
+
+        rec_1 = (
+            self.partner_model.with_user(self.user_2)
+            .with_company(self.main_company)
+            .create({"name": "Test"})
+        )
+        self.assertEqual(rec_1.phone, self.test_value)
+        rec_2 = (
+            self.partner_model.with_user(self.user_2)
+            .with_company(self.other_company)
+            .create({"name": "Test"})
+        )
+        self.assertEqual(rec_2.phone, global_value)
