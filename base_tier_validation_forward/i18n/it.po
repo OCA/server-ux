@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-12 10:34+0000\n"
+"PO-Revision-Date: 2024-06-26 12:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -179,7 +179,7 @@ msgstr "Definizione livello"
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_review
 msgid "Tier Review"
-msgstr "Livello revisione"
+msgstr "Revisione livello"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_validation
