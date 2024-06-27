@@ -39,7 +39,8 @@ to its record. The record is found using the document quick access rules.
 Configuration
 =============
 
-# Create an storage on your system using the storage project from OCA
+# Create an storage on your system using the storage project from OCA.
+  Another option is using the endpoint project.
 
 Usage
 =====
