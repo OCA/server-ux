@@ -153,5 +153,6 @@
         id="menu_tier_definition"
         parent="menu_tier_confirmation"
         action="tier_definition_action"
+        sequence="10"
     />
 </odoo>
