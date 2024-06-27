@@ -18,6 +18,7 @@ class TierValidationTester(models.Model):
         ],
         default="draft",
     )
+    test_validation_field = fields.Integer(default=0)
     test_field = fields.Float()
     user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
 
@@ -40,6 +41,7 @@ class TierValidationTester2(models.Model):
         default="draft",
     )
     test_field = fields.Float()
+    test_validation_field = fields.Float()
     user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
 
     def action_confirm(self):
