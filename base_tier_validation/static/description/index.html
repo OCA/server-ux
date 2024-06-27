@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -412,7 +413,7 @@ development.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>To configure this module, you need to:</p>
+<p>To configure Tier Validations, you need to:</p>
 <ol class="arabic simple">
 <li>Go to <em>Settings &gt; Technical &gt; Tier Validations &gt; Tier Definition</em>.</li>
 <li>Create as many tiers as you want for any model having tier validation
@@ -423,6 +424,21 @@ functionality.</li>
 <li>If check <em>Notify Reviewers on Creation</em>, all possible reviewers will be notified by email when this definition is triggered.</li>
 <li>If check <em>Comment</em>, reviewers can comment after click Validate or Reject.</li>
 <li>If check <em>Approve by sequence</em>, reviewers is forced to review by specified sequence.</li>
+</ul>
+<p>To configure Tier Validation Exceptions, you need to:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Tier Validations &gt; Tier Validation Exceptions</em>.</li>
+<li>Create as many tiers validation exceptions as you want for any model
+having tier validation functionality.</li>
+<li>Add desired fields to be checked in <em>Fields</em>.</li>
+<li>You must check <em>Write under Validation</em>, <em>Write after Validation</em> or both.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul class="simple">
+<li>If you don’t create any exception, the Validated record will be readonly and cannot be modified.</li>
+<li>If check <em>Write under Validation</em>, records will be able to be modified only in the defined fields when the Validation process is ongoing.</li>
+<li>If check <em>Write after Validation</em>, records will be able to be modified only in the defined fields when the Validation process is finished.</li>
+<li>If check <em>Write after Validation</em> and <em>Write under Validation</em>, records will be able to be modified defined fields always.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
@@ -564,12 +580,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Saran Lim. &lt;<a class="reference external" href="mailto:saranl&#64;ecosoft.co.th">saranl&#64;ecosoft.co.th</a>&gt;</li>
 <li>Evan Soh &lt;<a class="reference external" href="mailto:evan.soh&#64;omnisoftsolution.com">evan.soh&#64;omnisoftsolution.com</a>&gt;</li>
 <li>Manuel Regidor &lt;<a class="reference external" href="mailto:manuel.regidor&#64;sygel.es">manuel.regidor&#64;sygel.es</a>&gt;</li>
+<li>Eduardo de Miguel &lt;<a class="reference external" href="mailto:edu&#64;moduon.team">edu&#64;moduon.team</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-22">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
