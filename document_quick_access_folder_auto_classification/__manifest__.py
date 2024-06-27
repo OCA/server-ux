@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
-    "depends": ["document_quick_access", "edi_storage_oca"],
+    "depends": ["document_quick_access", "edi_oca"],
     "external_dependencies": {
         "deb": ["libzbar0", "poppler-utils"],
         "python": ["pyzbar", "pdf2image"],
