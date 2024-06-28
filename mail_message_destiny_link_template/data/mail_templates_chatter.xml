@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="message_destiny_link">
+        <p>
+            <t t-if="edit">This <t
+                    t-esc="self.env['ir.model']._get(self._name).name.lower()"
+                /> has modified:</t>
+            <t t-else="">This <t
+                    t-esc="self.env['ir.model']._get(self._name).name.lower()"
+                /> has created:</t>
+            <t t-foreach="destiny" t-as="o">
+                <a href="#" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id"> <t
+                        t-esc="o.display_name"
+                    /></a><span t-if="destiny.ids[-1:] != o.ids">, </span>
+            </t>
+        </p>
+    </template>
+</odoo>
