@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,6 +61,7 @@ msgid "Document Quick Access Rule"
 msgstr ""
 
 #. module: document_quick_access
+#. odoo-python
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "Document cannot be found"
@@ -69,16 +70,6 @@ msgstr ""
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__id
 msgid "ID"
-msgstr ""
-
-#. module: document_quick_access
-#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_uid
-msgid "Last Archived by"
-msgstr ""
-
-#. module: document_quick_access
-#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_date
-msgid "Last Archived on"
 msgstr ""
 
 #. module: document_quick_access
@@ -107,6 +98,7 @@ msgid "Name"
 msgstr ""
 
 #. module: document_quick_access
+#. odoo-python
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "No format has been found for this record"
@@ -118,7 +110,7 @@ msgid "Priority"
 msgstr ""
 
 #. module: document_quick_access
-#. openerp-web
+#. odoo-javascript
 #: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:0
 #, python-format
 msgid "QR search"
