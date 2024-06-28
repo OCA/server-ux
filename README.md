@@ -49,6 +49,7 @@ addon | version | maintainers | summary
 [date_range](date_range/) | 16.0.1.0.9 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
 [date_range_account](date_range_account/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add Date Range menu entry in Invoicing app
 [developer_menu](developer_menu/) | 16.0.1.0.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Menu Shortcut for developer usage
+[document_quick_access](document_quick_access/) | 16.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Document quick access
 [filter_multi_user](filter_multi_user/) | 16.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to share user-defined filters filters among several users.
 [mail_message_destiny_link_template](mail_message_destiny_link_template/) | 16.0.1.0.0 | [![Shide](https://github.com/Shide.png?size=30px)](https://github.com/Shide) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Mail template to show destiny records in chatter.
 [misc_settings](misc_settings/) | 16.0.1.0.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Miscellaneous settings to be an anchor for your custom settings

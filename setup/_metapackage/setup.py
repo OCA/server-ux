@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-date_range>=16.0dev,<16.1dev',
         'odoo-addon-date_range_account>=16.0dev,<16.1dev',
         'odoo-addon-developer_menu>=16.0dev,<16.1dev',
+        'odoo-addon-document_quick_access>=16.0dev,<16.1dev',
         'odoo-addon-filter_multi_user>=16.0dev,<16.1dev',
         'odoo-addon-mail_message_destiny_link_template>=16.0dev,<16.1dev',
         'odoo-addon-misc_settings>=16.0dev,<16.1dev',
