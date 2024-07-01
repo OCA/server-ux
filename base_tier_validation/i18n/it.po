@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-26 10:45+0000\n"
+"PO-Revision-Date: 2024-07-01 11:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -63,7 +63,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_form
 msgid "<span class=\"oe_edit_only\">Model</span>"
-msgstr ""
+msgstr "<span class=\"oe_edit_only\">Modello</span>"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
@@ -182,6 +182,8 @@ msgid ""
 "At least one of these fields must be checked! Write under Validation, Write "
 "after Validation"
 msgstr ""
+"Almeno uno di questi campi deve essere selezionato! Scrivi in valutazione, "
+"Scrivi dopo validazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -251,7 +253,7 @@ msgstr "Impostazioni configurazione"
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "Create a new Validation Exception!"
-msgstr ""
+msgstr "Crea una nuova eccezione di validazione!"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_uid
@@ -327,7 +329,7 @@ msgstr "Campo in record collegato"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__field_ids
 msgid "Fields"
-msgstr ""
+msgstr "Campi"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -393,12 +395,12 @@ msgstr ""
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "It's fully validated"
-msgstr ""
+msgstr "Completamente validato"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "It's in the validation process"
-msgstr ""
+msgstr "È nel processo di validazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
@@ -494,6 +496,8 @@ msgid ""
 "Once created, you can decide which fields you want to be editable when the "
 "record:"
 msgstr ""
+"Una volta creato, si può decidere quali campi si vogliono modificare quando "
+"il record:"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -664,6 +668,8 @@ msgid ""
 "The model already exists for this company with this Write Validation "
 "configuration!"
 msgstr ""
+"Il modello esiste già per questa azienda con questa configurazione di "
+"scrittura validazione!"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -740,12 +746,12 @@ msgstr "Notifica accettazione livello approvazione"
 #: model:ir.ui.menu,name:base_tier_validation.menu_tier_validation_exception
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_form
 msgid "Tier Validation Exception"
-msgstr ""
+msgstr "Eccezione validazione livello"
 
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_tier_validation_exception
 msgid "Tier Validation Exceptions"
-msgstr ""
+msgstr "Eccezioni validazione livello"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
@@ -792,7 +798,7 @@ msgstr "Utente"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__valid_model_field_ids
 msgid "Valid Model Field"
-msgstr ""
+msgstr "Campo modello valido"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
@@ -857,22 +863,22 @@ msgstr "Senza validazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__allowed_to_write_after_validation
 msgid "Write after Validation"
-msgstr ""
+msgstr "Scrivi dopo validazione"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_search
 msgid "Write after validation"
-msgstr ""
+msgstr "Scrivi dopo validazione"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__allowed_to_write_under_validation
 msgid "Write under Validation"
-msgstr ""
+msgstr "Scrivi in validazione"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_search
 msgid "Write under validation"
-msgstr ""
+msgstr "Scrivi invalidazione"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -885,6 +891,11 @@ msgid ""
 "Only those fields can be modified:\n"
 "- %(allowed_fields)s"
 msgstr ""
+"Non si è abilitati a scrivere questi campi dopo la validazione.\n"
+"- %(not_allowed_fields)s\n"
+"\n"
+"Solo questi campi possono essere modificati:\n"
+"- %(allowed_fields)s"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -897,6 +908,11 @@ msgid ""
 "Only those fields can be modified:\n"
 "- %(allowed_fields)s"
 msgstr ""
+"Non si è abilitati a modificare questi campi in validazione.\n"
+"- %(not_allowed_fields)s\n"
+"\n"
+"Solo questi campi possono essere modificati:\n"
+"- %(allowed_fields)s"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
