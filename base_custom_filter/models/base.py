@@ -33,23 +33,24 @@ class Base(models.AbstractModel):
     @api.model
     def _add_grouped_groupby(self, res, custom_groupbys):
         arch = etree.fromstring(res["arch"])
-        node = arch.xpath("//group/filter[last()]")
-        if node:
-            node[0].addnext(etree.Element("separator"))
-            for custom_groupby in custom_groupbys:
-                node = arch.xpath("//group/separator[last()]")
-                if node:
-                    elem = etree.Element(
-                        "filter",
-                        {
-                            "name": "ir_custom_filter_%s" % custom_groupby.id,
-                            "string": custom_groupby.name,
-                            "context": str(
-                                {"group_by": custom_groupby.groupby_field.name}
-                            ),
-                        },
-                    )
-                    node[0].addnext(elem)
+        node = arch.xpath("//group")
+        if not node:
+            node = arch.xpath("//search")
+            node[0].append(etree.Element("group"))
+            node = arch.xpath("//group")
+        node[0].append(etree.Element("separator"))
+        for custom_groupby in custom_groupbys:
+            node = arch.xpath("//group/separator[last()]")
+            if node:
+                elem = etree.Element(
+                    "filter",
+                    {
+                        "name": "ir_custom_filter_%s" % custom_groupby.id,
+                        "string": custom_groupby.name,
+                        "context": str({"group_by": custom_groupby.groupby_field.name}),
+                    },
+                )
+                node[0].addnext(elem)
         res["arch"] = etree.tostring(arch)
         return res
 
