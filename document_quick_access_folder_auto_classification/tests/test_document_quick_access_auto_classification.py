@@ -1,9 +1,7 @@
 # Copyright 2019 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import os
-import shutil
-import uuid
+import base64
 
 import cv2
 from mock import patch
@@ -36,24 +34,8 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
 
         self._load_module_components(self, "component_event")
         self._load_module_components(self, "edi")
-        self._load_module_components(self, "edi_storage")
         self._load_module_components(
             self, "document_quick_access_folder_auto_classification"
-        )
-        self.base_dir = os.path.join(self.env["ir.attachment"]._filestore(), "storage")
-        try:
-            os.mkdir(self.base_dir)
-            self.clean_base_dir = True
-        except FileExistsError:
-            # If the directory exists we respect it and do not clean it on teardown.
-            self.clean_base_dir = False
-        self.tmpdir = os.path.join(self.base_dir, str(uuid.uuid4()))
-        self.storage = self.env["storage.backend"].create(
-            {
-                "name": "Demo Storage",
-                "backend_type": "filesystem",
-                "directory_path": self.tmpdir,
-            }
         )
         self.backend = self.env["edi.backend"].create(
             {
@@ -61,21 +43,9 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
                 "backend_type_id": self.env.ref(
                     "document_quick_access_folder_auto_classification.backend_type"
                 ).id,
-                "storage_id": self.storage.id,
-                "input_dir_pending": self.tmpdir,
             }
         )
-        if not os.path.isdir(self.base_dir):
-            os.mkdir(self.base_dir)
-        os.mkdir(self.tmpdir)
         self.model_id = self.env.ref("base.model_res_partner")
-
-    @classmethod
-    def tearDownClass(cls):
-        shutil.rmtree(cls.tmpdir)
-        if cls.clean_base_dir:
-            shutil.rmtree(cls.base_dir)
-        super().tearDownClass()
 
     def test_ok_pdf_multi(self):
         partners = self.env["res.partner"].create({"name": "Partner 1"})
@@ -103,8 +73,6 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
                 "barcode_format": "standard",
             }
         )
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
         code = [
             Encoded(partner.get_quick_access_code().encode("utf-8"))
             for partner in partners
@@ -114,9 +82,14 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             "components.document_quick_access_process.decode"
         ) as ptch:
             ptch.return_value = code
-            self.assertFalse(self.exchange_model.search([]))
-            self.backend._storage_cron_check_pending_input()
-            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend.create_record(
+                "document_quick_access",
+                {
+                    "exchange_filename": "test_file.pdf",
+                    "exchange_file": base64.b64encode(file),
+                    "edi_exchange_state": "input_received",
+                },
+            )
             self.backend._cron_check_input_exchange_sync()
             self.assertEqual(ptch.call_count, 1)
         self.assertTrue(partners)
@@ -135,11 +108,14 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             mode="rb",
             subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
-        self.assertFalse(self.exchange_model.search([]))
-        self.backend._storage_cron_check_pending_input()
-        self.assertEqual(self.exchange_model.search_count([]), 1)
+        self.backend.create_record(
+            "document_quick_access",
+            {
+                "exchange_filename": "test_file.pdf",
+                "exchange_file": base64.b64encode(file),
+                "edi_exchange_state": "input_received",
+            },
+        )
         self.backend._cron_check_input_exchange_sync()
         self.assertTrue(
             self.exchange_model.search(
@@ -189,16 +165,20 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             mode="rb",
             subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
         with self.assertRaises(TypeError):
             with patch(
                 "odoo.addons.document_quick_access_folder_auto_classification."
                 "components.document_quick_access_process.decode"
             ) as ptch:
                 ptch.return_value = 1
-                self.backend._storage_cron_check_pending_input()
-                self.assertEqual(self.exchange_model.search_count([]), 1)
+                self.backend.create_record(
+                    "document_quick_access",
+                    {
+                        "exchange_filename": "test_file.pdf",
+                        "exchange_file": base64.b64encode(file),
+                        "edi_exchange_state": "input_received",
+                    },
+                )
                 self.backend._cron_check_input_exchange_sync()
 
     @mute_logger("odoo.addons.queue_job.models.base")
@@ -209,10 +189,14 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             mode="rb",
             subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
-        self.backend._storage_cron_check_pending_input()
-        self.assertEqual(self.exchange_model.search_count([]), 1)
+        self.backend.create_record(
+            "document_quick_access",
+            {
+                "exchange_filename": "test_file.pdf",
+                "exchange_file": base64.b64encode(file),
+                "edi_exchange_state": "input_received",
+            },
+        )
         self.backend._cron_check_input_exchange_sync()
         missing = self.exchange_model.search(
             [
@@ -253,14 +237,17 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
                 "barcode_format": "standard",
             }
         )
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file)
         code = [partner.get_quick_access_code() for partner in partners]
         with patch.object(cv2.QRCodeDetector, "detectAndDecodeMulti") as ptch:
             ptch.return_value = [True, code, [], []]
-            self.assertFalse(self.exchange_model.search([]))
-            self.backend._storage_cron_check_pending_input()
-            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend.create_record(
+                "document_quick_access",
+                {
+                    "exchange_filename": "test_file.pdf",
+                    "exchange_file": base64.b64encode(file),
+                    "edi_exchange_state": "input_received",
+                },
+            )
             self.backend._cron_check_input_exchange_sync()
             self.assertEqual(ptch.call_count, 1)
         self.assertTrue(partners)
@@ -279,14 +266,18 @@ class TestDocumentQuickAccessClassification(SavepointComponentRegistryCase):
             mode="rb",
             subdir="addons/document_quick_access_folder_auto_classification/" "tests",
         ).read()
-        with open(os.path.join(self.tmpdir, "test_file.pdf"), "wb") as f:
-            f.write(file[: int(len(file) / 2)])
         with mute_logger(
             "odoo.addons.document_quick_access_folder_auto_classification."
             "components.document_quick_access_process",
         ):
-            self.backend._storage_cron_check_pending_input()
-            self.assertEqual(self.exchange_model.search_count([]), 1)
+            self.backend.create_record(
+                "document_quick_access",
+                {
+                    "exchange_filename": "test_file.pdf",
+                    "exchange_file": base64.b64encode(file[: int(len(file) / 2)]),
+                    "edi_exchange_state": "input_received",
+                },
+            )
             self.backend._cron_check_input_exchange_sync()
         self.assertTrue(
             self.exchange_model.search(
