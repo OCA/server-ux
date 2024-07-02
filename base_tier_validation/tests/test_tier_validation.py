@@ -162,13 +162,14 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
+        review.invalidate_model()
         res = record.validate_tier()
         ctx = res.get("context")
         wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
         wiz.add_comment()
-        self.assertTrue(test_record.review_ids.mapped("comment"))
+        self.assertTrue(test_record.review_ids.filtered("comment"))
         # Check notify
         comment = test_record.with_user(
             self.test_user_1.id
@@ -197,13 +198,14 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
+        review.invalidate_model()
         res = record.reject_tier()  # Rejection
         ctx = res.get("context")
         wizard = Form(self.env["comment.wizard"].with_context(**ctx))
         wizard.comment = "Test Comment"
         wiz = wizard.save()
         wiz.add_comment()
-        self.assertTrue(test_record.review_ids.mapped("comment"))
+        self.assertTrue(test_record.review_ids.filtered("comment"))
         # Check notify
         comment = test_record.with_user(
             self.test_user_1.id
