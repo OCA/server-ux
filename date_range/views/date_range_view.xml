@@ -29,7 +29,7 @@
                     name="web_ribbon"
                     title="Archived"
                     bg_color="bg-danger"
-                    invisible="not active"
+                    invisible="active"
                 />
                 <group col="4">
                     <field name="name" />
