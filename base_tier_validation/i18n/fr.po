@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-19 12:51+0000\n"
-"Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
+"PO-Revision-Date: 2024-07-04 09:47+0000\n"
+"Last-Translator: Pierre-François Teyssier <pierre-francois@scalizer.fr>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "<i class=\"fa fa-info-circle\"/>\n"
 "                Cet enregistrement.\n"
-"                requiert une validation"
+"                requiert une validation."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -74,6 +74,8 @@ msgstr "<span class=\"oe_edit_only\">Nom</span>"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
 msgstr ""
+"<span>Contourné, si le niveau précédent a été validé par le même "
+"réviseur</span>"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -156,7 +158,7 @@ msgstr "Ordre d'approbation suivant le numéro de séquence spécifié"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence_bypass
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__approve_sequence_bypass
 msgid "Approve Sequence Bypass"
-msgstr ""
+msgstr "Contournement de l'ordre d'approbation"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence
@@ -172,7 +174,7 @@ msgstr "Approuvé"
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "Archived"
-msgstr ""
+msgstr "Archivé"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -182,6 +184,8 @@ msgid ""
 "At least one of these fields must be checked! Write under Validation, Write "
 "after Validation"
 msgstr ""
+"Au moins un de ces champs doit être sélectionné ! Écrire avant la "
+"validation, Écrire après la validation"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -189,6 +193,8 @@ msgstr ""
 msgid ""
 "Bypassed (auto validated), if previous tier was validated by same reviewer"
 msgstr ""
+"Controuné (auto validé), si le niveau précédent a été validé par le même "
+"réviseur"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
@@ -249,7 +255,7 @@ msgstr "Paramètres de configuration"
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "Create a new Validation Exception!"
-msgstr ""
+msgstr "Créer une nouvelle exception de validation !"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__create_uid
@@ -298,7 +304,7 @@ msgstr "Nom d'affichage"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__display_status
 msgid "Display Status"
-msgstr ""
+msgstr "Afficher les statuts"
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__definition_type__domain
@@ -325,7 +331,7 @@ msgstr "Champ dans l'enregistrement rattaché"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__field_ids
 msgid "Fields"
-msgstr ""
+msgstr "Champs"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -367,6 +373,8 @@ msgid ""
 "If set, reviewers will be notified by email when a review related to this "
 "definition is accepted."
 msgstr ""
+"Si défini, les réviseurs seront notifiés par email quand une revue liée à "
+"cette définition est acceptée."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_rejected
@@ -374,6 +382,8 @@ msgid ""
 "If set, reviewers will be notified by email when a review related to this "
 "definition is rejected."
 msgstr ""
+"Si défini, les réviseurs seront notifiés par email quand une revue liée à "
+"cette définition est rejetée."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_restarted
@@ -381,16 +391,18 @@ msgid ""
 "If set, reviewers will be notified by email when a reviews related to this "
 "definition are restarted."
 msgstr ""
+"Si défini, les réviseurs seront notifiés par email quand une revue liée à "
+"cette définition est recommencée."
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "It's fully validated"
-msgstr ""
+msgstr "Entièrement validé"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
 msgid "It's in the validation process"
-msgstr ""
+msgstr "En cours de processus de validation"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
@@ -463,7 +475,7 @@ msgstr "Aucune revue n'est nécessaire."
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_accepted
 msgid "Notify Reviewers on Accepted"
-msgstr ""
+msgstr "Notiifer les réviseurs à l'acceptation"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
@@ -473,12 +485,12 @@ msgstr "Notifier les réviseurs à la création"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_rejected
 msgid "Notify Reviewers on Rejected"
-msgstr ""
+msgstr "Notifier les réviseurs au refus"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_restarted
 msgid "Notify Reviewers on Restarted"
-msgstr ""
+msgstr "Notifier les révisieurs au redémarrage"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
