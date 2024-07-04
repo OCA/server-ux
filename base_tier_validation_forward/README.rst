@@ -17,28 +17,30 @@ Base Tier Validation Forward
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/base_tier_validation_forward
+    :target: https://github.com/OCA/server-ux/tree/17.0/base_tier_validation_forward
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-base_tier_validation_forward
+    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_tier_validation_forward
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module add an advance option to base_tier_validation.
 
-* To allow "Forward" the tier to different user.
+-  To allow "Forward" the tier to different user.
 
 **Sample use case:**
 
-A user is appointed to approve a tire, but he/she don't want to make decision
-for some reason, and want to pass/forward the decision to another person.
+A user is appointed to approve a tire, but he/she don't want to make
+decision for some reason, and want to pass/forward the decision to
+another person.
 
-User can then click on Forward instead of Approve. A new tier with minor sequence will be
-created on the reviewer table, and new user will be able to make approval decision.
+User can then click on Forward instead of Approve. A new tier with minor
+sequence will be created on the reviewer table, and new user will be
+able to make approval decision.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -61,7 +63,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation_forward%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation_forward%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -69,18 +71,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ecosoft
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Kitti U. <kittiu@ecosoft.co.th>
-* Andrea Stirpe <a.stirpe@onestein.nl>
+-  Kitti U. <kittiu@ecosoft.co.th>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -100,6 +102,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-kittiu| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/base_tier_validation_forward>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/base_tier_validation_forward>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
