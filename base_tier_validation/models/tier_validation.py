@@ -59,6 +59,11 @@ class TierValidation(models.AbstractModel):
         default="no",
         compute="_compute_validation_status",
     )
+    user_can_skip_validation = fields.Boolean(
+        string="User can skip validation",
+        help="Allow user to skip validation process and allows to edit the record.",
+        compute="_compute_validation_status",
+    )
     reviewer_ids = fields.Many2many(
         string="Reviewers",
         comodel_name="res.users",
@@ -70,6 +75,12 @@ class TierValidation(models.AbstractModel):
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
+
+    @api.model
+    def _user_can_skip_validation(self):
+        return self.env.user.has_group(
+            "base_tier_validation.skip_all_validations_group"
+        )
 
     def _compute_has_comment(self):
         for rec in self:
@@ -184,8 +195,11 @@ class TierValidation(models.AbstractModel):
             rec.rejected_message = rec._get_rejected_message()
             rec.to_validate_message = rec._get_to_validate_message()
 
+    @api.depends_context("uid")
     def _compute_validation_status(self):
+        skip_validation = self._user_can_skip_validation()
         for item in self:
+            item.user_can_skip_validation = skip_validation
             if item.validated and not item.rejected:
                 item.validation_status = "validated"
             elif not item.validated and item.rejected:
@@ -198,6 +212,7 @@ class TierValidation(models.AbstractModel):
                 item.validation_status = "pending"
             else:
                 item.validation_status = "no"
+                item.user_can_skip_validation = False
 
     def _compute_next_review(self):
         for rec in self:
@@ -318,6 +333,8 @@ class TierValidation(models.AbstractModel):
         return allowed_field_names, not_allowed_field_names
 
     def write(self, vals):
+        if self._user_can_skip_validation():
+            return super().write(vals)
         for rec in self:
             if rec._check_state_conditions(vals):
                 if rec.need_validation:
@@ -746,21 +763,24 @@ class TierValidation(models.AbstractModel):
                         all_models[model] = res["models"][model]
                 new_node = etree.fromstring(new_arch)
                 node.append(new_node)
-            excepted_fields = self._get_all_validation_exceptions()
-            for node in doc.xpath("//field[@name][not(ancestor::field)]"):
-                if node.attrib.get("name") in excepted_fields:
-                    continue
-                modifiers = json.loads(
-                    node.attrib.get("modifiers", '{"readonly": false}')
-                )
-                if modifiers.get("readonly") is not True:
-                    modifiers["readonly"] = OR(
-                        [
-                            modifiers.get("readonly", []) or [],
-                            self._get_tier_validation_readonly_domain(),
-                        ]
+
+            # Add readonly fields only if user cannot skip validations
+            if not self._user_can_skip_validation():
+                excepted_fields = self._get_all_validation_exceptions()
+                for node in doc.xpath("//field[@name][not(ancestor::field)]"):
+                    if node.attrib.get("name") in excepted_fields:
+                        continue
+                    modifiers = json.loads(
+                        node.attrib.get("modifiers", '{"readonly": false}')
                     )
-                    node.attrib["modifiers"] = json.dumps(modifiers)
+                    if modifiers.get("readonly") is not True:
+                        modifiers["readonly"] = OR(
+                            [
+                                modifiers.get("readonly", []) or [],
+                                self._get_tier_validation_readonly_domain(),
+                            ]
+                        )
+                        node.attrib["modifiers"] = json.dumps(modifiers)
             res["arch"] = etree.tostring(doc)
             res["models"] = frozendict(all_models)
         return res

@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-04 08:23+0000\n"
+"PO-Revision-Date: 2024-07-04 08:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,28 +24,24 @@ msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
-msgid ""
-"<i class=\"fa fa-info-circle\"/>\n"
-"                This Record needs to be\n"
-"                validated."
+msgid "<i class=\"fa fa-info-circle\"/> This Record needs to be validated."
 msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
 msgid ""
-"<i class=\"fa fa-thumbs-down\"/>\n"
-"                Operation has been\n"
-"                <b>rejected</b>\n"
-"                ."
+"<i class=\"fa fa-info-circle\"/> This record has under Validation "
+"restrictions, but you have permission to modify it."
 msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
-msgid ""
-"<i class=\"fa fa-thumbs-up\"/>\n"
-"                Operation has been\n"
-"                <b>validated</b>\n"
-"                !"
+msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
+msgstr ""
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
+msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
 msgstr ""
 
 #. module: base_tier_validation
@@ -121,6 +119,11 @@ msgid "All"
 msgstr ""
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_validation__user_can_skip_validation
+msgid "Allow user to skip validation process and allows to edit the record."
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__group
 msgid "Any user in a specific group"
 msgstr ""
@@ -193,8 +196,8 @@ msgid "Cancel"
 msgstr ""
 
 #. module: base_tier_validation
-#. odoo-python
 #. odoo-javascript
+#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__comment
@@ -607,9 +610,13 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:res.groups,name:base_tier_validation.skip_all_validations_group
+msgid "Skip All Tier Validations"
 msgstr ""
 
 #. module: base_tier_validation
@@ -663,6 +670,11 @@ msgstr ""
 msgid ""
 "This action needs to be validated for at least one record. \n"
 "Please request a validation."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
+msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation
@@ -755,6 +767,11 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model,name:base_tier_validation.model_res_users
 msgid "User"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__user_can_skip_validation
+msgid "User can skip validation"
 msgstr ""
 
 #. module: base_tier_validation

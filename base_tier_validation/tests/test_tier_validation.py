@@ -905,6 +905,31 @@ class TierTierValidation(CommonTierValidation):
             )
         self.assertEqual(self.test_record.test_validation_field, 4)
 
+    def test_26_user_cannot_skip_validations(self):
+        """User 2 request a validation and user 1 edit record without skip group."""
+        self.assertFalse(self.test_record.review_ids)
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(reviews)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_model()
+        self.assertFalse(record._user_can_skip_validation())
+        with self.assertRaises(ValidationError):
+            with Form(record) as rec:
+                rec.test_field = rec.test_field + 1.0
+
+    def test_26_user_can_skip_validations(self):
+        """User 2 request a validation and user 1 edit record with skip group."""
+        skip_group = self.env.ref("base_tier_validation.skip_all_validations_group")
+        self.test_user_1.write({"groups_id": [(4, skip_group.id)]})
+        self.assertFalse(self.test_record.review_ids)
+        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertTrue(reviews)
+        record = self.test_record.with_user(self.test_user_1.id)
+        record.invalidate_model()
+        self.assertTrue(record._user_can_skip_validation())
+        with Form(record) as rec:
+            rec.test_field = rec.test_field + 1.0
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):

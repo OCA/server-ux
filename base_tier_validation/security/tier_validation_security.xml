@@ -16,4 +16,9 @@
             ['|',('company_id','=',False),('company_id', 'in', company_ids)]
         </field>
     </record>
+    <!-- Allows the user to skip all Tier Validations -->
+    <record id="skip_all_validations_group" model="res.groups">
+        <field name="name">Skip All Tier Validations</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
 </odoo>

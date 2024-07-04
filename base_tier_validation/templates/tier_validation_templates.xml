@@ -79,6 +79,16 @@
                 .
             </p>
         </div>
+        <div
+                class="alert alert-info mb-0 pb-1 px-4"
+                role="alert"
+                t-attf-attrs="{'invisible': ['|', ('review_ids', '=', []), ('user_can_skip_validation', '=', False)]}"
+            >
+            <p>
+                <i class="fa fa-info-circle" />
+                This record has Validation restrictions, but you have permission to modify it.
+            </p>
+        </div>
         </div>
     </template>
     <template id="tier_validation_reviews">

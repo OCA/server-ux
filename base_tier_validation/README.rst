@@ -78,6 +78,9 @@ To configure Tier Validation Exceptions, you need to:
 * If check *Write after Validation*, records will be able to be modified only in the defined fields when the Validation process is finished.
 * If check *Write after Validation* and *Write under Validation*, records will be able to be modified defined fields always.
 
+
+You can allow certain users to bypass Validations rules by adding them to the *Skip All Tier Validations* group.
+
 Known issues / Roadmap
 ======================
 
