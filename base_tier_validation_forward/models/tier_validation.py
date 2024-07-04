@@ -14,7 +14,9 @@ class TierValidation(models.AbstractModel):
                 rec.can_forward = False
                 continue
             sequences = self._get_sequences_to_approve(self.env.user)
-            reviews = rec.review_ids.filtered(lambda l: l.sequence in sequences)
+            reviews = rec.review_ids.filtered(
+                lambda r, sqs=sequences: r.sequence in sqs
+            )
             definitions = reviews.mapped("definition_id")
             rec.can_forward = True in definitions.mapped("has_forward")
 
@@ -33,7 +35,7 @@ class TierValidation(models.AbstractModel):
     def forward_tier(self):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
-        reviews = self.review_ids.filtered(lambda l: l.sequence in sequences)
+        reviews = self.review_ids.filtered(lambda r: r.sequence in sequences)
         ctx = self._add_comment("forward", reviews)["context"]
         comment = (
             self.env["comment.wizard"].with_context(**ctx).create({"comment": "/"})
