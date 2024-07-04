@@ -869,49 +869,84 @@ class TierTierValidation(CommonTierValidation):
             )
         self.assertEqual(self.test_record.test_validation_field, 4)
 
-    def test_26_reevaluate_validation(self):
-        # Create new test record
-        test_record = self.test_model.create(
-            {"test_field": 100, "test_validation_field": 15}
-        )
-        # Create tier definitions
-        self.tier_def_obj.create(
+    def test_26_notify_only_tier_validation(self):
+        tier_definition = self.env["tier.definition"].search([])
+        tier_definition.write(
             {
-                "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
-                "definition_domain": "[('test_field', '>', 100)]",
+                "subscription_mode": "standard",
+                "notify_on_create": True,
+                "notify_on_accepted": True,
+                "notify_on_rejected": True,
+                "notify_on_restarted": True,
+                "review_type": "group",
+                "reviewer_group_id": self.env.ref("base.group_system").id,
             }
         )
-        # Request validation
-        reviews = test_record.with_user(self.test_user_2.id).request_validation()
-        # Check need validation
-        self.assertTrue(test_record.need_validation)
-        self.assertEqual(len(reviews), 1)
-        self.assertEqual(reviews.definition_id, self.tier_definition)
-        self.assertEqual(len(test_record.review_ids), 1)
-        old_review = test_record.review_ids
-
-        # Now record is not validated yet and new definition create,
-        # and then we reevaluate object then it will add new definition validation
-        # also in current object
-        definition_extra = self.tier_def_obj.create(
-            {
-                "model_id": self.tester_model.id,
-                "review_type": "individual",
-                "reviewer_id": self.test_user_1.id,
-                "definition_domain": "[('test_validation_field', '>', 10)]",
-            }
+        # notify on create
+        test_record_1 = self.test_model.create({"test_field": 2.5})
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
         )
+        test_record_1.request_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
 
-        # Reevaluate Validation
-        reviews = test_record.with_user(self.test_user_2.id).reevaluate_reviews()
-        # Check need validation
-        self.assertTrue(test_record.need_validation)
-        self.assertEqual(len(reviews), 1)
-        self.assertEqual(reviews.definition_id, definition_extra)
-        self.assertEqual(len(test_record.review_ids), 2)
-        self.assertIn(old_review, test_record.review_ids)
+        # notify on message post
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_1.message_post(
+            body="Message post on test_record.",
+            subtype_id=self.env.ref("mail.mt_comment").id,
+        )
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        tier_definition.write({"subscription_mode": "tier_validation"})
+
+        # notify on create
+        test_record_2 = self.test_model.create({"test_field": 2.5})
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.request_validation()
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1 + 1)
+
+        # do not notify on message post
+        notifications_no_1 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        test_record_2.message_post(
+            body="Message post on test_record.",
+            subtype_id=self.env.ref("mail.mt_comment").id,
+        )
+        notifications_no_2 = len(
+            self.env["mail.notification"].search(
+                [("res_partner_id", "=", self.test_user_1.partner_id.id)]
+            )
+        )
+        self.assertEqual(notifications_no_2, notifications_no_1)
 
     def test_27_reevaluate_validation(self):
         # Create new test record

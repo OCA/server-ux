@@ -62,6 +62,15 @@ class TierDefinition(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
+    subscription_mode = fields.Selection(
+        [
+            ("standard", "Standard subscription mode"),
+            ("tier_validation", "Subscribe only to Tier Validation notifications"),
+        ],
+        default="standard",
+        required=True,
+        change_default=True,
+    )
     notify_on_create = fields.Boolean(
         string="Notify Reviewers on Creation",
         help="If set, all possible reviewers will be notified by email when "
@@ -79,8 +88,8 @@ class TierDefinition(models.Model):
     )
     notify_on_restarted = fields.Boolean(
         string="Notify Reviewers on Restarted",
-        help="If set, reviewers will be notified by email when a reviews related "
-        "to this definition are restarted.",
+        help="If set, reviewers will be notified by email when a review related "
+        "to this definition is restarted.",
     )
     has_comment = fields.Boolean(string="Comment", default=False)
     notify_reminder_delay = fields.Integer(
