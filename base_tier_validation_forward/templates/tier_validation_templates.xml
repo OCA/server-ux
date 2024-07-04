@@ -8,7 +8,7 @@
             <button
                 name="forward_tier"
                 string="Forward"
-                attrs="{'invisible': [('can_forward', '=', False)]}"
+                invisible="not can_forward"
                 type="object"
                 class="oe_inline oe_button btn-warning"
                 icon="fa-arrow-circle-right"

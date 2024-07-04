@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-    <t t-inherit="base_tier_validation.Collapse" t-inherit-mode="extension" owl="1">
+    <t t-inherit="base_tier_validation.Collapse" t-inherit-mode="extension">
         <xpath expr="//table[hasclass('table-condensed')]/tbody/t/tr" position="before">
             <t
                 t-if="review.status == 'forwarded'"
