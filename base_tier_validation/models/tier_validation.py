@@ -246,18 +246,22 @@ class TierValidation(models.AbstractModel):
         """Return Tier Validation Exception field names that matchs custom domain."""
         exception_fields = (
             self.env["tier.validation.exception"]
+            .sudo()
             .search(
                 [
                     ("model_name", "=", self._name),
                     ("company_id", "in", [False] + self.env.company.ids),
+                    "|",
+                    ("group_ids", "in", self.env.user.groups_id.ids),
+                    ("group_ids", "=", False),
                     *(extra_domain or []),
                 ]
             )
             .mapped("field_ids.name")
         )
         if add_base_exceptions:
-            exception_fields = list(set(exception_fields + BASE_EXCEPTION_FIELDS))
-        return exception_fields
+            exception_fields += BASE_EXCEPTION_FIELDS
+        return list(set(exception_fields))
 
     @api.model
     def _get_all_validation_exceptions(self):
