@@ -96,6 +96,16 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: base_warn_option
+#: model:ir.model.fields,field_description:base_warn_option.field_warn_option__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: base_warn_option
 #: model:ir.model.fields,field_description:base_warn_option.field_warn_option____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -121,8 +131,8 @@ msgid ""
 "Manage predefined Warning Options to maintain consistency between the "
 "warning or blocking messages"
 msgstr ""
-"Administra Opciones de Alerta predefinidas para mantener la "
-"consistencia entre los mensajes de alerta y bloqueo"
+"Administra Opciones de Alerta predefinidas para mantener la consistencia "
+"entre los mensajes de alerta y bloqueo"
 
 #. module: base_warn_option
 #: model:ir.model.fields,field_description:base_warn_option.field_warn_option__name
