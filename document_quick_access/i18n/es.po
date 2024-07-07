@@ -64,6 +64,7 @@ msgid "Document Quick Access Rule"
 msgstr "Regla de acceso rápido"
 
 #. module: document_quick_access
+#. odoo-python
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "Document cannot be found"
@@ -73,16 +74,6 @@ msgstr "No se ha encontrado documento"
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__id
 msgid "ID"
 msgstr "ID"
-
-#. module: document_quick_access
-#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_uid
-msgid "Last Archived by"
-msgstr ""
-
-#. module: document_quick_access
-#: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule__archive_date
-msgid "Last Archived on"
-msgstr ""
 
 #. module: document_quick_access
 #: model:ir.model.fields,field_description:document_quick_access.field_document_quick_access_rule____last_update
@@ -110,6 +101,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: document_quick_access
+#. odoo-python
 #: code:addons/document_quick_access/models/document_quick_access_rule.py:0
 #, python-format
 msgid "No format has been found for this record"
@@ -121,7 +113,7 @@ msgid "Priority"
 msgstr "Prioridad"
 
 #. module: document_quick_access
-#. openerp-web
+#. odoo-javascript
 #: code:addons/document_quick_access/static/src/xml/document_quick_access_launcher.xml:0
 #, python-format
 msgid "QR search"
