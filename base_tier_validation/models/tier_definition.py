@@ -40,7 +40,7 @@ class TierDefinition(models.Model):
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users",
-        tring="Reviewer",
+        string="Reviewer",
         check_company=True,
         readonly=False,
         store=True,
