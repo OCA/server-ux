@@ -5,3 +5,7 @@
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 * Kitti U. <kittiu@ecosoft.co.th>
 * Saran Lim. <saranl@ecosoft.co.th>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Sergio Teruel

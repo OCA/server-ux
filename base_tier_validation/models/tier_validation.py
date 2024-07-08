@@ -7,6 +7,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import safe_eval
 
 
 class TierValidation(models.AbstractModel):
@@ -240,10 +241,27 @@ class TierValidation(models.AbstractModel):
         """Extend for more field exceptions."""
         return ["message_follower_ids", "access_token"]
 
+    @api.model
+    def _get_under_validation_exceptions_from_params(self):
+        """Extend for more field exceptions defined in system params."""
+        ICP = self.env["ir.config_parameter"]
+        field_list = []
+        params = ICP.sudo().get_param(
+            "base_tier_validation.under_validation_exceptions"
+        )
+        if params:
+            field_list = safe_eval(params)
+        return field_list
+
     def _check_allow_write_under_validation(self, vals):
         """Allow to add exceptions for fields that are allowed to be written
-        even when the record is under validation."""
-        exceptions = self._get_under_validation_exceptions()
+        even when the record is under validation. Also you can define a list of fields
+        as system parameters to avoid create a lot of glue modules that modify fields
+        of sale order"""
+        exceptions = (
+            self._get_under_validation_exceptions()
+            + self._get_under_validation_exceptions_from_params()
+        )
         for val in vals:
             if val not in exceptions:
                 return False

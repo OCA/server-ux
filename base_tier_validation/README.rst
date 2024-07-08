@@ -61,6 +61,7 @@ To configure this module, you need to:
 * If check *Notify Reviewers on Creation*, all possible reviewers will be notified by email when this definition is triggered.
 * If check *Comment*, reviewers can comment after click Validate or Reject.
 * If check *Approve by sequence*, reviewers is forced to review by specified sequence.
+* You can define the list of fields that other modules can write on a sale order which is under validation process.
 
 Known issues / Roadmap
 ======================
@@ -209,6 +210,10 @@ Contributors
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 * Kitti U. <kittiu@ecosoft.co.th>
 * Saran Lim. <saranl@ecosoft.co.th>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Sergio Teruel
 
 Maintainers
 ~~~~~~~~~~~
