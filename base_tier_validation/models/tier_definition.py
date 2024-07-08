@@ -38,7 +38,14 @@ class TierDefinition(models.Model):
             ("field", "Field in related record"),
         ],
     )
-    reviewer_id = fields.Many2one(comodel_name="res.users", string="Reviewer")
+    reviewer_id = fields.Many2one(
+        comodel_name="res.users",
+        tring="Reviewer",
+        check_company=True,
+        readonly=False,
+        store=True,
+        compute="_compute_reset_reviewer_id_field",
+    )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"
     )
@@ -81,6 +88,11 @@ class TierDefinition(models.Model):
     def onchange_review_type(self):
         self.reviewer_id = None
         self.reviewer_group_id = None
+
+    @api.depends("company_id")
+    def _compute_company_id_change(self):
+        if self.company_id not in self.reviewer_id.company_ids:
+            self.reviewer_id = None
 
     @api.depends("review_type", "model_id")
     def _compute_domain_reviewer_field(self):
