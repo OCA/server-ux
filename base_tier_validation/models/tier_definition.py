@@ -7,6 +7,7 @@ from odoo import _, api, fields, models
 class TierDefinition(models.Model):
     _name = "tier.definition"
     _description = "Tier Definition"
+    _check_company_auto = True
 
     @api.model
     def _get_default_name(self):
@@ -38,7 +39,11 @@ class TierDefinition(models.Model):
             ("field", "Field in related record"),
         ],
     )
-    reviewer_id = fields.Many2one(comodel_name="res.users", string="Reviewer")
+    reviewer_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Reviewer",
+        check_company=True,
+    )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"
     )
