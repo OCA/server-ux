@@ -44,7 +44,7 @@ class TierDefinition(models.Model):
         check_company=True,
         readonly=False,
         store=True,
-        compute="_compute_reset_reviewer_id_field",
+        compute="_compute_company_id_change",
     )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"
