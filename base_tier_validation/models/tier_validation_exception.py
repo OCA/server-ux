@@ -56,11 +56,15 @@ class TierValidationException(models.Model):
     @api.depends("model_id")
     def _compute_valid_model_field_ids(self):
         for record in self:
-            record.valid_model_field_ids = self.env["ir.model.fields"].search(
-                [
-                    ("model", "=", record.model_name),
-                    ("name", "not in", BASE_EXCEPTION_FIELDS),
-                ]
+            record.valid_model_field_ids = (
+                self.env["ir.model.fields"]
+                .sudo()
+                .search(
+                    [
+                        ("model", "=", record.model_name),
+                        ("name", "not in", BASE_EXCEPTION_FIELDS),
+                    ]
+                )
             )
 
     @api.constrains(
