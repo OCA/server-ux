@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2024-02-05 17:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,6 +19,15 @@ msgstr ""
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
 msgid "Avoid Quick Create"
+msgstr ""
+
+#. module: base_optional_quick_create
+#. odoo-python
+#: code:addons/base_optional_quick_create/models/ir_model.py:0
+#, python-format
+msgid ""
+"Can't create %(model)s with name %(name)s quickly.\n"
+"Please contact your system administrator to disable this behaviour."
 msgstr ""
 
 #. module: base_optional_quick_create
