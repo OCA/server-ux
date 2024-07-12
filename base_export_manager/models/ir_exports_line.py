@@ -61,7 +61,7 @@ class IrExportsLine(models.Model):
     @api.depends("field1_id")
     def _compute_model2_id(self):
         """Get the related model for the second field."""
-        IrModel = self.env["ir.model"]
+        IrModel = self.env["ir.model"].sudo()
         for one in self:
             one.model2_id = (
                 one.field1_id.ttype
@@ -72,7 +72,7 @@ class IrExportsLine(models.Model):
     @api.depends("field2_id")
     def _compute_model3_id(self):
         """Get the related model for the third field."""
-        IrModel = self.env["ir.model"]
+        IrModel = self.env["ir.model"].sudo()
         for one in self:
             one.model3_id = (
                 one.field2_id.ttype
@@ -83,7 +83,7 @@ class IrExportsLine(models.Model):
     @api.depends("field3_id")
     def _compute_model4_id(self):
         """Get the related model for the third field."""
-        IrModel = self.env["ir.model"]
+        IrModel = self.env["ir.model"].sudo()
         for one in self:
             one.model4_id = (
                 one.field3_id.ttype
@@ -177,8 +177,10 @@ class IrExportsLine(models.Model):
         :param str name:
             Technical name of the field, like ``child_ids``.
         """
-        field = self.env["ir.model.fields"].search(
-            [("name", "=", name), ("model_id", "=", model.id)]
+        field = (
+            self.env["ir.model.fields"]
+            .sudo()
+            .search([("name", "=", name), ("model_id", "=", model.id)])
         )
         if not field.exists():
             raise exceptions.ValidationError(

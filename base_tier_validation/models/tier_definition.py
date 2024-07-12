@@ -100,6 +100,8 @@ class TierDefinition(models.Model):
     @api.depends("review_type", "model_id")
     def _compute_domain_reviewer_field(self):
         for rec in self:
-            rec.valid_reviewer_field_ids = self.env["ir.model.fields"].search(
-                [("model", "=", rec.model), ("relation", "=", "res.users")]
+            rec.valid_reviewer_field_ids = (
+                self.env["ir.model.fields"]
+                .sudo()
+                .search([("model", "=", rec.model), ("relation", "=", "res.users")])
             )
