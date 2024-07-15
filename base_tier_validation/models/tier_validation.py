@@ -2,14 +2,12 @@
 # Copyright 2024 Moduon Team (https://www.moduon.team)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import json
 from ast import literal_eval
 
 from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.osv.expression import OR
 from odoo.tools.misc import frozendict
 
 BASE_EXCEPTION_FIELDS = ["message_follower_ids", "access_token"]
@@ -738,7 +736,7 @@ class TierValidation(models.AbstractModel):
         return new_node
 
     def _get_tier_validation_readonly_domain(self):
-        return [("review_ids", "!=", [])]
+        return "bool(review_ids)"
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
@@ -784,17 +782,11 @@ class TierValidation(models.AbstractModel):
             for node in doc.xpath("//field[@name][not(ancestor::field)]"):
                 if node.attrib.get("name") in excepted_fields:
                     continue
-                modifiers = json.loads(
-                    node.attrib.get("modifiers", '{"readonly": false}')
-                )
-                if modifiers.get("readonly") is not True:
-                    modifiers["readonly"] = OR(
-                        [
-                            modifiers.get("readonly", []) or [],
-                            self._get_tier_validation_readonly_domain(),
-                        ]
-                    )
-                    node.attrib["modifiers"] = json.dumps(modifiers)
+                new_r_modifier = self._get_tier_validation_readonly_domain()
+                old_r_modifier = node.attrib.get("readonly")
+                if old_r_modifier:
+                    new_r_modifier = f"({old_r_modifier}) or ({new_r_modifier})"
+                node.attrib["readonly"] = new_r_modifier
             res["arch"] = etree.tostring(doc)
             res["models"] = frozendict(all_models)
         return res
