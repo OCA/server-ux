@@ -17,6 +17,7 @@ To configure Tier Validation Exceptions, you need to:
 #. Create as many tiers validation exceptions as you want for any model
    having tier validation functionality.
 #. Add desired fields to be checked in *Fields*.
+#. Add desired groups that can use this Exception in *Groups*.
 #. You must check *Write under Validation*, *Write after Validation* or both.
 
 **Note:**

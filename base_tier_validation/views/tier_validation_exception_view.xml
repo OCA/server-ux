@@ -7,11 +7,13 @@
         <field name="model">tier.validation.exception</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name" />
                 <field name="model_id" />
                 <field name="field_ids" widget="many2many_tags" optional="show" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="allowed_to_write_under_validation" />
                 <field name="allowed_to_write_after_validation" />
+                <field name="group_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
@@ -23,16 +25,17 @@
             <form string="Tier Validation Exception">
                 <sheet>
                     <div class="oe_title">
-                        <span class="oe_edit_only">Model</span>
+                        <label for="name" />
                         <h1>
-                            <field
-                                name="model_id"
-                                options="{'no_create': True, 'no_open': True}"
-                            />
+                            <field name="name" nolabel="1" />
                         </h1>
                     </div>
                     <group>
                         <group name="left">
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
                             <field name="valid_model_field_ids" invisible="1" />
                             <field
                                 name="field_ids"
@@ -45,6 +48,7 @@
                             />
                         </group>
                         <group name="right">
+                            <field name="group_ids" widget="many2many_tags" />
                             <field name="allowed_to_write_under_validation" />
                             <field name="allowed_to_write_after_validation" />
                         </group>
@@ -59,9 +63,11 @@
         <field name="model">tier.validation.exception</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name" />
                 <field name="model_id" />
                 <field name="field_ids" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field name="group_ids" />
                 <separator />
                 <filter
                     string="Write under validation"
@@ -74,6 +80,12 @@
                     domain="[('allowed_to_write_after_validation', '=', True)]"
                 />
                 <group>
+                    <filter
+                        string="Model"
+                        name="grp_model"
+                        domain="[]"
+                        context="{'group_by': 'model_id'}"
+                    />
                     <filter
                         string="Company"
                         name="grp_company"
