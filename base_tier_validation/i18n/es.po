@@ -72,6 +72,12 @@ msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
 msgstr ""
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_review.py:0
+#, python-format
+msgid "A review has been requested %s days ago."
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review has been requested by %s."
@@ -156,6 +162,11 @@ msgstr "Aprobar por secuencia"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__approved
 msgid "Approved"
 msgstr "Aprobado"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Archived"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -314,11 +325,26 @@ msgstr ""
 "email cuando esta definición se ejecute."
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_uid
+msgid "Last Archived by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__archive_date
+msgid "Last Archived on"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__last_reminder_date
+msgid "Last Reminder Date"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -384,6 +410,13 @@ msgstr "No hay revisiones a realizar."
 #, fuzzy
 msgid "Notify Reviewers on Creation"
 msgstr "Notificar validadores en la creación"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid ""
+"Number of days after which a message must be posted to remind about pending "
+"validation  (0 = no reminder)"
+msgstr ""
 
 #. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
@@ -527,9 +560,22 @@ msgid "Reviews"
 msgstr "Revisiones"
 
 #. module: base_tier_validation
+#: model:ir.actions.server,name:base_tier_validation.ir_cron_auto_tier_validation_ir_actions_server
+#: model:ir.cron,cron_name:base_tier_validation.ir_cron_auto_tier_validation
+#: model:ir.cron,name:base_tier_validation.ir_cron_auto_tier_validation
+msgid "Send Tier Review Reminder"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid "Send reminder message on pending reviews"
+msgstr ""
+
+#. module: base_tier_validation
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
 #, python-format
 msgid "Sequence"
 msgstr "Secuencia"
@@ -580,11 +626,6 @@ msgid ""
 msgstr ""
 "Esta acción necesita ser validada para algún registro.\n"
 "Por favor, solicita una validación."
-
-#. module: base_tier_validation
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
-msgid "Tier"
-msgstr "Nivel"
 
 #. module: base_tier_validation
 #: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
@@ -640,6 +681,12 @@ msgstr "Validaciones de Nivel (abstracto)"
 #, fuzzy
 msgid "Tier Validation Rejected Notification"
 msgstr "Validaciones de Nivel (abstracto)"
+
+#. module: base_tier_validation
+#: model:mail.activity.type,name:base_tier_validation.mail_act_tier_validation_reminder
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_reminder
+msgid "Tier Validation Reminder"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
@@ -738,3 +785,6 @@ msgstr "Sin validación"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ej. Validación de Nivel por..."
+
+#~ msgid "Tier"
+#~ msgstr "Nivel"

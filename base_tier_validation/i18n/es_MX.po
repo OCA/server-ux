@@ -71,6 +71,12 @@ msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
 msgstr ""
 
 #. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_review.py:0
+#, python-format
+msgid "A review has been requested %s days ago."
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "A review has been requested by %s."
@@ -156,6 +162,11 @@ msgstr "Aprobar por secuencia"
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__approved
 msgid "Approved"
 msgstr "Aprobado"
+
+#. module: base_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+msgid "Archived"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -330,6 +341,11 @@ msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__last_reminder_date
+msgid "Last Reminder Date"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__write_uid
@@ -394,6 +410,13 @@ msgid "Notify Reviewers on Creation"
 msgstr "Notificar a los revisores sobre la creación"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid ""
+"Number of days after which a message must be posted to remind about pending "
+"validation  (0 = no reminder)"
+msgstr ""
+
+#. module: base_tier_validation
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 #, python-format
 msgid "Operation has been <b>rejected</b>."
@@ -424,6 +447,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/base_tier_validation/static/src/xml/systray.xml:0
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__pending
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__pending
 #, python-format
 msgid "Pending"
 msgstr "Pendiente"
@@ -441,6 +465,7 @@ msgstr "Rechazar"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__rejected
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_review__status__rejected
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__rejected
 msgid "Rejected"
 msgstr "Rechazado"
 
@@ -531,6 +556,18 @@ msgstr "Revisores"
 #, python-format
 msgid "Reviews"
 msgstr "Comentarios"
+
+#. module: base_tier_validation
+#: model:ir.actions.server,name:base_tier_validation.ir_cron_auto_tier_validation_ir_actions_server
+#: model:ir.cron,cron_name:base_tier_validation.ir_cron_auto_tier_validation
+#: model:ir.cron,name:base_tier_validation.ir_cron_auto_tier_validation
+msgid "Send Tier Review Reminder"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid "Send reminder message on pending reviews"
+msgstr ""
 
 #. module: base_tier_validation
 #. openerp-web
@@ -642,6 +679,12 @@ msgid "Tier Validation Rejected Notification"
 msgstr "Notificación de rechazo de validación de nivel"
 
 #. module: base_tier_validation
+#: model:mail.activity.type,name:base_tier_validation.mail_act_tier_validation_reminder
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_reminder
+msgid "Tier Validation Reminder"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
 msgid "Tier Validation Requested"
 msgstr "Validación de nivel solicitada"
@@ -695,6 +738,7 @@ msgstr "Validar Rechazar"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validated
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__validated
 msgid "Validated"
 msgstr "Validado"
 
@@ -718,9 +762,19 @@ msgid "Validation Date"
 msgstr "Fecha de validación"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr "Validaciones"
+
+#. module: base_tier_validation
+#: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_validation__validation_status__no
+msgid "Without validation"
+msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
