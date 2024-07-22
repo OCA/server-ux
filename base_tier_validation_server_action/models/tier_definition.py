@@ -49,8 +49,7 @@ class TierDefinition(models.Model):
                 reviewer = review.reviewer_ids or self.env.user
                 if len(reviewer) > 1:
                     _logger.warning(
-                        "Cannot auto tier validate {}: "
-                        "too many reviewers".format(doc)
+                        f"Cannot auto tier validate {doc}: " "too many reviewers"
                     )
                     continue
                 review_doc = doc.with_user(reviewer)
@@ -61,4 +60,4 @@ class TierDefinition(models.Model):
                         review_doc._update_counter()
                         _logger.info("Auto tier validate on %s" % review_doc)
             except Exception as e:
-                _logger.error("Cannot auto tier validate {}: {}".format(doc, e))
+                _logger.error(f"Cannot auto tier validate {doc}: {e}")
