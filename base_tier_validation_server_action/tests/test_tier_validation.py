@@ -10,7 +10,7 @@ from odoo.tests.common import tagged
 class TierTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TierTierValidation, cls).setUpClass()
+        super().setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -98,12 +98,12 @@ class TierTierValidation(common.TransactionCase):
         # Auto validate, 1st tier, not auto validated
         self.tier_def_obj._cron_auto_tier_validation()
         self.assertEqual(
-            record.review_ids.mapped("status"), ["pending", "pending", "pending"]
+            record.review_ids.mapped("status"), ["waiting", "waiting", "waiting"]
         )
         # Manual validate 2nd tier -> OK
         record.validate_tier()
         self.assertEqual(
-            record.review_ids.mapped("status"), ["approved", "pending", "pending"]
+            record.review_ids.mapped("status"), ["approved", "pending", "waiting"]
         )
         # Auto validate, 2nd tier -> OK
         self.tier_def_obj._cron_auto_tier_validation()
@@ -141,7 +141,7 @@ class TierTierValidation(common.TransactionCase):
         record.invalidate_recordset()
         # Auto validate, 1st tier, not auto validated
         self.tier_def_obj._cron_auto_tier_validation()
-        self.assertEqual(record.review_ids.mapped("status"), ["pending", "pending"])
+        self.assertEqual(record.review_ids.mapped("status"), ["waiting", "waiting"])
         # Manual validate 2nd tier -> OK
         record.validate_tier()
         self.assertEqual(record.review_ids.mapped("status"), ["approved", "pending"])

@@ -39,7 +39,10 @@ class TierDefinition(models.Model):
     @api.model
     def _cron_auto_tier_validation(self):
         reviews = self.env["tier.review"].search(
-            [("status", "=", "pending"), ("definition_id.auto_validate", "=", True)]
+            [
+                ("status", "in", ("waiting", "pending")),
+                ("definition_id.auto_validate", "=", True),
+            ]
         )
         for review in reviews:
             doc = self._evaluate_review(review)
@@ -57,7 +60,7 @@ class TierDefinition(models.Model):
                     sequences = review_doc._get_sequences_to_approve(reviewer)
                     if review.sequence in sequences:
                         review_doc._validate_tier(review)
-                        review_doc._update_counter()
+                        review_doc._update_counter({"review_deleted": True})
                         _logger.info("Auto tier validate on %s" % review_doc)
             except Exception as e:
                 _logger.error(f"Cannot auto tier validate {doc}: {e}")
