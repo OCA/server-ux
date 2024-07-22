@@ -31,7 +31,8 @@ msgstr "<i class=\"fa fa-info-circle\"/> Il record deve essere validato."
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
 msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
-msgstr "<i class=\"fa fa-thumbs-down\"/> L'operazione è stata <b>rifiutata</b>."
+msgstr ""
+"<i class=\"fa fa-thumbs-down\"/> L'operazione è stata <b>rifiutata</b>."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -49,6 +50,13 @@ msgid "<span>Bypassed, if previous tier was validated by same reviewer</span>"
 msgstr ""
 "<span>Aggirato, se il livello precedente è stato validato dallo stesso "
 "revisore</span>"
+
+#. module: base_tier_validation
+#. odoo-python
+#: code:addons/base_tier_validation/models/tier_review.py:0
+#, python-format
+msgid "A review has been requested %s days ago."
+msgstr ""
 
 #. module: base_tier_validation
 #. odoo-python
@@ -394,6 +402,11 @@ msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__last_reminder_date
+msgid "Last Reminder Date"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__write_uid
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__write_uid
@@ -478,6 +491,13 @@ msgstr "Notifica revisori quando respinta"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_restarted
 msgid "Notify Reviewers on Restarted"
 msgstr "Notifica revisori al riavvio"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid ""
+"Number of days after which a message must be posted to remind about pending "
+"validation  (0 = no reminder)"
+msgstr ""
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
@@ -627,6 +647,17 @@ msgid "Reviews"
 msgstr "Revisioni"
 
 #. module: base_tier_validation
+#: model:ir.actions.server,name:base_tier_validation.ir_cron_auto_tier_validation_ir_actions_server
+#: model:ir.cron,cron_name:base_tier_validation.ir_cron_auto_tier_validation
+msgid "Send Tier Review Reminder"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_reminder_delay
+msgid "Send reminder message on pending reviews"
+msgstr ""
+
+#. module: base_tier_validation
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/xml/tier_review_template.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__sequence
@@ -734,6 +765,12 @@ msgstr "Eccezioni validazione livello"
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
 msgstr "Notifica rifiuto livello approvazione"
+
+#. module: base_tier_validation
+#: model:mail.activity.type,name:base_tier_validation.mail_act_tier_validation_reminder
+#: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_reminder
+msgid "Tier Validation Reminder"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
