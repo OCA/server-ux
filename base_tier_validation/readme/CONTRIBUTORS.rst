@@ -8,3 +8,6 @@
 * Evan Soh <evan.soh@omnisoftsolution.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
 * Eduardo de Miguel <edu@moduon.team>
+* `XCG Consulting <https://xcg-consulting.fr>`_:
+
+  * Houzéfa Abbasbhay
