@@ -233,10 +233,12 @@ class TierValidation(models.AbstractModel):
                     ]
                 )
             )
-            valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
-            rec.need_validation = (
-                not rec.review_ids and valid_tiers and rec._check_state_from_condition()
-            )
+            valid_tiers = tiers.filtered(lambda x: rec.evaluate_tier(x))
+            requested_tiers = rec.review_ids.filtered(
+                lambda x: x.status != "pending"
+            ).mapped("definition_id")
+            new_tiers = valid_tiers - requested_tiers
+            rec.need_validation = new_tiers and rec._check_state_from_condition()
 
     def evaluate_tier(self, tier):
         if tier.definition_domain:
@@ -620,6 +622,7 @@ class TierValidation(models.AbstractModel):
                     [
                         ("model", "=", self._name),
                         ("company_id", "in", [False] + self.env.company.ids),
+                        ("id", "not in", rec.review_ids.mapped("definition_id").ids),
                     ],
                     order="sequence desc",
                 )
