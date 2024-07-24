@@ -24,7 +24,7 @@ class TierValidationException(models.Model):
     )
     model_name = fields.Char(
         related="model_id.model",
-        string="Model",
+        string="Model Name",
         store=True,
         readonly=True,
         index=True,
