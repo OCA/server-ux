@@ -43,11 +43,6 @@ msgid ""
 msgstr ""
 
 #. module: base_tier_validation
-#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_form
-msgid "<span class=\"oe_edit_only\">Model</span>"
-msgstr ""
-
-#. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span class=\"oe_edit_only\">Name</span>"
 msgstr "<span class=\"oe_edit_only\">Nombre</span>"
@@ -123,6 +118,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
 msgid "All"
 msgstr "Todos"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_validation_exception__group_ids
+msgid "Allowed groups to use this Tier Validation Exception"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields.selection,name:base_tier_validation.selection__tier_definition__review_type__group
@@ -328,6 +328,11 @@ msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__has_comment
 msgid "Has Comment"
 msgstr "Tiene comentario"
@@ -419,6 +424,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__model_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__model_name
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
+#: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_search
 msgid "Model"
 msgstr "Modelo"
 
@@ -426,6 +432,11 @@ msgstr "Modelo"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "More Options"
 msgstr "Más opciones"
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__name
+msgid "Name"
+msgstr ""
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
@@ -640,16 +651,6 @@ msgstr "Usuario específico"
 #, python-format
 msgid "Status"
 msgstr "Estatus"
-
-#. module: base_tier_validation
-#. odoo-python
-#: code:addons/base_tier_validation/models/tier_validation_exception.py:0
-#: model:ir.model.constraint,message:base_tier_validation.constraint_tier_validation_exception_model_company_under_after_unique
-#, python-format
-msgid ""
-"The model already exists for this company with this Write Validation "
-"configuration!"
-msgstr ""
 
 #. module: base_tier_validation
 #. odoo-python
