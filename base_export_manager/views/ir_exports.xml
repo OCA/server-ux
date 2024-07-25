@@ -44,10 +44,10 @@
                             >
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
-                                    <field name="model1_id" invisible="True" />
-                                    <field name="model2_id" invisible="True" />
-                                    <field name="model3_id" invisible="True" />
-                                    <field name="model4_id" invisible="True" />
+                                    <field name="model1_id" column_invisible="1" />
+                                    <field name="model2_id" column_invisible="1" />
+                                    <field name="model3_id" column_invisible="1" />
+                                    <field name="model4_id" column_invisible="1" />
                                     <field name="label" />
                                     <field name="name" readonly="1" />
                                     <field
@@ -57,17 +57,17 @@
                                     />
                                     <field
                                         name="field2_id"
-                                        attrs="{'readonly': [('model2_id', '=', False)]}"
+                                        readonly="not model2_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                     <field
                                         name="field3_id"
-                                        attrs="{'readonly': [('model3_id', '=', False)]}"
+                                        readonly="not model3_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                     <field
                                         name="field4_id"
-                                        attrs="{'readonly': [('model3_id', '=', False)]}"
+                                        readonly="not model3_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                 </tree>
