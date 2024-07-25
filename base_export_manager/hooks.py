@@ -1,9 +1,9 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import SUPERUSER_ID, api
+from odoo import api
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
     """Loaded after installing the module.
 
     ``ir.exports.line.name`` was before a char field, and now it is a computed
@@ -11,7 +11,6 @@ def post_init_hook(cr, registry):
     inconsistencies.
     """
     with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
         env["ir.exports.line"].search(
             [
                 ("field1_id", "=", False),
