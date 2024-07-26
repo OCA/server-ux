@@ -25,7 +25,7 @@ class TierReview(models.Model):
         compute="_compute_definition_data",
         store=True,
     )
-    sequence = fields.Float()
+    sequence = fields.Integer()
     has_comment = fields.Boolean(
         compute="_compute_definition_data",
         store=True,
