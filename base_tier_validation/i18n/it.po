@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-18 09:58+0000\n"
+"PO-Revision-Date: 2024-07-29 16:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: code:addons/base_tier_validation/models/tier_review.py:0
 #, python-format
 msgid "A review has been requested %s days ago."
-msgstr ""
+msgstr "Una revisione è stata richiesta %s giorni fa."
 
 #. module: base_tier_validation
 #. odoo-python
@@ -404,7 +404,7 @@ msgstr "Ultima modifica il"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__last_reminder_date
 msgid "Last Reminder Date"
-msgstr ""
+msgstr "Data ultimo promemoria"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -498,6 +498,8 @@ msgid ""
 "Number of days after which a message must be posted to remind about pending "
 "validation  (0 = no reminder)"
 msgstr ""
+"Numero di giorni dopo i quali un messaggio deve essere inviato per ricordare "
+"della valutazione in attesa (0 = nessun promemoria)"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
@@ -650,12 +652,12 @@ msgstr "Revisioni"
 #: model:ir.actions.server,name:base_tier_validation.ir_cron_auto_tier_validation_ir_actions_server
 #: model:ir.cron,cron_name:base_tier_validation.ir_cron_auto_tier_validation
 msgid "Send Tier Review Reminder"
-msgstr ""
+msgstr "Invia promemoria revisione livello"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_reminder_delay
 msgid "Send reminder message on pending reviews"
-msgstr ""
+msgstr "Invia messaggio promemoria per le revisioni in attesa"
 
 #. module: base_tier_validation
 #. odoo-javascript
@@ -770,7 +772,7 @@ msgstr "Notifica rifiuto livello approvazione"
 #: model:mail.activity.type,name:base_tier_validation.mail_act_tier_validation_reminder
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_reminder
 msgid "Tier Validation Reminder"
-msgstr ""
+msgstr "Promemoria valutazione livello"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
