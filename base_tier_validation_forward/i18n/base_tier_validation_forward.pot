@@ -163,13 +163,13 @@ msgid "Reviewer group"
 msgstr ""
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
-msgid "Sequence"
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
+msgid "Status"
 msgstr ""
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
-msgid "Status"
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
+msgid "Tier"
 msgstr ""
 
 #. module: base_tier_validation_forward
