@@ -166,14 +166,14 @@ msgid "Reviewer group"
 msgstr "Grupo revisor"
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
-msgid "Sequence"
-msgstr "Secuencia"
-
-#. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
 msgid "Status"
 msgstr "Estados"
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
+msgid "Tier"
+msgstr ""
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_definition
@@ -199,3 +199,6 @@ msgstr "Validación de nivel Notificación previa"
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
 msgid "Validated by"
 msgstr "Validado por"
+
+#~ msgid "Sequence"
+#~ msgstr "Secuencia"
