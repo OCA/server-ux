@@ -3,7 +3,7 @@
 {
     "name": "Base Tier Validation Forward",
     "summary": "Forward option for base tiers",
-    "version": "16.0.1.1.2",
+    "version": "16.0.1.1.3",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Ecosoft,Odoo Community Association (OCA)",
