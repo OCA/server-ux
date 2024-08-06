@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-26 10:45+0000\n"
+"PO-Revision-Date: 2025-01-20 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: base_tier_validation_forward
 #. odoo-python
@@ -126,9 +126,10 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#: model:ir.model.fields,help:base_tier_validation_forward.field_tier_review__has_comment
+msgid "If set, Allow the reviewer to leave a comment on the review."
+msgstr ""
+"Se attivata, consente al revisore di lasciare un commento nella revisione."
 
 #. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_validation_forward_wizard__write_uid
@@ -166,14 +167,14 @@ msgid "Reviewer group"
 msgstr "Gruppo revisore"
 
 #. module: base_tier_validation_forward
-#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
-msgid "Sequence"
-msgstr "Sequenza"
-
-#. module: base_tier_validation_forward
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__status
 msgid "Status"
 msgstr "Stato"
+
+#. module: base_tier_validation_forward
+#: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__sequence
+msgid "Tier"
+msgstr "Livello"
 
 #. module: base_tier_validation_forward
 #: model:ir.model,name:base_tier_validation_forward.model_tier_definition
@@ -199,3 +200,9 @@ msgstr "Notifica inoltro validazione livello"
 #: model:ir.model.fields,field_description:base_tier_validation_forward.field_tier_review__review_type
 msgid "Validated by"
 msgstr "Validato da"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Sequence"
+#~ msgstr "Sequenza"
