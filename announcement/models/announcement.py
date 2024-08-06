@@ -43,6 +43,7 @@ class Announcement(models.Model):
     )
     specific_user_ids = fields.Many2many(
         comodel_name="res.users",
+        context={"active_test": False},
         domain=[("share", "=", False)],
         inverse="_inverse_specific_user_ids",
     )
