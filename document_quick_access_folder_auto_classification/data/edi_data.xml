@@ -11,14 +11,8 @@
         <field name="direction">input</field>
         <field name="exchange_filename_pattern" />
     </record>
-    <record id="storage_backend" model="storage.backend">
-        <field name="name">Document Quick Access Storage Folder</field>
-        <field name="backend_type">filesystem</field>
-        <field name="directory_path">opt/qr_data</field>
-    </record>
     <record id="edi_backend" model="edi.backend">
         <field name="name">Document quick access auto classification</field>
         <field name="backend_type_id" ref="backend_type" />
-        <field name="storage_id" ref="storage_backend" />
     </record>
 </odoo>
