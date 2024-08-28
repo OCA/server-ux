@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="document_quick_access_missing_assign_form_view">
+        <field
+            name="name"
+        >document.quick.access.missing.assign.form (in document_quick_access_folder_auto_classification)</field>
+        <field name="model">document.quick.access.missing.assign</field>
+        <field name="arch" type="xml">
+            <form string="Document Quick Access Missing Assign">
+                <group>
+                    <field name="object_id" />
+                    <field name="exchange_record_id" invisible="1" />
+                </group>
+                <footer>
+                    <button
+                        name="manually_assign"
+                        string="Assign"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="document_quick_access_missing_assign_act_window"
+    >
+        <field name="name">Document Quick Access Missing Assign</field>
+        <field name="res_model">document.quick.access.missing.assign</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

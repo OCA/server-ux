@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="backend_type" model="edi.backend.type">
+        <field name="name">Document quick access</field>
+        <field name="code">document_quick_access</field>
+    </record>
+    <record id="exchange_type" model="edi.exchange.type">
+        <field name="name">Document quick access</field>
+        <field name="code">document_quick_access</field>
+        <field name="backend_type_id" ref="backend_type" />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern" />
+    </record>
+    <record id="edi_backend" model="edi.backend">
+        <field name="name">Document quick access auto classification</field>
+        <field name="backend_type_id" ref="backend_type" />
+    </record>
+</odoo>
