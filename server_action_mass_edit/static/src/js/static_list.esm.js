@@ -10,9 +10,11 @@ patch(StaticList.prototype, {
 
         this._cache = markRaw({});
         this._commands = [];
+        this._initialCommands = [];
         this._savePoint = undefined;
         this._unknownRecordCommands = {};
         this._currentIds = [...this.resIds];
+        this._initialCurrentIds = [...this.currentIds];
         this._needsReordering = false;
         this._tmpIncreaseLimit = 0;
         this._extendedRecords = new Set();
