@@ -123,4 +123,6 @@ class BaseRevision(models.AbstractModel):
             "domain": "[('id', 'in', %s)]" % revision_ids,
             "target": "current",
         }
+        if len(revision_ids) == 1:
+            action.update({"view_mode": "form", "res_id": revision_ids[0]})
         return action
