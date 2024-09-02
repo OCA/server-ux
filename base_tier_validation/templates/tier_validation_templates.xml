@@ -18,11 +18,18 @@
                 ('#{state_field}', '#{state_operator}', #{state_value})]}"
                 type="object"
             />
+            <button
+                name="reevaluate_reviews"
+                string="Reevaluate Reviews"
+                t-attf-attrs="{'invisible': ['|',('is_reevaluation_required', '!=', True),('#{state_field}', '#{state_operator}', #{state_value})]}"
+                type="object"
+            />
         </div>
     </template>
     <template id="tier_validation_label">
         <div>
             <field name="need_validation" invisible="1" />
+            <field name="is_reevaluation_required" invisible="1" />
             <field name="validated" invisible="1" />
             <field name="rejected" invisible="1" />
             <div
