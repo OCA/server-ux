@@ -61,7 +61,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <h1>
@@ -138,23 +138,22 @@
                 </button>
             </xpath>
             <group name="announcement_validity" position="before">
-                <group
-                    name="announcement_scope"
-                    attrs="{'invisible': [('is_general_announcement', '=', True)]}"
-                >
+                <group name="announcement_scope" invisible="is_general_announcement">
                     <field name="announcement_type" />
                     <field
                         name="specific_user_ids"
                         string="Users"
                         options="{'no_create': True}"
-                        attrs="{'invisible': [('announcement_type', '!=', 'specific_users')], 'required': [('announcement_type', '=', 'specific_users')]}"
+                        invisible="announcement_type != 'specific_users'"
+                        required="announcement_type == 'specific_users'"
                         widget="many2many_tags"
                     />
                     <field
                         name="user_group_ids"
                         string="Groups"
                         options="{'no_create': True}"
-                        attrs="{'invisible': [('announcement_type', '!=', 'user_group')], 'required': [('announcement_type', '=', 'user_group')]}"
+                        invisible="announcement_type != 'user_group'"
+                        required="announcement_type == 'user_group'"
                         widget="many2many_tags"
                     />
                 </group>

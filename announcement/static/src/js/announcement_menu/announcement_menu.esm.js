@@ -4,27 +4,26 @@
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
 import {Component, markup, onMounted, useState} from "@odoo/owl";
 import {_lt} from "@web/core/l10n/translation";
+import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
-import {session} from "@web/session";
+import {deserializeDateTime} from "@web/core/l10n/dates";
 import {registry} from "@web/core/registry";
+import {session} from "@web/session";
+import {useDiscussSystray} from "@mail/utils/common/hooks";
 import {useService} from "@web/core/utils/hooks";
-import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
+
+const {DateTime} = luxon;
 
 export class AnnouncementMenu extends Component {
     setup() {
+        this.discussSystray = useDiscussSystray();
         this.orm = useService("orm");
         this.dialogService = useService("dialog");
         const announcements_service = useService("announcementService");
         this.announcements = useState(announcements_service.announcements);
-        this.announcementMenuView = useState({isOpen: false});
         // When the user logs in we show him his unread announcements
         onMounted(async () => {
-            document.addEventListener(
-                "click",
-                this._onClickCaptureGlobal.bind(this),
-                true
-            );
             // Let's check if the user just logged in and to decide if we popup the
             // announcements. This delay is hardcoded to 5 minutes, although we could
             // allow to configure it in the future.
@@ -32,10 +31,9 @@ export class AnnouncementMenu extends Component {
                 session.uid,
                 ["login_date"],
             ]);
-            const login_date = !_.isEmpty(user) && user[0].login_date;
             const minutes_since_last_login =
-                (moment.utc(new Date()).valueOf() - moment.utc(login_date).valueOf()) /
-                1000 /
+                (DateTime.now().toSeconds() -
+                    deserializeDateTime(user[0]?.login_date).toSeconds()) /
                 60;
             const popup_announcement = Boolean(minutes_since_last_login < 5);
             const launchPopUp = () => {
@@ -79,29 +77,9 @@ export class AnnouncementMenu extends Component {
     // ------------------------------------------------------------
 
     /**
-     * Toggle dropdown when clicking it
-     * @private
-     */
-    onClickDropdownToggle() {
-        this.announcementMenuView.isOpen = !this.announcementMenuView.isOpen;
-    }
-
-    /**
-     * Hide dropdown when clicking outside
-     * @private
-     * @param {MouseEvent} ev
-     */
-    _onClickCaptureGlobal(ev) {
-        if (this.__owl__.refs.root.contains(ev.target)) {
-            return;
-        }
-        this.announcementMenuView.isOpen = false;
-    }
-
-    /**
      * Show announcement popup
      * @private
-     * @param {MouseEvent} event
+     * @param {MouseEvent} announcement
      */
     async openAnnouncement(announcement) {
         this.dialogService.add(

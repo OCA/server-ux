@@ -2,10 +2,9 @@
 /* Copyright 2024 Tecnativa - David Vidal
  * Copyright 2024 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
+import {reactive} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {session} from "@web/session";
-
-const {reactive} = owl;
 
 export const announcementService = {
     dependencies: ["orm"],
