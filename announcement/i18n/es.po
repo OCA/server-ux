@@ -196,14 +196,6 @@ msgid "In Date"
 msgstr "En fecha"
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
-#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
 #: model:ir.model.fields,field_description:announcement.field_announcement_log__write_uid
 #: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_uid
@@ -448,3 +440,6 @@ msgstr "p.e. Descripción del anuncio..."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
 msgid "name"
 msgstr "nombre"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -84,7 +84,6 @@ msgstr ""
 
 #. module: announcement
 #. odoo-javascript
-#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
 #: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
 #: model:ir.actions.act_window,name:announcement.announcement_action
 #: model:ir.ui.menu,name:announcement.menu_announcement_management
@@ -190,14 +189,6 @@ msgstr ""
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__in_date
 msgid "In Date"
-msgstr ""
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
-#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: announcement

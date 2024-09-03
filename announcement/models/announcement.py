@@ -96,7 +96,7 @@ class Announcement(models.Model):
         itself"""
         for announcement in self:
             for user in announcement.specific_user_ids.filtered(
-                lambda x: announcement
+                lambda x, announcement=announcement: announcement
                 not in (x.read_announcement_ids + x.unread_announcement_ids)
             ):
                 user.unread_announcement_ids |= announcement
