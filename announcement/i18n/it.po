@@ -88,7 +88,6 @@ msgstr "Tipo notifica"
 #. module: announcement
 #. odoo-javascript
 #: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
-#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
 #: model:ir.actions.act_window,name:announcement.announcement_action
 #: model:ir.ui.menu,name:announcement.menu_announcement_management
 #, python-format
@@ -194,14 +193,6 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:announcement.field_announcement__in_date
 msgid "In Date"
 msgstr "In data"
-
-#. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
-#: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
-#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
@@ -448,3 +439,6 @@ msgstr "es. Descrizione notifica..."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
 msgid "name"
 msgstr "nome"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"

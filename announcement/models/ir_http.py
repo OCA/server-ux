@@ -7,6 +7,6 @@ class IrHttp(models.AbstractModel):
     _inherit = "ir.http"
 
     def session_info(self):
-        res = super(IrHttp, self).session_info()
+        res = super().session_info()
         res["announcements"] = self.env["res.users"].get_announcements()
         return res
