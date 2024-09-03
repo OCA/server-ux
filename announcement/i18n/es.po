@@ -1,0 +1,450 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* announcement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-12 14:41+0000\n"
+"PO-Revision-Date: 2024-04-12 16:45+0200\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "<span class=\"o_stat_text\">Read(s)</span>"
+msgstr "<span class=\"o_stat_text\">Leído(s)</span>"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_3
+msgid "Accounting"
+msgstr "Contabilidad"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__active
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_user_ids
+msgid "Allowed User"
+msgstr "Usuario permitido"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_users_count
+msgid "Allowed Users Count"
+msgstr "Número de usuarios permitidos"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Announce at"
+msgstr "Anunciar a"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__announcement_id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__announcement_id
+#: model:ir.module.category,name:announcement.category_announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+#, python-format
+msgid "Announcement"
+msgstr "Anuncio"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_log_ids
+msgid "Announcement Log"
+msgstr "Registro del anuncio"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.action_announcement_log
+msgid "Announcement Logs"
+msgstr "Registro del anuncio"
+
+#. module: announcement
+#: model:res.groups,name:announcement.announcemenent_manager
+msgid "Announcement Manager"
+msgstr "Responsable de anuncios"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.announcement_tag_action
+#: model:ir.model,name:announcement.model_announcement_tag
+#: model:ir.ui.menu,name:announcement.menu_announcement_tag_management
+msgid "Announcement Tags"
+msgstr "Etiquetas de anuncios"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_type
+msgid "Announcement Type"
+msgstr "Tipo de anuncio"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+#: model:ir.actions.act_window,name:announcement.announcement_action
+#: model:ir.ui.menu,name:announcement.menu_announcement_management
+#, python-format
+msgid "Announcements"
+msgstr "Anuncios"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__color
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
+msgid "Color"
+msgstr "Color"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_1
+msgid "Company information"
+msgstr "Información de la compañía"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement_tag__company_id
+msgid "Company related to this tag"
+msgstr "Compañía relacionado con esta etiqueta"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__content
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Content"
+msgstr "Contenido"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__display_name
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_2
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__full_name
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
+msgid "General Announcement"
+msgstr "Anuncio general"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Groups"
+msgstr "Grupos"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__in_date
+msgid "In Date"
+msgstr "En fecha"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement____last_update
+#: model:ir.model.fields,field_description:announcement.field_announcement_log____last_update
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag____last_update
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement_log
+msgid "Log user reads"
+msgstr "Registrar lecturas de usuario"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_5
+msgid "Manufacturing"
+msgstr "Fabricación"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.esm.js:0
+#, python-format
+msgid "Mark as read"
+msgstr "Marcar como leído"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+#, python-format
+msgid "No announcements."
+msgstr "No hay anuncios."
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_date
+msgid "Notification Date"
+msgstr "Fecha de notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_end_date
+msgid "Notification End Date"
+msgstr "Fecha fin de notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
+msgid "Notification Expiry Date"
+msgstr "Fecha de caducidad de la notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_start_date
+msgid "Notification Start Date"
+msgstr "Fecha inicio de notificación"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__parent_id
+msgid "Parent Tag"
+msgstr "Etiqueta padre"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
+msgid "Read"
+msgstr "Leídos"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__read_announcement_ids
+msgid "Read Announcement"
+msgstr "Anuncio leído"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__read_announcement_count
+msgid "Read Announcement Count"
+msgstr "Número de anuncios leídos"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__date
+msgid "Read Date"
+msgstr "Fecha de lectura"
+
+#. module: announcement
+#. odoo-python
+#: code:addons/announcement/models/announcement.py:0
+#, python-format
+msgid "Read Logs"
+msgstr "Registros de lectura"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__read_state
+msgid "Read State"
+msgstr "Estado de lectura"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Reads"
+msgstr "Lecturas"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_4
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Set here the content of the announcement."
+msgstr "Inserta aquí el contenido del anuncio."
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_read_announcement_wizard
+msgid "Show altogether users who read and users who didn't"
+msgstr "Muestra juntos los usuarios que han leído un anuncio y los que no"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__specific_user_ids
+msgid "Specific User"
+msgstr "Usuarios específico"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__specific_users
+msgid "Specific users"
+msgstr "Usuarios específicos"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: announcement
+#: model:ir.model.constraint,message:announcement.constraint_announcement_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "¡El nombre de etiqueta ya existe!"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__tag_ids
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Tags..."
+msgstr "Etiquetas..."
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__notification_end_date
+#: model:ir.model.fields,help:announcement.field_announcement__notification_start_date
+msgid "Technical field to display announcements in the calendar view"
+msgstr "Campo técnico para mostrar los anuncios en la vista calendario"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__color
+msgid "Technical field to display items by color in the calendar"
+msgstr "Campo técnico para mostrar items por color en el calendario"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__name
+msgid "Title"
+msgstr "Título"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Total users"
+msgstr "Total usuarios"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
+msgstr "Pendientes"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
+msgstr "Anuncio pendiente"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_res_users
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__user_group_ids
+msgid "User Group"
+msgstr "Grupo de usuarios"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement
+msgid "User announcements"
+msgstr "Anuncios del usuario"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__user_group
+msgid "User groups"
+msgstr "Grupos de usuarios"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: announcement
+#: model:res.groups,comment:announcement.announcemenent_manager
+msgid "Users allowed to manage and configure announcements."
+msgstr "Usuarios autorizados a administrar y configurar anuncios."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Valid up to"
+msgstr "Válido hasta"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__attachment_ids
+msgid "You can attach the copy of your Letter"
+msgstr "Puedes adjuntar la copia de tu correo"
+
+#. module: announcement
+#. odoo-python
+#: code:addons/announcement/models/announcement_tag.py:0
+#, python-format
+msgid "You cannot create recursive tags."
+msgstr "No puedes crear etiquetas recursivas."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "e.g. Announcement description..."
+msgstr "p.e. Descripción del anuncio..."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
+msgid "name"
+msgstr "nombre"
