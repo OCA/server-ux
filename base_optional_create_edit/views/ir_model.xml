@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <field name="transient" position="after">
+                <field name="avoid_create_edit" />
+            </field>
+        </field>
+    </record>
+</odoo>
