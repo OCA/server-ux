@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* barcode_action
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-02 11:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: barcode_action
+#: model:ir.model,name:barcode_action.model_barcode_action
+msgid "Barcode Action"
+msgstr "Azione codice a barre"
+
+#. module: barcode_action
+#: model:ir.actions.act_window,name:barcode_action.barcode_action_action
+msgid "Barcode Launcher"
+msgstr "Applicazione codice a barre"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action___barcode_scanned
+msgid "Barcode Scanned"
+msgstr "Barcode scansionato"
+
+#. module: barcode_action
+#: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: barcode_action
+#: model:ir.model,name:barcode_action.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: barcode_action
+#: model_terms:ir.ui.view,arch_db:barcode_action.barcode_action_form
+msgid "Find"
+msgstr "Trova"
+
+#. module: barcode_action
+#: model:ir.actions.act_window,name:barcode_action.res_partner_find
+msgid "Find Partner"
+msgstr "Trova partner"
+
+#. module: barcode_action
+#: model:ir.ui.menu,name:barcode_action.menu_orders_customers
+msgid "Find partners"
+msgstr "Trova partner"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__id
+msgid "ID"
+msgstr "ID"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__method
+msgid "Method"
+msgstr "Metodo"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__model
+msgid "Model"
+msgstr "Modello"
+
+#. module: barcode_action
+#. odoo-python
+#: code:addons/barcode_action/models/res_partner.py:0
+#, python-format
+msgid "Partner with Internal Reference %s cannot be found"
+msgstr "Partner con riferimento interno %s non trovato"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__res_id
+msgid "Res"
+msgstr "Res"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__state
+msgid "State"
+msgstr "Stato"
+
+#. module: barcode_action
+#: model:ir.model.fields,field_description:barcode_action.field_barcode_action__status
+msgid "Status"
+msgstr "Stato"
+
+#. module: barcode_action
+#: model:ir.model.fields,help:barcode_action.field_barcode_action___barcode_scanned
+msgid "Value of the last barcode scanned."
+msgstr "Valore dell'ultimo codice a barre scansionato."
+
+#. module: barcode_action
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__waiting
+msgid "Waiting"
+msgstr "In attesa"
+
+#. module: barcode_action
+#: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__warning
+msgid "Warning"
+msgstr "Attenzione"
