@@ -77,11 +77,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: barcode_action
-#: model:ir.model.fields,field_description:barcode_action.field_barcode_action____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: barcode_action
 #: model:ir.model.fields,field_description:barcode_action.field_barcode_action__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
@@ -137,3 +132,6 @@ msgstr "Esperando"
 #: model:ir.model.fields.selection,name:barcode_action.selection__barcode_action__state__warning
 msgid "Warning"
 msgstr "Aviso"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
