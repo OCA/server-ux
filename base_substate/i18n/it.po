@@ -105,13 +105,6 @@ msgstr ""
 "questo substato."
 
 #. module: base_substate
-#: model:ir.model.fields,field_description:base_substate.field_base_substate____last_update
-#: model:ir.model.fields,field_description:base_substate.field_base_substate_type____last_update
-#: model:ir.model.fields,field_description:base_substate.field_target_state_value____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__write_uid
 #: model:ir.model.fields,field_description:base_substate.field_base_substate_type__write_uid
 #: model:ir.model.fields,field_description:base_substate.field_target_state_value__write_uid
@@ -202,8 +195,8 @@ msgid ""
 "Ex: for sale order \"Quotation\", \"Sale order\", \"Locked\"..."
 msgstr ""
 "Nome traducibile dello stato obiettivo.\n"
-"Es: per ordine di vendita \"Preventivo\", \"Ordine di vendita\", \"Bloccato\""
-"..."
+"Es: per ordine di vendita \"Preventivo\", \"Ordine di vendita\", "
+"\"Bloccato\"..."
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_base_substate_type__target_state_field
@@ -240,3 +233,6 @@ msgstr ""
 #, python-format
 msgid "This substate is not define for this object but for %s"
 msgstr "Questo sottostato non è definito per questo oggetto ma per %s"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
