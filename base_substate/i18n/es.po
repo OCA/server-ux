@@ -105,13 +105,6 @@ msgstr ""
 "alcance este subestado."
 
 #. module: base_substate
-#: model:ir.model.fields,field_description:base_substate.field_base_substate____last_update
-#: model:ir.model.fields,field_description:base_substate.field_base_substate_type____last_update
-#: model:ir.model.fields,field_description:base_substate.field_target_state_value____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__write_uid
 #: model:ir.model.fields,field_description:base_substate.field_base_substate_type__write_uid
 #: model:ir.model.fields,field_description:base_substate.field_target_state_value__write_uid
@@ -210,8 +203,8 @@ msgid ""
 "Technical target state field name. Ex for sale order \"state\" for other "
 "\"status\" ... "
 msgstr ""
-"Nombre de campo de estado de destino técnico. Ej para pedido de venta \"state"
-" \" para otro \"status \" ... "
+"Nombre de campo de estado de destino técnico. Ej para pedido de venta "
+"\"state \" para otro \"status \" ... "
 
 #. module: base_substate
 #: model:ir.model.fields,help:base_substate.field_target_state_value__target_state_value
@@ -239,3 +232,6 @@ msgstr ""
 #, python-format
 msgid "This substate is not define for this object but for %s"
 msgstr "Este subestado no está definido para este objeto sino para %s"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
