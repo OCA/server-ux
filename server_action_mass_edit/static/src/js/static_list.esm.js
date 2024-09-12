@@ -9,25 +9,29 @@ patch(StaticList.prototype, {
         this._onUpdate = options.onUpdate;
 
         this._cache = markRaw({});
-        this._commands = [];
-        this._initialCommands = [];
+        this._commands = this._commands || [];
+        console.log("Initial Commands:", this._commands);
+
         this._savePoint = undefined;
         this._unknownRecordCommands = {};
         this._currentIds = [...this.resIds];
-        this._initialCurrentIds = [...this.currentIds];
         this._needsReordering = false;
         this._tmpIncreaseLimit = 0;
         this._extendedRecords = new Set();
-        // To prevent the TypeError: data.slice is not a function" while set/remove/add
-        // value in wizard
-        this.records = Array.isArray(data)
-            ? data
-                  .slice(this.offset, this.limit)
-                  .map((r) => this._createRecordDatapoint(r))
-            : [];
+
+        const safeData = Array.isArray(data) ? data : [];
+        this.records = safeData.slice(this.offset, this.limit).map((r) => this._createRecordDatapoint(r));
+
         this.count = this.resIds.length;
         this.handleField = Object.keys(this.activeFields).find(
             (fieldName) => this.activeFields[fieldName].isHandle
         );
     },
+
+    _applyCommands() {
+        console.log("Applying Commands:", this._commands);
+        // Add logic here to ensure commands is iterable
+        this._commands = this._commands || [];
+        // Further code...
+    }
 });
