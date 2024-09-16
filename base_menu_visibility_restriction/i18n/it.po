@@ -26,7 +26,5 @@ msgstr "Gruppi esclusi"
 msgid "Menu"
 msgstr "Menu"
 
-#. module: base_menu_visibility_restriction
-#: model:res.groups,name:base_menu_visibility_restriction.group_demo_user
-msgid "Menu visibility restriction demo group"
-msgstr "Gruppo demo restrizione visibilità menu"
+#~ msgid "Menu visibility restriction demo group"
+#~ msgstr "Gruppo demo restrizione visibilità menu"
