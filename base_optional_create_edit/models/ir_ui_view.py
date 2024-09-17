@@ -25,7 +25,7 @@ class Model(models.AbstractModel):
                 }
             )
             domain = [("avoid_create_edit", "=", True), ("model", "in", comodel_names)]
-            relational_models = self.env["ir.model"].search(domain)
+            relational_models = self.env["ir.model"].sudo().search(domain)
             relational_models_names = relational_models.mapped("model")
             field_names = [
                 field_name
