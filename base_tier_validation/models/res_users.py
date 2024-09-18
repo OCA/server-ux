@@ -37,7 +37,7 @@ class Users(models.Model):
                     record = self.env[model]
                     user_reviews[model] = {
                         "id": records[0].id,
-                        "name": record._description,
+                        "name": self.env['ir.model']._get(record._name).name,
                         "model": model,
                         "active_field": "active" in record._fields,
                         "icon": modules.module.get_module_icon(record._original_module),
