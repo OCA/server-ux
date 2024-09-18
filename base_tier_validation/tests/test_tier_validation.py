@@ -905,6 +905,88 @@ class TierTierValidation(CommonTierValidation):
             )
         self.assertEqual(self.test_record.test_validation_field, 4)
 
+    def test_27_reevaluate_validation(self):
+        # Create new test record
+        test_record = self.test_model.create(
+            {"test_field": 100, "test_validation_field": 15}
+        )
+        # Create tier definitions
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 100)]",
+            }
+        )
+        # Request validation
+        reviews = test_record.with_user(self.test_user_2.id).request_validation()
+        # Check need validation
+        self.assertTrue(test_record.need_validation)
+        self.assertEqual(len(reviews), 1)
+
+        # Now record is not validated yet and new definition create,
+        # and then we reevaluate object then it will add new definition validation
+        # also in current object
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_validation_field', '>', 10)]",
+            }
+        )
+
+        # Reevaluate Validation
+        reviews = test_record.with_user(self.test_user_2.id).reevaluate_reviews()
+        # Check need validation
+        self.assertTrue(test_record.need_validation)
+        self.assertEqual(len(reviews), 2)
+
+    def test_28_reevaluate_validation(self):
+        # Create new test record
+        test_record = self.test_model.create(
+            {"test_field": 100, "test_validation_field": 15}
+        )
+        # Create tier definitions
+        # 1st defination to check test_field
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 100)]",
+            }
+        )
+        # 2nd definition will be trigger only when there is
+        # new message with body "This record need extra validation"
+        test_message = "This record need extra validation"
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('message_ids.body', 'ilike', '%s')]"
+                % (test_message),
+            }
+        )
+
+        # Request validation
+        reviews = test_record.with_user(self.test_user_2.id).request_validation()
+        # Check need validation
+        self.assertTrue(test_record.need_validation)
+        self.assertEqual(len(reviews), 1)
+
+        # now post new message "This record need extra validation",
+        # it will need to reevaluate record and will add new tier validation
+        test_record.with_user(self.test_user_2.id).message_post(body=test_message)
+
+        # Reevaluate Validation
+        reviews = test_record.with_user(self.test_user_2.id).reevaluate_reviews()
+        # Check need validation
+        self.assertTrue(test_record.need_validation)
+        self.assertEqual(len(reviews), 2)
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
