@@ -8,6 +8,7 @@ class TierValidation(models.AbstractModel):
 
     can_forward = fields.Boolean(compute="_compute_can_forward")
 
+    @api.depends_context("uid")
     def _compute_can_forward(self):
         for rec in self:
             if not rec.can_review:
