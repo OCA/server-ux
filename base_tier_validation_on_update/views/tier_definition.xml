@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="tier_definition_form" model="ir.ui.view">
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <field name="review_type" position="before">
+                <field name="review_on_update" />
+            </field>
+            <xpath expr="//page[last()]" position="after">
+                <page
+                    name="on_update_page"
+                    string="On Update"
+                    attrs="{'invisible': [('review_on_update', '=', False)]}"
+                >
+                    <group>
+                        <group>
+                            <field name="on_update_type" />
+                        </group>
+                        <group>
+                            <field
+                                name="on_update_record_ids"
+                                attrs="{'invisible': [('on_update_type', '!=', 'records')]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="res_id" />
+                                    <field name="display_name" />
+                                </tree>
+                            </field>
+                            <field
+                                name="on_update_field_ids"
+                                attrs="{'invisible': [('on_update_type', 'not in', ['records', 'fields'])]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="field_description" />
+                                    <field name="ttype" />
+                                    <field name="relation" />
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="tier_definition_tree" model="ir.ui.view">
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_tree" />
+        <field name="arch" type="xml">
+            <field name="review_type" position="after">
+                <field name="review_on_update" />
+                <field name="on_update_type" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

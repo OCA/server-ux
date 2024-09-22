@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_review_tree" model="ir.ui.view">
+        <field name="model">tier.review</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_review_view_tree" />
+        <field name="arch" type="xml">
+            <field name="review_type" position="after">
+                <field name="review_on_update" />
+                <field name="on_update_type" />
+            </field>
+        </field>
+    </record>
+</odoo>
