@@ -38,6 +38,7 @@ class ConfirmationWizard(models.TransientModel):
         action.update(
             {
                 "name": title or _("Confirmation"),
+                "res_id": self.id,
                 "context": self._context,
             }
         )
