@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 11:09+0000\n"
+"PO-Revision-Date: 2024-09-23 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: base_tier_validation
 #. openerp-web
@@ -178,7 +178,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__can_review
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__can_review
 msgid "Can Review"
-msgstr "Può approvare"
+msgstr "Può revisionare"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_review__can_review
