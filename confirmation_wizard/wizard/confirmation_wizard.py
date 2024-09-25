@@ -103,7 +103,8 @@ class ConfirmationWizard(models.TransientModel):
                 _("Method '%(callback_method)s' is not found on model '%(res_model)s'.")
                 % {"callback_method": self.callback_method, "res_model": self.res_model}
             )
-        return getattr(records, self.callback_method)(**self.callback_params)
+        params = self.callback_params or {}
+        return getattr(records, self.callback_method)(**params)
 
     def action_confirm(self):
         """Action confirm wizard"""
