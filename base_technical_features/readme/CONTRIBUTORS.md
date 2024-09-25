@@ -1,3 +1,4 @@
 - Stefan Rijnhart \<<stefan@opener.am>\>
 - Jeroen Evens \<<jeroen.evens@dynapps.be>\>
 - Jim Hoefnagels \<<jim.hoefnagels@dynapps.be>\>
+- Khoi (Kien Kim) \<<khoikk@trobz.com>\>
