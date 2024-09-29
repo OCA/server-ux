@@ -1,0 +1,15 @@
+<odoo>
+    <record id="sequence_view" model="ir.ui.view">
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page/group[last()]" position="after">
+                <group attrs="{'invisible': [('use_date_range', '=', False)]}">
+                    <div>
+                        You can also use 'range_end_' to use the end date of the range, e.g. %%(range_end_year)s.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
