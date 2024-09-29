@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * mass_operation_abstract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-24 12:11+0000\n"
+"PO-Revision-Date: 2020-02-24 12:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (copie)"
+
+#. module: mass_operation_abstract
+#: model:ir.model,name:mass_operation_abstract.model_mass_operation_mixin
+msgid "Abstract Mass Operations"
+msgstr "Opérations en lot (modèle abstrait)"
+
+#. module: mass_operation_abstract
+#: model:ir.model,name:mass_operation_abstract.model_mass_operation_wizard_mixin
+msgid "Abstract Mass Operations Wizard"
+msgstr "Assistant d'opérations en lot (modèle abstrait)"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__action_name
+msgid "Action Name"
+msgstr "Nom de l'action"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Add sidebar button"
+msgstr "Ajouter le boutton à la barre latérale"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__group_ids
+msgid "Allowed Groups"
+msgstr "Groupes autorisés"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_wizard_mixin_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__display_name
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__display_name
+msgid "Display Name"
+msgstr "Afficher Nom"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Display a button in the sidebar of related model to open a wizard"
+msgstr ""
+"Affichier un bouton dans la barre latérale du module associé, pour ouvrir "
+"l'assistant"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__domain
+msgid "Domain"
+msgstr "Domaine"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__id
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,help:mass_operation_abstract.field_mass_operation_mixin__message
+msgid "If set, this message will be displayed in the wizard."
+msgstr "Si ce champ est défini, le message sera affiché dans l'assistant"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin____last_update
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/models/mass_operation_mixin.py:0
+#, python-format
+msgid "Mass Operation (%s)"
+msgstr "Opération en lot (%s)"
+
+#. module: mass_operation_abstract
+#: model:ir.ui.menu,name:mass_operation_abstract.menu_mass_operation
+msgid "Mass Operations"
+msgstr "Opérations en lot"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__message
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__message
+msgid "Message"
+msgstr ""
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid "None of the %d items you have selected can be processed."
+msgstr "Aucun des %d éléments que vous avez sélectionné ne peut être traités."
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_danger
+msgid "Operation Description Danger"
+msgstr "Description de l'opération - Danger"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_info
+msgid "Operation Description Info"
+msgstr "Description de l'opération - Information"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__operation_description_warning
+msgid "Operation Description Warning"
+msgstr "Description de l'opération - Attention"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__remaining_item_qty
+msgid "Remaining Item Qty"
+msgstr "Nombre d'éléments restants"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Remove sidebar button"
+msgstr "Retirer le boutton de la barre latérale"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Security"
+msgstr ""
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_wizard_mixin__selected_item_qty
+msgid "Selected Item Qty"
+msgstr "Nombre d'éléments sélectionnés"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Settings"
+msgstr "Configuration"
+
+#. module: mass_operation_abstract
+#: model:ir.model.fields,field_description:mass_operation_abstract.field_mass_operation_mixin__ref_ir_act_window_id
+msgid "Sidebar Action"
+msgstr "Action de la barre latérale"
+
+#. module: mass_operation_abstract
+#: model_terms:ir.ui.view,arch_db:mass_operation_abstract.view_mass_operation_mixin_form
+msgid "Technical Informations"
+msgstr "Informations techniques"
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid "The treatment will be processed on the %d selected elements."
+msgstr "Le traitement sera réalisé sur les %d éléments sélectionnés."
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid ""
+"There is no more element that corresponds to the rules of the domain.\n"
+" Please refresh your list and try to select again the items."
+msgstr ""
+
+#. module: mass_operation_abstract
+#: code:addons/mass_operation_abstract/wizard/mass_operation_wizard_mixin.py:0
+#, python-format
+msgid ""
+"You have selected %d items that can not be processed. Only %d items will be "
+"processed."
+msgstr ""
+"Vous avez sélectionné %d éléments qui ne peuvent pas être traités. Seulement "
+"%d éléments vont être traités."
+
+#~ msgid ""
+#~ "there is no more element that corresponds to the rules of the domain.\n"
+#~ " Please refresh your list and try to select again the items."
+#~ msgstr ""
+#~ "Il n'y a pas d'élément qui correspond aux règles d'accès définis par le "
+#~ "domaine.\n"
+#~ "Veuillez rafraichir la liste des éléments, et sélectionner des éléments "
+#~ "de nouveau"
