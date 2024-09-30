@@ -1,10 +1,6 @@
-This module provides the following features:
+This module allows to edit several records at the same time in any Odoo model
 
-- You can add, update or remove the values of more than one records on
-  the fly at the same time.
-- You can configure mass editing for any Odoo model.
-
-**Difference between the Odoo 13.0 CE Feature**
+**Difference in comparison to the Odoo Feature**
 
 Since Odoo V13, a limited "mass Editing feature" is available in Odoo
 CE.
