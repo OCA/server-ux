@@ -4,4 +4,12 @@
         <field name="name">Substate manager</field>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
     </record>
+
+    <record id="base_substate_company_rule" model="ir.rule">
+        <field name="name">Base substate multi-company</field>
+        <field name="model_id" ref="model_base_substate" />
+        <field
+            name="domain_force"
+        >['|', ('company_id','=',False), ('company_id','in',company_ids)]</field>
+    </record>
 </odoo>
