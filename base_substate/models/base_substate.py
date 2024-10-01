@@ -101,3 +101,8 @@ class BaseSubstate(models.Model):
         readonly=True,
         help="Model for technical use",
     )
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        default=lambda self: self.env.company,
+        index=True,
+    )

@@ -66,7 +66,10 @@ class BaseSubstateMixin(models.AbstractModel):
         if self and not state_val and state_field in self._fields:
             state_val = self[state_field]
 
-        domain = [("target_state_value_id.target_state_value", "=", state_val)]
+        domain = [
+            ("target_state_value_id.target_state_value", "=", state_val),
+            ("company_id", "in", [False, self.company_id.id]),
+        ]
         domain += [
             ("target_state_value_id.base_substate_type_id", "=", substate_type.id)
         ]
@@ -97,9 +100,20 @@ class BaseSubstateMixin(models.AbstractModel):
         default=lambda self: self._get_default_substate_id(),
         tracking=5,
         index=True,
-        domain=lambda self: [("model", "=", self._name)],
+        domain=lambda self: self._get_domain_substate(),
         copy=False,
     )
+
+    def _get_domain_substate(self):
+        return (
+            "[('model', '=', '%s'), ('company_id', 'in', [False, company_id])]"
+            % self._name
+        )
+
+    @api.onchange("company_id")
+    def _onchange_company_id(self):
+        if self.company_id:
+            self.substate_id = self._get_default_substate_id()
 
     @api.constrains("substate_id")
     def check_substate_id_consistency(self):
