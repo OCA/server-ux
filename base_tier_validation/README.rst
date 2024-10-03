@@ -44,6 +44,12 @@ See
 `purchase_tier_validation <https://github.com/OCA/purchase-workflow>`__
 as an example of implementation.
 
+Additionally, if your state field is a (stored) computed field, you need
+to set ``_tier_validation_state_field_is_computed`` to ``True`` in your
+model Python file, and you will want to add the dependent fields of the
+compute method in ``_get_after_validation_exceptions`` and
+``_get_under_validation_exceptions``.
+
 **Table of contents**
 
 .. contents::
@@ -263,6 +269,8 @@ Contributors
 -  `XCG Consulting <https://xcg-consulting.fr>`__:
 
    -  Houzéfa Abbasbhay
+
+-  Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainers
 -----------
