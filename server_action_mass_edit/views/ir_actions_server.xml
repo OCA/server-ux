@@ -8,7 +8,7 @@
                 <notebook invisible="state != 'mass_edit'">
                     <page name="mass_edit_line_ids" string="Fields">
                         <field name="mass_edit_line_ids" nolabel="1">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="model_id" column_invisible="True" />
                                 <field
                                     name="server_action_id"
@@ -21,7 +21,7 @@
                                 />
                                 <field name="widget_option" />
                                 <field name="apply_domain" />
-                            </tree>
+                            </list>
                         </field>
                         <field name="mass_edit_apply_domain_in_lines" invisible="1" />
                         <div
