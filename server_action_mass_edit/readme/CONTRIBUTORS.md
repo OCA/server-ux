@@ -10,3 +10,4 @@
   - Jairo Llopis
   - Víctor Martínez
 - Tatiana Deribina \<<tatiana.deribina@spritnit.fi>\>
+- Tris Doan \<<tridm@trobz.com>\>

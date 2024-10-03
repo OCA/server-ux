@@ -1,4 +1,3 @@
-/** @odoo-module **/
 import {Record} from "@web/model/relational_model/record";
 import {patch} from "@web/core/utils/patch";
 
