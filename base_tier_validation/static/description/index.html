@@ -382,6 +382,11 @@ some development.</p>
 <p>See
 <a class="reference external" href="https://github.com/OCA/purchase-workflow">purchase_tier_validation</a>
 as an example of implementation.</p>
+<p>Additionally, if your state field is a (stored) computed field, you need
+to set <tt class="docutils literal">_tier_validation_state_field_is_computed</tt> to <tt class="docutils literal">True</tt> in your
+model Python file, and you will want to add the dependent fields of the
+compute method in <tt class="docutils literal">_get_after_validation_exceptions</tt> and
+<tt class="docutils literal">_get_under_validation_exceptions</tt>.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -618,6 +623,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Houzéfa Abbasbhay</li>
 </ul>
 </li>
+<li>Stefan Rijnhart &lt;<a class="reference external" href="mailto:stefan&#64;opener.amsterdam">stefan&#64;opener.amsterdam</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
