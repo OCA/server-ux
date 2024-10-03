@@ -168,7 +168,7 @@ class TestMassEditing(common.TransactionCase):
         ).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertIn(
-            "<tree editable=",
+            "<list editable=",
             arch,
             "Fields view get must return architecture with embedded tree",
         )
