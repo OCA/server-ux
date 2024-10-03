@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2024-05-15 09:38+0000\n"
+"PO-Revision-Date: 2025-02-06 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
@@ -33,7 +33,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -94,7 +93,6 @@ msgstr "Nome visualizzato"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Don't touch"
 msgstr "Non toccare"
 
@@ -157,7 +155,6 @@ msgstr "Azione server di massa"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
-#, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr "I campi modifica di massa devono appartenere al modello azione server."
 
@@ -182,7 +179,6 @@ msgstr "Modello sul quale l'azione del server si applica."
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
 "Nessuno dei %(amount)d record(s) record selezionati possono essere elaborati."
@@ -210,7 +206,6 @@ msgstr "Q.tà elementi rimanenti"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Remove"
 msgstr "Rimuovi"
 
@@ -238,14 +233,12 @@ msgstr "Righe azioni modifica di massa server"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Set"
 msgstr "Imposta"
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr "L'operazione sarà eseguita sui %(amount)d record selezionati."
 
@@ -278,11 +271,11 @@ msgstr ""
 "- 'Invia e.mail': inserisce un messaggio, una nota o invia una e-mail "
 "(Discussione)\n"
 "- 'Invia SMS': invia SMS, ne tiene traccia nei documenti (SMS)\n"
-"- 'Aggiungi/rimuiovi chi segue': aggiunge o rimuiove chi segue un record "
+"- 'Aggiungi/rimuovi chi segue': aggiunge o rimuove chi segue un record "
 "(Discussione)\n"
 "- 'Crea record': crea un nuovo record con valori nuovi\n"
 "- 'Esegui codice': un blocco di codice Python che verrà eseguito\n"
-"- 'Invia notivica webhook': invia una richiesta POST ad un sistema esterno, "
+"- 'Invia notifica webhook': invia una richiesta POST ad un sistema esterno, "
 "conosciuto come un webhook\n"
 "- 'Esegue azioni esistenti': definisce una azione che esegue diverse altre "
 "azioni\n"
@@ -305,7 +298,6 @@ msgstr "Procedura guidata per le modifiche massive"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."

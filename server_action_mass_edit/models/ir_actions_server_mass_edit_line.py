@@ -28,15 +28,14 @@ class IrActionsServerMassEditLine(models.Model):
     field_id = fields.Many2one(
         "ir.model.fields",
         string="Field",
-        domain="""
+        domain=f"""
             [
-                ("name", "not in", %s),
+                ("name", "not in", {str(MAGIC_FIELDS)}),
                 ("ttype", "not in", ["reference", "function"]),
                 ("model_id", "=", model_id),
                 ("readonly", "!=", True),
             ]
-        """
-        % str(MAGIC_FIELDS),
+        """,
         ondelete="cascade",
         required=True,
     )

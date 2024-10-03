@@ -1,4 +1,3 @@
-/** @odoo-module **/
 import {StaticList} from "@web/model/relational_model/static_list";
 import {markRaw} from "@odoo/owl";
 import {patch} from "@web/core/utils/patch";
