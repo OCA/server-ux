@@ -99,6 +99,10 @@
                             <group name="more_option">
                                 <group name="notify">
                                     <field name="notify_on_create" />
+                                    <field
+                                        name="notify_by_sequence"
+                                        attrs="{'invisible': [('approve_sequence', '=', False)]}"
+                                    />
                                     <field name="has_comment" />
                                     <field name="notify_reminder_delay" />
                                 </group>
