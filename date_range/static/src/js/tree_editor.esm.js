@@ -46,6 +46,11 @@ patch(TreeEditor.prototype, {
         ) {
             info.component = Select;
         }
+        // Prevent issues when the domain is not initialized, for example in
+        // Odoo Studio editing
+        if (!this.env.domain) {
+            return info;
+        }
         let dateRanges = this.env.domain.dateRanges;
         if (this.update_operator && this.update_operator.split("daterange_")[1]) {
             dateRanges = this.env.domain.dateRanges.filter(
@@ -105,6 +110,11 @@ patch(TreeEditor.prototype, {
         super.updateLeafOperator.apply(this, arguments);
         this.update_operator = operator;
         const fieldDef = this.getFieldDef(node.path);
+        // Prevent issues when the domain is not initialized, for example in
+        // Odoo Studio editing
+        if (!this.env.domain) {
+            return;
+        }
         let dateRanges = this.env.domain.dateRanges.filter(
             (range) => range.type_id[0] === Number(operator.split("daterange_")[1])
         );
