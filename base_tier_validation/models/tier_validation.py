@@ -10,7 +10,7 @@ from lxml import etree
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv.expression import OR
-from odoo.tools.misc import frozendict
+from odoo.tools.misc import format_date, format_datetime, frozendict
 
 BASE_EXCEPTION_FIELDS = ["message_follower_ids", "access_token"]
 
@@ -70,6 +70,48 @@ class TierValidation(models.AbstractModel):
     )
     has_comment = fields.Boolean(compute="_compute_has_comment")
     next_review = fields.Char(compute="_compute_next_review")
+    reviewer_helper_message = fields.Html(
+        compute="_compute_reviewer_helper_message",
+        store=True,
+    )
+
+    def _get_field_value(self, field, field_value):
+        if field.ttype == "many2one":
+            field_value = field_value.name
+        elif field.ttype == "selection":
+            field_value = dict(self._fields[field.name].selection).get(field_value)
+        elif field.ttype in ["many2many", "one2many"]:
+            field_value = ", ".join(field_value.mapped("name"))
+        elif field.ttype == "date":
+            field_value = format_date(self.env, field_value)
+        elif field.ttype == "datetime":
+            field_value = format_datetime(self.env, field_value)
+        return field_value
+
+    @api.depends("review_ids", "review_ids.status", "review_ids.reviewer_ids")
+    def _compute_reviewer_helper_message(self):
+        for rec in self:
+            message = ""
+            reviews = rec.review_ids.filtered(
+                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            )
+            if reviews:
+                if any(r.approve_sequence for r in reviews):
+                    reviews = reviews[0]
+                for review in reviews:
+                    definition = review.definition_id
+                    message += f"<b>{definition.name}</b>:<br/>"
+                    if definition.reviewer_helper_message:
+                        message += definition.reviewer_helper_message
+                        message += "<br/>"
+                    if definition.field_for_review_ids:
+                        for field in definition.field_for_review_ids:
+                            descr = field.field_description
+                            field_value = getattr(rec, field.name)
+                            if field_value:
+                                value = self._get_field_value(field, field_value)
+                                message += f"- {descr}: {value}<br/>"
+            rec.reviewer_helper_message = message
 
     def _compute_has_comment(self):
         for rec in self:

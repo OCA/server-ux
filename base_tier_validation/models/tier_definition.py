@@ -96,6 +96,13 @@ class TierDefinition(models.Model):
     approve_sequence_bypass = fields.Boolean(
         help="Bypassed (auto validated), if previous tier was validated by same reviewer",
     )
+    reviewer_helper_message = fields.Text()
+
+    field_for_review_ids = fields.Many2many(
+        comodel_name="ir.model.fields",
+        string="Fields to validate",
+        domain="[('model_id', '=', model_id)]",
+    )
 
     @api.onchange("review_type")
     def onchange_review_type(self):
