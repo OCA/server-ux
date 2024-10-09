@@ -61,12 +61,6 @@
             sequence="115"
         />
     <menuitem
-            id="property"
-            name="Properties"
-            action="base.ir_property_form"
-            sequence="120"
-        />
-    <menuitem
             id="mail_tmpl"
             name="📧 Mail Templates"
             action="mail.action_email_template_tree_all"
