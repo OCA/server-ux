@@ -42,11 +42,6 @@ msgid "Parameters"
 msgstr "Parametri"
 
 #. module: developer_menu
-#: model:ir.ui.menu,name:developer_menu.property
-msgid "Properties"
-msgstr "Proprietà"
-
-#. module: developer_menu
 #: model:ir.ui.menu,name:developer_menu.view
 msgid "Views"
 msgstr "Viste"
@@ -90,3 +85,6 @@ msgstr "🔢 Sequence"
 #: model:ir.ui.menu,name:developer_menu.conf_tech
 msgid "🧰 Dev"
 msgstr "🧰 Dev"
+
+#~ msgid "Properties"
+#~ msgstr "Proprietà"
