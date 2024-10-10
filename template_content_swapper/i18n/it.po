@@ -1,0 +1,142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* template_content_swapper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-04 16:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__active_lang_count
+msgid "Active Lang Count"
+msgstr "Numero lingue attive"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__content_from
+msgid "Content From"
+msgstr "Contenuto file"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__content_to
+msgid "Content To"
+msgstr "Contenuto a"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: template_content_swapper
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Frontend"
+msgstr "Frontend"
+
+#. module: template_content_swapper
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__id
+msgid "ID"
+msgstr "ID"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__lang
+msgid ""
+"If no language is selected, the mapping will be applied to all languages."
+msgstr ""
+"Se non è selezionata una lingua, la mappatura verrà applicata a tutte le "
+"lingue."
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__lang
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Language"
+msgstr "Lingua"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__report_id
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Report"
+msgstr "Resoconto"
+
+#. module: template_content_swapper
+#: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__template_id
+msgid "Select the main template of the report / frontend page to be modified."
+msgstr ""
+"Selezionare il modello principale del resoconto / pagina frontend da "
+"modificare."
+
+#. module: template_content_swapper
+#: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__content_from
+msgid "Set the content (string) to be replaced. e.g. 'Salesperson'."
+msgstr "Impostare il contenuto (stringa) da sostituire. Es. 'Venditore'."
+
+#. module: template_content_swapper
+#: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__content_to
+msgid "Set your new content (string). e.g. 'Sales Representative'."
+msgstr "Impostare il nuovo contenuto (stringa). Es. 'Rappresentante'."
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__template_id
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Template"
+msgstr "Modello"
+
+#. module: template_content_swapper
+#: model:ir.model,name:template_content_swapper.model_template_content_mapping
+msgid "Template Content Mapping"
+msgstr "Modello mappatura contenuto"
+
+#. module: template_content_swapper
+#: model:ir.actions.act_window,name:template_content_swapper.action_template_content_mapping
+#: model:ir.ui.menu,name:template_content_swapper.menu_template_content_mapping
+#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
+msgid "Template Content Mappings"
+msgstr "Modello mappature contenuto"
+
+#. module: template_content_swapper
+#: model:ir.model,name:template_content_swapper.model_ir_ui_view
+msgid "View"
+msgstr "Vista"
