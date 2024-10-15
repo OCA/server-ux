@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+    -->
+    <record id="edit_menu_access_restricted" model="ir.ui.view">
+        <field name="name">ir.ui.menu.restricted</field>
+        <field name="model">ir.ui.menu</field>
+        <field name="inherit_id" ref="base.edit_menu_access" />
+        <field name="arch" type="xml">
+            <field name="groups_id" position="before">
+                <label for="groups_id" />
+            </field>
+            <field name="groups_id" position="after">
+                <label for="excluded_group_ids" />
+                <field name="excluded_group_ids" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Víctor Martínez
+- Dhara Solanki \<<dhara.solanki@initos.com>\>
+- Nedas Žilinskas \<<nedas.zilinskas@avoin.systems>\>
