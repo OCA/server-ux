@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2019-Today GRAP (http://www.grap.coop)
+Copyright (C) 2020 Iván Todorovich (https://twitter.com/ivantodorovich)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_mass_editing_wizard_form" model="ir.ui.view">
+        <field name="model">mass.editing.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <p class="oe_grey" invisible="not message">
+                    <field name="message" />
+                </p>
+                <p
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="not operation_description_info"
+                >
+                    <field name="operation_description_info" />
+                </p>
+                <p
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not operation_description_warning"
+                >
+                    <field name="operation_description_warning" />
+                </p>
+                <p
+                    class="alert alert-danger"
+                    role="alert"
+                    invisible="not operation_description_danger"
+                >
+                    <field name="operation_description_danger" />
+                </p>
+                <group name="group_field_list">
+                </group>
+                <footer>
+                    <button
+                        string="Apply"
+                        name="button_apply"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
