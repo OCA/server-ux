@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_automation_team_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20231106\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-21 11:59+0000\n"
+"PO-Revision-Date: 2024-10-21 11:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_base_automation__activity_user_type
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_actions_server__activity_user_type
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_cron__activity_user_type
+msgid "Activity User Type"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_actions_server__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_actions_server__id
+msgid "ID"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_actions_server____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model,name:base_automation_team_activity.model_ir_actions_server
+msgid "Server Action"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: code:addons/base_automation_team_activity/models/ir_actions_server.py:0
+#: model:ir.model.fields.selection,name:base_automation_team_activity.selection__ir_actions_server__activity_user_type__team
+#, python-format
+msgid "Specific Team"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_base_automation__team_id
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_actions_server__team_id
+#: model:ir.model.fields,field_description:base_automation_team_activity.field_ir_cron__team_id
+msgid "Team"
+msgstr ""
+
+#. module: base_automation_team_activity
+#: model:ir.model.fields,help:base_automation_team_activity.field_base_automation__activity_user_type
+#: model:ir.model.fields,help:base_automation_team_activity.field_ir_actions_server__activity_user_type
+#: model:ir.model.fields,help:base_automation_team_activity.field_ir_cron__activity_user_type
+msgid ""
+"Use 'Specific User' to always assign the same user on the next activity.\n"
+"        Use 'Generic User From Record' to specify the field name of the user\n"
+"        to choose on the record.\n"
+"        Use 'Specific Team' to always assign the same team on the next activity.\n"
+"        "
+msgstr ""
