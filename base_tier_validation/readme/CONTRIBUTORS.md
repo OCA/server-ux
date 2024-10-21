@@ -13,3 +13,4 @@
 - Eduardo de Miguel \<<edu@moduon.team>\>
 - [XCG Consulting](https://xcg-consulting.fr):
   - Houzéfa Abbasbhay
+- Stefan Rijnhart \<<stefan@opener.amsterdam>\>

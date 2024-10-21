@@ -5,6 +5,7 @@
 from ast import literal_eval
 
 from lxml import etree
+from psycopg2.extensions import AsIs
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -19,6 +20,7 @@ class TierValidation(models.AbstractModel):
 
     _tier_validation_buttons_xpath = "/form/header/button[last()]"
     _tier_validation_manual_config = True
+    _tier_validation_state_field_is_computed = False
 
     _state_field = "state"
     _state_from = ["draft"]
@@ -340,6 +342,39 @@ class TierValidation(models.AbstractModel):
         return allowed_field_names, not_allowed_field_names
 
     def write(self, vals):
+        self._tier_validation_check_state_on_write(vals)
+        self._tier_validation_check_write_allowed(vals)
+        self._tier_validation_check_write_remove_reviews(vals)
+        return super().write(vals)
+
+    def _write(self, vals):
+        if self._tier_validation_state_field_is_computed:
+            self._tier_validation_check_state_on_write(vals)
+            self._tier_validation_check_write_remove_reviews(vals)
+        return super()._write(vals)
+
+    def _tier_validation_get_current_state_value(self):
+        """Get the current value from the cache or the database.
+
+        If the field is set in a computed method, the value in the cache will
+        already be the updated value, so we need to revert to the raw data.
+        """
+        self.ensure_one()
+        if self._tier_validation_state_field_is_computed and isinstance(self.id, int):
+            self.env.cr.execute(
+                "select %(field)s from %(table)s where id = %(res_id)s",
+                {
+                    "field": AsIs(self._state_field),
+                    "table": AsIs(self._table),
+                    "res_id": self.id,
+                },
+            )
+            rows = self.env.cr.fetchall()
+            if rows:
+                return rows[0][0]
+        return self[self._state_field]
+
+    def _tier_validation_check_state_on_write(self, vals):
         for rec in self:
             if rec._check_state_conditions(vals):
                 if rec.need_validation:
@@ -360,6 +395,9 @@ class TierValidation(models.AbstractModel):
                             "one record."
                         )
                     )
+
+    def _tier_validation_check_write_allowed(self, vals):
+        for rec in self:
             # Write under validation
             if (
                 rec.review_ids
@@ -391,7 +429,7 @@ class TierValidation(models.AbstractModel):
             if (
                 rec._get_validation_exceptions(add_base_exceptions=False)
                 and rec.validation_status == "validated"
-                and getattr(rec, self._state_field)
+                and rec._tier_validation_get_current_state_value()
                 in (self._state_to + [self._cancel_state])
                 and not rec._check_allow_write_after_validation(vals)
                 and not rec._context.get("skip_validation_check")
@@ -413,9 +451,11 @@ class TierValidation(models.AbstractModel):
                         "allowed_fields": "\n- ".join(allowed_fields),
                     }
                 )
+
+    def _tier_validation_check_write_remove_reviews(self, vals):
+        for rec in self:
             if rec._allow_to_remove_reviews(vals):
                 rec.mapped("review_ids").unlink()
-        return super().write(vals)
 
     def _allow_to_remove_reviews(self, values):
         """Method for deciding whether the elimination of revisions is necessary."""
@@ -423,7 +463,7 @@ class TierValidation(models.AbstractModel):
         state_to = values.get(self._state_field)
         if not state_to:
             return False
-        state_from = self[self._state_field]
+        state_from = self._tier_validation_get_current_state_value()
         # If you change to _cancel_state
         if state_to in (self._cancel_state):
             return True
@@ -435,7 +475,7 @@ class TierValidation(models.AbstractModel):
     def _check_state_from_condition(self):
         return self.env.context.get("skip_check_state_condition") or (
             self._state_field in self._fields
-            and getattr(self, self._state_field) in self._state_from
+            and self._tier_validation_get_current_state_value() in self._state_from
         )
 
     def _check_state_conditions(self, vals):

@@ -19,14 +19,21 @@ class CommonTierValidation(common.TransactionCase):
             TierDefinition,
             TierValidationTester,
             TierValidationTester2,
+            TierValidationTesterComputed,
         )
 
         cls.loader.update_registry(
-            (TierValidationTester, TierValidationTester2, TierDefinition)
+            (
+                TierValidationTester,
+                TierValidationTester2,
+                TierValidationTesterComputed,
+                TierDefinition,
+            )
         )
 
         cls.test_model = cls.env[TierValidationTester._name]
         cls.test_model_2 = cls.env[TierValidationTester2._name]
+        cls.test_model_computed = cls.env[TierValidationTesterComputed._name]
 
         cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
@@ -34,34 +41,32 @@ class CommonTierValidation(common.TransactionCase):
         cls.tester_model_2 = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester2")]
         )
-
-        # Access record:
-        cls.env["ir.model.access"].create(
-            {
-                "name": "access.tester",
-                "model_id": cls.tester_model.id,
-                "perm_read": 1,
-                "perm_write": 1,
-                "perm_create": 1,
-                "perm_unlink": 1,
-            }
-        )
-        cls.env["ir.model.access"].create(
-            {
-                "name": "access.tester2",
-                "model_id": cls.tester_model_2.id,
-                "perm_read": 1,
-                "perm_write": 1,
-                "perm_create": 1,
-                "perm_unlink": 1,
-            }
+        cls.tester_model_computed = cls.env["ir.model"].search(
+            [("model", "=", "tier.validation.tester.computed")]
         )
 
-        # Define views to avoid automatic views with all fields.
-        for model in cls.test_model._name, cls.test_model_2._name:
+        models = (
+            cls.tester_model,
+            cls.tester_model_2,
+            cls.tester_model_computed,
+        )
+        for model in models:
+            # Access record:
+            cls.env["ir.model.access"].create(
+                {
+                    "name": f"access {model.name}",
+                    "model_id": model.id,
+                    "perm_read": 1,
+                    "perm_write": 1,
+                    "perm_create": 1,
+                    "perm_unlink": 1,
+                }
+            )
+
+            # Define views to avoid automatic views with all fields.
             cls.env["ir.ui.view"].create(
                 {
-                    "model": model,
+                    "model": model.model,
                     "name": f"Demo view for {model}",
                     "arch": """<form>
                     <header>
@@ -103,6 +108,7 @@ class CommonTierValidation(common.TransactionCase):
 
         cls.test_record = cls.test_model.create({"test_field": 1.0})
         cls.test_record_2 = cls.test_model_2.create({"test_field": 1.0})
+        cls.test_record_computed = cls.test_model_computed.create({"test_field": 1.0})
 
         cls.tier_def_obj.create(
             {
@@ -139,6 +145,19 @@ class CommonTierValidation(common.TransactionCase):
                 "notify_on_pending": True,
                 "sequence": 10,
                 "name": "Definition for test 20 - no sequence -  user 1 - no sequence",
+            }
+        )
+
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model_computed.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_1.id,
+                "definition_domain": "[]",
+                "approve_sequence": True,
+                "notify_on_pending": False,
+                "sequence": 20,
+                "name": "Definition for computed model",
             }
         )
 
