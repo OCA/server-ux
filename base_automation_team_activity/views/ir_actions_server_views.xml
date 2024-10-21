@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_server_action_form_template_inherit" model="ir.ui.view">
+            <field name="name">ir.actions.server.form.inherit</field>
+            <field name="model">ir.actions.server</field>
+            <field name="inherit_id" ref="mail.view_server_action_form_template" />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//field[@name='activity_user_field_name']"
+                    position="attributes"
+                >
+                    <attribute name="attrs">
+                        {
+                        'invisible': [('activity_user_type', '!=', 'generic')],
+                        'required': [('state', '=', 'next_activity'), ('activity_user_type', '=', 'generic')]
+                                }
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_user_id']" position="attributes">
+                    <attribute name="attrs">
+                        {
+                        'invisible': [('activity_user_type', '!=', 'specific')],
+                        'required': [('state', '=', 'next_activity'), ('activity_user_type', '=', 'specific')]
+                                }
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_user_id']" position="after">
+                    <field
+                        name="team_id"
+                        attrs="{
+                    'invisible': [('activity_user_type', '!=', 'team')],
+                    'required': [('state', '=', 'next_activity'), ('activity_user_type', '=', 'team')]
+                    }"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
