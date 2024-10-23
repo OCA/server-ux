@@ -1,10 +1,14 @@
 # Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
+
 import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class TierReview(models.Model):
@@ -65,6 +69,7 @@ class TierReview(models.Model):
     approve_sequence_bypass = fields.Boolean(
         related="definition_id.approve_sequence_bypass", readonly=True
     )
+    last_reminder_date = fields.Datetime(readonly=True)
 
     @api.depends("status")
     def _compute_display_status(self):
@@ -159,3 +164,38 @@ class TierReview(models.Model):
         """Method to call and reuse abstract notification method"""
         resource = self.env[self.model].browse(self.res_id)
         resource._notify_review_available(review_ids)
+
+    def _get_reminder_notification_subtype(self):
+        return "base_tier_validation.mt_tier_validation_reminder"
+
+    def _get_reminder_activity_type(self):
+        return "base_tier_validation.mail_act_tier_validation_reminder"
+
+    def _notify_review_reminder_body(self):
+        delay = (fields.Datetime.now() - self.create_date).days
+        return _("A review has been requested %s days ago.") % (delay)
+
+    def _send_review_reminder(self):
+        record = self.env[self.model].browse(self.res_id)
+        # Only schedule activity if reviewer is a single user and model has activities
+        if len(self.reviewer_ids) == 1 and hasattr(record, "activity_ids"):
+            self._schedule_review_reminder_activity(record)
+        elif hasattr(record, "message_post"):
+            self._notify_review_reminder(record)
+        else:
+            msg = "Could not send reminder for record %s" % record
+            _logger.exception(msg)
+        self.last_reminder_date = fields.Datetime.now()
+
+    def _notify_review_reminder(self, record):
+        record.message_post(
+            subtype_xmlid=self._get_reminder_notification_subtype(),
+            body=self._notify_review_reminder_body(),
+        )
+
+    def _schedule_review_reminder_activity(self, record):
+        record.activity_schedule(
+            act_type_xmlid=self._get_reminder_activity_type(),
+            note=self._notify_review_reminder_body(),
+            act_values={"user_id": self.reviewer_ids.id},
+        )

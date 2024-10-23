@@ -14,6 +14,7 @@
     "installable": True,
     "depends": ["mail"],
     "data": [
+        "data/cron_data.xml",
         "data/mail_data.xml",
         "security/ir.model.access.csv",
         "security/tier_validation_security.xml",
