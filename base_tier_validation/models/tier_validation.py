@@ -326,6 +326,11 @@ class TierValidation(models.AbstractModel):
         return allowed_field_names, not_allowed_field_names
 
     def write(self, vals):
+        if (
+            self.env.is_superuser()
+            and self.env.context.get("skip_validation_check") is not False
+        ):
+            return super().write(vals)
         for rec in self:
             if rec._check_state_conditions(vals):
                 if rec.need_validation:
