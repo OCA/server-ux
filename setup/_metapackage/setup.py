@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo-addon-document_quick_access>=16.0dev,<16.1dev',
         'odoo-addon-filter_multi_user>=16.0dev,<16.1dev',
         'odoo-addon-mail_message_destiny_link_template>=16.0dev,<16.1dev',
+        'odoo-addon-mail_suggested_recipient_unchecked>=16.0dev,<16.1dev',
         'odoo-addon-misc_settings>=16.0dev,<16.1dev',
         'odoo-addon-multi_step_wizard>=16.0dev,<16.1dev',
         'odoo-addon-sequence_reset_period>=16.0dev,<16.1dev',
