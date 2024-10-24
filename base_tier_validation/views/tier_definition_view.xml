@@ -107,6 +107,22 @@
                                 </group>
                             </group>
                         </page>
+                        <page
+                            name="reviewer_helper"
+                            string="Informations For Reviewers"
+                        >
+                            <group>
+                                <field name="reviewer_helper_message" />
+                            </group>
+                            <group>
+                                <field name="field_for_review_ids" widget="many2many">
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
