@@ -17,33 +17,30 @@
                             />
                             <label for="duration_count" />
                             <div>
-                                <field
-                                    class="oe_inline"
-                                    name="duration_count"
-                                />&amp;nbsp;
+                                <field class="oe_inline" name="duration_count" />
                                 <field class="oe_inline" name="unit_of_time" />
                             </div>
                             <field name="date_start" />
                             <label for="date_end" string="Until" />
                             <div>
                                 <field
-                                    class="oe_inline"
-                                    name="date_end"
-                                    required="not count"
-                                />,
+                                class="oe_inline"
+                                name="date_end"
+                                required="not count"
+                            />,
                                 or generate <field
-                                    class="oe_inline"
-                                    name="count"
-                                    required="not date_end"
-                                /> entries.
+                                class="oe_inline"
+                                name="count"
+                                required="not date_end"
+                            /> entries.
                             </div>
                             <label for="name_prefix" />
                             <div>
                                 <field
-                                    name="name_prefix"
-                                    class="oe_inline"
-                                    required="unit_of_time and not name_expr"
-                                /> or enter a complex expression below
+                                name="name_prefix"
+                                class="oe_inline"
+                                required="unit_of_time and not name_expr"
+                            /> or enter a complex expression below
                             </div>
                             <field
                                 name="name_expr"
