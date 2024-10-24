@@ -905,6 +905,22 @@ class TierTierValidation(CommonTierValidation):
             )
         self.assertEqual(self.test_record.test_validation_field, 4)
 
+    def test_26_update_registry(self):
+        """Test that changes to the tier definition reloads the registry"""
+        tier = self.env["tier.definition"].search(
+            [
+                ("model_id", "=", self.tester_model.id),
+            ]
+        )
+        field = self.env[self.test_model._name]._fields["need_validation"]
+        self.assertIn("test_field", self.env.registry.field_depends[field])
+        tier.write({"definition_domain": "[('user_id.name', '=', 'test')]"})
+        self.assertNotIn("test_field", self.env.registry.field_depends[field])
+        tier.unlink()
+        self.assertNotIn("test_field", self.env.registry.field_depends[field])
+        self.assertTrue(self.env.registry.registry_invalidated)
+        self.env.registry.registry_invalidated = False
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
