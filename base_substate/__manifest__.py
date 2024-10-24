@@ -5,7 +5,7 @@
     "name": "Base Sub State",
     "version": "16.0.1.0.0",
     "category": "Tools",
-    "author": "Akretion, " "Odoo Community Association (OCA)",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
     "depends": ["base", "mail"],
