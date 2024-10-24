@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_module_category_missing_document" model="ir.module.category">
+        <field name="name">Missing Documents</field>
+    </record>
+    <record id="group_missing_document" model="res.groups">
+        <field name="name">Assigner</field>
+        <field name="category_id" ref="ir_module_category_missing_document" />
+    </record>
+    <record model="res.users" id="base.user_root">
+        <field
+            name="groups_id"
+            eval="[(4,ref('document_quick_access_folder_auto_classification.group_missing_document'))]"
+        />
+    </record>
+</odoo>
