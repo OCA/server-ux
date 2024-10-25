@@ -247,7 +247,6 @@ Credits
 Authors
 -------
 
-* brain-tec AG
 * ForgeFlow
 
 Contributors
