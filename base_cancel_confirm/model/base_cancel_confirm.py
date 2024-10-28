@@ -22,9 +22,7 @@ class BaseCancelConfirm(models.AbstractModel):
         help="A flag signify that this document is confirmed for cancellation",
     )
     cancel_reason = fields.Text(
-        string="Cancel Reason",
-        copy=False,
-        help="An optional cancel reason",
+        string="Cancel Reason", copy=False, help="An optional cancel reason",
     )
 
     def _cancel_confirm_disabled(self):
