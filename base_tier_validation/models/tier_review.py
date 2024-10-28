@@ -197,5 +197,5 @@ class TierReview(models.Model):
         record.activity_schedule(
             act_type_xmlid=self._get_reminder_activity_type(),
             note=self._notify_review_reminder_body(),
-            act_values={"user_id": self.reviewer_ids.id},
+            user_id=self.reviewer_ids.id,
         )
