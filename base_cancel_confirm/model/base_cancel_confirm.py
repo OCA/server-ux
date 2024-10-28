@@ -37,8 +37,9 @@ class BaseCancelConfirm(models.AbstractModel):
         return tools.str2bool(res)
 
     def open_cancel_confirm_wizard(self):
-        xmlid = "base_cancel_confirm.action_cancel_confirm_wizard"
-        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        module_name = "base_cancel_confirm"
+        action_xmlid = "action_cancel_confirm_wizard"
+        action = self.env["ir.actions.act_window"].for_xml_id(module_name, action_xmlid)
         action["context"] = {
             "cancel_res_model": self._name,
             "cancel_res_ids": self.ids,
@@ -59,7 +60,7 @@ class BaseCancelConfirm(models.AbstractModel):
         if view_type == "form":
             doc = etree.XML(res["arch"])
             for node in doc.xpath(self._cancel_reason_xpath):
-                str_element = self.env["ir.qweb"]._render(
+                str_element = self.env["ir.qweb"].render(
                     "base_cancel_confirm.cancel_reason_template"
                 )
                 new_node = etree.fromstring(str_element)
@@ -69,9 +70,9 @@ class BaseCancelConfirm(models.AbstractModel):
             View = self.env["ir.ui.view"]
             if view_id and res.get("base_model", self._name) != self._name:
                 View = View.with_context(base_model_name=res["base_model"])
-            new_arch, new_fields = View.postprocess_and_fields(doc, self._name)
+            new_arch, new_fields = View.postprocess_and_fields(self._name, doc, View)
             res["arch"] = new_arch
-            # We don't want to loose previous configuration, so, we only want to add
+            # We don't want to lose previous configuration, so, we only want to add
             # the new fields
             new_fields.update(res["fields"])
             res["fields"] = new_fields
