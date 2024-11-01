@@ -22,62 +22,62 @@
             <field name="need_validation" invisible="1" />
             <field name="validated" invisible="1" />
             <field name="rejected" invisible="1" />
-        <div
+            <div
                 class="alert alert-warning"
                 role="alert"
                 t-attf-invisible="validated or hide_reviews or rejected or not review_ids"
                 style="margin-bottom:0px;"
             >
-            <p>
+                <p>
                 <i class="fa fa-lg fa-info-circle" />
                 This Record needs to be
                 validated.
                 <field name="can_review" invisible="1" />
                 <button
-                        name="validate_tier"
-                        string="Validate"
-                        invisible="not can_review"
-                        type="object"
-                        class="btn-icon me-1 btn-success"
-                        icon="fa-thumbs-up"
-                    />
+                    name="validate_tier"
+                    string="Validate"
+                    invisible="not can_review"
+                    type="object"
+                    class="btn-icon me-1 btn-success"
+                    icon="fa-thumbs-up"
+                />
                 <button
-                        name="reject_tier"
-                        string="Reject"
-                        invisible="not can_review"
-                        type="object"
-                        class="btn-icon me-1 btn-danger"
-                        icon="fa-thumbs-down"
-                    />
+                    name="reject_tier"
+                    string="Reject"
+                    invisible="not can_review"
+                    type="object"
+                    class="btn-icon me-1 btn-danger"
+                    icon="fa-thumbs-down"
+                />
                 <br /><field name="next_review" readonly="1" />
             </p>
-        </div>
-        <div
+            </div>
+            <div
                 class="alert alert-success"
                 role="alert"
                 t-attf-invisible="validated != True or hide_reviews or not review_ids"
                 style="margin-bottom:0px;"
             >
-            <p>
+                <p>
                 <i class="fa fa-lg fa-thumbs-up" />
                 Operation has been
                 <b>validated</b>
                 !
             </p>
-        </div>
-        <div
+            </div>
+            <div
                 class="alert alert-danger"
                 role="alert"
                 t-attf-invisible="not rejected or hide_reviews or not review_ids"
                 style="margin-bottom:0px;"
             >
-            <p>
+                <p>
                 <i class="fa fa-lg fa-thumbs-down" />
                 Operation has been
                 <b>rejected</b>
                 .
             </p>
-        </div>
+            </div>
         </div>
     </template>
     <template id="tier_validation_reviews">
@@ -87,19 +87,19 @@
             invisible="not review_ids"
             style="width:100%%; margin-top: 10px;"
         >
-        <tree>
-            <field name="id" />
-            <field name="name" />
-            <field name="sequence" />
-            <field name="requested_by" />
-            <field name="status" />
-            <field name="display_status" />
-            <field name="todo_by" />
-            <field name="done_by" />
-            <field name="reviewed_date" />
-            <field name="reviewed_formated_date" />
-            <field name="comment" />
-        </tree>
-            </field>
+            <tree>
+                <field name="id" />
+                <field name="name" />
+                <field name="sequence" />
+                <field name="requested_by" />
+                <field name="status" />
+                <field name="display_status" />
+                <field name="todo_by" />
+                <field name="done_by" />
+                <field name="reviewed_date" />
+                <field name="reviewed_formated_date" />
+                <field name="comment" />
+            </tree>
+        </field>
     </template>
 </odoo>
