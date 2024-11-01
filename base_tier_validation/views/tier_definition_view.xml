@@ -50,7 +50,6 @@
                         </h1>
                     </div>
                     <group>
-                        <field name="active" invisible="1" />
                         <group name="left">
                             <field name="model_id" options="{'no_create': True}" />
                             <field name="model" invisible="1" />
@@ -69,7 +68,6 @@
                                 invisible="review_type != 'field'"
                                 options="{'no_create': True}"
                             />
-                            <field name="valid_reviewer_field_ids" invisible="1" />
                         </group>
                         <group name="right">
                             <field
@@ -78,18 +76,16 @@
                                 options="{'no_create': True}"
                             />
                             <field name="sequence" />
-
                             <field name="approve_sequence" />
                             <label
                                 for="approve_sequence_bypass"
                                 class="o_form_label"
-                                invisible="approve_sequence == False"
+                                invisible="not approve_sequence"
                             />
-
                             <div
                                 name="approve_sequence_bypass_div"
                                 class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0"
-                                invisible="approve_sequence == False"
+                                invisible="not approve_sequence"
                             >
                                 <field name="approve_sequence_bypass" />
                                 <span
@@ -141,7 +137,7 @@
                 <filter
                     string="All"
                     name="all"
-                    domain="['|', ('active', '=', False), ('active', '=', True)]"
+                    domain="[('active', 'in', (False, True))]"
                 />
                 <group expand="0" string="Group By">
                     <filter
