@@ -1,7 +1,7 @@
 # Copyright 2017 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class TierDefinition(models.Model):
@@ -10,7 +10,7 @@ class TierDefinition(models.Model):
 
     @api.model
     def _get_default_name(self):
-        return _("New Tier Validation")
+        return self.env._("New Tier Validation")
 
     @api.model
     def _get_tier_validation_model_names(self):

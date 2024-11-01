@@ -1,25 +1,26 @@
-/** @odoo-module **/
+import {Component, onMounted} from "@odoo/owl";
 
+import {ensureJQuery} from "@web/core/ensure_jquery";
 import {registry} from "@web/core/registry";
-
 import {useService} from "@web/core/utils/hooks";
-
-const {Component} = owl;
 
 export class ReviewsTable extends Component {
     setup() {
+        super.setup();
         this.collapse = false;
         this.orm = useService("orm");
         this.reviews = [];
+
+        onMounted(async () => {
+            await ensureJQuery();
+        });
     }
+
     _getReviewData() {
         const records = this.env.model.root.data.review_ids.records;
-        const reviews = [];
-        for (var i = 0; i < records.length; i++) {
-            reviews.push(records[i].data);
-        }
-        return reviews;
+        return records.map((record) => record.data);
     }
+
     onToggleCollapse(ev) {
         var $panelHeading = $(ev.currentTarget).closest(".panel-heading");
         if (this.collapse) {

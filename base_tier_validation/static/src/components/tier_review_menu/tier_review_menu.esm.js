@@ -1,12 +1,10 @@
-/* @odoo-module */
-
 import {Component, useState} from "@odoo/owl";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
 import {registry} from "@web/core/registry";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
 import {useService} from "@web/core/utils/hooks";
-
+const {document} = globalThis;
 const systrayRegistry = registry.category("systray");
 
 export class TierReviewMenu extends Component {
@@ -14,6 +12,10 @@ export class TierReviewMenu extends Component {
         this.discussSystray = useDiscussSystray();
         this.orm = useService("orm");
         this.store = useState(useService("mail.store"));
+        this.state = useState({
+            tierReviewCounter: 0,
+            tierReviewGroups: [],
+        });
         this.action = useService("action");
         this.fetchSystrayReviewer();
     }
@@ -23,8 +25,8 @@ export class TierReviewMenu extends Component {
         for (const group of groups) {
             total += group.pending_count || 0;
         }
-        this.store.tierReviewCounter = total;
-        this.store.tierReviewGroups = groups;
+        this.state.tierReviewCounter = total;
+        this.state.tierReviewGroups = groups;
     }
     onBeforeOpen() {
         this.fetchSystrayReviewer();
