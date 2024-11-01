@@ -3,10 +3,10 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="tier_review_view_tree" model="ir.ui.view">
-        <field name="name">tier.review.tree</field>
+        <field name="name">tier.review.list</field>
         <field name="model">tier.review</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-danger="status=='rejected'"
                 decoration-success="status=='approved'"
             >
@@ -19,7 +19,7 @@
                 <field name="done_by" />
                 <field name="reviewed_date" />
                 <field name="comment" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
