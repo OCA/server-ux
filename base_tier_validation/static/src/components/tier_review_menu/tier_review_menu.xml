@@ -2,62 +2,69 @@
 <templates xml:space="preserve">
 
 <t t-name="base_tier_validation.TierReviewMenu">
-    <Dropdown
+        <Dropdown
             position="'bottom-end'"
             beforeOpen.bind="onBeforeOpen"
             autoOpen="false"
             menuClass="discussSystray.menuClass"
             class="discussSystray.class"
         >
-        <t t-set-slot="toggler">
-            <i class="fa fa-lg fa-pencil-square-o" role="img" aria-label="Reviews" />
+            <t t-set-slot="toggler">
+                <i
+                    class="fa fa-lg fa-pencil-square-o"
+                    role="img"
+                    aria-label="Reviews"
+                />
                 <span
                     t-if="store.tierReviewCounter > 0"
                     class="o-mail-ActivityMenu-counter badge rounded-pill"
                     t-out="store.tierReviewCounter"
                 />
-        </t>
-        <t t-set-slot="default">
-            <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
-                <div
+            </t>
+            <t t-set-slot="default">
+                <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
+                    <div
                         t-if="store.tierReviewCounter === 0"
                         class="o-mail-ActivityMenu-empty align-items-center text-muted p-2 opacity-50 d-flex justify-content-center"
                     >
-                    <span>No reviews to do.</span>
-                </div>
-                <div class="d-flex flex-column list-group-flush" name="activityGroups">
-                    <t
+                        <span>No reviews to do.</span>
+                    </div>
+                    <div
+                        class="d-flex flex-column list-group-flush"
+                        name="activityGroups"
+                    >
+                        <t
                             t-foreach="store.tierReviewGroups"
                             t-as="group"
                             t-key="group_index"
                             name="activityGroupLoop"
                         >
-                        <div
+                            <div
                                 class="o-mail-ActivityGroup list-group-item list-group-item-action d-flex p-2 cursor-pointer"
                                 t-att-data-model_name="group.model"
                                 t-on-click="() => this.openReviewGroup(group)"
                             >
-                            <img alt="Activity" t-att-src="group.icon" />
-                            <div class="flex-grow-1 overflow-hidden">
-                                <div
+                                <img alt="Activity" t-att-src="group.icon" />
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <div
                                         class="d-flex px-2"
                                         name="activityTitle"
                                         t-out="group.name"
                                     />
-                                <div class="d-flex">
-                                    <span
+                                    <div class="d-flex">
+                                        <span
                                             t-attf-class="#{group.pending_count ? '' : 'text-muted'} py-0 px-2"
                                         >
                                         <t t-out="group.pending_count" /> Pending
                                     </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </t>
+                        </t>
+                    </div>
                 </div>
-            </div>
-        </t>
-    </Dropdown>
-</t>
+            </t>
+        </Dropdown>
+    </t>
 
 </templates>
