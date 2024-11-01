@@ -87,7 +87,7 @@
             invisible="not review_ids"
             style="width:100%%; margin-top: 10px;"
         >
-            <tree>
+            <list>
                 <field name="id" />
                 <field name="name" />
                 <field name="sequence" />
@@ -99,7 +99,7 @@
                 <field name="reviewed_date" />
                 <field name="reviewed_formated_date" />
                 <field name="comment" />
-            </tree>
+            </list>
         </field>
     </template>
 </odoo>
