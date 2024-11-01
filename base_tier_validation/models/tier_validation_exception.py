@@ -1,7 +1,7 @@
 # Copyright 2024 Moduon Team (https://www.moduon.team)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 from .tier_validation import BASE_EXCEPTION_FIELDS
 
@@ -9,7 +9,6 @@ from .tier_validation import BASE_EXCEPTION_FIELDS
 class TierValidationException(models.Model):
     _name = "tier.validation.exception"
     _description = "Tier Validation Exceptions"
-    _rec_name = "name"
 
     @api.model
     def _get_tier_validation_model_names(self):
@@ -30,7 +29,6 @@ class TierValidationException(models.Model):
         related="model_id.model",
         string="Model Name",
         store=True,
-        readonly=True,
         index=True,
     )
     field_ids = fields.Many2many(
@@ -85,7 +83,7 @@ class TierValidationException(models.Model):
             and not self.allowed_to_write_after_validation
         ):
             raise exceptions.ValidationError(
-                _(
+                self.env._(
                     "At least one of these fields must be checked! "
                     "Write under Validation, Write after Validation"
                 )

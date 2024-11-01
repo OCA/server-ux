@@ -36,7 +36,6 @@
                                 name="model_id"
                                 options="{'no_create': True, 'no_open': True}"
                             />
-                            <field name="valid_model_field_ids" invisible="1" />
                             <field
                                 name="field_ids"
                                 widget="many2many_tags"
