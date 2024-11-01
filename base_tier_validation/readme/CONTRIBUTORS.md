@@ -14,3 +14,5 @@
 - [XCG Consulting](https://xcg-consulting.fr):
   - Houzéfa Abbasbhay
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- Kevin Khao \<<kevinkhao@gmail.com>\>
+- Do Anh Duy \<<duyda@trobz.com>\>
