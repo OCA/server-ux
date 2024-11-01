@@ -12,10 +12,11 @@ class Users(models.Model):
     @api.model
     def review_user_count(self):
         user_reviews = {}
+        user = self.env.user
         domain = [
             ("status", "=", "pending"),
             ("can_review", "=", True),
-            ("id", "in", self.env.user.review_ids.ids),
+            ("id", "in", user.review_ids.ids),
         ]
         review_groups = self.env["tier.review"].read_group(domain, ["model"], ["model"])
         for review_group in review_groups:
@@ -24,25 +25,28 @@ class Users(models.Model):
             reviews = self.env["tier.review"].search(review_group.get("__domain"))
             # Skip Models not having Tier Validation enabled (example: was unistalled)
             if reviews and hasattr(Model, "can_review"):
+                records_domain = [
+                    ("id", "in", reviews.mapped("res_id")),
+                    ("rejected", "=", False),
+                    ("can_review", "=", True),
+                ]
                 records = (
-                    Model.with_user(self.env.user)
+                    Model.with_user(user)
                     .with_context(active_test=False)
-                    .search([("id", "in", reviews.mapped("res_id"))])
-                    .filtered(lambda x: not x.rejected and x.can_review)
+                    .search(records_domain)
                 )
                 # Excludes any cancelled records depending on the structure of the model
-                if self.env[model]._state_field in self.env[model]._fields:
+                if Model._state_field in Model._fields:
                     records = records.filtered(
                         lambda x: x[x._state_field] != x._cancel_state
                     )
                 if records:
-                    record = self.env[model]
                     user_reviews[model] = {
                         "id": records[0].id,
-                        "name": record._description,
+                        "name": Model._description,
                         "model": model,
-                        "active_field": "active" in record._fields,
-                        "icon": modules.module.get_module_icon(record._original_module),
+                        "active_field": "active" in Model._fields,
+                        "icon": modules.module.get_module_icon(Model._original_module),
                         "type": "tier_review",
                         "pending_count": len(records),
                     }
