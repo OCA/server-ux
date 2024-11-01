@@ -414,7 +414,8 @@ compute method in <tt class="docutils literal">_get_after_validation_exceptions<
 <li><a class="reference internal" href="#credits" id="toc-entry-20">Credits</a><ul>
 <li><a class="reference internal" href="#authors" id="toc-entry-21">Authors</a></li>
 <li><a class="reference internal" href="#contributors" id="toc-entry-22">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-23">Maintainers</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-23">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-24">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -433,8 +434,8 @@ functionality.</li>
 be notified by email when this definition is triggered.</li>
 <li>If check <em>Notify reviewers on reaching pending</em> if you want to send a
 notification when pending status is reached. This is usefull in a
-approve by sequence scenario to only notify reviewers when it is their
-turn in the sequence.</li>
+approve by sequence scenario to only notify reviewers when it is
+their turn in the sequence.</li>
 <li>If check <em>Comment</em>, reviewers can comment after click Validate or
 Reject.</li>
 <li>If check <em>Approve by sequence</em>, reviewers is forced to review by
@@ -455,10 +456,12 @@ both.</li>
 <ul class="simple">
 <li>If you don’t create any exception, the Validated record will be
 readonly and cannot be modified.</li>
-<li>If check <em>Write under Validation</em>, records will be able to be modified
-only in the defined fields when the Validation process is ongoing.</li>
-<li>If check <em>Write after Validation</em>, records will be able to be modified
-only in the defined fields when the Validation process is finished.</li>
+<li>If check <em>Write under Validation</em>, records will be able to be
+modified only in the defined fields when the Validation process is
+ongoing.</li>
+<li>If check <em>Write after Validation</em>, records will be able to be
+modified only in the defined fields when the Validation process is
+finished.</li>
 <li>If check <em>Write after Validation</em> and <em>Write under Validation</em>,
 records will be able to be modified defined fields always.</li>
 </ul>
@@ -469,8 +472,8 @@ records will be able to be modified defined fields always.</li>
 improvement will be very valuable.</p>
 <ul>
 <li><p class="first"><strong>Issue:</strong></p>
-<p>When using approve_sequence option in any tier.definition there can be
-inconsistencies in the systray notifications.</p>
+<p>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications.</p>
 <p><strong>Description:</strong></p>
 <p>Field can_review in tier.review is used to filter out, in the systray
 notifications, the reviews a user can approve. This can_review field
@@ -502,8 +505,8 @@ to validate.</p>
 <h2><a class="toc-backref" href="#toc-entry-6">13.0.1.2.2 (2020-08-30)</a></h2>
 <p>Fixes:</p>
 <ul class="simple">
-<li>When using approve_sequence option in any tier.definition there can be
-inconsistencies in the systray notifications</li>
+<li>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications</li>
 <li>When using approve_sequence, still not approve only the needed
 sequence, but also other sequence for the same approver</li>
 </ul>
@@ -621,10 +624,17 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </li>
 <li>Stefan Rijnhart &lt;<a class="reference external" href="mailto:stefan&#64;opener.amsterdam">stefan&#64;opener.amsterdam</a>&gt;</li>
+<li>Kevin Khao &lt;<a class="reference external" href="mailto:kevinkhao&#64;gmail.com">kevinkhao&#64;gmail.com</a>&gt;</li>
+<li>Do Anh Duy &lt;<a class="reference external" href="mailto:duyda&#64;trobz.com">duyda&#64;trobz.com</a>&gt;</li>
 </ul>
 </div>
+<div class="section" id="other-credits">
+<h2><a class="toc-backref" href="#toc-entry-23">Other credits</a></h2>
+<p>The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.</p>
+</div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-23">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-24">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
