@@ -7,7 +7,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo.tests.common import TransactionCase
 
 
-class TestDateRangeearchMixin(TransactionCase):
+class TestDateRangeSearchMixin(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -149,7 +149,6 @@ class TestDateRangeearchMixin(TransactionCase):
 
     def test_04_load_views(self):
         """Technical field label is replaced in `load_views`"""
-        field = self.model.get_views([(None, "form")])["models"][self.model._name][
-            "date_range_search_id"
-        ]
+        view = self.model.get_views([(None, "form")])
+        field = view["models"][self.model._name]["fields"]["date_range_search_id"]
         self.assertNotIn("technical", field["string"])

@@ -1,9 +1,9 @@
-/** @odoo-module **/
 import {domainFromTreeDateRange, treeFromDomainDateRange} from "./condition_tree.esm";
 import {onWillStart, useChildSubEnv} from "@odoo/owl";
 import {Domain} from "@web/core/domain";
 import {DomainSelector} from "@web/core/domain_selector/domain_selector";
 import {patch} from "@web/core/utils/patch";
+import {treeFromDomain} from "@web/core/tree_editor/condition_tree";
 import {useService} from "@web/core/utils/hooks";
 
 const ARCHIVED_DOMAIN = `[("active", "in", [True, False])]`;
@@ -42,14 +42,17 @@ patch(DomainSelector.prototype, {
             this.includeArchived = false;
             return;
         }
+
+        const tree = treeFromDomain(domain);
+        const getFieldDef = await this.makeGetFieldDef(p.resModel, tree, ["active"]);
+
         this.tree = treeFromDomainDateRange(domain, {
-            getFieldDef: this.getFieldDef.bind(this),
+            getFieldDef: getFieldDef,
             distributeNot: !p.isDebugMode,
         });
     },
-    getOperatorEditorInfo(node) {
-        const info = super.getOperatorEditorInfo(node);
-        const fieldDef = this.getFieldDef(node.path);
+    getOperatorEditorInfo(fieldDef) {
+        const info = super.getOperatorEditorInfo(fieldDef);
         const dateRanges = this.dateRanges;
         const dateRangeTypes = this.dateRangeTypes.filter((dt) => dt.date_ranges_exist);
         patch(info, {
@@ -90,14 +93,6 @@ patch(DomainSelector.prototype, {
                 }
 
                 return props;
-            },
-            isSupported([operator]) {
-                if (node.operator.includes("daterange")) {
-                    return (
-                        typeof operator === "string" && operator.includes("daterange")
-                    );
-                }
-                return super.isSupported.apply(this, arguments);
             },
         });
         return info;

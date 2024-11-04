@@ -1,4 +1,4 @@
-/** @odoo-module **/
+/* global document */
 import {
     condition,
     connector,

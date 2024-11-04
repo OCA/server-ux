@@ -6,7 +6,8 @@ import datetime
 from dateutil.rrule import MONTHLY
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class DateRangeGeneratorTest(TransactionCase):

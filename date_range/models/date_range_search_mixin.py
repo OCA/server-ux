@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.osv.expression import FALSE_DOMAIN, NEGATIVE_TERM_OPERATORS, TRUE_DOMAIN
 
 
@@ -75,7 +75,7 @@ class DateRangeSearchMixin(models.AbstractModel):
             "field",
             attrib={
                 "name": "date_range_search_id",
-                "string": _("Period"),
+                "string": self.env._("Period"),
             },
         )
         groups = root.xpath("/search/group")
@@ -97,6 +97,8 @@ class DateRangeSearchMixin(models.AbstractModel):
         fields list (while still showing up in the Export widget)
         """
         result = super().get_views(views, options=options)
-        if "date_range_search_id" in result["models"][self._name]:
-            result["models"][self._name]["date_range_search_id"]["string"] = _("Period")
+        if "date_range_search_id" in result["models"][self._name]["fields"]:
+            result["models"][self._name]["fields"]["date_range_search_id"]["string"] = (
+                self.env._("Period")
+            )
         return result

@@ -1,7 +1,7 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -21,14 +21,16 @@ class DateRange(models.Model):
     type_id = fields.Many2one(
         comodel_name="date.range.type",
         string="Type",
-        index=1,
+        index=True,
         required=True,
         ondelete="restrict",
-        domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]",
         check_company=True,
     )
     company_id = fields.Many2one(
-        comodel_name="res.company", string="Company", index=1, default=_default_company
+        comodel_name="res.company",
+        string="Company",
+        index=True,
+        default=_default_company,
     )
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
@@ -59,7 +61,10 @@ class DateRange(models.Model):
         for this in self:
             if this.date_start > this.date_end:
                 raise ValidationError(
-                    _("%(name)s is not a valid range (%(date_start)s > %(date_end)s)")
+                    self.env._(
+                        "%(name)s is not a valid range "
+                        "(%(date_start)s > %(date_end)s)"
+                    )
                     % {
                         "name": this.name,
                         "date_start": this.date_start,
@@ -97,7 +102,7 @@ class DateRange(models.Model):
             if res:
                 dt = self.browse(res[0][0])
                 raise ValidationError(
-                    _("%(thisname)s overlaps %(dtname)s")
+                    self.env._("%(thisname)s overlaps %(dtname)s")
                     % {"thisname": this.name, "dtname": dt.name}
                 )
 
