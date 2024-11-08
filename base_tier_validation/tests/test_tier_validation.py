@@ -1002,7 +1002,7 @@ class TierTierValidation(CommonTierValidation):
     def test_27_allow_write_for_reviewers(self):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_cache()
+        record.invalidate_recordset()
         with self.assertRaises(ValidationError):
             record.with_user(self.test_user_1.id).write({"test_field": 0.3})
         reviews.definition_id.with_user(self.test_user_1.id).write(

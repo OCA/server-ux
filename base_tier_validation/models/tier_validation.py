@@ -358,9 +358,9 @@ class TierValidation(models.AbstractModel):
         Check we are in origin state and not destination state
         """
         self.ensure_one()
-        return getattr(self, self._state_field) in self._state_from and not vals.get(
+        return getattr(self, self._state_field) in self._state_from and vals.get(
             self._state_field
-        ) in (self._state_to + [self._cancel_state])
+        ) not in (self._state_to + [self._cancel_state])
 
     def write(self, vals):
         self._tier_validation_check_state_on_write(vals)
