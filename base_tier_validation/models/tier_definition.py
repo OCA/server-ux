@@ -134,7 +134,7 @@ class TierDefinition(models.Model):
         return self.env["tier.review"].search(
             [
                 ("definition_id", "=", self.id),
-                ("status", "=", "pending"),
+                ("status", "in", ["waiting", "pending"]),
                 "|",
                 "&",
                 ("create_date", "<", review_date),
