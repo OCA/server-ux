@@ -140,9 +140,9 @@ class IrExportsLine(models.Model):
                 # You could get to failing constraint while populating the
                 # fields, so we skip the uniqueness check and manually check
                 # the full constraint after the loop
-                one.with_context(skip_check=True)[
-                    one.field_n(num, True)
-                ] = one._get_field_id(model, field_name)
+                one.with_context(skip_check=True)[one.field_n(num, True)] = (
+                    one._get_field_id(model, field_name)
+                )
             if any(parts):
                 # invalidate_recordset -> in order to get actual value of field 'label'
                 # in function '_check_name'
