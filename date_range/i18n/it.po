@@ -22,22 +22,14 @@ msgstr ""
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
 msgstr "%(name)s non è un intervallo valido (%(date_start)s > %(date_end)s)"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(thisname)s overlaps %(dtname)s"
 msgstr "%(thisname)s si sovrappone a %(dtname)s"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
-msgid "&amp;nbsp;"
-msgstr "&amp;nbsp;"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -255,7 +247,6 @@ msgstr ""
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Invalid name expression: %s"
 msgstr "Espressione nome non valido: %s"
 
@@ -287,7 +278,6 @@ msgstr "Nome"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "No ranges to generate with these settings"
 msgstr "Non ci sono intervalli da generare con queste impostazioni"
 
@@ -310,21 +300,18 @@ msgstr "Parametri"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_search_mixin.py:0
-#, python-format
 msgid "Period"
 msgstr "Periodo"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please enter an end date, or the number of ranges to generate."
 msgstr "Inserire la data fine o il numero di intervalli da generare."
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please set a prefix or an expression to generate the range names."
 msgstr ""
 "Impostare un prefisso o una espressione per generare i nomi intervallo."
@@ -366,7 +353,6 @@ msgstr "Data iniziale"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
@@ -408,7 +394,6 @@ msgstr "Fino a"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_type.py:0
-#, python-format
 msgid ""
 "You cannot change the company, as this Date Range Type is assigned to Date "
 "Range '%s'."
@@ -459,6 +444,9 @@ msgstr "settimane"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "anni"
+
+#~ msgid "&amp;nbsp;"
+#~ msgstr "&amp;nbsp;"
 
 #~ msgid "Type Name"
 #~ msgstr "Nome tipo"

@@ -23,22 +23,14 @@ msgstr ""
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
 msgstr "%(name)s不是有效的范围（%(date_start)s > %(date_end)s）"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(thisname)s overlaps %(dtname)s"
 msgstr "%(thisname)s与%(dtname)s重叠"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
-msgid "&amp;nbsp;"
-msgstr "&amp;nbsp;"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -254,7 +246,6 @@ msgstr "如果设置，相同类型的日期范围不得重叠。"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Invalid name expression: %s"
 msgstr "无效的名称表达式：%s"
 
@@ -286,7 +277,6 @@ msgstr "名称"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "No ranges to generate with these settings"
 msgstr "这些设置下没有范围可以生成"
 
@@ -308,21 +298,18 @@ msgstr "参数"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_search_mixin.py:0
-#, python-format
 msgid "Period"
 msgstr "周期"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please enter an end date, or the number of ranges to generate."
 msgstr "请输入结束日期，或要生成的范围数量。"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please set a prefix or an expression to generate the range names."
 msgstr "请设置一个前缀或表达式来生成范围名称。"
 
@@ -363,7 +350,6 @@ msgstr "开始日期"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
@@ -400,7 +386,6 @@ msgstr "直到"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_type.py:0
-#, python-format
 msgid ""
 "You cannot change the company, as this Date Range Type is assigned to Date "
 "Range '%s'."
@@ -449,6 +434,9 @@ msgstr "周"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "年"
+
+#~ msgid "&amp;nbsp;"
+#~ msgstr "&amp;nbsp;"
 
 #~ msgid "Type Name"
 #~ msgstr "类型名称"
