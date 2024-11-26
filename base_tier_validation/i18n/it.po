@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-29 08:58+0000\n"
+"PO-Revision-Date: 2024-11-26 20:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -77,7 +77,7 @@ msgstr "Un record a revisionare è stato creato da %s."
 #: code:addons/base_tier_validation/models/tier_review.py:0
 #, python-format
 msgid "A review has been requested %s days ago."
-msgstr ""
+msgstr "Una revisione è stata richiesta %s giorni fa."
 
 #. module: base_tier_validation
 #. odoo-python
@@ -141,7 +141,7 @@ msgstr "Tutto"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__allow_write_for_reviewer
 msgid "Allow Write For Reviewers"
-msgstr ""
+msgstr "Permetti scrittura ai revisori"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_validation_exception__group_ids
@@ -444,7 +444,7 @@ msgstr "È nel processo di validazione"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__last_reminder_date
 msgid "Last Reminder Date"
-msgstr ""
+msgstr "Data ultimo promemoria"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_comment_wizard__write_uid
@@ -547,6 +547,8 @@ msgid ""
 "Number of days after which a message must be posted to remind about pending "
 "validation  (0 = no reminder)"
 msgstr ""
+"Numero di giorni dopo i quali un messaggio deve essere inviato per ricordare "
+"della valutazione in attesa (0 = nessun promemoria)"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
@@ -692,12 +694,12 @@ msgstr "Revisioni"
 #. module: base_tier_validation
 #: model:ir.actions.server,name:base_tier_validation.ir_cron_auto_tier_validation_ir_actions_server
 msgid "Send Tier Review Reminder"
-msgstr ""
+msgstr "Invia promemoria revisione livello"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_reminder_delay
 msgid "Send reminder message on pending reviews"
-msgstr ""
+msgstr "Invia messaggio promemoria per le revisioni in attesa"
 
 #. module: base_tier_validation
 #. odoo-javascript
@@ -750,6 +752,10 @@ msgid ""
 " - %s \n"
 "Please request a validation."
 msgstr ""
+"Quest'azione deve essere approvata per almeno un record. Approvazioni in "
+"sospeso:\n"
+" - %s \n"
+"Richiedere un'approvazione."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
@@ -810,7 +816,7 @@ msgstr "Notifica Rifiuto Livello Approvazione"
 #: model:mail.activity.type,name:base_tier_validation.mail_act_tier_validation_reminder
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_reminder
 msgid "Tier Validation Reminder"
-msgstr ""
+msgstr "Promemoria valutazione livello"
 
 #. module: base_tier_validation
 #: model:mail.message.subtype,name:base_tier_validation.mt_tier_validation_requested
