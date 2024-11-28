@@ -43,9 +43,7 @@ class MultiStepWizard(models.AbstractModel):
     @api.depends("state")
     def _compute_allow_back(self):
         for record in self:
-            record.allow_back = getattr(
-                record, "state_previous_%s" % record.state, False
-            )
+            record.allow_back = getattr(record, f"state_previous_{record.state}", False)
 
     @api.model
     def _selection_state(self):
