@@ -575,7 +575,7 @@ class TierValidation(models.AbstractModel):
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
         )
         if has_comment:
-            comment = has_comment.mapped("comment")[0]
+            comment = has_comment.mapped("comment")[-1]
             return _("A review was accepted. (%s)") % comment
         return _("A review was accepted")
 
@@ -625,7 +625,7 @@ class TierValidation(models.AbstractModel):
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
         )
         if has_comment:
-            comment = has_comment.mapped("comment")[0]
+            comment = has_comment.mapped("comment")[-1]
             return _("A review was rejected by %(user)s. (%(comment)s)") % {
                 "user": self.env.user.name,
                 "comment": comment,
