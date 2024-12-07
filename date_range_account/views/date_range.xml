@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-        <menuitem
+    <menuitem
         id="menu_date_range_root"
         name="Date Ranges"
         parent="account.menu_finance_configuration"
@@ -20,12 +19,10 @@
         sequence="20"
     />
 
-            <menuitem
+    <menuitem
         id="menu_date_range_generator"
         action="date_range.date_range_generator_action"
         parent="menu_date_range_root"
         sequence="30"
     />
-
-
-    </odoo>
+</odoo>
