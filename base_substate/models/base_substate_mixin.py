@@ -28,19 +28,19 @@ class BaseSubstateMixin(models.AbstractModel):
                     }
                 )
 
-    def _track_template(self, tracking):
-        res = super()._track_template(tracking)
-        first_rec = self[0]
-        changes, tracking_value_ids = tracking[first_rec.id]
-        if "substate_id" in changes and first_rec.substate_id.mail_template_id:
+    def _track_template(self, changes):
+        res = super()._track_template(changes)
+        track = self[0]
+        if "substate_id" in changes and track.substate_id.mail_template_id:
             res["substate_id"] = (
-                first_rec.substate_id.mail_template_id,
+                track.substate_id.mail_template_id,
                 {
-                    "auto_delete_message": True,
-                    "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
+                    "composition_mode": "comment",
+                    "auto_delete": True,
+                    "subtype_id": self.env["ir.model.data"]._xmlid_to_res_id(
                         "mail.mt_note"
                     ),
-                    "notif_layout": "mail.mail_notification_light",
+                    "email_layout_xmlid": "mail.mail_notification_light",
                 },
             )
         return res
