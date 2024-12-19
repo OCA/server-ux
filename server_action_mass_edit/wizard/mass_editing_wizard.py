@@ -94,22 +94,6 @@ class MassEditingWizard(models.TransientModel):
             res["selection__" + field.name] = "ignore"
         return res
 
-    def onchange(self, values, field_name, field_onchange):
-        server_action_id = self.env.context.get("server_action_id")
-        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
-        if not server_action:
-            return super().onchange(values, field_name, field_onchange)
-        dynamic_fields = {}
-        for line in server_action.mapped("mass_edit_line_ids"):
-            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [()], default="ignore"
-            )
-        self._fields.update(dynamic_fields)
-        res = super().onchange(values, field_name, field_onchange)
-        for field in dynamic_fields:
-            self._fields.pop(field)
-        return res
-
     @api.model
     def _prepare_fields(self, line, field, field_info):
         result = {}
