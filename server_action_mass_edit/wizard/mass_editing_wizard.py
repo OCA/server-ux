@@ -69,53 +69,6 @@ class MassEditingWizard(models.TransientModel):
 
         return res
 
-    def onchange(self, values, field_names, fields_spec):
-        first_call = not field_names
-        if first_call:
-            field_names = [fname for fname in values if fname != "id"]
-            missing_names = [fname for fname in fields_spec if fname not in values]
-            defaults = self.default_get(missing_names)
-            for field_name in missing_names:
-                values[field_name] = defaults.get(field_name, False)
-                if field_name in defaults:
-                    field_names.append(field_name)
-
-        server_action_id = self.env.context.get("server_action_id")
-        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
-        if not server_action:
-            return super().onchange(values, field_names, fields_spec)
-        dynamic_fields = {}
-
-        for line in server_action.mapped("mass_edit_line_ids"):
-            values["selection__" + line.field_id.name] = "ignore"
-            values[line.field_id.name] = False
-
-            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [], default="ignore"
-            )
-
-            dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
-
-        self._fields.update(dynamic_fields)
-
-        res = super().onchange(values, field_names, fields_spec)
-        if not res["value"]:
-            value = {key: value for key, value in values.items() if value is not False}
-            res["value"] = value
-
-        for field in dynamic_fields:
-            self._fields.pop(field)
-
-        view_temp = (
-            self.env["ir.ui.view"]
-            .sudo()
-            .search([("name", "=", "Temporary Mass Editing Wizard")], limit=1)
-        )
-        if view_temp:
-            view_temp.unlink()
-
-        return res
-
     @api.model
     def _prepare_fields(self, line, field, field_info):
         result = {}
@@ -276,8 +229,7 @@ class MassEditingWizard(models.TransientModel):
     def create(self, vals_list):
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
-        active_ids = self.env.context.get("active_ids", [])
-        if server_action and active_ids:
+        if server_action:
             for vals in vals_list:
                 values = {}
                 for key, val in vals.items():
@@ -308,13 +260,14 @@ class MassEditingWizard(models.TransientModel):
                             values.update({split_key: vals.get(split_key, False)})
 
                 if values:
-                    for active_id in active_ids:
-                        self.env[server_action.model_id.model].browse(
-                            active_id
-                        ).with_context(
-                            mass_edit=True,
-                        ).write(values)
+                    self._exec_write(server_action, values)
         return super().create([{}])
+
+    def _exec_write(self, server_action, vals):
+        active_ids = self.env.context.get("active_ids", [])
+        model = self.env[server_action.model_id.model].with_context(mass_edit=True)
+        records = model.browse(active_ids)
+        records.write(vals)
 
     def _prepare_create_values(self, vals_list):
         return vals_list
