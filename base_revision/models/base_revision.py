@@ -63,16 +63,17 @@ class BaseRevision(models.AbstractModel):
         )
     ]
 
-    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         default = default or {}
         if "unrevisioned_name" not in default:
             default["unrevisioned_name"] = False
-        rec = super().copy(default=default)
-        if not rec.unrevisioned_name:
+        revision_records = super().copy(default=default)
+        for rec in revision_records:
+            if rec.unrevisioned_name:
+                continue
             name_field = self._context.get("revision_name_field", "name")
             rec.write({"unrevisioned_name": rec[name_field]})
-        return rec
+        return revision_records
 
     def _get_new_rev_data(self, new_rev_number):
         self.ensure_one()
@@ -118,10 +119,10 @@ class BaseRevision(models.AbstractModel):
             revision_ids.append(copied_rec.id)
         action = {
             "type": "ir.actions.act_window",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "name": _("New Revisions"),
             "res_model": self._name,
-            "domain": "[('id', 'in', %s)]" % revision_ids,
+            "domain": f"[('id', 'in', {revision_ids})]",
             "target": "current",
         }
         return action
