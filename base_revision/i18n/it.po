@@ -39,14 +39,12 @@ msgstr "Ha revisioni precedenti"
 #. module: base_revision
 #. odoo-python
 #: code:addons/base_revision/models/base_revision.py:0
-#, python-format
 msgid "New Revisions"
 msgstr "Nuove revisioni"
 
 #. module: base_revision
 #. odoo-python
 #: code:addons/base_revision/models/base_revision.py:0
-#, python-format
 msgid "New revision created: %s"
 msgstr "Nuova revisione creata: %s"
 
