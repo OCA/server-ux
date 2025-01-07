@@ -3,9 +3,10 @@
 from lxml import etree
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests import Form, common
+from odoo.tests import Form, common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestCancelConfirm(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -99,7 +100,7 @@ class TestCancelConfirm(common.TransactionCase):
             </form>""",
             }
         )
-        with Form(self.test_record) as f:
-            form = etree.fromstring(f._view["arch"])
-            self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
-            self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
+        view = self.env[self.test_record._name].get_view(False, "form")
+        form = etree.fromstring(view["arch"])
+        self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
+        self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
