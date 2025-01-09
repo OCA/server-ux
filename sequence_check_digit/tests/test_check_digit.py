@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 try:
     from stdnum import damm, luhn, verhoeff
     from stdnum.iso7064 import mod_11_2, mod_11_10, mod_37_2, mod_37_36, mod_97_10
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 
