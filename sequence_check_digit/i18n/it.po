@@ -15,12 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:0
-#, python-format
-msgid "%s is not an implemented function"
-msgstr ""
-
-#. module: sequence_check_digit
 #: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__check_digit_formula
 msgid "Check Digit Formula"
 msgstr ""
@@ -31,20 +25,9 @@ msgid "Damm"
 msgstr ""
 
 #. module: sequence_check_digit
-#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sequence_check_digit
+#. odoo-python
 #: code:addons/sequence_check_digit/models/ir_sequence.py:0
-#: code:addons/sequence_check_digit/models/ir_sequence.py:0
-#, python-format
 msgid "Format is not accepted"
-msgstr ""
-
-#. module: sequence_check_digit
-#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__id
-msgid "ID"
 msgstr ""
 
 #. module: sequence_check_digit
@@ -70,11 +53,6 @@ msgstr ""
 #. module: sequence_check_digit
 #: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__iso7064_97_10
 msgid "ISO 7064 Mod 97, 10"
-msgstr ""
-
-#. module: sequence_check_digit
-#: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sequence_check_digit
