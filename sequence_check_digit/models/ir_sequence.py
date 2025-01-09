@@ -3,14 +3,14 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 try:
     from stdnum import damm, luhn, verhoeff
     from stdnum.iso7064 import mod_11_2, mod_11_10, mod_37_2, mod_37_36, mod_97_10
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 
@@ -37,17 +37,17 @@ class IrSequence(models.Model):
         try:
             self.get_next_char(0)
         except Exception as err:
-            raise ValidationError(_("Format is not accepted")) from err
+            raise ValidationError(self.env._("Format is not accepted")) from err
 
     def get_check_digit(self, code):
         try:
             return self.get_formula_map()[self.check_digit_formula](code)
         except KeyError as err:
             raise ValidationError(
-                _("%s is not an implemented function" % self.check_digit_formula)
+                self.env._(f"{self.check_digit_formula} is not an implemented function")
             ) from err
         except Exception as err:
-            raise ValidationError(_("Format is not accepted")) from err
+            raise ValidationError(self.env._("Format is not accepted")) from err
 
     def get_formula_map(self):
         return {
@@ -63,7 +63,7 @@ class IrSequence(models.Model):
         }
 
     def get_next_char(self, number_next):
-        code = super(IrSequence, self).get_next_char(number_next)
+        code = super().get_next_char(number_next)
         if not self.check_digit_formula:
             return code
-        return "{}{}".format(code, self.get_check_digit(code))
+        return f"{code}{self.get_check_digit(code)}"
