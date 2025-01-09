@@ -72,3 +72,8 @@ class TestSequenceCheckDigit(common.TransactionCase):
     def test_mod97_10(self):
         sequence = self.get_sequence("ISO7064_97_10")
         self.assertTrue(mod_97_10.validate(sequence.next_by_id()))
+
+    def test_no_mode_imported(self):
+        sequence = self.get_sequence(None)
+        with self.assertRaises(ValidationError):
+            sequence.get_check_digit("ABC")
