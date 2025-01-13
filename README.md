@@ -21,7 +21,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[base_technical_features](base_technical_features/) | 18.0.1.0.0 |  | Access to technical features without activating debug mode
+[base_technical_features](base_technical_features/) | 18.0.1.0.1 |  | Access to technical features without activating debug mode
+[date_range](date_range/) | 18.0.1.0.0 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Manage all kind of date range
 [developer_menu](developer_menu/) | 18.0.1.0.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Menu Shortcut for developer usage
 
 [//]: # (end addons)
