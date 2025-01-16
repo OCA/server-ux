@@ -7,8 +7,9 @@ from ast import literal_eval
 from lxml import etree
 from psycopg2.extensions import AsIs
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import SQL
 from odoo.tools.misc import frozendict
 
 BASE_EXCEPTION_FIELDS = ["message_follower_ids", "access_token"]
@@ -169,21 +170,20 @@ class TierValidation(models.AbstractModel):
         return self._description
 
     def _get_to_validate_message(self):
-        return (
-            """<i class="fa fa-info-circle" /> %s"""
-            % _("This %s needs to be validated")
-            % self._get_to_validate_message_name()
+        msg_fragment = self.env._(
+            f"This {self._get_to_validate_message_name()} " f"needs to be validated"
         )
+        return f"""<i class="fa fa-info-circle" /> {msg_fragment}"""
 
     def _get_validated_message(self):
-        msg = """<i class="fa fa-thumbs-up" /> %s""" % _(
-            """Operation has been <b>validated</b>!"""
+        msg = """<i class="fa fa-thumbs-up" /> {}""".format(
+            self.env._("""Operation has been <b>validated</b>!""")
         )
         return self.validated and msg or ""
 
     def _get_rejected_message(self):
-        msg = """<i class="fa fa-thumbs-down" /> %s""" % _(
-            """Operation has been <b>rejected</b>."""
+        msg = """<i class="fa fa-thumbs-down" /> {}""".format(
+            self.env._("""Operation has been <b>rejected</b>.""")
         )
         return self.rejected and msg or ""
 
@@ -221,7 +221,9 @@ class TierValidation(models.AbstractModel):
             review = rec.review_ids.sorted("sequence").filtered(
                 lambda x: x.status == "pending"
             )[:1]
-            rec.next_review = review and _("Next: %s") % review.name or ""
+            rec.next_review = review and self.env._(
+                "Next: %(review_name)s", review_name=review.name or ""
+            )
 
     def _compute_hide_reviews(self):
         for rec in self:
@@ -368,11 +370,12 @@ class TierValidation(models.AbstractModel):
         self._tier_validation_check_write_remove_reviews(vals)
         return super().write(vals)
 
-    def _write(self, vals):
-        if self._tier_validation_state_field_is_computed:
-            self._tier_validation_check_state_on_write(vals)
-            self._tier_validation_check_write_remove_reviews(vals)
-        return super()._write(vals)
+    def _write_multi(self, vals_list):
+        for rec, vals in zip(self, vals_list, strict=False):
+            if rec._tier_validation_state_field_is_computed:
+                rec._tier_validation_check_state_on_write(vals)
+                rec._tier_validation_check_write_remove_reviews(vals)
+        return super()._write_multi(vals_list)
 
     def _tier_validation_get_current_state_value(self):
         """Get the current value from the cache or the database.
@@ -383,12 +386,12 @@ class TierValidation(models.AbstractModel):
         self.ensure_one()
         if self._tier_validation_state_field_is_computed and isinstance(self.id, int):
             self.env.cr.execute(
-                "select %(field)s from %(table)s where id = %(res_id)s",
-                {
-                    "field": AsIs(self._state_field),
-                    "table": AsIs(self._table),
-                    "res_id": self.id,
-                },
+                SQL(
+                    "select %(field)s from %(table)s where id = %(res_id)s",
+                    field=AsIs(self._state_field),
+                    table=AsIs(self._table),
+                    res_id=self.id,
+                )
             )
             rows = self.env.cr.fetchall()
             if rows:
@@ -406,17 +409,19 @@ class TierValidation(models.AbstractModel):
                         pending_reviews = reviews.filtered(
                             lambda r: r.status == "pending"
                         ).mapped("name")
+                        pending_reviews_str = "\n - ".join(pending_reviews)
                         raise ValidationError(
-                            _(
+                            self.env._(
                                 "This action needs to be validated for at least "
-                                "one record. Reviews pending:\n - %s "
-                                "\nPlease request a validation."
+                                "one record. Reviews pending:\n "
+                                "- %(pending_reviews_str)s "
+                                "\nPlease request a validation.",
+                                pending_reviews_str=pending_reviews_str,
                             )
-                            % "\n - ".join(pending_reviews)
                         )
                 if rec.review_ids and not rec.validated:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "A validation process is still open for at least "
                             "one record."
                         )
@@ -437,16 +442,16 @@ class TierValidation(models.AbstractModel):
                 ) = rec._get_fields_to_write_validation(
                     vals, rec._get_under_validation_exceptions
                 )
+                not_allowed_fields_str = "\n- ".join(not_allowed_fields)
+                allowed_fields_str = "\n- ".join(allowed_fields)
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You are not allowed to write those fields under validation.\n"
-                        "- %(not_allowed_fields)s\n\n"
-                        "Only those fields can be modified:\n- %(allowed_fields)s"
+                        "- %(not_allowed_fields_str)s\n\n"
+                        "Only those fields can be modified:\n- %(allowed_fields_str)s",
+                        not_allowed_fields_str=not_allowed_fields_str,
+                        allowed_fields_str=allowed_fields_str,
                     )
-                    % {
-                        "not_allowed_fields": "\n- ".join(not_allowed_fields),
-                        "allowed_fields": "\n- ".join(allowed_fields),
-                    }
                 )
 
             # Write after validation. Check only if Tier Validation Exception is created
@@ -464,16 +469,16 @@ class TierValidation(models.AbstractModel):
                 ) = rec._get_fields_to_write_validation(
                     vals, rec._get_after_validation_exceptions
                 )
+                not_allowed_fields_str = "\n- ".join(not_allowed_fields)
+                allowed_fields_str = "\n- ".join(allowed_fields)
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You are not allowed to write those fields after validation.\n"
-                        "- %(not_allowed_fields)s\n\n"
-                        "Only those fields can be modified:\n- %(allowed_fields)s"
+                        "- %(not_allowed_fields_str)s\n\n"
+                        "Only those fields can be modified:\n- %(allowed_fields_str)s",
+                        not_allowed_fields_str=not_allowed_fields_str,
+                        allowed_fields_str=allowed_fields_str,
                     )
-                    % {
-                        "not_allowed_fields": "\n- ".join(not_allowed_fields),
-                        "allowed_fields": "\n- ".join(allowed_fields),
-                    }
                 )
 
     def _tier_validation_check_write_remove_reviews(self, vals):
@@ -576,13 +581,13 @@ class TierValidation(models.AbstractModel):
         )
         if has_comment:
             comment = has_comment.mapped("comment")[0]
-            return _("A review was accepted. (%s)") % comment
-        return _("A review was accepted")
+            return self.env._("A review was accepted. (%(comment)s)", comment=comment)
+        return self.env._("A review was accepted")
 
     def _add_comment(self, validate_reject, reviews):
         wizard = self.env.ref("base_tier_validation.view_comment_wizard")
         return {
-            "name": _("Comment"),
+            "name": self.env._("Comment"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "comment.wizard",
@@ -626,11 +631,14 @@ class TierValidation(models.AbstractModel):
         )
         if has_comment:
             comment = has_comment.mapped("comment")[0]
-            return _("A review was rejected by %(user)s. (%(comment)s)") % {
-                "user": self.env.user.name,
-                "comment": comment,
-            }
-        return _("A review was rejected by %s.") % (self.env.user.name)
+            return self.env._(
+                "A review was rejected by %(user)s. (%(comment)s)",
+                user=self.env.user.name,
+                comment=comment,
+            )
+        return self.env._(
+            "A review was rejected by %(user_name)s.", user_name=self.env.user.name
+        )
 
     def _notify_rejected_review(self):
         post = "message_post"
@@ -672,12 +680,16 @@ class TierValidation(models.AbstractModel):
                 rec._notify_rejected_review()
 
     def _notify_created_review_body(self):
-        return _("A record to be reviewed has been created by %s.") % (
-            self.env.user.name
+        return self.env._(
+            "A record to be reviewed has been created by %(user_name)s.",
+            user_name=self.env.user.name,
         )
 
     def _notify_requested_review_body(self):
-        return _("A review has been requested by %s.") % (self.env.user.name)
+        return self.env._(
+            "A review has been requested by %(user_name)s.",
+            user_name=self.env.user.name,
+        )
 
     def _notify_review_requested(self, tier_reviews):
         """method to notify when tier validation is created"""
@@ -732,7 +744,9 @@ class TierValidation(models.AbstractModel):
         return created_trs
 
     def _notify_restarted_review_body(self):
-        return _("The review has been reset by %s.") % (self.env.user.name)
+        return self.env._(
+            "The review has been reset by %(user_name)s.", user_name=self.env.user.name
+        )
 
     def _notify_restarted_review(self):
         post = "message_post"
@@ -777,10 +791,8 @@ class TierValidation(models.AbstractModel):
     @api.model
     def _update_counter(self, review_counter):
         self.review_ids._compute_can_review()
-        notifications = []
         channel = "base.tier.validation/updated"
-        notifications.append([self.env.user.partner_id, channel, review_counter])
-        self.env["bus.bus"]._sendmany(notifications)
+        self.env.user.partner_id._bus_send(channel, review_counter)
 
     def unlink(self):
         self.mapped("review_ids").unlink()

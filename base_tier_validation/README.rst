@@ -17,13 +17,13 @@ Base Tier Validation
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/17.0/base_tier_validation
+    :target: https://github.com/OCA/server-ux/tree/18.0/base_tier_validation
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_tier_validation
+    :target: https://translation.odoo-community.org/projects/server-ux-18-0/server-ux-18-0-base_tier_validation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -66,16 +66,16 @@ To configure this module, you need to:
 
 **Note:**
 
-- If check *Notify Reviewers on Creation*, all possible reviewers will
-  be notified by email when this definition is triggered.
-- If check *Notify reviewers on reaching pending* if you want to send a
-  notification when pending status is reached. This is usefull in a
-  approve by sequence scenario to only notify reviewers when it is their
-  turn in the sequence.
-- If check *Comment*, reviewers can comment after click Validate or
-  Reject.
-- If check *Approve by sequence*, reviewers is forced to review by
-  specified sequence.
+-  If check *Notify Reviewers on Creation*, all possible reviewers will
+   be notified by email when this definition is triggered.
+-  If check *Notify reviewers on reaching pending* if you want to send a
+   notification when pending status is reached. This is usefull in a
+   approve by sequence scenario to only notify reviewers when it is
+   their turn in the sequence.
+-  If check *Comment*, reviewers can comment after click Validate or
+   Reject.
+-  If check *Approve by sequence*, reviewers is forced to review by
+   specified sequence.
 
 To configure Tier Validation Exceptions, you need to:
 
@@ -90,14 +90,16 @@ To configure Tier Validation Exceptions, you need to:
 
 **Note:**
 
-- If you don't create any exception, the Validated record will be
-  readonly and cannot be modified.
-- If check *Write under Validation*, records will be able to be modified
-  only in the defined fields when the Validation process is ongoing.
-- If check *Write after Validation*, records will be able to be modified
-  only in the defined fields when the Validation process is finished.
-- If check *Write after Validation* and *Write under Validation*,
-  records will be able to be modified defined fields always.
+-  If you don't create any exception, the Validated record will be
+   readonly and cannot be modified.
+-  If check *Write under Validation*, records will be able to be
+   modified only in the defined fields when the Validation process is
+   ongoing.
+-  If check *Write after Validation*, records will be able to be
+   modified only in the defined fields when the Validation process is
+   finished.
+-  If check *Write after Validation* and *Write under Validation*,
+   records will be able to be modified defined fields always.
 
 Known issues / Roadmap
 ======================
@@ -105,25 +107,25 @@ Known issues / Roadmap
 This is the list of known issues for this module. Any proposal for
 improvement will be very valuable.
 
-- **Issue:**
+-  **Issue:**
 
-  When using approve_sequence option in any tier.definition there can be
-  inconsistencies in the systray notifications.
+   When using approve_sequence option in any tier.definition there can
+   be inconsistencies in the systray notifications.
 
-  **Description:**
+   **Description:**
 
-  Field can_review in tier.review is used to filter out, in the systray
-  notifications, the reviews a user can approve. This can_review field
-  is updated **in the database** in method review_user_count, this can
-  make it very inconsistent for databases with a lot of users and
-  recurring updates that can change the expected behavior.
+   Field can_review in tier.review is used to filter out, in the systray
+   notifications, the reviews a user can approve. This can_review field
+   is updated **in the database** in method review_user_count, this can
+   make it very inconsistent for databases with a lot of users and
+   recurring updates that can change the expected behavior.
 
-- **Migration to 15.0:**
+-  **Migration to 15.0:**
 
-  The parameter \_tier_validation_manual_config will become False, on
-  14.0, the default value is True, as the change is applied after the
-  migration. In order to use the new behavior we need to modify the
-  value on our expected model.
+   The parameter \_tier_validation_manual_config will become False, on
+   14.0, the default value is True, as the change is applied after the
+   migration. In order to use the new behavior we need to modify the
+   value on our expected model.
 
 Changelog
 =========
@@ -145,69 +147,69 @@ Migrated to Odoo 14.
 
 Fixes:
 
-- When using approve_sequence option in any tier.definition there can be
-  inconsistencies in the systray notifications
-- When using approve_sequence, still not approve only the needed
-  sequence, but also other sequence for the same approver
+-  When using approve_sequence option in any tier.definition there can
+   be inconsistencies in the systray notifications
+-  When using approve_sequence, still not approve only the needed
+   sequence, but also other sequence for the same approver
 
 12.0.3.3.1 (2019-12-02)
 -----------------------
 
 Fixes:
 
-- Show comment on Reviews Table.
-- Edit notification with approve_sequence.
+-  Show comment on Reviews Table.
+-  Edit notification with approve_sequence.
 
 12.0.3.3.0 (2019-11-27)
 -----------------------
 
 New features:
 
-- Add comment on Reviews Table.
-- Approve by sequence.
+-  Add comment on Reviews Table.
+-  Approve by sequence.
 
 12.0.3.2.1 (2019-11-26)
 -----------------------
 
 Fixes:
 
-- Remove message_subscribe_users
+-  Remove message_subscribe_users
 
 12.0.3.2.0 (2019-11-25)
 -----------------------
 
 New features:
 
-- Notify reviewers
+-  Notify reviewers
 
 12.0.3.1.0 (2019-07-08)
 -----------------------
 
 Fixes:
 
-- Singleton error
+-  Singleton error
 
 12.0.3.0.0 (2019-12-02)
 -----------------------
 
 Fixes:
 
-- Edit Reviews Table
+-  Edit Reviews Table
 
 12.0.2.1.0 (2019-05-29)
 -----------------------
 
 Fixes:
 
-- Edit drop-down style width and position
+-  Edit drop-down style width and position
 
 12.0.2.0.0 (2019-05-28)
 -----------------------
 
 New features:
 
-- Pass parameters as functions.
-- Add Systray.
+-  Pass parameters as functions.
+-  Add Systray.
 
 12.0.1.0.0 (2019-02-18)
 -----------------------
@@ -235,7 +237,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_tier_validation%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -250,24 +252,24 @@ Authors
 Contributors
 ------------
 
-- Lois Rilo <lois.rilo@forgeflow.com>
-- Naglis Jonaitis <naglis@versada.eu>
-- Adrià Gil Sorribes <adria.gil@forgeflow.com>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- Pedro Gonzalez <pedro.gonzalez@pesol.es>
-- Kitti U. <kittiu@ecosoft.co.th>
-- Saran Lim. <saranl@ecosoft.co.th>
-- Carlos Lopez <celm1990@gmail.com>
-- Javier Colmeiro <javier.colmeiro@braintec.com>
-- bosd
-- Evan Soh <evan.soh@omnisoftsolution.com>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- Eduardo de Miguel <edu@moduon.team>
-- `XCG Consulting <https://xcg-consulting.fr>`__:
+-  Lois Rilo <lois.rilo@forgeflow.com>
+-  Naglis Jonaitis <naglis@versada.eu>
+-  Adrià Gil Sorribes <adria.gil@forgeflow.com>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Pedro Gonzalez <pedro.gonzalez@pesol.es>
+-  Kitti U. <kittiu@ecosoft.co.th>
+-  Saran Lim. <saranl@ecosoft.co.th>
+-  Carlos Lopez <celm1990@gmail.com>
+-  Javier Colmeiro <javier.colmeiro@braintec.com>
+-  bosd
+-  Evan Soh <evan.soh@omnisoftsolution.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  Eduardo de Miguel <edu@moduon.team>
+-  `XCG Consulting <https://xcg-consulting.fr>`__:
 
-  - Houzéfa Abbasbhay
+   -  Houzéfa Abbasbhay
 
-- Stefan Rijnhart <stefan@opener.amsterdam>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainers
 -----------
@@ -290,6 +292,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/base_tier_validation>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/18.0/base_tier_validation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

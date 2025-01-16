@@ -183,7 +183,7 @@ class TierReview(models.Model):
         elif hasattr(record, "message_post"):
             self._notify_review_reminder(record)
         else:
-            msg = "Could not send reminder for record %s" % record
+            msg = "Could not send reminder for record {record}"
             _logger.exception(msg)
         self.last_reminder_date = fields.Datetime.now()
 
