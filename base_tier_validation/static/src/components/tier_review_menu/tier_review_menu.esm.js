@@ -1,5 +1,3 @@
-/* @odoo-module */
-
 import {Component, useState} from "@odoo/owl";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
@@ -7,16 +5,22 @@ import {registry} from "@web/core/registry";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
 import {useService} from "@web/core/utils/hooks";
 
-const systrayRegistry = registry.category("systray");
+const {document} = globalThis;
 
 export class TierReviewMenu extends Component {
+    static components = {Dropdown, DropdownItem};
+    static props = [];
+    static template = "base_tier_validation.TierReviewMenu";
+
     setup() {
+        super.setup();
         this.discussSystray = useDiscussSystray();
         this.orm = useService("orm");
         this.store = useState(useService("mail.store"));
         this.action = useService("action");
         this.fetchSystrayReviewer();
     }
+
     async fetchSystrayReviewer() {
         const groups = await this.orm.call("res.users", "review_user_count");
         let total = 0;
@@ -26,9 +30,11 @@ export class TierReviewMenu extends Component {
         this.store.tierReviewCounter = total;
         this.store.tierReviewGroups = groups;
     }
+
     onBeforeOpen() {
-        this.fetchSystrayReviewer();
+        return this.fetchSystrayReviewer();
     }
+
     availableViews() {
         return [
             [false, "kanban"],
@@ -37,17 +43,18 @@ export class TierReviewMenu extends Component {
             [false, "activity"],
         ];
     }
-    openReviewGroup(group) {
+
+    async openReviewGroup(group) {
         document.body.click();
         // Hack to close dropdown
         const context = {};
-        var domain = [["can_review", "=", true]];
+        const domain = [["can_review", "=", true]];
         if (group.active_field) {
             domain.push(["active", "in", [true, false]]);
         }
         const views = this.availableViews();
 
-        this.action.doAction(
+        await this.action.doAction(
             {
                 context,
                 domain,
@@ -64,10 +71,10 @@ export class TierReviewMenu extends Component {
     }
 }
 
-TierReviewMenu.template = "base_tier_validation.TierReviewMenu";
-TierReviewMenu.components = {Dropdown, DropdownItem};
-TierReviewMenu.props = [];
+export const systrayItem = {
+    Component: TierReviewMenu,
+};
 
-export const systrayItem = {Component: TierReviewMenu};
-
-systrayRegistry.add("base_tier_validation.ReviewerMenu", systrayItem, {sequence: 99});
+registry
+    .category("systray")
+    .add("base_tier_validation.ReviewerMenu", systrayItem, {sequence: 99});

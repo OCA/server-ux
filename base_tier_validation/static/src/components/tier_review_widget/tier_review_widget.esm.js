@@ -1,33 +1,35 @@
-/** @odoo-module **/
-
+import {Component, useState} from "@odoo/owl";
 import {registry} from "@web/core/registry";
-
 import {useService} from "@web/core/utils/hooks";
 
-const {Component} = owl;
+const {document} = globalThis;
 
 export class ReviewsTable extends Component {
     setup() {
-        this.collapse = false;
+        super.setup();
         this.orm = useService("orm");
-        this.reviews = [];
+        this.state = useState({
+            collapse: false,
+            reviews: [],
+        });
     }
+
     _getReviewData() {
         const records = this.env.model.root.data.review_ids.records;
-        const reviews = [];
-        for (var i = 0; i < records.length; i++) {
-            reviews.push(records[i].data);
-        }
-        return reviews;
+        return records.map((record) => record.data);
     }
+
     onToggleCollapse(ev) {
-        var $panelHeading = $(ev.currentTarget).closest(".panel-heading");
-        if (this.collapse) {
-            $panelHeading.next("div#collapse1").hide();
+        const panelHeading = ev.currentTarget.closest(".panel-heading");
+        if (!panelHeading) return;
+        const collapseDiv = document.getElementById("collapse1");
+        if (!collapseDiv) return;
+        this.state.collapse = !this.state.collapse;
+        if (this.state.collapse) {
+            collapseDiv.style.display = "none";
         } else {
-            $panelHeading.next("div#collapse1").show();
+            collapseDiv.style.display = "block";
         }
-        this.collapse = !this.collapse;
     }
 }
 

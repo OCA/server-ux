@@ -4,12 +4,11 @@
 <t t-name="base_tier_validation.TierReviewMenu">
         <Dropdown
             position="'bottom-end'"
+            state="dropdown"
             beforeOpen.bind="onBeforeOpen"
-            autoOpen="false"
             menuClass="discussSystray.menuClass"
-            class="discussSystray.class"
         >
-            <t t-set-slot="toggler">
+            <button>
                 <i
                     class="fa fa-lg fa-pencil-square-o"
                     role="img"
@@ -20,8 +19,8 @@
                     class="o-mail-ActivityMenu-counter badge rounded-pill"
                     t-out="store.tierReviewCounter"
                 />
-            </t>
-            <t t-set-slot="default">
+            </button>
+            <t t-set-slot="content">
                 <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
                     <div
                         t-if="store.tierReviewCounter === 0"
@@ -30,7 +29,7 @@
                         <span>No reviews to do.</span>
                     </div>
                     <div
-                        class="d-flex flex-column list-group-flush"
+                        class="d-flex flex-column list-group list-group-flush"
                         name="activityGroups"
                     >
                         <t
@@ -55,8 +54,8 @@
                                         <span
                                             t-attf-class="#{group.pending_count ? '' : 'text-muted'} py-0 px-2"
                                         >
-                                        <t t-out="group.pending_count" /> Pending
-                                    </span>
+                                    <t t-out="group.pending_count" /> Pending
+                                </span>
                                     </div>
                                 </div>
                             </div>
