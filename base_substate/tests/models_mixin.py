@@ -98,7 +98,7 @@ class TestMixin:
                         children.remove(cls._name)
 
     def _test_get_model_id(self):
-        self.env.cr.execute("SELECT id FROM ir_model WHERE model = %s", (self._name,))
+        self.env.cr.execute(f"SELECT id FROM ir_model WHERE model = {self._name}")
         res = self.env.cr.fetchone()
         return res[0] if res else None
 
@@ -114,7 +114,7 @@ class TestMixin:
 
     def _test_ACL_values(self, model_id):
         values = {
-            "name": "Fake ACL for %s" % self._name,
+            "name": f"Fake ACL for {self._name}",
             "model_id": model_id,
             "perm_read": 1,
             "perm_create": 1,
