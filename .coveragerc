@@ -1,0 +1,14 @@
+
+[report]
+include =
+    ${TRAVIS_BUILD_DIR}/*
+
+omit =
+    */scenario/*
+    */scenarios/*
+    */test/*
+    */tests/*
+    *_example/*
+    *__init__.py
+    *__openerp__.py
+    *__manifest__.py

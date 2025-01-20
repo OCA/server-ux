@@ -1,18 +1,27 @@
 # Copyright 2020 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo_test_helper import FakeModelLoader
 
-from .sale_test import LineTest, SaleTest
+from odoo.tests.common import TransactionCase
+
+# from .sale_test import LineTest, SaleTest
 
 
-@common.tagged("post_install", "-at_install")
-class TestBaseSubstate(common.TransactionCase):
+class TestBaseSubstate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        SaleTest._test_setup_models(cls.env, [SaleTest, LineTest])
-        LineTest._test_setup_model(cls.env)
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .sale_test import LineTest, SaleTest
+
+        cls.loader.update_registry(
+            (
+                SaleTest,
+                LineTest,
+            )
+        )
 
         cls.substate_test_sale = cls.env["base.substate.test.sale"]
         cls.substate_test_sale_line = cls.env["base.substate.test.sale.line"]
@@ -24,7 +33,7 @@ class TestBaseSubstate(common.TransactionCase):
             ("base.substate.test.sale", "Sale Order")
         )
 
-        cls.substate_type = cls.env["base.substate.type"].create(
+        cls.substate_type_state = cls.substate_type.create(
             {
                 "name": "Sale",
                 "model": "base.substate.test.sale",
@@ -35,7 +44,7 @@ class TestBaseSubstate(common.TransactionCase):
         cls.substate_val_quotation = cls.env["target.state.value"].create(
             {
                 "name": "Quotation",
-                "base_substate_type_id": cls.substate_type.id,
+                "base_substate_type_id": cls.substate_type_state.id,
                 "target_state_value": "draft",
             }
         )
@@ -43,7 +52,7 @@ class TestBaseSubstate(common.TransactionCase):
         cls.substate_val_sale = cls.env["target.state.value"].create(
             {
                 "name": "Sale order",
-                "base_substate_type_id": cls.substate_type.id,
+                "base_substate_type_id": cls.substate_type_state.id,
                 "target_state_value": "sale",
             }
         )
@@ -89,8 +98,7 @@ class TestBaseSubstate(common.TransactionCase):
 
     @classmethod
     def tearDownClass(cls):
-        SaleTest._test_teardown_model(cls.env)
-        LineTest._test_teardown_model(cls.env)
+        cls.loader.restore_registry()
         return super().tearDownClass()
 
     def test_sale_order_substate(self):

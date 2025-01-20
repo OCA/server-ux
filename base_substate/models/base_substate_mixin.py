@@ -95,10 +95,10 @@ class BaseSubstateMixin(models.AbstractModel):
         string="Sub State",
         ondelete="restrict",
         default=lambda self: self._get_default_substate_id(),
-        tracking=5,
         index=True,
         domain=lambda self: [("model", "=", self._name)],
         copy=False,
+        # tracking=True,
     )
 
     @api.constrains("substate_id")

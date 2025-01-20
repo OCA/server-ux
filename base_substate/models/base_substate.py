@@ -21,7 +21,11 @@ class BaseSubstateType(models.Model):
     _order = "name asc, model asc"
 
     name = fields.Char(required=True, translate=True)
-    model = fields.Selection(selection=[], string="Apply on", required=True)
+    model = fields.Selection(
+        selection=[("base.substate.test.sale", "Sale Order")],
+        string="Apply on",
+        required=True,
+    )
     target_state_field = fields.Char(
         required=True,
         help="Technical target state field name."
