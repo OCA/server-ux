@@ -3,7 +3,7 @@
 {
     "name": "Mail Message Destiny Link Template",
     "summary": "Mail template to show destiny records in chatter.",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Moduon, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "category": "Tools",
