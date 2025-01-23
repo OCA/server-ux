@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="base_import_mapping_template_form_view" model="ir.ui.view">
+    <field name="name">base.import.mapping.template.form</field>
+    <field name="model">base_import.mapping.template</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button
+                        name="execute_import_template"
+                        string="Import"
+                        class="oe_highlight"
+                        type="object"
+                    />
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name" />
+                        <field name="res_model" />
+                        <field
+                                name="action_id"
+                                domain="res_model and [('res_model', '=', res_model)] or []"
+                                options="{'no_create': True}"
+                            />
+                        <field name="forced_context" />
+                        <field name="forced_options" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field
+                                name="file"
+                                filename="file_name"
+                                placeholder="Choose a file to import..."
+                            />
+                        <field name="file_name" invisible="1" />
+<!--                        <field name="file_type" invisible="1" />-->
+                    </group>
+                </group>
+                <field name="mapping_ids">
+                    <tree editable="bottom">
+<!--                            <field name="sequence" widget="handle" />-->
+                        <field name="mapping_template_id" column_invisible="True" />
+                        <field name="column_name" />
+                        <field name="field_name" />
+                        <field name="pre_process_method" />
+                        <field
+                                name="mapped_value_ids"
+                                widget="many2many_tags"
+                                optional="show"
+                            />
+                        <field name="res_model" optional="hide" />
+                        <field name="python_code" optional="hide" />
+                        <button
+                                name="get_formview_action"
+                                type="object"
+                                string="Open"
+                            />
+                    </tree>
+                </field>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="action_base_import_mapping_template" model="ir.actions.act_window">
+    <field name="name">Import mapping template</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">base_import.mapping.template</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{'import_file': True}</field>
+</record>
+
+<menuitem
+        id="menu_base_import_mapping_template"
+        action="action_base_import_mapping_template"
+        parent="base.menu_custom"
+        sequence="120"
+        groups="base.group_no_one"
+    />
+
+</odoo>
