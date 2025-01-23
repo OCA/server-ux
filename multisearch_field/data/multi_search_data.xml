@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record id="multi_search_separator" model="ir.config_parameter">
+        <field name="key">multi_search_separator</field>
+        <field name="value">|; ,</field>
+    </record>
+</odoo>
