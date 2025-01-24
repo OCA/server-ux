@@ -16,7 +16,7 @@ def search(self, domain, offset=0, limit=None, order=None, count=False):
         self.env["ir.model.access"].check_access_rights("read", raise_exception=False)
         and self != self.env["ir.config_parameter"]
     ):
-        list_separator = self.env["ir.config_parameter"].get_param(
+        list_separator = self.env["ir.config_parameter"].sudo().get_param(
             "multi_search_separator"
         )
     else:
