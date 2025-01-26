@@ -395,7 +395,7 @@ ul.auto-toc {
 </span>      <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;confirmation.wizard&quot;</span><span class="p">]</span><span class="w">
 </span>      <span class="o">.</span><span class="n">with_context</span><span class="p">(</span><span class="n">skip_confirm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
 </span>      <span class="o">.</span><span class="n">confirm_message</span><span class="p">(</span><span class="w">
-</span>        <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Are you ready change partner address&quot;</span><span class="p">),</span><span class="w">
+</span>        <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Do you want to change the partner's address?&quot;</span><span class="p">),</span><span class="w">
 </span>        <span class="n">records</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;res.partner&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># One or more records</span><span class="w">
 </span>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Confirm&quot;</span><span class="p">,</span><span class="w">
 </span>        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;change_address&quot;</span><span class="p">,</span><span class="w">
@@ -404,13 +404,13 @@ ul.auto-toc {
 </span>    <span class="p">)</span><span class="w">
 </span>  <span class="o">...</span> <span class="c1"># Your code here</span>
 </pre>
-<p>Use confirm wizard which return window close (return_type = window_close):</p>
+<p>Use confirm wizard which does nothing and closes itself when clicking confirm (return_type = window_close):</p>
 <pre class="code python literal-block">
 <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="w">
 </span>  <span class="o">...</span><span class="w">
 </span>  <span class="k">return</span> <span class="p">(</span><span class="w">
 </span>    <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;confirmation.wizard&quot;</span><span class="p">]</span><span class="w">
-</span>    <span class="o">.</span><span class="n">with_context</span><span class="p">(</span><span class="n">invisible_cancel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span>    <span class="o">.</span><span class="n">with_context</span><span class="p">(</span><span class="n">hide_cancel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
 </span>    <span class="o">.</span><span class="n">confirm_no_action_message</span><span class="p">(</span><span class="w">
 </span>      <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Message&quot;</span><span class="p">,</span><span class="w">
 </span>      <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Notification&quot;</span><span class="w">

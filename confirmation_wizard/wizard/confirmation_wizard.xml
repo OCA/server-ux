@@ -19,7 +19,7 @@
                         class="btn-secondary"
                         special="cancel"
                         data-hotkey="z"
-                        invisible="context.get('invisible_cancel')"
+                        invisible="context.get('hide_cancel')"
                     />
                 </footer>
             </form>

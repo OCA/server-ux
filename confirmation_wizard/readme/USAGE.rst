@@ -11,7 +11,7 @@ Use confirm wizard which return method (return_type = method):
         self.env["confirmation.wizard"]
         .with_context(skip_confirm=True)
         .confirm_message(
-          _("Are you ready change partner address"),
+          _("Do you want to change the partner's address?"),
           records=self.env["res.partner"].browse(1), # One or more records
           title="Confirm",
           method="change_address",
@@ -20,7 +20,7 @@ Use confirm wizard which return method (return_type = method):
       )
     ... # Your code here
 
-Use confirm wizard which return window close (return_type = window_close):
+Use confirm wizard which does nothing and closes itself when clicking confirm (return_type = window_close):
 
 .. code-block:: python
 
@@ -28,7 +28,7 @@ Use confirm wizard which return window close (return_type = window_close):
     ...
     return (
       self.env["confirmation.wizard"]
-      .with_context(invisible_cancel=True)
+      .with_context(hide_cancel=True)
       .confirm_no_action_message(
         message="Message",
         title="Notification"

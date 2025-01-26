@@ -27,12 +27,12 @@ class TestConfirmationWizard(TransactionCase):
 
         # Wizard with title and context
         excepted_title = "Confirm Wizard"
-        action = confirmation_wizard_obj.with_context(
-            invisible_cancel=True
-        ).confirm_message("Message Test", self.partner, title=excepted_title)
+        action = confirmation_wizard_obj.with_context(hide_cancel=True).confirm_message(
+            "Message Test", self.partner, title=excepted_title
+        )
         self.assertEqual(action["name"], excepted_title, "Title must be the same")
         self.assertTrue(
-            action["context"]["invisible_cancel"], "Invisible Cancel must be True"
+            action["context"]["hide_cancel"], "Invisible Cancel must be True"
         )
 
     def test_confirm_no_action_message(self):
