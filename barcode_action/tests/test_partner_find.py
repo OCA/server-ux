@@ -12,11 +12,14 @@ class TestPartnerFind(TransactionCase):
         # We should find the partner when the ref is found
         self.assertEqual(
             partner.id,
-            partner_obj.find_res_partner_by_ref_using_barcode(ref).get("res_id", False),
+            partner_obj.find_res_partner_by_ref_using_barcode(ref).get(
+                "res_id",
+                False,
+            ),
         )
         # No partner is found, then there is no res_id on the result
         self.assertFalse(
-            partner_obj.find_res_partner_by_ref_using_barcode(f"{ref}-{ref}").get(
-                "res_id", False
-            )
+            partner_obj.find_res_partner_by_ref_using_barcode(
+                f"{ref}-{ref}",
+            ).get("res_id", False)
         )

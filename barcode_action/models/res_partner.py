@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import json
 
-from odoo import _, models
+from odoo import models
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -19,7 +19,7 @@ class ResPartner(models.Model):
             context.update(
                 {
                     "default_state": "warning",
-                    "default_status": _(
+                    "default_status": self.env._(
                         "Partner with Internal Reference " "%s cannot be found"
                     )
                     % barcode,
