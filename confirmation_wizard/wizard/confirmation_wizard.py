@@ -47,9 +47,12 @@ class ConfirmationWizard(models.TransientModel):
     @api.model
     def confirm_message(
         self, message, records, title=None, method=None, callback_params=None
-    ):
+    ) -> dict | None:
         """
         Confirm message with method return type
+
+        context: hide_cancel = True to hide confirm button
+
         :param message: confirmation message
         :param records: record set
         :param title: wizard title
@@ -57,6 +60,8 @@ class ConfirmationWizard(models.TransientModel):
         :param callback_params: method arguments
         :return dict: ir actions act window dict
         """
+        if self._context.get("skip_confirm_message"):
+            return
         wizard = self.create(
             {
                 "message": message,
@@ -67,23 +72,28 @@ class ConfirmationWizard(models.TransientModel):
                 "callback_params": callback_params or {},
             }
         )
-        return wizard._prepare_action(title)
+        return wizard.with_context(skip_confirm_message=True)._prepare_action(title)
 
     @api.model
-    def confirm_no_action_message(self, message, title=None):
+    def confirm_no_action_message(self, message, title=None) -> dict | None:
         """
         Confirm message with close window return type
+
+        context: hide_cancel = True to hide confirm button
+
         :param message: confirmation message
         :param title: wizard title
         :return dict: ir actions act window dict
         """
+        if self._context.get("skip_confirm_no_action_message"):
+            return
         wizard = self.create(
             {
                 "message": message,
                 "return_type": "window_close",
             }
         )
-        return wizard._prepare_action(title)
+        return wizard.with_context(skip_confirm_message=True)._prepare_action(title)
 
     def _confirm_window_close(self):
         """Action confirm for return type window close"""
