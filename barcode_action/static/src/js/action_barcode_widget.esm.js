@@ -20,7 +20,7 @@ export class ActionBarcodeField extends Component {
             model: record.data.model,
             method: record.data.method,
             args: [[record.data.res_id], barcode],
-            kwargs: {},
+            kwargs: {context: this.props.record.context},
         }).then(function (action) {
             self.env.services.action.doAction(action);
         });
