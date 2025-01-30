@@ -28,8 +28,11 @@ class TestImportSecurityGroup(common.HttpCase):
         ]
 
     def test_import_button(self):
-        """Whether or not the import button is available depending on permissions"""
+        """Admin user has access to the import button by default"""
         self.start_tour("/web", "button_import_ok", login="admin")
+
+    def test_no_import_button(self):
+        """When removed from group, admin user has no access to the import button"""
         group = self.env.ref("base_import_security_group.group_import_csv")
         group.users -= self.user_admin
         self.start_tour("/web", "button_import_ko", login="admin")

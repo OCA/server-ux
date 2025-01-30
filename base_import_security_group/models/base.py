@@ -24,9 +24,9 @@ class Base(models.AbstractModel):
         if not allowed_group_id or current_user.has_group(allowed_group):
             res = super().load(fields=fields, data=data)
         else:
-            msg = ("User (ID: %s) is not allowed to import data " "in model %s.") % (
-                self.env.uid,
-                self._name,
+            msg = (
+                f"User (ID: {self.env.uid}) is not allowed to import data in "
+                f"model {self._name}."
             )
             _logger.info(msg)
             messages = []

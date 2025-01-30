@@ -5,7 +5,7 @@
 
 {
     "name": "Optional CSV import",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Server tools",
     "summary": "Group-based permissions for importing CSV files",
     "license": "AGPL-3",
@@ -27,7 +27,7 @@
             "base_import_security_group/static/src/js/import.esm.js"
         ],
         "web.assets_tests": [
-            "base_import_security_group/static/src/js/tour_import.js",
+            "base_import_security_group/static/src/js/tour_import.esm.js"
         ],
     },
     "installable": True,
