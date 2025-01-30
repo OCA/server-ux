@@ -56,7 +56,7 @@ class Base(models.AbstractModel):
                             "name": "ir_custom_filter_%s" % custom_groupby.id,
                             "string": custom_groupby.name,
                             "context": str(
-                                {"group_by": custom_groupby.groupby_field.name}
+                                {"group_by": custom_groupby.groupby_field.sudo().name}
                             ),
                         },
                     )
