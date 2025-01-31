@@ -34,10 +34,11 @@ class IrSequence(models.Model):
 
     @api.constrains("check_digit_formula", "prefix", "suffix")
     def check_check_digit_formula(self):
-        try:
-            self.get_next_char(0)
-        except Exception as err:
-            raise ValidationError(self.env._("Format is not accepted")) from err
+        for record in self:
+            try:
+                record.get_next_char(0)
+            except Exception as err:
+                raise ValidationError(self.env._("Format is not accepted")) from err
 
     def get_check_digit(self, code):
         try:
