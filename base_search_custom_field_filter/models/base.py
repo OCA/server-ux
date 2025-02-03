@@ -7,6 +7,7 @@
 from lxml import etree
 
 from odoo import api, models
+from odoo.tools.translate import _
 
 
 class Base(models.AbstractModel):
@@ -18,7 +19,9 @@ class Base(models.AbstractModel):
         for custom_filter in custom_filters:
             node = False
             if custom_filter.position_after:
-                node = arch.xpath("//field[@name='%s']" % custom_filter.position_after)
+                node = arch.xpath(
+                    _("//field[@name='%s']") % custom_filter.position_after
+                )
             if not node:
                 node = arch.xpath("//field[last()]")
             if node:
@@ -46,14 +49,22 @@ class Base(models.AbstractModel):
     def get_views(self, views, options=None):
         """Inject fake field definition for having custom filters available."""
         res = super().get_views(views, options)
+        if self._name not in res["models"]:
+            res["models"][self._name] = {}
         custom_filters = self.env["ir.ui.custom.field.filter"].search(
             [("model_name", "=", self._name)]
         )
         for custom_filter in custom_filters:
             field = custom_filter._get_related_field()
+            # Safeguard: Ensure the related field exists before processing.
+            # This check is necessary because a custom filter might reference
+            # a field that no longer exists or is misconfigured. In such cases,
+            # we skip the filter to avoid runtime errors.
+            if not field:
+                continue
             field_name = custom_filter.expression
             res["models"][self._name][field_name] = field.get_description(self.env)
-            # force this for avoiding to appear on the rest of the UI
+            # Force these properties to prevent the field from appearing in the UI
             res["models"][self._name][field_name]["selectable"] = False
             res["models"][self._name][field_name]["sortable"] = False
             res["models"][self._name][field_name]["store"] = False

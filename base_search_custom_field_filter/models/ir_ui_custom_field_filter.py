@@ -3,13 +3,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import ustr
 
 
 class IrUiCustomFilter(models.Model):
     _name = "ir.ui.custom.field.filter"
     _description = "Custom UI field filter"
     _order = "model_id, sequence, id"
+    _sql_constraints = [
+        (
+            "unique_model_name",
+            "UNIQUE(model_id, name)",
+            _("A filter with the same name already exists for this model."),
+        )
+    ]
 
     sequence = fields.Integer()
     model_id = fields.Many2one(
@@ -35,9 +41,17 @@ class IrUiCustomFilter(models.Model):
         related = self.expression.split(".")
         target = self.env[self.model_name]
         for name in related:
-            field = target._fields[name]
+            field = target._fields.get(name)
             target = target[name]
         return field
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            # Ensure 'name' is a string for proper validation
+            if isinstance(vals.get("name"), dict):
+                vals["name"] = vals["name"].get("en_US", "")
+        return super().create(vals_list)
 
     @api.constrains("model_id", "expression")
     def _check_expression(self):
@@ -46,5 +60,10 @@ class IrUiCustomFilter(models.Model):
                 record._get_related_field()
             except KeyError as e:
                 raise exceptions.ValidationError(
-                    _("Incorrect expression: %s.") % (ustr(e))
+                    _("Incorrect expression: %s.") % (str(e))
                 ) from e
+
+    def write(self, vals):
+        if "name" in vals and isinstance(vals["name"], dict):
+            vals["name"] = vals["name"].get("en_US", "")
+        return super().write(vals)
