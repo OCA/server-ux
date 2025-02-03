@@ -118,7 +118,7 @@ class BaseRevision(models.AbstractModel):
             revision_ids.append(copied_rec.id)
         action = {
             "type": "ir.actions.act_window",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "name": _("New Revisions"),
             "res_model": self._name,
             "domain": _("[('id', 'in', %s)]") % revision_ids,
