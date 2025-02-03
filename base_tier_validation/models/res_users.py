@@ -18,15 +18,17 @@ class Users(models.Model):
             ("can_review", "=", True),
             ("id", "in", user.review_ids.ids),
         ]
-        review_groups = self.env["tier.review"].read_group(domain, ["model"], ["model"])
-        for review_group in review_groups:
-            model = review_group["model"]
+        review_groups = self.env["tier.review"]._read_group(
+            domain=domain,
+            groupby=["model"],
+            aggregates=["id:recordset"],
+        )
+        for model, tier_review in review_groups:
             Model = self.env[model]
-            reviews = self.env["tier.review"].search(review_group.get("__domain"))
             # Skip Models not having Tier Validation enabled (example: was unistalled)
-            if reviews and hasattr(Model, "can_review"):
+            if tier_review and hasattr(Model, "can_review"):
                 records_domain = [
-                    ("id", "in", reviews.mapped("res_id")),
+                    ("id", "in", tier_review.mapped("res_id")),
                     ("rejected", "=", False),
                     ("can_review", "=", True),
                 ]
