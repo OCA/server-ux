@@ -62,17 +62,21 @@ class TierValidationException(models.Model):
 
     @api.depends("model_id")
     def _compute_valid_model_field_ids(self):
-        for record in self:
-            record.valid_model_field_ids = (
-                self.env["ir.model.fields"]
-                .sudo()
-                .search(
-                    [
-                        ("model", "=", record.model_name),
-                        ("name", "not in", BASE_EXCEPTION_FIELDS),
-                    ]
-                )
+        model_names = self.mapped("model_name")
+        valid_model_fields = dict(
+            self.env["ir.model.fields"]
+            .sudo()
+            ._read_group(
+                domain=[
+                    ("model", "in", model_names),
+                    ("name", "not in", BASE_EXCEPTION_FIELDS),
+                ],
+                groupby=["model"],
+                aggregates=["id:array_agg"],
             )
+        )
+        for record in self:
+            record.valid_model_field_ids = valid_model_fields.get(record.model_name, [])
 
     @api.constrains(
         "allowed_to_write_under_validation", "allowed_to_write_after_validation"
