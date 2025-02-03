@@ -121,7 +121,7 @@ class BaseRevision(models.AbstractModel):
             "view_mode": "tree,form",
             "name": _("New Revisions"),
             "res_model": self._name,
-            "domain": "[('id', 'in', %s)]" % revision_ids,
+            "domain": _("[('id', 'in', %s)]") % revision_ids,
             "target": "current",
         }
         return action
