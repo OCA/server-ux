@@ -39,7 +39,6 @@ class TestQuickCreate(TransactionCase):
             {
                 "name": "Test Model",
                 "model": "x_.test.model.quick",
-                "avoid_quick_create": False,
             }
         )
         test_id = self.env["x_.test.model.quick"].name_create("TEST Model")
