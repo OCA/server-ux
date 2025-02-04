@@ -20,9 +20,12 @@ class TestBaseSubstate(common.TransactionCase):
         cls.base_substate = cls.env["base.substate.mixin"]
         cls.substate_type = cls.env["base.substate.type"]
 
-        cls.substate_type._fields["model"].selection.append(
-            ("base.substate.test.sale", "Sale Order")
+        selection = (
+            cls.substate_type._fields["model"]._description_selection(cls.env) or []
         )
+        if isinstance(selection, list):
+            selection.append(("base.substate.test.sale", "Sale Order"))
+            cls.substate_type._fields["model"].selection = selection
 
         cls.substate_type = cls.env["base.substate.type"].create(
             {
