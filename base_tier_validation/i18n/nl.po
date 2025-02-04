@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-04 21:02+0000\n"
+"PO-Revision-Date: 2025-02-04 23:06+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
@@ -23,6 +23,9 @@ msgid ""
 "                This Record needs to be\n"
 "                validated."
 msgstr ""
+"<i class=\"fa fa-lg fa-info-circle\"/>\n"
+"                Dit Record dient te worden\n"
+"                beoordeeld."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -32,6 +35,10 @@ msgid ""
 "                <b>rejected</b>\n"
 "                ."
 msgstr ""
+"<i class=\"fa fa-lg fa-thumbs-down\"/>\n"
+"                Aanvraag is \n"
+"                <b>afgewezen</b>\n"
+"                ."
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
@@ -41,6 +48,10 @@ msgid ""
 "                <b>validated</b>\n"
 "                !"
 msgstr ""
+"<i class=\"fa fa-lg fa-thumbs-up\"/>\n"
+"                Aanvraag is\n"
+"                <b>Gevalideerd</b>\n"
+"                !"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
@@ -191,6 +202,8 @@ msgid ""
 "Can review will be marked if the review is pending and the\n"
 "        approve sequence has been achieved"
 msgstr ""
+"Kan beoordelen wordt gemarkeerd als de beoordeling in behandeling is en de\n"
+"        goedkeuringssequentie is bereikt"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.view_comment_wizard
@@ -438,12 +451,12 @@ msgstr "Laatst bijgewerkt op"
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_search
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_exception_search
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__model_name
 msgid "Model Name"
-msgstr ""
+msgstr "Model naam"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
@@ -453,7 +466,7 @@ msgstr "Meer Opties"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__name
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__need_validation
@@ -486,7 +499,7 @@ msgstr "Geen beoordelingen te doen."
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_accepted
 msgid "Notify Reviewers on Accepted"
-msgstr ""
+msgstr "Breng reviewers op de hoogte indien geaccepteerd"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
@@ -496,17 +509,17 @@ msgstr "Informeer beoordelaar bij het maken"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_rejected
 msgid "Notify Reviewers on Rejected"
-msgstr ""
+msgstr "Waarschuw reviewers bij afwijzing"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_restarted
 msgid "Notify Reviewers on Restarted"
-msgstr ""
+msgstr "Waarschuw reviewers bij herstart"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_pending
 msgid "Notify Reviewers on reaching Pending"
-msgstr ""
+msgstr "Informeer reviewers over het bereiken van de status In behandeling"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_reminder_delay
@@ -514,6 +527,8 @@ msgid ""
 "Number of days after which a message must be posted to remind about pending "
 "validation  (0 = no reminder)"
 msgstr ""
+"Aantal dagen waarna een bericht moet worden geplaatst om te herinneren aan "
+"de in behandeling zijnde validatie (0 = geen herinnering)"
 
 #. module: base_tier_validation
 #: model_terms:ir.actions.act_window,help:base_tier_validation.tier_validation_exception_action
@@ -521,6 +536,8 @@ msgid ""
 "Once created, you can decide which fields you want to be editable when the "
 "record:"
 msgstr ""
+"Nadat u het record hebt aangemaakt, kunt u bepalen welke velden u bewerkbaar "
+"wilt maken wanneer het record:"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.res_config_settings_view_form_budget
