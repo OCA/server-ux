@@ -47,7 +47,7 @@
                                 <t
                                     t-foreach="_getReviewData()"
                                     t-as="review"
-                                    t-key="review.id"
+                                    t-key="review.sequence"
                                 >
                                     <t
                                         t-if="review.status == 'waiting'"
