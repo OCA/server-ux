@@ -4,7 +4,6 @@
         inherit_id="base_tier_validation.tier_validation_label"
     >
         <xpath expr="//button[@name='reject_tier']" position="after">
-            <field name="can_forward" invisible="1" />
             <button
                 name="forward_tier"
                 string="Forward"
