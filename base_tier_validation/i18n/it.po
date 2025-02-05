@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-26 20:06+0000\n"
+"PO-Revision-Date: 2025-02-05 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -904,6 +904,11 @@ msgid ""
 "Only those fields can be modified:\n"
 "- %(allowed_fields_str)s"
 msgstr ""
+"Non è consentito scrivere quei campi dopo la convalida.\n"
+"- %(not_allowed_fields_str)s\n"
+"\n"
+"Solo quei campi possono essere modificati:\n"
+"- %(allowed_fields_str)s"
 
 #. module: base_tier_validation
 #. odoo-python
@@ -915,6 +920,11 @@ msgid ""
 "Only those fields can be modified:\n"
 "- %(allowed_fields_str)s"
 msgstr ""
+"Non è consentito scrivere quei campi sotto convalida.\n"
+"- %(not_allowed_fields_str)s\n"
+"\n"
+"Solo quei campi possono essere modificati:\n"
+"- %(allowed_fields_str)s"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
