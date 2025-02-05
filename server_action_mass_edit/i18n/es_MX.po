@@ -34,7 +34,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Add"
 msgstr "Añadir"
 
@@ -95,7 +94,6 @@ msgstr "Nombre desplegado"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Don't touch"
 msgstr "No tocar"
 
@@ -158,7 +156,6 @@ msgstr "Acción de servidor masivo"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
-#, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr ""
 "Los campos de edición masiva deben pertenecer al modelo de acción del "
@@ -185,7 +182,6 @@ msgstr "Modelo sobre el que se ejecuta la acción del servidor."
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
 "Ninguno de los %(amount)d registros que ha seleccionado se puede procesar."
@@ -213,7 +209,6 @@ msgstr "Cantidad de artículo restante"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -241,14 +236,12 @@ msgstr "Acciones del servidor Editar líneas en masa"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Set"
 msgstr "Establecer"
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr "El tratamiento se procesará en los %(amount)d registros seleccionados."
 
@@ -281,8 +274,8 @@ msgstr ""
 "- 'Enviar correo electrónico': publicar un mensaje, una nota o enviar un "
 "correo electrónico (Discusiones)\n"
 "- 'Enviar SMS': enviar SMS, registrarlos en documentos (SMS) - 'Agregar o "
-"quitar seguidores': agregar o eliminar seguidores a un registro (Discusiones)"
-"\n"
+"quitar seguidores': agregar o eliminar seguidores a un registro "
+"(Discusiones)\n"
 "- 'Crear registro': crea un nuevo registro con nuevos valores\n"
 "- 'Ejecutar código': un bloque de código Python que se ejecutará\n"
 "- 'Enviar notificación de Webhook': envía una solicitud POST a un sistema "
@@ -308,7 +301,6 @@ msgstr "Asistente para edición masiva"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."

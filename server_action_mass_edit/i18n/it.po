@@ -33,7 +33,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -94,7 +93,6 @@ msgstr "Nome visualizzato"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Don't touch"
 msgstr "Non toccare"
 
@@ -157,7 +155,6 @@ msgstr "Azione server di massa"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
-#, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr "I campi modifica di massa devono appartenere al modello azione server."
 
@@ -182,7 +179,6 @@ msgstr "Modello sul quale l'azione del server si applica."
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
 "Nessuno dei %(amount)d record(s) record selezionati possono essere elaborati."
@@ -210,7 +206,6 @@ msgstr "Q.tà elementi rimanenti"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Remove"
 msgstr "Rimuovi"
 
@@ -238,14 +233,12 @@ msgstr "Righe azioni modifica di massa server"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Set"
 msgstr "Imposta"
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr "L'operazione sarà eseguita sui %(amount)d record selezionati."
 
@@ -305,7 +298,6 @@ msgstr "Procedura guidata per le modifiche massive"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
