@@ -1,16 +1,16 @@
 # Copyright 2017 Creu Blanca <https://creublanca.es/>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-
 from datetime import date
 
 from odoo.tests import common
 
 
 class TestSequence(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.date = date(2018, 3, 14)
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.date = date(2018, 3, 14)
 
     def get_sequence(self, method):
         return self.env["ir.sequence"].create(
@@ -96,4 +96,37 @@ class TestSequence(common.TransactionCase):
         )
         self.assertEqual(
             "00001", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+
+    def test_sequence_reset(self):
+        sequence = self.get_sequence("monthly")
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+        self.assertEqual(
+            "00002", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+        self.assertEqual(
+            "00001",
+            sequence.with_context(ir_sequence_date=date(2018, 4, 1)).next_by_id(),
+        )
+
+    def test_sequence_padding(self):
+        sequence = self.get_sequence("monthly")
+        sequence.padding = 10
+        self.assertEqual(
+            "0000000001", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+        self.assertEqual(
+            "0000000002", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+
+    def test_sequence_implementation(self):
+        sequence = self.get_sequence("monthly")
+        sequence.implementation = "no_gap"
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.date).next_by_id()
+        )
+        self.assertEqual(
+            "00002", sequence.with_context(ir_sequence_date=self.date).next_by_id()
         )
