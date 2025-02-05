@@ -32,7 +32,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Add"
 msgstr ""
 
@@ -90,7 +89,6 @@ msgstr "显示名称"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Don't touch"
 msgstr ""
 
@@ -154,7 +152,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
-#, python-format
 msgid "Mass edit fields should belong to the server action model."
 msgstr ""
 
@@ -179,7 +176,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "None of the %(amount)d record(s) you have selected can be processed."
 msgstr ""
 
@@ -206,7 +202,6 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Remove"
 msgstr ""
 
@@ -234,14 +229,12 @@ msgstr ""
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "Set"
 msgstr ""
 
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid "The treatment will be processed on the %(amount)d selected record(s)."
 msgstr ""
 
@@ -287,7 +280,6 @@ msgstr "批量编辑的向导"
 #. module: server_action_mass_edit
 #. odoo-python
 #: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
-#, python-format
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
