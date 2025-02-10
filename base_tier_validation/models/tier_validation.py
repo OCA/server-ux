@@ -343,14 +343,14 @@ class TierValidation(models.AbstractModel):
         if not not_allowed_fields:
             return []
 
-        not_allowed_field_names, allowed_field_names = [], []
+        not_allowed_field_names, allowed_field_names = {}, {}
         for fld_name, fld_data in self.fields_get(
             not_allowed_fields + exceptions
         ).items():
             if fld_name in not_allowed_fields:
-                not_allowed_field_names.append(fld_data["string"])
+                not_allowed_field_names[fld_name] = fld_data["string"]
             else:
-                allowed_field_names.append(fld_data["string"])
+                allowed_field_names[fld_name] = fld_data["string"]
         return allowed_field_names, not_allowed_field_names
 
     def _check_tier_state_transition(self, vals):
@@ -437,17 +437,22 @@ class TierValidation(models.AbstractModel):
                 ) = rec._get_fields_to_write_validation(
                     vals, rec._get_under_validation_exceptions
                 )
-                raise ValidationError(
-                    _(
-                        "You are not allowed to write those fields under validation.\n"
-                        "- %(not_allowed_fields)s\n\n"
-                        "Only those fields can be modified:\n- %(allowed_fields)s"
-                    )
-                    % {
-                        "not_allowed_fields": "\n- ".join(not_allowed_fields),
-                        "allowed_fields": "\n- ".join(allowed_fields),
-                    }
-                )
+                for not_allowed_field in not_allowed_fields:
+                    if vals[not_allowed_field] != rec[not_allowed_field]:
+                        raise ValidationError(
+                            _(
+                                "You are not allowed to write this field under "
+                                "validation.\n- %(not_allowed_field)s\n\n"
+                                "Only those fields can be modified:\n"
+                                "- %(allowed_fields)s"
+                            )
+                            % {
+                                "not_allowed_field": not_allowed_fields[
+                                    not_allowed_field
+                                ],
+                                "allowed_fields": "\n- ".join(allowed_fields),
+                            }
+                        )
 
             # Write after validation. Check only if Tier Validation Exception is created
             if (
@@ -464,17 +469,22 @@ class TierValidation(models.AbstractModel):
                 ) = rec._get_fields_to_write_validation(
                     vals, rec._get_after_validation_exceptions
                 )
-                raise ValidationError(
-                    _(
-                        "You are not allowed to write those fields after validation.\n"
-                        "- %(not_allowed_fields)s\n\n"
-                        "Only those fields can be modified:\n- %(allowed_fields)s"
-                    )
-                    % {
-                        "not_allowed_fields": "\n- ".join(not_allowed_fields),
-                        "allowed_fields": "\n- ".join(allowed_fields),
-                    }
-                )
+                for not_allowed_field in not_allowed_fields:
+                    if vals[not_allowed_field] != rec[not_allowed_field]:
+                        raise ValidationError(
+                            _(
+                                "You are not allowed to write this field after "
+                                "validation.\n- %(not_allowed_field)s\n\n"
+                                "Only those fields can be modified:\n"
+                                "- %(allowed_fields)s"
+                            )
+                            % {
+                                "not_allowed_field": not_allowed_fields[
+                                    not_allowed_field
+                                ],
+                                "allowed_fields": "\n- ".join(allowed_fields),
+                            }
+                        )
 
     def _tier_validation_check_write_remove_reviews(self, vals):
         for rec in self:
