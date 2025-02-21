@@ -9,6 +9,7 @@ from odoo.tests.common import tagged
 from odoo.addons.base.tests.common import BaseCommon
 
 
+# Use Base Common
 @tagged("post_install", "-at_install")
 class TierTierValidation(BaseCommon):
     @classmethod
