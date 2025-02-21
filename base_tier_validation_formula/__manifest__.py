@@ -5,7 +5,7 @@
     "name": "Base Tier Validation Formula",
     "summary": """
         Formulas for Base tier validation""",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "license": "AGPL-3",
     "development_status": "Mature",
