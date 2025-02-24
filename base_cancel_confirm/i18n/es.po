@@ -63,7 +63,6 @@ msgstr "Cancelar Razón"
 #. module: base_cancel_confirm
 #. odoo-python
 #: code:addons/base_cancel_confirm/model/base_cancel_confirm.py:0
-#, python-format
 msgid "Configuration Error (%s), should be 'True' or 'False'"
 msgstr "Error de configuración (%s), debe ser 'True' o 'False'"
 
@@ -98,11 +97,6 @@ msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: base_cancel_confirm
-#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm____last_update
-msgid "Last Modified on"
-msgstr "Última Modifiación el"
-
-#. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -131,3 +125,6 @@ msgstr "Requerido"
 #: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modifiación el"
