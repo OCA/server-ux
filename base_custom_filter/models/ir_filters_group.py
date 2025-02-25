@@ -29,7 +29,7 @@ class IrFiltersGroup(models.Model):
 
     def unlink(self):
         self.filter_ids.unlink()
-        return super(IrFiltersGroup, self).unlink()
+        return super().unlink()
 
     @api.model
     def _list_all_models(self):
