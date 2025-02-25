@@ -1,0 +1,5 @@
+- [ForgeFlow S.L.](https://www.forgeflow.com):
+  - Jordi Masvidal
+- Ashish Hirpara \<https://www.ashish-hirpara.com\>
+- [Quartile](https://www.quartile.co):
+  - Aung Ko Ko Lin

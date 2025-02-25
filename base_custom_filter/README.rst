@@ -17,20 +17,21 @@ Add custom filters in standard filters and group by dropdowns
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/base_custom_filter
+    :target: https://github.com/OCA/server-ux/tree/17.0/base_custom_filter
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-base_custom_filter
+    :target: https://translation.odoo-community.org/projects/server-ux-17-0/server-ux-17-0-base_custom_filter
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module enables the definition of bespoke searches within a model's search view, in
-addition to permitting the creation of custom filters that will be displayed beneath the
-standard filters, as well as within the group-by menus of a model's search view.
+This module enables the definition of bespoke searches within a model's
+search view, in addition to permitting the creation of custom filters
+that will be displayed beneath the standard filters, as well as within
+the group-by menus of a model's search view.
 
 **Table of contents**
 
@@ -40,34 +41,40 @@ standard filters, as well as within the group-by menus of a model's search view.
 Configuration
 =============
 
-#. Go to *Settings > Custom Filters*.
-#. Create a record assigning model, type (search/filter/groupby) and necessary attributes.
-   Available fields and corresponding attributes (in brackets) for each type are as follows:
+1. Go to *Settings > Custom Filters*.
+
+2. Create a record assigning model, type (search/filter/groupby) and
+   necessary attributes. Available fields and corresponding attributes
+   (in brackets) for each type are as follows:
 
    Search:
 
-      * Search Field (``name``)
-      * Filter Domain (``filter_domain``)
-      * User Groups (``groups``)
+      - Search Field (``name``)
+      - Filter Domain (``filter_domain``)
+      - User Groups (``groups``)
 
    Filter:
 
-      * Domain (``domain``)
-      * User Groups (``groups``)
+      - Domain (``domain``)
+      - User Groups (``groups``)
 
    Group By:
 
-      * Group By Field (field to be assigned to ``group_by`` context)
-      * User Groups (``groups``)
+      - Group By Field (field to be assigned to ``group_by`` context)
+      - User Groups (``groups``)
 
-   See `the official documentation <https://www.odoo.com/documentation/16.0/developer/reference/backend/views.html#search>`_ for the definition of each attribute.
-   Additionally, filter and group-by records can be respectively grouped together with "Group" assignment (there will be a separator in between groups).
+   See `the official
+   documentation <https://www.odoo.com/documentation/16.0/developer/reference/backend/views.html#search>`__
+   for the definition of each attribute. Additionally, filter and
+   group-by records can be respectively grouped together with "Group"
+   assignment (there will be a separator in between groups).
 
 Usage
 =====
 
-#. Go to the model's menu entry for which you have defined the filter.
-#. On the filters and group by dropdowns, you will see the configured filters.
+1. Go to the model's menu entry for which you have defined the filter.
+2. On the filters and group by dropdowns, you will see the configured
+   filters.
 
 Bug Tracker
 ===========
@@ -75,7 +82,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_custom_filter%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_custom_filter%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -83,26 +90,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ashish Hirpara
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `ForgeFlow S.L. <https://www.forgeflow.com>`_:
+- `ForgeFlow S.L. <https://www.forgeflow.com>`__:
 
-  * Jordi Masvidal
+  - Jordi Masvidal
 
-* `Ashish Hirpara <https://www.ashish-hirpara.com>`
+- Ashish Hirpara
+  <`https://www.ashish-hirpara.com\\> <https://www.ashish-hirpara.com\>>`__
+- `Quartile <https://www.quartile.co>`__:
 
-* `Quartile <https://www.quartile.co>`__:
-
-  * Aung Ko Ko Lin
+  - Aung Ko Ko Lin
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -125,6 +132,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-AshishHirapara| |maintainer-ForgeFlow| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/base_custom_filter>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/17.0/base_custom_filter>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
