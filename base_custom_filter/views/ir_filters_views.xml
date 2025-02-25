@@ -12,60 +12,47 @@
                 <field
                     name="search_field_id"
                     domain="[('model', '=', model_id)]"
-                    attrs="{'required': [('type', '=', 'search')], 'invisible': [('type', '!=', 'search')]}"
+                    required="type == 'search'"
+                    invisible="type != 'search'"
                 />
-                <field
-                    name="filter_domain"
-                    attrs="{'invisible': [('type', '!=', 'search')]}"
-                />
+                <field name="filter_domain" invisible="type != 'search'" />
                 <field
                     name="group_ids"
                     widget="many2many_tags"
-                    attrs="{'invisible': [('type', '=', 'favorite')]}"
+                    invisible="type == 'favorite'"
                 />
                 <field
                     name="group_id"
                     domain="[('model_id', '=', model_id), ('type', '=', type)]"
                     context="{'default_model_id': model_id, 'default_type': type}"
-                    attrs="{'invisible': [('type', 'in', ['favorite', 'search'])]}"
+                    invisible="type in ['favorite', 'search']"
                 />
             </field>
             <field name="domain" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', 'in', ['search', 'groupby'])]}</attribute>
+                <attribute name="invisible">type in ['search', 'groupby']</attribute>
             </field>
             <field name="domain" position="after">
                 <field
                     name="groupby_field"
                     domain="[('model', '=', model_id), ('store', '=', True)]"
-                    attrs="{'required': [('type', '=', 'groupby')], 'invisible': [('type', '!=', 'groupby')]}"
+                    required="type == 'groupby'"
+                    invisible="type != 'groupby'"
                 />
             </field>
             <field name="action_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+                <attribute name="invisible">type != 'favorite'</attribute>
             </field>
             <field name="is_default" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+                <attribute name="invisible">type != 'favorite'</attribute>
             </field>
             <field name="user_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+                <attribute name="invisible">type != 'favorite'</attribute>
             </field>
             <field name="context" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+                <attribute name="invisible">type != 'favorite'</attribute>
             </field>
             <field name="sort" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', '!=', 'favorite')]}</attribute>
+                <attribute name="invisible">type != 'favorite'</attribute>
             </field>
         </field>
     </record>
