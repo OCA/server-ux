@@ -3,3 +3,5 @@
 - Ashish Hirpara \<https://www.ashish-hirpara.com\>
 - [Quartile](https://www.quartile.co):
   - Aung Ko Ko Lin
+- [Kencove](https://www.kencove.com):
+  - Mohamed Alkobrosli

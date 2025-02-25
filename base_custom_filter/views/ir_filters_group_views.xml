@@ -48,27 +48,30 @@
                                         <field
                                             name="search_field_id"
                                             domain="[('model', '=', model_id)]"
-                                            attrs="{'required': [('type', '=', 'search')], 'invisible': [('type', '!=', 'search')]}"
+                                            required="type == 'search'"
+                                            invisible="type != 'search'"
                                         />
                                         <field
                                             name="filter_domain"
-                                            attrs="{'invisible': [('type', '!=', 'search')]}"
+                                            invisible="type != 'search'"
                                         />
                                         <field
                                             name="group_ids"
                                             widget="many2many_tags"
-                                            attrs="{'invisible': [('type', '=', 'favorite')]}"
+                                            invisible="type == 'favorite'"
                                         />
                                         <field
                                             name="domain"
                                             widget="domain"
                                             options="{'model': 'model_id'}"
-                                            attrs="{'required': [('type', '=', 'filter')], 'invisible': [('type', '=', 'groupby')]}"
+                                            required="type == 'filter'"
+                                            invisible="type == 'groupby'"
                                         />
                                         <field
                                             name="groupby_field"
                                             domain="[('model', '=', model_id), ('store', '=', True)]"
-                                            attrs="{'required': [('type', '=', 'groupby')], 'invisible': [('type', '=', 'filter')]}"
+                                            required="type == 'groupby'"
+                                            invisible="type == 'filter'"
                                         />
                                     </group>
                                 </sheet>

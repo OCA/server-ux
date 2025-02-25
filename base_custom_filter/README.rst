@@ -108,6 +108,10 @@ Contributors
 
   - Aung Ko Ko Lin
 
+- `Kencove <https://www.kencove.com>`__:
+
+  - Mohamed Alkobrosli
+
 Maintainers
 -----------
 

@@ -47,11 +47,10 @@ class IrFilters(models.Model):
         return super().get_filters(model, action_id=action_id)
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    @api.returns("self")
+    def search(self, domain, offset=0, limit=None, order=None):
         if self.env.context.get("filter_type"):
-            args = expression.AND(
-                (args, [("type", "=", self.env.context["filter_type"])])
+            domain = expression.AND(
+                (domain, [("type", "=", self.env.context["filter_type"])])
             )
-        return super().search(
-            args, offset=offset, limit=limit, order=order, count=count
-        )
+        return super().search(domain, offset, limit, order)
