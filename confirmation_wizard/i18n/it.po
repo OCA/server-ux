@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* confirmation_wizard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-02-26 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__callback_method
+msgid "Callback Method"
+msgstr "Metodo callback"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__callback_params
+msgid "Callback Params"
+msgstr "Parametri callback"
+
+#. module: confirmation_wizard
+#: model_terms:ir.ui.view,arch_db:confirmation_wizard.confirmation_wizard_form_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: confirmation_wizard
+#: model_terms:ir.ui.view,arch_db:confirmation_wizard.confirmation_wizard_form_view
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__message
+msgid "Confirm Message"
+msgstr "Messaggio di conferma"
+
+#. module: confirmation_wizard
+#. odoo-python
+#: code:addons/confirmation_wizard/wizard/confirmation_wizard.py:0
+#: model:ir.actions.act_window,name:confirmation_wizard.confirmation_wizard_action
+#, python-format
+msgid "Confirmation"
+msgstr "Conferma"
+
+#. module: confirmation_wizard
+#: model:ir.model,name:confirmation_wizard.model_confirmation_wizard
+msgid "Confirmation Wizard"
+msgstr "Procedura guidata conferma"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: confirmation_wizard
+#. odoo-python
+#: code:addons/confirmation_wizard/wizard/confirmation_wizard.py:0
+#, python-format
+msgid "Method '%(callback_method)s' is not found on model '%(res_model)s'."
+msgstr ""
+"Il metodo '%(callback_method)s' inon è stato trovato nel modello "
+"'%(res_model)s'."
+
+#. module: confirmation_wizard
+#. odoo-python
+#: code:addons/confirmation_wizard/wizard/confirmation_wizard.py:0
+#, python-format
+msgid "Records (IDS: '%(ids)s') not found in model '%(model)s'."
+msgstr "I record (ID: '%(ids)s') non trovati nel modello '%(model)s'."
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__res_ids
+msgid "Res"
+msgstr "Res"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__res_model
+msgid "Res Model"
+msgstr "Modello res"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields.selection,name:confirmation_wizard.selection__confirmation_wizard__return_type__method
+msgid "Return Method"
+msgstr "Metodo risposta"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields,field_description:confirmation_wizard.field_confirmation_wizard__return_type
+msgid "Return Type"
+msgstr "Tipo risposta"
+
+#. module: confirmation_wizard
+#: model:ir.model.fields.selection,name:confirmation_wizard.selection__confirmation_wizard__return_type__window_close
+msgid "Return Window Close Action"
+msgstr "Risposta azione chiusura finestra"
