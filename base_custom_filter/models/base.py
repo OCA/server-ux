@@ -30,7 +30,7 @@ class Base(models.AbstractModel):
                     elem = etree.Element(
                         "filter",
                         {
-                            "name": "ir_custom_filter_%s" % custom_filter.id,
+                            "name": f"ir_custom_filter_{custom_filter.id}",
                             "string": custom_filter.name,
                             "domain": custom_filter.domain,
                         },
@@ -53,7 +53,7 @@ class Base(models.AbstractModel):
                     elem = etree.Element(
                         "filter",
                         {
-                            "name": "ir_custom_filter_%s" % custom_groupby.id,
+                            "name": f"ir_custom_filter_{custom_groupby.id}",
                             "string": custom_groupby.name,
                             "context": str(
                                 {"group_by": custom_groupby.groupby_field.sudo().name}

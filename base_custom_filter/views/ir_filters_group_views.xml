@@ -23,10 +23,10 @@
                             domain="[('model_id', '=', model_id), ('type', '=', type)]"
                             context="{'default_model_id': model_id, 'default_group_id': id, 'default_type': type}"
                         >
-                            <tree>
+                            <list>
                                 <field name="sequence" widget="handle" />
                                 <field name="name" />
-                            </tree>
+                            </list>
                             <form>
                                 <sheet>
                                     <div class="oe_title">
@@ -83,10 +83,10 @@
         </field>
     </record>
     <record id="view_ir_filters_group_tree" model="ir.ui.view">
-        <field name="name">ir.filters.group.tree</field>
+        <field name="name">ir.filters.group.list</field>
         <field name="model">ir.filters.group</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field
@@ -94,7 +94,7 @@
                     widget="many2many_tags"
                     domain="[('group_id', '=', False), ('type', '!=', 'favorite')]"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -119,7 +119,7 @@
     <record id="action_ir_filters_group" model="ir.actions.act_window">
         <field name="name">Custom Filter Groups</field>
         <field name="res_model">ir.filters.group</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_ir_filters_group"

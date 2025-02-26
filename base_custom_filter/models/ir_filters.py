@@ -41,10 +41,18 @@ class IrFilters(models.Model):
     group_id = fields.Many2one(comodel_name="ir.filters.group", string="Filter Group")
 
     @api.model
-    def get_filters(self, model, action_id=None):
+    def get_filters(
+        self,
+        model,
+        action_id=None,
+        embedded_action_id=None,
+        embedded_parent_res_id=None,
+    ):
         """We need to inject a context to obtain only the records of favorite type."""
         self = self.with_context(filter_type="favorite")
-        return super().get_filters(model, action_id=action_id)
+        return super().get_filters(
+            model, action_id, embedded_action_id, embedded_parent_res_id
+        )
 
     @api.model
     @api.returns("self")
