@@ -8,6 +8,7 @@ Base Revision (abstract)
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !! source digest: sha256:3d59ecb388d6e3bad95b46b726acabb228c6194e53e7296313a0ac1a3d4a5b05
+      18.0
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
@@ -57,8 +58,8 @@ clutter up searches.
 **Special Remarks:** Starting on version 14, this module was splitted
 from sale_order_revision to,
 
--  base_revision
--  sale_order_revision
+- base_revision
+- sale_order_revision
 
 **Table of contents**
 
@@ -91,15 +92,16 @@ Authors
 Contributors
 ------------
 
--  Devang Pipaliya <devang@dreambits.in>
--  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
--  Raphael Valyi <rvalyi@akretion.com>
--  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
--  Serpent Consulting Services Pvt. Ltd. <jay.vora@serpentcs.com>
--  Akim Juillerat <akim.juillerat@camptocamp.com>
--  Raf Ven <raf.ven@dynapps.be>
--  Jeroen Evens <jeroen.evens@dynapps.be>
--  Kitti U. <kittiu@ecosoft.co.th>
+
+- Devang Pipaliya <devang@dreambits.in>
+- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+- Raphael Valyi <rvalyi@akretion.com>
+- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+- Serpent Consulting Services Pvt. Ltd. <jay.vora@serpentcs.com>
+- Akim Juillerat <akim.juillerat@camptocamp.com>
+- Raf Ven <raf.ven@dynapps.be>
+- Jeroen Evens <jeroen.evens@dynapps.be>
+- Kitti U. <kittiu@ecosoft.co.th>
 
 Maintainers
 -----------

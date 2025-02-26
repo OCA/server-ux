@@ -1,11 +1,15 @@
 [project]
 name = "odoo-addons-oca-server-ux"
-version = "18.0.20250127.0"
+version = "18.0.20250224.0"
 dependencies = [
+    "odoo-addon-base_cancel_confirm==18.0.*",
+    "odoo-addon-base_revision==18.0.*",
     "odoo-addon-base_technical_features==18.0.*",
+    "odoo-addon-base_tier_validation==18.0.*",
     "odoo-addon-date_range==18.0.*",
     "odoo-addon-developer_menu==18.0.*",
     "odoo-addon-sequence_check_digit==18.0.*",
+    "odoo-addon-server_action_mass_edit==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
