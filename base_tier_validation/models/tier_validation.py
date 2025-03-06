@@ -719,7 +719,7 @@ class TierValidation(models.AbstractModel):
                         ("model", "=", self._name),
                         ("company_id", "in", [False] + self.env.company.ids),
                     ],
-                    order="sequence desc",
+                    order="sequence",
                 )
                 sequence = 0
                 for td in tier_definitions:
