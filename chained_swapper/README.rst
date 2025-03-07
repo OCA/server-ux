@@ -17,30 +17,32 @@ Chained Swapper
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/15.0/chained_swapper
+    :target: https://github.com/OCA/server-ux/tree/18.0/chained_swapper
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-15-0/server-ux-15-0-chained_swapper
+    :target: https://translation.odoo-community.org/projects/server-ux-18-0/server-ux-18-0-chained_swapper
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to swap the value of a field and propagate it in a chained
-way to linked records. Example: changing the delivery address in a confirmed
-sales order, it should be changed in its delivery orders as well.
+This module allows to swap the value of a field and propagate it in a
+chained way to linked records. Example: changing the delivery address in
+a confirmed sales order, it should be changed in its delivery orders as
+well.
 
 It also allows to apply constraints for not allowing to do that change
-according rules, so the business logic is not broken. Example: Don't allow
-to change the delivery address if the delivery order is validated.
+according rules, so the business logic is not broken. Example: Don't
+allow to change the delivery address if the delivery order is validated.
 
-This module requires some technical knowledge for setting the chained swap and
-the constraint, as it's defined through technical names and Python code.
+This module requires some technical knowledge for setting the chained
+swap and the constraint, as it's defined through technical names and
+Python code.
 
-**WARNING**: Use this module with care, as it can screw up database consistency
-if swaps are not properly designed .
+**WARNING**: Use this module with care, as it can screw up database
+consistency if swaps are not properly designed .
 
 **Table of contents**
 
@@ -52,49 +54,56 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to *Setting > Field Swaps > Field Swaps*.
-#. Create a new object and set the following data as an example:
+1. Go to *Setting > Field Swaps > Field Swaps*.
+2. Create a new object and set the following data as an example:
 
-   * Name for identifying it and use it for the action name.
-   * Select the source model where the swap will be started.
-   * Select the starting field for which the swap will be done.
-   * Add several chained fields. They are expressed as a string using
-     dot notation, taking the source model as beginning for looking there
-     the first field, and continuing from there drilling through. Example:
-     `picking_ids.partner_id` for `sale.order` model will go to the linked
-     deliveries orders, and change the customer there.
-   * Add possible constraints for restricting the chained swap. They are
-     Python expressions that must be one line that is evaluated as boolean.
-     If the evaluation is true, then a message will be thrown and no swap
-     will be allowed. You can use the variable `records` in your code, that
-     will be referring the selected records for doing the swap. Example: for
-     restricting sales orders that have a delivery order validated:
+   - Name for identifying it and use it for the action name.
 
-     `any(p.state == 'done' for p in records.mapped('picking_ids.state'))`
+   - Select the source model where the swap will be started.
 
-     Other variables you can use are `env`, `date` and `datetime`.
-     Each constraint has a name for identifying it, but also for showing that
+   - Select the starting field for which the swap will be done.
+
+   - Add several chained fields. They are expressed as a string using
+     dot notation, taking the source model as beginning for looking
+     there the first field, and continuing from there drilling through.
+     Example: picking_ids.partner_id for sale.order model will go to the
+     linked deliveries orders, and change the customer there.
+
+   - Add possible constraints for restricting the chained swap. They are
+     Python expressions that must be one line that is evaluated as
+     boolean. If the evaluation is true, then a message will be thrown
+     and no swap will be allowed. You can use the variable records in
+     your code, that will be referring the selected records for doing
+     the swap. Example: for restricting sales orders that have a
+     delivery order validated:
+
+     any(p.state == 'done' for p in records.mapped('picking_ids.state'))
+
+     Other variables you can use are env, date and datetime. Each
+     constraint has a name for identifying it, but also for showing that
      name when displaying the error trying to do the swap.
 
-#. Click on 'Add action' smart button to add a new action in the source model.
+3. Click on 'Add action' smart button to add a new action in the source
+   model.
 
-On demo databases, you can check the example "Language", that changes the
-language of a contact, and propagate it to children contacts.
+On demo databases, you can check the example "Language", that changes
+the language of a contact, and propagate it to children contacts.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to the source document in list mode.
-#. Select one or several records.
-#. Click on Action and locate the option "Chained swap: <name of the swap>".
-#. If one of the selected records doesn't comply with one of the constraints,
-   a message will be shown, and the swap won't continue.
-#. If everything is OK, a popup will arise, and you will see a field for
+1. Go to the source document in list mode.
+2. Select one or several records.
+3. Click on Action and locate the option "Chained swap: <name of the
+   swap>".
+4. If one of the selected records doesn't comply with one of the
+   constraints, a message will be shown, and the swap won't continue.
+5. If everything is OK, a popup will arise, and you will see a field for
    filling the new value.
-#. Click on "Change", and the swap will be done.
-#. On the chatter of the source document, an entry will be logged for
+6. Click on "Change", and the swap will be done.
+7. On the chatter of the source document, an entry will be logged for
    reflecting the done swap.
 
 Bug Tracker
@@ -103,7 +112,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20chained_swapper%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20chained_swapper%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -111,22 +120,23 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Ernesto Tejeda
-  * Pedro M. Baeza
-  * César A. Sánchez
-* Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+  - Ernesto Tejeda
+  - Pedro M. Baeza
+  - César A. Sánchez
+
+- Sunanda Chhatbar <sunanda.chhatbar@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -138,6 +148,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/15.0/chained_swapper>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/18.0/chained_swapper>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

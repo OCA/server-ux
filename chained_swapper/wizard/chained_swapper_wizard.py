@@ -151,7 +151,7 @@ class ChainedSwapperWizard(models.TransientModel):
             original_value = human_readable_field(original_values[m.id])
             m.message_post(
                 body=_("<b>Chained swap done</b>:")
-                + "<br/>{}: {} ⇒ {}".format(field_desc, original_value, new_value)
+                + f"<br/>{field_desc}: {original_value} ⇒ {new_value}"
             )
 
     def read(self, fields, load="_classic_read"):

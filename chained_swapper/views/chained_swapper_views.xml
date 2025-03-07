@@ -141,5 +141,4 @@
         action="chained_swapper_action"
         parent="chained_swapper_menu"
     />
-
 </odoo>

@@ -13,7 +13,7 @@ from ..hooks import uninstall_hook
 class TestChainedSwapper(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestChainedSwapper, cls).setUpClass()
+        super().setUpClass()
         # Remove this variable in v16 and put instead:
         # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
         DISABLED_MAIL_CONTEXT = {
