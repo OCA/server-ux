@@ -26,7 +26,11 @@ class TierReview(models.Model):
         default="waiting",
     )
     model = fields.Char(string="Related Document Model", index=True)
-    res_id = fields.Integer(string="Related Document ID", index=True)
+    res_id = fields.Many2oneReference(
+        string="Related Document ID",
+        index=True,
+        model_field="model",
+    )
     definition_id = fields.Many2one(comodel_name="tier.definition")
     company_id = fields.Many2one(
         related="definition_id.company_id",
