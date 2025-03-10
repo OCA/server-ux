@@ -131,11 +131,8 @@ class TierTierValidation(CommonTierValidation):
         )
         # Request validation
         self.test_record.with_user(self.test_user_2.id).request_validation()
-        self.test_record.invalidate_model()
         test_record.with_user(self.test_user_2.id).request_validation()
-        test_record.invalidate_model()
         self.test_record_2.with_user(self.test_user_2.id).request_validation()
-        self.test_record_2.invalidate_model()
         # Get review user count as systray icon would do and check count value
         docs = self.test_user_1.with_user(self.test_user_1).review_user_count()
         for doc in docs:
@@ -295,18 +292,11 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(reviews)
 
         record1 = test_record.with_user(self.test_user_1.id)
-        record1.invalidate_model()
         self.assertTrue(record1.can_review)
         # Validation will be all by sequence
+        self.assertEqual(len(record1.review_ids), 2)
         self.assertEqual(
-            2, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
-        )
-        self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
-        )
-        record1.validate_tier()
-        self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+            1, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
         self.assertEqual(
             1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
@@ -315,9 +305,31 @@ class TierTierValidation(CommonTierValidation):
         self.assertEqual(
             0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
+        self.assertEqual(
+            1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            1, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
+        )
         record1.validate_tier()
         self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+        )
+        self.assertEqual(
             0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
+        )
+        record1.validate_tier()
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+        )
+        self.assertEqual(
+            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
         )
 
     def test_12_approve_sequence_same_user_bypassed(self):
@@ -354,14 +366,14 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(reviews)
 
         record1 = test_record.with_user(self.test_user_1.id)
-        record1.invalidate_model()
         self.assertTrue(record1.can_review)
         # When the first tier is validated, all the rest will be approved.
+        self.assertEqual(len(record1.review_ids), 2)
         self.assertEqual(
-            2, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+            1, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
         )
         self.assertEqual(
-            0, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+            1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
         )
         record1.validate_tier()
         self.assertEqual(
@@ -369,6 +381,9 @@ class TierTierValidation(CommonTierValidation):
         )
         self.assertEqual(
             0, len(record1.review_ids.filtered(lambda x: x.status == "waiting"))
+        )
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
         )
 
     def test_13_onchange_review_type(self):
