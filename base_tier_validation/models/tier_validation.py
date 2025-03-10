@@ -729,8 +729,9 @@ class TierValidation(models.AbstractModel):
                     if rec.evaluate_tier(td):
                         sequence += 1
                         vals_list.append(rec._prepare_tier_review_vals(td, sequence))
-                self._update_counter({"review_created": True})
         created_trs = tr_obj.create(vals_list)
+        if any(self.mapped("can_review")):
+            self._update_counter({"review_created": True})
         self._notify_review_requested(created_trs)
         return created_trs
 
