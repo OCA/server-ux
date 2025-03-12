@@ -372,8 +372,15 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/18.0/mail_message_destiny_link_template"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-18-0/server-ux-18-0-mail_message_destiny_link_template"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module provides an email template to show which target records have
 been modified by a source record.</p>
-<p>An email template already exists to show which source record a target
-record has been created or modified from.</p>
+<p>Example: When a purchase order generates an invoice, the invoice
+contains a message indicating its origin with a link to the purchase
+order. However, the purchase order does not log any message stating that
+it has generated an invoice. This module allows developers to implement
+that functionality by providing a ready-to-use template.</p>
+<p>⚠️ This module does not add functionality by itself. It is part of the
+server-ux repository and is intended for developers, who can implement
+the provided template as needed. The module includes an example code
+snippet to illustrate how to use it.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -400,7 +407,7 @@ the chatter).</p>
 the message inherits from <tt class="docutils literal">mail.thread</tt>.</p>
 <p>You can call the template like this:</p>
 <pre class="code python literal-block">
-<span class="k">def</span> <span class="nf">custom_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="w">
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="w">
     </span><span class="sd">&quot;&quot;&quot;Adds a chatter message to origin and destiny records&quot;&quot;&quot;</span><span class="w">
 </span>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span><span class="w">
 </span>        <span class="n">destiny_records</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">_create_destiny_records</span><span class="p">()</span>  <span class="c1"># A bunch of Destiny Records</span><span class="w">
