@@ -766,8 +766,9 @@ class TierValidation(models.AbstractModel):
                         .mapped("partner_id")
                         .ids
                     )
+                can_review = rec.can_review
                 rec.mapped("review_ids").unlink()
-                if to_update_counter:
+                if to_update_counter and can_review:
                     self._update_counter({"review_deleted": True})
             if partners_to_notify_ids:
                 subscribe = "message_subscribe"
