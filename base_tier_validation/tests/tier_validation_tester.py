@@ -43,6 +43,7 @@ class TierValidationTester2(models.Model):
     test_field = fields.Float()
     test_validation_field = fields.Float()
     user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
+    company_id = fields.Many2one(comodel_name="res.company")
 
     def action_confirm(self):
         self.write({"state": "confirmed"})
