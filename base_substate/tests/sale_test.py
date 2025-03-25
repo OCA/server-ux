@@ -30,8 +30,9 @@ class SaleTest(models.Model, TestMixin):
     @api.depends("line_ids")
     def _compute_amount_total(self):
         for record in self:
-            for line in record.line_ids:
-                record.amount_total += line.amount * line.qty
+            record.amount_total = sum(
+                line.amount * line.qty for line in record.line_ids
+            )
 
     def button_confirm(self):
         self.write({"state": "sale"})
