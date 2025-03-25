@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from operator import attrgetter
 
+from odoo import _
+
 
 class TestMixin:
     """Mixin to setup fake models for tests.
@@ -114,7 +116,7 @@ class TestMixin:
 
     def _test_ACL_values(self, model_id):
         values = {
-            "name": "Fake ACL for %s" % self._name,
+            "name": _("Fake ACL for {}").format(self._name),
             "model_id": model_id,
             "perm_read": 1,
             "perm_create": 1,
