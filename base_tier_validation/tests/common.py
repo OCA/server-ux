@@ -19,6 +19,7 @@ class CommonTierValidation(common.TransactionCase):
             TierDefinition,
             TierValidationTester,
             TierValidationTester2,
+            TierValidationTester3,
             TierValidationTesterComputed,
         )
 
@@ -26,6 +27,7 @@ class CommonTierValidation(common.TransactionCase):
             (
                 TierValidationTester,
                 TierValidationTester2,
+                TierValidationTester3,
                 TierValidationTesterComputed,
                 TierDefinition,
             )
@@ -33,6 +35,7 @@ class CommonTierValidation(common.TransactionCase):
 
         cls.test_model = cls.env[TierValidationTester._name]
         cls.test_model_2 = cls.env[TierValidationTester2._name]
+        cls.test_model_3 = cls.env[TierValidationTester3._name]
         cls.test_model_computed = cls.env[TierValidationTesterComputed._name]
 
         cls.tester_model = cls.env["ir.model"].search(
@@ -40,6 +43,9 @@ class CommonTierValidation(common.TransactionCase):
         )
         cls.tester_model_2 = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester2")]
+        )
+        cls.tester_model_3 = cls.env["ir.model"].search(
+            [("model", "=", "tier.validation.tester3")]
         )
         cls.tester_model_computed = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester.computed")]
@@ -80,6 +86,51 @@ class CommonTierValidation(common.TransactionCase):
                 }
             )
 
+        # Custom view for tester3
+        # Access record:
+        cls.env["ir.model.access"].create(
+            {
+                "name": f"access {model.name}",
+                "model_id": model.id,
+                "perm_read": 1,
+                "perm_write": 1,
+                "perm_create": 1,
+                "perm_unlink": 1,
+            }
+        )
+        cls.env["ir.ui.view"].create(
+            {
+                "model": cls.tester_model_3.model,
+                "name": f"Demo view for {model}",
+                "arch": """<form>
+    <header>
+        <button name="action_confirm" type="object" string="Confirm" />
+        <field name="state" widget="statusbar" />
+    </header>
+
+    <sheet>
+        <div class="oe_button_box">
+            <button class="oe_stat_button" name="action_confirm" type="object">
+                <div class="o_field_widget o_stat_info">
+                    <span class="o_stat_value">
+                        <field name="readonly_store_field" />
+                    </span>
+                    <span class="o_stat_text">Readonly Field</span>
+                </div>
+            </button>
+        </div>
+
+        <group>
+            <group readonly="True">
+                <field name="inverse_field" />
+                <field name="readonly_non_store_field" readonly="True" />
+            </group>
+        </group>
+    </sheet>
+</form>""",
+            }
+        )
+
         # Create users:
         group_ids = cls.env.ref("base.group_system").ids
         cls.test_user_1 = cls.env["res.users"].create(
@@ -108,6 +159,7 @@ class CommonTierValidation(common.TransactionCase):
 
         cls.test_record = cls.test_model.create({"test_field": 1.0})
         cls.test_record_2 = cls.test_model_2.create({"test_field": 1.0})
+        cls.test_record_3 = cls.test_model_3.create({})
         cls.test_record_computed = cls.test_model_computed.create({"test_field": 1.0})
 
         cls.tier_def_obj.create(
@@ -158,6 +210,20 @@ class CommonTierValidation(common.TransactionCase):
                 "notify_on_pending": False,
                 "sequence": 20,
                 "name": "Definition for computed model",
+            }
+        )
+
+        # Create a tier definition for the readonly check
+        cls.tier_def_obj.create(
+            {
+                "model_id": cls.tester_model_3.id,
+                "review_type": "individual",
+                "reviewer_id": cls.test_user_1.id,
+                "definition_domain": "[]",
+                "approve_sequence": False,
+                "notify_on_pending": False,
+                "sequence": 10,
+                "name": 'Definition for test "readonly"',
             }
         )
 

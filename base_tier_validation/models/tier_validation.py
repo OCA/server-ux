@@ -847,7 +847,9 @@ class TierValidation(models.AbstractModel):
                 if node.attrib.get("name") in excepted_fields:
                     continue
                 new_r_modifier = self._get_tier_validation_readonly_domain()
-                old_r_modifier = node.attrib.get("readonly")
+                old_r_modifier = node.attrib.get(
+                    "readonly", self._fields.get(node.attrib["name"]).readonly
+                )
                 if old_r_modifier:
                     new_r_modifier = f"({old_r_modifier}) or ({new_r_modifier})"
                 node.attrib["readonly"] = new_r_modifier

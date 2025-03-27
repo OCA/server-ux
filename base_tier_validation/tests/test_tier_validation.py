@@ -9,6 +9,7 @@ from lxml import etree
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tests.common import tagged
+from odoo.tools.safe_eval import safe_eval
 
 from ..models.tier_validation import BASE_EXCEPTION_FIELDS as BEF
 from ..models.tier_validation import TierValidation as TV
@@ -1055,3 +1056,92 @@ class TierTierValidationView(CommonTierValidation):
         self.assertIn("need_validation", view["models"][model])
         self.assertIn("next_review", view["models"][model])
         self.assertIn("review_ids", view["models"][model])
+
+    def test_readonly_field_view(self):
+        """
+        Tests that "readonly" fields are kept as read-only after installing the module.
+        """
+        view = self.test_record_3.get_view()
+
+        form = etree.fromstring(view["arch"])
+
+        # Checking that the readonly fields do contain a "readonly" evaluation.
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_non_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertFalse(
+            safe_eval(
+                form.xpath("//field[@name='inverse_field']")[0].attrib.get("readonly"),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+
+        # Once the validation is triggered, this should cause all fields to be readonly
+        self.test_record_3.request_validation()
+        self.test_record_3.invalidate_recordset()
+
+        self.assertTrue(self.test_record_3.review_ids)
+
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_non_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='inverse_field']")[0].attrib.get("readonly"),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+
+        # And, after validating, the field should maintaint their
+        #  readonly behavior.
+        self.test_record_3.validate_tier()
+        self.test_record_3.invalidate_recordset()
+
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_non_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='readonly_store_field']")[0].attrib.get(
+                    "readonly"
+                ),
+                {**self.test_record_3.read()[0]},
+            )
+        )
+        self.assertTrue(
+            safe_eval(
+                form.xpath("//field[@name='inverse_field']")[0].attrib.get("readonly"),
+                {**self.test_record_3.read()[0]},
+            )
+        )
