@@ -429,6 +429,7 @@ class TierValidation(models.AbstractModel):
             # Write under validation
             if (
                 rec.review_ids
+                and any(review.status != "approved" for review in rec.review_ids)
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
                 and not rec._context.get("skip_validation_check")
