@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import ustr
 
 
 class IrUiCustomFilter(models.Model):
@@ -39,12 +38,40 @@ class IrUiCustomFilter(models.Model):
             target = target[name]
         return field
 
+    @api.constrains("model_id", "name")
+    def _check_name(self):
+        for record in self:
+            if self.search_count(
+                [
+                    ("model_id", "=", record.model_id.id),
+                    ("name", "=", record.name),
+                    ("id", "!=", record.id),
+                ]
+            ):
+                raise exceptions.ValidationError(
+                    _("A filter with the same name already exists for this model.")
+                )
+
     @api.constrains("model_id", "expression")
     def _check_expression(self):
         for record in self:
+            if self.search_count(
+                [
+                    ("model_id", "=", record.model_id.id),
+                    ("expression", "=", record.expression),
+                    ("id", "!=", record.id),
+                ]
+            ):
+                raise exceptions.ValidationError(
+                    _(
+                        "A filter with the same expression already exists "
+                        "for this model."
+                    )
+                )
+
             try:
                 record._get_related_field()
             except KeyError as e:
                 raise exceptions.ValidationError(
-                    _("Incorrect expression: %s.") % (ustr(e))
+                    _("Incorrect expression: %s.", e)
                 ) from e

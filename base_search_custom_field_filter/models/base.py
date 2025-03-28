@@ -18,7 +18,7 @@ class Base(models.AbstractModel):
         for custom_filter in custom_filters:
             node = False
             if custom_filter.position_after:
-                node = arch.xpath("//field[@name='%s']" % custom_filter.position_after)
+                node = arch.xpath(f"//field[@name='{custom_filter.position_after}']")
             if not node:
                 node = arch.xpath("//field[last()]")
             if node:
@@ -52,9 +52,11 @@ class Base(models.AbstractModel):
         for custom_filter in custom_filters:
             field = custom_filter._get_related_field()
             field_name = custom_filter.expression
-            res["models"][self._name][field_name] = field.get_description(self.env)
+            res["models"][self._name]["fields"][field_name] = field.get_description(
+                self.env
+            )
             # force this for avoiding to appear on the rest of the UI
-            res["models"][self._name][field_name]["selectable"] = False
-            res["models"][self._name][field_name]["sortable"] = False
-            res["models"][self._name][field_name]["store"] = False
+            res["models"][self._name]["fields"][field_name]["selectable"] = False
+            res["models"][self._name]["fields"][field_name]["sortable"] = False
+            res["models"][self._name]["fields"][field_name]["store"] = False
         return res

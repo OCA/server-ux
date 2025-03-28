@@ -2,3 +2,6 @@
   - Carlos Dauden
   - Pedro M. Baeza
 - [Amitaujas](https://www.amitaujas.com):
+- MetaSynergy Tech Solution LLP \<<contact@metasynergytech.com>\>
+  - Meetesh Jaiswal \<<meetesh@metasynergytech.com>\>
+  - Harshil \<<harshil.metasynergytech@gmail.com>\>
