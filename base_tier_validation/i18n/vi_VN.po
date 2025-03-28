@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-28 09:48+0000\n"
+"PO-Revision-Date: 2025-03-28 12:06+0000\n"
 "Last-Translator: ductdm <duc.tdm@komit-consulting.com>\n"
 "Language-Team: none\n"
 "Language: vi_VN\n"
@@ -48,64 +48,70 @@ msgid ""
 "                <b>validated</b>\n"
 "                !"
 msgstr ""
+"<i class=\"fa fa-lg fa-thumbs-up\"/>\n"
+"                Hoạt động này đã được\n"
+"                <b>xác thực</b>\n"
+"                !"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span class=\"oe_edit_only\">Name</span>"
-msgstr ""
+msgstr "<span class=\"oe_edit_only\">Tên</span>"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "<span>Bypass, if previous tier was validated by same reviewer</span>"
 msgstr ""
+"<span>Bỏ qua, nếu cấp độ trước đó đã được xác thực bởi cùng một người xem "
+"xét</span>"
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A record to be reviewed has been created by %s."
-msgstr ""
+msgstr "Một bản ghi cần được xem xét đã được tạo bởi %s."
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_review.py:0
 msgid "A review has been requested %s days ago."
-msgstr ""
+msgstr "Một yêu cầu xem xét đã được tạo %s ngày trước."
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A review has been requested by %s."
-msgstr ""
+msgstr "Một yêu cầu xem xét đã được tạo bởi %s."
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A review was accepted"
-msgstr ""
+msgstr "Yêu cầu xem xét đã được chấp nhận"
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A review was accepted. (%s)"
-msgstr ""
+msgstr "Yêu cầu xem xét đã được chấp nhận. (%s)"
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A review was rejected by %(user)s. (%(comment)s)"
-msgstr ""
+msgstr "Yêu cầu xem xét đã bị từ chối bởi %(user)s. (%(comment)s)"
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A review was rejected by %s."
-msgstr ""
+msgstr "Yêu cầu xem xét đã bị từ chối bởi %s."
 
 #. module: base_tier_validation
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid "A validation process is still open for at least one record."
-msgstr ""
+msgstr "Quá trình xác thực vẫn mở cho ít nhất một bản ghi."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__active
