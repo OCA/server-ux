@@ -9,8 +9,11 @@ class Base(models.AbstractModel):
 
     def get_quick_access_code(self):
         self.ensure_one()
+        model_id = (
+            self.env["ir.model"].sudo().search([("model", "=", self._name)], limit=1).id
+        )
         rule = self.env["document.quick.access.rule"].search(
-            [("model_id.model", "=", self._name)], limit=1
+            [("model_id", "=", model_id)], limit=1
         )
         if not rule:
             return False
