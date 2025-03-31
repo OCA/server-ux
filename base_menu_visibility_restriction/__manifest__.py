@@ -12,6 +12,6 @@
     "license": "AGPL-3",
     "depends": ["web_tour"],
     "maintainers": ["victoralmau"],
-    "data": ["views/ir_ui_menu.xml"],
+    "data": ["views/ir_ui_menu.xml", "views/res_groups_views.xml"],
     "installable": True,
 }

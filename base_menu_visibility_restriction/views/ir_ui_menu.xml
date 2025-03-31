@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!--
-        License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     -->
     <record id="edit_menu_access_restricted" model="ir.ui.view">
         <field name="name">ir.ui.menu.restricted</field>
