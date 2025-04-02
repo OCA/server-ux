@@ -15,6 +15,21 @@ class Base(models.AbstractModel):
 
     @api.model
     def _add_custom_filters(self, res, custom_filters):
+        """
+        Add custom filter fields to the view architecture.
+
+        This method modifies the XML architecture of a view by injecting custom filter
+        fields at specific positions. For each custom filter, it attempts to place the
+        field after a specified field (if position_after is defined) or after the last
+        field in the view.
+
+        Args:
+            res (dict): The view data dictionary containing the architecture
+            custom_filters (recordset): Custom filter records to be added to the view
+
+        Returns:
+            dict: The modified view data with custom filters injected
+        """
         arch = etree.fromstring(res["arch"])
         for custom_filter in custom_filters:
             node = False

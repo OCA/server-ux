@@ -1,4 +1,5 @@
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from lxml import etree
 
 from odoo import exceptions
@@ -16,7 +17,6 @@ class TestFilter(BaseCommon):
         cls.custom_filter_model = cls.env["ir.ui.custom.field.filter"]
 
     def test_00(self):
-        """Test de validation des expressions de filtre"""
         filter_form = Form(self.custom_filter_model)
         filter_form.model_id = self.env.ref("base.model_res_partner")
         filter_form.name = "Title"
@@ -49,7 +49,6 @@ class TestFilter(BaseCommon):
         self.assertTrue(search.xpath("//search/field[@name='name']"))
 
     def test_03_duplicate_filter(self):
-        """Test that creating a duplicate filter raises a ValidationError."""
         self.env["ir.ui.custom.field.filter"].create(
             {
                 "model_id": self.env.ref("base.model_res_partner").id,
@@ -62,7 +61,7 @@ class TestFilter(BaseCommon):
                 {
                     "model_id": self.env.ref("base.model_res_partner").id,
                     "name": "Duplicate Filter",
-                    "expression": "name",
+                    "expression": "email",
                 }
             )
 
@@ -107,3 +106,13 @@ class TestFilter(BaseCommon):
         res = self.env["res.partner"].get_views([], {})
         self.assertIn("name", res["models"]["res.partner"])
         self.assertFalse(res["models"]["res.partner"]["name"]["selectable"])
+
+    def test_06_invalid_related_field(self):
+        with self.assertRaises(ValidationError):
+            self.custom_filter_model.create(
+                {
+                    "model_id": self.env.ref("base.model_res_partner").id,
+                    "name": "Invalid Field",
+                    "expression": "non_existent_field",
+                }
+            )
