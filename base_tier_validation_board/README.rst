@@ -28,7 +28,7 @@ Tier Review Activity Board
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds an tier review board with form, tree, kanban, calendar,
+This module adds an tier review board with form, list, kanban, calendar,
 pivot, graph and search views.
 
 **Table of contents**
@@ -62,7 +62,7 @@ Credits
 Authors
 -------
 
-* FrogeFlow
+* ForgeFlow
 
 Contributors
 ------------
@@ -70,6 +70,8 @@ Contributors
 -  `ForgeFlow <https://www.forgeflow.com>`__:
 
    -  Jasmin Solanki (jasmin.solanki@forgeflow.com)
+
+-  Chau Le chaulb@trobz.com
 
 Maintainers
 -----------

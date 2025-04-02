@@ -56,36 +56,30 @@
                 <field name="done_by" />
                 <field name="comment" />
                 <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
-                            <div class="oe_kanban_content">
+                    <t t-name="card">
+                        <div>
+                            <div>
+                                <strong>
+                                    <field name="name" />
+                                </strong>
+                            </div>
+                            <div>
+                                <strong>
+                                    <field name="res_name" />
+                                </strong>
+                            </div>
+                            <div>
                                 <div>
-                                    <strong class="o_kanban_record_subtitle">
-                                        <field name="name" />
-                                    </strong>
+                                    <strong>Requested by: </strong>
+                                    <field name="requested_by" />
                                 </div>
                                 <div>
-                                    <strong class="o_kanban_record_title">
-                                        <field name="res_name" />
-                                    </strong>
+                                    <strong>Todo by: </strong>
+                                    <field name="todo_by" />
                                 </div>
-                                <div class="o_kanban_record_bottom">
-                                    <div class="oe_kanban_bottom_left">
-                                        <div>
-                                            <div>
-                                                <strong>Requsted by: </strong>
-                                                <field name="requested_by" />
-                                            </div>
-                                            <div>
-                                                <strong>Todo by: </strong>
-                                                <field name="todo_by" />
-                                            </div>
-                                            <div t-if="comment">
-                                                <strong>Comment: </strong>
-                                                <field name="comment" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div t-if="comment">
+                                    <strong>Comment: </strong>
+                                    <field name="comment" />
                                 </div>
                             </div>
                         </div>
@@ -115,7 +109,7 @@
             name="view_ids"
             eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'kanban', 'view_id': ref('tier_review_view_kanban')}),
-                          (0, 0, {'view_mode': 'tree', 'view_id': ref('base_tier_validation.tier_review_view_tree')}),
+                          (0, 0, {'view_mode': 'list', 'view_id': ref('base_tier_validation.tier_review_view_tree')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('tier_review_view_form_board')}),
                           (0, 0, {'view_mode': 'pivot'}),
                           (0, 0, {'view_mode': 'graph'})]"
