@@ -8,7 +8,8 @@ class TierDefinition(models.Model):
     _inherit = "tier.definition"
 
     definition_type = fields.Selection(
-        selection_add=[("server_action", "Server Action")]
+        selection_add=[("server_action", "Server Action")],
+        ondelete={"server_action": "cascade"},
     )
     definition_server_action_id = fields.Many2one(
         comodel_name="ir.actions.server",

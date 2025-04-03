@@ -4,11 +4,10 @@
 {
     "name": "Base Tier Validation Defination Server Action",
     "summary": """Server action for Base tier validation""",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "author": "ForgeFlow,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "depends": ["base_tier_validation"],
     "data": ["views/tier_definition_view.xml"],
-    "demo": [],
 }

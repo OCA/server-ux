@@ -11,7 +11,7 @@
                 <field
                     name="definition_server_action_id"
                     domain="[('usage', '=', 'ir_actions_server'),('model_id', '=', model_id)]"
-                    attrs="{'invisible': [('definition_type', 'not in', ('server_action'))]}"
+                    invisible="definition_type != 'server_action'"
                 />
             </field>
         </field>

@@ -74,6 +74,8 @@ Contributors
 
    -  Jasmin Solanki <jasmin.solanki@forgeflow.com>
 
+-  Chau Le <chaulb@trobz.com>
+
 Maintainers
 -----------
 
