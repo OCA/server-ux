@@ -9,6 +9,25 @@ from odoo import api, models
 class Model(models.AbstractModel):
     _inherit = "base"
 
+    def _get_avoid_create_edit_fields_names(self):
+        comodel_names = list(
+                {
+                    model.comodel_name
+                    for field_name, model in self._fields.items()
+                    if model.relational
+                }
+            )
+        domain = [("avoid_create_edit", "=", True), ("model", "in", comodel_names)]
+        relational_models = self.env["ir.model"].sudo().search(domain)
+        relational_models_names = relational_models.mapped("model")
+        return [
+            field_name
+            for field_name, model in self._fields.items()
+            if relational_models_names
+            and model.comodel_name
+            and model.comodel_name in relational_models_names
+        ]
+
     @api.model
     def get_views(self, views, options=None):
         res = super().get_views(views, options)
@@ -17,23 +36,7 @@ class Model(models.AbstractModel):
             tree = etree.fromstring(view_form)
             view_fields = set(tree.xpath(".//field[not(ancestor::field)]"))
 
-            comodel_names = list(
-                {
-                    model.comodel_name
-                    for field_name, model in self._fields.items()
-                    if model.relational
-                }
-            )
-            domain = [("avoid_create_edit", "=", True), ("model", "in", comodel_names)]
-            relational_models = self.env["ir.model"].sudo().search(domain)
-            relational_models_names = relational_models.mapped("model")
-            field_names = [
-                field_name
-                for field_name, model in self._fields.items()
-                if relational_models_names
-                and model.comodel_name
-                and model.comodel_name in relational_models_names
-            ]
+            field_names = self._get_avoid_create_edit_fields_names()
 
             for view_field in view_fields:
                 if view_field.attrib["name"] in field_names:
