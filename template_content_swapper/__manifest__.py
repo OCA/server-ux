@@ -12,5 +12,6 @@
         "security/ir.model.access.csv",
         "views/template_content_mapping_views.xml",
     ],
+    "maintainers": ["yostashiro", "AungKoKoLin1997"],
     "installable": True,
 }
