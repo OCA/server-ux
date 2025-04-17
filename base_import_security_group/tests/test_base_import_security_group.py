@@ -61,6 +61,6 @@ class TestImportSecurityGroup(common.HttpCase):
         self.assertEqual(len(res2["messages"]), 1)
         self.assertEqual(
             res2["messages"][0]["message"],
-            "User (ID: %s) is not allowed to import data in "
-            "model ir.model.access." % self.user_test.id,
+            f"User (ID: {self.user_test.id}) is not allowed to import data in "
+            "model ir.model.access.",
         )
