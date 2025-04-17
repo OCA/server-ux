@@ -857,8 +857,13 @@ class TierValidation(models.AbstractModel):
                 node.append(new_node)
                 _merge_view_fields(all_models, new_models)
             excepted_fields = self._get_all_validation_exceptions()
+            readonly_fields = self.env['ir.model.fields'].search([('model', '=', self._name), ('readonly', '=', True)]).mapped('name')
             for node in doc.xpath("//field[@name][not(ancestor::field)]"):
                 if node.attrib.get("name") in excepted_fields:
+                    continue
+                if node.attrib.get("name") in readonly_fields and not node.attrib.get("readonly"):
+                    """Readonly field with readonly not set on form -> odoo will set this as readonly=True
+                    Make sure not to override"""
                     continue
                 new_r_modifier = self._get_tier_validation_readonly_domain()
                 old_r_modifier = node.attrib.get("readonly")
