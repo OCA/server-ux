@@ -111,6 +111,18 @@ class TierDefinition(models.Model):
                 .search([("model", "=", rec.model), ("relation", "=", "res.users")])
             )
 
+    def _get_domain_from_record(self, record):
+        domain = [
+            ("model", "=", record._name),
+            ("company_id", "in", [False] + self.env.companies.ids),
+        ]
+        # If the record has the company_id field and it is defined, we must take
+        # it into account to obtain only the definitions of that company, even if
+        # more companies are selected.
+        if "company_id" in list(record._fields.keys()) and record.company_id:
+            domain += [("company_id", "=", record.company_id.id)]
+        return domain
+
     def _get_review_needing_reminder(self):
         """Return all the reviews that have the reminder setup."""
         self.ensure_one()

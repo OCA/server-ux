@@ -215,19 +215,13 @@ class TierValidation(models.AbstractModel):
             rec.next_review = review and _("Next: %s") % review.name or ""
 
     def _compute_is_reevaluation_required(self):
+        td_obj = self.env["tier.definition"]
         for rec in self:
             if isinstance(rec.id, models.NewId):
                 rec.is_reevaluation_required = False
                 continue
-            tiers = (
-                self.env["tier.definition"]
-                .with_context(active_test=True)
-                .search(
-                    [
-                        ("model", "=", self._name),
-                        ("company_id", "in", [False] + self.env.company.ids),
-                    ]
-                )
+            tiers = td_obj.with_context(active_test=True).search(
+                td_obj._get_domain_from_record(rec)
             )
             rec.is_reevaluation_required = False
             valid_tiers = tiers.filtered(lambda x: rec.evaluate_tier(x))
@@ -248,19 +242,13 @@ class TierValidation(models.AbstractModel):
         return any([s == "rejected" for s in reviews.mapped("status")])
 
     def _compute_need_validation(self):
+        td_obj = self.env["tier.definition"]
         for rec in self:
             if isinstance(rec.id, models.NewId):
                 rec.need_validation = False
                 continue
-            tiers = (
-                self.env["tier.definition"]
-                .with_context(active_test=True)
-                .search(
-                    [
-                        ("model", "=", self._name),
-                        ("company_id", "in", [False] + self.env.company.ids),
-                    ]
-                )
+            tiers = td_obj.with_context(active_test=True).search(
+                td_obj._get_domain_from_record(rec)
             )
             valid_tiers = tiers.filtered(lambda x: rec.evaluate_tier(x))
             requested_tiers = rec.review_ids.filtered(
@@ -285,7 +273,7 @@ class TierValidation(models.AbstractModel):
             .search(
                 [
                     ("model_name", "=", self._name),
-                    ("company_id", "in", [False] + self.env.company.ids),
+                    ("company_id", "in", [False] + self.env.companies.ids),
                     "|",
                     ("group_ids", "in", self.env.user.groups_id.ids),
                     ("group_ids", "=", False),
@@ -647,12 +635,10 @@ class TierValidation(models.AbstractModel):
         vals_list = []
         for rec in self:
             if rec._check_state_from_condition() and rec.need_validation:
+                domain = td_obj._get_domain_from_record(rec)
+                domain += [("id", "not in", rec.review_ids.mapped("definition_id").ids)]
                 tier_definitions = td_obj.search(
-                    [
-                        ("model", "=", self._name),
-                        ("company_id", "in", [False] + self.env.company.ids),
-                        ("id", "not in", rec.review_ids.mapped("definition_id").ids),
-                    ],
+                    domain,
                     order="sequence desc",
                 )
                 sequence = 0
