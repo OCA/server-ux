@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 from odoo.osv import expression
+from odoo.tools import SQL
 
 
 class TierReview(models.Model):
@@ -55,36 +56,25 @@ class TierReview(models.Model):
     @api.model
     def _search(
         self,
-        args,
+        domain,
         offset=0,
         limit=None,
         order=None,
-        count=False,
         access_rights_uid=None,
     ):
         # Rules do not apply to administrator
         if self.env.is_superuser():
             return super()._search(
-                args,
+                domain,
                 offset=offset,
                 limit=limit,
                 order=order,
-                count=count,
                 access_rights_uid=access_rights_uid,
             )
-        # Perform a super with count as False, to have the ids, not a counter
-        ids = super()._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            count=False,
-            access_rights_uid=access_rights_uid,
-        )
-        if not ids and count:
-            return 0
-        elif not ids:
-            return ids
+        query = super()._search(domain, offset, limit, order)
+        ids = self.browse(query).ids
+        if not ids:
+            return query
 
         super(
             TierReview, self.with_user(access_rights_uid or self._uid)
@@ -94,12 +84,14 @@ class TierReview(models.Model):
         reviews_to_check = []
         for sub_ids in self._cr.split_for_in_conditions(ids):
             self._cr.execute(
-                """
+                SQL(
+                    """
                 SELECT DISTINCT review.id, review.model, review.res_id
-                FROM "%s" review
-                WHERE review.id = ANY (%%(ids)s) AND review.res_id != 0"""
-                % self._table,
-                dict(ids=list(sub_ids)),
+                FROM %(table)s review
+                WHERE review.id = ANY (%(ids)s) AND review.res_id != 0""",
+                    table=SQL.identifier(self._table),
+                    ids=list(sub_ids),
+                )
             )
             reviews_to_check += self._cr.dictfetchall()
 
@@ -128,11 +120,9 @@ class TierReview(models.Model):
                     and review["res_id"] in valid_doc_ids
                 )
 
-        if count:
-            return len(allowed_ids)
-        else:
-            id_list = [id for id in ids if id in allowed_ids]
-            return id_list
+        id_list = [id for id in ids if id in allowed_ids]
+
+        return super()._search([("id", "in", id_list)], offset, limit, order)
 
     @api.model
     def _read_group_raw(
