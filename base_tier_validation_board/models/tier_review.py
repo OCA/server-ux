@@ -31,7 +31,7 @@ class TierReview(models.Model):
         for record in self:
             ref = False
             if record.res_id:
-                ref = "{},{}".format(record.model, record.res_id)
+                ref = f"{record.model},{record.res_id}"
             record.related_model_instance = ref
 
     @api.model
@@ -64,7 +64,7 @@ class TierReview(models.Model):
     ):
         # Rules do not apply to administrator
         if self.env.is_superuser():
-            return super(TierReview, self)._search(
+            return super()._search(
                 args,
                 offset=offset,
                 limit=limit,
@@ -73,7 +73,7 @@ class TierReview(models.Model):
                 access_rights_uid=access_rights_uid,
             )
         # Perform a super with count as False, to have the ids, not a counter
-        ids = super(TierReview, self)._search(
+        ids = super()._search(
             args,
             offset=offset,
             limit=limit,
@@ -147,7 +147,7 @@ class TierReview(models.Model):
                 # force void result if no allowed ids found
                 domain = expression.AND([domain, [(0, "=", 1)]])
 
-        return super(TierReview, self)._read_group_raw(
+        return super()._read_group_raw(
             domain=domain,
             fields=fields,
             groupby=groupby,
