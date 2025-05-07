@@ -281,7 +281,6 @@ msgstr "Definitiedomein"
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 msgid "Description"
 msgstr "Omschrijving"
 
@@ -377,9 +376,9 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_pending
 msgid ""
-"If set, all possible reviewers will be notified by email when this status is"
-" reached.Usefull in an Approve by sequence scenario. An notification request"
-" to review is sent out when it's their turn to review."
+"If set, all possible reviewers will be notified by email when this status is "
+"reached.Usefull in an Approve by sequence scenario. An notification request "
+"to review is sent out when it's their turn to review."
 msgstr ""
 "Indien ingesteld, worden alle mogelijke beoordelaars per e-mail op de hoogte "
 "gebracht wanneer deze status is bereikt. Handig in een 'Goedkeuren op "
@@ -464,6 +463,7 @@ msgid "More Options"
 msgstr "Meer Opties"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__name
 msgid "Name"
 msgstr "Naam"
