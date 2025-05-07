@@ -278,7 +278,6 @@ msgstr "Definitionsdomän"
 #. odoo-javascript
 #: code:addons/base_tier_validation/static/src/components/tier_review_widget/tier_review_widget.xml:0
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__name
-#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 msgid "Description"
 msgstr "Beskrivning"
 
@@ -459,6 +458,7 @@ msgid "More Options"
 msgstr "Fler alternativ"
 
 #. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__name
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_exception__name
 msgid "Name"
 msgstr ""
