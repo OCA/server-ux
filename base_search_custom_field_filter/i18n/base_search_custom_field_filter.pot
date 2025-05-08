@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: base_search_custom_field_filter
+#. odoo-python
+#: code:addons/base_search_custom_field_filter/models/base.py:0
+msgid "//field[@name='%s']"
+msgstr ""
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.constraint,message:base_search_custom_field_filter.constraint_ir_ui_custom_field_filter_unique_model_expression
+msgid "A filter with the same expression already exists for this model."
+msgstr ""
+
+#. module: base_search_custom_field_filter
+#. odoo-python
+#: code:addons/base_search_custom_field_filter/models/ir_ui_custom_field_filter.py:0
+msgid "A filter with the same name already exists for this model."
+msgstr ""
 
 #. module: base_search_custom_field_filter
 #: model:ir.model,name:base_search_custom_field_filter.model_base
@@ -57,7 +74,6 @@ msgstr ""
 #. module: base_search_custom_field_filter
 #. odoo-python
 #: code:addons/base_search_custom_field_filter/models/ir_ui_custom_field_filter.py:0
-#, python-format
 msgid "Incorrect expression: %s."
 msgstr ""
 
