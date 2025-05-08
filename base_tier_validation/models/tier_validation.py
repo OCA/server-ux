@@ -12,7 +12,11 @@ from odoo.exceptions import ValidationError
 from odoo.tools import SQL
 from odoo.tools.misc import frozendict
 
-BASE_EXCEPTION_FIELDS = ["message_follower_ids", "access_token"]
+BASE_EXCEPTION_FIELDS = [
+    "message_follower_ids",
+    "access_token",
+    "message_main_attachment_id",
+]
 
 
 class TierValidation(models.AbstractModel):
