@@ -117,17 +117,18 @@ class TierDefinition(models.Model):
     @api.depends("review_type", "model_id")
     def _compute_domain_reviewer_field(self):
         models = self.mapped("model")
+        IrModelFields = self.env["ir.model.fields"].sudo()
         valid_reviewer_fields = dict(
-            self.env["ir.model.fields"]
-            .sudo()
-            ._read_group(
+            IrModelFields._read_group(
                 domain=[("model", "in", models), ("relation", "=", "res.users")],
                 groupby=["model"],
                 aggregates=["id:array_agg"],
             )
         )
         for rec in self:
-            rec.valid_reviewer_field_ids = valid_reviewer_fields.get(rec.model, [])
+            rec.valid_reviewer_field_ids = valid_reviewer_fields.get(
+                rec.model, IrModelFields
+            )
 
     def _get_review_needing_reminder(self):
         """Return all the reviews that have the reminder setup."""

@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_search_custom_field_filter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-09-20 19:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model,name:base_search_custom_field_filter.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: base_search_custom_field_filter
+#: model:ir.actions.act_window,name:base_search_custom_field_filter.action_ir_ui_custom_field_filter
+#: model:ir.ui.menu,name:base_search_custom_field_filter.menu_ir_ui_custom_field_filter
+msgid "Custom Field Filters"
+msgstr "Filtri Campi Personalizzati"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model,name:base_search_custom_field_filter.model_ir_ui_custom_field_filter
+msgid "Custom UI field filter"
+msgstr "Filtro Campo UI personalizzato"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__expression
+msgid "Expression"
+msgstr "Espressione"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_search_custom_field_filter
+#. odoo-python
+#: code:addons/base_search_custom_field_filter/models/ir_ui_custom_field_filter.py:0
+#, python-format
+msgid "Incorrect expression: %s."
+msgstr "Espressione non corretta: %s."
+
+#. module: base_search_custom_field_filter
+#: model:ir.ui.custom.field.filter,name:base_search_custom_field_filter.custom_field_filter_demo
+msgid "Language"
+msgstr "Lingua"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__model_id
+msgid "Model"
+msgstr "Modello"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__model_name
+msgid "Model name"
+msgstr "Nome modello"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,help:base_search_custom_field_filter.field_ir_ui_custom_field_filter__position_after
+msgid ""
+"Optional field name for putting the filter after that one. If empty or not "
+"found, it will be put at the end."
+msgstr ""
+"Nome del campo opzionale per inserire il filtro dopo di esso. Se vuoto o non "
+"trovato, verrà posizionato alla fine."
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__position_after
+msgid "Position After"
+msgstr "Posiziona dopo"
+
+#. module: base_search_custom_field_filter
+#: model:ir.model.fields,field_description:base_search_custom_field_filter.field_ir_ui_custom_field_filter__sequence
+msgid "Sequence"
+msgstr "Sequenza"

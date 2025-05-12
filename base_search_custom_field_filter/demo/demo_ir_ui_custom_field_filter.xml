@@ -1,0 +1,7 @@
+<odoo>
+    <record id="custom_field_filter_demo" model="ir.ui.custom.field.filter">
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="name">Language</field>
+        <field name="expression">lang</field>
+    </record>
+</odoo>
