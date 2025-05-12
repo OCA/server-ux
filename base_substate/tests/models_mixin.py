@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from operator import attrgetter
 
-from odoo import _
-
 
 class TestMixin:
     """Mixin to setup fake models for tests.
@@ -100,7 +98,7 @@ class TestMixin:
                         children.remove(cls._name)
 
     def _test_get_model_id(self):
-        self.env.cr.execute("SELECT id FROM ir_model WHERE model = %s", (self._name,))
+        self.env.cr.execute(f"SELECT id FROM ir_model WHERE model = {self._name}")
         res = self.env.cr.fetchone()
         return res[0] if res else None
 
@@ -116,7 +114,7 @@ class TestMixin:
 
     def _test_ACL_values(self, model_id):
         values = {
-            "name": _("Fake ACL for {}").format(self._name),
+            "name": f"Fake ACL for {self._name}",
             "model_id": model_id,
             "perm_read": 1,
             "perm_create": 1,
