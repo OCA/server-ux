@@ -72,13 +72,17 @@ class BaseSubstateMixin(models.AbstractModel):
         ]
         return domain
 
-    def _get_default_state_value(self):
+    def _get_default_state_value(
+        self,
+    ):
         """Override this method
         to change state_value
         """
         return "draft"
 
-    def _get_substate_type(self):
+    def _get_substate_type(
+        self,
+    ):
         """Override this method
         to change substate_type (get by xml id for example)
         """
@@ -94,7 +98,7 @@ class BaseSubstateMixin(models.AbstractModel):
         index=True,
         domain=lambda self: [("model", "=", self._name)],
         copy=False,
-        tracking=True,  # Add tracking parameter here
+        # tracking=True,
     )
 
     @api.constrains("substate_id")
@@ -102,7 +106,7 @@ class BaseSubstateMixin(models.AbstractModel):
         for mixin_obj in self:
             if mixin_obj.substate_id and mixin_obj.substate_id.model != self._name:
                 raise ValidationError(
-                    _("This substate is not defined for this object but for %s")
+                    _("This substate is not define for this object but for %s")
                     % mixin_obj.substate_id.model
                 )
 
@@ -125,9 +129,3 @@ class BaseSubstateMixin(models.AbstractModel):
             vals = self._update_before_write_create(vals)
         res = super().create(vals_list)
         return res
-
-    @classmethod
-    def _valid_field_parameter(cls, field, name):
-        if name == "tracking":
-            return True
-        return super()._valid_field_parameter(field, name)
