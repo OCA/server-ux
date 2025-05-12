@@ -1,125 +1,55 @@
-# Copyright 2018 Simone Orsi - Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from operator import attrgetter
+# Copyright 2020 Akretion Mourad EL HADJ MIMOUNE
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo import api, fields, models
+
+from .models_mixin import TestMixin
 
 
-class TestMixin:
-    """Mixin to setup fake models for tests.
+class SaleTest(models.Model, TestMixin):
+    _inherit = "base.substate.mixin"
+    _name = "base.substate.test.sale"
+    _description = "Base substate Test Model"
 
-    Usage - the model:
+    name = fields.Char(required=True)
+    user_id = fields.Many2one("res.users", string="Responsible")
+    state = fields.Selection(
+        [("draft", "New"), ("cancel", "Cancelled"), ("sale", "Sale"), ("done", "Done")],
+        string="Status",
+        readonly=True,
+        default="draft",
+    )
+    active = fields.Boolean(default=True)
+    partner_id = fields.Many2one("res.partner", string="Partner")
+    line_ids = fields.One2many(
+        comodel_name="base.substate.test.sale.line",
+        inverse_name="sale_id",
+        context={"active_test": False},
+    )
+    amount_total = fields.Float(compute="_compute_amount_total", store=True)
 
-        class FakeModel(models.Model, TestMixin):
-            _name = 'fake.model'
+    @api.depends("line_ids")
+    def _compute_amount_total(self):
+        for record in self:
+            for line in record.line_ids:
+                record.amount_total += line.amount * line.qty
 
-            name = fields.Char()
+    def button_confirm(self):
+        self.write({"state": "sale"})
+        return True
 
-    Usage - the test klass:
+    def button_cancel(self):
+        self.write({"state": "cancel"})
 
-        @classmethod
-        def setUpClass(cls):
-            super().setUpClass()
-            FakeModel._test_setup_model(cls.env)
 
-        @classmethod
-        def tearDownClass(cls):
-            FakeModel._test_teardown_model(cls.env)
-            super().tearDownClass()
-    """
+class LineTest(models.Model, TestMixin):
+    _name = "base.substate.test.sale.line"
+    _description = "Base substate Test Model Line"
 
-    # Generate xmlids
-    # This is needed if you want to load data tied to a test model via xid.
-    _test_setup_gen_xid = False
-    # If you extend a real model (ie: res.partner) you must enable this
-    # to not delete the model on tear down.
-    _test_teardown_no_delete = False
-    # You can add custom fields to real models (eg: res.partner).
-    # In this case you must delete them to leave registry and model clean.
-    # This is mandatory for relational fields that link a fake model.
-    _test_purge_fields = []
-
-    @classmethod
-    def _test_setup_models(cls, env, model_clses):
-        """
-        Setup models at the same time
-        if one fake model ref to another in relational
-        field.
-        ex : many2one fields
-        in this case we should don't use manual=True as an option in field.
-        """
-        for model_cls in model_clses:
-            model_cls._build_model(env.registry, env.cr)
-
-        env.registry.setup_models(env.cr)
-        ctx = dict(env.context, update_custom_fields=True)
-        if cls._test_setup_gen_xid:
-            ctx["module"] = cls._module
-        env.registry.init_models(
-            env.cr, [model_cls._name for model_cls in model_clses], ctx
-        )
-
-    @classmethod
-    def _test_setup_model(cls, env):
-        """Initialize it."""
-        cls._build_model(env.registry, env.cr)
-        env.registry.setup_models(env.cr)
-        ctx = dict(env.context, update_custom_fields=True)
-        if cls._test_setup_gen_xid:
-            ctx["module"] = cls._module
-        env.registry.init_models(env.cr, [cls._name], ctx)
-
-    @classmethod
-    def _test_teardown_model(cls, env):
-        """Cleanup registry and real models."""
-
-        for fname in cls._test_purge_fields:
-            model = env[cls._name]
-            if fname in model:
-                model._pop_field(fname)
-
-        if not getattr(cls, "_test_teardown_no_delete", False):
-            del env.registry.models[cls._name]
-            # here we must remove the model from list of children of inherited
-            # models
-            parents = cls._inherit
-            parents = [parents] if isinstance(parents, str) else (parents or [])
-            # keep a copy to be sure to not modify the original _inherit
-            parents = list(parents)
-            parents.extend(cls._inherits.keys())
-            parents.append("base")
-            funcs = [
-                attrgetter(kind + "_children") for kind in ["_inherits", "_inherit"]
-            ]
-            for parent in parents:
-                for func in funcs:
-                    children = func(env.registry[parent])
-                    if cls._name in children:
-                        # at this stage our cls is referenced as children of
-                        # parent -> must un reference it
-                        children.remove(cls._name)
-
-    def _test_get_model_id(self):
-        self.env.cr.execute(f"SELECT id FROM ir_model WHERE model = {self._name}")
-        res = self.env.cr.fetchone()
-        return res[0] if res else None
-
-    def _test_create_ACL(self, **kw):
-        model_id = self._test_get_model_id()
-        if not model_id:
-            self._reflect()
-            model_id = self._test_get_model_id()
-        if model_id:
-            vals = self._test_ACL_values(model_id)
-            vals.update(kw)
-            self.env["ir.model.access"].create(vals)
-
-    def _test_ACL_values(self, model_id):
-        values = {
-            "name": f"Fake ACL for {self._name}",
-            "model_id": model_id,
-            "perm_read": 1,
-            "perm_create": 1,
-            "perm_write": 1,
-            "perm_unlink": 1,
-            "active": True,
-        }
-        return values
+    name = fields.Char()
+    sale_id = fields.Many2one(
+        comodel_name="base.substate.test.sale",
+        ondelete="cascade",
+        context={"active_test": False},
+    )
+    qty = fields.Float()
+    amount = fields.Float()
