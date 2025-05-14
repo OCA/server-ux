@@ -96,6 +96,11 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: template_content_swapper
+#: model:ir.model,name:template_content_swapper.model_ir_qweb
+msgid "Qweb"
+msgstr ""
+
+#. module: template_content_swapper
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__report_id
 #: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
 msgid "Report"
@@ -136,7 +141,5 @@ msgstr "Modello mappatura contenuto"
 msgid "Template Content Mappings"
 msgstr "Modello mappature contenuto"
 
-#. module: template_content_swapper
-#: model:ir.model,name:template_content_swapper.model_ir_ui_view
-msgid "View"
-msgstr "Vista"
+#~ msgid "View"
+#~ msgstr "Vista"
