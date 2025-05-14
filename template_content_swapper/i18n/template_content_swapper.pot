@@ -91,6 +91,11 @@ msgid "Name"
 msgstr ""
 
 #. module: template_content_swapper
+#: model:ir.model,name:template_content_swapper.model_ir_qweb
+msgid "Qweb"
+msgstr ""
+
+#. module: template_content_swapper
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__report_id
 #: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
 msgid "Report"
@@ -127,9 +132,4 @@ msgstr ""
 #: model:ir.ui.menu,name:template_content_swapper.menu_template_content_mapping
 #: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
 msgid "Template Content Mappings"
-msgstr ""
-
-#. module: template_content_swapper
-#: model:ir.model,name:template_content_swapper.model_ir_ui_view
-msgid "View"
 msgstr ""
