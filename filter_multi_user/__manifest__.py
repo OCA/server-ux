@@ -3,7 +3,7 @@
 {
     "name": "Filter Multi User",
     "summary": "Allows to share user-defined filters filters among several users.",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -11,6 +11,6 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["base"],
+    "depends": ["base", "mail"],
     "data": ["security/ir_filters_security.xml", "views/ir_filters_view.xml"],
 }
