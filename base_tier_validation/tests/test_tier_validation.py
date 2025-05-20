@@ -1081,6 +1081,159 @@ class TierTierValidation(CommonTierValidation):
 
         self.assertEqual(len(reviews), 2)
 
+    def test_30_request_validation(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 1.0})
+        # Create tier definitions for both tester models
+        self.tier_definition.write(
+            {
+                "approve_sequence": True,
+                "notify_on_create": True,
+            }
+        )
+        def_2 = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "sequence": 20,
+                "approve_sequence": True,
+                "notify_on_create": False,
+                "notify_on_accepted": True,
+            }
+        )
+        def_3 = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_3_multi_company.id,
+                "sequence": 10,
+                "approve_sequence": True,
+                "notify_on_create": False,
+                "notify_on_accepted": True,
+            }
+        )
+        mt_tier_validation_requested = self.env.ref(
+            "base_tier_validation.mt_tier_validation_requested"
+        )
+        mt_tier_validation_accepted = self.env.ref(
+            "base_tier_validation.mt_tier_validation_accepted"
+        )
+        test_record.request_validation()
+        review_1 = test_record.review_ids.filtered(
+            lambda x: x.definition_id == self.tier_definition
+        )
+        self.assertEqual(review_1.status, "pending")
+        review_2 = test_record.review_ids.filtered(lambda x: x.definition_id == def_2)
+        self.assertEqual(review_2.status, "waiting")
+        review_3 = test_record.review_ids.filtered(lambda x: x.definition_id == def_3)
+        self.assertEqual(review_3.status, "waiting")
+        followers = test_record.message_follower_ids
+        self.assertIn(self.test_user_1.partner_id, followers.mapped("partner_id"))
+        follower_1 = followers.filtered(
+            lambda x: x.partner_id == self.test_user_1.partner_id
+        )
+        self.assertIn(mt_tier_validation_requested, follower_1.subtype_ids)
+        self.assertNotIn(mt_tier_validation_accepted, follower_1.subtype_ids)
+        self.assertNotIn(self.test_user_2.partner_id, followers.mapped("partner_id"))
+        self.assertNotIn(
+            self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
+        )
+        old_messages = test_record.message_ids
+        test_record.with_user(self.test_user_1).validate_tier()
+        new_messages = test_record.message_ids - old_messages
+        self.assertEqual(len(new_messages), 1)
+        self.assertEqual(new_messages.subtype_id, mt_tier_validation_accepted)
+        self.assertEqual(self.test_user_2.partner_id, new_messages.notified_partner_ids)
+        self.assertEqual(review_1.status, "approved")
+        self.assertEqual(review_2.status, "pending")
+        self.assertEqual(review_3.status, "waiting")
+        followers = test_record.message_follower_ids
+        self.assertIn(self.test_user_1.partner_id, followers.mapped("partner_id"))
+        self.assertIn(self.test_user_2.partner_id, followers.mapped("partner_id"))
+        follower_2 = followers.filtered(
+            lambda x: x.partner_id == self.test_user_2.partner_id
+        )
+        self.assertNotIn(mt_tier_validation_requested, follower_2.subtype_ids)
+        self.assertIn(mt_tier_validation_accepted, follower_2.subtype_ids)
+        self.assertNotIn(
+            self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
+        )
+        old_messages = test_record.message_ids
+        test_record.with_user(self.test_user_2).validate_tier()
+        new_messages = test_record.message_ids - old_messages
+        self.assertEqual(len(new_messages), 1)
+        self.assertEqual(new_messages.subtype_id, mt_tier_validation_accepted)
+        self.assertEqual(
+            self.test_user_3_multi_company.partner_id, new_messages.notified_partner_ids
+        )
+        self.assertEqual(review_1.status, "approved")
+        self.assertEqual(review_2.status, "approved")
+        self.assertEqual(review_3.status, "pending")
+        followers = test_record.message_follower_ids
+        self.assertIn(self.test_user_1.partner_id, followers.mapped("partner_id"))
+        self.assertIn(self.test_user_2.partner_id, followers.mapped("partner_id"))
+        self.assertIn(
+            self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
+        )
+        follower_3 = followers.filtered(
+            lambda x: x.partner_id == self.test_user_3_multi_company.partner_id
+        )
+        self.assertNotIn(mt_tier_validation_requested, follower_3.subtype_ids)
+        self.assertIn(mt_tier_validation_accepted, follower_3.subtype_ids)
+        old_messages = test_record.message_ids
+        test_record.with_user(self.test_user_3_multi_company).validate_tier()
+        new_messages = test_record.message_ids - old_messages
+        self.assertEqual(len(new_messages), 0)
+
+    def test_31_request_validation(self):
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 1.0})
+        # Create tier definitions for both tester models
+        self.tier_definition.write(
+            {
+                "approve_sequence": True,
+                "notify_on_create": True,
+            }
+        )
+        def_2 = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "sequence": 20,
+                "approve_sequence": True,
+                "notify_on_create": True,
+                "notify_on_accepted": True,
+            }
+        )
+        def_3 = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_3_multi_company.id,
+                "sequence": 10,
+                "approve_sequence": True,
+                "notify_on_create": True,
+                "notify_on_accepted": True,
+            }
+        )
+        test_record.request_validation()
+        review_1 = test_record.review_ids.filtered(
+            lambda x: x.definition_id == self.tier_definition
+        )
+        self.assertEqual(review_1.status, "pending")
+        review_2 = test_record.review_ids.filtered(lambda x: x.definition_id == def_2)
+        self.assertEqual(review_2.status, "waiting")
+        review_3 = test_record.review_ids.filtered(lambda x: x.definition_id == def_3)
+        self.assertEqual(review_3.status, "waiting")
+        followers = test_record.message_follower_ids
+        self.assertIn(self.test_user_1.partner_id, followers.mapped("partner_id"))
+        self.assertIn(self.test_user_2.partner_id, followers.mapped("partner_id"))
+        self.assertIn(
+            self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
+        )
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
