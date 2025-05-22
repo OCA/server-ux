@@ -29,7 +29,7 @@ class Users(models.Model):
             if tier_review and hasattr(Model, "can_review"):
                 records_domain = [
                     ("id", "in", tier_review.mapped("res_id")),
-                    ("rejected", "=", False),
+                    ("validation_status", "!=", "rejected"),
                     ("can_review", "=", True),
                 ]
                 records = (
