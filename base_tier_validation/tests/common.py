@@ -3,6 +3,9 @@
 
 from odoo_test_helper import FakeModelLoader
 
+from odoo import Command
+from odoo.tests import new_test_user
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -81,27 +84,16 @@ class CommonTierValidation(BaseCommon):
             )
 
         # Create users:
-        group_ids = cls.env.ref("base.group_system").ids
-        cls.test_user_1 = cls.env["res.users"].create(
-            {
-                "name": "John",
-                "login": "test1",
-                "email": "john@yourcompany.example.com",
-                "groups_id": [(6, 0, group_ids)],
-            }
+        cls.test_user_1 = new_test_user(
+            cls.env, name="John", login="test1", groups="base.group_system"
         )
-        cls.test_user_2 = cls.env["res.users"].create(
-            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
+        cls.test_user_2 = new_test_user(cls.env, name="Mike", login="test2")
+        cls.test_user_3_multi_company = new_test_user(
+            cls.env,
+            name="Jane",
+            login="test3",
+            company_ids=[Command.set([cls.main_company.id, cls.other_company.id])],
         )
-        cls.test_user_3_multi_company = cls.env["res.users"].create(
-            {
-                "name": "Jane",
-                "login": "test3",
-                "email": "jane@mycompany.example.com",
-                "company_ids": [(6, 0, [cls.main_company.id, cls.other_company.id])],
-            }
-        )
-
         # Create tier definitions:
         cls.tier_def_obj = cls.env["tier.definition"]
         cls.tier_definition = cls.tier_def_obj.create(
