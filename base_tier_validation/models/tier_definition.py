@@ -60,7 +60,9 @@ class TierDefinition(models.Model):
     )
     definition_domain = fields.Char()
     active = fields.Boolean(default=True)
-    sequence = fields.Integer(default=30)
+    sequence = fields.Integer(
+        default=30, help="The tier definitions are processed by decreasing sequence."
+    )
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
