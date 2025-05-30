@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
     <record id="ir_model_access_view_tree" model="ir.ui.view">
-        <field name="name">ir.model.access.tree.base_export_manager</field>
+        <field name="name">ir.model.access.list.base_export_manager</field>
         <field name="model">ir.model.access</field>
         <field name="inherit_id" ref="base.ir_access_view_tree" />
         <field name="arch" type="xml">
@@ -11,7 +11,7 @@
         </field>
     </record>
     <record id="ir_model_access_view_tree_edition" model="ir.ui.view">
-        <field name="name">ir.model.access.tree.edition.base_export_manager</field>
+        <field name="name">ir.model.access.list.edition.base_export_manager</field>
         <field name="model">ir.model.access</field>
         <field name="inherit_id" ref="base.ir_access_view_tree_edition" />
         <field name="arch" type="xml">

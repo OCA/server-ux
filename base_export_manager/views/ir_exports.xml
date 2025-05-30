@@ -5,7 +5,7 @@
     <record id="ir_exports_action" model="ir.actions.act_window">
         <field name="name">Export Profiles</field>
         <field name="res_model">ir.exports</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="ir_exports_menu"
@@ -17,11 +17,11 @@
         <field name="name">Export Profile tree</field>
         <field name="model">ir.exports</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="model_id" />
                 <field name="resource" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="ir_exports_form_view" model="ir.ui.view">
@@ -42,12 +42,12 @@
                                 colspan="4"
                                 context="{'default_model1_id': model_id}"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle" />
-                                    <field name="model1_id" invisible="True" />
-                                    <field name="model2_id" invisible="True" />
-                                    <field name="model3_id" invisible="True" />
-                                    <field name="model4_id" invisible="True" />
+                                    <field name="model1_id" column_invisible="True" />
+                                    <field name="model2_id" column_invisible="True" />
+                                    <field name="model3_id" column_invisible="True" />
+                                    <field name="model4_id" column_invisible="True" />
                                     <field name="label" />
                                     <field name="name" readonly="1" />
                                     <field
@@ -57,20 +57,20 @@
                                     />
                                     <field
                                         name="field2_id"
-                                        attrs="{'readonly': [('model2_id', '=', False)]}"
+                                        readonly="not model2_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                     <field
                                         name="field3_id"
-                                        attrs="{'readonly': [('model3_id', '=', False)]}"
+                                        readonly="not model3_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                     <field
                                         name="field4_id"
-                                        attrs="{'readonly': [('model3_id', '=', False)]}"
+                                        readonly="not model4_id"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

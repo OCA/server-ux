@@ -7,7 +7,7 @@
 {
     "name": "Manage model export profiles",
     "category": "Personalization",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.1",
     "depends": ["web"],
     "data": [
         "views/ir_exports.xml",
@@ -15,7 +15,6 @@
         "views/ir_model_access.xml",
         "views/res_groups.xml",
     ],
-    "qweb": ["static/src/xml/base.xml"],
     "author": "Tecnativa, "
     "LasLabs, "
     "Ursa Information Systems, "
@@ -26,9 +25,9 @@
     "assets": {
         "web.assets_backend": [
             "base_export_manager/static/src/views/list/list_controller.esm.js",
-            "base_export_manager/static/src/xml/base.xml",
         ],
     },
     "installable": True,
     "application": False,
+    "post_init_hook": "post_init_hook",
 }

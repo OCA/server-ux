@@ -159,9 +159,11 @@ class IrExportsLine(models.Model):
                 raise exceptions.ValidationError(
                     _("Field '%s' does not exist") % one.name
                 )
-            num_lines = one.search_count(
-                [("export_id", "=", one.export_id.id), ("name", "=", one.name)]
-            )
+            num_lines = 0
+            if one.export_id and not isinstance(one.export_id.id, models.NewId):
+                num_lines = one.search_count(
+                    [("export_id", "=", one.export_id.id), ("name", "=", one.name)]
+                )
             if num_lines > 1:
                 raise exceptions.ValidationError(
                     _("Field '%s' already exists") % one.name

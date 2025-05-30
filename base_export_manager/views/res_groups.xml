@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_groups_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='model_access']//tree//field[@name='perm_unlink']"
+                expr="//field[@name='model_access']//list//field[@name='perm_unlink']"
                 position="after"
             >
                 <field name="perm_export" />
