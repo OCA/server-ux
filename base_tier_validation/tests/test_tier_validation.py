@@ -1234,6 +1234,42 @@ class TierTierValidation(CommonTierValidation):
             self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
         )
 
+    def test_reviwer_wrong_field(self):
+        test_record = self.test_record.with_user(self.test_user_2)
+        # Force reviewer to be picked from resource[reviewer_field_id]
+        tier_definition = self.tier_definition
+        tier_definition.reviewer_id = False
+        tier_definition.reviewer_group_id = False
+        # If referenced field is not res.user, raise an exception
+        test_field = self.env["ir.model.fields"].search(
+            [("model", "=", "tier.validation.tester"), ("name", "=", "test_field")]
+        )
+        tier_definition.reviewer_field_id = test_field.id
+        regex = (
+            "Field test_field on tier.validation.tester should "
+            "be 'res.users' but is <class 'float'>"
+        )
+        # pylint: disable=pointless-statement
+        with self.assertRaisesRegex(ValidationError, regex):
+            review = test_record.request_validation()
+            review.reviewer_ids  # noqa: B018
+
+    def test_reviwer_field_empty(self):
+        test_record = self.test_record.with_user(self.test_user_2)
+        # Force reviewer to be picked from resource[reviewer_field_id]
+        tier_definition = self.tier_definition
+        tier_definition.reviewer_id = False
+        tier_definition.reviewer_group_id = False
+
+        # If reviewer field is empty, ok
+        user_field = self.env["ir.model.fields"].search(
+            [("model", "=", "tier.validation.tester"), ("name", "=", "user_id")]
+        )
+        tier_definition.reviewer_field_id = user_field.id
+        test_record.user_id = False
+        review = test_record.request_validation()
+        self.assertFalse(review.reviewer_ids)
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):

@@ -153,10 +153,42 @@ class TierReview(models.Model):
         reviewer_field = self.env["res.users"]
         if self.reviewer_field_id:
             resource = self.env[self.model].browse(self.res_id)
-            reviewer_field = getattr(resource, self.reviewer_field_id.name, False)
-            if not reviewer_field or not reviewer_field._name == "res.users":
+            field_name = self.reviewer_field_id.name
+            no_field_on_model = field_name not in resource._fields
+            if no_field_on_model:
+                msg = self.env._(
+                    "There are no field %(field_name)s on the %(model_name)s model",
+                )
                 raise ValidationError(
-                    self.env._("There are no res.users in the selected field")
+                    msg % {"field_name": field_name, "model_name": resource._name}
+                )
+
+            reviewer_field = resource[field_name]
+            if not isinstance(reviewer_field, models.Model):
+                msg = self.env._(
+                    "Field %(field_name)s on %(model_name)s should be "
+                    "'res.users' but is %(actual_model_type)s"
+                )
+                raise ValidationError(
+                    msg
+                    % {
+                        "field_name": field_name,
+                        "model_name": resource._name,
+                        "actual_model_type": type(reviewer_field),
+                    }
+                )
+            if not reviewer_field._name == "res.users":
+                msg = self.env._(
+                    "Field %(field_name)s on %(model_name)s should be "
+                    "'res.users' but is %(actual_model_name)s"
+                )
+                raise ValidationError(
+                    msg
+                    % {
+                        "field_name": field_name,
+                        "model_name": resource._name,
+                        "actual_model_name": reviewer_field._name,
+                    }
                 )
         return reviewer_field
 
