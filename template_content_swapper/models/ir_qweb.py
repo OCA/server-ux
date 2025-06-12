@@ -1,4 +1,4 @@
-# Copyright 2024 Quartile Limited
+# Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
@@ -16,6 +16,7 @@ class IrQWeb(models.AbstractModel):
     @api.model
     def _render(self, template, values=None, **options):
         result = super()._render(template, values=values, **options)
+        values = values or {}
         if not isinstance(template, str):
             return result
         result_str = str(result)

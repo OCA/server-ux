@@ -21,32 +21,32 @@ class TestTemplateStringSwapper(TransactionCase):
         view = self.view_obj._get(template).sudo()
         values = {"company": self.env.company, "report_type": "pdf", "o": view}
         result = self.view_obj._render_template(template, values)
-        self.assertTrue("Page:" in str(result))
+        self.assertTrue("Page" in str(result))
         self.env["template.content.mapping"].create(
             {
                 "template_id": view.id,
-                "content_from": "Page:",
-                "content_to": "Page No.:",
+                "content_from": "Page",
+                "content_to": "Slide",
                 "lang": "en_US",
             }
         )
         result = self.view_obj._render_template(template, values)
-        self.assertFalse("Page:" in str(result))
-        self.assertTrue("Page No.:" in str(result))
+        self.assertFalse("Page" in str(result))
+        self.assertTrue("Slide" in str(result))
         # Switch the language to Japanese
         view_obj = self.view_obj.with_context(lang="ja_JP")
         view = view_obj.browse(view.id)
         values = {"company": self.env.company, "report_type": "pdf", "o": view}
         result = view_obj._render_template(template, values)
-        self.assertTrue("ページ:" in str(result))
+        self.assertTrue("ページ" in str(result))
         self.env["template.content.mapping"].create(
             {
                 "template_id": view.id,
-                "content_from": "ページ:",
-                "content_to": "ページ番号:",
+                "content_from": "ページ",
+                "content_to": "スライド",
                 "lang": "ja_JP",
             }
         )
         result = view_obj._render_template(template, values)
-        self.assertFalse("ページ:" in str(result))
-        self.assertTrue("ページ番号:" in str(result))
+        self.assertFalse("ページ" in str(result))
+        self.assertTrue("スライド" in str(result))

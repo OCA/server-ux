@@ -1,4 +1,4 @@
-# Copyright 2024 Quartile Limited
+# Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -46,9 +46,7 @@ class TemplateContentMapping(models.Model):
         for record in self:
             record.name = False
             if record.content_from:
-                record.name = (
-                    f"{record.content_from or ''} -> {record.content_to or ''}"
-                )
+                record.name = f"{record.content_from} -> {record.content_to or ''}"
 
     @api.depends("report_id")
     def _compute_template_id(self):
