@@ -32,7 +32,6 @@ class TemplateContentMapping(models.Model):
         help="If no language is selected, the mapping will be applied to all "
         "languages.",
     )
-    active_lang_count = fields.Integer(compute="_compute_active_lang_count")
     content_from = fields.Char(
         required=True,
         help="Set the content (string) to be replaced. e.g. 'Salesperson'.",
@@ -56,8 +55,12 @@ class TemplateContentMapping(models.Model):
                 report_name = rec.report_id.report_name
                 rec.template_id = self.env["ir.ui.view"]._get(report_name).sudo()
 
-    @api.depends("lang")
-    def _compute_active_lang_count(self):
-        lang_count = len(self.env["res.lang"].get_installed())
-        for rec in self:
-            rec.active_lang_count = lang_count
+    def open_template_mapping(self):
+        multi_lang = len(self.env["res.lang"].get_installed()) > 1
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Template Content Mappings",
+            "res_model": "template.content.mapping",
+            "view_mode": "list",
+            "context": {"multi_lang": multi_lang},
+        }

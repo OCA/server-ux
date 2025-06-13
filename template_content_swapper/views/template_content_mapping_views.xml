@@ -8,10 +8,9 @@
                 <field name="name" />
                 <field name="report_id" />
                 <field name="template_id" readonly="report_id != False" />
-                <field name="lang" invisible="active_lang_count &lt;= 1" />
+                <field name="lang" column_invisible="not context.get('multi_lang')" />
                 <field name="content_from" />
                 <field name="content_to" />
-                <field name="active_lang_count" invisible="1" />
             </list>
         </field>
     </record>
@@ -59,17 +58,17 @@
             </search>
         </field>
     </record>
-    <record id="action_template_content_mapping" model="ir.actions.act_window">
-        <field name="name">Template Content Mappings</field>
-        <field name="res_model">template.content.mapping</field>
-        <field name="view_mode">list</field>
-        <field name="context">{}</field>
+    <record id="action_open_template_mapping_dynamic" model="ir.actions.server">
+        <field name="name">Open Template Mapping</field>
+        <field name="model_id" ref="model_template_content_mapping" />
+        <field name="state">code</field>
+        <field name="code">action = model.open_template_mapping()</field>
     </record>
     <menuitem
         id="menu_template_content_mapping"
         name="Template Content Mappings"
         parent="base.next_id_2"
-        action="action_template_content_mapping"
+        action="action_open_template_mapping_dynamic"
         sequence="10"
     />
 </odoo>
