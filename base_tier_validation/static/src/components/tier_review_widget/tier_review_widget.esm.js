@@ -35,6 +35,19 @@ ReviewsTable.template = "base_tier_validation.Collapse";
 
 export const reviewsTableComponent = {
     component: ReviewsTable,
+    supportedTypes: ["one2many"],
+    relatedFields: [
+        {name: "id", type: "integer"},
+        {name: "sequence", type: "integer"},
+        {name: "name", type: "char"},
+        {name: "display_status", type: "char"},
+        {name: "todo_by", type: "char"},
+        {name: "status", type: "char"},
+        {name: "reviewed_formated_date", type: "char"},
+        {name: "comment", type: "char"},
+        {name: "requested_by", type: "many2one", relation: "partner"},
+        {name: "done_by", type: "many2one", relation: "partner"},
+    ],
 };
 
 registry.category("fields").add("form.tier_validation", reviewsTableComponent);
