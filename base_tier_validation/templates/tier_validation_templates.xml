@@ -2,6 +2,7 @@
 <odoo>
     <template id="tier_validation_buttons">
         <div>
+            <field name="validation_status" invisible="1" />
             <button
                 name="request_validation"
                 string="Request Validation"
