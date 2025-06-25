@@ -388,6 +388,21 @@ class TestMassEditing(common.TransactionCase):
         mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
         self.assertFalse(mass_edit_line_form.widget_option)
 
+    def test_onchange_call(self):
+        """Onchange call does not error on dynamically added fields"""
+        self.env["mass.editing.wizard"].with_context(
+            active_ids=self.env.user.ids,
+            active_model=self.env.user._name,
+            server_action_id=self.mass_editing_user.id,
+        ).onchange(
+            values={},
+            field_names={},
+            fields_spec={
+                "selection__email": {},
+                "email": {},
+            },
+        )
+
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
 
