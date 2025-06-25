@@ -69,6 +69,56 @@ class MassEditingWizard(models.TransientModel):
 
         return res
 
+    def onchange(self, values, field_names, fields_spec):
+        # Make sure the values passed to the super cover the dynamic fields.
+        # No onchanges are defined, but Odoo will call the onchange with empty
+        # values for all fields when opening the wizard form view.
+        first_call = not field_names
+        if first_call:
+            field_names = [fname for fname in values if fname != "id"]
+            missing_names = [fname for fname in fields_spec if fname not in values]
+            defaults = self.default_get(missing_names)
+            for field_name in missing_names:
+                values[field_name] = defaults.get(field_name, False)
+                if field_name in defaults:
+                    field_names.append(field_name)
+
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        if not server_action:
+            return super().onchange(values, field_names, fields_spec)
+        dynamic_fields = {}
+
+        for line in server_action.mapped("mass_edit_line_ids"):
+            values["selection__" + line.field_id.name] = "ignore"
+            values[line.field_id.name] = False
+
+            # Make sure there is an entry for the default value retrieved above.
+            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
+                [("ignore", _("Don't touch"))], default="ignore"
+            )
+            dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
+
+        self._fields.update(dynamic_fields)
+
+        res = super().onchange(values, field_names, fields_spec)
+        if not res["value"]:
+            value = {key: value for key, value in values.items() if value is not False}
+            res["value"] = value
+
+        for field in dynamic_fields:
+            self._fields.pop(field)
+
+        view_temp = (
+            self.env["ir.ui.view"]
+            .sudo()
+            .search([("name", "=", "Temporary Mass Editing Wizard")], limit=1)
+        )
+        if view_temp:
+            view_temp.unlink()
+
+        return res
+
     @api.model
     def _prepare_fields(self, line, field, field_info):
         result = {}
