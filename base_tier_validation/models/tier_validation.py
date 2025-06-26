@@ -43,8 +43,6 @@ class TierValidation(models.AbstractModel):
         domain=lambda self: [("model", "=", self._name)],
         auto_join=True,
     )
-    validated_message = fields.Html(compute="_compute_validated_rejected")
-    rejected_message = fields.Html(compute="_compute_validated_rejected")
     need_validation = fields.Boolean(compute="_compute_need_validation")
     validation_status = fields.Selection(
         selection=[
@@ -141,36 +139,6 @@ class TierValidation(models.AbstractModel):
             ]
         )
         return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
-
-    def _get_to_validate_message_name(self):
-        return self._description
-
-    def _get_to_validate_message(self):
-        return f"""<i class="fa fa-info-circle"></i> {self.env._(
-            "This %s needs to be validated",
-            self._get_to_validate_message_name()
-        )}"""
-
-    def _get_validated_message(self):
-        msg = f"""<i class="fa fa-thumbs-up"></i> {self.env._(
-            "Operation has been <b>validated</b>!"
-        )}"""
-        return self.validated and msg or ""
-
-    def _get_rejected_message(self):
-        msg = f"""<i class="fa fa-thumbs-down"></i> {self.env._(
-            "Operation has been <b>rejected</b>."
-        )}"""
-        return self.rejected and msg or ""
-
-    def _get_to_validate_message_name(self):
-        return self._description
-
-    def _get_to_validate_message(self):
-        return f"""<i class="fa fa-info-circle"></i> {self.env._(
-            "This %s needs to be validated",
-            self._get_to_validate_message_name()
-        )}"""
 
     @api.depends("review_ids", "review_ids.status")
     def _compute_validation_status(self):
