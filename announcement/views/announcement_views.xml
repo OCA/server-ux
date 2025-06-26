@@ -130,8 +130,8 @@
                     <div class="o_stat_info">
                         <span class="o_stat_value">
                             <field name="read_announcement_count" /> / <field
-                                name="allowed_users_count"
-                            />
+                            name="allowed_users_count"
+                        />
                         </span>
                         <span class="o_stat_text">Read(s)</span>
                     </div>
