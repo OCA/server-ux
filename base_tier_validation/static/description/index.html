@@ -439,8 +439,8 @@ functionality.</li>
 be notified by email when this definition is triggered.</li>
 <li>If check <em>Notify reviewers on reaching pending</em> if you want to send a
 notification when pending status is reached. This is usefull in a
-approve by sequence scenario to only notify reviewers when it is their
-turn in the sequence.</li>
+approve by sequence scenario to only notify reviewers when it is
+their turn in the sequence.</li>
 <li>If check <em>Comment</em>, reviewers can comment after click Validate or
 Reject.</li>
 <li>If check <em>Approve by sequence</em>, reviewers is forced to review by
@@ -461,10 +461,12 @@ both.</li>
 <ul class="simple">
 <li>If you don’t create any exception, the Validated record will be
 readonly and cannot be modified.</li>
-<li>If check <em>Write under Validation</em>, records will be able to be modified
-only in the defined fields when the Validation process is ongoing.</li>
-<li>If check <em>Write after Validation</em>, records will be able to be modified
-only in the defined fields when the Validation process is finished.</li>
+<li>If check <em>Write under Validation</em>, records will be able to be
+modified only in the defined fields when the Validation process is
+ongoing.</li>
+<li>If check <em>Write after Validation</em>, records will be able to be
+modified only in the defined fields when the Validation process is
+finished.</li>
 <li>If check <em>Write after Validation</em> and <em>Write under Validation</em>,
 records will be able to be modified defined fields always.</li>
 </ul>
@@ -475,8 +477,8 @@ records will be able to be modified defined fields always.</li>
 improvement will be very valuable.</p>
 <ul>
 <li><p class="first"><strong>Issue:</strong></p>
-<p>When using approve_sequence option in any tier.definition there can be
-inconsistencies in the systray notifications.</p>
+<p>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications.</p>
 <p><strong>Description:</strong></p>
 <p>Field can_review in tier.review is used to filter out, in the systray
 notifications, the reviews a user can approve. This can_review field
@@ -484,11 +486,32 @@ is updated <strong>in the database</strong> in method review_user_count, this ca
 make it very inconsistent for databases with a lot of users and
 recurring updates that can change the expected behavior.</p>
 </li>
-<li><p class="first"><strong>Migration to 15.0:</strong></p>
+<li><p class="first"><strong>Default _tier_validation_manual_config parameter</strong></p>
 <p>The parameter _tier_validation_manual_config will become False, on
-14.0, the default value is True, as the change is applied after the
+18.0, the default value is True, as the change is applied after the
 migration. In order to use the new behavior we need to modify the
 value on our expected model.</p>
+</li>
+<li><p class="first"><strong>Extraneous functions</strong> All functions:</p>
+<p>_get_to_validate_message_name</p>
+<p>_get_to_validate_message</p>
+<p>_get_validated_message</p>
+<p>_get_rejected_message</p>
+<p>are related to message building should be moved into their own
+module. This module is already heavy enough as it is</p>
+</li>
+<li><p class="first"><strong>Obsolete fields:</strong></p>
+<p>The fields “rejected” and “validated” are kept for compatibility
+reasons and should be removed in 19.0</p>
+</li>
+<li><p class="first"><strong>Usability and architecture</strong></p>
+<p>Implement the good feedback listed here about usability
+<a class="reference external" href="https://github.com/OCA/server-ux/pull/1097#pullrequestreview-2961078706">https://github.com/OCA/server-ux/pull/1097#pullrequestreview-2961078706</a></p>
+</li>
+<li><p class="first"><strong>More cleanup</strong></p>
+<p>There are too many computes on tier reviews as evidenced by the
+remaining invalidate_* function calls in tests. It would be simpler
+to manage if these functions were in their own standalone function</p>
 </li>
 </ul>
 </div>
@@ -508,8 +531,8 @@ to validate.</p>
 <h3><a class="toc-backref" href="#toc-entry-6">13.0.1.2.2 (2020-08-30)</a></h3>
 <p>Fixes:</p>
 <ul class="simple">
-<li>When using approve_sequence option in any tier.definition there can be
-inconsistencies in the systray notifications</li>
+<li>When using approve_sequence option in any tier.definition there can
+be inconsistencies in the systray notifications</li>
 <li>When using approve_sequence, still not approve only the needed
 sequence, but also other sequence for the same approver</li>
 </ul>

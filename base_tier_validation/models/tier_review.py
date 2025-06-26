@@ -91,7 +91,7 @@ class TierReview(models.Model):
             reviewed_date_tz = reviewed_date_utc.astimezone(pytz.timezone(timezone))
             review.reviewed_formated_date = reviewed_date_tz.replace(tzinfo=None)
 
-    @api.depends("definition_id.approve_sequence")
+    @api.depends("definition_id.approve_sequence", "status")
     def _compute_can_review(self):
         reviews = self.filtered(lambda rev: rev.status in ["waiting", "pending"])
         if reviews:

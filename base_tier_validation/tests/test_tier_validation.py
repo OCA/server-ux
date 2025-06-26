@@ -35,9 +35,8 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         record.validate_tier()
-        self.assertTrue(record.validated)
+        self.assertEqual(record.validation_status, "validated")
 
     def test_04_request_validation_rejected(self):
         """Request validation, rejection and reset."""
@@ -45,10 +44,9 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         record.reject_tier()
         self.assertTrue(record.review_ids)
-        self.assertTrue(record.rejected)
+        self.assertEqual(record.validation_status, "rejected")
         record.restart_validation()
         self.assertFalse(record.review_ids)
 
@@ -58,7 +56,6 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         with self.assertRaises(ValidationError):
             record.write({"test_field": 0.5})
 
@@ -68,7 +65,6 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         with self.assertRaises(ValidationError):
             record.action_confirm()
 
@@ -77,29 +73,40 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
-        record.invalidate_recordset()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.id)])
         self.assertTrue(res)
 
-    def test_08_search_validated(self):
-        """Test for the validated search method."""
-        self.test_record.with_user(self.test_user_2.id).request_validation()
-        self.test_record.invalidate_model()
-        res = self.test_model.with_user(self.test_user_1.id).search(
-            [("validated", "=", False)]
+    def test_08_search_compute_validated_rejected(self):
+        """
+        TODO in v19: remove these deprecated fields
+        Test for fields validated/rejected compute and search methods
+        """
+        self.test_record.validation_status = "validated"
+        self.assertTrue(self.test_record.validated)
+        self.assertTrue(
+            self.env["tier.validation.tester"].search(
+                [("id", "=", self.test_record.id), ("validated", "=", True)]
+            )
         )
-        self.assertTrue(res)
-
-    def test_09_search_rejected(self):
-        """Test for the rejected search method."""
-        self.test_record.with_user(self.test_user_2.id).request_validation()
-        self.test_record.invalidate_model()
-        res = self.test_model.with_user(self.test_user_1.id).search(
-            [("rejected", "=", False)]
+        self.test_record.validation_status = "rejected"
+        self.assertTrue(self.test_record.rejected)
+        self.assertTrue(
+            self.env["tier.validation.tester"].search(
+                [("id", "=", self.test_record.id), ("rejected", "=", True)]
+            )
         )
-        self.assertTrue(res)
+        self.test_record.validation_status = "no"
+        self.assertFalse(
+            self.env["tier.validation.tester"].search(
+                [
+                    ("id", "=", self.test_record.id),
+                    "|",
+                    ("rejected", "=", True),
+                    ("validated", "=", True),
+                ]
+            )
+        )
 
     def test_10_systray_counter(self):
         # Create new test record
@@ -135,10 +142,14 @@ class TierTierValidation(CommonTierValidation):
         self.test_record_2.with_user(self.test_user_2.id).request_validation()
         # Get review user count as systray icon would do and check count value
         docs = self.test_user_1.with_user(self.test_user_1).review_user_count()
+        self.assertEqual(len(docs), 2)
         for doc in docs:
-            if doc.get("name") == "tier.validation.tester2":
+            self.assertIn(
+                doc.get("name"), ("Tier Validation Tester", "Tier Validation Tester 2")
+            )
+            if doc.get("name") == "Tier Validation Tester 2":
                 self.assertEqual(doc.get("pending_count"), 1)
-            else:
+            elif doc.get("name") == "Tier Validation Tester":
                 self.assertEqual(doc.get("pending_count"), 2)
 
     def test_11_add_comment(self):
@@ -158,7 +169,6 @@ class TierTierValidation(CommonTierValidation):
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         review.invalidate_model()
         res = record.validate_tier()
         ctx = res.get("context")
@@ -194,7 +204,6 @@ class TierTierValidation(CommonTierValidation):
         review = test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(review)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         review.invalidate_model()
         res = record.reject_tier()  # Rejection
         ctx = res.get("context")
@@ -250,10 +259,8 @@ class TierTierValidation(CommonTierValidation):
             self.assertEqual(doc.get("pending_count"), 0)
 
         record1 = test_record.with_user(self.test_user_1.id)
-        record1.invalidate_model()
         self.assertTrue(record1.can_review)
         record2 = test_record.with_user(self.test_user_2.id)
-        record2.invalidate_model()
         self.assertFalse(record2.can_review)
         # User 1 validates the record, 2 review should be approved.
         self.assertFalse(any(r.status == "approved" for r in record1.review_ids))
@@ -432,7 +439,6 @@ class TierTierValidation(CommonTierValidation):
         # Request validation
         review = test_record.with_user(self.test_user_2).request_validation()
         self.assertTrue(review)
-        self.env.invalidate_all()
         self.assertTrue(test_record.review_ids)
         # Used by front-end
         count = self.test_user_1.with_user(self.test_user_1).review_user_count()
@@ -460,7 +466,6 @@ class TierTierValidation(CommonTierValidation):
         )
         test_record3.with_user(self.test_user_2).request_validation()
         record1 = test_record3.with_user(self.test_user_1)
-        record1.invalidate_model()
         self.assertTrue(record1.can_review)
         self.assertTrue(
             self.test_user_1.with_user(self.test_user_1).review_user_count()
@@ -470,7 +475,6 @@ class TierTierValidation(CommonTierValidation):
         )
         # user 1 reject first tier
         record1.reject_tier()
-        record1.invalidate_model()
         self.assertFalse(record1.can_review)
         # both user 1 and 2 has nothing left in tray
         self.assertFalse(
@@ -539,7 +543,6 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review_2.done_by.id is False)
         self.assertTrue(review_2.reviewed_date is False)
         record = test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         record.validate_tier()
         self.assertTrue(review_1.status == "approved")
         self.assertFalse(review_1.reviewed_date is False)
@@ -628,7 +631,6 @@ class TierTierValidation(CommonTierValidation):
         )
         test_record_1 = self.test_model.create({"test_field": 1})
         test_record_1.request_validation()
-        test_record_1.invalidate_model()
         record = test_record_1.with_user(self.test_user_2.id)
         notifications_no_1 = len(
             self.env["mail.notification"].search(
@@ -647,7 +649,6 @@ class TierTierValidation(CommonTierValidation):
         tier_definition.write({"notify_on_accepted": False})
         test_record_2 = self.test_model.create({"test_field": 1})
         test_record_2.request_validation()
-        test_record_2.invalidate_model()
         test_record_2.with_user(self.test_user_2.id)
         notifications_no_1 = len(
             self.env["mail.notification"].search(
@@ -683,7 +684,6 @@ class TierTierValidation(CommonTierValidation):
         )
         test_record_1 = self.test_model.create({"test_field": 1})
         test_record_1.request_validation()
-        test_record_1.invalidate_model()
         record = test_record_1.with_user(self.test_user_2.id)
         notifications_no_1 = len(
             self.env["mail.notification"].search(
@@ -702,7 +702,6 @@ class TierTierValidation(CommonTierValidation):
         tier_definition.write({"notify_on_rejected": False})
         test_record_2 = self.test_model.create({"test_field": 1})
         test_record_2.request_validation()
-        test_record_2.invalidate_model()
         test_record_2.with_user(self.test_user_2.id)
 
         notifications_no_1 = len(
@@ -739,7 +738,6 @@ class TierTierValidation(CommonTierValidation):
         )
         test_record_1 = self.test_model.create({"test_field": 1})
         test_record_1.request_validation()
-        test_record_1.invalidate_model()
         record = test_record_1.with_user(self.test_user_2.id)
         notifications_no_1 = len(
             self.env["mail.notification"].search(
@@ -801,7 +799,6 @@ class TierTierValidation(CommonTierValidation):
             )
         )
         test_record.request_validation()
-        test_record.invalidate_model()
         notifications_no_2 = len(
             self.env["mail.notification"].search(
                 [("res_partner_id", "=", self.test_user_1.partner_id.id)]
@@ -882,7 +879,6 @@ class TierTierValidation(CommonTierValidation):
             )
         )
         test_record.request_validation()
-        test_record.invalidate_model()
         notifications_no_2 = len(
             self.env["mail.notification"].search(
                 [("res_partner_id", "=", self.test_user_1.partner_id.id)]
@@ -946,7 +942,6 @@ class TierTierValidation(CommonTierValidation):
         self.assertFalse(self.test_record.review_ids)
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         self.assertTrue(reviews)
-        self.test_record.invalidate_model()
         self.assertTrue(self.test_record.review_ids)
         # Unable to write test_validation_field under validation
         with self.assertRaises(ValidationError):
@@ -963,10 +958,9 @@ class TierTierValidation(CommonTierValidation):
         self.assertEqual(self.test_record.test_validation_field, 2)
         # Validate record
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_model()
         record.validate_tier()
         record.action_confirm()
-        self.assertTrue(record.validated)
+        self.assertEqual(record.validation_status, "validated")
         # Unable to write test_validation_field after validation
         with self.assertRaises(ValidationError):
             # Simulate there are fields, but not test_validation_field
@@ -1012,12 +1006,10 @@ class TierTierValidation(CommonTierValidation):
         self.test_record_computed.action_cancel()
         self.test_record_computed.flush_recordset()
         self.assertFalse(self.test_record_computed.review_ids)
-        self.test_record_computed.invalidate_recordset()
 
     def test_29_allow_write_for_reviewers(self):
         reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
         record = self.test_record.with_user(self.test_user_1.id)
-        record.invalidate_recordset()
         with self.assertRaises(ValidationError):
             record.with_user(self.test_user_1.id).write({"test_field": 0.3})
         reviews.definition_id.with_user(self.test_user_1.id).write(
@@ -1049,7 +1041,6 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record_2.with_user(
             self.test_user_3_multi_company.id
         ).request_validation()
-        self.test_record_2.invalidate_recordset()
 
         self.assertEqual(len(reviews), 1)
 
@@ -1077,7 +1068,6 @@ class TierTierValidation(CommonTierValidation):
         reviews = self.test_record_2.with_user(
             self.test_user_3_multi_company.id
         ).request_validation()
-        self.test_record_2.invalidate_recordset()
 
         self.assertEqual(len(reviews), 2)
 
