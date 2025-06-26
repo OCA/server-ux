@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="announcement.AnnouncementMenu">
-        <Dropdown
-            position="'bottom-end'"
-            autoOpen="false"
-            menuClass="discussSystray.menuClass"
-            class="discussSystray.class"
-        >
-            <t t-set-slot="toggler">
+        <Dropdown position="'bottom-end'" menuClass="discussSystray.menuClass">
+            <button>
                 <i class="fa fa-lg fa-bullhorn" role="img" aria-label="Announcements" />
                 <span
                     t-if="announcements.count"
@@ -15,8 +10,8 @@
                 >
                     <t t-esc="announcements.count" />
                 </span>
-            </t>
-            <t t-set-slot="default">
+            </button>
+            <t t-set-slot="content">
                 <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
                     <div
                         t-if="announcements.count === 0"

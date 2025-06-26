@@ -69,7 +69,7 @@ class ResUsers(models.Model):
         if announcement.attachment_ids:
             attachment_links += "<div class='list-group'>"
             for attachment in announcement.attachment_ids:
-                attachment_url = "/web/content/%s?download=false" % attachment.id
+                attachment_url = f"/web/content/{attachment.id}?download=false"
                 attachment_link = (
                     f'<a href="{attachment_url}" '
                     f'class="list-group-item list-group-item-action'

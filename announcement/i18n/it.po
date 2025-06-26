@@ -6,7 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-21 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -54,7 +53,6 @@ msgstr "Notifica il"
 #: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__announcement_id
 #: model:ir.module.category,name:announcement.category_announcement
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
-#, python-format
 msgid "Announcement"
 msgstr "Notifiche"
 
@@ -90,7 +88,6 @@ msgstr "Tipo notifica"
 #: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
 #: model:ir.actions.act_window,name:announcement.announcement_action
 #: model:ir.ui.menu,name:announcement.menu_announcement_management
-#, python-format
 msgid "Announcements"
 msgstr "Notifiche"
 
@@ -223,7 +220,6 @@ msgstr "Produzione"
 #. module: announcement
 #. odoo-javascript
 #: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.esm.js:0
-#, python-format
 msgid "Mark as read"
 msgstr "Segna come letto"
 
@@ -235,7 +231,6 @@ msgstr "Nome"
 #. module: announcement
 #. odoo-javascript
 #: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
-#, python-format
 msgid "No announcements."
 msgstr "Nessuna notifica."
 
@@ -287,7 +282,6 @@ msgstr "Data lettura"
 #. module: announcement
 #. odoo-python
 #: code:addons/announcement/models/announcement.py:0
-#, python-format
 msgid "Read Logs"
 msgstr "Registri lettura"
 
@@ -426,7 +420,6 @@ msgstr "Si può allegare la copia della lettera"
 #. module: announcement
 #. odoo-python
 #: code:addons/announcement/models/announcement_tag.py:0
-#, python-format
 msgid "You cannot create recursive tags."
 msgstr "Non si possono creare etichette ricorsive."
 
@@ -439,6 +432,3 @@ msgstr "es. Descrizione notifica..."
 #: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
 msgid "name"
 msgstr "nome"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
