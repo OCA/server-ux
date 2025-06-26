@@ -35,7 +35,7 @@ class AnnouncementTag(models.Model):
     def _compute_full_name(self):
         for item in self:
             item.full_name = (
-                item.parent_id.name + " / " + item.name if item.parent_id else item.name
+                f"{item.parent_id.name} / {item.name}" if item.parent_id else item.name
             )
 
     def name_get(self):

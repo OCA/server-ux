@@ -1,15 +1,14 @@
-/* @odoo-module */
 /* Copyright 2024 Tecnativa - David Vidal
  * Copyright 2024 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
 import {Component, markup, onMounted, useState} from "@odoo/owl";
-import {_lt} from "@web/core/l10n/translation";
 import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
 import {deserializeDateTime} from "@web/core/l10n/dates";
 import {registry} from "@web/core/registry";
 import {session} from "@web/session";
+import {_t} from "@web/core/l10n/translation";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
 import {useService} from "@web/core/utils/hooks";
 
@@ -68,7 +67,7 @@ export class AnnouncementMenu extends Component {
                     this.openAnnouncement(this.announcements.data[0]);
                 }
             },
-            confirmLabel: _lt("Mark as read"),
+            confirmLabel: _t("Mark as read"),
         };
     }
 

@@ -267,7 +267,7 @@ class Announcement(models.Model):
         return {
             "type": "ir.actions.act_window",
             "res_model": "read.announcement.wizard",
-            "views": [[False, "tree"]],
+            "views": [[False, "list"]],
             "domain": [("id", "in", read_unread_log.ids)],
             "context": dict(self.env.context, create=False, group_by=["read_state"]),
             "name": _("Read Logs"),
