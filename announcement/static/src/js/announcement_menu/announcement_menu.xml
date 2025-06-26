@@ -12,7 +12,9 @@
                 <span
                     t-if="announcements.count"
                     class="o-mail-ActivityMenu-counter badge rounded-pill bg-warning"
-                ><t t-esc="announcements.count" /></span>
+                >
+                    <t t-esc="announcements.count" />
+                </span>
             </t>
             <t t-set-slot="default">
                 <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
