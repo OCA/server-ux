@@ -1,18 +1,17 @@
-/* @odoo-module */
 /* Copyright 2024 Tecnativa - David Vidal
  * Copyright 2024 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
 import {Component, markup, onMounted, useState} from "@odoo/owl";
-import {_lt} from "@web/core/l10n/translation";
 import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
 import {deserializeDateTime} from "@web/core/l10n/dates";
 import {registry} from "@web/core/registry";
 import {session} from "@web/session";
+import {_t} from "@web/core/l10n/translation";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
+import {user} from "@web/core/user";
 import {useService} from "@web/core/utils/hooks";
-
 const {DateTime} = luxon;
 
 export class AnnouncementMenu extends Component {
@@ -27,13 +26,13 @@ export class AnnouncementMenu extends Component {
             // Let's check if the user just logged in and to decide if we popup the
             // announcements. This delay is hardcoded to 5 minutes, although we could
             // allow to configure it in the future.
-            const user = await this.orm.call("res.users", "read", [
-                session.uid,
+            const current_user = await this.orm.call("res.users", "read", [
+                user.userId,
                 ["login_date"],
             ]);
             const minutes_since_last_login =
                 (DateTime.now().toSeconds() -
-                    deserializeDateTime(user[0]?.login_date).toSeconds()) /
+                    deserializeDateTime(current_user[0]?.login_date).toSeconds()) /
                 60;
             const popup_announcement = Boolean(minutes_since_last_login < 5);
             const launchPopUp = () => {
@@ -68,7 +67,7 @@ export class AnnouncementMenu extends Component {
                     this.openAnnouncement(this.announcements.data[0]);
                 }
             },
-            confirmLabel: _lt("Mark as read"),
+            confirmLabel: _t("Mark as read"),
         };
     }
 

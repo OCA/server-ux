@@ -16,7 +16,6 @@ class AnnouncementTag(models.Model):
         index=True,
         ondelete="cascade",
     )
-    full_name = fields.Char(compute="_compute_full_name")
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
@@ -32,14 +31,8 @@ class AnnouncementTag(models.Model):
             raise ValidationError(_("You cannot create recursive tags."))
 
     @api.depends("parent_id", "name")
-    def _compute_full_name(self):
+    def _compute_display_name(self):
         for item in self:
-            item.full_name = (
-                item.parent_id.name + " / " + item.name if item.parent_id else item.name
+            item.display_name = (
+                f"{item.parent_id.name} / {item.name}" if item.parent_id else item.name
             )
-
-    def name_get(self):
-        res = []
-        for item in self:
-            res.append((item.id, item.full_name))
-        return res
