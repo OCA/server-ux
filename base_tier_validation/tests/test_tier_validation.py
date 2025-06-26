@@ -37,7 +37,7 @@ class TierTierValidation(CommonTierValidation):
         record = self.test_record.with_user(self.test_user_1.id)
         record.invalidate_model()
         record.validate_tier()
-        self.assertTrue(record.validated)
+        self.assertEqual(record.validation_status, "validated")
 
     def test_04_request_validation_rejected(self):
         """Request validation, rejection and reset."""
@@ -48,7 +48,7 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_model()
         record.reject_tier()
         self.assertTrue(record.review_ids)
-        self.assertTrue(record.rejected)
+        self.assertEqual(record.validation_status, "rejected")
         record.restart_validation()
         self.assertFalse(record.review_ids)
 
@@ -88,7 +88,7 @@ class TierTierValidation(CommonTierValidation):
         self.test_record.with_user(self.test_user_2.id).request_validation()
         self.test_record.invalidate_model()
         res = self.test_model.with_user(self.test_user_1.id).search(
-            [("validated", "=", False)]
+            [("validation_status", "!=", "validated")]
         )
         self.assertTrue(res)
 
@@ -97,7 +97,7 @@ class TierTierValidation(CommonTierValidation):
         self.test_record.with_user(self.test_user_2.id).request_validation()
         self.test_record.invalidate_model()
         res = self.test_model.with_user(self.test_user_1.id).search(
-            [("rejected", "=", False)]
+            [("validation_status", "!=", "rejected")]
         )
         self.assertTrue(res)
 
@@ -966,7 +966,7 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_model()
         record.validate_tier()
         record.action_confirm()
-        self.assertTrue(record.validated)
+        self.assertEqual(record.validation_status, "validated")
         # Unable to write test_validation_field after validation
         with self.assertRaises(ValidationError):
             # Simulate there are fields, but not test_validation_field
