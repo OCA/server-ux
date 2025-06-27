@@ -7,9 +7,9 @@
         t-inherit-mode="primary"
         owl="1"
     >
-    <xpath expr="//Dialog" position="attributes">
-        <attribute name="size">props.size || 'md'</attribute>
-    </xpath>
-  </t>
+        <xpath expr="//Dialog" position="attributes">
+            <attribute name="size">props.size || 'md'</attribute>
+        </xpath>
+    </t>
 
 </templates>
