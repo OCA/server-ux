@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_ir_actions_server_form_inherit_wizard" model="ir.ui.view">
+        <field name="name">ir.actions.server.form.inherit.wizard</field>
+        <field name="model">ir.actions.server</field>
+        <field name="inherit_id" ref="base.view_server_action_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group string="Wizard Execution">
+                    <field name="can_run_from_wizard" />
+                    <field name="param_label_date_start" />
+                    <field name="param_label_date_end" />
+                    <field name="param_label_1" />
+                    <field name="param_label_2" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
