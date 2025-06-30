@@ -1,0 +1,1 @@
+This module enhances Odoo's search views by adding "Created Today" and "Updated Today" filters to models with 'create_date' and 'write_date' fields, enabling quick filtering by today's creation or update date.
