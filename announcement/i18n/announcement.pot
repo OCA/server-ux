@@ -157,11 +157,6 @@ msgid "Employees"
 msgstr ""
 
 #. module: announcement
-#: model:ir.model.fields,field_description:announcement.field_announcement_tag__full_name
-msgid "Full Name"
-msgstr ""
-
-#. module: announcement
 #: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
 msgid "General Announcement"
 msgstr ""
