@@ -46,7 +46,7 @@ class IrExportsLine(models.Model):
         "ir.model", "Fourth model", compute="_compute_model4_id", compute_sudo=True
     )
     sequence = fields.Integer()
-    label = fields.Char(compute="_compute_label")
+    label = fields.Char(compute="_compute_label", compute_sudo=True)
 
     @api.depends("field1_id", "field2_id", "field3_id", "field4_id")
     def _compute_name(self):
