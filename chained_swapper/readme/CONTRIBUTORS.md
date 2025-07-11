@@ -2,4 +2,6 @@
   - Ernesto Tejeda
   - Pedro M. Baeza
   - César A. Sánchez
+  - Juan Carlos Oñate
+  - Carlos Lopez
 - Sunanda Chhatbar \<<sunanda.chhatbar@initos.com>\>

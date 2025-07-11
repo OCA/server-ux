@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,9 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
-#, python-format
-msgid "<b>Chained swap done</b>:"
+msgid "<b>Chained swap done</b>:<br/>%(field)s: %(old)s ⇒ %(new)s"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "<code>date</code>: The current date."
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "<code>datetime</code>: The current date and time."
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "<code>env</code>: The Odoo environment."
 msgstr ""
 
 #. module: chained_swapper
@@ -45,12 +60,17 @@ msgstr ""
 
 #. module: chained_swapper
 #: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Adding Constraints for Restricting the Chained Swap"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
 msgid "Advanced"
 msgstr ""
 
 #. module: chained_swapper
-#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__allowed_field_ids
-msgid "Allowed Field"
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__allowed_field_ids_domain
+msgid "Allowed Field Ids Domain"
 msgstr ""
 
 #. module: chained_swapper
@@ -79,8 +99,8 @@ msgid "Chained Swapper Sub-field"
 msgstr ""
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/models/chained_swapper.py:0
-#, python-format
 msgid "Chained swap"
 msgstr ""
 
@@ -97,6 +117,16 @@ msgstr ""
 #. module: chained_swapper
 #: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_wizard_view_form
 msgid "Close"
+msgstr ""
+
+#. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard__company_id
+msgid "Company"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Constraint Name"
 msgstr ""
 
 #. module: chained_swapper
@@ -136,6 +166,14 @@ msgid "Display Name"
 msgstr ""
 
 #. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid ""
+"Each constraint should have a <strong>name</strong> for identifying it. This"
+" name is also used when displaying the error message in case the swap is not"
+" allowed."
+msgstr ""
+
+#. module: chained_swapper
 #: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper__field_id
 msgid "Field"
 msgstr ""
@@ -161,34 +199,33 @@ msgid "ID"
 msgstr ""
 
 #. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid ""
+"In this case, the constraint restricts the swap if any of the related "
+"picking orders has been validated (state 'done')."
+msgstr ""
+
+#. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/models/chained_swapper.py:0
-#, python-format
 msgid "Incorrect sub-field expression: %(sub_field_chain)s. %(error)s"
 msgstr ""
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/models/chained_swapper.py:0
-#, python-format
 msgid "Invalid constraint expression: %(expression)s. %(error)s."
 msgstr ""
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/models/chained_swapper.py:0
-#, python-format
 msgid "Invalid value for %(sub_field_chain)s. %(error)s"
 msgstr ""
 
 #. module: chained_swapper
 #: model:chained.swapper,name:chained_swapper.chained_swapper_demo
 msgid "Language"
-msgstr ""
-
-#. module: chained_swapper
-#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper____last_update
-#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_constraint____last_update
-#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field____last_update
-#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_wizard____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: chained_swapper
@@ -213,6 +250,11 @@ msgid "Model"
 msgstr ""
 
 #. module: chained_swapper
+#: model:ir.model.fields,field_description:chained_swapper.field_chained_swapper_sub_field__model_name
+msgid "Model Name"
+msgstr ""
+
+#. module: chained_swapper
 #: model:ir.model.constraint,message:chained_swapper.constraint_chained_swapper_model_id_field_id_unique
 msgid "Model and Field must be unique!"
 msgstr ""
@@ -231,14 +273,19 @@ msgid "Name"
 msgstr ""
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/wizard/chained_swapper_wizard.py:0
-#, python-format
 msgid "Not possible to swap the field due to the constraint"
 msgstr ""
 
 #. module: chained_swapper
 #: model:chained.swapper.constraint,name:chained_swapper.chained_swapper_constraint_demo
 msgid "Only parent company"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "Other Variables You Can Use"
 msgstr ""
 
 #. module: chained_swapper
@@ -268,8 +315,8 @@ msgid "Sub-fields"
 msgstr ""
 
 #. module: chained_swapper
+#. odoo-python
 #: code:addons/chained_swapper/models/chained_swapper.py:0
-#, python-format
 msgid "The sub-field '%s' is not compatible with the main field."
 msgstr ""
 
@@ -279,8 +326,27 @@ msgid "Wizard chained swapper"
 msgstr ""
 
 #. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid ""
+"You can add possible constraints to restrict the chained swap. These constraints are Python expressions that must be evaluated as a boolean value.\n"
+"        If the evaluation returns <code>True</code>, a message will be thrown and no swap will be allowed."
+msgstr ""
+
+#. module: chained_swapper
 #: model:ir.model.fields,help:chained_swapper.field_chained_swapper_sub_field__sub_field_chain
 msgid ""
 "You can specify here a field of related fields as dotted names. Ex.: "
 "'child_ids.lang'."
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid ""
+"You can use the variable <code>records</code> in your expression. This will "
+"refer to the selected records for performing the swap. For example:"
+msgstr ""
+
+#. module: chained_swapper
+#: model_terms:ir.ui.view,arch_db:chained_swapper.chained_swapper_view_form
+msgid "any(p.state == 'done' for p in records.picking_ids)"
 msgstr ""

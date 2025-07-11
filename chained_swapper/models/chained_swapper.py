@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -19,14 +19,14 @@ class ChainedSwapper(models.Model):
         help="Model is used for Selecting Field. This is editable "
         "until Contextual Action is not created.",
     )
-    allowed_field_ids = fields.Many2many(
-        comodel_name="ir.model.fields", compute="_compute_allowed_field_ids"
+    allowed_field_ids_domain = fields.Binary(
+        compute="_compute_allowed_field_ids_domain"
     )
     field_id = fields.Many2one(
         comodel_name="ir.model.fields",
         required=True,
         ondelete="cascade",
-        domain="[('id', 'in', allowed_field_ids)]",
+        domain="allowed_field_ids_domain",
     )
     sub_field_ids = fields.One2many(
         comodel_name="chained.swapper.sub.field",
@@ -62,24 +62,22 @@ class ChainedSwapper(models.Model):
     ]
 
     @api.depends("model_id")
-    def _compute_allowed_field_ids(self):
-        model_obj = self.env["ir.model"]
-        field_obj = self.env["ir.model.fields"]
+    def _compute_allowed_field_ids_domain(self):
         for record in self:
-            allowed_field_ids = False
+            domain = []
             if record.model_id:
                 all_models = record.model_id
                 active_model_obj = self.env[record.model_id.model]
                 if active_model_obj._inherits:
-                    keys = list(active_model_obj._inherits.keys())
-                    all_models |= model_obj.search([("model", "in", keys)])
-                allowed_field_ids = field_obj.search(
-                    [
-                        ("ttype", "not in", ["reference", "function", "one2many"]),
-                        ("model_id", "in", all_models.ids),
-                    ]
-                )
-            record.allowed_field_ids = allowed_field_ids
+                    inherited_models = list(active_model_obj._inherits.keys())
+                    all_models |= self.env["ir.model"].search(
+                        [("model", "in", inherited_models)]
+                    )
+                domain = [
+                    ("ttype", "not in", ["reference", "function", "one2many"]),
+                    ("model_id", "in", all_models.ids),
+                ]
+            record.allowed_field_ids_domain = domain
 
     @api.constrains("model_id", "field_id")
     def _check_sub_field_ids(self):
@@ -103,11 +101,11 @@ class ChainedSwapper(models.Model):
         self.ensure_one()
         action = self.env["ir.actions.act_window"].create(
             {
-                "name": _("Chained swap") + ": " + self.name,
+                "name": self.env._("Chained swap") + ": " + self.name,
                 "type": "ir.actions.act_window",
                 "res_model": "chained.swapper.wizard",
                 "groups_id": [(4, x.id) for x in self.group_ids],
-                "context": "{'chained_swapper_id': %d}" % (self.id),
+                "context": {"chained_swapper_id": self.id},
                 "view_mode": "form",
                 "target": "new",
                 "binding_model_id": self.model_id.id,
@@ -129,6 +127,9 @@ class ChainedSwapperSubField(models.Model):
     chained_swapper_id = fields.Many2one(
         comodel_name="chained.swapper", ondelete="cascade"
     )
+    model_name = fields.Char(
+        related="chained_swapper_id.model_id.model", string="Model Name"
+    )
     sub_field_chain = fields.Char(
         required=True,
         help="You can specify here a field of related fields as "
@@ -148,13 +149,20 @@ class ChainedSwapperSubField(models.Model):
                 chain_model[chain_field_name]  # pylint: disable=W0104
             except KeyError as err:
                 raise exceptions.ValidationError(
-                    _("Incorrect sub-field expression: %(sub_field_chain)s. %(error)s")
-                    % {"sub_field_chain": rec.sub_field_chain, "error": err}
+                    self.env._(
+                        "Incorrect sub-field expression:"
+                        " %(sub_field_chain)s. %(error)s",
+                        sub_field_chain=rec.sub_field_chain,
+                        error=err,
+                    )
                 ) from err
             except Exception as err:
                 raise ValidationError(
-                    _("Invalid value for %(sub_field_chain)s. %(error)s")
-                    % {"sub_field_chain": rec.sub_field_chain, "error": err}
+                    self.env._(
+                        "Invalid value for %(sub_field_chain)s. %(error)s",
+                        sub_field_chain=rec.sub_field_chain,
+                        error=err,
+                    )
                 ) from err
             # Check sub-field and original field are the same type
             swap_field = rec.chained_swapper_id.field_id
@@ -169,8 +177,10 @@ class ChainedSwapperSubField(models.Model):
                 or chain_field.relation != swap_field.relation
             ):
                 raise exceptions.ValidationError(
-                    _("The sub-field '%s' is not compatible with the main" " field.")
-                    % rec.sub_field_chain
+                    self.env._(
+                        "The sub-field '%s' is not compatible with the main" " field.",
+                        rec.sub_field_chain,
+                    )
                 )
 
 
@@ -199,6 +209,9 @@ class ChainedSwapperConstraint(models.Model):
                 safe_eval(record.expression, {"records": model})
             except Exception as err:
                 raise exceptions.ValidationError(
-                    _("Invalid constraint expression: %(expression)s. %(error)s.")
-                    % {"expression": record.expression, "error": err}
+                    self.env._(
+                        "Invalid constraint expression: %(expression)s. %(error)s.",
+                        expression=record.expression,
+                        error=err,
+                    )
                 ) from err

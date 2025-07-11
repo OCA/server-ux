@@ -3,27 +3,18 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.modules import registry
-from odoo.tests import common
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 from ..hooks import uninstall_hook
 
 
-class TestChainedSwapper(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestChainedSwapper(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.env["res.lang"]._activate_lang("es_ES")
         res_partner = cls.env["res.partner"]
         cls.partner_parent = res_partner.create(
@@ -104,7 +95,7 @@ class TestChainedSwapper(common.TransactionCase):
         """Test if related actions are removed when mass editing
         record is uninstalled."""
         action_id = self.chained_swapper.ref_ir_act_window_id.id
-        uninstall_hook(self.cr, registry)
+        uninstall_hook(self.env)
         self.assertFalse(self.env["ir.actions.act_window"].browse(action_id).exists())
 
     def test_invalid_constraint(self):

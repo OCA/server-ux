@@ -7,7 +7,8 @@
         <field name="model">chained.swapper.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <group col="4" name="swap_field_group" />
+                <group name="swap_field_group" />
+                <field name="company_id" invisible="1" />
                 <footer>
                     <button
                         name="change_action"

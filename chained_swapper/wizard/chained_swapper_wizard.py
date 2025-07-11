@@ -1,11 +1,13 @@
 # Copyright 2020 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import ast
 from datetime import date, datetime
 
 from lxml import etree
+from markupsafe import Markup
 
-from odoo import _, api, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.safe_eval import safe_eval
 
@@ -13,6 +15,10 @@ from odoo.tools.safe_eval import safe_eval
 class ChainedSwapperWizard(models.TransientModel):
     _name = "chained.swapper.wizard"
     _description = "Wizard chained swapper"
+
+    company_id = fields.Many2one(
+        "res.company", string="Company", default=lambda self: self.env.company
+    )
 
     @api.model
     def default_get(self, fields):
@@ -33,89 +39,96 @@ class ChainedSwapperWizard(models.TransientModel):
             for constraint in chained_swapper.constraint_ids:
                 if safe_eval(constraint.expression, exp_dict):
                     raise UserError(
-                        _("Not possible to swap the field due to the constraint")
+                        self.env._(
+                            "Not possible to swap the field due to the constraint"
+                        )
                         + ": "
                         + constraint.name
                     )
         return super().default_get(fields)
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def fields_get(self, allfields=None, attributes=None):
+        chained_swapper_id = self.env.context.get("chained_swapper_id")
+        chained_swapper = self.env["chained.swapper"].browse(chained_swapper_id)
+        res = super().fields_get(allfields, attributes)
+        field = chained_swapper.field_id
+        model = self.env[field.model]
+        field_info = model.fields_get()
+        res.update({field.name: field_info[field.name]})
+        return res
+
+    def onchange(self, values, field_names, fields_spec):
+        fields_spec = {k: v for k, v in fields_spec.items() if k in self._fields}
+        return super().onchange(values, field_names, fields_spec)
+
+    @api.model
+    def get_views(self, views, options=None):
+        action = self.env["ir.actions.act_window"].browse(options.get("action_id"))
+        context = ast.literal_eval(action.context)
+        self = self.with_context(chained_swapper_id=context.get("chained_swapper_id"))
+        res = super().get_views(views, options)
+        return res
+
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
         """As we don't have any field in this model, result['fields']
         and result['arch'] are modified to add dynamically the
         corresponding field.
         """
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
-        if not self.env.context.get("chained_swapper_id"):
-            return res
+        action = self.env["ir.actions.act_window"].browse(options.get("action_id"))
+        context = ast.literal_eval(action.context)
         chained_swapper = self.env["chained.swapper"].browse(
-            self.env.context.get("chained_swapper_id")
+            context.get("chained_swapper_id")
         )
-        model_obj = self.env[self.env.context.get("active_model")]
-        field_info = model_obj.fields_get()
+        self = self.with_context(chained_swapper_id=context.get("chained_swapper_id"))
         field = chained_swapper.field_id
-        # Fields dict
-        all_fields = {
-            field.name: {
-                "type": field.ttype,
-                "string": field.field_description,
-                "views": {},
-            }
-        }
-        if field.ttype in ["many2many", "many2one"]:
-            all_fields[field.name]["relation"] = field.relation
-        elif field.ttype == "selection":
-            field_selection = field_info[field.name]["selection"]
-            all_fields[field.name]["selection"] = field_selection
+        res = super().get_view(view_id, view_type, **options)
         # XML view definition
         doc = etree.XML(res["arch"])
         group_node = doc.xpath("//group[@name='swap_field_group']")[0]
-        etree.SubElement(group_node, "field", {"name": field.name, "colspan": "4"})
+        etree.SubElement(group_node, "field", {"name": field.name})
         if field.ttype in ["one2many", "many2many", "text"]:
             group_node.set("string", field.field_description)
             group_node.set("nolabel", "1")
-        res.update(arch=etree.tostring(doc, encoding="unicode"), fields=all_fields)
+        res.update(arch=etree.tostring(doc, encoding="unicode"))
         return res
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """As we don't have any field in this model, the key-value pair
         received in vals dict are only used to change the value in the active
         models.
         """
-        model_obj = self.env[self.env.context.get("active_model")]
-        context = self.env.context
-        field_name, new_value = list(vals.items())[0]
-        # write the active model
-        model = model_obj.browse(self.env.context.get("active_ids"))
-        original_values = {m.id: m[field_name] for m in model}
-        model.write(vals)
-        if hasattr(model, "message_post"):
-            self.post_chained_swap(model, field_name, original_values, new_value)
-        # write chained models
-        chained_swapper_obj = self.env["chained.swapper"]
-        chained_swapper = chained_swapper_obj.browse(context.get("chained_swapper_id"))
-        for sub_field in chained_swapper.sub_field_ids:
-            chain_fields = sub_field.sub_field_chain.split(".")
-            field_name = chain_fields.pop()
-            chain_model = model
-            for chain_field in chain_fields:
-                chain_model = chain_model.mapped(chain_field)
-            original_values = {cm.id: cm[field_name] for cm in chain_model}
-            chain_model.write({field_name: new_value})
-            # post swap
-            if hasattr(chain_model, "message_post"):
-                self.post_chained_swap(
-                    chain_model, field_name, original_values, new_value
-                )
-        return super().create({})
+        for vals in vals_list:
+            model_obj = self.env[self.env.context.get("active_model")]
+            context = self.env.context
+            field_name, new_value = list(vals.items())[0]
+            # write the active model
+            model = model_obj.browse(self.env.context.get("active_ids"))
+            original_values = {m.id: m[field_name] for m in model}
+            model.write(vals)
+            if hasattr(model, "message_post"):
+                self.post_chained_swap(model, field_name, original_values, new_value)
+            # write chained models
+            chained_swapper_obj = self.env["chained.swapper"]
+            chained_swapper = chained_swapper_obj.browse(
+                context.get("chained_swapper_id")
+            )
+            for sub_field in chained_swapper.sub_field_ids:
+                chain_fields = sub_field.sub_field_chain.split(".")
+                field_name = chain_fields.pop()
+                chain_model = model
+                for chain_field in chain_fields:
+                    chain_model = chain_model.mapped(chain_field)
+                original_values = {cm.id: cm[field_name] for cm in chain_model}
+                chain_model.write({field_name: new_value})
+                # post swap
+                if hasattr(chain_model, "message_post"):
+                    self.post_chained_swap(
+                        chain_model, field_name, original_values, new_value
+                    )
+        return super().create([{} for _ in vals_list])
 
     def change_action(self):
         return {"type": "ir.actions.act_window_close"}
@@ -126,7 +139,7 @@ class ChainedSwapperWizard(models.TransientModel):
             result = value
             field_def = model._fields[field_name]
             if field_def.type == "selection":
-                if type(field_def.selection) == list:
+                if type(field_def.selection) is list:
                     selection = field_def.selection
                 else:
                     selection = field_def.selection(self)
@@ -135,11 +148,11 @@ class ChainedSwapperWizard(models.TransientModel):
                         result = selection_item[1]
                         break
             elif field_def.type == "many2one":
-                if type(value) == int:
+                if type(value) is int:
                     result = self.env[field_def.comodel_name].browse(value)
                 result = result.display_name
             elif field_def.type == "many2many":
-                if type(value) == list:
+                if type(value) is list:
                     ids = value[0][2]
                     value = self.env[field_def.comodel_name].browse(ids)
                 result = str(value.mapped("display_name"))
@@ -149,13 +162,18 @@ class ChainedSwapperWizard(models.TransientModel):
         new_value = human_readable_field(new_value)
         for m in model:
             original_value = human_readable_field(original_values[m.id])
-            m.message_post(
-                body=_("<b>Chained swap done</b>:")
-                + f"<br/>{field_desc}: {original_value} ⇒ {new_value}"
+            body = Markup(
+                self.env._(
+                    "<b>Chained swap done</b>:<br/>%(field)s: %(old)s ⇒ %(new)s",
+                    field=field_desc,
+                    old=original_value,
+                    new=new_value,
+                )
             )
+            m.message_post(body=body)
 
     def read(self, fields, load="_classic_read"):
-        """Without this call, dynamic fields build by fields_view_get()
+        """Without this call, dynamic fields build by get_view()
         generate a crash and warning, i.e.: read() with unknown field 'myfield'
         """
         real_fields = set(fields) & set(self._fields)
