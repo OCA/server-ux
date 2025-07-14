@@ -11,6 +11,6 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["base", "mail"],
+    "depends": ["base"],
     "data": ["security/ir_filters_security.xml", "views/ir_filters_view.xml"],
 }
