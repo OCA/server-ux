@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_definition_view_form_allow_disable_restart" model="ir.ui.view">
+        <field name="name">tier.definition.form.allow.disable.restart</field>
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='approve_sequence']" position="after">
+                <field name="disable_validation_restart" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

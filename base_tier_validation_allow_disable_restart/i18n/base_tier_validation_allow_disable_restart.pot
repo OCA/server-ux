@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_tier_validation_allow_disable_restart
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_tier_validation_allow_disable_restart
+#: model:ir.model.fields,field_description:base_tier_validation_allow_disable_restart.field_tier_definition__disable_validation_restart
+#: model:ir.model.fields,field_description:base_tier_validation_allow_disable_restart.field_tier_validation__disable_validation_restart
+msgid "Disable Validation Restart"
+msgstr ""
+
+#. module: base_tier_validation_allow_disable_restart
+#: model:ir.model.fields,help:base_tier_validation_allow_disable_restart.field_tier_validation__disable_validation_restart
+msgid "If checked, disable the restart feature."
+msgstr ""
+
+#. module: base_tier_validation_allow_disable_restart
+#: model:ir.model.fields,help:base_tier_validation_allow_disable_restart.field_tier_definition__disable_validation_restart
+msgid "If checked, the validation restart feature will be disabled."
+msgstr ""
+
+#. module: base_tier_validation_allow_disable_restart
+#. odoo-python
+#: code:addons/base_tier_validation_allow_disable_restart/models/tier_validation.py:0
+#, python-format
+msgid "Restart validation is disabled for review definition"
+msgstr ""
+
+#. module: base_tier_validation_allow_disable_restart
+#: model:ir.model,name:base_tier_validation_allow_disable_restart.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation_allow_disable_restart
+#: model:ir.model,name:base_tier_validation_allow_disable_restart.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr ""
