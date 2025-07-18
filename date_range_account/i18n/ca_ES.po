@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* date_range_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-18 09:38+0000\n"
+"PO-Revision-Date: 2025-07-18 09:38+0000\n"
+"Last-Translator: Pol Comas <pol@batista10.cat>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_type
+msgid "Date Range Types"
+msgstr "Tipus d’interval de dates"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range
+msgid "Date Ranges"
+msgstr "Intervals de dates"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_root
+msgid "Date ranges"
+msgstr "Intervals de dates"
+
+#. module: date_range_account
+#: model:ir.ui.menu,name:date_range_account.menu_date_range_generator
+msgid "Generate Date Ranges"
+msgstr "Generar intervals de dates"
