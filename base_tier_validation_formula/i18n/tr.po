@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-07-18 14:25+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
 msgid "Definition"
-msgstr ""
+msgstr "Tanım"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
 msgid "Domain & Formula"
-msgstr ""
+msgstr "Bağlam & Formül"
 
 #. module: base_tier_validation_formula
 #. odoo-python
@@ -32,57 +34,59 @@ msgid ""
 "Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
+"Üst onay şartlarını hesaplarken hata oluştu.\n"
+" %s"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__formula
 msgid "Formula"
-msgstr ""
+msgstr "Formül"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__review_type__expression
 msgid "Python Expression"
-msgstr ""
+msgstr "Python İfadesi"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__reviewer_expression
 msgid "Review Expression"
-msgstr ""
+msgstr "Değerlendirme İfadesi"
 
 #. module: base_tier_validation_formula
 #. odoo-python
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 msgid "Reviewer python expression must return a res.users recordset."
-msgstr ""
+msgstr "Değerlendiren python ifadesi bir res.users kayıtseti döndürmelidir."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
 msgid "Reviewers from Python expression"
-msgstr ""
+msgstr "Python ifadesinden Değerlendirenler"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Seviye Tanımı"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__python_code
 msgid "Tier Definition Expression"
-msgstr ""
+msgstr "Katman Tanımı İfadesi"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Katman İncelemesi"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Seviye Doğrulaması (özet)"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
 msgid "Validated by"
-msgstr ""
+msgstr "Doğrulayan"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
@@ -90,6 +94,8 @@ msgid ""
 "Write Python code that defines the reviewer. The result of executing the "
 "expression must be a res.users recordset."
 msgstr ""
+"Değerlendireni tanımlayan Python kodunu yazın. Bu ifadenin sonucu res.users "
+"kayıtseti olmalıdır."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
@@ -97,3 +103,5 @@ msgid ""
 "Write Python code that defines when this tier confirmation will be needed. "
 "The result of executing the expresion must be a boolean."
 msgstr ""
+"Katman onayını gerektiren şartı tanımlayan Python kodunu yazın. Bu ifadenin "
+"sonucu boolean olmalıdır."
