@@ -102,6 +102,8 @@ class TierValidation(models.AbstractModel):
                 sequences.append(my_sequence)
         return sequences
 
+    @api.depends_context("uid")
+    @api.depends("review_ids.status")
     def _compute_can_review(self):
         for rec in self:
             rec.can_review = rec._get_sequences_to_approve(self.env.user)
