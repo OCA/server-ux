@@ -1,6 +1,6 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class TierValidation(models.AbstractModel):
@@ -20,17 +20,10 @@ class TierValidation(models.AbstractModel):
             definitions = reviews.mapped("definition_id")
             rec.can_forward = True in definitions.mapped("has_forward")
 
-    @api.model
-    def _calc_reviews_validated(self, reviews):
-        """Override for different validation policy."""
-        if not reviews:
-            return False
-        return not any(
-            [
-                status not in ("approved", "forwarded")
-                for status in reviews.mapped("status")
-            ]
-        )
+    def _validated_states(self):
+        res = super()._validated_states()
+        res.append("forwarded")
+        return res
 
     def _get_forwarded_notification_subtype(self):
         return "base_tier_validation.mt_tier_validation_forwarded"

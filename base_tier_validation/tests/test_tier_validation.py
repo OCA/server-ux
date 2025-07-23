@@ -65,9 +65,9 @@ class TierTierValidation(CommonTierValidation):
     def test_06_validation_process_open(self):
         """Operation forbidden while a validation process is open."""
         self.assertFalse(self.test_record.review_ids)
-        reviews = self.test_record.with_user(self.test_user_2.id).request_validation()
+        reviews = self.test_record.with_user(self.test_user_1.id).request_validation()
         self.assertTrue(reviews)
-        record = self.test_record.with_user(self.test_user_1.id)
+        record = self.test_record.with_user(self.test_user_2.id)
         record.invalidate_model()
         with self.assertRaises(ValidationError):
             record.action_confirm()
@@ -81,24 +81,6 @@ class TierTierValidation(CommonTierValidation):
         record.invalidate_recordset()
         self.assertIn(self.test_user_1, record.reviewer_ids)
         res = self.test_model.search([("reviewer_ids", "in", self.test_user_1.id)])
-        self.assertTrue(res)
-
-    def test_08_search_validated(self):
-        """Test for the validated search method."""
-        self.test_record.with_user(self.test_user_2.id).request_validation()
-        self.test_record.invalidate_model()
-        res = self.test_model.with_user(self.test_user_1.id).search(
-            [("validated", "=", False)]
-        )
-        self.assertTrue(res)
-
-    def test_09_search_rejected(self):
-        """Test for the rejected search method."""
-        self.test_record.with_user(self.test_user_2.id).request_validation()
-        self.test_record.invalidate_model()
-        res = self.test_model.with_user(self.test_user_1.id).search(
-            [("rejected", "=", False)]
-        )
         self.assertTrue(res)
 
     def test_10_systray_counter(self):
@@ -438,7 +420,7 @@ class TierTierValidation(CommonTierValidation):
         count = self.test_user_1.with_user(self.test_user_1).review_user_count()
         self.assertEqual(len(count), 1)
         # False Review
-        self.assertFalse(self.test_record._calc_reviews_validated(False))
+        self.assertFalse(self.test_record.validated)
         # test notification message bodies
         self.assertIn("created", self.test_record._notify_created_review_body())
         self.assertIn("requested", self.test_record._notify_requested_review_body())
