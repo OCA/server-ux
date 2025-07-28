@@ -5,7 +5,7 @@
     "name": "Document Quick Access",
     "summary": """
         Document quick access""",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.1",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
@@ -18,7 +18,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "document_quick_access/static/src/js/document_quick_access_launcher.js",
+            "document_quick_access/static/src/js/document_quick_access_launcher.esm.js",
             "document_quick_access/static/src/xml/document_quick_access_launcher.xml",
         ],
     },
