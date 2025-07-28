@@ -52,7 +52,7 @@ class TestDefaultMultiUser(common.TransactionCase):
                 "name": "Test User",
                 "login": login,
                 "password": "demo",
-                "email": "%s@yourcompany.com" % login,
+                "email": f"{login}@yourcompany.com",
                 "groups_id": [(6, 0, group_ids)],
                 "company_id": company.id,
                 "company_ids": [(6, 0, [cls.main_company.id, cls.other_company.id])],

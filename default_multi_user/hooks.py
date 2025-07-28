@@ -15,6 +15,7 @@ def post_load_hook():
         if not hasattr(self, "_get_model_defaults_query_and_params"):
             return self.get_model_defaults_original(model_name, condition=condition)
         cr = self.env.cr
+        self.flush_model()
         # START OF CHANGES
         query, params = self._get_model_defaults_query_and_params(model_name, condition)
         # END OF CHANGES
@@ -27,6 +28,6 @@ def post_load_hook():
         return result
 
     if not hasattr(IrDefault, "get_model_defaults_original"):
-        IrDefault.get_model_defaults_original = IrDefault.get_model_defaults
+        IrDefault.get_model_defaults_original = IrDefault._get_model_defaults
 
-    IrDefault._patch_method("get_model_defaults", new_get_model_defaults)
+    IrDefault._get_model_defaults = new_get_model_defaults
