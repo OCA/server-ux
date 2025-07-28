@@ -37,7 +37,7 @@ class DocumentQuickAccessRule(models.Model):
         )
 
     def _get_code_standard(self, record):
-        return "{},{}".format(record._name, record.id)
+        return f"{record._name},{record.id}"
 
     def _check_code_b64_standard(self, code):
         try:
