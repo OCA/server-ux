@@ -4,7 +4,7 @@
 
 {
     "name": "Barcode action launcher",
-    "version": "17.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Creu Blanca, ForgeFlow, Odoo Community Association (OCA)",

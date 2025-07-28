@@ -9,21 +9,24 @@ import {Component, xml} from "@odoo/owl";
 export class ActionBarcodeField extends Component {
     setup() {
         const barcode = useService("barcode");
-        this.rpc = useService("rpc");
+        this.orm = useService("orm");
         useBus(barcode.bus, "barcode_scanned", this.onBarcodeScanned);
     }
-    onBarcodeScanned(event) {
+
+    async onBarcodeScanned(event) {
         const {barcode} = event.detail;
-        var self = this;
-        var record = this.props.record;
-        this.rpc(`/web/dataset/call_kw/${record.data.model}/${record.data.method}`, {
-            model: record.data.model,
-            method: record.data.method,
-            args: [[record.data.res_id], barcode],
-            kwargs: {context: this.props.record.context},
-        }).then(function (action) {
-            self.env.services.action.doAction(action);
-        });
+        const record = this.props.record;
+
+        const action = await this.orm.call(
+            record.data.model,
+            record.data.method,
+            [[record.data.res_id], barcode],
+            {
+                context: record.context,
+            }
+        );
+
+        this.env.services.action.doAction(action);
     }
 }
 
