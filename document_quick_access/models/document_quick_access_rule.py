@@ -29,7 +29,7 @@ class DocumentQuickAccessRule(models.Model):
 
     def get_code(self, record):
         self.ensure_one()
-        return getattr(self, "_get_code_%s" % self.barcode_format)(record)
+        return getattr(self, f"_get_code_{self.barcode_format}")(record)
 
     def _get_code_b64_standard(self, record):
         return base64.b64encode(self._get_code_standard(record).encode("utf-8")).decode(
@@ -76,7 +76,7 @@ class DocumentQuickAccessRule(models.Model):
                     }
                 ),
             }
-        record.check_access_rights("read")
+        record.check_access("read")
         result = {
             "type": "ir.actions.act_window",
             "res_model": record._name,
@@ -90,8 +90,8 @@ class DocumentQuickAccessRule(models.Model):
     def read_code(self, code):
         formats = self._fields["barcode_format"].selection
         for barcode_format, _format_name in formats:
-            if getattr(self, "_check_code_%s" % barcode_format)(code):
-                record = getattr(self, "_read_code_%s" % barcode_format)(code)
+            if getattr(self, f"_check_code_{barcode_format}")(code):
+                record = getattr(self, f"_read_code_{barcode_format}")(code)
                 if record and self.search(
                     [
                         ("model_id.model", "=", record._name),
