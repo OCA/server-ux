@@ -150,15 +150,22 @@ class TierReview(models.Model):
     def _get_reviewers(self):
         if self.reviewer_id or self.reviewer_group_id.users:
             return self.reviewer_id + self.reviewer_group_id.users
-        reviewer_field = self.env["res.users"]
         if self.reviewer_field_id:
             resource = self.env[self.model].browse(self.res_id)
             reviewer_field = getattr(resource, self.reviewer_field_id.name, False)
-            if not reviewer_field or not reviewer_field._name == "res.users":
-                raise ValidationError(
-                    self.env._("There are no res.users in the selected field")
-                )
-        return reviewer_field
+            if reviewer_field:
+                if reviewer_field._name == "res.groups":
+                    return reviewer_field.users
+                elif reviewer_field._name == "res.users":
+                    return reviewer_field
+                else:
+                    raise ValidationError(
+                        self.env._(
+                            "Validation reviewer field "
+                            "should be of the appropriate type"
+                        )
+                    )
+        return self.env["res.users"]
 
     def _notify_pending_status(self, review_ids):
         """Method to call and reuse abstract notification method"""

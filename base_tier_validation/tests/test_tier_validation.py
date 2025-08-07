@@ -1202,6 +1202,57 @@ class TierTierValidation(CommonTierValidation):
             self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
         )
 
+    def test_32_test_review_by_res_groups_field(self):
+        """Test using field-based validation with groups"""
+        selected_field = self.env["ir.model.fields"].search(
+            [("model", "=", self.test_model._name), ("name", "=", "group_id")]
+        )
+        test_record = self.test_model.create(
+            {"test_field": 2.5, "group_id": self.test_group.id}
+        )
+
+        definition = self.env["tier.definition"].create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "field",
+                "reviewer_field_id": selected_field.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+            }
+        )
+
+        reviews = test_record.request_validation()
+        review = reviews.filtered(lambda r: r.definition_id == definition)
+        self.assertTrue(review)
+        self.assertEqual(review.reviewer_ids, self.test_user_2 | self.test_user_1)
+
+    def test_33_test_review_by_wrong_field_type(self):
+        """Test using field-based validation with groups"""
+        selected_field = self.env["ir.model.fields"].search(
+            [("model", "=", self.test_model._name), ("name", "=", "menu_id")]
+        )
+        test_record = self.test_model.create(
+            {
+                "test_field": 2.5,
+                "menu_id": self.env["ir.ui.menu"].search([], limit=1).id,
+            }
+        )
+        self.assertTrue(test_record.menu_id)
+        self.env["tier.definition"].create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "field",
+                "reviewer_field_id": selected_field.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+            }
+        )
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Validation reviewer field should be of the appropriate type",
+        ):
+            test_record.request_validation()
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
