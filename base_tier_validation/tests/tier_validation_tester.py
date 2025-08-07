@@ -21,6 +21,10 @@ class TierValidationTester(models.Model):
     test_validation_field = fields.Integer(default=0)
     test_field = fields.Float()
     user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
+    group_id = fields.Many2one("res.groups", string="Assigned to (group)")
+    menu_id = fields.Many2one(
+        "ir.ui.menu", help="For testing choosing a wrong field type"
+    )
 
     def action_confirm(self):
         self.write({"state": "confirmed"})
