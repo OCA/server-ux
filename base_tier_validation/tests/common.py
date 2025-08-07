@@ -94,6 +94,13 @@ class CommonTierValidation(BaseCommon):
             login="test3",
             company_ids=[Command.set([cls.main_company.id, cls.other_company.id])],
         )
+        # Create groups
+        cls.test_group = cls.env["res.groups"].create(
+            {
+                "name": "TestGroup",
+                "users": [(4, cls.test_user_1.id), (4, cls.test_user_2.id)],
+            }
+        )
         # Create tier definitions:
         cls.tier_def_obj = cls.env["tier.definition"]
         cls.tier_definition = cls.tier_def_obj.create(
