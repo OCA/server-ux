@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding='UTF-8' ?>
 <odoo>
     <record id="view_template_content_mapping_tree" model="ir.ui.view">
-        <field name="name">template.content.mapping.list</field>
+        <field name="name">template.content.mapping.tree</field>
         <field name="model">template.content.mapping</field>
         <field name="arch" type="xml">
-            <list editable="top">
+            <tree editable="top">
                 <field name="name" />
                 <field name="report_id" />
                 <field name="template_id" readonly="report_id != False" />
                 <field name="lang" column_invisible="not context.get('multi_lang')" />
                 <field name="content_from" />
                 <field name="content_to" />
-            </list>
+            </tree>
         </field>
     </record>
     <record id="view_template_content_mapping_search" model="ir.ui.view">
