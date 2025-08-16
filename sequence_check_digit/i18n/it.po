@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-21 16:56+0000\n"
-"PO-Revision-Date: 2025-01-28 11:06+0000\n"
+"PO-Revision-Date: 2025-08-16 13:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sequence_check_digit
 #: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence__check_digit_formula
@@ -30,7 +30,7 @@ msgstr "Damm"
 #. module: sequence_check_digit
 #: model:ir.model.fields.selection,name:sequence_check_digit.selection__ir_sequence__check_digit_formula__ean
 msgid "EAN"
-msgstr ""
+msgstr "EAN"
 
 #. module: sequence_check_digit
 #. odoo-python
