@@ -307,10 +307,15 @@ class TierTierValidation(CommonTierValidation):
 
     def test_12_approve_sequence_same_user_bypassed(self):
         """Similar to test_12_approve_sequence, with all same users,
-        but approve_sequence_bypass is True"""
+        but approve_sequence_bypass is True
+        Sequence of reviewers: A, A, B, A.
+        When A validates, it should only validate the first two (A, A) and stop at B.
+        """
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
+        self.tier_def_obj.search([]).unlink()
         # Create tier definitions
+        # sequence 40 (User 1)
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
@@ -319,9 +324,34 @@ class TierTierValidation(CommonTierValidation):
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "approve_sequence": True,
                 "approve_sequence_bypass": True,
+                "sequence": 40,
+            }
+        )
+        # sequence 30 (User 1)
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "approve_sequence_bypass": True,
+                "sequence": 30,
+            }
+        )
+        # sequence 20 (User 2)
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_2.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "approve_sequence": True,
+                "approve_sequence_bypass": True,
                 "sequence": 20,
             }
         )
+        # sequence 10 (User 1)
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
@@ -343,12 +373,38 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(record1.can_review)
         # When the first tier is validated, all the rest will be approved.
         self.assertEqual(
-            3, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
+            4, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
         )
+        record1.validate_tier()
+        # After user 1 validates, they should have approved exactly 2 tiers: 40 and 30
+        # 20 and 10 should be pending.
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            2, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
+        )
+        # User 2 validates.
+        record2 = test_record.with_user(self.test_user_2.id)
+        self.assertTrue(record2.can_review)
+        record2.validate_tier()
+        self.assertEqual(
+            1, len(record1.review_ids.filtered(lambda x: x.status == "pending"))
+        )
+        self.assertEqual(
+            3, len(record1.review_ids.filtered(lambda x: x.status == "approved"))
+        )
+        # User 1 validates the final tier.
+        self.assertTrue(record1.can_review)
         record1.validate_tier()
         self.assertEqual(
             0, len(record1.review_ids.filtered(lambda l: l.status == "pending"))
         )
+        self.assertEqual(
+            4, len(record1.review_ids.filtered(lambda l: l.status == "approved"))
+        )
+
+        self.assertTrue(record1.validated)
 
     def test_13_onchange_review_type(self):
         tier_def_id = self.tier_def_obj.create(

@@ -319,9 +319,19 @@ class TierValidation(models.AbstractModel):
     def _validate_tier(self, tiers=False):
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
-        user_reviews = tier_reviews.filtered(
-            lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+        # Only approve consecutive pending reviews (by sequence) for the
+        # current user. Stop at the first review not assigned to the user,
+        # so intermediate reviewers are not skipped.
+        sorted_pending = tier_reviews.filtered(lambda r: r.status == "pending").sorted(
+            "sequence"
         )
+        user_reviews = self.env["tier.review"]
+        for review in sorted_pending:
+            if self.env.user in review.reviewer_ids:
+                user_reviews |= review
+            else:
+                break
+
         user_reviews.write(
             {
                 "status": "approved",
