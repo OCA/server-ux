@@ -29,10 +29,18 @@ class IrFilters(models.Model):
             rec.user_ids = rec.manual_user_ids + rec.group_ids.users
 
     @api.model
-    def get_filters(self, model, action_id=None):
+    def get_filters(
+        self,
+        model,
+        action_id=None,
+        embedded_action_id=None,
+        embedded_parent_res_id=None,
+    ):
         # WARNING: this function overrides the standard one.
         # The only change done is in the domain used to search the filters.
-        action_domain = self._get_action_domain(action_id)
+        action_domain = self._get_action_domain(
+            action_id, embedded_action_id, embedded_parent_res_id
+        )
         filters = self.search(
             action_domain
             + [
@@ -48,5 +56,14 @@ class IrFilters(models.Model):
         )
         user_context = self.env["res.users"].context_get()
         return filters.with_context(**user_context).read(
-            ["name", "is_default", "domain", "context", "user_id", "sort"]
+            [
+                "name",
+                "is_default",
+                "domain",
+                "context",
+                "user_id",
+                "sort",
+                "embedded_action_id",
+                "embedded_parent_res_id",
+            ]
         )
