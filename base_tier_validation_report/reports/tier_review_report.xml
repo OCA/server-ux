@@ -4,7 +4,7 @@
         <field name="model">tier.review</field>
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-danger="status=='rejected'"
                 decoration-success="status=='approved'"
                 create="0"
@@ -30,12 +30,12 @@
                 <field name="reviewed_date" optional="hide" />
                 <field name="comment" optional="hide" />
                 <field name="next_review" string="" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="tier_review_report_form" model="ir.ui.view">
-        <field name="name">tier.review.report.tree</field>
+        <field name="name">tier.review.report.form</field>
         <field name="model">tier.review</field>
         <field name="arch" type="xml">
             <form create="0" edit="0" delete="0">
@@ -107,7 +107,7 @@
         <field name="name">My Reviews</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tier.review</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[("reviewer_ids", "in", uid)]</field>
         <field name="context">{"search_default_pending": True}</field>
         <field name="view_id" ref="tier_review_report_tree" />
@@ -118,7 +118,7 @@
         <field name="name">All Reviews</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tier.review</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{}</field>
         <field name="view_id" ref="tier_review_report_tree" />
         <field name="search_view_id" ref="tier_review_report_search" />
@@ -128,12 +128,7 @@
         />
     </record>
 
-    <menuitem
-        id="menu_tier_validation_report"
-        name="Reviews"
-        parent="base.menu_board_root"
-        sequence="3"
-    />
+    <menuitem id="menu_tier_validation_report" name="Reviews" sequence="30" />
     <menuitem
         id="menu_tier_review_report_my"
         parent="menu_tier_validation_report"
