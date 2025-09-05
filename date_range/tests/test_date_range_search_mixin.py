@@ -2,7 +2,6 @@
 # Copyright 2021 Opener B.V. <stefan@opener.amsterdam>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from dateutil.rrule import MONTHLY
-from odoo_test_helper import FakeModelLoader
 
 from odoo.tests.common import TransactionCase
 
@@ -12,6 +11,8 @@ class TestDateRangeearchMixin(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         # Load a test model using odoo_test_helper
+        from odoo_test_helper import FakeModelLoader
+
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from .models import TestDateRangeSearchMixin
