@@ -10,7 +10,6 @@ class IrActionsServer(models.Model):
     _inherit = "ir.actions.server"
 
     domain = fields.Text(
-        string="Domain",
         help="Domain verified before executing the server action. The action "
         "will only be executed on records filtered by this domain.",
         default="[]",
@@ -42,6 +41,7 @@ class IrActionsServer(models.Model):
                     )
                     new_active_id = new_active_id and new_active_id[0] or None
                     new_ctx.update(active_id=new_active_id)
+
                 # Handle active_ids
                 if active_model == model_name and active_ids:
                     new_active_ids = list(
@@ -51,9 +51,13 @@ class IrActionsServer(models.Model):
                             )
                         )
                     )
+
                     new_ctx.update(active_ids=new_active_ids)
-                # Run action with filtered context
-                res = super(IrActionsServer, action.with_context(new_ctx)).run()
+                if not new_ctx.get("active_id") and not new_ctx.get("active_ids"):
+                    continue
+                else:
+                    # Run action with filtered context
+                    res = super(IrActionsServer, action.with_context(**new_ctx)).run()
             else:
                 res = super(IrActionsServer, action).run()
         return res
