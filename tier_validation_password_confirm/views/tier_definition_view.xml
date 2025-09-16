@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ForgeFlow S.L. -->
+<odoo>
+    <record id="complaint_tier_definition_form" model="ir.ui.view">
+        <field name="name">complaint.tier.definition.form</field>
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='options']" position="inside">
+                <group>
+                    <field name="require_password" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
