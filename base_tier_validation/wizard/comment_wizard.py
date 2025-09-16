@@ -18,8 +18,25 @@ class CommentWizard(models.TransientModel):
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
         self.review_ids.write({"comment": self.comment})
+        if self.review_ids.require_password:
+            return self._confirm_password()
         if self.validate_reject == "validate":
             rec._validate_tier(self.review_ids)
         if self.validate_reject == "reject":
             rec._rejected_tier(self.review_ids)
         rec._update_counter({"review_deleted": True})
+
+    def _confirm_password(self):
+        return {
+            "name": "Password Confirmation",
+            "type": "ir.actions.act_window",
+            "res_model": "password.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "default_validate_reject": self.validate_reject,
+                "default_res_model": self.res_model,
+                "default_res_id": self.res_id,
+                "default_review_ids": [(6, 0, self.review_ids.ids)],
+            },
+        }

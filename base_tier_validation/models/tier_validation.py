@@ -79,6 +79,14 @@ class TierValidation(models.AbstractModel):
     )
     next_review = fields.Char(compute="_compute_next_review")
     hide_reviews = fields.Boolean(compute="_compute_hide_reviews")
+    require_password = fields.Boolean(compute="_compute_require_password")
+
+    def _compute_require_password(self):
+        for rec in self:
+            require_password = rec.review_ids.filtered(
+                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            ).mapped("require_password")
+            rec.require_password = True in require_password
 
     def _compute_has_comment(self):
         for rec in self:
@@ -623,6 +631,24 @@ class TierValidation(models.AbstractModel):
             },
         }
 
+    def _confirm_password(self, validate_reject, reviews):
+        wizard = self.env.ref("base_tier_validation.view_password_confirm_wizard")
+        return {
+            "name": self.env._("Password Confirmation"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "password.wizard",
+            "views": [(wizard.id, "form")],
+            "view_id": wizard.id,
+            "target": "new",
+            "context": {
+                "default_res_id": self.id,
+                "default_res_model": self._name,
+                "default_review_ids": reviews.ids,
+                "default_validate_reject": validate_reject,
+            },
+        }
+
     def validate_tier(self):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
@@ -634,6 +660,11 @@ class TierValidation(models.AbstractModel):
                 lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
             )
             return self._add_comment("validate", user_reviews)
+        elif self.require_password:
+            user_reviews = reviews.filtered(
+                lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
+            )
+            return self._confirm_password("validate", user_reviews)
         self._validate_tier(reviews)
         self._update_counter({"review_deleted": True})
 
@@ -643,6 +674,8 @@ class TierValidation(models.AbstractModel):
         reviews = self.review_ids.filtered(lambda x: x.sequence in sequences)
         if self.has_comment:
             return self._add_comment("reject", reviews)
+        elif self.require_password:
+            return self._confirm_password("reject", reviews)
         self._rejected_tier(reviews)
         self._update_counter({"review_deleted": True})
 

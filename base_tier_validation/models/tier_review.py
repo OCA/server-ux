@@ -68,6 +68,10 @@ class TierReview(models.Model):
         related="definition_id.approve_sequence_bypass"
     )
     last_reminder_date = fields.Datetime(readonly=True)
+    require_password = fields.Boolean(
+        related="definition_id.require_password", readonly=True
+    )
+    password_confirmed = fields.Boolean()
 
     @api.depends("status")
     def _compute_display_status(self):

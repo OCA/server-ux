@@ -1253,6 +1253,72 @@ class TierTierValidation(CommonTierValidation):
         ):
             test_record.request_validation()
 
+    def test_34_add_comment_and_confirm_password(self):
+        # Set user password for validation
+        self.test_user_1.password = "test_user_1"
+
+        # Create new test record
+        test_record = self.test_model.create({"test_field": 2.5})
+
+        # Create tier definition with comment + password required
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '>', 1.0)]",
+                "has_comment": True,
+                "require_password": True,
+            }
+        )
+
+        # Request validation
+        review = test_record.with_user(self.test_user_2).request_validation()
+        self.assertTrue(review)
+
+        # Comment Wizard
+        record = test_record.with_user(self.test_user_1)
+        res = record.reject_tier()
+        ctx = res["context"]
+
+        comment_wizard = Form(
+            self.env["comment.wizard"].with_user(self.test_user_1).with_context(**ctx)
+        )
+        comment_wizard.comment = "Test Comment"
+        res = comment_wizard.save().add_comment()
+
+        # Password confirmation wizard
+        pw_ctx = res["context"]
+        pw_wizard = Form(
+            self.env["password.wizard"]
+            .with_user(self.test_user_1)
+            .with_context(**pw_ctx)
+        )
+
+        # Wrong password should fail
+        pw_wizard.password = "wrong_password"
+        pw_wiz = pw_wizard.save()
+        with self.assertRaises(ValidationError):
+            pw_wiz.confirm_password()
+
+        # Correct password should pass
+        pw_wizard.password = "test_user_1"
+        pw_wiz = pw_wizard.save()
+        pw_wiz.confirm_password()
+
+        # Ensure review has comment
+        self.assertTrue(test_record.review_ids.filtered("comment"))
+
+        # Check notifications
+        accepted_msg = test_record.with_user(
+            self.test_user_1
+        )._notify_accepted_reviews_body()
+        rejected_msg = test_record.with_user(
+            self.test_user_1
+        )._notify_rejected_review_body()
+        self.assertEqual(accepted_msg, "A review was accepted. (Test Comment)")
+        self.assertEqual(rejected_msg, "A review was rejected by John. (Test Comment)")
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):

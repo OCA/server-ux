@@ -108,6 +108,10 @@ class TierDefinition(models.Model):
         help="Bypassed (auto validated), if previous tier was validated "
         "by same reviewer",
     )
+    require_password = fields.Boolean(
+        help="If checked, the user will be asked to enter "
+        "the password to validate the tier.",
+    )
 
     @api.onchange("review_type")
     def onchange_review_type(self):

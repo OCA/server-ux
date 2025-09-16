@@ -23,6 +23,7 @@
         "views/tier_review_view.xml",
         "views/tier_validation_exception_view.xml",
         "wizard/comment_wizard_view.xml",
+        "wizard/password_wizard_view.xml",
         "templates/tier_validation_templates.xml",
     ],
     "assets": {

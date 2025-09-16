@@ -17,6 +17,7 @@
                 <field name="notify_on_create" optional="show" />
                 <field name="notify_on_pending" optional="show" />
                 <field name="has_comment" optional="hide" />
+                <field name="require_password" optional="hide" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -114,6 +115,7 @@
                                     <field name="notify_on_rejected" />
                                     <field name="notify_on_restarted" />
                                     <field name="has_comment" />
+                                    <field name="require_password" />
                                     <field name="notify_reminder_delay" />
                                 </group>
                             </group>
