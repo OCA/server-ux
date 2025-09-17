@@ -228,8 +228,18 @@ class Announcement(models.Model):
         return records
 
     def write(self, vals):
-        """Adjust attachments for being accesible to receivers of the announcement."""
+        """Adjust attachments for being accesible to receivers of the announcement.
+        Adjust unread_announcement_ids when specific users are modified
+        (if users are removed).
+        """
+        data = {}
+        for item in self:
+            data[self] = item.allowed_user_ids
         res = super().write(vals)
+        if vals.get("specific_user_ids"):
+            for item in self:
+                unlink_users = data[self] - item.allowed_user_ids
+                unlink_users.unread_announcement_ids -= item
         self._process_attachments(vals)
         return res
 
