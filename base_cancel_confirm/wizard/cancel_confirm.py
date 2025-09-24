@@ -23,7 +23,13 @@ class CancelConfirm(models.TransientModel):
         dict_update = {"cancel_confirm": True}
         # Cancel Reason
         if self.has_cancel_reason in ["optional", "required"]:
-            dict_update.update({"cancel_reason": self.cancel_reason})
+            dict_update.update(
+                {
+                    "cancel_reason": self.cancel_reason,
+                    "cancel_by": self.env.user,
+                    "cancel_date": fields.Date.context_today(self),
+                }
+            )
         return dict_update
 
     def confirm_cancel(self):
