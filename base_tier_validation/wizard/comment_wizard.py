@@ -17,7 +17,10 @@ class CommentWizard(models.TransientModel):
     def add_comment(self):
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
-        self.review_ids.write({"comment": self.comment})
+        # Write only comment on last review and not on all
+        self.review_ids.sorted(lambda x: x.sequence)[-1].write(
+            {"comment": self.comment}
+        )
         if self.validate_reject == "validate":
             rec._validate_tier(self.review_ids)
         if self.validate_reject == "reject":
