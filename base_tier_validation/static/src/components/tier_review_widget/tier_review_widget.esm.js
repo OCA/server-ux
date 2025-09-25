@@ -12,7 +12,7 @@ export class ReviewsTable extends Component {
     }
 
     _getReviewData() {
-        const records = this.env.model.root.data.review_ids.records;
+        const records = this.props.record.data.review_ids.records;
         return records.map((record) => record.data);
     }
 
