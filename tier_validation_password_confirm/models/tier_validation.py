@@ -28,7 +28,7 @@ class TierValidation(models.AbstractModel):
             )
             return self._add_comment("validate", user_reviews)
         self._validate_tier(reviews)
-        self._update_counter()
+        self._update_counter({"review_deleted": True})
 
     def _add_comment(self, validate_reject, reviews):
         res = super()._add_comment(validate_reject, reviews)
