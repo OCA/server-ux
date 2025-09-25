@@ -371,13 +371,16 @@ class TierValidation(models.AbstractModel):
         ) not in (self._state_to + [self._cancel_state])
 
     def write(self, vals):
-        self._tier_validation_check_state_on_write(vals)
-        self._tier_validation_check_write_allowed(vals)
-        self._tier_validation_check_write_remove_reviews(vals)
+        if not self._context.get("skip_validation_check"):
+            self._tier_validation_check_state_on_write(vals)
+            self._tier_validation_check_write_allowed(vals)
+            self._tier_validation_check_write_remove_reviews(vals)
         return super().write(vals)
 
     def _write(self, vals):
-        if self._tier_validation_state_field_is_computed:
+        if self._tier_validation_state_field_is_computed and not self._context.get(
+            "skip_validation_check"
+        ):
             self._tier_validation_check_state_on_write(vals)
             self._tier_validation_check_write_remove_reviews(vals)
         return super()._write(vals)
@@ -437,7 +440,6 @@ class TierValidation(models.AbstractModel):
                 rec.review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
-                and not rec._context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,
@@ -464,7 +466,6 @@ class TierValidation(models.AbstractModel):
                 and rec._tier_validation_get_current_state_value()
                 in (self._state_to + [self._cancel_state])
                 and not rec._check_allow_write_after_validation(vals)
-                and not rec._context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,

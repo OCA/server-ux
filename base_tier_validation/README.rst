@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Base Tier Validation
 ====================
@@ -17,7 +13,7 @@ Base Tier Validation
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -102,6 +98,29 @@ To configure Tier Validation Exceptions, you need to:
   only in the defined fields when the Validation process is finished.
 - If check *Write after Validation* and *Write under Validation*,
   records will be able to be modified defined fields always.
+
+Usage
+=====
+
+**Bypass tier validation context key**
+
+``skip_validation_check``: This flag will bypass the tier validation
+workflow. When this context key is set to True, aall tier validations
+within the write and \_write methods are bypassed.
+
+This is the ideal flag to use in your unit tests.
+
+.. code:: python
+
+   # Example: Confirming a sale order in a unit test
+   # without triggering the tier validation workflow.
+   sale_order.with_context(skip_validation_check=True).action_confirm()
+
+**Skip initial state check**
+
+``skip_check_state_condition``: This forces the initial state check to
+pass. This makes the system believe the record is in a valid state to
+behin the validation process, even if it isn't.
 
 Known issues / Roadmap
 ======================
