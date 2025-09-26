@@ -578,6 +578,14 @@ class TierValidation(models.AbstractModel):
             for review in reviews_to_notify:
                 rec = self.env[review.model].browse(review.res_id)
                 rec._notify_accepted_reviews()
+        else:
+            post = "message_post"
+            if hasattr(self, post):
+                getattr(self.sudo(), post)(
+                    subtype_xmlid="mail.mt_note",
+                    body=self._notify_accepted_reviews_body(),
+                    message_type="comment",
+                )
 
     def _get_requested_notification_subtype(self):
         return "base_tier_validation.mt_tier_validation_requested"
@@ -605,7 +613,7 @@ class TierValidation(models.AbstractModel):
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
         )
         if has_comment:
-            comment = has_comment.mapped("comment")[0]
+            comment = has_comment.mapped("comment")[-1]
             return self.env._("A review was accepted. (%s)", comment)
         return self.env._("A review was accepted")
 
@@ -659,7 +667,7 @@ class TierValidation(models.AbstractModel):
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
         )
         if has_comment:
-            comment = has_comment.mapped("comment")[0]
+            comment = has_comment.mapped("comment")[-1]
             return self.env._(
                 "A review was rejected by %(user)s. (%(comment)s)",
                 user=self.env.user.name,
@@ -721,6 +729,14 @@ class TierValidation(models.AbstractModel):
             for review in reviews_to_notify:
                 rec = self.env[review.model].browse(review.res_id)
                 rec._notify_rejected_review()
+        else:
+            post = "message_post"
+            if hasattr(self, post):
+                getattr(self.sudo(), post)(
+                    subtype_xmlid="mail.mt_note",
+                    body=self._notify_rejected_review_body(),
+                    message_type="comment",
+                )
 
     def _notify_created_review_body(self):
         return self.env._(
@@ -753,6 +769,14 @@ class TierValidation(models.AbstractModel):
                         subtype_xmlid=self._get_requested_notification_subtype(),
                         body=rec._notify_created_review_body(),
                     )
+                else:
+                    post = "message_post"
+                    if hasattr(rec, post):
+                        getattr(rec.sudo(), post)(
+                            subtype_xmlid="mail.mt_note",
+                            body=rec._notify_created_review_body(),
+                            message_type="comment",
+                        )
 
     def _prepare_tier_review_vals(self, definition, sequence):
         return {
@@ -846,6 +870,14 @@ class TierValidation(models.AbstractModel):
                         ).ids,
                     )
                 rec._notify_restarted_review()
+            else:
+                post = "message_post"
+                if hasattr(self, post):
+                    getattr(self.sudo(), post)(
+                        subtype_xmlid="mail.mt_note",
+                        body=self._notify_restarted_review_body(),
+                        message_type="comment",
+                    )
 
     @api.model
     def _update_counter(self, review_counter):
