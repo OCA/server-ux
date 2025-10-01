@@ -1,6 +1,6 @@
 # Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -23,12 +23,15 @@ class AnnouncementTag(models.Model):
         help="Company related to this tag",
     )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Tag name already exists!")]
+    _name_uniq = models.Constraint(
+        "unique (name)",
+        "Tag name already exists!",
+    )
 
     @api.constrains("parent_id")
     def _check_parent_id(self):
-        if not self._check_recursion():
-            raise ValidationError(_("You cannot create recursive tags."))
+        if not self._has_cycle():
+            raise ValidationError(self.env._("You cannot create recursive tags."))
 
     @api.depends("parent_id", "name")
     def _compute_display_name(self):

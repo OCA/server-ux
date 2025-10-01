@@ -1,7 +1,7 @@
 # Copyright 2022 Tecnativa - David Vidal
 # Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class AnnouncementLog(models.Model):
@@ -74,10 +74,12 @@ class Announcement(models.Model):
     notification_start_date = fields.Datetime(
         compute="_compute_notification_start_date",
         help="Technical field to display announcements in the calendar view",
+        store=True,
     )
     notification_end_date = fields.Datetime(
         compute="_compute_notification_end_date",
         help="Technical field to display announcements in the calendar view",
+        store=True,
     )
     color = fields.Integer(
         compute="_compute_color",
@@ -112,8 +114,10 @@ class Announcement(models.Model):
             announcement.allowed_user_ids = announcement.specific_user_ids
             announcement.allowed_users_count = len(announcement.specific_user_ids)
         for announcement in self - specific_user_announcements:
-            announcement.allowed_user_ids = announcement.user_group_ids.users
-            announcement.allowed_users_count = len(announcement.user_group_ids.users)
+            announcement.allowed_user_ids = announcement.user_group_ids.all_user_ids
+            announcement.allowed_users_count = len(
+                announcement.user_group_ids.all_user_ids
+            )
 
     @api.depends("is_general_announcement")
     def _compute_user_group_ids(self):
@@ -126,13 +130,15 @@ class Announcement(models.Model):
 
     @api.depends("announcement_log_ids")
     def _compute_read_announcement_count(self):
-        logs = self.env["announcement.log"].read_group(
+        logs = self.env["announcement.log"].formatted_read_group(
             [("announcement_id", "in", self.ids)],
             ["announcement_id"],
-            ["announcement_id"],
+            ["__count"],
         )
         result = {
-            data["announcement_id"][0]: (data["announcement_id_count"]) for data in logs
+            data["announcement_id"][0]: data["__count"]
+            for data in logs
+            if data.get("announcement_id")
         }
         for announcement in self:
             announcement.read_announcement_count = result.get(announcement.id, 0)
@@ -270,5 +276,5 @@ class Announcement(models.Model):
             "views": [[False, "list"]],
             "domain": [("id", "in", read_unread_log.ids)],
             "context": dict(self.env.context, create=False, group_by=["read_state"]),
-            "name": _("Read Logs"),
+            "name": self.env._("Read Logs"),
         }

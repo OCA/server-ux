@@ -37,7 +37,11 @@ class ResUsers(models.Model):
                 x["id"]
                 for x in group_announcements
                 if any(
-                    [g for g in x["user_group_ids"] if g in self.env.user.groups_id.ids]
+                    [
+                        g
+                        for g in x["user_group_ids"]
+                        if g in self.env.user.all_group_ids.ids
+                    ]
                 )
             }
         )

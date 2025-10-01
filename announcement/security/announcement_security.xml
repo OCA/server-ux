@@ -3,15 +3,21 @@
     <record id="category_announcement" model="ir.module.category">
         <field name="name">Announcement</field>
     </record>
+
+    <record id="res_groups_privilege_announcement" model="res.groups.privilege">
+        <field name="name">Announcement</field>
+        <field name="category_id" ref="category_announcement" />
+    </record>
+
     <record id="announcemenent_manager" model="res.groups">
         <field name="name">Announcement Manager</field>
-        <field name="category_id" ref="category_announcement" />
+        <field name="privilege_id" ref="res_groups_privilege_announcement" />
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
         <field
             name="comment"
         >Users allowed to manage and configure announcements.</field>
         <field
-            name="users"
+            name="user_ids"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>

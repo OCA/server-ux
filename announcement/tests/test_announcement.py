@@ -41,6 +41,24 @@ class TestAnnouncement(BaseCommon):
                 "active": True,
             }
         )
+        cls.demo_user = cls.env["res.users"].create(
+            {
+                "name": "Demo User",
+                "login": "demo",
+                "group_ids": [(6, 0, [cls.env.ref("base.group_user").id])],
+            }
+        )
+        cls.attachment = cls.env["ir.attachment"].create(
+            {"name": "Test Attachment", "datas": b"Test data"}
+        )
+        cls.specific_announcement = cls.env["announcement"].create(
+            {
+                "name": "Specific Users Announcement",
+                "announcement_type": "specific_users",
+                "specific_user_ids": [(6, 0, [cls.demo_user.id])],
+                "attachment_ids": [(4, cls.attachment.id)],
+            }
+        )
 
     @users("admin")
     def test_announcements_admin(self):
@@ -57,3 +75,13 @@ class TestAnnouncement(BaseCommon):
         self.assertIn(self.general_announcement.id, announcement_ids)
         self.assertNotIn(self.admin_announcement.id, announcement_ids)
         self.assertNotIn(self.expired_announcement.id, announcement_ids)
+
+    @users("demo")
+    def test_demo_user_specific_announcement(self):
+        res = self.env.user.get_announcements()
+        announcement_ids = [announcement["id"] for announcement in res["data"]]
+        self.assertIn(self.general_announcement.id, announcement_ids)
+        self.assertNotIn(self.admin_announcement.id, announcement_ids)
+        self.assertNotIn(self.expired_announcement.id, announcement_ids)
+        self.assertNotIn(self.specific_announcement.id, announcement_ids)
+        self.assertIn(self.attachment.id, self.specific_announcement.attachment_ids.ids)

@@ -32,7 +32,9 @@ export class AnnouncementMenu extends Component {
             ]);
             const minutes_since_last_login =
                 (DateTime.now().toSeconds() -
-                    deserializeDateTime(current_user[0]?.login_date).toSeconds()) /
+                    deserializeDateTime(
+                        current_user[0] && current_user[0].login_date
+                    ).toSeconds()) /
                 60;
             const popup_announcement = Boolean(minutes_since_last_login < 5);
             const launchPopUp = () => {
