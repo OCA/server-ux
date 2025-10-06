@@ -2,3 +2,4 @@
   - Víctor Martínez
 - Dhara Solanki \<<dhara.solanki@initos.com>\>
 - Nedas Žilinskas \<<nedas.zilinskas@avoin.systems>\>
+- Maciej Wichowski \<<maciej@versada.eu>\>

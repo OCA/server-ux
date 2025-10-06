@@ -9,7 +9,7 @@ class TestIrUiMenuCase(TransactionCase):
         super().setUp()
         self.user_admin = self.browse_ref("base.user_admin").id
         self.group_hide_menu = self.env["res.groups"].create(
-            {"name": "Hide menu items custom", "users": [(4, self.user_admin)]}
+            {"name": "Hide menu items custom", "user_ids": [(4, self.user_admin)]}
         )
         self.model_ir_uir_menu = self.env["ir.ui.menu"]
         self.ir_ui_menu = self.browse_ref("base.menu_management")
