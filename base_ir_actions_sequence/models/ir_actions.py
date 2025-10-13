@@ -1,21 +1,19 @@
-from collections import defaultdict
-
-from odoo import api, fields, models, tools
+from odoo import fields, models, tools
+from odoo.tools import frozendict
 
 
 class IrActions(models.Model):
     _inherit = "ir.actions.actions"
 
-    priority = fields.Integer(string="Sequence", default=16, required=True)
+    sequence = fields.Integer(default=16, required=True)
 
-    @api.model
-    @tools.ormcache("frozenset(self.env.user.groups_id.ids)", "model_name")
-    def get_bindings(self, model_name):
-        """
-        Order Report Actions by priority
-        """
-        res = super().get_bindings(model_name)
-        ordered_res = defaultdict(list)
-        for key, values in res.items():
-            ordered_res[key] = sorted(values, key=lambda x: (x["priority"], x["id"]))
-        return ordered_res
+    @tools.ormcache("model_name", "self.env.lang")
+    def _get_bindings(self, model_name):
+        result = dict(super()._get_bindings(model_name))
+        # Only for 'report' type, since for 'action' type the bindings are
+        # managed in the original _get_bindings method
+        if result.get("report"):
+            result["report"] = tuple(
+                sorted(result["report"], key=lambda vals: vals.get("sequence", 0))
+            )
+        return frozendict(result)

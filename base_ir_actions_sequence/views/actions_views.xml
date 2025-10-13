@@ -9,7 +9,7 @@
         <field name="inherit_id" ref="base.view_server_action_form" />
         <field name="arch" type="xml">
             <field name="model_id" position="after">
-                <field name="priority" />
+                <field name="sequence" />
             </field>
         </field>
     </record>
@@ -19,7 +19,7 @@
         <field name="inherit_id" ref="base.view_server_action_tree" />
         <field name="arch" type="xml">
             <field name="usage" position="after">
-                <field name="priority" optional="show" />
+                <field name="sequence" optional="show" />
             </field>
         </field>
     </record>
@@ -32,7 +32,7 @@
         <field name="inherit_id" ref="base.view_window_action_form" />
         <field name="arch" type="xml">
             <field name="res_model" position="after">
-                <field name="priority" />
+                <field name="sequence" />
             </field>
         </field>
     </record>
@@ -44,7 +44,7 @@
         <field name="inherit_id" ref="base.view_window_action_tree" />
         <field name="arch" type="xml">
             <field name="context" position="after">
-                <field name="priority" optional="show" />
+                <field name="sequence" optional="show" />
             </field>
         </field>
     </record>
@@ -55,7 +55,7 @@
         <field name="inherit_id" ref="base.act_report_xml_view" />
         <field name="arch" type="xml">
             <field name="report_type" position="after">
-                <field name="priority" />
+                <field name="sequence" />
             </field>
         </field>
     </record>
@@ -67,7 +67,7 @@
         <field name="inherit_id" ref="base.act_report_xml_view_tree" />
         <field name="arch" type="xml">
             <field name="report_type" position="after">
-                <field name="priority" optional="show" />
+                <field name="sequence" optional="show" />
             </field>
         </field>
     </record>
