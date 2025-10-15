@@ -18,15 +18,21 @@ class CancelConfirm(models.TransientModel):
         required=True,
     )
 
+    def _get_dict_update(self):
+        """Hooks this method to update value in docs"""
+        dict_update = {"cancel_confirm": True}
+        # Cancel Reason
+        if self.has_cancel_reason in ["optional", "required"]:
+            dict_update.update({"cancel_reason": self.cancel_reason})
+        return dict_update
+
     def confirm_cancel(self):
         self.ensure_one()
         res_model = self.env.context.get("cancel_res_model")
         res_ids = self.env.context.get("cancel_res_ids")
         cancel_method = self.env.context.get("cancel_method")
         docs = self.env[res_model].browse(res_ids)
-        docs.write({"cancel_confirm": True})
-        # Cancel Reason
-        if self.has_cancel_reason in ["optional", "required"]:
-            docs.write({"cancel_reason": self.cancel_reason})
+        dict_update = self._get_dict_update()
+        docs.write(dict_update)
         res = getattr(docs, cancel_method)()
         return res
