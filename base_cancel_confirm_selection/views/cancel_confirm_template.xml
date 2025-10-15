@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        inherit_id='base_cancel_confirm.cancel_reason_template'
+        id="cancel_reason_selection"
+        name="Reason Selection"
+    >
+        <xpath expr='//group' position='inside'>
+            <field name="cancel_reason_id" readonly="1" />
+        </xpath>
+    </template>
+</odoo>

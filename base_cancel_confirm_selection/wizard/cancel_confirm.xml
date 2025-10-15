@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_cancel_confirm_wizard" model="ir.ui.view">
+        <field name="name">Cancel Confirmation</field>
+        <field name="model">cancel.confirm</field>
+        <field name="inherit_id" ref="base_cancel_confirm.view_cancel_confirm_wizard" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cancel_reason']" position="before">
+                <field
+                    name="cancel_reason_id"
+                    domain="[('model', 'in', [False, cancel_res_model])]"
+                />
+                <field name="cancel_res_model" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

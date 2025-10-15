@@ -1,0 +1,1 @@
+This module introduces a selection field for cancellation reasons instead of free text, enabling better reporting and analysis of cancellation causes.
