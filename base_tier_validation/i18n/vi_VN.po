@@ -666,12 +666,6 @@ msgstr "Đánh giá đã được thiết lập lại bởi %s."
 
 #. module: base_tier_validation
 #. odoo-python
-#: code:addons/base_tier_validation/models/tier_review.py:0
-msgid "There are no res.users in the selected field"
-msgstr ""
-
-#. module: base_tier_validation
-#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
@@ -831,6 +825,12 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__validation_status
 msgid "Validation Status"
+msgstr ""
+
+#. module: base_tier_validation
+#. odoo-python
+#: code:addons/base_tier_validation/models/tier_review.py:0
+msgid "Validation reviewer field should be of the appropriate type"
 msgstr ""
 
 #. module: base_tier_validation
