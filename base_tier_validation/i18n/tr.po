@@ -688,12 +688,6 @@ msgstr "İnceleme %s tarafından sıfırlandı."
 
 #. module: base_tier_validation
 #. odoo-python
-#: code:addons/base_tier_validation/models/tier_review.py:0
-msgid "There are no res.users in the selected field"
-msgstr "Seçili alanda res.kullanıcı yok"
-
-#. module: base_tier_validation
-#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
@@ -856,6 +850,12 @@ msgid "Validation Status"
 msgstr "Doğrulama Durumu"
 
 #. module: base_tier_validation
+#. odoo-python
+#: code:addons/base_tier_validation/models/tier_review.py:0
+msgid "Validation reviewer field should be of the appropriate type"
+msgstr ""
+
+#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr "Doğrulamalar"
@@ -927,6 +927,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "ör. Şunun için Seviye Doğrulaması..."
+
+#~ msgid "There are no res.users in the selected field"
+#~ msgstr "Seçili alanda res.kullanıcı yok"
 
 #, python-format
 #~ msgid "Activity"
