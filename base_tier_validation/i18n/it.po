@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-23 14:25+0000\n"
+"PO-Revision-Date: 2025-10-21 09:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -856,7 +856,7 @@ msgstr "Stato validazione"
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_review.py:0
 msgid "Validation reviewer field should be of the appropriate type"
-msgstr ""
+msgstr "Il campo del revisore di convalida deve essere del tipo appropriato"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
