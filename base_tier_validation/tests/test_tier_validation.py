@@ -458,9 +458,8 @@ class TierTierValidation(CommonTierValidation):
 
     def test_17_search_records_no_validation(self):
         """Search for records that have no validation process started"""
-        records = self.env["tier.validation.tester"].search(
-            [("reviewer_ids", "=", False)]
-        )
+        records = self.env["tier.validation.tester"].search([])
+        records = records.filtered(lambda x: not x.reviewer_ids)
         self.assertEqual(len(records), 1)
         self.test_record.with_user(self.test_user_2.id).request_validation()
         self.test_record.with_user(self.test_user_1.id)
@@ -589,7 +588,7 @@ class TierTierValidation(CommonTierValidation):
     def test_22_notify_on_accepted(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -642,7 +641,7 @@ class TierTierValidation(CommonTierValidation):
     def test_23_notify_on_rejected(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -696,7 +695,7 @@ class TierTierValidation(CommonTierValidation):
     def test_24_notify_on_restarted(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -749,7 +748,7 @@ class TierTierValidation(CommonTierValidation):
     def test_25_all_notification(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -829,7 +828,7 @@ class TierTierValidation(CommonTierValidation):
     def test_26_no_notification(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -1091,6 +1090,7 @@ class TierTierValidation(CommonTierValidation):
         review_1 = test_record.review_ids.filtered(
             lambda x: x.definition_id == self.tier_definition
         )
+        review_1.invalidate_model()
         self.assertEqual(review_1.status, "pending")
         review_2 = test_record.review_ids.filtered(lambda x: x.definition_id == def_2)
         self.assertEqual(review_2.status, "waiting")
@@ -1190,6 +1190,7 @@ class TierTierValidation(CommonTierValidation):
         review_1 = test_record.review_ids.filtered(
             lambda x: x.definition_id == self.tier_definition
         )
+        review_1.invalidate_model()
         self.assertEqual(review_1.status, "pending")
         review_2 = test_record.review_ids.filtered(lambda x: x.definition_id == def_2)
         self.assertEqual(review_2.status, "waiting")

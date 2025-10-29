@@ -8,6 +8,7 @@ from lxml import etree
 from psycopg2.extensions import AsIs
 
 from odoo import api, fields, models
+from odoo.api import NewId
 from odoo.exceptions import ValidationError
 from odoo.tools import SQL
 from odoo.tools.misc import frozendict
@@ -38,7 +39,6 @@ class TierValidation(models.AbstractModel):
         inverse_name="res_id",
         string="Validations",
         domain=lambda self: [("model", "=", self._name)],
-        auto_join=True,
     )
     # TODO: Delete in v19 in favor of validation_status field
     validated = fields.Boolean(
@@ -250,7 +250,7 @@ class TierValidation(models.AbstractModel):
 
     def _compute_need_validation(self):
         for rec in self:
-            if isinstance(rec.id, models.NewId):
+            if isinstance(rec.id, NewId):
                 rec.need_validation = False
                 continue
             tiers = (
@@ -286,7 +286,7 @@ class TierValidation(models.AbstractModel):
                     ("model_name", "=", self._name),
                     ("company_id", "in", [False] + self._get_company().ids),
                     "|",
-                    ("group_ids", "in", self.env.user.groups_id.ids),
+                    ("group_ids", "in", self.env.user.group_ids.ids),
                     ("group_ids", "=", False),
                     *(extra_domain or []),
                 ]
@@ -439,7 +439,7 @@ class TierValidation(models.AbstractModel):
                 rec.review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
-                and not rec._context.get("skip_validation_check")
+                and not rec.env.context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,
@@ -466,7 +466,7 @@ class TierValidation(models.AbstractModel):
                 and rec._tier_validation_get_current_state_value()
                 in (self._state_to + [self._cancel_state])
                 and not rec._check_allow_write_after_validation(vals)
-                and not rec._context.get("skip_validation_check")
+                and not rec.env.context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,
