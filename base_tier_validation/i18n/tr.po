@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-15 10:24+0000\n"
+"PO-Revision-Date: 2025-10-30 17:00+0000\n"
 "Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -853,7 +853,7 @@ msgstr "Doğrulama Durumu"
 #. odoo-python
 #: code:addons/base_tier_validation/models/tier_review.py:0
 msgid "Validation reviewer field should be of the appropriate type"
-msgstr ""
+msgstr "Doğrulama gözden geçiren alanı uygun türde olmalıdır"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
