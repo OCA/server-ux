@@ -50,7 +50,7 @@ class DateRangeGenerator(models.TransientModel):
         comodel_name="date.range.type",
         string="Type",
         required=True,
-        domain="['|', ('company_id', '=', company_id), " "('company_id', '=', False)]",
+        domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]",
         ondelete="cascade",
         store=True,
         compute="_compute_type_id",

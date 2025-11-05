@@ -33,8 +33,7 @@ class DateRange(models.Model):
         default=_default_company,
     )
     active = fields.Boolean(
-        help="The active field allows you to hide the date range without "
-        "removing it.",
+        help="The active field allows you to hide the date range without removing it.",
         compute="_compute_active",
         readonly=False,
         store=True,
@@ -62,8 +61,7 @@ class DateRange(models.Model):
             if this.date_start > this.date_end:
                 raise ValidationError(
                     self.env._(
-                        "%(name)s is not a valid range "
-                        "(%(date_start)s > %(date_end)s)"
+                        "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
                     )
                     % {
                         "name": this.name,
