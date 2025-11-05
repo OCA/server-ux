@@ -63,6 +63,8 @@ class IrModel(models.Model):
         def _wrap_name_create():
             @api.model
             def wrapper(self, name):
+                if self.env.context.get("allow_quick_create"):
+                    return wrapper.origin(self, name)
                 raise UserError(
                     _(
                         "Can't create %(model)s with name %(name)s quickly.\n"
