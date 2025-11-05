@@ -1,10 +1,10 @@
 import {domainFromTreeDateRange, treeFromDomainDateRange} from "./condition_tree.esm";
+
 import {onWillStart, useChildSubEnv} from "@odoo/owl";
 import {Domain} from "@web/core/domain";
 import {DomainSelector} from "@web/core/domain_selector/domain_selector";
-import {patch} from "@web/core/utils/patch";
-import {treeFromDomain} from "@web/core/tree_editor/condition_tree";
 import {useService} from "@web/core/utils/hooks";
+import {patch} from "@web/core/utils/patch";
 
 const ARCHIVED_DOMAIN = `[("active", "in", [True, False])]`;
 
@@ -26,30 +26,22 @@ patch(DomainSelector.prototype, {
     },
 
     async onPropsUpdated(p) {
+        // First call the parent method to handle the standard domain processing
         await super.onPropsUpdated.apply(this, arguments);
-        let domain = null;
-        let isSupported = true;
-        try {
-            domain = new Domain(p.domain);
-        } catch {
-            isSupported = false;
-        }
-        if (!isSupported) {
-            this.tree = null;
-            this.defaultCondition = null;
-            this.fieldDefs = {};
-            this.showArchivedCheckbox = false;
-            this.includeArchived = false;
-            return;
-        }
 
-        const tree = treeFromDomain(domain);
-        const getFieldDef = await this.makeGetFieldDef(p.resModel, tree, ["active"]);
-
-        this.tree = treeFromDomainDateRange(domain, {
-            getFieldDef: getFieldDef,
-            distributeNot: !p.isDebugMode,
-        });
+        // If we have a valid tree, apply our date range enhancements
+        if (this.tree) {
+            let domain = null;
+            try {
+                domain = new Domain(p.domain);
+                this.tree = treeFromDomainDateRange(domain, {
+                    distributeNot: !p.isDebugMode,
+                });
+            } catch (error) {
+                // If there's an error with our custom processing, keep the original tree
+                console.warn("Date range domain processing failed:", error);
+            }
+        }
     },
     getOperatorEditorInfo(fieldDef) {
         const info = super.getOperatorEditorInfo(fieldDef);

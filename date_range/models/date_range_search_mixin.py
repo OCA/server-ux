@@ -3,7 +3,8 @@
 from lxml import etree
 
 from odoo import api, fields, models
-from odoo.osv.expression import FALSE_DOMAIN, NEGATIVE_TERM_OPERATORS, TRUE_DOMAIN
+from odoo.fields import Domain
+from odoo.tools import OrderedSet
 
 
 class DateRangeSearchMixin(models.AbstractModel):
@@ -27,14 +28,20 @@ class DateRangeSearchMixin(models.AbstractModel):
     def _search_date_range_search_id(self, operator, value):
         """Map the selected date ranges to the model's date field"""
         # Deal with some bogus values
+        if isinstance(value, (OrderedSet, list, tuple, set)) and all(
+            isinstance(v, bool) for v in value
+        ):
+            # Convert to list for uniform handling
+            value = list(value)[0]
+
         if not value:
-            if operator in NEGATIVE_TERM_OPERATORS:
-                return TRUE_DOMAIN
-            return FALSE_DOMAIN
+            if operator in Domain.NEGATIVE_OPERATORS:
+                return Domain.TRUE
+            return Domain.FALSE
         if value is True:
-            if operator in NEGATIVE_TERM_OPERATORS:
-                return FALSE_DOMAIN
-            return TRUE_DOMAIN
+            if operator in Domain.NEGATIVE_OPERATORS:
+                return Domain.FALSE
+            return Domain.TRUE
         # Assume from here on that the value is a string,
         # a single id or a list of ids
         ranges = self.env["date.range"]
@@ -43,10 +50,10 @@ class DateRangeSearchMixin(models.AbstractModel):
         else:
             if isinstance(value, int):
                 value = [value]
-            sub_op = "not in" if operator in NEGATIVE_TERM_OPERATORS else "in"
+            sub_op = "not in" if operator in Domain.NEGATIVE_OPERATORS else "in"
             ranges = self.env["date.range"].search([("id", sub_op, value)])
         if not ranges:
-            return FALSE_DOMAIN
+            return Domain.FALSE
         domain = (len(ranges) - 1) * ["|"] + sum(
             (
                 [

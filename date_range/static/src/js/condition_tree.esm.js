@@ -1,12 +1,11 @@
-/* global document */
 import {
     condition,
     connector,
-    domainFromTree,
     formatValue,
     normalizeValue,
-    treeFromDomain,
 } from "@web/core/tree_editor/condition_tree";
+import {domainFromTree} from "@web/core/tree_editor/domain_from_tree";
+import {treeFromDomain} from "@web/core/tree_editor/tree_from_domain";
 
 function addChild(parent, child) {
     if (child.type === "connector" && !child.negate && child.value === parent.value) {
