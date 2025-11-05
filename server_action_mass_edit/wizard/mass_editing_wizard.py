@@ -6,7 +6,7 @@ import json
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MassEditingWizard(models.TransientModel):
@@ -35,26 +35,23 @@ class MassEditingWizard(models.TransientModel):
         operation_description_warning = False
         operation_description_danger = False
         if len(active_ids) == len(original_active_ids):
-            operation_description_info = _(
-                "The treatment will be processed on the %(amount)d selected record(s)."
-            ) % {
-                "amount": len(active_ids),
-            }
+            operation_description_info = self.env._(
+                "The treatment will be processed on the %(amount)d selected record(s).",
+                amount=len(active_ids),
+            )
         elif len(original_active_ids):
-            operation_description_warning = _(
+            operation_description_warning = self.env._(
                 "You have selected %(origin_amount)d "
                 "record(s) that can not be processed.\n"
-                "Only %(amount)d record(s) will be processed."
-            ) % {
-                "origin_amount": len(original_active_ids) - len(active_ids),
-                "amount": len(active_ids),
-            }
+                "Only %(amount)d record(s) will be processed.",
+                origin_amount=len(original_active_ids) - len(active_ids),
+                amount=len(active_ids),
+            )
         else:
-            operation_description_danger = _(
-                "None of the %(amount)d record(s) you have selected can be processed."
-            ) % {
-                "amount": len(active_ids),
-            }
+            operation_description_danger = self.env._(
+                "None of the %(amount)d record(s) you have selected can be processed.",
+                amount=len(active_ids),
+            )
         # Set values
         res.update(
             {
@@ -87,27 +84,48 @@ class MassEditingWizard(models.TransientModel):
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         if not server_action:
             return super().onchange(values, field_names, fields_spec)
-        dynamic_fields = {}
 
+        # Collect dynamic field names to filter them out
+        dynamic_field_names = set()
         for line in server_action.mapped("mass_edit_line_ids"):
-            values["selection__" + line.field_id.name] = "ignore"
-            values[line.field_id.name] = False
+            selection_field = "selection__" + line.field_id.name
+            field_name = line.field_id.name
+            dynamic_field_names.add(selection_field)
+            dynamic_field_names.add(field_name)
 
-            # Make sure there is an entry for the default value retrieved above.
-            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [("ignore", _("Don't touch"))], default="ignore"
-            )
-            dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
+            # Set default values for dynamic fields
+            if selection_field not in values:
+                values[selection_field] = "ignore"
+            if field_name not in values:
+                values[field_name] = False
 
-        self._fields.update(dynamic_fields)
+        # Filter out dynamic fields before calling super
+        filtered_values = {
+            key: value
+            for key, value in values.items()
+            if key not in dynamic_field_names
+        }
+        filtered_field_names = [
+            fname for fname in field_names if fname not in dynamic_field_names
+        ]
+        filtered_fields_spec = {
+            fname: spec
+            for fname, spec in fields_spec.items()
+            if fname not in dynamic_field_names
+        }
 
-        res = super().onchange(values, field_names, fields_spec)
-        if not res["value"]:
-            value = {key: value for key, value in values.items() if value is not False}
-            res["value"] = value
+        res = super().onchange(
+            filtered_values, filtered_field_names, filtered_fields_spec
+        )
 
-        for field in dynamic_fields:
-            self._fields.pop(field)
+        # Ensure dynamic field values are included in the response
+        if not res.get("value"):
+            res["value"] = {}
+
+        # Add dynamic field values to the result
+        for field_name in dynamic_field_names:
+            if field_name in values:
+                res["value"][field_name] = values[field_name]
 
         view_temp = (
             self.env["ir.ui.view"]
@@ -125,22 +143,22 @@ class MassEditingWizard(models.TransientModel):
         # Add "selection field (set / add / remove / remove_m2m)
         if field.ttype == "many2many":
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set_m2m", _("Set")),
-                ("remove_m2m", _("Remove")),
-                ("add", _("Add")),
+                ("ignore", self.env._("Don't touch")),
+                ("set_m2m", self.env._("Set")),
+                ("remove_m2m", self.env._("Remove")),
+                ("add", self.env._("Add")),
             ]
         elif field.ttype == "one2many":
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set_o2m", _("Set")),
-                ("add_o2m", _("Add")),
+                ("ignore", self.env._("Don't touch")),
+                ("set_o2m", self.env._("Set")),
+                ("add_o2m", self.env._("Add")),
             ]
         else:
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set", _("Set")),
-                ("remove", _("Remove")),
+                ("ignore", self.env._("Don't touch")),
+                ("set", self.env._("Set")),
+                ("remove", self.env._("Remove")),
             ]
         result["selection__" + field.name] = {
             "type": "selection",
@@ -256,7 +274,9 @@ class MassEditingWizard(models.TransientModel):
                 self.env[server_action.model_id.model], field, fields_info[field.name]
             )
             field_info["relation_field"] = False
-            if not line.apply_domain and "domain" in field_info:
+            if line.field_domain:
+                field_info["domain"] = line.field_domain
+            elif not line.apply_domain and "domain" in field_info:
                 field_info["domain"] = "[]"
             res.update(self._prepare_fields(line, field, field_info))
         return res
@@ -329,13 +349,22 @@ class MassEditingWizard(models.TransientModel):
         odoo.models:mass.editing.wizard.read()
             with unknown field 'selection__myfield'
         """
-        real_fields = fields
-        if fields:
-            # We remove fields which are not in _fields
+        # When fields=None or fields=[], we need to explicitly provide only real fields
+        # because dynamic fields may be in the record cache but not in _fields
+        if fields is None or fields == []:
+            # Provide only the real model fields
+            real_fields = list(self._fields.keys())
+        else:
+            # Filter out dynamic fields that are not in _fields
             real_fields = [x for x in fields if x in self._fields]
+
         result = super().read(real_fields, load=load)
-        # adding fields to result
-        [result[0].update({x: False}) for x in fields if x not in real_fields]
+
+        # Add back the requested dynamic fields with False value
+        if fields and fields != [] and result:
+            for x in fields:
+                if x not in real_fields:
+                    result[0].update({x: False})
         return result
 
     def button_apply(self):

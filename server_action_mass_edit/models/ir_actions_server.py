@@ -43,7 +43,8 @@ class IrActionsServer(models.Model):
     def _compute_mass_edit_apply_domain_in_lines(self):
         for record in self:
             record.mass_edit_apply_domain_in_lines = any(
-                record.mass_edit_line_ids.mapped("apply_domain")
+                line.field_domain or line.apply_domain
+                for line in record.mass_edit_line_ids
             )
 
     def _run_action_mass_edit_multi(self, eval_context=None):
