@@ -171,7 +171,7 @@ class DateRangeGenerator(models.TransientModel):
             # always remove 1 day for the date_end since range limits are
             # inclusive
             date_end = vals[idx + 1].date() - relativedelta(days=1)
-            index = "%0*d" % (count_digits, idx + 1)
+            index = f"{idx + 1:0{count_digits}d}"
             if name_expr:
                 try:
                     names.append(
@@ -186,7 +186,7 @@ class DateRangeGenerator(models.TransientModel):
                     )
                 except (SyntaxError, ValueError) as e:
                     raise ValidationError(
-                        self.env._("Invalid name expression: %s") % e
+                        self.env._("Invalid name expression: %s", e)
                     ) from e
             elif name_prefix:
                 names.append(name_prefix + index)
