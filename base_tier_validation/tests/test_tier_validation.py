@@ -947,6 +947,7 @@ class TierTierValidation(CommonTierValidation):
         # Able to write test_validation_field after validation
         with mock.patch.multiple(
             TV,
+            _get_exception_fields=mock.MagicMock(return_value=_tvf),
             _get_validation_exceptions=mock.MagicMock(return_value=_tvf),
             _get_after_validation_exceptions=mock.MagicMock(return_value=_rv),
         ):

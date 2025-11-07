@@ -59,6 +59,13 @@ class TierValidationException(models.Model):
         string="Groups",
         help="Allowed groups to use this Tier Validation Exception",
     )
+    is_black_list = fields.Boolean(
+        string="Use like Black List",
+        help="If this option is selected, this exception will act "
+        "as a blacklist, meaning that the selected fields will NOT "
+        "be allowed for the specified model, but editing will be "
+        "enabled for all others.",
+    )
 
     @api.depends("model_id")
     def _compute_valid_model_field_ids(self):
