@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 class TierReview(models.Model):
     _name = "tier.review"
     _description = "Tier Review"
+    _order = "sequence, id"
 
     name = fields.Char(related="definition_id.name")
     status = fields.Selection(
