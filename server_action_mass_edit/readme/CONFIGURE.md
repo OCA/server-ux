@@ -20,12 +20,6 @@ You can search and filter all the fields available by clicking on *Search more.*
 Click on *Create Contextual Action* to add the Mass Editing action in the *Action* menu.
 ![OCA Mass Editing Create Contextual Action](../static/description/18-OCA_Mass_Edit_Create_Action.png)
 
-## V11 to V13 Access
-
-### Access to the feature in V11 to V13
-
-As a user from the access group *Administration / Settings*, go to *Settings / Mass Operations / Mass Editing.*
-![OCA Mass Editing Access V11 to V13](../static/description/OCA_mass_edit_v11_v13.png)
 
 ## Widget Option
 
