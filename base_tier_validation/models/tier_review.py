@@ -94,6 +94,14 @@ class TierReview(models.Model):
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
+        """Update review status. Called manually from various review operations.
+
+        To defer recompute, use context key
+        `tier_validation_defer_compute_can_review`. Be sure to explicitely call
+        the method afterwards.
+        """
+        if self.env.context.get("tier_validation_defer_compute_can_review"):
+            return
         reviews = self.filtered(lambda rev: rev.status in ["waiting", "pending"])
         if reviews:
             # get minimum sequence of all to prevent jumps
