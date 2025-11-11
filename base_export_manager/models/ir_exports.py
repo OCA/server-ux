@@ -1,7 +1,7 @@
 # Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -50,5 +50,7 @@ class IrExports(models.Model):
         """
         for vals in vals_list:
             if not any(f in vals for f in ("model_id", "resource")):
-                raise ValidationError(_("You must supply a model or resource."))
+                raise ValidationError(
+                    self.env._("You must supply a model or resource.")
+                )
         return super().create(vals_list)
