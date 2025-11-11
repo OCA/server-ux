@@ -52,7 +52,7 @@
                                     <field name="name" readonly="1" />
                                     <field
                                         name="field1_id"
-                                        required="True"
+                                        required="'.' not in name"
                                         options="{'no_open': True, 'no_create': True}"
                                     />
                                     <field
