@@ -3,7 +3,7 @@
 # Copyright 2019 brain-tec AG - Olivier Jossen
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class IrExportsLine(models.Model):
@@ -124,8 +124,10 @@ class IrExportsLine(models.Model):
             parts = (one.name or "").split("/")
             if len(parts) > 4:
                 raise exceptions.ValidationError(
-                    _("It's not allowed to have more than 4 levels depth: %s")
-                    % one.name
+                    self.env._(
+                        "It's not allowed to have more than 4 levels depth: %s",
+                        one.name,
+                    )
                 )
             for num in range(1, 5):
                 if not any(parts) or num > len(parts):
@@ -153,21 +155,21 @@ class IrExportsLine(models.Model):
     @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
         # do also skip the check if label is set or not, when skip_check is set
-        if self._context.get("skip_check"):
+        if self.env.context.get("skip_check"):
             return
         for one in self:
             if not one.label and "." not in one.name:
                 raise exceptions.ValidationError(
-                    _("Field '%s' does not exist") % one.name
+                    self.env._("Field '%s' does not exist", one.name)
                 )
             num_lines = 0
-            if one.export_id and not isinstance(one.export_id.id, models.NewId):
+            if one.export_id and not isinstance(one.export_id.id, api.NewId):
                 num_lines = one.search_count(
                     [("export_id", "=", one.export_id.id), ("name", "=", one.name)]
                 )
             if num_lines > 1:
                 raise exceptions.ValidationError(
-                    _("Field '%s' already exists") % one.name
+                    self.env._("Field '%s' already exists", one.name)
                 )
 
     @api.model
@@ -187,8 +189,11 @@ class IrExportsLine(models.Model):
         )
         if not field.exists():
             raise exceptions.ValidationError(
-                _("Field '%(name)s' not found in model '%(model)s'")
-                % {"name": name, "model": model.model}
+                self.env._(
+                    "Field '%(name)s' not found in model '%(model)s'",
+                    name=name,
+                    model=model.model,
+                )
             )
         return field
 
@@ -201,7 +206,7 @@ class IrExportsLine(models.Model):
         :param bool only_name:
             Return only the field name, or return its value.
         """
-        name = "field%d_id" % n
+        name = f"field{n}_id"
         return name if only_name else self[name]
 
     def model_n(self, n, only_name=False):
@@ -213,5 +218,5 @@ class IrExportsLine(models.Model):
         :param bool only_name:
             Return only the model name, or return its value.
         """
-        name = "model%d_id" % n
+        name = f"model{n}_id"
         return name if only_name else self[name]

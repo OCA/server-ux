@@ -14,7 +14,7 @@ class ResUsers(models.Model):
         """Gets all models where the user has export access."""
         accessobj = self.env["ir.model.access"]
         accessobj_ids = accessobj.search(
-            [("perm_export", "=", True), ("group_id", "in", self.groups_id.ids)]
+            [("perm_export", "=", True), ("group_id", "in", self.all_group_ids.ids)]
         )
         model_names = [access_obj.model_id.model for access_obj in accessobj_ids]
         return list(set(model_names))
