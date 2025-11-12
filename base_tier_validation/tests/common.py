@@ -98,7 +98,7 @@ class CommonTierValidation(BaseCommon):
         cls.test_group = cls.env["res.groups"].create(
             {
                 "name": "TestGroup",
-                "users": [(4, cls.test_user_1.id), (4, cls.test_user_2.id)],
+                "all_user_ids": [(4, cls.test_user_1.id), (4, cls.test_user_2.id)],
             }
         )
         # Create tier definitions:
