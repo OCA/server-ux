@@ -71,8 +71,12 @@ class BaseCancelConfirm(models.AbstractModel):
                     node.addnext(new_element)
                 for model in new_models:
                     if model in all_models:
-                        continue
-                    all_models[model] = new_models[model]
+                        # Merge field names: existing fields (tuple) + new fields (set)
+                        all_models[model] = tuple(
+                            set(all_models[model]) | new_models[model]
+                        )
+                    else:
+                        all_models[model] = tuple(new_models[model])
             res["arch"] = etree.tostring(doc)
             res["models"] = frozendict(all_models)
         return res
