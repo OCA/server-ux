@@ -15,7 +15,7 @@
     "website": "https://github.com/OCA/server-ux",
     "depends": ["base_tier_validation"],
     "data": [
-        'views/tier_validation_exception_views.xml',
+        "views/tier_validation_exception_views.xml",
     ],
     "demo": [],
 }
