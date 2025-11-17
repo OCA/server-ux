@@ -273,7 +273,7 @@ class TierValidation(models.AbstractModel):
             return self.filtered_domain(domain)
         else:
             return self
-        
+
     def _get_exception_fields(self, extra_domain=None):
         """Return Tier Validation Exception field names that matchs custom domain."""
         return (

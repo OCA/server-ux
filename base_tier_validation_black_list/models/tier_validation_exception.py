@@ -1,4 +1,4 @@
-from odoo import api, exceptions, fields, models
+from odoo import fields, models
 
 
 class TierValidationException(models.Model):
@@ -9,5 +9,3 @@ class TierValidationException(models.Model):
         help="If checked, the selected fields will be skiped "
         "in allowed fields for tier validation.",
     )
-
-   

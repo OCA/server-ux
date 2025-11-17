@@ -3,12 +3,13 @@
     <record id="plack_list_exception_view_form" model="ir.ui.view">
         <field name="name">tier.validation.exception.form</field>
         <field name="model">tier.validation.exception</field>
-        <field name="inherit_id" ref="base_tier_validation.tier_validation_exception_form" />
+        <field
+            name="inherit_id"
+            ref="base_tier_validation.tier_validation_exception_form"
+        />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='field_ids']" position="before">
-                <field
-                    name="is_blacklist"
-                />
+                <field name="is_blacklist" />
             </xpath>
         </field>
     </record>

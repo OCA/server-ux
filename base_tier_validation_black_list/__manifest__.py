@@ -14,6 +14,8 @@
     "author": "Trescloud,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "depends": ["base_tier_validation"],
-    "data": ['views/tier_validation_exception_views.xml',],
+    "data": [
+        'views/tier_validation_exception_views.xml',
+    ],
     "demo": [],
 }
