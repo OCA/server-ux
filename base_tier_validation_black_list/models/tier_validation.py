@@ -1,5 +1,6 @@
 from odoo import api, models
 
+
 class TierValidation(models.AbstractModel):
     _inherit = "tier.validation"
 
