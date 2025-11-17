@@ -1,4 +1,4 @@
-# Copyright 2019 Creu Blanca
+# Copyright 2025 Trescloud and Odoo Community Association (OCA)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
