@@ -141,7 +141,7 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" not in arch,
-            "Fields view get must return architecture w/o fields" "created dynamicaly",
+            "Fields view get must return architecture w/o fieldscreated dynamicaly",
         )
         view_id.mass_server_action_id = self.mass_editing_user
         result = self.MassEditingWizard.with_context(
@@ -151,7 +151,7 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
-            "Fields view get must return architecture with fields" "created dynamicaly",
+            "Fields view get must return architecture with fieldscreated dynamicaly",
         )
 
         # test the code path where we extract an embedded tree for o2m fields
@@ -252,7 +252,7 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             self.partner_title.with_context(lang="de_DE").shortcut,
             "Bots.",
-            "Translation for Partner Title's Abbreviation " "was not loaded properly.",
+            "Translation for Partner Title's Abbreviation was not loaded properly.",
         )
         # Removing partner title with mass edit action
         vals = {"selection__shortcut": "remove"}
@@ -268,7 +268,7 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             self.partner_title.with_context(lang="de_DE").shortcut,
             False,
-            "Translation for Partner Title's Abbreviation " "was not removed properly.",
+            "Translation for Partner Title's Abbreviation was not removed properly.",
         )
 
     def test_mass_edit_email(self):
