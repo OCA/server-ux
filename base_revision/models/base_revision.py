@@ -4,7 +4,8 @@
 # Copyright 2020 Ecosoft Co., Ltd. (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
+from odoo.fields import Command
 
 
 class BaseRevision(models.AbstractModel):
@@ -44,24 +45,23 @@ class BaseRevision(models.AbstractModel):
 
     @api.depends("old_revision_ids")
     def _compute_revision_count(self):
-        res = self.with_context(active_test=False).read_group(
-            domain=[("current_revision_id", "in", self.ids)],
-            fields=["current_revision_id"],
-            groupby=["current_revision_id"],
+        res = (
+            self.with_context(active_test=False)
+            .sudo()
+            .formatted_read_group(
+                domain=[("current_revision_id", "in", self.ids)],
+                groupby=["current_revision_id"],
+                aggregates=["__count"],
+            )
         )
-        revision_dict = {
-            x["current_revision_id"][0]: x["current_revision_id_count"] for x in res
-        }
+        revision_dict = {x["current_revision_id"][0]: x["__count"] for x in res}
         for rec in self:
             rec.revision_count = revision_dict.get(rec.id, 0)
 
-    _sql_constraints = [
-        (
-            "revision_unique",
-            "unique(unrevisioned_name, revision_number)",
-            "Reference and revision must be unique.",
-        )
-    ]
+    _revision_unique = models.Constraint(
+        "unique(unrevisioned_name, revision_number)",
+        "Reference and revision must be unique.",
+    )
 
     def copy(self, default=None):
         default = default or {}
@@ -71,7 +71,7 @@ class BaseRevision(models.AbstractModel):
         for rec in revision_records:
             if rec.unrevisioned_name:
                 continue
-            name_field = self._context.get("revision_name_field", "name")
+            name_field = self.env.context.get("revision_name_field", "name")
             rec.write({"unrevisioned_name": rec[name_field]})
         return revision_records
 
@@ -80,8 +80,8 @@ class BaseRevision(models.AbstractModel):
         return {
             "revision_number": new_rev_number,
             "unrevisioned_name": self.unrevisioned_name,
-            "name": "%s-%02d" % (self.unrevisioned_name, new_rev_number),
-            "old_revision_ids": [(4, self.id, False)],
+            "name": f"{self.unrevisioned_name}-{new_rev_number:02d}",
+            "old_revision_ids": [Command.link(self.id)],
         }
 
     def _prepare_revision_data(self, new_revision):
@@ -99,7 +99,7 @@ class BaseRevision(models.AbstractModel):
 
     @api.model_create_multi
     def create(self, vals_list):
-        name_field = self._context.get("revision_name_field", "name")
+        name_field = self.env.context.get("revision_name_field", "name")
         for vals in vals_list:
             if "unrevisioned_name" not in vals:
                 vals["unrevisioned_name"] = vals[name_field]
@@ -113,14 +113,19 @@ class BaseRevision(models.AbstractModel):
             # Calling  Copy method
             copied_rec = rec.copy_revision_with_context()
             if hasattr(self, "message_post"):
-                msg = _("New revision created: %s") % copied_rec.name
-                copied_rec.message_post(body=msg)
-                rec.message_post(body=msg)
+                target_msg = self.env._(
+                    "New revision created from: %s", rec._get_html_link()
+                )
+                copied_rec.message_post(body=target_msg)
+                source_msg = self.env._(
+                    "New revision created: %s", copied_rec._get_html_link()
+                )
+                rec.message_post(body=source_msg)
             revision_ids.append(copied_rec.id)
         action = {
             "type": "ir.actions.act_window",
             "view_mode": "list,form",
-            "name": _("New Revisions"),
+            "name": self.env._("New Revisions"),
             "res_model": self._name,
             "domain": f"[('id', 'in', {revision_ids})]",
             "target": "current",

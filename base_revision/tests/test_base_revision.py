@@ -3,8 +3,7 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # Copyright 2020 Ecosoft (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo_test_helper import FakeModelLoader
-
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import common
 
 
@@ -12,19 +11,15 @@ class TestBaseRevision(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
         from .base_revision_tester import BaseRevisionTester
 
-        cls.loader.update_registry((BaseRevisionTester,))
-
+        add_to_registry(cls.registry, BaseRevisionTester)
+        cls.registry._setup_models__(cls.env.cr, ["base.revision.tester"])
+        cls.registry.init_models(
+            cls.env.cr, ["base.revision.tester"], {"models_to_check": True}
+        )
+        cls.addClassCleanup(cls.registry.__delitem__, "base.revision.tester")
         cls.revision_model = cls.env[BaseRevisionTester._name]
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
 
     def _create_tester(self, vals_list=None):
         if not vals_list:
