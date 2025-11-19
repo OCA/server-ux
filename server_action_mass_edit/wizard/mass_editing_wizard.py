@@ -6,7 +6,7 @@ import json
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MassEditingWizard(models.TransientModel):
@@ -35,26 +35,23 @@ class MassEditingWizard(models.TransientModel):
         operation_description_warning = False
         operation_description_danger = False
         if len(active_ids) == len(original_active_ids):
-            operation_description_info = _(
-                "The treatment will be processed on the %(amount)d selected record(s)."
-            ) % {
-                "amount": len(active_ids),
-            }
+            operation_description_info = self.env._(
+                "The treatment will be processed on the %(amount)s selected record(s).",
+                amount=len(active_ids),
+            )
         elif len(original_active_ids):
-            operation_description_warning = _(
-                "You have selected %(origin_amount)d "
+            operation_description_warning = self.env._(
+                "You have selected %(origin_amount)s "
                 "record(s) that can not be processed.\n"
-                "Only %(amount)d record(s) will be processed."
-            ) % {
-                "origin_amount": len(original_active_ids) - len(active_ids),
-                "amount": len(active_ids),
-            }
+                "Only %(amount)s record(s) will be processed.",
+                origin_amount=len(original_active_ids) - len(active_ids),
+                amount=len(active_ids),
+            )
         else:
-            operation_description_danger = _(
-                "None of the %(amount)d record(s) you have selected can be processed."
-            ) % {
-                "amount": len(active_ids),
-            }
+            operation_description_danger = self.env._(
+                "None of the %(amount)s record(s) you have selected can be processed.",
+                amount=len(active_ids),
+            )
         # Set values
         res.update(
             {
@@ -95,19 +92,16 @@ class MassEditingWizard(models.TransientModel):
 
             # Make sure there is an entry for the default value retrieved above.
             dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [("ignore", _("Don't touch"))], default="ignore"
+                [("ignore", self.env._("Don't touch"))], default="ignore"
             )
             dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
 
-        self._fields.update(dynamic_fields)
+        self._fields__.update(dynamic_fields)
 
         res = super().onchange(values, field_names, fields_spec)
         if not res["value"]:
             value = {key: value for key, value in values.items() if value is not False}
             res["value"] = value
-
-        for field in dynamic_fields:
-            self._fields.pop(field)
 
         view_temp = (
             self.env["ir.ui.view"]
@@ -125,22 +119,22 @@ class MassEditingWizard(models.TransientModel):
         # Add "selection field (set / add / remove / remove_m2m)
         if field.ttype == "many2many":
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set_m2m", _("Set")),
-                ("remove_m2m", _("Remove")),
-                ("add", _("Add")),
+                ("ignore", self.env._("Don't touch")),
+                ("set_m2m", self.env._("Set")),
+                ("remove_m2m", self.env._("Remove")),
+                ("add", self.env._("Add")),
             ]
         elif field.ttype == "one2many":
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set_o2m", _("Set")),
-                ("add_o2m", _("Add")),
+                ("ignore", self.env._("Don't touch")),
+                ("set_o2m", self.env._("Set")),
+                ("add_o2m", self.env._("Add")),
             ]
         else:
             selection = [
-                ("ignore", _("Don't touch")),
-                ("set", _("Set")),
-                ("remove", _("Remove")),
+                ("ignore", self.env._("Don't touch")),
+                ("set", self.env._("Set")),
+                ("remove", self.env._("Remove")),
             ]
         result["selection__" + field.name] = {
             "type": "selection",

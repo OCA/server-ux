@@ -3,7 +3,7 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 MAGIC_FIELDS = models.MAGIC_COLUMNS
@@ -53,7 +53,7 @@ class IrActionsServerMassEditLine(models.Model):
         """Check that all fields belong to the action model"""
         if any(rec.field_id.model_id != rec.server_action_id.model_id for rec in self):
             raise ValidationError(
-                _("Mass edit fields should belong to the server action model.")
+                self.env._("Mass edit fields should belong to the server action model.")
             )
 
     @api.onchange("field_id")

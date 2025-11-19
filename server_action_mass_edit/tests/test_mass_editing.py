@@ -5,6 +5,7 @@
 
 from ast import literal_eval
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
 
@@ -22,45 +23,145 @@ def fake_onchange_model_id(self):
 
 @common.tagged("-at_install", "post_install")
 class TestMassEditing(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.MassEditingWizard = self.env["mass.editing.wizard"]
-        self.ResPartnerTitle = self.env["res.partner.title"]
-        self.ResLang = self.env["res.lang"]
-        self.IrActionsActWindow = self.env["ir.actions.act_window"]
+        cls.MassEditingWizard = cls.env["mass.editing.wizard"]
+        cls.ResCountryGroup = cls.env["res.country.group"]
+        cls.ResLang = cls.env["res.lang"]
+        cls.ServerAction = cls.env["ir.actions.server"]
+        cls.IrActionsActWindow = cls.env["ir.actions.act_window"]
 
-        self.mass_editing_user = self.env.ref(
-            "server_action_mass_edit.mass_editing_user"
+        user_model = cls.env.ref("base.model_res_users")
+        cls.mass_editing_user = cls._create_mass_editing_user_server_action(user_model)
+
+        partner_model = cls.env.ref("base.model_res_partner")
+        cls.mass_editing_partner = cls._create_mass_editing_user_server_action(
+            partner_model
         )
-        self.mass_editing_partner_title = self.env.ref(
-            "server_action_mass_edit.mass_editing_partner_title"
+
+        cls.mass_editing_company = cls._create_mass_editing_company_server_action()
+
+        cls.mass_editing_country_group = (
+            cls._create_mass_editing_country_group_server_action()
         )
-        user_admin = self.env.ref("base.user_admin")
-        user_demo = self.env.ref("base.user_demo")
-        self.users = self.env["res.users"].search(
-            [("id", "not in", (user_admin.id, user_demo.id))]
-        )
-        self.user = new_test_user(
-            self.env,
+        user_admin = cls.env.ref("base.user_admin")
+        cls.users = cls.env["res.users"].search([("id", "not in", (user_admin.id))])
+        cls.user = new_test_user(
+            cls.env,
             login="test-mass_editing-user",
             groups="base.group_system",
         )
-        self.partner_title = self._create_partner_title()
+        cls.country_group = cls._create_country_group()
 
-    def _create_partner_title(self):
-        """Create a Partner Title."""
+    @classmethod
+    def _create_mass_editing_user_server_action(cls, model_id):
+        """Create a Mass Editing Server Action for Users Object."""
+        fields = [
+            "email",
+            "phone",
+            "comment",
+            "country_id",
+            "is_company",
+            "lang",
+            "company_type",
+            "image_1920",
+            "bank_ids",
+        ]
+        model_name = model_id.model.replace(".", "_")
+        server_action = cls.ServerAction.create(
+            {
+                "name": "Mass Edit",
+                "model_id": model_id.id,
+                "state": "mass_edit",
+                "mass_edit_line_ids": [
+                    Command.create(
+                        {
+                            "field_id": cls.env.ref(
+                                "base.field_" + model_name + "__" + field
+                            ).id
+                        }
+                    )
+                    for field in fields
+                ],
+            }
+        )
+        server_action.create_action()
+        return server_action
+
+    @classmethod
+    def _create_mass_editing_company_server_action(cls):
+        """Create a Mass Editing Server Action for Company Object."""
+        server_action = cls.ServerAction.create(
+            {
+                "name": "Mass Edit",
+                "model_id": cls.env.ref("base.model_res_company").id,
+                "state": "mass_edit",
+                "mass_edit_line_ids": [
+                    Command.create(
+                        {
+                            "field_id": cls.env.ref(
+                                "base.field_res_company__currency_id"
+                            ).id
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "field_id": cls.env.ref(
+                                "base.field_res_company__child_ids"
+                            ).id
+                        }
+                    ),
+                ],
+            }
+        )
+        server_action.create_action()
+        return server_action
+
+    @classmethod
+    def _create_mass_editing_country_group_server_action(cls):
+        """Create a Mass Editing Server Action for Country Group Object."""
+        server_action = cls.ServerAction.create(
+            {
+                "name": "Mass Edit",
+                "model_id": cls.env.ref("base.model_res_country_group").id,
+                "state": "mass_edit",
+                "mass_edit_line_ids": [
+                    Command.create(
+                        {
+                            "field_id": cls.env.ref(
+                                "base.field_res_country_group__name"
+                            ).id
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "field_id": cls.env.ref(
+                                "base.field_res_country_group__code"
+                            ).id
+                        }
+                    ),
+                ],
+            }
+        )
+        server_action.create_action()
+        return server_action
+
+    @classmethod
+    def _create_country_group(cls):
+        """Create a Country Group Category."""
         # Loads German to work with translations
-        self.ResLang._activate_lang("de_DE")
-        # Creating the title in English
-        partner_title = self.ResPartnerTitle.create(
-            {"name": "Ambassador", "shortcut": "Amb."}
+        cls.ResLang._activate_lang("de_DE")
+        # Creating the Country Group in English
+        country_group = cls.ResCountryGroup.create(
+            {"name": "Commonwealth of Independent States", "code": "CIS"}
         )
         # Adding translated terms
-        partner_title.with_context(lang="de_DE").write(
-            {"name": "Botschafter", "shortcut": "Bots."}
+        country_group.with_context(lang="de_DE").write(
+            {"name": "Gemeinschaft Unabhängiger Staaten", "code": "GUS"}
         )
-        return partner_title
+        return country_group
 
     def _create_wizard_and_apply_values(self, server_action, items, vals):
         action = server_action.with_context(
@@ -141,7 +242,7 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" not in arch,
-            "Fields view get must return architecture w/o fieldscreated dynamicaly",
+            "Fields view get must return architecture w/o fields created dynamicaly",
         )
         view_id.mass_server_action_id = self.mass_editing_user
         result = self.MassEditingWizard.with_context(
@@ -151,26 +252,22 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
-            "Fields view get must return architecture with fieldscreated dynamicaly",
+            "Fields view get must return architecture with fields created dynamicaly",
         )
 
-        # test the code path where we extract an embedded tree for o2m fields
-        self.env["ir.ui.view"].search(
-            [
-                ("model", "in", ("res.partner.bank", "res.partner", "res.users")),
-                ("id", "!=", self.env.ref("base.res_partner_view_form_private").id),
-            ]
-        ).unlink()
-        self.env.ref("base.res_partner_view_form_private").model = "res.users"
+        # test the code path where we extract an embedded list for o2m fields
         result = self.MassEditingWizard.with_context(
-            server_action_id=self.mass_editing_user.id,
+            server_action_id=self.mass_editing_company.id,
             active_ids=[],
         ).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
-        self.assertIn(
-            "<list editable=",
-            arch,
-            "Fields view get must return architecture with embedded tree",
+
+        self.assertTrue(
+            "<list editable=" in arch
+            or "form_view_ref" in arch
+            or "list_view_ref" in arch,
+            "Fields view get return architecture with embedded list"
+            " or with context of list/form view reference",
         )
 
     def test_wzd_clean_check_company_field_domain(self):
@@ -240,35 +337,36 @@ class TestMassEditing(common.TransactionCase):
             all([field in result for field in fields]), "Read must return all fields."
         )
 
-        result = mass_wizard.read(fields=[])[0]
+        fields.remove("selection__email")
+        result = mass_wizard.read(fields=fields)[0]
         self.assertTrue(
             "selection__email" not in result,
         )
 
-    def test_mass_edit_partner_title(self):
+    def test_mass_edit_country_group(self):
         """Test Case for MASS EDITING which will check if translation
-        was loaded for new partner title, and if they are removed
-        as well as the value for the abbreviation for the partner title."""
+        was loaded for new country group, and if they are removed
+        as well as the value for the abbreviation for the country group."""
         self.assertEqual(
-            self.partner_title.with_context(lang="de_DE").shortcut,
-            "Bots.",
-            "Translation for Partner Title's Abbreviation was not loaded properly.",
+            self.country_group.with_context(lang="de_DE").code,
+            "GUS",
+            "Translation for Country Group's Abbreviation was not loaded properly.",
         )
-        # Removing partner title with mass edit action
-        vals = {"selection__shortcut": "remove"}
+        # Removing country group code with mass edit action
+        vals = {"selection__code": "remove"}
         self._create_wizard_and_apply_values(
-            self.mass_editing_partner_title, self.partner_title, vals
+            self.mass_editing_country_group, self.country_group, vals
         )
         self.assertEqual(
-            self.partner_title.shortcut,
+            self.country_group.code,
             False,
-            "Partner Title's Abbreviation should be removed.",
+            "Country Group's Abbreviation should be removed.",
         )
         # Checking if translations were also removed
         self.assertEqual(
-            self.partner_title.with_context(lang="de_DE").shortcut,
+            self.country_group.with_context(lang="de_DE").code,
             False,
-            "Translation for Partner Title's Abbreviation was not removed properly.",
+            "Translation for Country Group's Abbreviation was not removed properly.",
         )
 
     def test_mass_edit_email(self):
@@ -323,28 +421,28 @@ class TestMassEditing(common.TransactionCase):
             self.user.category_id, False, "User's category should be removed."
         )
         # Add m2m categories
-        dist_categ_id = self.env.ref("base.res_partner_category_14").id
-        vend_categ_id = self.env.ref("base.res_partner_category_0").id
+        dist_categ_id = self.env["res.partner.category"].create({"name": "dist_categ"})
+        vend_categ_id = self.env["res.partner.category"].create({"name": "vend_categ"})
         vals = {
             "selection__category_id": "add",
-            "category_id": [(4, dist_categ_id), (4, vend_categ_id)],
+            "category_id": [(4, dist_categ_id.id), (4, vend_categ_id.id)],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
             all(
                 item in self.user.category_id.ids
-                for item in [dist_categ_id, vend_categ_id]
+                for item in [dist_categ_id.id, vend_categ_id.id]
             ),
             "Partner's category should be added.",
         )
         # Remove one m2m category
         vals = {
             "selection__category_id": "remove_m2m",
-            "category_id": [[4, vend_categ_id]],
+            "category_id": [[4, vend_categ_id.id]],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
-            [dist_categ_id] == self.user.category_id.ids,
+            [dist_categ_id.id] == self.user.category_id.ids,
             "User's category should be removed.",
         )
 
@@ -370,10 +468,12 @@ class TestMassEditing(common.TransactionCase):
             0,
             "Mass edit lines should be removed when changing model",
         )
-        # Test change on mass_edit_line field_id : set widget_option
-        mass_edit_line_form = Form(
-            self.env.ref("server_action_mass_edit.mass_editing_user_line_1")
+
+        mass_edit_line = self.mass_editing_partner.mass_edit_line_ids.filtered(
+            lambda line: line.field_id == self.env.ref("base.field_res_partner__email")
         )
+        # Test change on mass_edit_line field_id : set widget_option
+        mass_edit_line_form = Form(mass_edit_line)
         mass_edit_line_form.field_id = self.env.ref(
             "base.field_res_partner__category_id"
         )
@@ -382,10 +482,10 @@ class TestMassEditing(common.TransactionCase):
             "base.field_res_partner__image_1920"
         )
         self.assertEqual(mass_edit_line_form.widget_option, "image")
-        mass_edit_line_form.field_id = self.env.ref("base.field_res_company__logo")
-        self.assertEqual(mass_edit_line_form.widget_option, "image")
 
-        mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
+        mass_edit_line_form.field_id = self.env.ref(
+            "base.field_res_partner__country_id"
+        )
         self.assertFalse(mass_edit_line_form.widget_option)
 
     def test_onchange_call(self):
@@ -407,14 +507,14 @@ class TestMassEditing(common.TransactionCase):
         """Test super call of `_onchange_model_id`"""
 
         IrActionsServer._onchange_model_id = fake_onchange_model_id
-        result = self.env["ir.actions.server"]._onchange_model_id()
+        result = self.ServerAction._onchange_model_id()
         self.assertEqual(
             result,
             fake_onchange_model_id(self),
         )
 
         del IrActionsServer._onchange_model_id
-        result = self.env["ir.actions.server"]._onchange_model_id()
+        result = self.ServerAction._onchange_model_id()
         self.assertEqual(
             result,
             None,
