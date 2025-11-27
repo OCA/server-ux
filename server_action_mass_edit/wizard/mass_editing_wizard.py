@@ -347,20 +347,21 @@ class MassEditingWizard(models.TransientModel):
         odoo.models:mass.editing.wizard.read()
             with unknown field 'selection__myfield'
         """
-        real_fields = fields
-        # When fields=[] is passed, Odoo tries to read all fields
-        # We need to provide only the real fields from _fields
-        if fields == []:
-            # Empty list means "read all fields" in Odoo, but we only want real fields
-            real_fields = None
-        elif fields:
-            # We remove fields which are not in _fields
+        # When fields=None or fields=[], we need to explicitly provide only real fields
+        # because dynamic fields may be in the record cache but not in _fields
+        if fields is None or fields == []:
+            # Provide only the real model fields
+            real_fields = list(self._fields.keys())
+        else:
+            # Filter out dynamic fields that are not in _fields
             real_fields = [x for x in fields if x in self._fields]
+
         result = super().read(real_fields, load=load)
-        # adding fields to result
-        if fields and result:
+
+        # Add back the requested dynamic fields with False value
+        if fields and fields != [] and result:
             for x in fields:
-                if x not in (real_fields or []):
+                if x not in real_fields:
                     result[0].update({x: False})
         return result
 
