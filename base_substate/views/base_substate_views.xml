@@ -19,14 +19,12 @@
         <field name="arch" type="xml">
             <form string="Base Substate" name="base_substate">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <widget
-                            name="web_ribbon"
-                            title="Archived"
-                            bg_color="bg-danger"
-                            invisible="active"
-                        />
-                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
                         <h1>
