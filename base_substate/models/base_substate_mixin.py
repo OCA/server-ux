@@ -18,9 +18,14 @@ class BaseSubstateMixin(models.AbstractModel):
             if rec.substate_id and rec.state != target_state:
                 raise ValidationError(
                     self.env._(
-                        f"The substate {rec.substate_id.name} is not defined for"
-                        f"the state {rec_states[rec.state]} but for "
-                        f"{rec_states[target_state]}"
+                        (
+                            "Substate %(substate_name)s not defined "
+                            "for state %(state_name)s ",
+                            "but for %(target_state_name)s",
+                        ),
+                        substate_name=rec.substate_id.name,
+                        state_name=rec_states[rec.state],
+                        target_state_name=rec_states[target_state],
                     )
                 )
 
@@ -77,8 +82,10 @@ class BaseSubstateMixin(models.AbstractModel):
         for mixin_obj in self:
             if mixin_obj.substate_id and mixin_obj.substate_id.model != self._name:
                 raise ValidationError(
-                    self.env._("This substate is not define for this object but for %s")
-                    % mixin_obj.substate_id.model
+                    self.env._(
+                        "Substate not for this object but for %(model_name)s",
+                        model_name=mixin_obj.substate_id.model,
+                    )
                 )
 
     def _update_before_write_create(self, values):

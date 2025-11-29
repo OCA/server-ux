@@ -88,7 +88,13 @@ class TestBaseSubstate(CommonBaseSubstate):
         )
 
     def test_sale_order_substate(self):
-        partner = self.env.ref("base.res_partner_1")
+        # Create a partner instead of using a potentially non-existent XML ID
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "email": "test@example.com",
+            }
+        )
         so_test1 = self.sale_test_model.create(
             {
                 "name": "Test base substate to basic sale",
