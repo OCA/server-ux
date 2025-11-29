@@ -38,9 +38,9 @@ be applied on different models (sale order, purchase, ...).
 example:
 --------
 
--  for the quotation state of a sale order we can define 3 substates "In
-   negotiation", "Won" and "Lost".
--  We can also send mail when the substate is reached.
+- for the quotation state of a sale order we can define 3 substates "In
+  negotiation", "Won" and "Lost".
+- We can also send mail when the substate is reached.
 
 It is not useful by itself. You can see an example of implementation in
 the 'purchase_substate' module. (purchase-workflow repository).
@@ -77,10 +77,10 @@ Authors
 Contributors
 ------------
 
--  Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
--  Kitti U. <kittiu@ecosoft.co.th>
--  Alexei Rivera <arivera@archeti.com> (migration to 15.0)
--  Saran Lim. saranl@ecosoft.co.th
+- Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+- Kitti U. <kittiu@ecosoft.co.th>
+- Alexei Rivera <arivera@archeti.com> (migration to 15.0)
+- Saran Lim. saranl@ecosoft.co.th
 
 Maintainers
 -----------

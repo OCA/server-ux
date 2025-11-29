@@ -36,8 +36,8 @@ class SaleTest(models.Model):
 
     @api.depends("line_ids")
     def _compute_amount_total(self):
+        self.amount_total = 0
         for record in self:
-            record.amount_total = 0  # Initialize to 0
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
 

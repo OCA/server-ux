@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class BaseSubstateMixin(models.AbstractModel):
@@ -18,11 +19,8 @@ class BaseSubstateMixin(models.AbstractModel):
             if rec.substate_id and rec.state != target_state:
                 raise ValidationError(
                     self.env._(
-                        (
-                            "Substate %(substate_name)s not defined "
-                            "for state %(state_name)s ",
-                            "but for %(target_state_name)s",
-                        ),
+                        "Substate %(substate_name)s not defined for "
+                        "state %(state_name)s but for %(target_state_name)s",
                         substate_name=rec.substate_id.name,
                         state_name=rec_states[rec.state],
                         target_state_name=rec_states[target_state],
@@ -50,10 +48,9 @@ class BaseSubstateMixin(models.AbstractModel):
         if self and not state_val and state_field in self._fields:
             state_val = self[state_field]
 
-        domain = [
-            ("target_state_value_id.target_state_value", "=", state_val),
-            ("target_state_value_id.base_substate_type_id", "=", substate_type.id),
-        ]
+        domain = Domain(
+            "target_state_value_id.target_state_value", "=", state_val
+        ) & Domain("target_state_value_id.base_substate_type_id", "=", substate_type.id)
         return domain
 
     def _get_default_state_value(self):
@@ -63,7 +60,7 @@ class BaseSubstateMixin(models.AbstractModel):
     def _get_substate_type(self):
         """Override this method to change substate_type (get by xml id for example)"""
         return self.env["base.substate.type"].search(
-            [("model", "=", self._name)], limit=1
+            Domain("model", "=", self._name), limit=1
         )
 
     substate_id = fields.Many2one(
@@ -72,7 +69,7 @@ class BaseSubstateMixin(models.AbstractModel):
         ondelete="restrict",
         default=lambda self: self._get_default_substate_id(),
         index=True,
-        domain=lambda self: [("model", "=", self._name)],
+        domain=lambda self: Domain("model", "=", self._name),
         copy=False,
         tracking=True,
     )
