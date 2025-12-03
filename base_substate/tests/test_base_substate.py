@@ -12,7 +12,6 @@ class TestBaseSubstate(CommonBaseSubstate):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
         cls.substate_type = cls.env["base.substate.type"]
         cls.base_substate = cls.env["base.substate"]
 
@@ -86,13 +85,18 @@ class TestBaseSubstate(CommonBaseSubstate):
                 "target_state_value_id": cls.substate_val_sale.id,
             }
         )
+        cls.test_partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "email": "test@test.com",
+            }
+        )
 
     def test_sale_order_substate(self):
-        partner = self.env.ref("base.res_partner_1")
         so_test1 = self.sale_test_model.create(
             {
                 "name": "Test base substate to basic sale",
-                "partner_id": partner.id,
+                "partner_id": self.test_partner.id,
                 "line_ids": [
                     Command.create({"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
@@ -116,3 +120,56 @@ class TestBaseSubstate(CommonBaseSubstate):
         so_test1.button_cancel()
         self.assertTrue(so_test1.state == "cancel")
         self.assertTrue(not so_test1.substate_id)
+
+    def test_constrain_substate_mismatch(self):
+        """Test function when substate does not belong to current state."""
+        so_test2 = self.sale_test_model.create(
+            {
+                "name": "Test base substate to basic sale",
+                "partner_id": self.test_partner.id,
+                "line_ids": [
+                    Command.create({"name": "line test 2", "amount": 120.0, "qty": 1.5})
+                ],
+            }
+        )
+        self.assertTrue(so_test2.state == "draft")
+        self.assertTrue(so_test2.substate_id == self.substate_under_negotiation)
+
+        so_test2.write({"state": "sale"})
+        so_test2.write({"substate_id": self.substate_wait_docs.id})
+        self.assertTrue(so_test2.substate_id == self.substate_wait_docs)
+
+    def test_write_triggers_default_substate(self):
+        """state field automatically sets the default substate."""
+        so = self.sale_test_model.create(
+            {
+                "name": "Test Auto Substate on Write",
+                "partner_id": self.test_partner.id,
+                "line_ids": [
+                    Command.create({"name": "line test 3", "amount": 230.0, "qty": 3})
+                ],
+            }
+        )
+        self.assertTrue(so.state == "draft")
+        self.assertTrue(so.substate_id == self.substate_under_negotiation)
+
+        so.write({"state": "sale"})
+
+        self.assertTrue(so.state == "sale")
+        self.assertTrue(so.substate_id == self.substate_wait_docs)
+
+    def test_create_with_explicit_substate(self):
+        """Create with explicit substate."""
+        so = self.sale_test_model.create(
+            {
+                "name": "Test Explicit Substate",
+                "partner_id": self.test_partner.id,
+                "line_ids": [
+                    Command.create({"name": "line test 4", "amount": 230.0, "qty": 2})
+                ],
+                "substate_id": self.substate_won.id,
+            }
+        )
+        self.assertTrue(so.state == "draft")
+        self.assertTrue(so.substate_id == self.substate_won)
+        self.assertNotIn(self.mail_template.subject, so.message_ids.mapped("subject"))

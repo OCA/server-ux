@@ -1,5 +1,6 @@
 # Copyright 2020 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2025 OERP Canada <https://www.oerp.ca>
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -16,13 +17,15 @@ class BaseSubstateMixin(models.AbstractModel):
         for rec in self:
             target_state = rec.substate_id.target_state_value_id.target_state_value
             if rec.substate_id and rec.state != target_state:
-                raise ValidationError(
-                    self.env._(
-                        f"The substate {rec.substate_id.name} is not defined for"
-                        f"the state {rec_states[rec.state]} but for "
-                        f"{rec_states[target_state]}"
-                    )
+                error_msg = self.env._(
+                    "The substate %(substate)s is not defined for "
+                    "the state %(current_state)s but for "
+                    "%(target_state)s",
+                    substate=rec.substate_id.name,
+                    current_state=rec_states[rec.state],
+                    target_state=rec_states[target_state],
                 )
+                raise ValidationError(error_msg)
 
     def _get_default_substate_id(self, state_val=False):
         """Gives default substate_id"""
@@ -76,10 +79,12 @@ class BaseSubstateMixin(models.AbstractModel):
     def check_substate_id_consistency(self):
         for mixin_obj in self:
             if mixin_obj.substate_id and mixin_obj.substate_id.model != self._name:
-                raise ValidationError(
-                    self.env._("This substate is not define for this object but for %s")
-                    % mixin_obj.substate_id.model
+                error_msg = self.env._(
+                    "This substate is not define for this object but for"
+                    "%(substate_model)s",
+                    substate_model=mixin_obj.substate_id.model,
                 )
+                raise ValidationError(error_msg)
 
     def _update_before_write_create(self, values):
         substate_type = self._get_substate_type()

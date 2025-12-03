@@ -2,3 +2,4 @@
 - Kitti U. \<<kittiu@ecosoft.co.th>\>
 - Alexei Rivera \<<arivera@archeti.com>\> (migration to 15.0)
 - Saran Lim. <saranl@ecosoft.co.th>
+- Nishi Patel <np@oerp.ca>
