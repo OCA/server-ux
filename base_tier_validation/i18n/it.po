@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-11-06 13:42+0000\n"
+"PO-Revision-Date: 2025-07-23 14:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -369,8 +369,8 @@ msgid ""
 "If set, all possible reviewers will be notified by email when this "
 "definition is triggered."
 msgstr ""
-"Se impostata, tutti i possibili revisori saranno avvisati via e-mail quando "
-"la definizione è attivata."
+"Se impostato, tutti i possibili approvatori saranno notificati via email "
+"quando la definizione è attivata."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__notify_on_pending
@@ -690,6 +690,12 @@ msgstr "L'approvazione è stata riavviata da %s."
 
 #. module: base_tier_validation
 #. odoo-python
+#: code:addons/base_tier_validation/models/tier_review.py:0
+msgid "There are no res.users in the selected field"
+msgstr "Non ci sono res.users nel campo selezionato"
+
+#. module: base_tier_validation
+#. odoo-python
 #: code:addons/base_tier_validation/models/tier_validation.py:0
 msgid ""
 "This action needs to be validated for at least one record. Reviews pending:\n"
@@ -853,12 +859,6 @@ msgid "Validation Status"
 msgstr "Stato validazione"
 
 #. module: base_tier_validation
-#. odoo-python
-#: code:addons/base_tier_validation/models/tier_review.py:0
-msgid "Validation reviewer field should be of the appropriate type"
-msgstr "Il campo del revisore di convalida deve essere del tipo appropriato"
-
-#. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__review_ids
 msgid "Validations"
 msgstr "Validazioni"
@@ -930,9 +930,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
 msgid "e.g. Tier Validation for..."
 msgstr "es. Validazione livello per ..."
-
-#~ msgid "There are no res.users in the selected field"
-#~ msgstr "Non ci sono res.users nel campo selezionato"
 
 #, python-format
 #~ msgid "Activity"

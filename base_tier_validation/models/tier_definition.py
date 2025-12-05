@@ -120,12 +120,7 @@ class TierDefinition(models.Model):
         IrModelFields = self.env["ir.model.fields"].sudo()
         valid_reviewer_fields = dict(
             IrModelFields._read_group(
-                domain=[
-                    ("model", "in", models),
-                    "|",
-                    ("relation", "=", "res.users"),
-                    ("relation", "=", "res.groups"),
-                ],
+                domain=[("model", "in", models), ("relation", "=", "res.users")],
                 groupby=["model"],
                 aggregates=["id:array_agg"],
             )

@@ -38,7 +38,7 @@ class TierValidation(models.AbstractModel):
         inverse_name="res_id",
         string="Validations",
         domain=lambda self: [("model", "=", self._name)],
-        auto_join=True,
+        bypass_search_access=True,
     )
     # TODO: Delete in v19 in favor of validation_status field
     validated = fields.Boolean(
@@ -250,7 +250,7 @@ class TierValidation(models.AbstractModel):
 
     def _compute_need_validation(self):
         for rec in self:
-            if isinstance(rec.id, models.NewId):
+            if not isinstance(rec.id, int):
                 rec.need_validation = False
                 continue
             tiers = (
@@ -286,7 +286,7 @@ class TierValidation(models.AbstractModel):
                     ("model_name", "=", self._name),
                     ("company_id", "in", [False] + self._get_company().ids),
                     "|",
-                    ("group_ids", "in", self.env.user.groups_id.ids),
+                    ("group_ids", "in", self.env.user.all_group_ids.ids),
                     ("group_ids", "=", False),
                     *(extra_domain or []),
                 ]
@@ -439,7 +439,7 @@ class TierValidation(models.AbstractModel):
                 rec.review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
-                and not rec._context.get("skip_validation_check")
+                and not rec.env.context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,

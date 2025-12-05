@@ -1,8 +1,6 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo import Command
 from odoo.tests import new_test_user
 
@@ -12,49 +10,45 @@ from odoo.addons.base.tests.common import BaseCommon
 class CommonTierValidation(BaseCommon):
     @classmethod
     def setUpClass(cls):
+        Partner = cls.env["res.partner"].__class__
+        original_create = Partner.create
+
+        def new_create(self, vals_list):
+            for vals in vals_list:
+                if "autopost_bills" not in vals:
+                    vals["autopost_bills"] = "always"
+            return original_create(self, vals_list)
+
+        Partner.create = new_create
+
         super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .tier_validation_tester import (
-            TierDefinition,
-            TierValidationTester,
-            TierValidationTester2,
-            TierValidationTesterComputed,
+        cls.test_model = cls.env["tier.validation.tester"].create({"test_field": 1.0})
+        cls.test_model2 = cls.env["tier.validation.tester2"].create({"test_field": 1.0})
+        cls.test_model_computed = cls.env["tier.validation.tester.computed"].create(
+            {"test_field": 1.0}
         )
-
-        cls.loader.update_registry(
-            (
-                TierValidationTester,
-                TierValidationTester2,
-                TierValidationTesterComputed,
-                TierDefinition,
-            )
-        )
-
-        cls.test_model = cls.env[TierValidationTester._name]
-        cls.test_model_2 = cls.env[TierValidationTester2._name]
-        cls.test_model_computed = cls.env[TierValidationTesterComputed._name]
 
         cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
         )
-        cls.tester_model_2 = cls.env["ir.model"].search(
+        cls.tester_model2 = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester2")]
         )
+        cls.tester_model_2 = cls.tester_model2
         cls.tester_model_computed = cls.env["ir.model"].search(
             [("model", "=", "tier.validation.tester.computed")]
         )
         # Create a multi-company
         cls.main_company = cls.env.ref("base.main_company")
-        cls.other_company = cls.env["res.company"].create({"name": "My Company"})
-
-        models = (
-            cls.tester_model,
-            cls.tester_model_2,
-            cls.tester_model_computed,
+        cls.other_company = cls.env["res.company"].create(
+            {"name": "Test Company Tier Validation"}
         )
-        for model in models:
-            # Access record:
+
+        for model in (
+            cls.tester_model,
+            cls.tester_model2,
+            cls.tester_model_computed,
+        ):
             cls.env["ir.model.access"].create(
                 {
                     "name": f"access {model.name}",
@@ -87,19 +81,15 @@ class CommonTierValidation(BaseCommon):
         cls.test_user_1 = new_test_user(
             cls.env, name="John", login="test1", groups="base.group_system"
         )
-        cls.test_user_2 = new_test_user(cls.env, name="Mike", login="test2")
+        cls.test_user_2 = new_test_user(
+            cls.env, name="Mike", login="test2", groups="base.group_system"
+        )
+
         cls.test_user_3_multi_company = new_test_user(
             cls.env,
             name="Jane",
             login="test3",
             company_ids=[Command.set([cls.main_company.id, cls.other_company.id])],
-        )
-        # Create groups
-        cls.test_group = cls.env["res.groups"].create(
-            {
-                "name": "TestGroup",
-                "users": [(4, cls.test_user_1.id), (4, cls.test_user_2.id)],
-            }
         )
         # Create tier definitions:
         cls.tier_def_obj = cls.env["tier.definition"]
@@ -172,7 +162,7 @@ class CommonTierValidation(BaseCommon):
         # Main company tier definition
         cls.tier_def_obj.create(
             {
-                "model_id": cls.tester_model_2.id,
+                "model_id": cls.tester_model2.id,
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_1.id,
                 "definition_domain": "[('test_field', '>=', 1.0)]",
@@ -185,7 +175,7 @@ class CommonTierValidation(BaseCommon):
         )
         cls.tier_def_obj.create(
             {
-                "model_id": cls.tester_model_2.id,
+                "model_id": cls.tester_model2.id,
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_3_multi_company.id,
                 "definition_domain": "[('test_field', '>=', 1.0)]",
@@ -199,19 +189,14 @@ class CommonTierValidation(BaseCommon):
         # Other company tier definition
         cls.tier_def_obj.create(
             {
-                "model_id": cls.tester_model_2.id,
+                "model_id": cls.tester_model2.id,
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_3_multi_company.id,
                 "definition_domain": "[('test_field', '>=', 1.0)]",
                 "approve_sequence": True,
                 "notify_on_pending": False,
                 "sequence": 30,
-                "name": "Definition for test 30 - sequence - user 3 - other company",
+                "name": "Definition for test 30 - sequence - user 3 - oter company",
                 "company_id": cls.other_company.id,
             }
         )
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
