@@ -8,6 +8,13 @@
                 <field name="name" />
                 <field name="report_id" />
                 <field name="template_id" readonly="report_id != False" />
+                <field name="report_model" invisible="1" />
+                <field
+                    name="domain"
+                    readonly="report_id == False"
+                    widget="domain"
+                    options="{'model': 'report_model'}"
+                />
                 <field name="lang" column_invisible="not context.get('multi_lang')" />
                 <field name="content_from" />
                 <field name="content_to" />

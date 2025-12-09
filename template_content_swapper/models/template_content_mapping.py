@@ -15,6 +15,7 @@ class TemplateContentMapping(models.Model):
 
     name = fields.Char(compute="_compute_name", store=True, readonly=True)
     report_id = fields.Many2one("ir.actions.report")
+    report_model = fields.Char(related="report_id.model")
     template_id = fields.Many2one(
         "ir.ui.view",
         domain=[("type", "=", "qweb")],
@@ -24,6 +25,11 @@ class TemplateContentMapping(models.Model):
         readonly=False,
         precompute=True,
         help="Select the main template of the report / frontend page to be modified.",
+    )
+    domain = fields.Char(
+        help="Optional domain on the report records. The mapping is applied "
+        "only if the record in the report matches this domain. "
+        "Example: [('partner_id', '=', 1)]",
     )
     lang = fields.Selection(
         _lang_get,
