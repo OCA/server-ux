@@ -1,0 +1,1 @@
+This module allows you to define the fields that cannot be edited during a validation.
