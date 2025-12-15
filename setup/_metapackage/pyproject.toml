@@ -1,10 +1,11 @@
 [project]
 name = "odoo-addons-oca-server-ux"
-version = "18.0.20250827.0"
+version = "18.0.20251120.0"
 dependencies = [
     "odoo-addon-announcement==18.0.*",
     "odoo-addon-barcode_action==18.0.*",
     "odoo-addon-base_cancel_confirm==18.0.*",
+    "odoo-addon-base_custom_filter==18.0.*",
     "odoo-addon-base_export_manager==18.0.*",
     "odoo-addon-base_import_security_group==18.0.*",
     "odoo-addon-base_menu_visibility_restriction==18.0.*",
@@ -23,6 +24,7 @@ dependencies = [
     "odoo-addon-default_multi_user==18.0.*",
     "odoo-addon-developer_menu==18.0.*",
     "odoo-addon-document_quick_access==18.0.*",
+    "odoo-addon-document_quick_access_folder_auto_classification==18.0.*",
     "odoo-addon-filter_multi_user==18.0.*",
     "odoo-addon-mail_message_destiny_link_template==18.0.*",
     "odoo-addon-multi_step_wizard==18.0.*",
