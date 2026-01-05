@@ -12,7 +12,11 @@ class MassEditingLine(models.Model):
 
     sequence = fields.Integer()
 
-    mass_editing_id = fields.Many2one(comodel_name="mass.editing")
+    mass_editing_id = fields.Many2one(
+        comodel_name="mass.editing",
+        ondelete="cascade",
+        required=True,
+    )
 
     model_id = fields.Many2one(
         comodel_name="ir.model", related="mass_editing_id.model_id"
