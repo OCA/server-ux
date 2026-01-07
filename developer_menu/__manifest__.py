@@ -14,6 +14,7 @@
     ],
     "data": [
         "views/menu_view.xml",
+        "views/ir_model_fields.xml",
     ],
     "installable": True,
 }
