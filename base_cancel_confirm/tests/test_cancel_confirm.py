@@ -1,8 +1,8 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
-from odoo_test_helper import FakeModelLoader
 
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import Form, common, tagged
 
 
@@ -12,11 +12,13 @@ class TestCancelConfirm(common.TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
         from .cancel_confirm_tester import CancelConfirmTester
 
-        cls.loader.update_registry((CancelConfirmTester,))
+        add_to_registry(cls.registry, CancelConfirmTester)
+        cls.registry._setup_models__(cls.env.cr, [CancelConfirmTester._name])
+        cls.registry.init_models(
+            cls.env.cr, [CancelConfirmTester._name], {"models_to_check": True}
+        )
         cls.test_model = cls.env[CancelConfirmTester._name]
         cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "cancel.confirm.tester")]
@@ -40,7 +42,7 @@ class TestCancelConfirm(common.TransactionCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.loader.restore_registry()
+        cls.addClassCleanup(cls.registry.__delitem__, "cancel.confirm.tester")
         return super().tearDownClass()
 
     def test_01_cancel_confirm_tester(self):
