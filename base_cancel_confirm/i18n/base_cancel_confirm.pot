@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -78,6 +78,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
 msgid "Display Name"
 msgstr ""
@@ -88,6 +89,7 @@ msgid "Has Cancel Reason"
 msgstr ""
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__id
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
 msgid "ID"
 msgstr ""
