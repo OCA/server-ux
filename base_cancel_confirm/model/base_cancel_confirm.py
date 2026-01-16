@@ -4,7 +4,7 @@ import inspect
 
 from lxml import etree
 
-from odoo import _, fields, models, tools
+from odoo import fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools.misc import frozendict
 
@@ -34,7 +34,7 @@ class BaseCancelConfirm(models.AbstractModel):
             return True
         if res not in ("True", "False"):
             raise ValidationError(
-                _("Configuration Error (%s), should be 'True' or 'False'") % key
+                self.env._("Configuration Error (%s), should be 'True' or 'False'", key)
             )
         return tools.str2bool(res)
 
