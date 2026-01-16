@@ -20,9 +20,9 @@ class CancelConfirm(models.TransientModel):
 
     def confirm_cancel(self):
         self.ensure_one()
-        res_model = self._context.get("cancel_res_model")
-        res_ids = self._context.get("cancel_res_ids")
-        cancel_method = self._context.get("cancel_method")
+        res_model = self.env.context.get("cancel_res_model")
+        res_ids = self.env.context.get("cancel_res_ids")
+        cancel_method = self.env.context.get("cancel_method")
         docs = self.env[res_model].browse(res_ids)
         docs.write({"cancel_confirm": True})
         # Cancel Reason
