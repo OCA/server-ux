@@ -30,19 +30,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
     <record id="mass_editing_user_line_5" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__country_id" />
+        <field name="field_id" ref="base.field_res_users__lang" />
     </record>
     <record id="mass_editing_user_line_6" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__is_company" />
+        <field name="field_id" ref="base.field_res_users__partner_id" />
     </record>
     <record id="mass_editing_user_line_7" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__lang" />
+        <field name="field_id" ref="base.field_res_users__signature" />
     </record>
     <record id="mass_editing_user_line_8" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__company_type" />
+        <field name="field_id" ref="base.field_res_users__tz" />
     </record>
     <record id="mass_editing_user_line_9" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
