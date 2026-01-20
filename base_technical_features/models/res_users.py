@@ -1,33 +1,30 @@
 # © 2016 Opener B.V. (<https://opener.am>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
-from odoo.exceptions import AccessError
-from odoo.tools.translate import _
+
+from odoo import Command, api, fields, models
 
 
 class ResUsers(models.Model):
     _inherit = "res.users"
 
     technical_features = fields.Boolean(
-        compute="_compute_technical_features", inverse="_inverse_technical_features"
-    )
-    show_technical_features = fields.Boolean(
-        string="Show field Technical Features",
-        compute="_compute_show_technical_features",
-        help=(
-            "Whether to display the technical features field in the user "
-            "preferences."
-        ),
+        compute="_compute_technical_features",
+        inverse="_inverse_technical_features",
+        help="Whether the user has technical features always enabled.",
     )
 
-    @api.depends("groups_id")
-    def _compute_show_technical_features(self):
-        """Only display the technical features checkbox in the user
-        preferences if the user has access to them"""
-        for user in self:
-            user.show_technical_features = user.has_group("base.group_no_one")
+    def has_group(self, group_ext_id: str) -> bool:
+        # OVERRIDE to forcefully enable debug mode through context key
+        self.ensure_one()
+        if (
+            group_ext_id == "base.group_no_one"
+            and self.env.context.get("force_debug_mode")
+            and self.technical_features
+        ):
+            return True
+        return super().has_group(group_ext_id)
 
-    @api.depends("groups_id")
+    @api.depends("group_ids")
     def _compute_technical_features(self):
         for user in self:
             user.technical_features = user.has_group(
@@ -35,25 +32,16 @@ class ResUsers(models.Model):
             )
 
     def _inverse_technical_features(self):
-        """Map boolean field value to group membership, but checking
-        access"""
+        """Map boolean field value to group membership"""
         group = self.env.ref("base_technical_features.group_technical_features")
-        for user in self:
-            if self.env.ref("base.group_no_one") not in user.groups_id:
-                raise AccessError(
-                    _("The user does not have access to technical " "features.")
-                )
-        if user.technical_features:
-            self.sudo().write({"groups_id": [(4, group.id)]})
-        else:
-            self.sudo().write({"groups_id": [(3, group.id)]})
+        if to_add := self.filtered("technical_features"):
+            to_add.sudo().write({"group_ids": [Command.link(group.id)]})
+        if to_remove := self - to_add:
+            to_remove.sudo().write({"group_ids": [Command.unlink(group.id)]})
 
     @property
     def SELF_READABLE_FIELDS(self):
-        return super().SELF_READABLE_FIELDS + [
-            "technical_features",
-            "show_technical_features",
-        ]
+        return super().SELF_READABLE_FIELDS + ["technical_features"]
 
     @property
     def SELF_WRITEABLE_FIELDS(self):

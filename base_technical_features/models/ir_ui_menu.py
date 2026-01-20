@@ -8,10 +8,8 @@ class IrUiMenu(models.Model):
 
     @api.model
     def _visible_menu_ids(self, debug=False):
-        """Set debug = True, so that group_no_one is not filtered out of the
-        user's groups"""
-        if not debug:
-            debug = self.env.user.has_group(
-                "base_technical_features.group_technical_features"
-            )
+        # OVERRIDE to view menus typically shown in debug mode, when technical features
+        # are enabled in the user preferences.
+        if not debug and self.env.user.technical_features:
+            debug = True
         return super()._visible_menu_ids(debug=debug)

@@ -3,3 +3,4 @@
 - Jim Hoefnagels \<<jim.hoefnagels@dynapps.be>\>
 - Khoi (Kien Kim) \<<khoikk@trobz.com>\>
 - Tris Doan \<<tridm@trobz.com>\>
+- Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
