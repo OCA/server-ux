@@ -22,11 +22,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
     <record id="mass_editing_user_line_3" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__category_id" />
+        <field name="field_id" ref="base.field_res_users__company_id" />
     </record>
     <record id="mass_editing_user_line_4" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__comment" />
+        <field name="field_id" ref="base.field_res_users__active" />
     </record>
     <record id="mass_editing_user_line_5" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
@@ -40,18 +40,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="server_action_id" ref="mass_editing_user" />
         <field name="field_id" ref="base.field_res_users__lang" />
     </record>
-    <record id="mass_editing_user_line_9" model="ir.actions.server.mass.edit.line">
+    <record id="mass_editing_user_line_8" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
         <field name="field_id" ref="base.field_res_users__company_type" />
     </record>
-    <record id="mass_editing_user_line_10" model="ir.actions.server.mass.edit.line">
+    <record id="mass_editing_user_line_9" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
         <field name="field_id" ref="base.field_res_users__image_1920" />
         <field name="widget_option">image</field>
     </record>
-    <record id="mass_editing_user_line_11" model="ir.actions.server.mass.edit.line">
+    <record id="mass_editing_user_line_10" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__bank_ids" />
+        <field name="field_id" ref="base.field_res_users__login" />
     </record>
 
     <!-- Mass Edit Country -->
