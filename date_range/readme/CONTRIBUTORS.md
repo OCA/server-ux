@@ -6,5 +6,3 @@
 - David Ramia \<<@ramiadavid>\>
 - Son Ho \<<sonhd@trobz.com>\>
 - Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>
-- Andrii Kompaniiets \<<andrii@moduon.team>\>
-- Rafael Blasco \<<rblasco@moduon.team>\>

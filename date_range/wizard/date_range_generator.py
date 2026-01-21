@@ -6,7 +6,7 @@ import logging
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
 
-from odoo import Command, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -232,7 +232,7 @@ class DateRangeGenerator(models.TransientModel):
                     "date_start": date_start,
                     "date_end": date_end,
                     "type_id": self.type_id.id,
-                    "company_ids": [Command.set(self.company_id.ids)],
+                    "company_id": self.company_id.id,
                 }
             )
         return date_ranges

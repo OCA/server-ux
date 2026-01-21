@@ -11,7 +11,7 @@
         <field name="name">Date Range multi-company</field>
         <field name="model_id" ref="model_date_range" />
         <field name="domain_force">
-            ['|',('company_ids', 'in', company_ids),('company_ids','=',False)]
+            ['|',('company_id', 'in', company_ids),('company_id','=',False)]
         </field>
     </record>
 </odoo>

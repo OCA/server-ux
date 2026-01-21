@@ -3,7 +3,6 @@
 
 import datetime
 
-from odoo import Command
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -37,7 +36,7 @@ class DateRangeTest(TransactionCase):
                 "type_id": self.type.id,
             }
         )
-        self.assertTrue(dr.company_ids)
+        self.assertTrue(dr.company_id)
         # you can specify company_id to False
         dr = self.date_range.create(
             {
@@ -45,10 +44,10 @@ class DateRangeTest(TransactionCase):
                 "date_start": "2015-01-01",
                 "date_end": "2016-12-31",
                 "type_id": self.type.id,
-                "company_ids": False,
+                "company_id": False,
             }
         )
-        self.assertFalse(dr.company_ids)
+        self.assertFalse(dr.company_id)
 
     def test_empty_company(self):
         dr = self.date_range.create(
@@ -57,7 +56,7 @@ class DateRangeTest(TransactionCase):
                 "date_start": "2015-01-01",
                 "date_end": "2016-12-31",
                 "type_id": self.type.id,
-                "company_ids": None,
+                "company_id": None,
             }
         )
         self.assertEqual(dr.name, "FS2016")
@@ -136,6 +135,6 @@ class DateRangeTest(TransactionCase):
                     "date_start": "2015-01-01",
                     "date_end": "2016-12-31",
                     "type_id": self.typeB.id,
-                    "company_ids": [Command.set(self.company_2.ids)],
+                    "company_id": self.company_2.id,
                 }
             )

@@ -84,8 +84,8 @@ class DateRangeType(models.Model):
                     continue
                 if bool(
                     rec.date_range_ids.filtered(
-                        lambda r, drt=rec: r.company_ids
-                        and drt.company_id not in r.company_ids
+                        lambda r, drt=rec: r.company_id
+                        and r.company_id != drt.company_id
                     )
                 ):
                     raise ValidationError(

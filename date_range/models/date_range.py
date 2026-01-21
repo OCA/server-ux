@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 class DateRange(models.Model):
@@ -26,9 +26,10 @@ class DateRange(models.Model):
         ondelete="restrict",
         check_company=True,
     )
-    company_ids = fields.Many2many(
-        "res.company",
-        string="Companies",
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        index=True,
         default=_default_company,
     )
     active = fields.Boolean(
@@ -39,6 +40,14 @@ class DateRange(models.Model):
         store=True,
     )
 
+    _sql_constraints = [
+        (
+            "date_range_uniq",
+            "unique (name,type_id, company_id)",
+            "A date range must be unique per company !",
+        )
+    ]
+
     @api.depends("type_id.active")
     def _compute_active(self):
         for date in self:
@@ -47,7 +56,7 @@ class DateRange(models.Model):
             else:
                 date.active = False
 
-    @api.constrains("type_id", "date_start", "date_end", "company_ids")
+    @api.constrains("type_id", "date_start", "date_end", "company_id")
     def _validate_range(self):
         for this in self:
             if this.date_start > this.date_end:
@@ -64,19 +73,6 @@ class DateRange(models.Model):
                 )
             if this.type_id.allow_overlap:
                 continue
-            if (
-                this.type_id.company_id
-                and this.type_id.company_id not in this.company_ids
-            ):
-                raise UserError(
-                    self.env._(
-                        "The Date Range Type %(drt_name)s assigned to other "
-                        "company, you can't change the company in "
-                        "Date Range %(dt_name)s",
-                        drt_name=this.type_id.name,
-                        dt_name=this.name,
-                    )
-                )
             # here we use a plain SQL query to benefit of the daterange
             # function available in PostgresSQL
             # (http://www.postgresql.org/docs/current/static/rangetypes.html)
@@ -85,14 +81,12 @@ class DateRange(models.Model):
                     id
                 FROM
                     date_range dt
-                INNER JOIN date_range_res_company_rel as rc
-                ON dt.id = rc.date_range_id
                 WHERE
                     DATERANGE(dt.date_start, dt.date_end, '[]') &&
                         DATERANGE(%s::date, %s::date, '[]')
                     AND dt.id != %s
                     AND dt.active
-                    AND rc.res_company_id = ANY(%s)
+                    AND dt.company_id = %s
                     AND dt.type_id=%s;"""
             self.env.cr.execute(
                 SQL,
@@ -100,19 +94,16 @@ class DateRange(models.Model):
                     this.date_start,
                     this.date_end,
                     this.id,
-                    this.company_ids.ids,
+                    this.company_id.id or None,
                     this.type_id.id,
                 ),
             )
             res = self.env.cr.fetchall()
             if res:
-                date_ranges = self.browse(res[0])
+                dt = self.browse(res[0][0])
                 raise ValidationError(
-                    self.env._(
-                        "%(thisname)s overlaps %(dtnames)s",
-                        thisname=this.name,
-                        dtnames=", ".join(date_ranges.mapped("name")),
-                    )
+                    self.env._("%(thisname)s overlaps %(dtname)s")
+                    % {"thisname": this.name, "dtname": dt.name}
                 )
 
     def get_domain(self, field_name):
