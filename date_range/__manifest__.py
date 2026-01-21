@@ -9,7 +9,7 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "installable": True,
-    "depends": ["web"],
+    "depends": ["web", "base_multi_company"],
     "data": [
         "data/ir_cron_data.xml",
         "security/ir.model.access.csv",

@@ -7,6 +7,7 @@ from odoo.exceptions import UserError, ValidationError
 
 class DateRange(models.Model):
     _name = "date.range"
+    _inherit = "multi.company.abstract"
     _description = "Date Range"
     _order = "type_id, date_start"
     _check_company_auto = True
