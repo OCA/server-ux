@@ -40,6 +40,10 @@ class TierValidation(models.AbstractModel):
         domain=lambda self: [("model", "=", self._name)],
         auto_join=True,
     )
+    current_review_ids = fields.Many2many(
+        comodel_name="tier.review",
+        compute="_compute_current_review_ids",
+    )
     # TODO: Delete in v19 in favor of validation_status field
     validated = fields.Boolean(
         compute="_compute_validated_rejected", search="_search_validated"
@@ -82,7 +86,7 @@ class TierValidation(models.AbstractModel):
 
     def _compute_has_comment(self):
         for rec in self:
-            has_comment = rec.review_ids.filtered(
+            has_comment = rec.current_review_ids.filtered(
                 lambda r: r.status in ("waiting", "pending")
                 and self.env.user in r.reviewer_ids
             ).mapped("has_comment")
@@ -105,6 +109,30 @@ class TierValidation(models.AbstractModel):
             if my_sequence <= min_sequence:
                 sequences.append(my_sequence)
         return sequences
+
+    def _get_valid_definitions(self):
+        self.ensure_one()
+        tiers = (
+            self.env["tier.definition"]
+            .with_context(active_test=True)
+            .search(
+                [
+                    ("model", "=", self._name),
+                    ("company_id", "in", [False] + self._get_company().ids),
+                ]
+            )
+        )
+        return [tier for tier in tiers if self.evaluate_tier(tier)]
+
+    def _get_current_reviews(self, tiers=None):
+        if tiers:
+            valid_tiers = tiers
+        else:
+            valid_tiers = self._get_valid_definitions()
+        valid_reviews = self.review_ids.filtered(
+            lambda r: r.definition_id in valid_tiers
+        )
+        return valid_reviews
 
     @api.depends_context("uid")
     @api.depends("review_ids.status")
@@ -131,6 +159,11 @@ class TierValidation(models.AbstractModel):
             rec.reviewer_ids = rec.review_ids.filtered(
                 lambda r: r.status in ("waiting", "pending")
             ).mapped("reviewer_ids")
+
+    @api.depends(lambda self: [self._state_field])
+    def _compute_current_review_ids(self):
+        for rec in self:
+            rec.current_review_ids = rec._get_current_reviews()
 
     # TODO: delete in 19.0 migration in favor of validation_status field
     @api.model
@@ -221,7 +254,7 @@ class TierValidation(models.AbstractModel):
         validated_states = self._validated_states()
         rejected_states = self._rejected_states()
         for item in self:
-            reviews = item.review_ids
+            reviews = item._get_current_reviews()
             any_rejected = any(reviews.filtered(lambda x: x.status in rejected_states))
             any_pending = any(reviews.filtered(lambda x: x.status == "pending"))
             any_waiting = any(item.review_ids.filtered(lambda x: x.status == "waiting"))
@@ -252,19 +285,10 @@ class TierValidation(models.AbstractModel):
             if isinstance(rec.id, models.NewId):
                 rec.need_validation = False
                 continue
-            tiers = (
-                self.env["tier.definition"]
-                .with_context(active_test=True)
-                .search(
-                    [
-                        ("model", "=", self._name),
-                        ("company_id", "in", [False] + rec._get_company().ids),
-                    ]
-                )
-            )
-            valid_tiers = any([rec.evaluate_tier(tier) for tier in tiers])
+            valid_tiers = rec._get_valid_definitions()
+            valid_reviews = rec._get_current_reviews(tiers=valid_tiers)
             rec.need_validation = (
-                not rec.review_ids and valid_tiers and rec._check_state_from_condition()
+                not valid_reviews and valid_tiers and rec._check_state_from_condition()
             )
 
     def evaluate_tier(self, tier):
@@ -325,7 +349,9 @@ class TierValidation(models.AbstractModel):
         or for reviewers for all fields, even when the record is under
         validation."""
         if (
-            all(self.review_ids.mapped("definition_id.allow_write_for_reviewer"))
+            all(
+                self.current_review_ids.mapped("definition_id.allow_write_for_reviewer")
+            )
             and self.env.user in self.reviewer_ids
         ):
             return True
@@ -427,7 +453,7 @@ class TierValidation(models.AbstractModel):
                                 "\n - ".join(pending_reviews),
                             )
                         )
-                if rec.review_ids and rec.validation_status != "validated":
+                if rec.current_review_ids and rec.validation_status != "validated":
                     raise ValidationError(
                         self.env._(
                             "A validation process is still open for at least "
@@ -439,7 +465,7 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             # Write under validation
             if (
-                rec.review_ids
+                rec.current_review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
                 and not rec._context.get("skip_validation_check")
@@ -644,14 +670,14 @@ class TierValidation(models.AbstractModel):
     def reject_tier(self):
         self.ensure_one()
         sequences = self._get_sequences_to_approve(self.env.user)
-        reviews = self.review_ids.filtered(lambda x: x.sequence in sequences)
+        reviews = self.current_review_ids.filtered(lambda x: x.sequence in sequences)
         if self.has_comment:
             return self._add_comment("reject", reviews)
         self._rejected_tier(reviews)
         self._update_counter({"review_deleted": True})
 
     def _notify_rejected_review_body(self):
-        has_comment = self.review_ids.filtered(
+        has_comment = self.current_review_ids.filtered(
             lambda r: (self.env.user in r.reviewer_ids) and r.comment
         )
         if has_comment:
@@ -674,7 +700,7 @@ class TierValidation(models.AbstractModel):
 
     def _rejected_tier(self, tiers=False):
         self.ensure_one()
-        tier_reviews = tiers or self.review_ids
+        tier_reviews = tiers or self.current_review_ids
         user_reviews = tier_reviews.filtered(
             lambda r: r.status in ("waiting", "pending")
             and self.env.user in r.reviewer_ids
@@ -771,23 +797,15 @@ class TierValidation(models.AbstractModel):
         return company_id
 
     def request_validation(self):
-        td_obj = self.env["tier.definition"]
         tr_obj = self.env["tier.review"]
         vals_list = []
         for rec in self:
             if rec._check_state_from_condition() and rec.need_validation:
-                tier_definitions = td_obj.search(
-                    [
-                        ("model", "=", self._name),
-                        ("company_id", "in", [False] + rec._get_company().ids),
-                    ],
-                    order="sequence desc",
-                )
-                sequence = 0
+                tier_definitions = self._get_valid_definitions()
+                sequence = len(rec.review_ids)
                 for td in tier_definitions:
-                    if rec.evaluate_tier(td):
-                        sequence += 1
-                        vals_list.append(rec._prepare_tier_review_vals(td, sequence))
+                    sequence += 1
+                    vals_list.append(rec._prepare_tier_review_vals(td, sequence))
         created_trs = tr_obj.create(vals_list)
         if any(self.mapped("can_review")):
             self._update_counter({"review_created": True})
@@ -816,7 +834,7 @@ class TierValidation(models.AbstractModel):
                     and True
                     or False
                 )
-                reviews_to_notify = rec.review_ids.filtered(
+                reviews_to_notify = rec.current_review_ids.filtered(
                     lambda r: r.definition_id.notify_on_restarted
                 )
                 if reviews_to_notify:
@@ -826,12 +844,12 @@ class TierValidation(models.AbstractModel):
                         .ids
                     )
                 can_review = rec.can_review
-                rec.mapped("review_ids").unlink()
+                rec._get_current_reviews().unlink()
                 if to_update_counter and can_review:
                     self._update_counter({"review_deleted": True})
             if partners_to_notify_ids:
                 subscribe = "message_subscribe"
-                reviews_to_notify = rec.review_ids.filtered(
+                reviews_to_notify = rec.current_review_ids.filtered(
                     lambda r: r.definition_id.notify_on_restarted
                 )
                 if hasattr(self, subscribe):

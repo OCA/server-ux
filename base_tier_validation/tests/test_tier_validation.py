@@ -1289,6 +1289,79 @@ class TierTierValidation(CommonTierValidation):
         # Review_ids should not be copied when duplicating a user
         self.assertFalse(new_user.review_ids.ids)
 
+    def test_35_test_tier_validation_multiple_reviews(self):
+        """Test that multiple reviews can be created and handled correctly"""
+        record = self.test_record_multiple_states
+        self.assertFalse(record.review_ids)
+        self.assertEqual(record.state, "draft")
+        self.assertEqual(record.validation_status, "no")
+
+        # User 2 request a validation to move from draft to in_progress
+        review = record.with_user(self.test_user_2.id).request_validation()
+        self.assertEqual(len(review), 1)
+        self.assertTrue(record.review_ids)
+        self.assertEqual(record.validation_status, "waiting")
+
+        # User 1 approve the review
+        record.with_user(self.test_user_1.id).validate_tier()
+        self.assertEqual(record.review_ids.status, "approved")
+        self.assertEqual(record.state, "draft")
+        self.assertEqual(record.validation_status, "validated")
+        record.invalidate_recordset()
+
+        # User 2 moves the record to in_progress
+        record.with_user(self.test_user_2.id).action_to_in_progress()
+        self.assertEqual(record.review_ids.status, "approved")
+        self.assertEqual(record.state, "in_progress")
+        record.invalidate_recordset()
+
+        # User 2 requests a new validation to move from in_progress to done
+        review = record.with_user(self.test_user_2.id).request_validation()
+        self.assertEqual(len(review), 1)
+        self.assertEqual(len(record.review_ids), 2)
+        self.assertEqual(record.validation_status, "waiting")
+
+        # User 1 rejects the review
+        record.with_user(self.test_user_1.id).reject_tier()
+        self.assertEqual(review.status, "rejected")
+        self.assertEqual(record.state, "in_progress")
+        self.assertEqual(record.validation_status, "rejected")
+        self.assertEqual(
+            len(record.review_ids.filtered(lambda r: r.status != "rejected")), 1
+        )
+        record.invalidate_recordset()
+
+        # User 2 restart and request the validation
+        record.with_user(self.test_user_2.id).restart_validation()
+        self.assertEqual(record.validation_status, "no")
+        record.with_user(self.test_user_2.id).request_validation()
+        self.assertEqual(record.validation_status, "waiting")
+        self.assertEqual(
+            len(record.review_ids.filtered(lambda r: r.status == "approved")), 1
+        )
+        self.assertEqual(
+            len(record.review_ids.filtered(lambda r: r.status == "waiting")), 1
+        )
+
+        # User 1 approves the review
+        record.with_user(self.test_user_1.id).validate_tier()
+        self.assertEqual(
+            len(record.review_ids.filtered(lambda r: r.status == "approved")), 2
+        )
+        self.assertEqual(record.state, "in_progress")
+        self.assertEqual(record.validation_status, "validated")
+        record.invalidate_recordset()
+
+        # User 2 moves the record to done
+        record.with_user(self.test_user_2.id).action_confirm()
+        self.assertEqual(record.state, "confirmed")
+        self.assertEqual(len(record.review_ids), 2)
+        self.assertEqual(
+            len(record.review_ids.filtered(lambda r: r.status == "approved")), 2
+        )
+        self.assertEqual(record.validation_status, "validated")
+        self.assertEqual(record.state, "confirmed")
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):
