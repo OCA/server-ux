@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -70,6 +70,7 @@ msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__display_name
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_mixin__display_name
 #: model:ir.model.fields,field_description:base_substate.field_base_substate_type__display_name
 #: model:ir.model.fields,field_description:base_substate.field_target_state_value__display_name
 msgid "Display Name"
@@ -87,6 +88,7 @@ msgstr ""
 
 #. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__id
+#: model:ir.model.fields,field_description:base_substate.field_base_substate_mixin__id
 #: model:ir.model.fields,field_description:base_substate.field_base_substate_type__id
 #: model:ir.model.fields,field_description:base_substate.field_target_state_value__id
 msgid "ID"
@@ -148,6 +150,14 @@ msgid "Sub State Type"
 msgstr ""
 
 #. module: base_substate
+#. odoo-python
+#: code:addons/base_substate/models/base_substate_mixin.py:0
+msgid ""
+"Substate %(substate_name)s not defined for state %(state_name)s but for "
+"%(target_state_name)s"
+msgstr ""
+
+#. module: base_substate
 #: model:ir.model.fields,field_description:base_substate.field_base_substate__name
 msgid "Substate Name"
 msgstr ""
@@ -160,6 +170,12 @@ msgstr ""
 #. module: base_substate
 #: model:res.groups,name:base_substate.group_substate_manager
 msgid "Substate manager"
+msgstr ""
+
+#. module: base_substate
+#. odoo-python
+#: code:addons/base_substate/models/base_substate_mixin.py:0
+msgid "Substate not for this object but for %(model_name)s"
 msgstr ""
 
 #. module: base_substate
