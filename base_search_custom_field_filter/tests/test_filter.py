@@ -104,8 +104,8 @@ class TestFilter(BaseCommon):
             }
         )
         res = self.env["res.partner"].get_views([], {})
-        self.assertIn("name", res["models"]["res.partner"])
-        self.assertFalse(res["models"]["res.partner"]["name"]["selectable"])
+        self.assertIn("name", res["models"]["res.partner"]["fields"])
+        self.assertFalse(res["models"]["res.partner"]["fields"]["name"]["selectable"])
 
     def test_06_invalid_related_field(self):
         with self.assertRaises(ValidationError):
