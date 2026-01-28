@@ -171,24 +171,37 @@ class IrExportsLine(models.Model):
 
     @api.model
     def _get_field_id(self, model, name):
-        """Get a field object from its model and name.
+        """
+        Get a field object from its model and name.
 
-        :param int model:
-            ``ir.model`` object that contains the field.
-
+        :param model:
+            ``ir.model`` record that contains the field.
         :param str name:
             Technical name of the field, like ``child_ids``.
         """
+        # Remove leading dot from .id field
+        search_name = name[1:] if name.startswith(".") else name
+
         field = (
             self.env["ir.model.fields"]
             .sudo()
-            .search([("name", "=", name), ("model_id", "=", model.id)])
+            .search(
+                [
+                    ("name", "=", search_name),
+                    ("model_id", "=", model.id),
+                ]
+            )
         )
+
         if not field.exists():
             raise exceptions.ValidationError(
                 _("Field '%(name)s' not found in model '%(model)s'")
-                % {"name": name, "model": model.model}
+                % {
+                    "name": name,
+                    "model": model.model,
+                }
             )
+
         return field
 
     def field_n(self, n, only_name=False):
