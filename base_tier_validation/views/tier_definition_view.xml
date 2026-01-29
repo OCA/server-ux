@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="tier_definition_view_tree" model="ir.ui.view">
         <field name="name">tier.definition.list</field>
@@ -139,7 +137,7 @@
                     name="all"
                     domain="[('active', 'in', (False, True))]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Model"
                         name="model_id"
