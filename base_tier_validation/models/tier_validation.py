@@ -169,21 +169,22 @@ class TierValidation(models.AbstractModel):
         return self._description
 
     def _get_to_validate_message(self):
-        return f"""<i class="fa fa-info-circle"></i> {self.env._(
-            "This %s needs to be validated",
-            self._get_to_validate_message_name()
-        )}"""
+        return f"""<i class="fa fa-info-circle"></i> {
+            self.env._(
+                "This %s needs to be validated", self._get_to_validate_message_name()
+            )
+        }"""
 
     def _get_validated_message(self):
-        msg = f"""<i class="fa fa-thumbs-up"></i> {self.env._(
-            "Operation has been <b>validated</b>!"
-        )}"""
+        msg = f"""<i class="fa fa-thumbs-up"></i> {
+            self.env._("Operation has been <b>validated</b>!")
+        }"""
         return self.validation_status == "validated" and msg or ""
 
     def _get_rejected_message(self):
-        msg = f"""<i class="fa fa-thumbs-down"></i> {self.env._(
-            "Operation has been <b>rejected</b>."
-        )}"""
+        msg = f"""<i class="fa fa-thumbs-down"></i> {
+            self.env._("Operation has been <b>rejected</b>.")
+        }"""
         return self.validation_status == "rejected" and msg or ""
 
     # TODO: delete in 19.0 migration in favor of validation_status field
