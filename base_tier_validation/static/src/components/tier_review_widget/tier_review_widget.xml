@@ -74,7 +74,7 @@
                                             <span t-out="review.sequence" />
                                         </td>
                                         <td name="td_requested_by" class="text-start">
-                                            <span t-out="review.requested_by[1]" />
+                                            <span t-out="review.requested_by.display_name" />
                                         </td>
                                         <td name="td_name" class="text-end">
                                             <span t-out="review.name" />
@@ -86,7 +86,7 @@
                                             <span t-out="review.todo_by" />
                                         </td>
                                         <td name="td_done_by" class="text-end">
-                                            <span t-out="review.done_by[1]" />
+                                            <span t-out="review.done_by.display_name" />
                                         </td>
                                         <td name="td_reviewed_date" class="text-end">
                                             <t t-if="review.reviewed_formated_date">
