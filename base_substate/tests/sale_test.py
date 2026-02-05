@@ -24,6 +24,8 @@ class SaleTest(models.Model):
         string="Status",
         readonly=True,
         default="draft",
+        compute="_compute_state",
+        store=True,
     )
     active = fields.Boolean(default=True)
     partner_id = fields.Many2one("res.partner", string="Partner")
@@ -48,6 +50,12 @@ class SaleTest(models.Model):
     def button_cancel(self):
         self.write({"state": "cancel"})
 
+    @api.depends("line_ids.done")
+    def _compute_state(self):
+        for record in self:
+            if record.line_ids and all(record.mapped("line_ids.done")):
+                record.state = "done"
+
 
 class LineTest(models.Model):
     _name = "base.substate.test.sale.line"
@@ -61,3 +69,7 @@ class LineTest(models.Model):
     )
     qty = fields.Float()
     amount = fields.Float()
+    done = fields.Boolean(default=False)
+
+    def button_done(self):
+        self.done = True

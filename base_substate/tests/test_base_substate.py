@@ -46,6 +46,15 @@ class TestBaseSubstate(CommonBaseSubstate):
                 "target_state_value": "sale",
             }
         )
+
+        cls.substate_val_done = cls.env["target.state.value"].create(
+            {
+                "name": "Done",
+                "base_substate_type_id": cls.sale_test_substate_type.id,
+                "target_state_value": "done",
+            }
+        )
+
         cls.substate_under_negotiation = cls.base_substate.create(
             {
                 "name": "Under negotiation",
@@ -87,6 +96,22 @@ class TestBaseSubstate(CommonBaseSubstate):
             }
         )
 
+        cls.substate_to_publish = cls.base_substate.create(
+            {
+                "name": "To publish",
+                "sequence": 5,
+                "target_state_value_id": cls.substate_val_done.id,
+            }
+        )
+
+        cls.substate_published = cls.base_substate.create(
+            {
+                "name": "Published",
+                "sequence": 6,
+                "target_state_value_id": cls.substate_val_done.id,
+            }
+        )
+
     def test_sale_order_substate(self):
         # Create a partner instead of using a potentially non-existent XML ID
         partner = self.env["res.partner"].create(
@@ -117,6 +142,16 @@ class TestBaseSubstate(CommonBaseSubstate):
         self.assertIn(
             self.mail_template.subject, so_test1.message_ids.mapped("subject")
         )
+        # Test that computation of sale order state change substate_id
+        so_test1.line_ids.button_done()
+        self.assertEqual(so_test1.state, "done")
+        self.assertEqual(so_test1.substate_id, self.substate_to_publish)
+        # If the state computation does not change its value,
+        # it should not change the substate
+        so_test1.substate_id = self.substate_published
+        so_test1.line_ids.button_done()  # Triggers the recomputation despite no change
+        self.assertEqual(so_test1.state, "done")
+        self.assertEqual(so_test1.substate_id, self.substate_published)
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
         so_test1.button_cancel()

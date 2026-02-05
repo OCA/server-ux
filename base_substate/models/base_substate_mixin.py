@@ -13,6 +13,8 @@ class BaseSubstateMixin(models.AbstractModel):
 
     @api.constrains("substate_id", _state_field)
     def check_substate_id_value(self):
+        if self.env.context.get("skip_substate_while_state_field_computation"):
+            return
         rec_states = dict(self._fields[self._state_field].selection)
         for rec in self:
             target_state = rec.substate_id.target_state_value_id.target_state_value
@@ -85,9 +87,12 @@ class BaseSubstateMixin(models.AbstractModel):
                     )
                 )
 
-    def _update_before_write_create(self, values):
+    def _get_state_field(self):
         substate_type = self._get_substate_type()
-        state_field = substate_type.target_state_field
+        return substate_type.target_state_field
+
+    def _update_before_write_create(self, values):
+        state_field = self._get_state_field()
         if values.get(state_field) and not values.get("substate_id"):
             state_val = values.get(state_field)
             values["substate_id"] = self._get_default_substate_id(state_val)
@@ -114,4 +119,22 @@ class BaseSubstateMixin(models.AbstractModel):
         for vals in vals_list:
             vals = self._update_before_write_create(vals)
         res = super().create(vals_list)
+        return res
+
+    def _compute_field_value(self, field):
+        # OVERRIDE: if ``_state_field`` is computed, it does not go through
+        # write method, so we need to set substate in _compute_field_value
+        state_field = self._get_state_field()
+        # Store former values for all records in the recordset
+        former_values = {rec.id: rec[state_field] for rec in self}
+        res = super(
+            BaseSubstateMixin,
+            self.with_context(skip_substate_while_state_field_computation=True),
+        )._compute_field_value(field)
+        # Update substate for records where state changed
+        if field.name == state_field:
+            for rec in self:
+                new_value = rec[state_field]
+                if former_values.get(rec.id) != new_value:
+                    rec.substate_id = rec._get_default_substate_id(new_value)
         return res
