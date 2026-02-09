@@ -2,20 +2,19 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 
 
 class IrUiCustomFilter(models.Model):
     _name = "ir.ui.custom.field.filter"
     _description = "Custom UI field filter"
     _order = "model_id, sequence, id"
-    _sql_constraints = [
-        (
-            "unique_model_expression",
-            "UNIQUE(model_id, expression)",
-            "A filter with the same expression already exists for this model.",
-        )
-    ]
+
+    _unique_model_expression = models.Constraint(
+        "UNIQUE(model_id, expression)",
+        "A filter with the same expression already exists for this model.",
+    )
 
     sequence = fields.Integer()
     model_id = fields.Many2one(
@@ -59,7 +58,7 @@ class IrUiCustomFilter(models.Model):
                 record._get_related_field()
             except KeyError as e:
                 raise exceptions.ValidationError(
-                    _("Incorrect expression: %s.") % (str(e))
+                    self.env._("Incorrect expression: %s", record.expression)
                 ) from e
 
     @api.constrains("model_id", "name")
@@ -73,12 +72,16 @@ class IrUiCustomFilter(models.Model):
         current record.
         """
         for record in self:
-            domain = [
-                ("model_id", "=", record.model_id.id),
-                ("name", "=", record.name),
-                ("id", "!=", record.id),
-            ]
+            domain = Domain.AND(
+                [
+                    Domain("model_id", "=", record.model_id.id),
+                    Domain("name", "=", record.name),
+                    Domain("id", "!=", record.id),
+                ]
+            )
             if self.search_count(domain):
                 raise exceptions.ValidationError(
-                    _("A filter with the same name already exists for this model.")
+                    self.env._(
+                        "A filter with the same name already exists for this model."
+                    )
                 )

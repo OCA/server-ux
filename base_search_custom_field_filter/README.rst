@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================================
 Add custom filters for fields via UI
 ====================================
@@ -13,17 +17,17 @@ Add custom filters for fields via UI
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/18.0/base_search_custom_field_filter
+    :target: https://github.com/OCA/server-ux/tree/19.0/base_search_custom_field_filter
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-18-0/server-ux-18-0-base_search_custom_field_filter
+    :target: https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-base_search_custom_field_filter
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -45,17 +49,17 @@ Configuration
 1. Go to *Settings > Technical > User Interface > Custom Field Filters*.
 2. Create a new record, and define following information:
 
-   - The **Model** for which you are defining the filter. It will appear
-     in all the search views of this model.
-   - The label you want to see on the search line on the **Name** field.
-     This field allows translations for proper UI in different
-     languages.
-   - The **Expression**, which is the field chain string with dot
-     notation. Examples: product_id, product_id.seller_ids.name,
-     partner_id.lang.
-   - Optionally, you can fill **Position After** for indicating after
-     which existing field (technical name) the filter will appear. If
-     empty or not found, the filter will be added at the end.
+   -  The **Model** for which you are defining the filter. It will
+      appear in all the search views of this model.
+   -  The label you want to see on the search line on the **Name**
+      field. This field allows translations for proper UI in different
+      languages.
+   -  The **Expression**, which is the field chain string with dot
+      notation. Examples: product_id, product_id.seller_ids.name,
+      partner_id.lang.
+   -  Optionally, you can fill **Position After** for indicating after
+      which existing field (technical name) the filter will appear. If
+      empty or not found, the filter will be added at the end.
 
 3. You can reorder records for determining sorting for multiple filters
    for the same model with the arrow handle in the left part.
@@ -81,8 +85,8 @@ Steps for trying this sample:
 
 |image1|
 
-.. |image| image:: https://raw.githubusercontent.com/OCA/server-ux/18.0/base_search_custom_field_filter/static/src/img/ir_ui_custom_field_filter.png
-.. |image1| image:: https://raw.githubusercontent.com/OCA/server-ux/18.0/base_search_custom_field_filter/static/src/img/contact_search.png
+.. |image| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/base_search_custom_field_filter/static/src/img/ir_ui_custom_field_filter.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/base_search_custom_field_filter/static/src/img/contact_search.png
 
 Bug Tracker
 ===========
@@ -90,7 +94,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_search_custom_field_filter%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_search_custom_field_filter%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -106,12 +110,15 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Carlos Dauden
-  - Pedro M. Baeza
+   -  Carlos Dauden
+   -  Pedro M. Baeza
 
-- `Amitaujas <https://www.amitaujas.com>`__:
+-  `Amitaujas <https://www.amitaujas.com>`__:
+-  `Studio73 <https://www.studio73.es/>`__
+
+   -  Sergio Martínez
 
 Maintainers
 -----------
@@ -134,6 +141,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/18.0/base_search_custom_field_filter>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/19.0/base_search_custom_field_filter>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

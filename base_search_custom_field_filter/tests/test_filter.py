@@ -24,11 +24,11 @@ class TestFilter(BaseCommon):
         with self.assertRaises(exceptions.ValidationError):
             filter_form.expression = "title_1"
             filter_form.save()
-        filter_form.expression = "title"
+        filter_form.expression = "vat_label"
         filter_form.save()
         arch = self.model.get_view(False, "search")["arch"]
         search = etree.fromstring(arch)
-        self.assertTrue(search.xpath("//search/field[@name='title']"))
+        self.assertTrue(search.xpath("//search/field[@name='vat_label']"))
 
     def test_01_invalid_expression(self):
         filter_form = Form(self.custom_filter_model)
