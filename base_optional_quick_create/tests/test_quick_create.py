@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestQuickCreate(TransactionCase):
+class TestQuickCreate(BaseCommon):
     def setUp(self, *args, **kwargs):
         super().setUp()
         model_model = self.env["ir.model"]

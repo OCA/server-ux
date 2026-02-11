@@ -3,7 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -12,43 +12,15 @@ class IrModel(models.Model):
 
     avoid_quick_create = fields.Boolean()
 
-    # brought back these methods `_patch_method` and `_revert_method`
-    # From this following PR these methods are removed since
-    # there is no any proper use for these methods in odoo.
-    # refer this bellow PR for more info.
-    # https://github.com/odoo/odoo/pull/110370
-    # But since we use this to patch the original_method
-    # I added back again.
     @staticmethod
     def _patch_method(model_obj, name, method):
-        """Monkey-patch a method for all instances of this model. This replaces
-        the method called ``name`` by ``method`` in the given class.
-        The original method is then accessible via ``method.origin``, and it
-        can be restored with :meth:`~._revert_method`.
+        def wrapper(self, *args, **kwargs):
+            return method(self, origin, *args, **kwargs)
 
-        Example::
-
-            def do_write(self, values):
-                # do stuff, and call the original method
-                return do_write.origin(self, values)
-
-            # patch method write of model
-            model._patch_method('write', do_write)
-
-            # this will call do_write
-            records = model.search([...])
-            records.write(...)
-
-            # restore the original method
-            model._revert_method('write')
-        """
         cls = type(model_obj)
         origin = getattr(cls, name)
-        method.origin = origin
-        # propagate decorators from origin to method, and apply api decorator
-        wrapped = api.propagate(origin, method)
-        wrapped.origin = origin
-        setattr(cls, name, wrapped)
+        wrapper.origin = origin
+        setattr(cls, name, wrapper)
 
     @staticmethod
     def _revert_method(model_obj, name):
@@ -62,14 +34,15 @@ class IrModel(models.Model):
     def _patch_quick_create(self):
         def _wrap_name_create():
             @api.model
-            def wrapper(self, name):
+            def wrapper(self, name, *args, **kwargs):
                 raise UserError(
-                    _(
+                    self.env._(
                         "Can't create %(model)s with name %(name)s quickly.\n"
                         "Please contact your system administrator to disable "
-                        "this behaviour."
+                        "this behaviour.",
+                        model=self._name,
+                        name=name,
                     )
-                    % {"model": self._name, "name": name}
                 )
 
             return wrapper
@@ -78,8 +51,6 @@ class IrModel(models.Model):
         for model in self:
             model_obj = self.env.get(model.model)
             if model.avoid_quick_create and model_obj is not None:
-                # _wrap_name_create().origin = getattr(model_obj, method_name)
-                # setattr(model_obj, method_name, _wrap_name_create())
                 self._patch_method(model_obj, method_name, _wrap_name_create())
             else:
                 method = getattr(model_obj, method_name, None)
@@ -88,6 +59,7 @@ class IrModel(models.Model):
         return True
 
     def _register_hook(self):
+        # pylint: disable=no-search-all
         models = self.search([])
         models._patch_quick_create()
         return super()._register_hook()
@@ -103,5 +75,6 @@ class IrModel(models.Model):
         self._patch_quick_create()
         if "avoid_quick_create" in vals:
             self.pool.registry_invalidated = True
-            self.pool.signal_changes()
+            if self.env.registry.ready:
+                self.pool.signal_changes()
         return res
