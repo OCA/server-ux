@@ -74,6 +74,9 @@ class TierReview(models.Model):
         related="definition_id.approve_sequence_bypass", readonly=True
     )
     last_reminder_date = fields.Datetime(readonly=True)
+    restart_validation_group_id = fields.Many2one(
+        related="definition_id.restart_validation_group_id"
+    )
 
     @api.depends("status")
     def _compute_display_status(self):
