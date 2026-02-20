@@ -12,27 +12,26 @@ from odoo.addons.base.tests.common import BaseCommon
 # Use Base Common
 @tagged("post_install", "-at_install")
 class TierTierValidation(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
         from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
             TierValidationTester,
         )
 
-        cls.loader.update_registry((TierValidationTester,))
-        cls.test_model = cls.env[TierValidationTester._name]
+        self.loader.update_registry((TierValidationTester,))
+        self.test_model = self.env[TierValidationTester._name]
 
-        cls.tester_model = cls.env["ir.model"].search(
+        self.tester_model = self.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
         )
 
         # Access record:
-        cls.env["ir.model.access"].create(
+        self.env["ir.model.access"].create(
             {
                 "name": "access.tester",
-                "model_id": cls.tester_model.id,
+                "model_id": self.tester_model.id,
                 "perm_read": 1,
                 "perm_write": 1,
                 "perm_create": 1,
@@ -40,30 +39,29 @@ class TierTierValidation(BaseCommon):
             }
         )
 
-        cls.test_user_1 = cls.env.ref("base.user_admin")
-        cls.test_user_2 = cls.env.ref("base.user_demo")
+        self.test_user_1 = self.env.ref("base.user_admin")
+        self.test_user_2 = self.env.ref("base.user_demo")
         # Create users:
-        cls.test_user_3 = cls.env["res.users"].create(
+        self.test_user_3 = self.env["res.users"].create(
             {"name": "Mary", "login": "test3", "email": "mary@yourcompany.example.com"}
         )
 
         # Create tier definitions:
-        cls.tier_def_obj = cls.env["tier.definition"]
-        cls.tier_def_obj.create(
+        self.tier_def_obj = self.env["tier.definition"]
+        self.tier_def_obj.create(
             {
-                "model_id": cls.tester_model.id,
+                "model_id": self.tester_model.id,
                 "review_type": "individual",
-                "reviewer_id": cls.test_user_1.id,
+                "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
             }
         )
 
-        cls.test_record = cls.test_model.create({"test_field": 2.5})
+        self.test_record = self.test_model.create({"test_field": 2.5})
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     def test_01_reviewer_from_python_expression(self):
         tier_definition = self.tier_def_obj.create(
