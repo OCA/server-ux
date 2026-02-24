@@ -689,6 +689,9 @@ msgid ""
 " - %s \n"
 "Please request a validation."
 msgstr ""
+"Esta acción necesita ser validada para al menos un registro. Revisiones pendientes\n"
+" - %s \n"
+"Por favor solicite una validación."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__sequence
