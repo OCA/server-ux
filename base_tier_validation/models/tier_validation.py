@@ -875,7 +875,7 @@ class TierValidation(models.AbstractModel):
         return new_node
 
     def _get_tier_validation_readonly_domain(self):
-        return "bool(review_ids)"
+        return "validation_status not in ('no', False)"
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
