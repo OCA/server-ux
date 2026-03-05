@@ -6,7 +6,6 @@ import json
 from odoo import http
 from odoo.http import request
 
-from odoo.addons.web.controllers.utils import ensure_db
 from odoo.addons.web.controllers.webclient import WebClient
 
 
@@ -31,18 +30,19 @@ class WebClient(WebClient):
         return res
 
     @http.route(
-        "/web/webclient/translations/<string:unique>",
+        "/web/webclient/translations",
         type="http",
         auth="public",
         cors="*",
+        readonly=True,
     )
-    def translations(self, unique, mods=None, lang=None):
-        res = super().translations(unique, mods, lang)
+    def translations(self, hash=None, mods=None, lang=None):
+        res = super().translations(hash, mods, lang)
         if "uid" in request.session:
-            ensure_db()
             user = request.env["res.users"].sudo().browse(request.session["uid"])
             json_data = res.get_data()
             data = json.loads(json_data)
-            data["lang_parameters"].update(self.get_user_lang_parameters(user))
-            res.set_data(json.dumps(data))
+            if data.get("lang_parameters"):
+                data["lang_parameters"].update(self.get_user_lang_parameters(user))
+                res.set_data(json.dumps(data))
         return res

@@ -9,108 +9,49 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[hasclass('app_settings_block')][@data-key='general_settings']"
-                position="inside"
-            >
-                <h2>Locale</h2>
-                <div class="row mt16 o_settings_container" name="locale">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <label for="date_format" />
-                            <span
-                                class="fa fa-lg fa-building-o"
-                                title="Values set here are company-specific."
-                                role="img"
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                            />
-                            <div class="text-muted">
-                                Configure global override of date format for all users.
-                            </div>
-                            <div class="content-group mt16">
-                                <field name="date_format" nolabel="1" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <label for="time_format" />
-                            <span
-                                class="fa fa-lg fa-building-o"
-                                title="Values set here are company-specific."
-                                role="img"
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                            />
-                            <div class="text-muted">
-                                Configure global override of time format for all users.
-                            </div>
-                            <div class="content-group mt16">
-                                <field name="time_format" nolabel="1" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <label for="week_start" />
-                            <span
-                                class="fa fa-lg fa-building-o"
-                                title="Values set here are company-specific."
-                                role="img"
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                            />
-                            <div class="text-muted">
-                                Configure global override of week start for all users.
-                            </div>
-                            <div class="content-group mt16">
-                                <field name="week_start" nolabel="1" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <label for="decimal_point" />
-                            <span
-                                class="fa fa-lg fa-building-o"
-                                title="Values set here are company-specific."
-                                role="img"
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                            />
-                            <div class="text-muted">
-                                Configure global override of time format for all users.
-                            </div>
-                            <div class="content-group mt16">
-                                <field name="decimal_point" nolabel="1" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <label for="thousands_sep" />
-                            <span
-                                class="fa fa-lg fa-building-o"
-                                title="Values set here are company-specific."
-                                role="img"
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                            />
-                            <div class="text-muted">
-                                Configure global override of time format for all users.
-                            </div>
-                            <div class="content-group mt16">
-                                <field name="thousands_sep" nolabel="1" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Locale" id="locale_settings">
+                    <setting
+                        id="date_format_setting"
+                        string="Date Format"
+                        company_dependent="1"
+                        help="Configure global override of date format for all users."
+                    >
+                        <field name="date_format" nolabel="1" />
+                    </setting>
+                    <setting
+                        id="time_format_setting"
+                        string="Time Format"
+                        company_dependent="1"
+                        help="Configure global override of time format for all users."
+                    >
+                        <field name="time_format" nolabel="1" />
+                    </setting>
+                    <setting
+                        id="week_start_setting"
+                        string="Week Start"
+                        company_dependent="1"
+                        help="Configure global override of week start for all users."
+                    >
+                        <field name="week_start" nolabel="1" />
+                    </setting>
+                    <setting
+                        id="decimal_point_setting"
+                        string="Decimal Separator"
+                        company_dependent="1"
+                        help="Configure global override of decimal separator for all users."
+                    >
+                        <field name="decimal_point" nolabel="1" />
+                    </setting>
+                    <setting
+                        id="thousands_sep_setting"
+                        string="Thousands Separator"
+                        company_dependent="1"
+                        help="Configure global override of thousands separator for all users."
+                    >
+                        <field name="thousands_sep" nolabel="1" />
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>

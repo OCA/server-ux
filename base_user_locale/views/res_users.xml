@@ -9,28 +9,13 @@
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
-            <field name="tz" position="before">
-                <field
-                    name="date_format"
-                    attrs="{'invisible': [('lang', '=', False)]}"
-                />
-                <field
-                    name="time_format"
-                    attrs="{'invisible': [('lang', '=', False)]}"
-                />
-                <field
-                    name="week_start"
-                    attrs="{'invisible': [('lang', '=', False)]}"
-                />
-                <field
-                    name="decimal_point"
-                    attrs="{'invisible': [('lang', '=', False)]}"
-                />
-                <field
-                    name="thousands_sep"
-                    attrs="{'invisible': [('lang', '=', False)]}"
-                />
-            </field>
+            <group name="other_preferences" position="inside">
+                <field name="date_format" invisible="not lang" />
+                <field name="time_format" invisible="not lang" />
+                <field name="week_start" invisible="not lang" />
+                <field name="decimal_point" invisible="not lang" />
+                <field name="thousands_sep" invisible="not lang" />
+            </group>
         </field>
     </record>
 </odoo>

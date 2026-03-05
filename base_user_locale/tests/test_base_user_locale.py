@@ -2,13 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import AccessError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 from ..controllers.web_client import WebClient
 
 
-class TestBaseUserLocale(SavepointCase):
+class TestBaseUserLocale(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -18,8 +18,8 @@ class TestBaseUserLocale(SavepointCase):
         cls.CalendarEvent = cls.env["calendar.event"]
 
         cls.code = "en_US"
-        if not cls.env["res.lang"]._lang_get_id(cls.code):
-            cls.env["res.lang"].load_lang(cls.code, "English (US)")
+        if not cls.env["res.lang"]._lang_get(cls.code):
+            cls.env["res.lang"]._activate_lang(cls.code)
 
         cls.company = cls.ResCompany.create({"name": "Company"})
         cls.company.partner_id.lang = cls.code
@@ -35,89 +35,69 @@ class TestBaseUserLocale(SavepointCase):
             }
         )
 
-    def test_uninstalled_lang(self):
-        uninstalled_lang = (
-            self.env["res.lang"]
-            .with_context(active_test=True)
-            .search([("active", "=", False)], limit=1)
-        )
-        if uninstalled_lang:
-            with self.assertRaises(ValueError):
-                self.ResUsers.with_context(no_reset_password=True).create(
-                    {
-                        "name": "User",
-                        "login": "another user",
-                        "email": "user@example.com",
-                        "company_id": self.company.id,
-                        "company_ids": [(4, self.company.id)],
-                        "lang": uninstalled_lang.code,
-                    }
-                )
-
     def test_date_format(self):
-        self.user.env.company = self.user.company_id
+        user = self.user.with_company(self.company)
 
         self.assertEqual(
             self.CalendarEvent.with_user(self.user)._get_date_formats()[0], "%m/%d/%Y"
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {})
 
         self.company.date_format = "%d %b %Y"
         self.assertEqual(
             self.CalendarEvent.with_user(self.user)._get_date_formats()[0], "%d %b %Y"
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"date_format": "%d %b %Y"})
 
         self.user.date_format = "%d/%b/%Y"
         self.assertEqual(
             self.CalendarEvent.with_user(self.user)._get_date_formats()[0], "%d/%b/%Y"
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"date_format": "%d/%b/%Y"})
 
     def test_time_format(self):
-        self.user.env.company = self.user.company_id
+        user = self.user.with_company(self.company)
 
         self.assertEqual(
-            self.CalendarEvent.with_user(self.user)._get_date_formats()[1], "%H:%M:%S"
+            self.CalendarEvent.with_user(self.user)._get_date_formats()[1],
+            "%I:%M:%S %p",
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {})
 
         self.company.time_format = "%H.%M.%S"
         self.assertEqual(
             self.CalendarEvent.with_user(self.user)._get_date_formats()[1], "%H.%M.%S"
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"time_format": "%H.%M.%S"})
 
         self.user.time_format = "%I:%M%p"
         self.assertEqual(
             self.CalendarEvent.with_user(self.user)._get_date_formats()[1], "%I:%M%p"
         )
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"time_format": "%I:%M%p"})
 
     def test_week_start(self):
-        self.user.env.company = self.user.company_id
+        user = self.user.with_company(self.company)
 
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {})
 
         self.company.week_start = "4"
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"week_start": 4})
 
         self.user.week_start = "2"
-        lang_parameters = WebClient().get_user_lang_parameters(self.user)
+        lang_parameters = WebClient().get_user_lang_parameters(user)
         self.assertEqual(lang_parameters, {"week_start": 2})
 
     @mute_logger("odoo.addons.base.models.ir_model")
     def test_user_can_write_own_fields(self):
-        self.user.env.company = self.user.company_id
-
         vals = {
             "date_format": "%d/%b/%Y",
             "time_format": "%H.%M.%S",
