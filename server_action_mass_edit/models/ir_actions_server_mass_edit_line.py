@@ -43,6 +43,12 @@ class IrActionsServerMassEditLine(models.Model):
         help="Add widget text that will be used to display the field in the wizard.\n"
         "Example: 'many2many_tags', 'selection', 'image'",
     )
+    field_relation = fields.Char(related="field_id.relation")
+    field_domain = fields.Char(
+        string="Domain",
+        help="Optional domain to filter the selectable values for this "
+        "relational field in the mass edit wizard.",
+    )
     apply_domain = fields.Boolean(
         default=False,
         help="Apply default domain related to field",
@@ -55,6 +61,18 @@ class IrActionsServerMassEditLine(models.Model):
             raise ValidationError(
                 self.env._("Mass edit fields should belong to the server action model.")
             )
+
+    @api.constrains("field_domain", "apply_domain")
+    def _check_field_domain(self):
+        for rec in self:
+            if rec.field_domain and rec.apply_domain:
+                raise ValidationError(
+                    self.env._(
+                        "Field '%(field)s': cannot set both a custom domain"
+                        " and 'Apply Domain' at the same time.",
+                        field=rec.field_id.name,
+                    )
+                )
 
     @api.onchange("field_id")
     def _onchange_field_id(self):

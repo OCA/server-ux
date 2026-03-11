@@ -20,6 +20,12 @@
                                     options="{'no_create': True, 'no_create_edit': True}"
                                 />
                                 <field name="widget_option" />
+                                <field name="field_relation" column_invisible="True" />
+                                <field
+                                    name="field_domain"
+                                    widget="domain"
+                                    options="{'model': 'field_relation', 'in_dialog': true}"
+                                />
                                 <field name="apply_domain" />
                             </list>
                         </field>
