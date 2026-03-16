@@ -1,7 +1,7 @@
 # Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.safe_eval import safe_eval
 
@@ -40,7 +40,10 @@ class TierReview(models.Model):
                 )
             except Exception as error:
                 raise UserError(
-                    _("Error evaluating tier validation " "conditions.\n %s") % error
+                    self.env._(
+                        "Error evaluating tier validation conditions.\n %(error)s",
+                        error=error,
+                    )
                 ) from error
             # Check if python expression returns 'res.users' recordset
             if (
@@ -48,9 +51,8 @@ class TierReview(models.Model):
                 or reviewer_ids._name != "res.users"
             ):
                 raise UserError(
-                    _(
-                        "Reviewer python expression must return a "
-                        "res.users recordset."
+                    self.env._(
+                        "Reviewer python expression must return a res.users recordset."
                     )
                 )
             else:

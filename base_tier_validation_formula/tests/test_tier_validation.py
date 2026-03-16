@@ -1,27 +1,35 @@
 # Copyright 2018 ForgeFlow S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo.exceptions import UserError
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests.common import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
+    TierDefinition,
+    TierValidationTester,
+)
 
 
 # Use Base Common
 @tagged("post_install", "-at_install")
 class TierTierValidation(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Register test models using native Odoo 19 approach
+        for model_def in [TierValidationTester, TierDefinition]:
+            add_to_registry(cls.registry, model_def)
+        model_names = ["tier.validation.tester"]
+        cls.registry._setup_models__(cls.env.cr, model_names)
+        cls.registry.init_models(cls.env.cr, model_names, {"models_to_check": True})
+        for model_name in model_names:
+            cls.addClassCleanup(cls.registry.__delitem__, model_name)
+
     def setUp(self):
         super().setUp()
-        self.loader = FakeModelLoader(self.env, self.__module__)
-        self.loader.backup_registry()
-        from odoo.addons.base_tier_validation.tests.tier_validation_tester import (
-            TierValidationTester,
-        )
-
-        self.loader.update_registry((TierValidationTester,))
-        self.test_model = self.env[TierValidationTester._name]
+        self.test_model = self.env["tier.validation.tester"]
 
         self.tester_model = self.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
@@ -58,10 +66,6 @@ class TierTierValidation(BaseCommon):
         )
 
         self.test_record = self.test_model.create({"test_field": 2.5})
-
-    def tearDown(self):
-        self.loader.restore_registry()
-        super().tearDown()
 
     def test_01_reviewer_from_python_expression(self):
         tier_definition = self.tier_def_obj.create(
