@@ -48,7 +48,9 @@ class TierTierValidation(BaseCommon):
         )
 
         self.test_user_1 = self.env.ref("base.user_admin")
-        self.test_user_2 = self.env.ref("base.user_demo")
+        self.test_user_2 = self.env["res.users"].create(
+            {"name": "Mike", "login": "test2", "email": "mike@yourcompany.example.com"}
+        )
         # Create users:
         self.test_user_3 = self.env["res.users"].create(
             {"name": "Mary", "login": "test3", "email": "mary@yourcompany.example.com"}
