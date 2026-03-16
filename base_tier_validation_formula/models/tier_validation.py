@@ -11,7 +11,7 @@ class TierValidation(models.AbstractModel):
 
     def evaluate_formula_tier(self, tier):
         try:
-            res = safe_eval(tier.python_code, globals_dict={"rec": self})
+            res = safe_eval(tier.python_code, context={"rec": self})
         except Exception as error:
             raise UserError(
                 self.env._(

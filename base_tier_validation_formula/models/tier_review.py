@@ -36,7 +36,7 @@ class TierReview(models.Model):
             record = rec.env[rec.model].browse(rec.res_id).exists()
             try:
                 reviewer_ids = safe_eval(
-                    rec.definition_id.reviewer_expression, globals_dict={"rec": record}
+                    rec.definition_id.reviewer_expression, context={"rec": record}
                 )
             except Exception as error:
                 raise UserError(
