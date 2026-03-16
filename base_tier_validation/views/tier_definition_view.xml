@@ -139,7 +139,7 @@
                     name="all"
                     domain="[('active', 'in', (False, True))]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Model"
                         name="model_id"

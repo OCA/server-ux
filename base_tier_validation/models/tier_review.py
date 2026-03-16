@@ -83,7 +83,7 @@ class TierReview(models.Model):
 
     @api.depends_context("tz")
     def _compute_reviewed_formated_date(self):
-        timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
+        timezone = self.env.context.get("tz") or self.env.user.partner_id.tz or "UTC"
         for review in self:
             if not review.reviewed_date:
                 review.reviewed_formated_date = False
@@ -134,7 +134,7 @@ class TierReview(models.Model):
 
     @api.model
     def _get_reviewer_fields(self):
-        return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.users"]
+        return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.user_ids"]
 
     @api.depends(lambda self: self._get_reviewer_fields())
     def _compute_reviewer_ids(self):
@@ -157,14 +157,14 @@ class TierReview(models.Model):
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
-        if self.reviewer_id or self.reviewer_group_id.users:
-            return self.reviewer_id + self.reviewer_group_id.users
+        if self.reviewer_id or self.reviewer_group_id.user_ids:
+            return self.reviewer_id + self.reviewer_group_id.user_ids
         if self.reviewer_field_id:
             resource = self.env[self.model].browse(self.res_id)
             reviewer_field = getattr(resource, self.reviewer_field_id.name, False)
             if reviewer_field:
                 if reviewer_field._name == "res.groups":
-                    return reviewer_field.users
+                    return reviewer_field.user_ids
                 elif reviewer_field._name == "res.users":
                     return reviewer_field
                 else:

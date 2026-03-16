@@ -38,7 +38,6 @@ class TierValidation(models.AbstractModel):
         inverse_name="res_id",
         string="Validations",
         domain=lambda self: [("model", "=", self._name)],
-        auto_join=True,
     )
     # TODO: Delete in v19 in favor of validation_status field
     validated = fields.Boolean(
@@ -151,10 +150,18 @@ class TierValidation(models.AbstractModel):
     @api.model
     def _search_reviewer_ids(self, operator, value):
         model_operator = "in"
-        if operator == "=" and value in ("[]", False):
+        # In Odoo 19, ("field", "=", False) is optimized to ("field", "in", [False])
+        # before reaching the search function, so we must handle both forms.
+        if (operator == "=" and value in ("[]", False)) or (
+            operator == "in" and list(value) == [False]
+        ):
             # Search for records that have not yet been through a validation
             # process.
+            # Note: In Odoo 19, _operator_equal_as_in converts ("field", "=", False)
+            # to ("field", "in", OrderedSet({False})) before the search function
+            # is called, so we must handle "in" with list() conversion.
             operator = "!="
+            value = False
             model_operator = "not in"
         reviews = self.env["tier.review"].search(
             [
@@ -163,27 +170,33 @@ class TierValidation(models.AbstractModel):
                 ("can_review", "=", True),
             ]
         )
-        return [("id", model_operator, list(set(reviews.mapped("res_id"))))]
+        res_ids = list(set(reviews.mapped("res_id")))
+        if not res_ids:
+            if model_operator == "not in":
+                return [("id", "!=", False)]
+            return [("id", "=", False)]
+        return [("id", model_operator, res_ids)]
 
     def _get_to_validate_message_name(self):
         return self._description
 
     def _get_to_validate_message(self):
-        return f"""<i class="fa fa-info-circle"></i> {self.env._(
-            "This %s needs to be validated",
-            self._get_to_validate_message_name()
-        )}"""
+        return f"""<i class="fa fa-info-circle"></i> {
+            self.env._(
+                "This %s needs to be validated", self._get_to_validate_message_name()
+            )
+        }"""
 
     def _get_validated_message(self):
-        msg = f"""<i class="fa fa-thumbs-up"></i> {self.env._(
-            "Operation has been <b>validated</b>!"
-        )}"""
+        msg = f"""<i class="fa fa-thumbs-up"></i> {
+            self.env._("Operation has been <b>validated</b>!")
+        }"""
         return self.validation_status == "validated" and msg or ""
 
     def _get_rejected_message(self):
-        msg = f"""<i class="fa fa-thumbs-down"></i> {self.env._(
-            "Operation has been <b>rejected</b>."
-        )}"""
+        msg = f"""<i class="fa fa-thumbs-down"></i> {
+            self.env._("Operation has been <b>rejected</b>.")
+        }"""
         return self.validation_status == "rejected" and msg or ""
 
     # TODO: delete in 19.0 migration in favor of validation_status field
@@ -249,7 +262,7 @@ class TierValidation(models.AbstractModel):
 
     def _compute_need_validation(self):
         for rec in self:
-            if isinstance(rec.id, models.NewId):
+            if not isinstance(rec.id, int):
                 rec.need_validation = False
                 continue
             tiers = (
@@ -284,7 +297,7 @@ class TierValidation(models.AbstractModel):
                     ("model_name", "=", self._name),
                     ("company_id", "in", [False] + self._get_company().ids),
                     "|",
-                    ("group_ids", "in", self.env.user.groups_id.ids),
+                    ("group_ids", "in", self.env.user.group_ids.ids),
                     ("group_ids", "=", False),
                     *(extra_domain or []),
                 ]
@@ -442,7 +455,7 @@ class TierValidation(models.AbstractModel):
                 rec.review_ids
                 and rec._check_tier_state_transition(vals)
                 and not rec._check_allow_write_under_validation(vals)
-                and not rec._context.get("skip_validation_check")
+                and not rec.env.context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,
@@ -469,7 +482,7 @@ class TierValidation(models.AbstractModel):
                 and rec._tier_validation_get_current_state_value()
                 in (self._state_to + [self._cancel_state])
                 and not rec._check_allow_write_after_validation(vals)
-                and not rec._context.get("skip_validation_check")
+                and not rec.env.context.get("skip_validation_check")
             ):
                 (
                     allowed_fields,

@@ -589,7 +589,7 @@ class TierTierValidation(CommonTierValidation):
     def test_22_notify_on_accepted(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -642,7 +642,7 @@ class TierTierValidation(CommonTierValidation):
     def test_23_notify_on_rejected(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -696,7 +696,7 @@ class TierTierValidation(CommonTierValidation):
     def test_24_notify_on_restarted(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -749,7 +749,7 @@ class TierTierValidation(CommonTierValidation):
     def test_25_all_notification(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -829,7 +829,7 @@ class TierTierValidation(CommonTierValidation):
     def test_26_no_notification(self):
         self.test_user_2.write(
             {
-                "groups_id": [(6, 0, self.env.ref("base.group_system").ids)],
+                "group_ids": [(6, 0, self.env.ref("base.group_system").ids)],
             }
         )
 
@@ -1089,6 +1089,8 @@ class TierTierValidation(CommonTierValidation):
             "base_tier_validation.mt_tier_validation_accepted"
         )
         test_record.request_validation()
+        test_record.review_ids.invalidate_recordset()
+        test_record.review_ids._compute_can_review()
         review_1 = test_record.review_ids.filtered(
             lambda x: x.definition_id == self.tier_definition
         )
@@ -1188,6 +1190,8 @@ class TierTierValidation(CommonTierValidation):
             }
         )
         test_record.request_validation()
+        test_record.review_ids.invalidate_recordset()
+        test_record.review_ids._compute_can_review()
         review_1 = test_record.review_ids.filtered(
             lambda x: x.definition_id == self.tier_definition
         )
