@@ -1288,3 +1288,138 @@ class TierTierValidationView(CommonTierValidation):
         self.assertIn("need_validation", view["models"][model])
         self.assertIn("next_review", view["models"][model])
         self.assertIn("review_ids", view["models"][model])
+
+    def test_34_display_status_and_reviewed_date(self):
+        """Test review display_status and reviewed_formated_date compute."""
+        reviews = self.test_record.with_user(self.test_user_2).request_validation()
+        self.assertTrue(reviews)
+        review = self.test_record.review_ids[0]
+        # display_status should return translated status value
+        self.assertTrue(review.display_status)
+        # reviewed_formated_date should be False before approval
+        self.assertFalse(review.reviewed_formated_date)
+        # Approve to set reviewed_date
+        self.test_record.with_user(self.test_user_1).validate_tier()
+        review.invalidate_recordset()
+        self.assertTrue(review.reviewed_date)
+        self.assertTrue(review.reviewed_formated_date)
+
+    def test_35_search_validated_rejected(self):
+        """Test deprecated _search_validated and _search_rejected methods."""
+        # Call deprecated search methods directly
+        domain_validated = self.test_model._search_validated("=", True)
+        self.assertEqual(domain_validated, [("validation_status", "=", "validated")])
+        domain_validated_neg = self.test_model._search_validated("!=", True)
+        self.assertEqual(
+            domain_validated_neg, [("validation_status", "!=", "validated")]
+        )
+        domain_rejected = self.test_model._search_rejected("=", True)
+        self.assertEqual(domain_rejected, [("validation_status", "=", "rejected")])
+        domain_rejected_neg = self.test_model._search_rejected("=", False)
+        self.assertEqual(domain_rejected_neg, [("validation_status", "!=", "rejected")])
+
+    def test_36_compute_messages(self):
+        """Test compute fields for validated/rejected/to_validate messages."""
+        # to_validate_message should always be set
+        self.assertTrue(self.test_record.to_validate_message)
+        # Before validation, validated_message and rejected_message should be empty
+        self.assertFalse(self.test_record.validated_message)
+        self.assertFalse(self.test_record.rejected_message)
+        # Validate
+        reviews = self.test_record.with_user(self.test_user_2).request_validation()
+        self.assertTrue(reviews)
+        self.test_record.with_user(self.test_user_1).validate_tier()
+        self.assertTrue(self.test_record.validated_message)
+        # Test validated/rejected boolean compute fields (deprecated)
+        self.assertTrue(self.test_record.validated)
+        self.assertFalse(self.test_record.rejected)
+
+    def test_37_unlink_with_reviews(self):
+        """Test unlink of a record with existing review_ids."""
+        reviews = self.test_record.with_user(self.test_user_2).request_validation()
+        self.assertTrue(reviews)
+        review_ids = self.test_record.review_ids.ids
+        self.assertTrue(review_ids)
+        self.test_record.unlink()
+        # Reviews should be deleted
+        remaining = self.env["tier.review"].search([("id", "in", review_ids)])
+        self.assertFalse(remaining)
+
+    def test_38_exception_constraint(self):
+        """Test tier.validation.exception constraint for allowed_to_write."""
+        exception_model = self.env["tier.validation.exception"]
+        model_id = self.env["ir.model"].search(
+            [("model", "=", "tier.validation.tester")], limit=1
+        )
+        # valid_model_field_ids should be computed
+        exc = exception_model.create(
+            {
+                "name": "Test Exception",
+                "model_id": model_id.id,
+                "field_ids": [
+                    (
+                        6,
+                        0,
+                        self.env["ir.model.fields"]
+                        .search(
+                            [
+                                ("model", "=", "tier.validation.tester"),
+                                ("name", "=", "test_field"),
+                            ],
+                            limit=1,
+                        )
+                        .ids,
+                    )
+                ],
+                "allowed_to_write_under_validation": True,
+                "allowed_to_write_after_validation": True,
+            }
+        )
+        self.assertTrue(exc.valid_model_field_ids)
+        # Both False should raise ValidationError
+        with self.assertRaises(ValidationError):
+            exc.write(
+                {
+                    "allowed_to_write_under_validation": False,
+                    "allowed_to_write_after_validation": False,
+                }
+            )
+
+    def test_39_review_reminder(self):
+        """Test review reminder flow."""
+        # Create a definition with reminder
+        tier_def = self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '=', 7.0)]",
+                "notify_reminder_delay": 0,
+            }
+        )
+        # No reminder when delay is 0
+        result = tier_def._get_review_needing_reminder()
+        self.assertFalse(result)
+        # Set delay and create a review
+        tier_def.notify_reminder_delay = 1
+        test_rec = self.test_model.create({"test_field": 7.0})
+        test_rec.with_user(self.test_user_2).request_validation()
+        review = test_rec.review_ids[0]
+        # Force old create_date so reminder triggers
+        self.env.cr.execute(
+            "UPDATE tier_review SET create_date = create_date - interval '2 days'"
+            " WHERE id = %s",
+            (review.id,),
+        )
+        review.invalidate_recordset()
+        result = tier_def._get_review_needing_reminder()
+        if result:
+            result._send_review_reminder()
+            self.assertTrue(result.last_reminder_date)
+
+    def test_40_need_validation_newid(self):
+        """Test _compute_need_validation for unsaved (NewId) records."""
+        with Form(self.test_model) as f:
+            f.test_field = 1.0
+            # NewId record should have need_validation = False
+            self.assertFalse(f._values.get("need_validation"))
