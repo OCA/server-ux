@@ -27,6 +27,7 @@ class TierValidation(models.AbstractModel):
     _tier_validation_manual_config = True
     _tier_validation_state_field_is_computed = False
     _tier_validation_company_field = "company_id"
+    _tier_validation_reviews_position = "bottom"
 
     _state_field = "state"
     _state_from = ["draft"]
@@ -906,7 +907,10 @@ class TierValidation(models.AbstractModel):
                 new_node = self._add_tier_validation_reviews(node, params)
                 new_arch, new_models = View.postprocess_and_fields(new_node, self._name)
                 new_node = etree.fromstring(new_arch)
-                node.append(new_node)
+                if self._tier_validation_reviews_position == "bottom":
+                    node.append(new_node)
+                else:
+                    node.insert(0, new_node)
                 _merge_view_fields(all_models, new_models)
             excepted_fields = self._get_all_validation_exceptions()
             all_fields = self.fields_get(attributes=("readonly",))
