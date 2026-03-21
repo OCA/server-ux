@@ -151,3 +151,27 @@ class TestTierCorrectionEnhance(TierTierValidation):
         self.assertEqual(
             wizard.line_ids.mapped("allowed_reviewer_ids"), self.test_user_2
         )
+
+    def test_05_is_group_definition(self):
+        """Test is_group_defination = True when tier definition is group."""
+        # Create group and Assign user to group
+        group = self.env["res.groups"].create({"name": "Test Group Reviewer"})
+        group.users = [(4, self.test_user_1.id)]
+
+        # Create tier.definition with group reviewer
+        model_id = self.env["ir.model"].search(
+            [("model", "=", self.test_record._name)], limit=1
+        )
+        self.env["tier.definition"].create(
+            {
+                "name": "Group Review",
+                "model_id": model_id.id,
+                "review_type": "group",
+                "reviewer_group_id": group.id,
+            }
+        )
+
+        # Request validation
+        doc = self.test_record.with_user(self.test_user_2.id)
+        doc.request_validation()
+        self.assertTrue(doc.is_group_defination)

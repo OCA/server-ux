@@ -1,0 +1,10 @@
+<odoo>
+    <template
+        id="tier_validation_label_forward_hide_button"
+        inherit_id="base_tier_validation_correction.tier_validation_label_forward"
+    >
+        <xpath expr="//button[@name='view_tier_correction']" position="attributes">
+            <attribute name="invisible">is_group_defination</attribute>
+        </xpath>
+    </template>
+</odoo>

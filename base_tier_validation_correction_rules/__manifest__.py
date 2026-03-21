@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "wizards/tier_correction_wizard_views.xml",
         "views/tier_correction_rule_views.xml",
+        "templates/tier_validation_templates.xml",
     ],
     "maintainers": ["Saran440"],
     "development_status": "Alpha",

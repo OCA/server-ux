@@ -1,11 +1,15 @@
 # Copyright 2026 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, fields, models
 
 
 class TierValidation(models.AbstractModel):
     _inherit = "tier.validation"
+
+    is_group_defination = fields.Boolean(
+        compute="_compute_is_group_defination",
+    )
 
     def view_tier_correction(self):
         """Override to open the tier correction wizard instead of standard form."""
@@ -21,3 +25,13 @@ class TierValidation(models.AbstractModel):
                 "active_id": self.id,
             },
         }
+
+    @api.depends("review_ids.definition_id", "review_ids.status")
+    def _compute_is_group_defination(self):
+        for record in self:
+            record.is_group_defination = any(
+                review.status in ("waiting", "pending")
+                and review.definition_id
+                and review.definition_id.review_type == "group"
+                for review in record.review_ids
+            )
