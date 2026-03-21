@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_correction_rule_view_list" model="ir.ui.view">
+        <field name="name">tier.correction.rule.view.list</field>
+        <field name="model">tier.correction.rule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="model_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="tier_correction_rule_view_form" model="ir.ui.view">
+        <field name="name">tier.correction.rule.view.form</field>
+        <field name="model">tier.correction.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_id" />
+                        </group>
+                        <group />
+                    </group>
+                    <notebook>
+                        <page name="reviewer_rule" string="Reviewer Rule">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field
+                                        name="reviewer_from_ids"
+                                        widget="many2many_tags"
+                                    />
+                                    <field
+                                        name="reviewer_to_ids"
+                                        widget="many2many_tags"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="tier_correction_rule_action" model="ir.actions.act_window">
+        <field name="name">Tier Review Correction Rules</field>
+        <field name="res_model">tier.correction.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_tier_correction_rule"
+        name="Tier Review Correction Rules"
+        parent="base_tier_validation.menu_tier_confirmation"
+        action="tier_correction_rule_action"
+    />
+</odoo>
