@@ -1,5 +1,7 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+import json
 from ast import literal_eval
 
 from odoo import _, api, fields, models
@@ -15,7 +17,7 @@ class ConfirmationWizard(models.TransientModel):
     res_model = fields.Char()
 
     callback_method = fields.Char()
-    callback_params = fields.Json()
+    callback_params = fields.Text()
 
     return_type = fields.Selection(
         [
@@ -47,7 +49,7 @@ class ConfirmationWizard(models.TransientModel):
     @api.model
     def confirm_message(
         self, message, records, title=None, method=None, callback_params=None
-    ) -> dict | None:
+    ):
         """
         Confirm message with method return type
 
@@ -69,13 +71,13 @@ class ConfirmationWizard(models.TransientModel):
                 "return_type": "method",
                 "res_model": records._name,
                 "callback_method": method,
-                "callback_params": callback_params or {},
+                "callback_params": json.dumps(callback_params or {}),
             }
         )
         return wizard.with_context(skip_confirm_message=True)._prepare_action(title)
 
     @api.model
-    def confirm_no_action_message(self, message, title=None) -> dict | None:
+    def confirm_no_action_message(self, message, title=None):
         """
         Confirm message with close window return type
 
@@ -113,7 +115,7 @@ class ConfirmationWizard(models.TransientModel):
                 _("Method '%(callback_method)s' is not found on model '%(res_model)s'.")
                 % {"callback_method": self.callback_method, "res_model": self.res_model}
             )
-        params = self.callback_params or {}
+        params = json.loads(self.callback_params or "{}")
         return getattr(records, self.callback_method)(**params)
 
     def action_confirm(self):

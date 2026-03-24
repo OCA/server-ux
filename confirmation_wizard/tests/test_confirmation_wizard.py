@@ -1,3 +1,5 @@
+import json
+
 from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
@@ -53,7 +55,7 @@ class TestConfirmationWizard(TransactionCase):
             "return_type": "method",
             "res_model": "res.partner",
             "callback_method": "",
-            "callback_params": {},
+            "callback_params": json.dumps({}),
         }
         wizard = self.env["confirmation.wizard"].create(vals)
         with self.assertRaises(UserError) as e:
@@ -73,7 +75,7 @@ class TestConfirmationWizard(TransactionCase):
         vals2 = {
             **vals1,
             "callback_method": "write",
-            "callback_params": {"vals": {"name": "New Partner #1"}},
+            "callback_params": json.dumps({"vals": {"name": "New Partner #1"}}),
         }
         wizard = self.env["confirmation.wizard"].create(vals2)
         result = wizard.action_confirm()

@@ -6,7 +6,7 @@
     This module adds a confirmation wizard that can be called with code.
     It does nothing by itself.
     """,
-    "version": "16.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Cetmix, Odoo Community Association (OCA)",
