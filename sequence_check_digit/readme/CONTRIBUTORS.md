@@ -1,0 +1,3 @@
+- Enric Tobella \<<etobella@creublanca.es>\>
+- Sunanda Chhatbar \<<sunanda.chhatbar@initos.com>\>
+- Christian Altmeyer \<<christian.altmeyer@mindbots.com>\> (migration to 19.0)
