@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Mass Editing",
-    "version": "18.0.1.1.2",
+    "version": "18.0.1.1.3",
     "author": "Serpent Consulting Services Pvt. Ltd., "
     "Tecnativa, "
     "GRAP, "
@@ -27,6 +27,4 @@
         ]
     },
     "demo": ["demo/mass_editing.xml"],
-    "external_dependencies": {"python": ["openupgradelib"]},
-    "pre_init_hook": "pre_init_hook",
 }
