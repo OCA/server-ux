@@ -46,7 +46,10 @@ class IrSequence(models.Model):
             return self.get_formula_map()[self.check_digit_formula](code)
         except KeyError as err:
             raise ValidationError(
-                self.env._(f"{self.check_digit_formula} is not an implemented function")
+                self.env._(
+                    "%(formula)s is not an implemented function",
+                    formula=self.check_digit_formula,
+                )
             ) from err
         except Exception as err:
             raise ValidationError(self.env._("Format is not accepted")) from err
