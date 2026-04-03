@@ -15,9 +15,9 @@ import {importRecordsItem} from "@base_import/import_records/import_records";
 import {session} from "@web/session";
 const isDisplayed_orig = importRecordsItem.isDisplayed;
 
-importRecordsItem.isDisplayed = function (config, isSmall) {
+importRecordsItem.isDisplayed = function ({config, isSmall}) {
     return (
-        isDisplayed_orig(config, isSmall) &&
+        isDisplayed_orig({config, isSmall}) &&
         session.base_import_security_group__allow_import === 1
     );
 };
