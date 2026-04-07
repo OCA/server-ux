@@ -3,7 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -45,10 +45,11 @@ class IrModel(models.Model):
         cls = type(model_obj)
         origin = getattr(cls, name)
         method.origin = origin
-        # propagate decorators from origin to method, and apply api decorator
-        wrapped = api.propagate(origin, method)
-        wrapped.origin = origin
-        setattr(cls, name, wrapped)
+        # Copy api attributes from origin so the ORM treats the wrapper correctly
+        for attr in ("_api_model", "_api_private", "_readonly"):
+            if hasattr(origin, attr) and not hasattr(method, attr):
+                setattr(method, attr, getattr(origin, attr))
+        setattr(cls, name, method)
 
     @staticmethod
     def _revert_method(model_obj, name):
@@ -64,12 +65,13 @@ class IrModel(models.Model):
             @api.model
             def wrapper(self, name):
                 raise UserError(
-                    _(
+                    self.env._(
                         "Can't create %(model)s with name %(name)s quickly.\n"
                         "Please contact your system administrator to disable "
-                        "this behaviour."
+                        "this behaviour.",
+                        model=self._name,
+                        name=name,
                     )
-                    % {"model": self._name, "name": name}
                 )
 
             return wrapper
@@ -88,7 +90,7 @@ class IrModel(models.Model):
         return True
 
     def _register_hook(self):
-        models = self.search([])
+        models = self.search([], limit=None)
         models._patch_quick_create()
         return super()._register_hook()
 
