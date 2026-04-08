@@ -182,3 +182,27 @@ class Test(TransactionCase):
         # No separator should exist between filter and target
         between_content = view_content[filter_pos:target_pos]
         self.assertNotIn("<separator/>", between_content)
+
+    def test_get_view_content_date_filter(self):
+        with Form(self.filters_obj) as date_filter:
+            date_filter.name = "Test Date Filter"
+            date_filter.type = "filter"
+            date_filter.model_id = "ir.filters.group"
+            date_filter.date_field = self.env.ref(
+                "base_custom_filter.field_ir_filters_group__create_date"
+            )
+        filter_record = self.filters_obj.search([("name", "=", "Test Date Filter")])
+        self.assertEqual(filter_record.name, "Test Date Filter")
+        view_dict = self.filters_group_obj.get_view(view_type="search")
+        view_content = view_dict.get("arch", b"").decode("utf-8")
+        filter_name = "ir_custom_filter_" + str(filter_record.id)
+        date_string = (
+            f'<filter name="{filter_name}" '
+            'string="Test Date Filter" '
+            'date="create_date"/>'
+        )
+        self.assertIn(
+            date_string,
+            view_content,
+            "The date filter is not in the returned view",
+        )

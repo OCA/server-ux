@@ -58,7 +58,10 @@ class Base(models.AbstractModel):
         if is_groupby:
             attrs["context"] = str({"group_by": item.groupby_field.sudo().name})
         else:
-            attrs["domain"] = item.domain
+            if item.date_field:
+                attrs["date"] = item.date_field.sudo().name
+            else:
+                attrs["domain"] = item.domain
         return etree.Element("filter", attrs)
 
     @api.model

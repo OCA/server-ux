@@ -12,8 +12,13 @@
 
     Filter:
 
-    > - Domain (`domain`)
+    > - Domain (`domain`) - OR -
+    > - Date Field (`date_field`) - creates a date filter with period options
     > - User Groups (`groups`)
+    >
+    > **Note:** For filter type, you must specify either Domain or Date Field,
+    > but not both. Date filters automatically provide period options like
+    > Today, This Week, This Month, This Quarter, and This Year.
 
     Group By:
 
