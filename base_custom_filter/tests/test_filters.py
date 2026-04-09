@@ -1,3 +1,4 @@
+from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase, tagged
 
 
@@ -16,7 +17,6 @@ class Test(TransactionCase):
             "base_custom_filter.field_ir_filters_group__name"
         )
         filters_group = filters_group.save()
-
         filters_group = Form(cls.filters_obj)
         filters_group.name = "Test No filters group"
         filters_group.type = "filter"
@@ -112,3 +112,28 @@ class Test(TransactionCase):
             view_content,
             "The string is not in the returned view",
         )
+
+    def test_get_filters_excludes_non_favorites(self):
+        """Test that get_filters excludes non-favorite filter types."""
+        # Create a non-favorite filter
+        self.filters_obj.create(
+            {
+                "name": "Non-Favorite Filter",
+                "type": "filter",
+                "model_id": "ir.filters.group",
+                "domain": '[["id","=",1]]',
+            }
+        )
+        # Create a favorite filter
+        self.filters_obj.create(
+            {
+                "name": "Favorite Filter",
+                "type": "favorite",
+                "model_id": "ir.filters.group",
+                "domain": '[["id","=",2]]',
+            }
+        )
+        results = self.filters_obj.get_filters("ir.filters.group")
+        result_names = [r["name"] for r in results]
+        self.assertNotIn("Non-Favorite Filter", result_names)
+        self.assertIn("Favorite Filter", result_names)

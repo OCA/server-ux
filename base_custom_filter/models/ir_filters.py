@@ -48,11 +48,18 @@ class IrFilters(models.Model):
         embedded_action_id=None,
         embedded_parent_res_id=None,
     ):
-        """We need to inject a context to obtain only the records of favorite type."""
-        self = self.with_context(filter_type="favorite")
-        return super().get_filters(
+        """Filter out non-favorite types from the results."""
+        results = super().get_filters(
             model, action_id, embedded_action_id, embedded_parent_res_id
         )
+        if not results:
+            return results
+        # Get IDs of non-favorite filters to exclude
+        result_ids = [r["id"] for r in results if r.get("id")]
+        non_favorite_ids = set(
+            self.search([("id", "in", result_ids), ("type", "!=", "favorite")]).ids
+        )
+        return [r for r in results if r.get("id") not in non_favorite_ids]
 
     @api.model
     @api.returns("self")
