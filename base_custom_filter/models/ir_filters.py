@@ -18,6 +18,7 @@ class IrFilters(models.Model):
             ("groupby", "Standard Group By"),
         ]
 
+    name = fields.Char(translate=True)
     sequence = fields.Integer()
     type = fields.Selection(
         selection="_selection_type",
