@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================================================
 Add custom filters in standard filters and group by dropdowns
 =============================================================
@@ -17,7 +13,7 @@ Add custom filters in standard filters and group by dropdowns
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -35,7 +31,8 @@ Add custom filters in standard filters and group by dropdowns
 This module enables the definition of bespoke searches within a model's
 search view, in addition to permitting the creation of custom filters
 that will be displayed beneath the standard filters, as well as within
-the group-by menus of a model's search view.
+the group-by menus of a model's search view. Filter groups support
+XPath-based insertion point configuration.
 
 **Table of contents**
 
@@ -53,25 +50,34 @@ Configuration
 
    Search:
 
-      - Search Field (``name``)
-      - Filter Domain (``filter_domain``)
-      - User Groups (``groups``)
+      -  Search Field (``name``)
+      -  Filter Domain (``filter_domain``)
+      -  User Groups (``groups``)
 
    Filter:
 
-      - Domain (``domain``)
-      - User Groups (``groups``)
+      -  Domain (``domain``)
+      -  User Groups (``groups``)
 
    Group By:
 
-      - Group By Field (field to be assigned to ``group_by`` context)
-      - User Groups (``groups``)
+      -  Group By Field (field to be assigned to ``group_by`` context)
+      -  User Groups (``groups``)
 
    See `the official
    documentation <https://www.odoo.com/documentation/16.0/developer/reference/backend/views.html#search>`__
    for the definition of each attribute. Additionally, filter and
    group-by records can be respectively grouped together with "Group"
    assignment (there will be a separator in between groups).
+
+3. Filter groups (accessible via *Settings > Custom Filters > Custom
+   Filter Groups*) support the following optional settings:
+
+      -  Insert XPath: XPath expression for the insertion point (e.g.
+         ``//filter[@name='my_filter']``)
+      -  Insert Position: Insert before or after the target element
+      -  Separator Position: Place separator before, after, or none
+         (filter type only)
 
 Usage
 =====
@@ -102,19 +108,19 @@ Authors
 Contributors
 ------------
 
-- `ForgeFlow S.L. <https://www.forgeflow.com>`__:
+-  `ForgeFlow S.L. <https://www.forgeflow.com>`__:
 
-  - Jordi Masvidal
+   -  Jordi Masvidal
 
-- Ashish Hirpara
-  <`https://www.ashish-hirpara.com\\> <https://www.ashish-hirpara.com\>>`__
-- `Quartile <https://www.quartile.co>`__:
+-  Ashish Hirpara <https://www.ashish-hirpara.com>
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-- `Kencove <https://www.kencove.com>`__:
+-  `Kencove <https://www.kencove.com>`__:
 
-  - Mohamed Alkobrosli
+   -  Mohamed Alkobrosli
 
 Maintainers
 -----------

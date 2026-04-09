@@ -25,3 +25,12 @@
     for the definition of each attribute. Additionally, filter and
     group-by records can be respectively grouped together with "Group"
     assignment (there will be a separator in between groups).
+
+3.  Filter groups (accessible via *Settings \> Custom Filters \> Custom
+    Filter Groups*) support the following optional settings:
+
+    - Insert XPath: XPath expression for the insertion point
+      (e.g. `//filter[@name='my_filter']`)
+    - Insert Position: Insert before or after the target element
+    - Separator Position: Place separator before, after, or none
+      (filter type only)

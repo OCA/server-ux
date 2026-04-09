@@ -137,3 +137,48 @@ class Test(TransactionCase):
         result_names = [r["name"] for r in results]
         self.assertNotIn("Non-Favorite Filter", result_names)
         self.assertIn("Favorite Filter", result_names)
+
+    def test_insert_xpath_validation(self):
+        group = self.filters_group_obj.create(
+            {
+                "name": "Test Valid XPath",
+                "type": "filter",
+                "model_id": "ir.filters.group",
+                "insert_xpath": "//filter[@name='Without_filters']",
+            }
+        )
+        with self.assertRaises(ValidationError):
+            group.write({"insert_xpath": "///invalid[xpath"})
+
+    def test_filter_with_custom_xpath(self):
+        """Test filter insertion with custom XPath and separator position."""
+        with Form(self.filters_group_obj) as filters_group:
+            filters_group.name = "Test XPath Group"
+            filters_group.type = "filter"
+            filters_group.model_id = "ir.filters.group"
+            filters_group.insert_xpath = "//filter[@name='Without_filters']"
+            filters_group.insert_position = "before"
+            filters_group.separator_position = "after"
+            with filters_group.filter_ids.new() as line:
+                line.name = "XPath Filter"
+                line.domain = '[["id","=",99]]'
+        view_dict = self.filters_group_obj.get_view(view_type="search")
+        view_content = view_dict.get("arch", b"").decode("utf-8")
+        self.assertIn("XPath Filter", view_content)
+        # Verify the filter is inserted before Without_filters
+        filter_pos = view_content.find("XPath Filter")
+        target_pos = view_content.find("Without_filters")
+        self.assertLess(filter_pos, target_pos)
+        # Verify separator exists after the filter (before Without_filters)
+        separator_pos = view_content.find("<separator/>", filter_pos)
+        self.assertLess(separator_pos, target_pos)
+        # Update to no separator and verify it's removed
+        group = self.filters_group_obj.search([("name", "=", "Test XPath Group")])
+        group.write({"separator_position": "none"})
+        view_dict = self.filters_group_obj.get_view(view_type="search")
+        view_content = view_dict.get("arch", b"").decode("utf-8")
+        filter_pos = view_content.find("XPath Filter")
+        target_pos = view_content.find("Without_filters")
+        # No separator should exist between filter and target
+        between_content = view_content[filter_pos:target_pos]
+        self.assertNotIn("<separator/>", between_content)

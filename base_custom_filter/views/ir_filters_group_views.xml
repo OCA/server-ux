@@ -16,6 +16,15 @@
                     <group name="general">
                         <field name="model_id" />
                         <field name="type" />
+                        <field
+                            name="insert_xpath"
+                            placeholder="e.g. //filter[@name='my_filter']"
+                        />
+                        <field name="insert_position" />
+                        <field
+                            name="separator_position"
+                            invisible="type == 'groupby'"
+                        />
                     </group>
                     <group name="filters">
                         <field
@@ -89,11 +98,16 @@
             <list>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
+                <field name="model_id" optional="show" />
+                <field name="type" optional="show" />
                 <field
                     name="filter_ids"
                     widget="many2many_tags"
                     domain="[('group_id', '=', False), ('type', '!=', 'favorite')]"
                 />
+                <field name="insert_xpath" optional="hide" />
+                <field name="insert_position" optional="hide" />
+                <field name="separator_position" optional="hide" />
             </list>
         </field>
     </record>
