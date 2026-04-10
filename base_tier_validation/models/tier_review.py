@@ -192,16 +192,20 @@ class TierReview(models.Model):
         return self.env._("A review has been requested %s days ago.", delay)
 
     def _send_review_reminder(self):
-        record = self.env[self.model].browse(self.res_id)
-        # Only schedule activity if reviewer is a single user and model has activities
-        if len(self.reviewer_ids) == 1 and hasattr(record, "activity_ids"):
-            self._schedule_review_reminder_activity(record)
-        elif hasattr(record, "message_post"):
-            self._notify_review_reminder(record)
-        else:
-            msg = f"Could not send reminder for record {record}"
-            _logger.exception(msg)
-        self.last_reminder_date = fields.Datetime.now()
+        for rev in self:
+            record = self.env[rev.model].browse(rev.res_id)
+            if not record.exists():  # <-- skip orphaned reviews
+                continue
+            # Only schedule activity if reviewer is a single user and model
+            # has activities
+            if len(rev.reviewer_ids) == 1 and hasattr(record, "activity_ids"):
+                rev._schedule_review_reminder_activity(record)
+            elif hasattr(record, "message_post"):
+                rev._notify_review_reminder(record)
+            else:
+                msg = f"Could not send reminder for record {record}"
+                _logger.exception(msg)
+            rev.last_reminder_date = fields.Datetime.now()
 
     def _notify_review_reminder(self, record):
         record.message_post(
