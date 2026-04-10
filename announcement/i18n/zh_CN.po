@@ -1,0 +1,430 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* announcement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2026-04-10 00:00+0800\n"
+"Last-Translator: LuYun <dev@luyun.com>\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "<span class=\"o_stat_text\">Read(s)</span>"
+msgstr "<span class=\"o_stat_text\">已读</span>"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_3
+msgid "Accounting"
+msgstr "会计"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__active
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Active"
+msgstr "有效"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_user_ids
+msgid "Allowed User"
+msgstr "允许的用户"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_users_count
+msgid "Allowed Users Count"
+msgstr "允许的用户数"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Announce at"
+msgstr "发布于"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__announcement_id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__announcement_id
+#: model:ir.module.category,name:announcement.category_announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Announcement"
+msgstr "公告"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_log_ids
+msgid "Announcement Log"
+msgstr "公告日志"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.action_announcement_log
+msgid "Announcement Logs"
+msgstr "公告日志"
+
+#. module: announcement
+#: model:res.groups,name:announcement.announcemenent_manager
+msgid "Announcement Manager"
+msgstr "公告管理员"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.announcement_tag_action
+#: model:ir.model,name:announcement.model_announcement_tag
+#: model:ir.ui.menu,name:announcement.menu_announcement_tag_management
+msgid "Announcement Tags"
+msgstr "公告标签"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_type
+msgid "Announcement Type"
+msgstr "公告类型"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+#: model:ir.actions.act_window,name:announcement.announcement_action
+#: model:ir.ui.menu,name:announcement.menu_announcement_management
+msgid "Announcements"
+msgstr "公告"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Archived"
+msgstr "已归档"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
+msgid "Attachments"
+msgstr "附件"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__color
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
+msgid "Color"
+msgstr "颜色"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_1
+msgid "Company information"
+msgstr "公司信息"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement_tag__company_id
+msgid "Company related to this tag"
+msgstr "与此标签相关的公司"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__content
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Content"
+msgstr "内容"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__display_name
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_2
+msgid "Employees"
+msgstr "员工"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
+msgid "General Announcement"
+msgstr "全员公告"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Groups"
+msgstr "用户组"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTP路由"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__in_date
+msgid "In Date"
+msgstr "生效日期"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_date
+msgid "Last Updated on"
+msgstr "最后更新于"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement_log
+msgid "Log user reads"
+msgstr "用户阅读日志"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_5
+msgid "Manufacturing"
+msgstr "生产制造"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.esm.js:0
+msgid "Mark as read"
+msgstr "标记为已读"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__name
+msgid "Name"
+msgstr "名称"
+
+#. module: announcement
+#. odoo-javascript
+#: code:addons/announcement/static/src/js/announcement_menu/announcement_menu.xml:0
+msgid "No announcements."
+msgstr "暂无公告。"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_date
+msgid "Notification Date"
+msgstr "通知日期"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_end_date
+msgid "Notification End Date"
+msgstr "通知结束日期"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
+msgid "Notification Expiry Date"
+msgstr "通知过期日期"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_start_date
+msgid "Notification Start Date"
+msgstr "通知开始日期"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__parent_id
+msgid "Parent Tag"
+msgstr "上级标签"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
+msgid "Read"
+msgstr "已读"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__read_announcement_ids
+msgid "Read Announcement"
+msgstr "已读公告"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__read_announcement_count
+msgid "Read Announcement Count"
+msgstr "已读公告数"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__date
+msgid "Read Date"
+msgstr "阅读日期"
+
+#. module: announcement
+#. odoo-python
+#: code:addons/announcement/models/announcement.py:0
+msgid "Read Logs"
+msgstr "阅读日志"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__read_state
+msgid "Read State"
+msgstr "阅读状态"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Reads"
+msgstr "阅读数"
+
+#. module: announcement
+#: model:announcement.tag,name:announcement.announcement_tag_4
+msgid "Sales"
+msgstr "销售"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__sequence
+msgid "Sequence"
+msgstr "排序"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Set here the content of the announcement."
+msgstr "在此填写公告内容。"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_read_announcement_wizard
+msgid "Show altogether users who read and users who didn't"
+msgstr "显示已读和未读的用户"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__specific_user_ids
+msgid "Specific User"
+msgstr "指定用户"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__specific_users
+msgid "Specific users"
+msgstr "指定用户"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Tag"
+msgstr "标签"
+
+#. module: announcement
+#: model:ir.model.constraint,message:announcement.constraint_announcement_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "标签名称已存在！"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__tag_ids
+msgid "Tags"
+msgstr "标签"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Tags..."
+msgstr "标签..."
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__notification_end_date
+#: model:ir.model.fields,help:announcement.field_announcement__notification_start_date
+msgid "Technical field to display announcements in the calendar view"
+msgstr "在日历视图中显示公告的技术字段"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__color
+msgid "Technical field to display items by color in the calendar"
+msgstr "在日历中按颜色显示条目的技术字段"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__name
+msgid "Title"
+msgstr "标题"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Total users"
+msgstr "用户总数"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
+msgstr "未读"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
+msgstr "未读公告"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_res_users
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__user_id
+msgid "User"
+msgstr "用户"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__user_group_ids
+msgid "User Group"
+msgstr "用户组"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement
+msgid "User announcements"
+msgstr "用户公告"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__user_group
+msgid "User groups"
+msgstr "用户组"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Users"
+msgstr "用户"
+
+#. module: announcement
+#: model:res.groups,comment:announcement.announcemenent_manager
+msgid "Users allowed to manage and configure announcements."
+msgstr "允许管理和配置公告的用户。"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Valid up to"
+msgstr "有效期至"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__attachment_ids
+msgid "You can attach the copy of your Letter"
+msgstr "您可以附上信件的副本"
+
+#. module: announcement
+#. odoo-python
+#: code:addons/announcement/models/announcement_tag.py:0
+msgid "You cannot create recursive tags."
+msgstr "不能创建递归标签。"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "e.g. Announcement description..."
+msgstr "例如：公告描述..."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
+msgid "name"
+msgstr "名称"
