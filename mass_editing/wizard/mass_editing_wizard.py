@@ -94,9 +94,10 @@ class MassEditingWizard(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        mass_editing = self._get_mass_operation()
-        active_ids = self.env.context.get("active_ids", [])
+        items = self._get_remaining_items()
+        active_ids = items.ids if items else []
         if active_ids:
+            mass_editing = self._get_mass_operation()
             TargetModel = self.env[mass_editing.model_id.model]
             IrModelFields = self.env["ir.model.fields"]
             IrTranslation = self.env["ir.translation"]

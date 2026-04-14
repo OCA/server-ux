@@ -236,3 +236,37 @@ class TestMassEditing(common.SavepointCase):
             "Sidebar action must be removed when mass"
             " editing module is uninstalled.",
         )
+
+    def test_mass_edit_with_domain(self):
+        """Test Case for MASS EDITING with a domain constraint."""
+        # Create a new mass editing for res.users with a domain excluding demo user
+        mass_editing_domain = self.env["mass.editing"].create({
+            "name": "Test Domain",
+            "model_id": self.env.ref("base.model_res_users").id,
+            "domain": "[('id', '!=', %d)]" % self.user.id,
+            "action_name": "Test Mass Edit Domain",
+        })
+
+        # Select both demo user and current test user
+        users = self.user | self.env.user
+
+        # Try to set a phone number for both
+        new_phone = "123456789"
+        vals = {"selection__phone": "set", "phone": new_phone}
+
+        # Set initial phone for demo user to ensure we can detect "no change"
+        self.user.phone = "old_phone"
+
+        self._create_wizard_and_apply_values(mass_editing_domain, users, vals)
+
+        # Demo user should NOT have changed (due to domain)
+        self.assertEqual(
+            self.user.phone, "old_phone",
+            "Demo user should not be modified (domain excluded)"
+        )
+
+        # Current user SHOULD have changed
+        self.assertEqual(
+            self.env.user.phone, new_phone,
+            "Current user should be modified (matches domain)"
+        )
