@@ -1,0 +1,381 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* announcement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 10:16+0000\n"
+"PO-Revision-Date: 2026-04-24 10:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "<span class=\"o_stat_text\">Read(s)</span>"
+msgstr "<span class=\"o_stat_text\">Perskaitymai</span>"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__active
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Active"
+msgstr "Aktyvus"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_user_ids
+msgid "Allowed User"
+msgstr "Leidžiamas vartotojas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__allowed_users_count
+msgid "Allowed Users Count"
+msgstr "Leidžiamų vartotojų skaičius"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Announce at"
+msgstr "Skelbti"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__announcement_id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__announcement_id
+#: model:ir.module.category,name:announcement.category_announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Announcement"
+msgstr "Skelbimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_log_ids
+msgid "Announcement Log"
+msgstr "Skelbimų žurnalas"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.action_announcement_log
+msgid "Announcement Logs"
+msgstr "Skelbimų žurnalai"
+
+#. module: announcement
+#: model:res.groups,name:announcement.announcemenent_manager
+msgid "Announcement Manager"
+msgstr "Skelbimų valdytojas"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.announcement_tag_action
+#: model:ir.model,name:announcement.model_announcement_tag
+#: model:ir.ui.menu,name:announcement.menu_announcement_tag_management
+msgid "Announcement Tags"
+msgstr "Skelbimų žymos"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__announcement_type
+msgid "Announcement Type"
+msgstr "Skelbimo tipas"
+
+#. module: announcement
+#: model:ir.actions.act_window,name:announcement.announcement_action
+#: model:ir.ui.menu,name:announcement.menu_announcement_management
+msgid "Announcements"
+msgstr "Skelbimai"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Archived"
+msgstr "Archyvuota"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__attachment_ids
+msgid "Attachments"
+msgstr "Priedai"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__color
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__color
+msgid "Color"
+msgstr "Spalva"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__company_id
+msgid "Company"
+msgstr "Įmonė"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement_tag__company_id
+msgid "Company related to this tag"
+msgstr "Su šia žyma susijusi įmonė"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__content
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Content"
+msgstr "Turinys"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_uid
+msgid "Created by"
+msgstr "Sukūrė"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__create_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__create_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__create_date
+msgid "Created on"
+msgstr "Sukurta"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__display_name
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__display_name
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__display_name
+msgid "Display Name"
+msgstr "Rodomas pavadinimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__full_name
+msgid "Full Name"
+msgstr "Pilnas pavadinimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__is_general_announcement
+msgid "General Announcement"
+msgstr "Bendras skelbimas"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Groups"
+msgstr "Grupės"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTP nukreipimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__id
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__id
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__in_date
+msgid "In Date"
+msgstr "Pradžios data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_uid
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_uid
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujino"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_log__write_date
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__write_date
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__write_date
+msgid "Last Updated on"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement_log
+msgid "Log user reads"
+msgstr "Vartotojų peržiūrų žurnalas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__name
+msgid "Name"
+msgstr "Pavadinimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_date
+msgid "Notification Date"
+msgstr "Pranešimo data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_end_date
+msgid "Notification End Date"
+msgstr "Pranešimo pabaigos data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_expiry_date
+msgid "Notification Expiry Date"
+msgstr "Pranešimo galiojimo pabaigos data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__notification_start_date
+msgid "Notification Start Date"
+msgstr "Pranešimo pradžios data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement_tag__parent_id
+msgid "Parent Tag"
+msgstr "Pagrindinė žyma"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__read
+msgid "Read"
+msgstr "Perskaityta"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__read_announcement_ids
+msgid "Read Announcement"
+msgstr "Perskaitytas skelbimas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__read_announcement_count
+msgid "Read Announcement Count"
+msgstr "Perskaitytų skelbimų skaičius"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__date
+msgid "Read Date"
+msgstr "Perskaitymo data"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__read_state
+msgid "Read State"
+msgstr "Skaitymo būsena"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Reads"
+msgstr "Perskaitymai"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__sequence
+msgid "Sequence"
+msgstr "Seka"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Set here the content of the announcement."
+msgstr "Čia įveskite skelbimo turinį."
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_read_announcement_wizard
+msgid "Show altogether users who read and users who didn't"
+msgstr "Rodyti vartotojus, kurie perskaitė, ir kurie neperskaitė"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__specific_user_ids
+msgid "Specific User"
+msgstr "Konkretus vartotojas"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__specific_users
+msgid "Specific users"
+msgstr "Konkretūs vartotojai"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_search
+msgid "Tag"
+msgstr "Žyma"
+
+#. module: announcement
+#: model:ir.model.constraint,message:announcement.constraint_announcement_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "Žymos pavadinimas jau egzistuoja!"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__tag_ids
+msgid "Tags"
+msgstr "Žymos"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Tags..."
+msgstr "Žymos..."
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__notification_end_date
+#: model:ir.model.fields,help:announcement.field_announcement__notification_start_date
+msgid "Technical field to display announcements in the calendar view"
+msgstr "Techninis laukas skelbimams rodyti kalendoriaus rodinyje"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__color
+msgid "Technical field to display items by color in the calendar"
+msgstr "Techninis laukas elementams rodyti spalva kalendoriuje"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__name
+msgid "Title"
+msgstr "Pavadinimas"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_tree
+msgid "Total users"
+msgstr "Iš viso vartotojų"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__read_announcement_wizard__read_state__unread
+msgid "Unread"
+msgstr "Neperskaityta"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_res_users__unread_announcement_ids
+msgid "Unread Announcement"
+msgstr "Neperskaitytas skelbimas"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_res_users
+#: model:ir.model.fields,field_description:announcement.field_read_announcement_wizard__user_id
+msgid "User"
+msgstr "Vartotojas"
+
+#. module: announcement
+#: model:ir.model.fields,field_description:announcement.field_announcement__user_group_ids
+msgid "User Group"
+msgstr "Vartotojų grupė"
+
+#. module: announcement
+#: model:ir.model,name:announcement.model_announcement
+msgid "User announcements"
+msgstr "Vartotojų skelbimai"
+
+#. module: announcement
+#: model:ir.model.fields.selection,name:announcement.selection__announcement__announcement_type__user_group
+msgid "User groups"
+msgstr "Vartotojų grupės"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_management_view_form
+msgid "Users"
+msgstr "Vartotojai"
+
+#. module: announcement
+#: model:res.groups,comment:announcement.announcemenent_manager
+msgid "Users allowed to manage and configure announcements."
+msgstr "Vartotojai, turintys teisę valdyti ir konfigūruoti skelbimus."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "Valid up to"
+msgstr "Galioja iki"
+
+#. module: announcement
+#: model:ir.model.fields,help:announcement.field_announcement__attachment_ids
+msgid "You can attach the copy of your Letter"
+msgstr "Galite pridėti savo laiško kopiją"
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_form
+msgid "e.g. Announcement description..."
+msgstr "pvz., Skelbimo aprašymas..."
+
+#. module: announcement
+#: model_terms:ir.ui.view,arch_db:announcement.announcement_view_calendar
+msgid "name"
+msgstr "pavadinimas"
