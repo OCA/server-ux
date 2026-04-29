@@ -1,10 +1,10 @@
-# Copyrithg 2020 Iván Todorovich <ivan.todorovich@gmail.com>
+# Copyright 2020 Iván Todorovich <ivan.todorovich@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import SavepointCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestServerActionDomain(SavepointCase):
+class TestServerActionDomain(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
