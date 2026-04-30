@@ -1,0 +1,1 @@
+from . import test_base_automation_sales_team_subscribe
