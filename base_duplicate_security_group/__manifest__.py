@@ -3,14 +3,14 @@
 {
     "name": "Restrict records duplicating",
     "summary": "Adds a security group to restrict which users can copy records",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "development_status": "Beta",
     "category": "Server tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["chienandalu"],
     "license": "AGPL-3",
-    "depends": ["web_tour"],
+    "depends": ["web", "web_tour"],
     "data": ["security/base_duplicate_security_group_security.xml"],
     "assets": {
         "web.assets_backend": [
