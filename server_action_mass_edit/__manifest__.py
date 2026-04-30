@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Mass Editing",
-    "version": "18.0.1.1.3",
+    "version": "18.0.1.1.4",
     "author": "Serpent Consulting Services Pvt. Ltd., "
     "Tecnativa, "
     "GRAP, "
@@ -14,6 +14,7 @@
     "summary": "Mass Editing",
     "depends": [
         "base",
+        "onchange_helper",
     ],
     "data": [
         "security/ir.model.access.csv",
