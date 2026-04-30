@@ -2,7 +2,7 @@
 /* Copyright 2021 Tecnativa - David Vidal
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
-import tour from "web_tour.tour";
+import {registry} from "@web/core/registry";
 
 const commonSteps = [
     {
@@ -30,31 +30,26 @@ const commonSteps = [
     },
 ];
 
-tour.register(
-    "button_duplicate_ok",
-    {
-        test: true,
-        url: "/web",
-    },
-    [
+registry.category("web_tour.tours").add("button_duplicate_ok", {
+    test: true,
+    url: "/web",
+    steps: () => [
         ...commonSteps,
         {
             content: "We can duplicate",
             trigger: "a[role='menuitemcheckbox']:contains('Duplicate')",
         },
-    ]
-);
-tour.register(
-    "button_duplicate_ko",
-    {
-        test: true,
-        url: "/web",
-    },
-    [
+    ],
+});
+
+registry.category("web_tour.tours").add("button_duplicate_ko", {
+    test: true,
+    url: "/web",
+    steps: () => [
         ...commonSteps,
         {
             trigger:
                 ".btn-group:not(:has(a[role='menuitemcheckbox']:contains('Duplicate')))",
         },
-    ]
-);
+    ],
+});

@@ -2,24 +2,21 @@
 /* Copyright 2021 Tecnativa - David Vidal
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
-import FormView from "web.FormView";
-import session from "web.session";
+import {FormController} from "@web/views/form/form_controller";
+import {patch} from "@web/core/utils/patch";
+import {user} from "@web/core/user";
 
 /**
- * Use this mixin if any view relied in this controller value as well to let
- * the user duplicate records.
+ * Patch FormController to disable duplicate action for users without permission.
  * If the user has the permission, the internal logic rules will apply.
  **/
-export const DuplicateViewMixin = {
-    init() {
-        this._super(...arguments);
+patch(FormController.prototype, {
+    async setup() {
+        await super.setup(...arguments);
         const base_group = "base_duplicate_security_group.group_duplicate_records";
-        session.user_has_group(base_group).then((result) => {
-            if (!result) {
-                this.controllerParams.activeActions.duplicate = false;
-            }
-        });
+        const hasGroup = await user.hasGroup(base_group);
+        if (!hasGroup && this.archInfo.activeActions) {
+            this.archInfo.activeActions.duplicate = false;
+        }
     },
-};
-
-FormView.include(DuplicateViewMixin);
+});
