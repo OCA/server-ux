@@ -20,6 +20,7 @@
     "assets": {
         "web.assets_backend": [
             "barcode_action/static/src/js/action_barcode_widget.esm.js",
+            "barcode_action/static/src/js/barcode_action_systray.esm.js",
             "barcode_action/static/src/scss/action_barcode_widget.scss",
             "barcode_action/static/src/xml/action_barcode_widget.xml",
         ],

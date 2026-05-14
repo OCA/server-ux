@@ -9,4 +9,17 @@
         </div>
     </t>
 
+    <t t-name="barcode_action.SystrayItem">
+        <div>
+            <button
+                class="o_nav_entry btn"
+                title="Scan a barcode"
+                accesskey="b"
+                t-on-click="onClick"
+            >
+                <i class="fa fa-barcode" />
+            </button>
+        </div>
+    </t>
+
 </templates>
