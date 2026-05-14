@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import json
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -39,3 +40,9 @@ class TestPartnerFind(TransactionCase):
         )
         self.assertEqual(wizard.state, "waiting")
         self.assertEqual(wizard.status, "Start scanning")
+
+    def test_barcode_action_rejects_private_methods(self):
+        with self.assertRaises(ValidationError):
+            self.env["barcode.action"].create(
+                {"model": "res.partner", "method": "_compute_display_name"}
+            )
