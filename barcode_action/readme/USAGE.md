@@ -1,10 +1,13 @@
-Actions must be configured with the following data in the context: \*
-model: Model where we can find the method (required) \* method: Method
-to execute (required) \* res_id: Id as base (optional)
+Actions must be configured with the following keys in their context:
 
-The method must return an action. Installing this module with demo data
-will install a demo application that allows the system administrator to
-find a partner by the external reference encoded in a barcode.
+- `model`: model where the method can be found (required)
+- `method`: method to execute on that model (required)
+- `res_id`: record id passed as the base of the method call (optional)
+
+The configured method must return an action. Installing this module
+with demo data will install a demo application that allows the system
+administrator to find a partner by the internal reference encoded in a
+barcode.
 
 Go to *Settings / Find partners* and scan a barcode that contains the
 internal reference of an existing partner. As soon as you read the
@@ -14,13 +17,16 @@ Technical implementation of this example:
 
 Action:
 
-    <act_window id="res_partner_find"
-        name="Find Partner"
-        res_model="barcode.action"
-        view_mode="form"
-        view_type="form"
-        context="{'default_model': 'res.partner', 'default_method': 'find_res_partner_by_ref_using_barcode'}"
-        target="new"/>
+    <record id="res_partner_find" model="ir.actions.act_window">
+        <field name="name">Find Partner</field>
+        <field name="res_model">barcode.action</field>
+        <field name="view_mode">form</field>
+        <field name="context">{
+            'default_model': 'res.partner',
+            'default_method': 'find_res_partner_by_ref_using_barcode',
+        }</field>
+        <field name="target">new</field>
+    </record>
 
     <menuitem id="menu_orders_customers" name="Find partners"
         action="res_partner_find"
@@ -29,30 +35,33 @@ Action:
 Python code:
 
     import json
-    from odoo import api, models, _
+    from odoo import models
     from odoo.tools.safe_eval import safe_eval
 
 
     class ResPartner(models.Model):
-        _inherit = 'res.partner'
+        _inherit = "res.partner"
 
-        @api.multi
         def find_res_partner_by_ref_using_barcode(self, barcode):
-            partner = self.search([('ref', '=', barcode)], limit=1)
+            partner = self.search([("ref", "=", barcode)], limit=1)
             if not partner:
-                action = self.env.ref('res_partner_find')
-                result = action.read()[0]
-                context = safe_eval(result['context'])
-                context.update({
-                    'default_state': 'warning',
-                    'default_status': _('Partner with Internal Reference '
-                                        '%s cannot be found') % barcode
-                })
-                result['context'] = json.dumps(context)
-                return result
-            action = self.env.ref('base.action_partner_form')
-            result = action.read()[0]
-            res = self.env.ref('base.view_partner_form', False)
-            result['views'] = [(res and res.id or False, 'form')]
-            result['res_id'] = partner.id
-            return result
+                xmlid = "barcode_action.res_partner_find"
+                action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+                context = safe_eval(action["context"])
+                context.update(
+                    {
+                        "default_state": "warning",
+                        "default_status": self.env._(
+                            "Partner with Internal Reference %s cannot be found",
+                            barcode,
+                        ),
+                    }
+                )
+                action["context"] = json.dumps(context)
+                return action
+            xmlid = "base.action_partner_form"
+            action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+            res = self.env.ref("base.view_partner_form", False)
+            action["views"] = [(res and res.id or False, "form")]
+            action["res_id"] = partner.id
+            return action

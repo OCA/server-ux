@@ -1,14 +1,15 @@
-/** @odoo-module **/
-
+import {Component, xml} from "@odoo/owl";
+import {useBus, useService} from "@web/core/utils/hooks";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
-import {useBus, useService} from "@web/core/utils/hooks";
-
-import {Component, xml} from "@odoo/owl";
 
 export class ActionBarcodeField extends Component {
+    static template = xml``;
+    static props = {...standardFieldProps};
+
     setup() {
         const barcode = useService("barcode");
+        this.action = useService("action");
         this.orm = useService("orm");
         useBus(barcode.bus, "barcode_scanned", this.onBarcodeScanned);
     }
@@ -26,12 +27,9 @@ export class ActionBarcodeField extends Component {
             }
         );
 
-        this.env.services.action.doAction(action);
+        this.action.doAction(action);
     }
 }
-
-ActionBarcodeField.template = xml``;
-ActionBarcodeField.props = {...standardFieldProps};
 
 export const actionBarcodeField = {
     component: ActionBarcodeField,

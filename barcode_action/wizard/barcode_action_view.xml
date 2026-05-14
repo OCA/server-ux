@@ -9,26 +9,24 @@
         <field name="name">barcode.action.form</field>
         <field name="model">barcode.action</field>
         <field name="arch" type="xml">
-            <form string="Find">
+            <form string="Barcode Launcher">
                 <div
-                    class="alert alert-success text-center o_form_header"
+                    class="alert alert-success text-center mb-0"
                     role="alert"
-                    style="margin-bottom:0px;"
                     invisible="state == 'warning'"
                 >
-                    <bold>
+                    <strong>
                         <field name="status" readonly="1" />
-                    </bold>
+                    </strong>
                 </div>
                 <div
-                    class="alert alert-danger alert-dismissable text-center"
+                    class="alert alert-danger text-center mb-0"
                     role="alert"
-                    style="margin-bottom:0px;"
                     invisible="state == 'waiting'"
                 >
-                    <bold>
+                    <strong>
                         <field name="status" readonly="1" />
-                    </bold>
+                    </strong>
                 </div>
                 <field name="state" invisible="1" readonly="1" />
                 <field name="res_id" invisible="1" />
@@ -39,7 +37,7 @@
                     <button
                         name="action_cancel"
                         string="Close"
-                        class="oe_link"
+                        class="btn-secondary"
                         special="cancel"
                     />
                 </footer>
