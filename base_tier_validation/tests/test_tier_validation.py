@@ -592,8 +592,12 @@ class TierTierValidation(CommonTierValidation):
         review_1._compute_can_review()
         self.assertTrue(review_1.status == "pending")
         msg2 = test_record2.message_ids[0].body
-        request = test_record2._notify_requested_review_body()
+        # The promotion body now carries the assignee + the original
+        # requester (sourced from ``review.requested_by``, not env.user).
+        request = test_record2._notify_requested_review_body(review_1)
         self.assertIn(request, msg2)
+        self.assertIn(review_1.todo_by, msg2)
+        self.assertIn(review_1.requested_by.display_name, msg2)
 
     def test_21_notify_on_create(self):
         # notify on create
