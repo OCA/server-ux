@@ -5,7 +5,8 @@
 
 from ast import literal_eval
 
-from odoo.exceptions import ValidationError
+from odoo import models
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, common, new_test_user
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
@@ -402,6 +403,93 @@ class TestMassEditing(common.TransactionCase):
                 "email": {},
             },
         )
+
+    def test_onchange_dynamic_fields_are_bound_and_cleaned(self):
+        """Dynamic Selection/Text fields injected in ``_fields`` during
+        ``onchange`` must:
+
+        1. Be bound to their owner so ``model_name`` and ``name`` are
+           populated. Otherwise any later access to
+           ``registry._field_triggers`` (e.g. via ``_has_onchange``
+           triggered by ``get_view`` on another model) resolves
+           ``registry[None]`` and raises ``KeyError: None``, which then
+           surfaces as a random RPC error in unrelated views.
+        2. Be removed from ``_fields`` once ``onchange`` returns, even when
+           ``super().onchange()`` raises. ``_fields`` is a class attribute
+           shared by every request handled by the worker, so a leaked
+           Field poisons the registry until the process is restarted.
+        """
+        wizard_model = self.MassEditingWizard
+        injected_field_names = []
+        for line in self.mass_editing_user.mass_edit_line_ids:
+            injected_field_names.append("selection__" + line.field_id.name)
+            injected_field_names.append(line.field_id.name)
+        self.assertTrue(injected_field_names, "demo data should have lines")
+
+        # Happy path: capture the dynamic Field metadata while super() runs,
+        # then assert nothing is left behind afterwards.
+        original_onchange = models.Model.onchange
+        captured = {}
+
+        def inspecting_onchange(inst, values, field_names, fields_spec):
+            for fname in injected_field_names:
+                fld = inst._fields.get(fname)
+                captured[fname] = (
+                    fld.model_name if fld else None,
+                    fld.name if fld else None,
+                )
+            return {"value": {}}
+
+        models.Model.onchange = inspecting_onchange
+        try:
+            wizard_model.with_context(
+                server_action_id=self.mass_editing_user.id,
+                active_ids=[],
+                original_active_ids=[],
+            ).onchange({}, [], {})
+        finally:
+            models.Model.onchange = original_onchange
+
+        for fname in injected_field_names:
+            model_name, name = captured[fname]
+            self.assertEqual(
+                model_name,
+                wizard_model._name,
+                f"Dynamic field {fname} was injected with "
+                f"model_name={model_name!r}; registry lookups will crash "
+                "with KeyError: None.",
+            )
+            self.assertEqual(name, fname)
+            self.assertNotIn(
+                fname,
+                wizard_model._fields,
+                f"Dynamic field {fname} leaked into _fields after a "
+                "successful onchange call.",
+            )
+
+        # Failure path: even when super().onchange() raises, dynamic fields
+        # must be cleaned up so the worker's _fields stays uncontaminated.
+        def failing_onchange(inst, values, field_names, fields_spec):
+            raise UserError("boom")  # pylint: disable=translation-required
+
+        models.Model.onchange = failing_onchange
+        try:
+            with self.assertRaises(UserError):
+                wizard_model.with_context(
+                    server_action_id=self.mass_editing_user.id,
+                    active_ids=[],
+                    original_active_ids=[],
+                ).onchange({}, [], {})
+        finally:
+            models.Model.onchange = original_onchange
+
+        for fname in injected_field_names:
+            self.assertNotIn(
+                fname,
+                wizard_model._fields,
+                f"Dynamic field {fname} leaked into _fields after a "
+                "failing onchange call.",
+            )
 
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
