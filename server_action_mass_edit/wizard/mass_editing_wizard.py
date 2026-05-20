@@ -90,29 +90,44 @@ class MassEditingWizard(models.TransientModel):
             values["selection__" + line.field_id.name] = "ignore"
             values[line.field_id.name] = False
 
-            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [()], default="ignore"
-            )
+            sel_name = "selection__" + line.field_id.name
+            sel_field = fields.Selection([()], default="ignore")
+            # Bind the dynamic Field to its owner so ``model_name`` / ``name``
+            # are populated. Otherwise any later access to the registry's
+            # ``_field_triggers`` (e.g. via ``_has_onchange`` on another model)
+            # would resolve ``registry[None]`` and raise ``KeyError: None``,
+            # which then propagates as a random RPC error in unrelated views.
+            sel_field.__set_name__(type(self), sel_name)
+            dynamic_fields[sel_name] = sel_field
 
-            dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
+            txt_name = line.field_id.name
+            txt_field = fields.Text([()], default=False)
+            txt_field.__set_name__(type(self), txt_name)
+            dynamic_fields[txt_name] = txt_field
 
         self._fields.update(dynamic_fields)
 
-        res = super().onchange(values, field_names, fields_spec)
-        if not res["value"]:
-            value = {key: value for key, value in values.items() if value is not False}
-            res["value"] = value
+        try:
+            res = super().onchange(values, field_names, fields_spec)
+            if not res["value"]:
+                value = {
+                    key: value for key, value in values.items() if value is not False
+                }
+                res["value"] = value
+        finally:
+            # Always clean up: ``_fields`` is a class attribute shared by every
+            # request handled by the worker, so a leaked Field would poison
+            # the registry until the process is restarted.
+            for field in dynamic_fields:
+                self._fields.pop(field, None)
 
-        for field in dynamic_fields:
-            self._fields.pop(field)
-
-        view_temp = (
-            self.env["ir.ui.view"]
-            .sudo()
-            .search([("name", "=", "Temporary Mass Editing Wizard")], limit=1)
-        )
-        if view_temp:
-            view_temp.unlink()
+            view_temp = (
+                self.env["ir.ui.view"]
+                .sudo()
+                .search([("name", "=", "Temporary Mass Editing Wizard")], limit=1)
+            )
+            if view_temp:
+                view_temp.unlink()
 
         return res
 
