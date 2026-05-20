@@ -4,12 +4,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
+from unittest import mock
 
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
+from odoo.addons.web.models.models import Base as WebBase
 
 
 def fake_onchange_model_id(self):
@@ -437,13 +439,20 @@ class TestMassEditing(common.TransactionCase):
             bindings.append((getattr(owner, "_name", None), name))
             return original_set_name(field_self, owner, name)
 
+        # Stub out ``super().onchange()`` with a no-op: the dynamic fields
+        # are injected with an intentionally empty selection list (``[()]``)
+        # which is fine while ``model_name`` is None (the bug we fix) but
+        # would otherwise trip ``Selection.get_values`` from the real
+        # ``web.Base.onchange``. We only care about whether the wizard
+        # binds the dynamic fields, not about the parent onchange result.
         fields.Field.__set_name__ = capturing_set_name
         try:
-            wizard_model.with_context(
-                server_action_id=self.mass_editing_user.id,
-                active_ids=[],
-                original_active_ids=[],
-            ).onchange({}, [], {})
+            with mock.patch.object(WebBase, "onchange", return_value={"value": {}}):
+                wizard_model.with_context(
+                    server_action_id=self.mass_editing_user.id,
+                    active_ids=[],
+                    original_active_ids=[],
+                ).onchange({}, [], {})
         finally:
             fields.Field.__set_name__ = original_set_name
 
