@@ -101,13 +101,24 @@ class MassEditingWizard(models.TransientModel):
             return super().onchange(values, field_name, field_onchange)
         dynamic_fields = {}
         for line in server_action.mapped("mass_edit_line_ids"):
-            dynamic_fields["selection__" + line.field_id.name] = fields.Selection(
-                [()], default="ignore"
-            )
+            fname = "selection__" + line.field_id.name
+            fld = fields.Selection([()], default="ignore")
+            # Bind the dynamic Field to its owner so ``model_name`` / ``name``
+            # are populated. Otherwise any later access to the registry's
+            # ``_field_triggers`` (e.g. via ``_has_onchange`` on another model)
+            # would resolve ``registry[None]`` and raise ``KeyError: None``,
+            # which then propagates as a random RPC error in unrelated views.
+            fld.__set_name__(type(self), fname)
+            dynamic_fields[fname] = fld
         self._fields.update(dynamic_fields)
-        res = super().onchange(values, field_name, field_onchange)
-        for field in dynamic_fields:
-            self._fields.pop(field)
+        try:
+            res = super().onchange(values, field_name, field_onchange)
+        finally:
+            # Always clean up: ``_fields`` is a class attribute shared by every
+            # request handled by the worker, so a leaked Field would poison
+            # the registry until the process is restarted.
+            for fname in dynamic_fields:
+                self._fields.pop(fname, None)
         return res
 
     @api.model
