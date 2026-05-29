@@ -11,7 +11,7 @@ class ChainedSwapper(models.Model):
     _name = "chained.swapper"
     _description = "Chained Swapper"
 
-    name = fields.Char(required=True, translate=True, index=1)
+    name = fields.Char(required=True, translate=True, index="trigram")
     model_id = fields.Many2one(
         comodel_name="ir.model",
         required=True,
@@ -53,13 +53,10 @@ class ChainedSwapper(models.Model):
         string="Groups",
     )
 
-    _sql_constraints = [
-        (
-            "model_id_field_id_unique",
-            "unique (model_id, field_id)",
-            "Model and Field must be unique!",
-        ),
-    ]
+    _model_id_field_id_unique = models.Constraint(
+        "unique (model_id, field_id)",
+        "Model and Field must be unique!",
+    )
 
     @api.depends("model_id")
     def _compute_allowed_field_ids_domain(self):
@@ -104,7 +101,7 @@ class ChainedSwapper(models.Model):
                 "name": self.env._("Chained swap") + ": " + self.name,
                 "type": "ir.actions.act_window",
                 "res_model": "chained.swapper.wizard",
-                "groups_id": [(4, x.id) for x in self.group_ids],
+                "group_ids": [(4, x.id) for x in self.group_ids],
                 "context": {"chained_swapper_id": self.id},
                 "view_mode": "form",
                 "target": "new",
@@ -178,7 +175,7 @@ class ChainedSwapperSubField(models.Model):
             ):
                 raise exceptions.ValidationError(
                     self.env._(
-                        "The sub-field '%s' is not compatible with the main" " field.",
+                        "The sub-field '%s' is not compatible with the main field.",
                         rec.sub_field_chain,
                     )
                 )
