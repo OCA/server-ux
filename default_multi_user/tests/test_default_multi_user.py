@@ -3,17 +3,17 @@
 
 import json
 
-from odoo.tests import common, tagged
+from odoo.fields import Command
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestDefaultMultiUser(common.TransactionCase):
+class TestDefaultMultiUser(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(cls.env.context, tracking_disable=True, no_reset_password=True)
-        )
         cls.default_model = cls.env["ir.default"]
         cls.user_model = cls.env["res.users"]
         cls.partner_model = cls.env["res.partner"]
@@ -53,9 +53,11 @@ class TestDefaultMultiUser(common.TransactionCase):
                 "login": login,
                 "password": "demo",
                 "email": f"{login}@yourcompany.com",
-                "groups_id": [(6, 0, group_ids)],
+                "group_ids": [Command.set(group_ids)],
                 "company_id": company.id,
-                "company_ids": [(6, 0, [cls.main_company.id, cls.other_company.id])],
+                "company_ids": [
+                    Command.set([cls.main_company.id, cls.other_company.id])
+                ],
             }
         )
         return user
@@ -79,7 +81,7 @@ class TestDefaultMultiUser(common.TransactionCase):
                 "field_id": self.field.id,
                 "json_value": json.dumps(self.test_value, ensure_ascii=False),
                 "user_id": self.user_1.id,
-                "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
+                "manual_user_ids": [Command.set((self.user_1 + self.user_2).ids)],
             }
         )
         self.assertIn(self.user_1, test_default.user_ids)
@@ -103,7 +105,7 @@ class TestDefaultMultiUser(common.TransactionCase):
             {
                 "field_id": self.field.id,
                 "json_value": json.dumps(self.test_value, ensure_ascii=False),
-                "group_ids": [(6, 0, self.group_private.ids)],
+                "group_ids": [Command.set(self.group_private.ids)],
             }
         )
         self.assertIn(self.user_1, test_default.user_ids)
@@ -115,12 +117,40 @@ class TestDefaultMultiUser(common.TransactionCase):
         rec_3 = self.partner_model.with_user(self.user_3).create({"name": "Test"})
         self.assertEqual(rec_3.phone, self.test_value)
 
+    def test_07_group_membership_change(self):
+        """user_ids must follow group membership, not only the m2m on the record.
+
+        Regression gate for the compute carrying @api.constrains instead of
+        @api.depends: without a dependency on group_ids.user_ids the stored
+        field never notices a user joining or leaving a referenced group.
+        """
+        test_default = self.default_model.create(
+            {
+                "field_id": self.field.id,
+                "json_value": json.dumps(self.test_value, ensure_ascii=False),
+                "group_ids": [Command.set(self.group_private.ids)],
+            }
+        )
+        self.assertNotIn(self.user_2, test_default.user_ids)
+        self.group_private.user_ids = [Command.link(self.user_2.id)]
+        self.assertIn(
+            self.user_2,
+            test_default.user_ids,
+            "joining a scoped group must add the user to user_ids",
+        )
+        self.group_private.user_ids = [Command.unlink(self.user_2.id)]
+        self.assertNotIn(
+            self.user_2,
+            test_default.user_ids,
+            "leaving a scoped group must drop the user from user_ids",
+        )
+
     def test_04_multi_user_no_alternative(self):
         test_default = self.default_model.create(
             {
                 "field_id": self.field.id,
                 "json_value": json.dumps(self.test_value, ensure_ascii=False),
-                "manual_user_ids": [(6, 0, self.user_2.ids)],
+                "manual_user_ids": [Command.set(self.user_2.ids)],
             }
         )
         self.assertNotIn(self.user_1, test_default.user_ids)
