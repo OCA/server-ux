@@ -3,7 +3,7 @@
 {
     "name": "Chained Swapper",
     "summary": "Chained Swapper",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Mature",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Tools",
