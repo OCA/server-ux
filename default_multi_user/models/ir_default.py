@@ -4,7 +4,7 @@
 from odoo import api, fields, models
 
 
-class IrDefaultgard(models.Model):
+class IrDefaultGuard(models.Model):
     _inherit = "ir.default"
 
     user_ids = fields.Many2many(
@@ -26,10 +26,10 @@ class IrDefaultgard(models.Model):
         string="Available for Groups",
     )
 
-    @api.constrains("manual_user_ids", "group_ids")
+    @api.depends("manual_user_ids", "group_ids.user_ids")
     def _compute_user_ids(self):
         for rec in self:
-            rec.user_ids = rec.manual_user_ids + rec.group_ids.users
+            rec.user_ids = rec.manual_user_ids + rec.group_ids.user_ids
 
     @api.model
     def _get_model_defaults_query_and_params(self, model_name, condition):
