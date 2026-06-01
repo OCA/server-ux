@@ -645,7 +645,11 @@ class TierValidation(models.AbstractModel):
             user_reviews = reviews.filtered(
                 lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
             )
-            return self._add_comment("validate", user_reviews)
+            action = self._add_comment("validate", user_reviews)
+            action["context"]["default_comment"] = (
+                user_reviews[:1].definition_id.comment_approve_default or ""
+            )
+            return action
         self._validate_tier(reviews)
         self._update_counter({"review_deleted": True})
 

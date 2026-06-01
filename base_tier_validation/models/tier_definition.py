@@ -94,6 +94,10 @@ class TierDefinition(models.Model):
         "to this definition are restarted.",
     )
     has_comment = fields.Boolean(string="Comment", default=False)
+    comment_approve_default = fields.Char(
+        string="Approve Comment",
+        help="Default comment prefilled when approval comments are enabled.",
+    )
     notify_reminder_delay = fields.Integer(
         string="Send reminder message on pending reviews",
         help="Number of days after which a message must be posted to remind about "
