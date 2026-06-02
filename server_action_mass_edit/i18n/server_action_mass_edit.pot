@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -73,9 +73,16 @@ msgid "Created on"
 msgstr ""
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__display_name
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__display_name
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__display_name
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_domain
+msgid "Domain"
 msgstr ""
 
 #. module: server_action_mass_edit
@@ -90,12 +97,27 @@ msgid "Field"
 msgstr ""
 
 #. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
+msgid ""
+"Field '%(field)s': cannot set both a custom domain and 'Apply Domain' at the"
+" same time."
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
 msgid "Fields"
 msgstr ""
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_relation
+msgid "For relationship fields, the technical name of the target model"
+msgstr ""
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__id
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__id
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__id
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__id
 msgid "ID"
 msgstr ""
@@ -116,12 +138,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_date
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: server_action_mass_edit
-#: model:ir.actions.server,name:server_action_mass_edit.mass_editing_partner_title
-#: model:ir.actions.server,name:server_action_mass_edit.mass_editing_user
-msgid "Mass Edit"
 msgstr ""
 
 #. module: server_action_mass_edit
@@ -186,6 +202,18 @@ msgid "Operation Description Warning"
 msgstr ""
 
 #. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_domain
+msgid ""
+"Optional domain to filter the selectable values for this relational field in"
+" the mass edit wizard."
+msgstr ""
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_relation
+msgid "Related Model"
+msgstr ""
+
+#. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__remaining_item_qty
 msgid "Remaining Item Qty"
 msgstr ""
@@ -247,7 +275,7 @@ msgid ""
 "- 'Create Record': create a new record with new values\n"
 "- 'Execute Code': a block of Python code that will be executed\n"
 "- 'Send Webhook Notification': send a POST request to an external system, also known as a Webhook\n"
-"- 'Execute Existing Actions': define an action that triggers several other server actions\n"
+"- 'Multi Actions': define an action that triggers several other server actions\n"
 msgstr ""
 
 #. module: server_action_mass_edit
@@ -271,4 +299,46 @@ msgstr ""
 msgid ""
 "You have selected %(origin_amount)d record(s) that can not be processed.\n"
 "Only %(amount)d record(s) will be processed."
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "add"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "add_o2m"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "remove"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "remove_m2m"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "set"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "set_m2m"
+msgstr ""
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "set_o2m"
 msgstr ""

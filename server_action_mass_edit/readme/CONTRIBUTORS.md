@@ -9,5 +9,6 @@
 - [Tecnativa](https://www.tecnativa.com)
   - Jairo Llopis
   - Víctor Martínez
+  - Eduardo Ezerouali
 - Tatiana Deribina \<<tatiana.deribina@spritnit.fi>\>
 - Tris Doan \<<tridm@trobz.com>\>

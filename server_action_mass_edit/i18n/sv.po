@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 21:08+0000\n"
-"PO-Revision-Date: 2024-02-27 11:35+0000\n"
-"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
+"PO-Revision-Date: 2026-07-01 15:46+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: server_action_mass_edit
 #: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
@@ -150,7 +150,7 @@ msgstr "Massredigera poster"
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
 msgid "Mass Server Action"
-msgstr ""
+msgstr "Massserveråtgärd"
 
 #. module: server_action_mass_edit
 #. odoo-python
@@ -246,7 +246,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
@@ -265,11 +265,24 @@ msgid ""
 "- 'Execute Existing Actions': define an action that triggers several other "
 "server actions\n"
 msgstr ""
+"Typ av serveråtgärd. Följande värden är tillgängliga:\n"
+"- 'Uppdatera en post': uppdatera värdena för en post\n"
+"- 'Skapa aktivitet': skapa en aktivitet (Discuss)\n"
+"- 'Skicka e-post': posta ett meddelande, en anteckning eller skicka ett e-"
+"postmeddelande (Discuss)\n"
+"- 'Skicka SMS': skicka SMS, logga dem på dokument (SMS)- 'Lägg till/ta bort "
+"följare': lägg till eller ta bort följare för en post (Discuss)\n"
+"- 'Skapa post': skapa en ny post med nya värden\n"
+"- 'Kör kod': ett block med Python-kod som körs\n"
+"- 'Skicka webhook-avisering': skicka en POST-begäran till ett externt "
+"system, även känt som en Webhook\n"
+"- 'Kör befintliga åtgärder': definiera en åtgärd som utlöser flera andra "
+"serveråtgärder\n"
 
 #. module: server_action_mass_edit
 #: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
 msgid "View"
-msgstr ""
+msgstr "Vy"
 
 #. module: server_action_mass_edit
 #: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
