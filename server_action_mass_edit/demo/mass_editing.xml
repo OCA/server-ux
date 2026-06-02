@@ -22,58 +22,51 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
     <record id="mass_editing_user_line_3" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__category_id" />
+        <field name="field_id" ref="base.field_res_users__company_id" />
     </record>
     <record id="mass_editing_user_line_4" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__comment" />
+        <field name="field_id" ref="base.field_res_users__active" />
     </record>
     <record id="mass_editing_user_line_5" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__country_id" />
+        <field name="field_id" ref="base.field_res_users__lang" />
     </record>
     <record id="mass_editing_user_line_6" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__is_company" />
+        <field name="field_id" ref="base.field_res_users__partner_id" />
     </record>
     <record id="mass_editing_user_line_7" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__lang" />
+        <field name="field_id" ref="base.field_res_users__signature" />
     </record>
     <record id="mass_editing_user_line_8" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__title" />
+        <field name="field_id" ref="base.field_res_users__tz" />
     </record>
     <record id="mass_editing_user_line_9" model="ir.actions.server.mass.edit.line">
-        <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__company_type" />
-    </record>
-    <record id="mass_editing_user_line_10" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
         <field name="field_id" ref="base.field_res_users__image_1920" />
         <field name="widget_option">image</field>
     </record>
-    <record id="mass_editing_user_line_11" model="ir.actions.server.mass.edit.line">
+    <record id="mass_editing_user_line_10" model="ir.actions.server.mass.edit.line">
         <field name="server_action_id" ref="mass_editing_user" />
-        <field name="field_id" ref="base.field_res_users__bank_ids" />
+        <field name="field_id" ref="base.field_res_users__login" />
     </record>
 
-    <!-- Mass Edit Partner Title -->
-    <record id="mass_editing_partner_title" model="ir.actions.server">
+    <!-- Mass Edit Country -->
+    <record id="mass_editing_country" model="ir.actions.server">
         <field name="state">mass_edit</field>
         <field name="name">Mass Edit</field>
-        <field name="model_id" ref="base.model_res_partner_title" />
+        <field name="model_id" ref="base.model_res_country" />
     </record>
-    <record
-        id="mass_editing_partner_title_line_1"
-        model="ir.actions.server.mass.edit.line"
-    >
-        <field name="server_action_id" ref="mass_editing_partner_title" />
-        <field name="field_id" ref="base.field_res_partner_title__shortcut" />
+    <record id="mass_editing_country_line_1" model="ir.actions.server.mass.edit.line">
+        <field name="server_action_id" ref="mass_editing_country" />
+        <field name="field_id" ref="base.field_res_country__name" />
     </record>
 
     <!-- Add context actions -->
     <function model="ir.actions.server" name="create_action">
-        <value eval="[ref('mass_editing_user'), ref('mass_editing_partner_title')]" />
+        <value eval="[ref('mass_editing_user'), ref('mass_editing_country')]" />
     </function>
 </odoo>

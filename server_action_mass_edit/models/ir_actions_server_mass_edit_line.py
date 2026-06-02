@@ -3,7 +3,7 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 MAGIC_FIELDS = models.MAGIC_COLUMNS
@@ -43,6 +43,12 @@ class IrActionsServerMassEditLine(models.Model):
         help="Add widget text that will be used to display the field in the wizard.\n"
         "Example: 'many2many_tags', 'selection', 'image'",
     )
+    field_relation = fields.Char(related="field_id.relation")
+    field_domain = fields.Char(
+        string="Domain",
+        help="Optional domain to filter the selectable values for this "
+        "relational field in the mass edit wizard.",
+    )
     apply_domain = fields.Boolean(
         default=False,
         help="Apply default domain related to field",
@@ -53,8 +59,20 @@ class IrActionsServerMassEditLine(models.Model):
         """Check that all fields belong to the action model"""
         if any(rec.field_id.model_id != rec.server_action_id.model_id for rec in self):
             raise ValidationError(
-                _("Mass edit fields should belong to the server action model.")
+                self.env._("Mass edit fields should belong to the server action model.")
             )
+
+    @api.constrains("field_domain", "apply_domain")
+    def _check_field_domain(self):
+        for rec in self:
+            if rec.field_domain and rec.apply_domain:
+                raise ValidationError(
+                    self.env._(
+                        "Field '%(field)s': cannot set both a custom domain"
+                        " and 'Apply Domain' at the same time.",
+                        field=rec.field_id.name,
+                    )
+                )
 
     @api.onchange("field_id")
     def _onchange_field_id(self):
