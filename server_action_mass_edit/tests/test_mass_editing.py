@@ -235,7 +235,7 @@ class TestMassEditing(common.TransactionCase):
         )
         if partner_views:
             # Delete all except one
-            self.env["ir.ui.view"].search(
+            self.env["ir.ui.view"].with_context(active_test=False).search(
                 [
                     ("model", "in", ("res.partner.bank", "res.partner", "res.users")),
                     ("id", "!=", partner_views[0].id),
