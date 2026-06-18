@@ -1,7 +1,7 @@
 # Copyright 2020 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.fields import Domain
 
@@ -59,11 +59,28 @@ class BaseSubstateMixin(models.AbstractModel):
         """Override this method to change state_value"""
         return "draft"
 
+    @api.model
+    @tools.ormcache("self._name")
+    def _get_substate_type_id(self):
+        """Return the substate type id for this model (cached).
+
+        ``_compute_field_value`` calls ``_get_substate_type`` on every computed
+        field computation, so without a cache this issues one
+        ``base.substate.type`` search per computed field read -- which adds up
+        quickly on list/kanban loads. The type per model is technical
+        configuration data that effectively never changes at runtime, so the
+        lookup is cached and invalidated when ``base.substate.type`` records
+        change (see ``BaseSubstateType``).
+        """
+        return (
+            self.env["base.substate.type"]
+            .search(Domain("model", "=", self._name), limit=1)
+            .id
+        )
+
     def _get_substate_type(self):
         """Override this method to change substate_type (get by xml id for example)"""
-        return self.env["base.substate.type"].search(
-            Domain("model", "=", self._name), limit=1
-        )
+        return self.env["base.substate.type"].browse(self._get_substate_type_id())
 
     substate_id = fields.Many2one(
         "base.substate",
