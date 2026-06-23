@@ -2,10 +2,10 @@
 
 {
     "name": "Developer Menu",
-    "version": "18.0.1.1.0",
+    "version": "19.0.1.0.0",
     "category": "Tools",
     "license": "AGPL-3",
-    "summary": "Menu Shortcut for developer usage",
+    "summary": "Shortcut menus for developer usage",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "maintainers": ["bealdav"],
