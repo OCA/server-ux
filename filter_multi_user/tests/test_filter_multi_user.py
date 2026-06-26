@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import AccessError
+from odoo.fields import Command
 from odoo.tests import common
 
 
@@ -24,24 +25,22 @@ class TestFilterMultiUser(common.TransactionCase):
 
     @classmethod
     def _create_user(cls, login, groups):
-        group_ids = [group.id for group in groups]
-        user = cls.user_model.create(
+        return cls.user_model.create(
             {
                 "name": "Test User",
                 "login": login,
                 "password": "demo",
                 "email": f"{login}@yourcompany.com",
-                "groups_id": [(6, 0, group_ids)],
+                "group_ids": [Command.set([g.id for g in groups])],
             }
         )
-        return user
 
     def test_01_no_multi_user(self):
         test_filter = self.filter_model.create(
             {
                 "name": "Test filter",
                 "model_id": "ir.filters",
-                "user_id": self.user_1.id,
+                "manual_user_ids": [Command.set([self.user_1.id])],
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)
@@ -54,8 +53,7 @@ class TestFilterMultiUser(common.TransactionCase):
             {
                 "name": "Test filter",
                 "model_id": "ir.filters",
-                "user_id": self.user_1.id,
-                "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
+                "manual_user_ids": [Command.set((self.user_1 + self.user_2).ids)],
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)
@@ -67,45 +65,38 @@ class TestFilterMultiUser(common.TransactionCase):
             {
                 "name": "Test filter - specific user",
                 "model_id": "ir.filters",
-                "manual_user_ids": [(6, 0, (self.user_1 + self.user_2).ids)],
+                "manual_user_ids": [Command.set((self.user_1 + self.user_2).ids)],
             }
         )
         test_filter_2 = self.filter_model.create(
             {
                 "name": "Test filter 2 - Regular",
                 "model_id": "ir.filters",
-                "user_id": self.user_1.id,
+                "manual_user_ids": [Command.set([self.user_1.id])],
             }
         )
         test_filter_3 = self.filter_model.create(
             {
                 "name": "Test filter 3 - Group",
                 "model_id": "ir.filters",
-                "user_id": self.user_1.id,
-                "group_ids": [(6, 0, self.group_private.ids)],
+                "group_ids": [Command.set(self.group_private.ids)],
             }
         )
         # User 1:
         res = self.filter_model.with_user(self.user_1).get_filters("ir.filters")
-        result = []
-        for filters in res:
-            result.append(filters.get("id"))
+        result = [f.get("id") for f in res]
         self.assertIn(test_filter_1.id, result)
         self.assertIn(test_filter_2.id, result)
         self.assertIn(test_filter_3.id, result)
         # User 2:
         res = self.filter_model.with_user(self.user_2).get_filters("ir.filters")
-        result = []
-        for filters in res:
-            result.append(filters.get("id"))
+        result = [f.get("id") for f in res]
         self.assertIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
         self.assertNotIn(test_filter_3.id, result)
         # User 3:
         res = self.filter_model.with_user(self.user_3).get_filters("ir.filters")
-        result = []
-        for filters in res:
-            result.append(filters.get("id"))
+        result = [f.get("id") for f in res]
         self.assertNotIn(test_filter_1.id, result)
         self.assertNotIn(test_filter_2.id, result)
         self.assertIn(test_filter_3.id, result)
@@ -115,8 +106,7 @@ class TestFilterMultiUser(common.TransactionCase):
             {
                 "name": "Test filter",
                 "model_id": "ir.filters",
-                "user_id": self.user_1.id,
-                "group_ids": [(6, 0, self.group_private.ids)],
+                "group_ids": [Command.set(self.group_private.ids)],
             }
         )
         self.assertTrue(test_filter.with_user(self.user_1).name)

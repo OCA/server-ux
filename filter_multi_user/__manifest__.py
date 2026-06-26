@@ -3,7 +3,7 @@
 {
     "name": "Filter Multi User",
     "summary": "Allows to share user-defined filters filters among several users.",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Tools",
@@ -12,5 +12,5 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["base"],
-    "data": ["security/ir_filters_security.xml", "views/ir_filters_view.xml"],
+    "data": ["views/ir_filters_view.xml"],
 }
