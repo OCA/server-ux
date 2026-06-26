@@ -7,21 +7,18 @@
         <field name="model">ir.filters</field>
         <field name="inherit_id" ref="base.ir_filters_view_form" />
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="user_ids" position="after">
                 <field name="manual_user_ids" widget="many2many_tags" />
                 <field name="group_ids" widget="many2many_tags" />
-            </field>
-            <field name="user_id" position="attributes">
-                <attribute name="string">Owner</attribute>
             </field>
         </field>
     </record>
     <record id="ir_filters_view_tree" model="ir.ui.view">
-        <field name="name">ir.filters.tree - filter_multi_user</field>
+        <field name="name">ir.filters.list - filter_multi_user</field>
         <field name="model">ir.filters</field>
         <field name="inherit_id" ref="base.ir_filters_view_tree" />
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="user_ids" position="after">
                 <field name="group_ids" widget="many2many_tags" />
                 <field
                     name="manual_user_ids"
@@ -36,7 +33,7 @@
         <field name="model">ir.filters</field>
         <field name="inherit_id" ref="base.ir_filters_view_search" />
         <field name="arch" type="xml">
-            <field name="name" position="after">
+            <field name="user_ids" position="after">
                 <field name="manual_user_ids" />
                 <field name="group_ids" />
             </field>
