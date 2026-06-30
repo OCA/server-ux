@@ -13,7 +13,7 @@ class TemplateContentMapping(models.Model):
     def _lang_get(self):
         return self.env["res.lang"].get_installed()
 
-    name = fields.Char(compute="_compute_name", store=True, readonly=True)
+    name = fields.Char(required=True)
     report_id = fields.Many2one("ir.actions.report")
     template_id = fields.Many2one(
         "ir.ui.view",
@@ -37,14 +37,18 @@ class TemplateContentMapping(models.Model):
         help="Set your new content (string). e.g. 'Sales Representative'.",
     )
 
-    @api.depends("content_from", "content_to")
-    def _compute_name(self):
-        for record in self:
-            record.name = False
-            if record.content_from:
-                record.name = (
-                    f"{record.content_from or ''} -> {record.content_to or ''}"
-                )
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("name") and vals.get("content_from"):
+                vals["name"] = vals["content_from"]
+        return super().create(vals_list)
+
+    @api.onchange("content_from")
+    def _onchange_content(self):
+        """Auto-fill the name from the contents while empty; keep manual names."""
+        if not self.name and self.content_from:
+            self.name = self.content_from
 
     @api.onchange("report_id")
     def _onchange_report_id(self):
