@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="web.CustomFilterItem" t-inherit-mode="extension">
+        <xpath
+            expr="//Dropdown[hasclass('o_add_custom_filter_menu')]"
+            position="attributes"
+        >
+            <attribute name="t-if">visibleState.isVisible</attribute>
+        </xpath>
+         <xpath
+            expr="//Dropdown[hasclass('o_add_custom_filter_menu')]"
+            position="after"
+        >
+            <t t-else="">
+                <span />
+            </t>
+        </xpath>
+    </t>
+</templates>
