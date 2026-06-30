@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Template Content Swapper",
+    "summary": "Replace QWeb view elements without custom modules",
     "version": "17.0.1.0.0",
     "author": "Quartile, Odoo Community Association (OCA)",
     "license": "AGPL-3",
