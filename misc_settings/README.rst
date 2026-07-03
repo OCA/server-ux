@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ======================
 Miscellaneous Settings
 ======================
@@ -13,27 +17,29 @@ Miscellaneous Settings
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/16.0/misc_settings
+    :target: https://github.com/OCA/server-ux/tree/19.0/misc_settings
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-16-0/server-ux-16-0-misc_settings
+    :target: https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-misc_settings
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Miscellaneous settings to be an anchor for your custom settings
 
-Use case : you want your users to find all the settings they need to manage their activity over time on a single, dedicated page.
+Use case : you want your users to find all the settings they need to
+manage their activity over time on a single, dedicated page.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-ux/16.0/misc_settings/static/description/screen.png
-    :alt: Miscellaneous settings screen
+|Miscellaneous settings screen|
+
+.. |Miscellaneous settings screen| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/misc_settings/static/description/screen.png
 
 **Table of contents**
 
@@ -43,24 +49,23 @@ Use case : you want your users to find all the settings they need to manage thei
 Configuration
 =============
 
-
 You can override like here
 
-.. code-block:: xml
+.. code:: xml
 
-    <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="model">res.config.settings</field>
-        <field name="priority" eval="200"/>
-        <field name="inherit_id" ref="misc_settings.res_config_settings_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='misc_settings']" position="inside">
-                <h2>My Section</h2>
-                <div class="row mt16 o_settings_container" name="my_section">
-                    Complete here
-                </div>
-            </xpath>
-        </field>
-    </record>
+   <record id="res_config_settings_view_form" model="ir.ui.view">
+       <field name="model">res.config.settings</field>
+       <field name="priority" eval="200"/>
+       <field name="inherit_id" ref="misc_settings.res_config_settings_view_form"/>
+       <field name="arch" type="xml">
+           <xpath expr="//div[@data-key='misc_settings']" position="inside">
+               <h2>My Section</h2>
+               <div class="row mt16 o_settings_container" name="my_section">
+                   Complete here
+               </div>
+           </xpath>
+       </field>
+   </record>
 
 Bug Tracker
 ===========
@@ -68,7 +73,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20misc_settings%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20misc_settings%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,19 +81,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Akretion <https://www.akretion.com>`__:
+- `Akretion <https://www.akretion.com>`__:
 
-  * David BEAL
+  - David BEAL
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -108,6 +113,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-bealdav| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/16.0/misc_settings>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/19.0/misc_settings>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
