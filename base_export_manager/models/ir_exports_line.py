@@ -129,6 +129,7 @@ class IrExportsLine(models.Model):
                         one.name,
                     )
                 )
+            all_resolved = True
             for num in range(1, 5):
                 if not any(parts) or num > len(parts):
                     # Empty subfield in this case
@@ -139,13 +140,19 @@ class IrExportsLine(models.Model):
                     continue
                 field_name = parts[num - 1]
                 model = one.model_n(num)
+                if not model:
+                    # Model is not set (e.g. export_id is False or model_id not
+                    # yet computed). Skip field resolution to avoid crashing
+                    # during module data loading.
+                    all_resolved = False
+                    break
                 # You could get to failing constraint while populating the
                 # fields, so we skip the uniqueness check and manually check
                 # the full constraint after the loop
                 one.with_context(skip_check=True)[one.field_n(num, True)] = (
                     one._get_field_id(model, field_name)
                 )
-            if any(parts):
+            if any(parts) and all_resolved:
                 # invalidate_recordset -> in order to get actual value of field 'label'
                 # in function '_check_name'
                 one.invalidate_recordset(["label"])

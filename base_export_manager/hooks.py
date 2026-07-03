@@ -11,6 +11,12 @@ def post_init_hook(env):
     inconsistencies.
     """
     env = api.Environment(env.cr, SUPERUSER_ID, {})
+    # Ensure model_id is computed for ir.exports records that have a resource
+    # but model_id not yet stored (e.g. records created before this module).
+    exports = env["ir.exports"].search(
+        [("resource", "!=", False), ("model_id", "=", False)]
+    )
+    exports._compute_model_id()
     env["ir.exports.line"].search(
         [
             ("field1_id", "=", False),
