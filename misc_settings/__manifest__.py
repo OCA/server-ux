@@ -2,7 +2,7 @@
 
 {
     "name": "Miscellaneous Settings",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Tools",
     "license": "AGPL-3",
     "summary": "Miscellaneous settings to be an anchor for your custom settings",
@@ -15,5 +15,6 @@
     "data": [
         "views/res_config_settings.xml",
     ],
+    "application": True,
     "installable": True,
 }
