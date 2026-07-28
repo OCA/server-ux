@@ -10,6 +10,7 @@ class TestDocumentQuickAccess(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.model = "res.partner"
         cls.model_id = cls.env.ref("base.model_res_partner")
         cls.rule = cls.env["document.quick.access.rule"].create(
@@ -34,14 +35,14 @@ class TestDocumentQuickAccess(TransactionCase):
     def test_not_found(self):
         code = self.partner.get_quick_access_code()
         self.assertTrue(code)
-        self.rule.toggle_active()
+        self.rule.action_archive()
         with self.assertRaises(UserError):
             self.env["document.quick.access.rule"].read_code(code)
         action = self.env["document.quick.access.rule"].read_code_action(code)
         self.assertEqual(action["res_model"], "barcode.action")
 
     def test_no_code(self):
-        self.rule.toggle_active()
+        self.rule.action_archive()
         self.assertFalse(self.partner.get_quick_access_code())
 
     def test_generation_b64(self):

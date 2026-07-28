@@ -6,7 +6,7 @@ import binascii
 import json
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -36,6 +36,7 @@ class DocumentQuickAccessRule(models.Model):
             "utf-8"
         )
 
+    @api.model
     def _get_code_standard(self, record):
         return f"{record._name},{record.id}"
 
@@ -72,7 +73,7 @@ class DocumentQuickAccessRule(models.Model):
                         "default_model": "document.quick.access.rule",
                         "default_method": "read_code_action",
                         "default_state": "warning",
-                        "default_status": _("Document cannot be found"),
+                        "default_status": self.env._("Document cannot be found"),
                     }
                 ),
             }
@@ -99,4 +100,4 @@ class DocumentQuickAccessRule(models.Model):
                     ]
                 ):
                     return record
-        raise UserError(_("No format has been found for this record"))
+        raise UserError(self.env._("No format has been found for this record"))
