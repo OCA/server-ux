@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="confirmation_wizard_form_view" model="ir.ui.view">
+        <field name="name">confirmation.wizard.form.view</field>
+        <field name="model">confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="message" readonly="1" />
+                <footer>
+                    <button
+                        string="Confirm"
+                        type="object"
+                        name="action_confirm"
+                        class="btn-primary"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="z"
+                        invisible="context.get('hide_cancel')"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="confirmation_wizard_action" model="ir.actions.act_window">
+        <field name="name">Confirmation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">confirmation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="confirmation_wizard_form_view" />
+        <field name="target">new</field>
+    </record>
+
+</odoo>
