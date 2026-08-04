@@ -3,10 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestIrExportsLineCase(TransactionCase):
+class TestIrExportsLineCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -36,6 +37,15 @@ class TestIrExportsLineCase(TransactionCase):
             self._record_create("name")
         with self.assertRaises(ValidationError):
             self._record_create("bad_error_name")
+        # You need to create the line this way and not use the _record_create() method
+        # because the properties field does not exist; by default, there are no
+        # properties in res.partner
+        self.env["ir.exports.line"].create(
+            {
+                "export_id": self.export.id,
+                "name": "field_properties.123456",
+            }
+        )
 
     def test_get_label_string(self):
         export_line = self._record_create("parent_id/name")
