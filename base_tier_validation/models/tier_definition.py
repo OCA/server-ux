@@ -112,6 +112,12 @@ class TierDefinition(models.Model):
         help="Bypassed (auto validated), if previous tier was validated "
         "by same reviewer",
     )
+    restart_validation_group_id = fields.Many2one(
+        comodel_name="res.groups",
+        required=True,
+        default=lambda self: self.env.ref("base.group_user", raise_if_not_found=False),
+        help="Group allowed to restart the validation process.",
+    )
 
     @api.onchange("review_type")
     def onchange_review_type(self):

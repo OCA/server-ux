@@ -120,6 +120,9 @@
                                     <field name="has_comment" />
                                     <field name="notify_reminder_delay" />
                                 </group>
+                                <group name="permissions">
+                                    <field name="restart_validation_group_id" />
+                                </group>
                             </group>
                         </page>
                     </notebook>

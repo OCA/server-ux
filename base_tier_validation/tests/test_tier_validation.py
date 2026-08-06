@@ -1202,6 +1202,45 @@ class TierTierValidation(CommonTierValidation):
             self.test_user_3_multi_company.partner_id, followers.mapped("partner_id")
         )
 
+    def test_32_restart_validation_access_rights(self):
+        """Test that only users with the right permissions can restart validation."""
+        test_record = self.test_model.create({"test_field": 1.0})
+        # By default, the authorized group is base.group_user
+        self.assertEqual(
+            self.tier_definition.restart_validation_group_id,
+            self.env.ref("base.group_user"),
+        )
+
+        # User 1 (base.group_system implying base.group_user) should be able to restart
+        test_record.request_validation()
+        test_record.invalidate_model()
+        self.assertTrue(test_record.with_user(self.test_user_1).can_restart_validation)
+        test_record.with_user(self.test_user_1).restart_validation()
+
+        # User 2 (base.group_user) should be able to restart as well
+        test_record.request_validation()
+        test_record.invalidate_model()
+        self.assertTrue(self.test_user_2.has_group("base.group_user"))
+        self.assertTrue(test_record.with_user(self.test_user_2).can_restart_validation)
+        test_record.with_user(self.test_user_2).restart_validation()
+
+        # Change restart group to admin group and test permissions
+        restart_group = self.env.ref("base.group_system")
+        self.tier_definition.restart_validation_group_id = restart_group
+
+        # User 1 should be able to restart
+        test_record.request_validation()
+        test_record.invalidate_model()
+        self.assertTrue(test_record.with_user(self.test_user_1).can_restart_validation)
+        test_record.with_user(self.test_user_1).restart_validation()
+
+        # User 2 shouldn't be able to restart
+        test_record.request_validation()
+        test_record.invalidate_model()
+        self.assertFalse(test_record.with_user(self.test_user_2).can_restart_validation)
+        with self.assertRaises(ValidationError):
+            test_record.with_user(self.test_user_2).restart_validation()
+
 
 @tagged("at_install")
 class TierTierValidationView(CommonTierValidation):

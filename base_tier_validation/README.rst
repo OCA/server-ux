@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Base Tier Validation
 ====================
@@ -17,7 +13,7 @@ Base Tier Validation
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -80,6 +76,11 @@ To configure this module, you need to:
   Reject.
 - If check *Approve by sequence*, reviewers is forced to review by
   specified sequence.
+- In *More Options* tab, you can configure the *Restart Validation
+  Group* to control which users can restart the validation process. By
+  default, all internal user can restart validations. The restart button
+  will be hidden for users who don't have all the groups specified in
+  this field for all the reviews to restart.
 
 To configure Tier Validation Exceptions, you need to:
 
@@ -272,6 +273,7 @@ Contributors
   - Houzéfa Abbasbhay
 
 - Stefan Rijnhart <stefan@opener.amsterdam>
+- Camille Morand <camille.morand@camptocamp.com>
 
 Maintainers
 -----------

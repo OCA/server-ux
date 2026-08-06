@@ -12,7 +12,7 @@
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                invisible="not review_ids or hide_reviews"
+                invisible="not review_ids or hide_reviews or not can_restart_validation"
                 type="object"
             />
         </div>
@@ -22,6 +22,7 @@
             <field name="hide_reviews" invisible="1" />
             <field name="need_validation" invisible="1" />
             <field name="validation_status" invisible="1" />
+            <field name="can_restart_validation" invisible="1" />
         <div
                 class="alert alert-warning"
                 role="alert"
