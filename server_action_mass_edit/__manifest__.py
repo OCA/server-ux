@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Mass Editing",
-    "version": "17.0.1.0.2",
+    "version": "17.0.1.0.3",
     "author": "Serpent Consulting Services Pvt. Ltd., "
     "Tecnativa, "
     "GRAP, "
