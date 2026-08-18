@@ -20,7 +20,7 @@ class ResPartner(models.Model):
                 {
                     "default_state": "warning",
                     "default_status": _(
-                        "Partner with Internal Reference " "%s cannot be found"
+                        "Partner with Internal Reference %s cannot be found"
                     )
                     % barcode,
                 }
