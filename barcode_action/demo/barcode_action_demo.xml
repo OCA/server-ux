@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="res_partner_find" model="ir.actions.act_window">
+    <record id="res_partner_find_demo" model="ir.actions.act_window">
         <field name="name">Find Partner</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">barcode.action</field>
@@ -14,7 +14,7 @@
     <menuitem
         id="menu_orders_customers"
         name="Find partners"
-        action="res_partner_find"
+        action="res_partner_find_demo"
         parent="base.menu_administration"
     />
 </odoo>
