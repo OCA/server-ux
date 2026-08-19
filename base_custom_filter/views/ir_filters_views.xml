@@ -29,9 +29,15 @@
                 />
             </field>
             <field name="domain" position="attributes">
-                <attribute name="invisible">type in ['search', 'groupby']</attribute>
+                <attribute
+                    name="invisible"
+                >type in ['search', 'groupby'] or date_field</attribute>
             </field>
             <field name="domain" position="after">
+                <field
+                    name="date_field"
+                    invisible="type != 'filter' or (domain and domain != '[]')"
+                />
                 <field
                     name="groupby_field"
                     domain="[('model', '=', model_id), ('store', '=', True)]"
@@ -66,6 +72,7 @@
             </field>
             <field name="action_id" position="after">
                 <field name="type" />
+                <field name="date_field" optional="hide" />
                 <field name="groupby_field" optional="hide" />
             </field>
         </field>
@@ -81,6 +88,7 @@
                 <field name="type" />
                 <field name="group_id" />
                 <field name="domain" optional="hide" />
+                <field name="date_field" optional="hide" />
                 <field name="groupby_field" optional="hide" />
             </list>
         </field>

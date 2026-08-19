@@ -12,8 +12,13 @@
 
     Filter:
 
-    > - Domain (`domain`)
+    > - Domain (`domain`) - OR -
+    > - Date Field (`date_field`) - creates a date filter with period options
     > - User Groups (`groups`)
+    >
+    > **Note:** For filter type, you must specify either Domain or Date Field,
+    > but not both. Date filters automatically provide period options like
+    > Today, This Week, This Month, This Quarter, and This Year.
 
     Group By:
 
@@ -25,3 +30,12 @@
     for the definition of each attribute. Additionally, filter and
     group-by records can be respectively grouped together with "Group"
     assignment (there will be a separator in between groups).
+
+3.  Filter groups (accessible via *Settings \> Custom Filters \> Custom
+    Filter Groups*) support the following optional settings:
+
+    - Insert XPath: XPath expression for the insertion point
+      (e.g. `//filter[@name='my_filter']`)
+    - Insert Position: Insert before or after the target element
+    - Separator Position: Place separator before, after, or none
+      (filter type only)
