@@ -500,7 +500,12 @@ class TierValidation(models.AbstractModel):
             return False
         state_from = self._tier_validation_get_current_state_value()
         # If you change to _cancel_state
-        if self._cancel_state and state_to == self._cancel_state:
+        cancel_states = (
+            self._cancel_state
+            if isinstance(self._cancel_state, (list, tuple))
+            else [self._cancel_state]
+        )
+        if state_to in cancel_states:
             return True
         # If it is changed to _state_from and it was not in _state_from
         if state_to in self._state_from and state_from not in self._state_from:
