@@ -637,6 +637,35 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(review_2.done_by.id is False)
         self.assertTrue(review_2.reviewed_date is False)
 
+    def test_19b_notify_review_available_no_op_when_no_users(self):
+        """``_notify_review_available`` must short-circuit (no follower
+        added, no chatter message posted) when none of the passed reviews
+        actually wants ``notify_on_pending``. This is the defensive contract
+        that prevents stray subtype messages routed to nobody.
+        """
+        TierDefinition = self.env["tier.definition"]
+        test_record = self.test_model.create({"test_field": 2.5})
+        silent_def = TierDefinition.create(
+            {
+                "model_id": self.tester_model.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('test_field', '=', 2.5)]",
+                "notify_on_pending": False,
+                "sequence": 10,
+                "name": "Silent definition -- no notify_on_pending",
+            }
+        )
+        reviews = test_record.request_validation()
+        silent_review = reviews.filtered(lambda r: r.definition_id == silent_def)
+        self.assertTrue(silent_review)
+
+        followers_before = test_record.message_follower_ids
+        messages_before = test_record.message_ids
+        test_record._notify_review_available(silent_review)
+        self.assertEqual(test_record.message_follower_ids, followers_before)
+        self.assertEqual(test_record.message_ids, messages_before)
+
     def test_20_no_sequence(self):
         # Create new test record
         tier_review_obj = self.env["tier.review"]

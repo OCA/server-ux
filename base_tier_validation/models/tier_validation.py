@@ -953,9 +953,18 @@ class TierValidation(models.AbstractModel):
                     lambda r, x=rec: r.definition_id.notify_on_pending
                     and r.res_id == x.id
                 ).mapped("reviewer_ids")
-                # Subscribe reviewers and notify
+                # Subscribe reviewers to the tier-validation-requested
+                # subtype explicitly, otherwise ``message_post`` below would
+                # route to no one (the subtype is ``default=False``). Only
+                # post the message when at least one reviewer wants to be
+                # notified -- mirroring ``_notify_review_requested``.
+                if not users_to_notify:
+                    continue
                 rec.message_subscribe(
-                    partner_ids=users_to_notify.mapped("partner_id").ids
+                    partner_ids=users_to_notify.mapped("partner_id").ids,
+                    subtype_ids=self.env.ref(
+                        self._get_requested_notification_subtype()
+                    ).ids,
                 )
                 rec.message_post(
                     subtype_xmlid=self._get_requested_notification_subtype(),
