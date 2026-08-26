@@ -739,8 +739,34 @@ class TierValidation(models.AbstractModel):
             self.env.user.name,
         )
 
-    def _notify_requested_review_body(self):
-        return self.env._("A review has been requested by %s.", self.env.user.name)
+    def _notify_requested_review_body(self, tier_reviews=None):
+        """Chatter body for a tier reaching ``pending``.
+
+        Sources the requester from the review's ``requested_by`` rather
+        than ``env.user`` -- on second-and-later tier promotions
+        ``env.user`` is the previous-tier *approver*, which is the wrong
+        person to attribute the request to.
+
+        Names the assignee(s) in the body so the recipient sees at a
+        glance that the message is meant for them (chatter notifications
+        do not render the "Notified to" pill, so the body has to carry
+        that information itself). Reuses ``tier.review.todo_by`` so the
+        wording is consistent with the Reviews table and handles every
+        review type out of the box -- individual user, group, or field.
+        """
+        if tier_reviews:
+            requester = tier_reviews[:1].requested_by or self.env.user
+            assignees = ", ".join(
+                filter(None, tier_reviews.mapped("todo_by"))
+            ) or self.env._("the assigned reviewer")
+            return self.env._(
+                "Review pending for %(assignees)s, requested by %(requester)s.",
+                assignees=assignees,
+                requester=requester.display_name,
+            )
+        return self.env._(
+            "A review has been requested by %s.", self.env.user.display_name
+        )
 
     def _notify_review_requested(self, tier_reviews):
         """method to notify when tier validation is created"""
@@ -959,7 +985,7 @@ class TierValidation(models.AbstractModel):
                 )
                 rec.message_post(
                     subtype_xmlid=self._get_requested_notification_subtype(),
-                    body=rec._notify_requested_review_body(),
+                    body=rec._notify_requested_review_body(tier_reviews),
                 )
 
 
