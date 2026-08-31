@@ -444,7 +444,7 @@ class TierValidation(models.AbstractModel):
                     }
                 )
             if rec._allow_to_remove_reviews(vals):
-                rec.mapped("review_ids").unlink()
+                rec._remove_reviews()
         return super(TierValidation, self).write(vals)
 
     def _allow_to_remove_reviews(self, values):
@@ -754,7 +754,7 @@ class TierValidation(models.AbstractModel):
                         .mapped("partner_id")
                         .ids
                     )
-                rec.mapped("review_ids").unlink()
+                rec._remove_reviews()
                 if to_update_counter:
                     self._update_counter({"review_deleted": True})
             if partners_to_notify_ids:
@@ -785,6 +785,10 @@ class TierValidation(models.AbstractModel):
         channel = "base.tier.validation/updated"
         notifications.append([self.env.user.partner_id, channel, review_counter])
         self.env["bus.bus"]._sendmany(notifications)
+
+    def _remove_reviews(self):
+        """Remove the reviews. Hook to allow overriding the removal behavior."""
+        self.review_ids.unlink()
 
     def unlink(self):
         self.mapped("review_ids").unlink()
