@@ -1,11 +1,13 @@
 from openupgradelib import openupgrade
 
+from odoo import SUPERUSER_ID, api
 
-@openupgrade.migrate()
-def migrate(env, version):
-    if openupgrade.table_exists(env.cr, "date_range_res_company_rel"):
+
+def migrate(cr, version):
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    if openupgrade.table_exists(cr, "date_range_res_company_rel"):
         openupgrade.logged_query(
-            env.cr,
+            cr,
             """
             UPDATE date_range dr
             SET company_id = drrcr.res_company_id
@@ -18,7 +20,7 @@ def migrate(env, version):
             """,
         )
         openupgrade.logged_query(
-            env.cr,
+            cr,
             """SELECT
                 drrcr.res_company_id,
                 dr.id
@@ -27,7 +29,7 @@ def migrate(env, version):
             WHERE dr.company_id != drrcr.res_company_id
             """,
         )
-        for company_id, date_range_id in env.cr.fetchall():
+        for company_id, date_range_id in cr.fetchall():
             date_range = env["date.range"].browse(date_range_id)
             date_range_type = date_range.type_id
             if (
