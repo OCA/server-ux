@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="after">
+                <page string="Delegation" name="delegation">
+                    <group>
+                        <group string="Out of Office / Holiday Delegation">
+                            <field name="on_holiday" />
+                            <label
+                                for="holiday_start_date"
+                                class="oe_inline"
+                                invisible="not on_holiday"
+                                string="Holiday Period"
+                            />
+                            <div
+                                class="o_row"
+                                name="holiday_date_range"
+                                invisible="not on_holiday"
+                            >
+                                <field name="holiday_start_date" class="oe_inline" /> -
+                                <field name="holiday_end_date" class="oe_inline" />
+                            </div>
+                            <field
+                                name="validation_replacer_id"
+                                string="Default Replacer"
+                                options="{'no_create': True}"
+                                placeholder="Fallback for all validations"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form_simple_modif_delegation" model="ir.ui.view">
+        <field name="name">res.users.form.simple.modif.delegation</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences_page']" position="after">
+                <page string="Delegation" name="delegation">
+                    <group>
+                        <group string="Out of Office / Holiday Delegation">
+                            <field name="on_holiday" />
+                            <label
+                                for="holiday_start_date"
+                                class="oe_inline"
+                                invisible="not on_holiday"
+                                string="Holiday Period"
+                            />
+                            <div
+                                class="o_row"
+                                name="holiday_date_range"
+                                invisible="not on_holiday"
+                            >
+                                <field name="holiday_start_date" class="oe_inline" /> -
+                                <field name="holiday_end_date" class="oe_inline" />
+                            </div>
+                            <field
+                                name="validation_replacer_id"
+                                string="Default Replacer"
+                                options="{'no_create': True}"
+                                placeholder="Fallback for all validations"
+                                context="{'active_test': False}"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_search" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_ids']" position="after">
+                <filter
+                    string="Delegation Active"
+                    name="delegation_active"
+                    domain="[('on_holiday', '=', True)]"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_users_tree_delegation" model="ir.ui.view">
+        <field name="name">res.users.list.delegation</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" create="False" delete="False">
+                <field name="name" string="Delegator" />
+                <field
+                    name="validation_replacer_id"
+                    string="Default Replacer"
+                    options="{'no_create': True}"
+                />
+                <field name="holiday_start_date" />
+                <field name="holiday_end_date" />
+            </list>
+        </field>
+    </record>
+    <record id="action_delegation_management" model="ir.actions.act_window">
+        <field name="name">Delegation Management</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_users_tree_delegation" />
+        <field name="context">{'search_default_delegation_active': 1}</field>
+    </record>
+    <menuitem
+        id="menu_delegation_management"
+        name="Delegation Management"
+        parent="base.menu_users"
+        action="action_delegation_management"
+        sequence="100"
+        groups="base_tier_validation_delegation.group_delegation_administrator"
+    />
+</odoo>
