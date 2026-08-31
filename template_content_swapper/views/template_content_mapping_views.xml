@@ -4,7 +4,7 @@
         <field name="name">template.content.mapping.list</field>
         <field name="model">template.content.mapping</field>
         <field name="arch" type="xml">
-            <list editable="top">
+            <list>
                 <field name="name" />
                 <field name="report_id" />
                 <field name="template_id" readonly="report_id != False" />
@@ -12,6 +12,36 @@
                 <field name="content_from" />
                 <field name="content_to" />
             </list>
+        </field>
+    </record>
+    <record id="view_template_content_mapping_form" model="ir.ui.view">
+        <field name="name">template.content.mapping.form</field>
+        <field name="model">template.content.mapping</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="report_id" />
+                            <field name="template_id" readonly="report_id != False" />
+                        </group>
+                        <group>
+                            <field
+                                name="lang"
+                                invisible="not context.get('multi_lang')"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="content_from" />
+                        </group>
+                        <group>
+                            <field name="content_to" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
     <record id="view_template_content_mapping_search" model="ir.ui.view">
