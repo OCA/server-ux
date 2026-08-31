@@ -11,6 +11,13 @@
                     name="template_id"
                     attrs="{'readonly':[('report_id','!=',False)]}"
                 />
+                <field name="report_model" invisible="1" />
+                <field
+                    name="domain"
+                    attrs="{'readonly':[('report_id','=',False)]}"
+                    widget="domain"
+                    options="{'model': 'report_model'}"
+                />
                 <field
                     name="lang"
                     attrs="{'invisible':[('active_lang_count', '&lt;=', 1)]}"
