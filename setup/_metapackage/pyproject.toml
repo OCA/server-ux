@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-ux"
-version = "19.0.20260824.0"
+version = "19.0.20260907.0"
 dependencies = [
     "odoo-addon-barcode_action==19.0.*",
     "odoo-addon-base_cancel_confirm==19.0.*",
@@ -14,6 +14,7 @@ dependencies = [
     "odoo-addon-date_range==19.0.*",
     "odoo-addon-date_range_account==19.0.*",
     "odoo-addon-developer_menu==19.0.*",
+    "odoo-addon-document_quick_access==19.0.*",
     "odoo-addon-mail_message_destiny_link_template==19.0.*",
     "odoo-addon-sequence_reset_period==19.0.*",
     "odoo-addon-server_action_mass_edit==19.0.*",
