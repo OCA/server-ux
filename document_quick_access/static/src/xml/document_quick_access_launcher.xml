@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="document_quick_access_launcher.view.Menu">
+        <div>
+            <button
+                class="o_nav_entry"
+                title="QR search"
+                accesskey="q"
+                t-on-click="onClick"
+            >
+                <i class="fa fa-qrcode" />
+            </button>
+        </div>
+    </t>
+</templates>

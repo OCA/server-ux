@@ -1,0 +1,26 @@
+# Copyright 2019 Creu Blanca
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import models
+from odoo.fields import Domain
+
+
+class Base(models.AbstractModel):
+    _inherit = "base"
+
+    def get_quick_access_code(
+        self,
+    ):
+        self.ensure_one()
+        model_id = (
+            self.env["ir.model"]
+            .sudo()
+            .search(Domain("model", "=", self._name), limit=1)
+            .id
+        )
+        rule = self.env["document.quick.access.rule"].search(
+            Domain("model_id", "=", model_id), limit=1
+        )
+        if not rule:
+            return False
+        return rule.get_code(self)
