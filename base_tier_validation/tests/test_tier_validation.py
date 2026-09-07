@@ -128,13 +128,14 @@ class TierTierValidation(CommonTierValidation):
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
         # Create tier definitions
-        self.tier_def_obj.create(
+        tier_def = self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
                 "review_type": "individual",
                 "reviewer_id": self.test_user_1.id,
                 "definition_domain": "[('test_field', '>', 1.0)]",
                 "has_comment": True,
+                "comment_approve_default": "Approved",
             }
         )
         # Request validation
@@ -145,7 +146,19 @@ class TierTierValidation(CommonTierValidation):
         record = test_record.with_user(self.test_user_1.id)
         res = record.validate_tier()
         ctx = res.get("context")
+        # Default comment pre-filled from tier definition
+        self.assertEqual(ctx.get("default_comment"), "Approved")
         wizard = Form(self.env["comment.wizard"].with_context(**ctx))
+        self.assertEqual(wizard.comment, "Approved")
+
+        # Clear default approve comment
+        tier_def.write({"comment_approve_default": False})
+
+        res = record.validate_tier()
+        ctx = res.get("context")
+        self.assertEqual(ctx.get("default_comment"), "")
+        wizard = Form(self.env["comment.wizard"].with_context(**ctx))
+        self.assertEqual(wizard.comment, "")
         wizard.comment = "Test Comment"
         wiz = wizard.save()
         wiz.add_comment()
