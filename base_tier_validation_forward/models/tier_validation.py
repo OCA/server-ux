@@ -26,7 +26,7 @@ class TierValidation(models.AbstractModel):
         return res
 
     def _get_forwarded_notification_subtype(self):
-        return "base_tier_validation.mt_tier_validation_forwarded"
+        return "base_tier_validation_forward.mt_tier_validation_forwarded"
 
     def forward_tier(self):
         self.ensure_one()
