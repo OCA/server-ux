@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Quartile
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="base_field_length_rule_view_list" model="ir.ui.view">
+        <field name="model">base.field.length.rule</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="active" column_invisible="1" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_id" />
+                <field name="max_length" />
+                <field name="measure" />
+                <field name="encoding" optional="hide" />
+                <field name="condition_domain" optional="hide" />
+                <field name="message" optional="hide" />
+                <field name="enforcement" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+    <record id="base_field_length_rule_view_form" model="ir.ui.view">
+        <field name="model">base.field.length.rule</field>
+        <field name="arch" type="xml">
+            <form string="Field Length Rule">
+                <header>
+                    <button
+                        name="action_check_existing_records"
+                        type="object"
+                        string="Check Existing Records"
+                        confirm="This reads every record of the model, which can take a while on a large table. Continue?"
+                    />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. WMS interface IF-01" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="field">
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="field_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="model" invisible="1" />
+                            <field name="active" invisible="1" />
+                        </group>
+                        <group name="limit">
+                            <field name="max_length" />
+                            <field name="measure" />
+                            <field
+                                name="encoding"
+                                invisible="measure != 'byte'"
+                                required="measure == 'byte'"
+                            />
+                        </group>
+                        <group name="application">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="enforcement" />
+                        </group>
+                    </group>
+                    <group name="condition" string="Condition" invisible="not model_id">
+                        <field
+                            name="condition_domain"
+                            widget="domain"
+                            options="{'model': 'model'}"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group name="message" string="Custom Message">
+                        <field name="message" nolabel="1" colspan="2" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_field_length_rule_view_search" model="ir.ui.view">
+        <field name="model">base.field.length.rule</field>
+        <field name="arch" type="xml">
+            <search string="Field Length Rule">
+                <field name="name" />
+                <field name="model_id" />
+                <!-- ir.model.fields has no _rec_names_search, so the technical
+                     name is only searchable through a filter_domain. On a
+                     many2one that binds self to the label of the suggestion the
+                     user picked, which matches neither column, hence the
+                     raw_value branch. -->
+                <field
+                    name="field_id"
+                    filter_domain="['|', ('field_id', '=', raw_value), '|', ('field_id.name', 'ilike', self), ('field_id.field_description', 'ilike', self)]"
+                />
+                <filter
+                    name="filter_error"
+                    string="Blocking"
+                    domain="[('enforcement', '=', 'error')]"
+                />
+                <filter
+                    name="filter_warning"
+                    string="Warning Only"
+                    domain="[('enforcement', '=', 'warning')]"
+                />
+                <separator />
+                <filter
+                    name="filter_inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group name="group_by">
+                    <filter
+                        name="group_by_model"
+                        string="Model"
+                        context="{'group_by': 'model_id'}"
+                    />
+                    <filter
+                        name="group_by_enforcement"
+                        string="Enforcement"
+                        context="{'group_by': 'enforcement'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="base_field_length_rule_action" model="ir.actions.act_window">
+        <field name="name">Field Length Rules</field>
+        <field name="res_model">base.field.length.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="base_field_length_rule_view_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Define a field length rule</p>
+            <p>
+                A rule declares the maximum length a field value may reach, as
+                required by whatever the value has to fit into. Several rules
+                may target the same field, and the tightest one wins.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="base_field_length_rule_menu"
+        parent="base.next_id_9"
+        action="base_field_length_rule_action"
+        sequence="50"
+    />
+</odoo>
