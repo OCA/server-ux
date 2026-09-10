@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-01-19 13:50+0000\n"
+"PO-Revision-Date: 2026-09-10 12:05+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -152,7 +152,7 @@ msgstr "Ordine di approvazione specificato da numero sequenza"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__comment_approve_default
 msgid "Approve Comment"
-msgstr ""
+msgstr "Approva commento"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__approve_sequence_bypass
@@ -275,7 +275,7 @@ msgstr "Creato il"
 #. module: base_tier_validation
 #: model:ir.model.fields,help:base_tier_validation.field_tier_definition__comment_approve_default
 msgid "Default comment prefilled when approval comments are enabled."
-msgstr ""
+msgstr "Commento predefinito quanto è abilitata l'approvazione dei commenti."
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__definition_type
