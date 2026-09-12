@@ -9,19 +9,19 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-09-12 07:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model__avoid_quick_create
-#, fuzzy
 msgid "Avoid Quick Create"
 msgstr "Izogibanje hitremu ustvarjanju"
 
@@ -33,6 +33,8 @@ msgid ""
 "Can't create %(model)s with name %(name)s quickly.\n"
 "Please contact your system administrator to disable this behaviour."
 msgstr ""
+"Modela %(model)s z imenom %(name)s ni mogoče hitro ustvariti.\n"
+"Obrnite se na skrbnika sistema, da to omejitev onemogoči."
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
