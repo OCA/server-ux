@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-21 04:22+0000\n"
-"PO-Revision-Date: 2026-06-01 09:07+0000\n"
+"PO-Revision-Date: 2026-09-12 07:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -23,12 +23,12 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
 msgid "Base"
-msgstr ""
+msgstr "Osnova"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "Menu"
-msgstr ""
+msgstr "Meni"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
@@ -37,7 +37,6 @@ msgstr "Prikaži polje \"Tehnične funkcije\""
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
-#, fuzzy
 msgid "Technical Features"
 msgstr "Tehnične funkcije"
 
@@ -55,7 +54,7 @@ msgstr "Uporabnik nima dostopa do tehničnih funkcij."
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Uporabnik"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
