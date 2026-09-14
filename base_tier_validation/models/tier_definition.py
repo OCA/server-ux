@@ -157,7 +157,7 @@ class TierDefinition(models.Model):
                 ("last_reminder_date", "=", False),
                 ("last_reminder_date", "<", review_date),
             ],
-            limit=1,
+            limit=50,
         )
 
     def _cron_send_review_reminder(self):
