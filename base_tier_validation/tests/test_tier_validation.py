@@ -1442,3 +1442,26 @@ class TierTierValidationView(CommonTierValidation):
         self.assertIn("need_validation", view["models"][model])
         self.assertIn("next_review", view["models"][model])
         self.assertIn("review_ids", view["models"][model])
+
+    def test_view_without_header_nor_sheet(self):
+        """The readonly domain added on every field of the form relies on
+        validation_status. That field is brought in by the tier validation
+        buttons, which are inserted on _tier_validation_buttons_xpath: on views
+        without such an insertion point (no header), the field has to be added
+        anyway, otherwise the client can not evaluate the domain (this is what
+        happens on base.view_partner_simple_form, opened by the mail composer).
+        """
+        view = self.env["ir.ui.view"].create(
+            {
+                "name": "tier.validation.tester2.simple.form",
+                "model": self.test_model_2._name,
+                "arch": "<form><field name='test_field'/></form>",
+            }
+        )
+        res = self.test_model_2.get_view(view_id=view.id, view_type="form")
+        arch = res["arch"]
+        if isinstance(arch, bytes):
+            arch = arch.decode()
+        self.assertIn("validation_status", res["models"][self.test_model_2._name])
+        self.assertIn('name="validation_status"', arch)
+        self.assertIn("validation_status not in", arch)
