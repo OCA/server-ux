@@ -4,6 +4,7 @@
   valid
 
 - Implemented algorithms  
+  - EAN: \[0-9\]\*
   - Luhn: \[0-9\]\*
   - Damm: \[0-9\]\*
   - Verhoeff: \[0-9\]\*
