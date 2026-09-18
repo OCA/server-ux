@@ -403,6 +403,63 @@ class TestMassEditing(common.TransactionCase):
             },
         )
 
+    def test_onchange_keeps_the_registry_usable(self):
+        """The wizard's dynamic fields must not break the registry for everyone else
+
+        ``_fields`` is a class attribute shared by every request the worker serves,
+        and ``Registry._field_triggers`` resolves the dependencies of every field of
+        every model in a single pass. A dynamic field that is not bound to the model
+        carries ``model_name = None``, so that pass ends in ``KeyError: None`` -- and
+        it does so on the next write of any model, not on this wizard.
+        """
+        wizard = self.env["mass.editing.wizard"].with_context(
+            active_ids=self.env.user.ids,
+            active_model=self.env.user._name,
+            server_action_id=self.mass_editing_user.id,
+        )
+        # The trigger tree is a lazy property. Drop the cached one so that it is
+        # rebuilt while the dynamic fields are installed, which is the state of a
+        # worker that has just reloaded its registry.
+        self.env.registry.__dict__.pop("_field_triggers", None)
+        wizard.onchange(
+            values={},
+            field_names={},
+            fields_spec={
+                "selection__email": {},
+                "email": {},
+            },
+        )
+        # Whatever the worker writes next has to keep working.
+        self.env["res.partner"].create({"name": "written after the mass edit wizard"})
+
+    def test_onchange_removes_dynamic_fields_on_failure(self):
+        """A failing onchange must not leave its dynamic fields on the model
+
+        The fields are installed in ``_fields``, a class attribute the whole worker
+        shares, so one failure that leaves them behind keeps breaking every later
+        write, on every model, until the registry is reloaded.
+        """
+        Wizard = self.env["mass.editing.wizard"]
+        wizard = Wizard.with_context(
+            active_ids=self.env.user.ids,
+            active_model=self.env.user._name,
+            server_action_id=self.mass_editing_user.id,
+        )
+        with self.assertRaises(KeyError):
+            # The unknown name is only a way to make the super() call fail. What is
+            # under test is what the wizard leaves behind when it does.
+            wizard.onchange(
+                values={},
+                field_names={},
+                fields_spec={
+                    "selection__email": {},
+                    "email": {},
+                    "no_such_field_on_the_wizard": {},
+                },
+            )
+        self.assertNotIn("email", Wizard._fields)
+        self.assertNotIn("selection__email", Wizard._fields)
+
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
 
