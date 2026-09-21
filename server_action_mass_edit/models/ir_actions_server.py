@@ -46,27 +46,34 @@ class IrActionsServer(models.Model):
                 record.mass_edit_line_ids.mapped("apply_domain")
             )
 
+    def _add_mass_edit_server_action_to_context(self, context):
+        """Force webclient to fetch updated view by adding a specific cache value in
+        context, take a look on cache key mechanism in `viewService.loadViews` from
+        `odoo/addons/web/static/src/views/view_service.js`
+        Also note that the same cache mechanism is used in server View class but only
+        when xml "dev_mode" is not active: `['ir.ui.view']._get_view_cache_key` from
+        `odoo/odoo/addons/base/models/ir_ui_view.py`
+        """
+        self.ensure_one()
+        value = {
+            "write_date": fields.Datetime.to_string(self.write_date),
+            "server_action_id": self.id,
+        }
+        # convert dict to string to avoid problems with unhashable types in context
+        context["nocache_server_action_mass_edit_view_ref"] = str(value)
+
     def _run_action_mass_edit_multi(self, eval_context=None):
-        """Show report label wizard"""
+        self.ensure_one()
         context = dict(self.env.context)
         context.update({"server_action_id": self.id})
+        self._add_mass_edit_server_action_to_context(context)
         view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
-        view_id.mass_server_action_id = self.id
-        if view_id:
-            view_temp = view_id.copy(
-                {
-                    "name": "Temporary Mass Editing Wizard",
-                    "type": "form",
-                    "model": "mass.editing.wizard",
-                }
-            )
-
         return {
             "name": self.name,
             "type": "ir.actions.act_window",
             "res_model": "mass.editing.wizard",
             "context": str(context),
             "view_mode": "form",
-            "views": [[view_temp.id, "form"]],
+            "views": [[view_id.id, "form"]],
             "target": "new",
         }
