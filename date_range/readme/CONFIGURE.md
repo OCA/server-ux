@@ -21,3 +21,18 @@ model:
 ```
 _date_range_search_field = "invoice_date"
 ```
+
+## As Of Month Date Ranges
+
+The module can automatically generate cumulative monthly "As Of Month" date
+ranges (e.g., "As Of January 2025", "As Of February 2025", etc.).
+
+To configure:
+
+1. Go to **Settings → General Settings → Date Range Configuration**
+2. Set the **Number of Years** for which cumulative monthly ranges should
+   be generated (default: 5 years from the current year)
+3. A scheduled action runs monthly to generate any missing ranges
+
+> **Note:** The "As Of Month" date range type is system-managed and cannot
+> be manually generated through the Date Range Generator wizard.
