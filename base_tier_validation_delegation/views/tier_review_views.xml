@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_review_view_tree" model="ir.ui.view">
+        <field name="model">tier.review</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_review_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='done_by']" position="after">
+                <field
+                    name="delegated_by_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="tier_review_view_form" model="ir.ui.view">
+        <field name="name">tier.review.form</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="requested_by" />
+                            <field name="status" />
+                        </group>
+                        <group>
+                            <field name="reviewer_ids" widget="many2many_tags" />
+                            <field
+                                name="delegated_by_ids"
+                                widget="many2many_tags"
+                                string="Delegated By"
+                                invisible="not delegated_by_ids"
+                            />
+                            <field name="done_by" />
+                            <field name="reviewed_date" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="comment" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_my_delegated_reviews" model="ir.actions.act_window">
+        <field name="name">My Delegated Reviews</field>
+        <field name="res_model">tier.review</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('delegated_by_ids', 'in', [uid])]</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No reviews have been delegated by you.
+            </p>
+            <p>
+                This screen shows the reviews that you have delegated to other users.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_my_delegated_reviews"
+        name="My Delegated Reviews"
+        parent="base_tier_validation.menu_tier_confirmation"
+        action="action_my_delegated_reviews"
+        sequence="50"
+    />
+</odoo>

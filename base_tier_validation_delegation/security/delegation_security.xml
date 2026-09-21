@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        FIXME: A technical feature that grants access to the system group?
+        Should this not be the other way around?
+    -->
+    <record id="group_delegation_administrator" model="res.groups">
+        <field name="name">Delegation Administrator</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="implied_ids" eval="[Command.link(ref('base.group_system'))]" />
+        <field
+            name="comment"
+        >The delegation administrator can manage the holiday/delegation settings for any user.</field>
+    </record>
+</odoo>
