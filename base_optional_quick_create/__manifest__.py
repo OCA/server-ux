@@ -9,9 +9,14 @@
     "author": "Agile Business Group,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": ["base", "web"],
     "data": [
         "views/model_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "base_optional_quick_create/static/src/**/*",
+        ],
+    },
     "installable": True,
 }
