@@ -1,16 +1,75 @@
 # Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
 import re
 
+from lxml import html
 from markupsafe import Markup
 
 from odoo import api, models
+from odoo.osv.expression import normalize_domain
 from odoo.tools.profiler import QwebTracker
+from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
+
+ARTICLE_XPATH = '//div[contains(@class, "article") and @data-oe-model and @data-oe-id]'
 
 
 class IrQWeb(models.AbstractModel):
     _inherit = "ir.qweb"
+
+    def _apply_mappings(self, html_str, mappings, res_id=None, match_map=None):
+        """Apply mappings to HTML string, optionally filtering by record domain."""
+        for m in mappings:
+            if m.domain:
+                if match_map is None or res_id not in match_map.get(m.id, set()):
+                    continue
+            html_str = html_str.replace(m.content_from, m.content_to or "")
+        return html_str
+
+    def _get_match_map(self, domain_mappings):
+        """Pre-evaluate domains and batch-fetch matching record IDs.
+
+        Returns a dict {mapping_id: set of matching record IDs}.
+        """
+        result = {}
+        eval_ctx = self.env["template.content.mapping"]._get_eval_context()
+        for m in domain_mappings:
+            if not m.report_model:
+                continue
+            try:
+                dom = normalize_domain(safe_eval(m.domain, eval_ctx))
+            except Exception:
+                _logger.warning(
+                    "Invalid domain on template.content.mapping %s: %s",
+                    m.id,
+                    m.domain,
+                )
+                continue
+            result[m.id] = set(self.env[m.report_model].search(dom).ids)
+        return result
+
+    def _apply_article_mappings(self, articles, domain_mappings, match_map):
+        """Apply domain mappings per article block for multi-record renders."""
+        for article in articles:
+            article_html = html.tostring(article, encoding="unicode")
+            new_html = self._apply_mappings(
+                article_html,
+                domain_mappings,
+                int(article.get("data-oe-id")),
+                match_map,
+            )
+            if new_html != article_html:
+                try:
+                    article.getparent().replace(article, html.fromstring(new_html))
+                except Exception:
+                    _logger.exception(
+                        "Failed to replace article HTML for %s,%s",
+                        article.get("data-oe-model"),
+                        article.get("data-oe-id"),
+                    )
 
     @QwebTracker.wrap_render
     @api.model
@@ -20,7 +79,6 @@ class IrQWeb(models.AbstractModel):
         if not isinstance(template, str):
             return result
         result_str = str(result)
-        lang_code = "en_US"
         request = values.get("request")
         if request:
             # For views
@@ -28,25 +86,41 @@ class IrQWeb(models.AbstractModel):
         else:
             # For reports
             lang_match = re.search(r'data-oe-lang="([^"]+)"', result_str)
-            if lang_match:
-                lang_code = lang_match.group(1)
+            lang_code = lang_match.group(1) if lang_match else "en_US"
         view = self.env["ir.ui.view"]._get(template)
-        content_mappings = (
+        mappings = (
             self.env["template.content.mapping"]
             .sudo()
-            .search(
-                [
-                    ("template_id", "=", view.id),
-                    "|",
-                    ("lang", "=", lang_code),
-                    ("lang", "=", False),
-                ]
-            )
+            .search([("template_id", "=", view.id), ("lang", "in", [lang_code, False])])
         )
-        if content_mappings:
-            for mapping in content_mappings:
-                content_from = mapping.content_from
-                content_to = mapping.content_to or ""
-                result_str = result_str.replace(content_from, content_to)
-            result = Markup(result_str)
-        return result
+        if not mappings:
+            return result
+        global_mappings = [m for m in mappings if not m.domain]
+        domain_mappings = [m for m in mappings if m.domain]
+        result_str = self._apply_mappings(result_str, global_mappings)
+        if not domain_mappings:
+            return Markup(result_str)
+        match_map = self._get_match_map(domain_mappings)
+        try:
+            root = html.fromstring(result_str)
+        except Exception:
+            _logger.warning(
+                "Failed to parse HTML for template %s, skipping domain-based mappings.",
+                template,
+            )
+            return Markup(result_str)
+        articles = root.xpath(ARTICLE_XPATH)
+        if not articles:
+            return Markup(result_str)
+        if len(articles) == 1:
+            # Single record → domain mappings can be applied globally
+            article = articles[0]
+            result_str = self._apply_mappings(
+                result_str,
+                domain_mappings,
+                int(article.get("data-oe-id")),
+                match_map,
+            )
+            return Markup(result_str)
+        self._apply_article_mappings(articles, domain_mappings, match_map)
+        return Markup(html.tostring(root, encoding="unicode"))

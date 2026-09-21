@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ========================
 Template Content Swapper
 ========================
@@ -17,7 +13,7 @@ Template Content Swapper
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -40,10 +36,10 @@ template.content.mapping records for the templates they wish to modify.
 
 Examples:
 
-- Replace 'Salesperson' label with 'Sales Representative' in the
-  quotation print.
-- Replace 'Add to Cart' button with 'Add to Basket' in the eCommerce
-  product page.
+-  Replace 'Salesperson' label with 'Sales Representative' in the
+   quotation print.
+-  Replace 'Add to Cart' button with 'Add to Basket' in the eCommerce
+   product page.
 
 **Table of contents**
 
@@ -58,16 +54,25 @@ Mappings* to create/maintain records.
 
 Following fields should be filled in:
 
-- **Report** (optional): Report record that includes the string you'd
-  like to replace. Setting a report record will automatically update the
-  template field.
-- **Template** (required): The main QWeb template (ir.ui.view record)
-  that includes the string you'd like to replace.
-- **Language** (optional): Target language for string replacement. If
-  left blank, the replacement will be applied to all languages.
-- **Content From** (required): An existing string to be replaced.
-- **Content To** (optional): A new string to replace the existing
-  string.
+-  **Report** (optional): Report record that includes the string you'd
+   like to replace. Setting a report record will automatically update
+   the template field.
+-  **Template** (required): The main QWeb template (ir.ui.view record)
+   that includes the string you'd like to replace.
+-  **Domain** (optional): Domain used to restrict the records this
+   configuration applies to. This option is only available for report
+   configurations. Example: [('partner_id', '=', 1)]
+-  **Language** (optional): Target language for string replacement. If
+   left blank, the replacement will be applied to all languages.
+-  **Content From** (required): An existing string to be replaced.
+-  **Content To** (optional): A new string to replace the existing
+   string.
+
+As a limitation, domain-based configurations that change content outside
+the article section (for example, header or footer content) only work
+when printing a single record. When multiple records are printed in one
+batch, those domain conditions are not applied to the header/footer and
+only affect the article content.
 
 Usage
 =====
@@ -107,11 +112,11 @@ Authors
 Contributors
 ------------
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
-  - Tatsuki Kanda
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
+   -  Tatsuki Kanda
 
 Maintainers
 -----------
