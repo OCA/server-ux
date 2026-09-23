@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_server_action_form_inherited" model="ir.ui.view">
+        <field name="model">ir.actions.server</field>
+        <field
+            name="inherit_id"
+            ref="server_action_mass_edit.view_server_action_form"
+        />
+        <field name="arch" type="xml">
+            <field name="apply_domain" position="after">
+                <field name="apply_onchanges" />
+            </field>
+        </field>
+    </record>
+</odoo>
