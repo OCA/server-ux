@@ -1216,6 +1216,8 @@ class TierTierValidationView(CommonTierValidation):
 
     def test_view_automatic(self):
         view = self.env[self.test_record_2._name].get_view(False, "form")
+        # get_view()["arch"] must be a str, not bytes (regression test).
+        self.assertIsInstance(view["arch"], str)
         with Form(self.test_record_2) as f:
             self.assertIn("review_ids", f._values)
             form = etree.fromstring(view["arch"])
