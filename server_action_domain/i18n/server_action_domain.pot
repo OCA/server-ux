@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* server_action_domain
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: server_action_domain
+#: model:ir.model.fields,field_description:server_action_domain.field_ir_actions_server__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: server_action_domain
+#: model:ir.model.fields,field_description:server_action_domain.field_ir_actions_server__domain
+#: model:ir.model.fields,field_description:server_action_domain.field_ir_cron__domain
+msgid "Domain"
+msgstr ""
+
+#. module: server_action_domain
+#: model:ir.model.fields,help:server_action_domain.field_ir_actions_server__domain
+#: model:ir.model.fields,help:server_action_domain.field_ir_cron__domain
+msgid ""
+"Domain verified before executing the server action. The action will only be "
+"executed on records filtered by this domain."
+msgstr ""
+
+#. module: server_action_domain
+#: model:ir.model.fields,field_description:server_action_domain.field_ir_actions_server__id
+msgid "ID"
+msgstr ""
+
+#. module: server_action_domain
+#: model:ir.model.fields,field_description:server_action_domain.field_ir_actions_server____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: server_action_domain
+#: model:ir.model,name:server_action_domain.model_ir_actions_server
+msgid "Server Action"
+msgstr ""
