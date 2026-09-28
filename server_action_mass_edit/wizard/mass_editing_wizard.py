@@ -69,6 +69,23 @@ class MassEditingWizard(models.TransientModel):
 
         return res
 
+    def _install_dynamic_fields(self, dynamic_fields):
+        """Add the wizard's throwaway fields to the model, bound to it.
+
+        ``self._fields`` is a class attribute, shared by every request the worker
+        serves, and ``Registry._field_triggers`` resolves the dependencies of every
+        field of every model in a single pass. A field built here, outside a class
+        body, never goes through ``Field.__set_name__``, so its ``model_name`` stays
+        ``None`` and that pass ends in ``KeyError: None`` -- not on this wizard, but
+        on whatever unrelated record the next ``create()`` or ``write()`` touches,
+        for as long as the fields sit in ``_fields``. Binding them first makes them
+        ordinary fields that declare no dependencies, which the pass walks over.
+        """
+        model_class = self.env.registry[self._name]
+        for name, field in dynamic_fields.items():
+            field.__set_name__(model_class, name)
+        self._fields.update(dynamic_fields)
+
     def onchange(self, values, field_names, fields_spec):
         # Make sure the values passed to the super cover the dynamic fields.
         # No onchanges are defined, but Odoo will call the onchange with empty
@@ -99,15 +116,17 @@ class MassEditingWizard(models.TransientModel):
             )
             dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
 
-        self._fields.update(dynamic_fields)
-
-        res = super().onchange(values, field_names, fields_spec)
-        if not res["value"]:
-            value = {key: value for key, value in values.items() if value is not False}
-            res["value"] = value
-
-        for field in dynamic_fields:
-            self._fields.pop(field)
+        self._install_dynamic_fields(dynamic_fields)
+        try:
+            res = super().onchange(values, field_names, fields_spec)
+            if not res["value"]:
+                value = {
+                    key: value for key, value in values.items() if value is not False
+                }
+                res["value"] = value
+        finally:
+            for field in dynamic_fields:
+                self._fields.pop(field, None)
 
         view_temp = (
             self.env["ir.ui.view"]
