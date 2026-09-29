@@ -48,7 +48,6 @@ class DateRangeGenerator(models.TransientModel):
     )
     type_id = fields.Many2one(
         comodel_name="date.range.type",
-        string="Type",
         required=True,
         domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]",
         ondelete="cascade",
@@ -58,7 +57,6 @@ class DateRangeGenerator(models.TransientModel):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         compute="_compute_company_id",
         readonly=False,
         store=True,
@@ -131,11 +129,11 @@ class DateRangeGenerator(models.TransientModel):
                     "Please enter an end date, or the number of ranges to generate."
                 )
             )
-        kwargs = dict(
-            freq=int(self.unit_of_time),
-            interval=self.duration_count,
-            dtstart=self.date_start,
-        )
+        kwargs = {
+            "freq": int(self.unit_of_time),
+            "interval": self.duration_count,
+            "dtstart": self.date_start,
+        }
         if self.date_end:
             kwargs["until"] = self.date_end
         else:
