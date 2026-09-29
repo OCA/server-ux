@@ -4,11 +4,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
+from unittest import mock
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
+from odoo.addons.web.models.models import Base as WebBase
 
 
 def fake_onchange_model_id(self):
@@ -402,6 +405,71 @@ class TestMassEditing(common.TransactionCase):
                 "email": {},
             },
         )
+
+    def test_onchange_dynamic_fields_are_bound_and_cleaned(self):
+        """Dynamic Selection/Text fields injected in ``_fields`` during
+        ``onchange`` must:
+
+        1. Be bound to their owner so ``model_name`` and ``name`` are
+           populated. Otherwise any later access to
+           ``registry._field_triggers`` (e.g. via ``_has_onchange``
+           triggered by ``get_view`` on another model) resolves
+           ``registry[None]`` and raises ``KeyError: None``, which then
+           surfaces as a random RPC error in unrelated views.
+        2. Be removed from ``_fields`` once ``onchange`` returns.
+           ``_fields`` is a class attribute shared by every request handled
+           by the worker, so a leaked Field poisons the registry until the
+           process is restarted.
+        """
+        wizard_model = self.MassEditingWizard
+        injected_field_names = []
+        for line in self.mass_editing_user.mass_edit_line_ids:
+            injected_field_names.append("selection__" + line.field_id.name)
+            injected_field_names.append(line.field_id.name)
+        self.assertTrue(injected_field_names, "demo data should have lines")
+
+        # Track ``Field.__set_name__`` calls so we can assert each dynamic
+        # field is bound to ``mass.editing.wizard`` (the bug surfaces only
+        # because Odoo bypasses ``__set_name__``, leaving ``model_name`` at
+        # the default ``None``).
+        original_set_name = fields.Field.__set_name__
+        bindings = []
+
+        def capturing_set_name(field_self, owner, name):
+            bindings.append((getattr(owner, "_name", None), name))
+            return original_set_name(field_self, owner, name)
+
+        # Stub out ``super().onchange()`` with a no-op: the dynamic fields
+        # are injected with an intentionally empty selection list (``[()]``)
+        # which is fine while ``model_name`` is None (the bug we fix) but
+        # would otherwise trip ``Selection.get_values`` from the real
+        # ``web.Base.onchange``. We only care about whether the wizard
+        # binds the dynamic fields, not about the parent onchange result.
+        fields.Field.__set_name__ = capturing_set_name
+        try:
+            with mock.patch.object(WebBase, "onchange", return_value={"value": {}}):
+                wizard_model.with_context(
+                    server_action_id=self.mass_editing_user.id,
+                    active_ids=[],
+                    original_active_ids=[],
+                ).onchange({}, [], {})
+        finally:
+            fields.Field.__set_name__ = original_set_name
+
+        for fname in injected_field_names:
+            self.assertIn(
+                (wizard_model._name, fname),
+                bindings,
+                f"Dynamic field {fname} was not bound to "
+                f"{wizard_model._name!r} via __set_name__; registry "
+                "lookups would crash with KeyError: None.",
+            )
+            self.assertNotIn(
+                fname,
+                wizard_model._fields,
+                f"Dynamic field {fname} leaked into _fields after a "
+                "successful onchange call.",
+            )
 
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
