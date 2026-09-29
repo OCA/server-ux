@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Technical features group</title>
 <style type="text/css">
 
 /*
@@ -374,18 +374,18 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:439d0d83c06b14233f634809ba6039f8d06beb638ceab71c029f08df0d43166e
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/19.0/base_technical_features"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-base_technical_features"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/20.0/base_technical_features"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-20-0/server-ux-20-0-base_technical_features"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module provides persistent access to technical features based on
 user preferences, eliminating the need to activate debug mode.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-6">Other credits</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
 <li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
 </ul>
 </li>
@@ -396,35 +396,46 @@ user preferences, eliminating the need to activate debug mode.</p>
 <p>After installation of this module, every employee can still access
 technical features for the applications that they have access to by
 enabling debug mode.</p>
-<p>Additionally, users can check the <em>Technical feature</em> field in their
-preferences to gain permanent access to the menus and views that fall
-under this category.</p>
-<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/server-ux/19.0/base_technical_features/static/description/user_preferences.png" /></p>
+<p>Additionally, users can check the <em>Technical Features</em> field in their
+preferences (user menu, <em>My Preferences</em>, <em>Preferences</em> tab) and click
+<em>Update Preferences</em> to gain permanent access to the menus and views
+that fall under this category.</p>
+<p><img alt="Technical Features in My Preferences" src="https://raw.githubusercontent.com/OCA/server-ux/20.0/base_technical_features/static/img/user_preferences.png" /></p>
 <p>Upon installation of this module, this preference is already set for the
 administrator user of the database.</p>
-<p>In the background, this preference is mapped to the <em>Technical feature
+<p>In the background, this preference is mapped to the <em>Technical Features
 (w/o debug mode)</em> group that this module adds. As an administrator, you
-can therefore manage this preference from the regular Users and Groups
-menu items.</p>
+can therefore manage this preference from the <em>Preferences</em> tab of the
+user form in <em>Settings &gt; Users &amp; Companies &gt; Users</em>, or from the group
+itself.</p>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
+<p>With the <em>Technical Features</em> preference checked, the menus and fields
+restricted to debug mode are shown without activating it. For instance,
+the <em>Technical</em> menu of the <em>Settings</em> app is available straight away:</p>
+<p><img alt="Technical menu without debug mode" src="https://raw.githubusercontent.com/OCA/server-ux/20.0/base_technical_features/static/img/technical_menu.png" /></p>
+<p>Unchecking the preference hides them again, unless debug mode is
+activated.</p>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-ux/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_technical_features%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20base_technical_features%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5">Authors</a></h3>
 <ul class="simple">
 <li>Opener B.V.</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Contributors</a></h3>
 <ul class="simple">
 <li>Stefan Rijnhart &lt;<a class="reference external" href="mailto:stefan&#64;opener.am">stefan&#64;opener.am</a>&gt;</li>
 <li>Jeroen Evens &lt;<a class="reference external" href="mailto:jeroen.evens&#64;dynapps.be">jeroen.evens&#64;dynapps.be</a>&gt;</li>
@@ -432,14 +443,6 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Khoi (Kien Kim) &lt;<a class="reference external" href="mailto:khoikk&#64;trobz.com">khoikk&#64;trobz.com</a>&gt;</li>
 <li>Tris Doan &lt;<a class="reference external" href="mailto:tridm&#64;trobz.com">tridm&#64;trobz.com</a>&gt;</li>
 <li>Iván Todorovich &lt;<a class="reference external" href="mailto:ivan.todorovich&#64;camptocamp.com">ivan.todorovich&#64;camptocamp.com</a>&gt;</li>
-</ul>
-</div>
-<div class="section" id="other-credits">
-<h3><a class="toc-backref" href="#toc-entry-6">Other credits</a></h3>
-<p>The migration of this module from 18.0 to 19.0 was financially supported
-by:</p>
-<ul class="simple">
-<li>Camptocamp.</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
@@ -451,7 +454,7 @@ by:</p>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/19.0/base_technical_features">OCA/server-ux</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/20.0/base_technical_features">OCA/server-ux</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

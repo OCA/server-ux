@@ -10,6 +10,7 @@ class IrUiView(models.Model):
     def _postprocess_debug(self, tree):
         # OVERRIDE to treat debug nodes as regular nodes, when technical features
         # are enabled in the user preferences.
+        view = self
         if self.env.user.technical_features:
-            self = self.with_context(force_debug_mode=True)
-        return super()._postprocess_debug(tree)
+            view = self.with_context(force_debug_mode=True)
+        return super(IrUiView, view)._postprocess_debug(tree)
