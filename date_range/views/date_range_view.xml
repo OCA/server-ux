@@ -206,13 +206,13 @@
         sequence="1"
     />
     <menuitem
-        action="date_range_action"
         id="menu_date_range_action"
+        action="date_range_action"
         parent="menu_date_range"
     />
     <menuitem
-        action="date_range_type_action"
         id="menu_date_range_type_action"
+        action="date_range_type_action"
         parent="menu_date_range"
     />
 </odoo>
