@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_field_length_rule,base.field.length.rule,model_base_field_length_rule,base.group_system,1,1,1,1
