@@ -7,6 +7,7 @@ import json
 from lxml import etree
 
 from odoo import _, api, fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class MassEditingWizard(models.TransientModel):
@@ -86,7 +87,10 @@ class MassEditingWizard(models.TransientModel):
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         if not server_action:
-            return super().onchange(values, field_names, fields_spec)
+            if field_names:
+                return super().onchange(values, field_names, fields_spec)
+            else:
+                return {}
         dynamic_fields = {}
 
         for line in server_action.mapped("mass_edit_line_ids"):
@@ -102,20 +106,12 @@ class MassEditingWizard(models.TransientModel):
         self._fields.update(dynamic_fields)
 
         res = super().onchange(values, field_names, fields_spec)
-        if not res["value"]:
+        if not res.get("value"):
             value = {key: value for key, value in values.items() if value is not False}
             res["value"] = value
 
         for field in dynamic_fields:
             self._fields.pop(field)
-
-        view_temp = (
-            self.env["ir.ui.view"]
-            .sudo()
-            .search([("name", "=", "Temporary Mass Editing Wizard")], limit=1)
-        )
-        if view_temp:
-            view_temp.unlink()
 
         return res
 
@@ -213,23 +209,27 @@ class MassEditingWizard(models.TransientModel):
             "class": "w-75",
         }
 
-    @api.model
-    def get_views(self, views, options=None):
-        for view, _type in views:
-            if view:
-                view = self.env["ir.ui.view"].sudo().browse(view)
-                server_action = view.mass_server_action_id
-                self = self.with_context(server_action_id=server_action.id)
-        return super().get_views(views, options)
+    def _get_mass_edit_server_action_from_context(self):
+        """Retrieve server action from client context"""
+        server_action = None
+        if self.env.context.get("nocache_server_action_mass_edit_view_ref"):
+            # convert string back to dict
+            context_dict = safe_eval(
+                self.env.context["nocache_server_action_mass_edit_view_ref"]
+            )
+            server_action_id = context_dict.get("server_action_id")
+            server_action = (
+                self.env["ir.actions.server"].sudo().browse(server_action_id)
+            )
+        return server_action
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
-        view = self.env["ir.ui.view"].sudo().browse(view_id)
-        server_action = view.mass_server_action_id
-        self = self.with_context(server_action_id=server_action.id)
-        if not server_action:
-            return super().get_view(view_id, view_type, **options)
         result = super().get_view(view_id, view_type, **options)
+        server_action = self._get_mass_edit_server_action_from_context()
+        if not server_action:
+            return result
+        # Hook XML view to add fields dynamically
         arch = etree.fromstring(result["arch"])
         main_xml_group = arch.find('.//group[@name="group_field_list"]')
         for line in server_action.mapped("mass_edit_line_ids"):
@@ -244,11 +244,10 @@ class MassEditingWizard(models.TransientModel):
 
     @api.model
     def fields_get(self, allfields=None, attributes=None):
-        server_action_id = self.env.context.get("server_action_id")
-        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        result = super().fields_get(allfields, attributes)
+        server_action = self._get_mass_edit_server_action_from_context()
         if not server_action:
-            return super().fields_get(allfields, attributes)
-        res = super().fields_get(allfields, attributes)
+            return result
         fields_info = self.env[server_action.model_id.model].fields_get()
         for line in server_action.mapped("mass_edit_line_ids"):
             field = line.field_id
@@ -258,8 +257,8 @@ class MassEditingWizard(models.TransientModel):
             field_info["relation_field"] = False
             if not line.apply_domain and "domain" in field_info:
                 field_info["domain"] = "[]"
-            res.update(self._prepare_fields(line, field, field_info))
-        return res
+            result.update(self._prepare_fields(line, field, field_info))
+        return result
 
     @api.model
     def _clean_check_company_field_domain(self, TargetModel, field, field_info):
