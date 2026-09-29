@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="date_range_as_of_month" model="date.range.type">
+        <field name="name">As Of Month</field>
+        <field name="allow_overlap">True</field>
+        <field name="active">True</field>
+        <field name="company_id" eval="False" />
+        <field name="name_expr">
+            'As Of %s %s' % (
+                date_start.strftime('%B'),
+                date_start.strftime('%Y'),
+            )
+        </field>
+    </record>
+</odoo>
