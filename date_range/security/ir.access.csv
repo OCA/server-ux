@@ -1,0 +1,8 @@
+id,name,model_id,group_id/id,operation,domain
+access_date_range_date_range,date_range.date_range,date.range,base.group_user,r,
+access_date_range_date_range_config,date_range.date_range.config,date.range,base.group_system,crud,
+date_range_comp_rule,Date Range multi-company,date.range,,crud,"['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]"
+access_date_range_date_range_type,date_range.date_range_type,date.range.type,base.group_user,r,
+access_date_range_date_range_type_config,date_range.date_range_type.config,date.range.type,base.group_system,crud,
+date_range_type_comp_rule,Date Range Type multi-company,date.range.type,,crud,"['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]"
+access_date_range_generator,access_date_range_generator,date.range.generator,base.group_system,crud,
