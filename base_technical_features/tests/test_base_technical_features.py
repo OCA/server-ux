@@ -1,8 +1,10 @@
 # Copyright 2026 Camptocamp SA (https://www.camptocamp.com).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from odoo import Command
-from odoo.tests import Form, TransactionCase
+from odoo.tests import TransactionCase
 
 
 class TestBaseTechnicalFeatures(TransactionCase):
@@ -45,6 +47,14 @@ class TestBaseTechnicalFeatures(TransactionCase):
             }
         )
 
+    def _is_invisible(self, field_name):
+        # Odoo 20.0 moved onchange() to the web module, which the test form
+        # needs: read the arch processed by base instead, so the tests do not
+        # depend on web being installed.
+        arch = self.env["res.users"].get_view(self.view.id, "form")["arch"]
+        node = etree.fromstring(arch).find(f".//field[@name='{field_name}']")
+        return node.get("invisible") in ("1", "True")
+
     def test_technical_features_field(self):
         self.assertFalse(self.env.user.technical_features)
         self.assertFalse(self.env.user.has_group(self.group_technical_features_xmlid))
@@ -82,14 +92,12 @@ class TestBaseTechnicalFeatures(TransactionCase):
 
     def test_visible_fields_hidden(self):
         """A technical field is hidden by default"""
-        form = Form(self.env["res.users"], view=self.view)
-        self.assertTrue(form._get_modifier("partner_id", "invisible"))
+        self.assertTrue(self._is_invisible("partner_id"))
 
     def test_visible_fields_with_technical_features(self):
         """A technical field is visible when technical features is enabled"""
         self.env.user.technical_features = True
-        form = Form(self.env["res.users"], view=self.view)
-        self.assertFalse(form._get_modifier("partner_id", "invisible"))
+        self.assertFalse(self._is_invisible("partner_id"))
 
     def test_visible_fields_with_debug_mode(self):
         """A technical field is visible when debug mode is enabled
@@ -98,8 +106,7 @@ class TestBaseTechnicalFeatures(TransactionCase):
         """
         self.assertFalse(self.env.user.technical_features)
         with self.debug_mode():
-            form = Form(self.env["res.users"], view=self.view)
-            self.assertFalse(form._get_modifier("partner_id", "invisible"))
+            self.assertFalse(self._is_invisible("partner_id"))
 
     def test_field_hidden_only_in_debug(self):
         """A technical field is hidden only in debug mode"""
@@ -112,5 +119,4 @@ class TestBaseTechnicalFeatures(TransactionCase):
             </form>
         """
         self.env.user.technical_features = True
-        form = Form(self.env["res.users"], view=self.view)
-        self.assertTrue(form._get_modifier("partner_id", "invisible"))
+        self.assertTrue(self._is_invisible("partner_id"))
