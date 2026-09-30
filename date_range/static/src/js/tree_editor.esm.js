@@ -4,9 +4,11 @@ import {
     serializeDate,
     serializeDateTime,
 } from "@web/core/l10n/dates";
+import {DateRangePlugin} from "./date_range_plugin.esm";
 import {Select} from "@web/core/tree_editor/tree_editor_components";
 import {TreeEditor} from "@web/core/tree_editor/tree_editor";
 import {patch} from "@web/core/utils/patch";
+import {useScope} from "@odoo/owl";
 
 function toDateTime(date, type, end) {
     if (type === "date") {
@@ -34,6 +36,8 @@ function fromDateTime(date, type) {
 patch(TreeEditor.prototype, {
     setup() {
         super.setup();
+        // Provided by the DomainSelector; absent when the TreeEditor is used alone
+        this.dateRangePlugin = useScope().pluginManager.getPlugin(DateRangePlugin);
     },
     getValueEditorInfo(node) {
         const fieldDef = this.getFieldDef(node.path);
@@ -45,10 +49,10 @@ patch(TreeEditor.prototype, {
         ) {
             info.component = Select;
         }
-        if (typeof this.env.domain !== "undefined") {
-            let dateRanges = this.env.domain.dateRanges;
+        if (this.dateRangePlugin) {
+            let dateRanges = this.dateRangePlugin.dateRanges;
             if (this.update_operator && this.update_operator.split("daterange_")[1]) {
-                dateRanges = this.env.domain.dateRanges.filter(
+                dateRanges = this.dateRangePlugin.dateRanges.filter(
                     (range) =>
                         range.type_id[0] ===
                         Number(this.update_operator.split("daterange_")[1])
@@ -121,12 +125,12 @@ patch(TreeEditor.prototype, {
         super.updateLeafOperator.apply(this, arguments);
         this.update_operator = operator;
         const fieldDef = this.getFieldDef(node.path);
-        if (typeof this.env.domain !== "undefined") {
-            let dateRanges = this.env.domain.dateRanges.filter(
+        if (this.dateRangePlugin) {
+            let dateRanges = this.dateRangePlugin.dateRanges.filter(
                 (range) => range.type_id[0] === Number(operator.split("daterange_")[1])
             );
             if (!dateRanges.length) {
-                dateRanges = this.env.domain.dateRanges;
+                dateRanges = this.dateRangePlugin.dateRanges;
             }
             if (operator.includes("daterange") && dateRanges) {
                 node.value = [
