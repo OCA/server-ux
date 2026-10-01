@@ -7,7 +7,7 @@ from odoo import fields, models
 class BaseRevisionTester(models.Model):
     _name = "base.revision.tester"
     _description = "Base Revision Tester"
-    _inherit = ["base.revision"]
+    _inherit = ["base.revision"]  # noqa: RUF012
 
     name = fields.Char(required=True)
     state = fields.Selection(
