@@ -15,8 +15,8 @@ class BaseRevision(models.AbstractModel):
     @api.depends("old_revision_ids")
     def _compute_has_old_revisions(self):
         for rec in self:
-            rec.has_old_revisions = (
-                True if rec.with_context(active_test=False).old_revision_ids else False
+            rec.has_old_revisions = bool(
+                rec.with_context(active_test=False).old_revision_ids
             )
 
     current_revision_id = fields.Many2one(
