@@ -116,3 +116,33 @@ class TierDefinition(models.Model):
         res.append("tier.validation.tester2")
         res.append("tier.validation.tester.computed")
         return res
+
+
+class TierValidationTesterMultipleStates(models.Model):
+    _name = "tier.validation.tester.multiple.states"
+    _description = "Tier Validation Tester Multiple States"
+    _inherit = ["tier.validation"]
+    _tier_validation_manual_config = False
+
+    state = fields.Selection(
+        selection=[
+            ("draft", "Draft"),
+            ("in_progress", "In Progress"),
+            ("confirmed", "Confirmed"),
+            ("cancel", "Cancel"),
+        ],
+        default="draft",
+    )
+    _state_from = ["draft", "in_progress"]
+    _state_to = ["in_progress", "confirmed"]
+
+    test_field = fields.Float()
+    test_validation_field = fields.Float()
+    user_id = fields.Many2one(string="Assigned to:", comodel_name="res.users")
+    company_id = fields.Many2one(comodel_name="res.company")
+
+    def action_to_in_progress(self):
+        self.write({"state": "in_progress"})
+
+    def action_confirm(self):
+        self.write({"state": "confirmed"})
