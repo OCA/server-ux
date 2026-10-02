@@ -239,6 +239,10 @@ class TestMassEditing(common.TransactionCase):
         self.assertTrue(
             all([field in result for field in fields]), "Read must return all fields."
         )
+        # the web client expects a list for x2many fields
+        self.assertEqual(result["category_id"], [])
+        self.assertEqual(result["bank_ids"], [])
+        self.assertFalse(result["email"])
 
         result = mass_wizard.read(fields=[])[0]
         self.assertTrue(
