@@ -6,6 +6,7 @@ from unittest import mock
 
 from lxml import etree
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tests.common import tagged
@@ -37,6 +38,74 @@ class TierTierValidation(CommonTierValidation):
         record = self.test_record.with_user(self.test_user_1.id)
         record.validate_tier()
         self.assertEqual(record.validation_status, "validated")
+
+    def test_exclude_requester_drops_requester_from_group(self):
+        """With ``exclude_requester=True`` on a group review type, the
+        requester is removed from the tier's reviewer pool so they
+        cannot auto-validate their own request -- enforcing a
+        four-eyes principle without custom Python."""
+        # Build a group containing both users and a tier definition
+        # that points at it. test_user_1 will be the requester; the
+        # group also includes test_user_1, so without the four-eyes
+        # flag they'd be in their own review's reviewer_ids.
+        group = self.env["res.groups"].create(
+            {
+                "name": "Four-eyes Reviewers",
+                "users": [
+                    Command.link(self.test_user_1.id),
+                    Command.link(self.test_user_2.id),
+                ],
+            }
+        )
+        # Use the existing definition so we don't get extra reviews on
+        # tier_definition_1's individual reviewer.
+        self.tier_definition.write(
+            {
+                "review_type": "group",
+                "reviewer_id": False,
+                "reviewer_group_id": group.id,
+                "exclude_requester": True,
+            }
+        )
+        record = self.test_model.create({"test_field": 1.0})
+        record.with_user(self.test_user_1).request_validation()
+        review = record.review_ids.filtered(
+            lambda r: r.definition_id == self.tier_definition
+        )
+        # The requester (test_user_1) is excluded; only test_user_2
+        # remains as a valid reviewer.
+        self.assertIn(self.test_user_2, review.reviewer_ids)
+        self.assertNotIn(self.test_user_1, review.reviewer_ids)
+        # The requester therefore cannot self-validate.
+        self.assertFalse(record.with_user(self.test_user_1).can_review)
+        self.assertTrue(record.with_user(self.test_user_2).can_review)
+
+    def test_exclude_requester_off_keeps_legacy_behavior(self):
+        """Without the flag, a requester who happens to be a member of
+        the configured reviewer group is included in reviewer_ids and
+        can auto-validate -- which is the legacy behaviour and must
+        keep working for backwards compatibility."""
+        group = self.env["res.groups"].create(
+            {
+                "name": "Open Reviewers",
+                "users": [Command.link(self.test_user_1.id)],
+            }
+        )
+        self.tier_definition.write(
+            {
+                "review_type": "group",
+                "reviewer_id": False,
+                "reviewer_group_id": group.id,
+                # exclude_requester left at its default of False
+            }
+        )
+        record = self.test_model.create({"test_field": 1.0})
+        record.with_user(self.test_user_1).request_validation()
+        review = record.review_ids.filtered(
+            lambda r: r.definition_id == self.tier_definition
+        )
+        self.assertIn(self.test_user_1, review.reviewer_ids)
+        self.assertTrue(record.with_user(self.test_user_1).can_review)
 
     def test_04_request_validation_rejected(self):
         """Request validation, rejection and reset."""
