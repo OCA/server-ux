@@ -147,7 +147,7 @@ class TierDefinition(models.Model):
         review_date = fields.Datetime.subtract(
             fields.Datetime.now(), days=self.notify_reminder_delay
         )
-        return self.env["tier.review"].search(
+        reviews = self.env["tier.review"].search(
             [
                 ("definition_id", "=", self.id),
                 ("status", "in", ["waiting", "pending"]),
@@ -156,9 +156,18 @@ class TierDefinition(models.Model):
                 ("create_date", "<", review_date),
                 ("last_reminder_date", "=", False),
                 ("last_reminder_date", "<", review_date),
-            ],
-            limit=1,
+            ]
         )
+        # A review only becomes pending when its can_review is computed, which
+        # may not have happened yet for a review nobody has opened. Do it now,
+        # per document, so that the reviews whose turn it is are pending.
+        for model, res_id in set(
+            zip(reviews.mapped("model"), reviews.mapped("res_id"), strict=False)
+        ):
+            if model in self.env and "review_ids" in self.env[model]._fields:
+                self.env[model].browse(res_id).review_ids._compute_can_review()
+        # A waiting review is not the reviewer's turn yet: nothing to remind.
+        return reviews.filtered(lambda review: review.status == "pending")[:1]
 
     def _cron_send_review_reminder(self):
         definition_with_reminder = self.env["tier.definition"].search(
