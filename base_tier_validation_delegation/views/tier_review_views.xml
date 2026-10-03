@@ -7,7 +7,7 @@
             <xpath expr="//field[@name='done_by']" position="after">
                 <field
                     name="delegated_by_ids"
-                    widget="many2many_tags"
+                    widget="many2many_tags_avatar"
                     optional="show"
                 />
             </xpath>
@@ -27,10 +27,10 @@
                             <field name="status" />
                         </group>
                         <group>
-                            <field name="reviewer_ids" widget="many2many_tags" />
+                            <field name="reviewer_ids" widget="many2many_tags_avatar" />
                             <field
                                 name="delegated_by_ids"
-                                widget="many2many_tags"
+                                widget="many2many_tags_avatar"
                                 string="Delegated By"
                                 invisible="not delegated_by_ids"
                             />
