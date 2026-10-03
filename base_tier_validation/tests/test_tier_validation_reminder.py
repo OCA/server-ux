@@ -11,6 +11,47 @@ from .common import CommonTierValidation
 
 @tagged("post_install", "-at_install")
 class TierTierValidation(CommonTierValidation):
+    def test_validation_reminder_skips_waiting_reviews(self):
+        """Only reviews whose turn it is are reminded: a waiting review is
+        not the reviewer's turn yet. Once it becomes pending, it is reminded."""
+        self.tier_def_obj.search([]).notify_reminder_delay = 1
+        record = self.test_model.create({"test_field": 4.0})
+        record.with_user(self.test_user_2).request_validation()
+        reviews = record.review_ids
+
+        in_2_days = fields.Datetime.add(fields.Datetime.now(), days=2)
+        with freeze_time(in_2_days):
+            self.tier_def_obj._cron_send_review_reminder()
+        reminded = reviews.filtered("last_reminder_date")
+        waiting = reviews.filtered(lambda r: r.status == "waiting")
+        self.assertTrue(reminded)
+        self.assertEqual(set(reminded.mapped("status")), {"pending"})
+        self.assertTrue(waiting)
+        self.assertFalse(any(waiting.mapped("last_reminder_date")))
+
+        # Its turn comes: the review is reminded at the next run.
+        waiting[0].status = "pending"
+        in_3_days = fields.Datetime.add(fields.Datetime.now(), days=3)
+        with freeze_time(in_3_days):
+            self.tier_def_obj._cron_send_review_reminder()
+        self.assertEqual(waiting[0].last_reminder_date, in_3_days)
+
+    def test_validation_reminder_skips_orphan_waiting_review(self):
+        """A waiting review whose model is gone is left alone."""
+        self.tier_definition.notify_reminder_delay = 1
+        orphan = self.env["tier.review"].create(
+            {
+                "definition_id": self.tier_definition.id,
+                "model": "tier.validation.uninstalled",
+                "res_id": 1,
+            }
+        )
+        self.assertEqual(orphan.status, "waiting")
+        with freeze_time(fields.Datetime.add(fields.Datetime.now(), days=2)):
+            self.tier_def_obj._cron_send_review_reminder()
+        self.assertEqual(orphan.status, "waiting")
+        self.assertFalse(orphan.last_reminder_date)
+
     def test_validation_reminder(self):
         """Check the posting of reminder to reviews."""
         tier_definition = self.tier_definition
