@@ -116,7 +116,7 @@
                 <button
                     type="object"
                     name="action_announcement_log"
-                    icon="fa-book"
+                    icon="book"
                     class="oe_stat_button"
                 >
                     <div class="o_stat_info">
@@ -162,7 +162,7 @@
                     <t t-name="card">
                         <div class="row mb4">
                             <div class="col-12">
-                                <t t-esc="record.name.value" />
+                                <t t-out="record.name.value" />
                                 <t t-out="record.content.raw_value" />
                             </div>
                         </div>

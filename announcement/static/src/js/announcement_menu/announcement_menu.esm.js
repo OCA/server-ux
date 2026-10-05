@@ -1,7 +1,7 @@
 /* Copyright 2024 Tecnativa - David Vidal
  * Copyright 2024 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
-import {Component, markup, onMounted, useState} from "@odoo/owl";
+import {Component, markup, onMounted} from "@odoo/owl";
 import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
@@ -15,12 +15,15 @@ import {user} from "@web/core/user";
 const {DateTime} = luxon;
 
 export class AnnouncementMenu extends Component {
+    static template = "announcement.AnnouncementMenu";
+    static components = {Dropdown, DropdownItem};
+
     setup() {
         this.discussSystray = useDiscussSystray();
         this.orm = useService("orm");
         this.dialogService = useService("dialog");
         const announcements_service = useService("announcementService");
-        this.announcements = useState(announcements_service.announcements);
+        this.announcements = announcements_service.announcements;
         // When the user logs in we show him his unread announcements
         onMounted(async () => {
             // Let's check if the user just logged in and to decide if we popup the
@@ -87,10 +90,6 @@ export class AnnouncementMenu extends Component {
         );
     }
 }
-
-AnnouncementMenu.components = {Dropdown, DropdownItem};
-AnnouncementMenu.props = [];
-AnnouncementMenu.template = "announcement.AnnouncementMenu";
 
 export const systrayAnnouncement = {
     Component: AnnouncementMenu,

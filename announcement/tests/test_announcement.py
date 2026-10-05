@@ -1,9 +1,9 @@
 # Copyright 2025 Tecnativa - Víctor Martínez
 # Copyright 2025 Tecnativa - David Bañón
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.tests import new_test_user, tagged, users
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -11,6 +11,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 @tagged("-at_install", "post_install")
 class TestAnnouncement(BaseCommon):
+    # Set up the announcements as superuser; users are switched explicitly
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -19,9 +22,8 @@ class TestAnnouncement(BaseCommon):
                 "name": "Test announcement",
                 "content": "<p>Test content for test announcement</p>",
                 "is_general_announcement": True,
-                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
-                "notification_expiry_date": datetime.now(timezone.utc)
-                + timedelta(days=+1),
+                "notification_date": fields.Datetime.now() + timedelta(days=-1),
+                "notification_expiry_date": fields.Datetime.now() + timedelta(days=+1),
                 "active": True,
             }
         )
@@ -30,9 +32,8 @@ class TestAnnouncement(BaseCommon):
                 "name": "Test expired announcement",
                 "content": "<p>Its gone</p>",
                 "is_general_announcement": True,
-                "notification_date": datetime.now(timezone.utc) + timedelta(days=-2),
-                "notification_expiry_date": datetime.now(timezone.utc)
-                + timedelta(days=-1),
+                "notification_date": fields.Datetime.now() + timedelta(days=-2),
+                "notification_expiry_date": fields.Datetime.now() + timedelta(days=-1),
                 "active": True,
             }
         )
@@ -46,9 +47,8 @@ class TestAnnouncement(BaseCommon):
                 "content": "<p>Test content for admins only</p>",
                 "announcement_type": "user_group",
                 "user_group_ids": cls.env.ref("base.group_system"),
-                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
-                "notification_expiry_date": datetime.now(timezone.utc)
-                + timedelta(days=+1),
+                "notification_date": fields.Datetime.now() + timedelta(days=-1),
+                "notification_expiry_date": fields.Datetime.now() + timedelta(days=+1),
                 "active": True,
             }
         )
@@ -61,9 +61,8 @@ class TestAnnouncement(BaseCommon):
                     Command.link(cls.user.id),
                     Command.link(cls.user_system.id),
                 ],
-                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
-                "notification_expiry_date": datetime.now(timezone.utc)
-                + timedelta(days=+1),
+                "notification_date": fields.Datetime.now() + timedelta(days=-1),
+                "notification_expiry_date": fields.Datetime.now() + timedelta(days=+1),
                 "active": True,
             }
         )

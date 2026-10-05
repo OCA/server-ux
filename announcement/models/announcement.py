@@ -103,7 +103,9 @@ class Announcement(models.Model):
             ):
                 user.unread_announcement_ids |= announcement
 
-    @api.depends("specific_user_ids", "user_group_ids")
+    @api.depends(
+        "announcement_type", "specific_user_ids", "user_group_ids.all_user_ids"
+    )
     def _compute_allowed_user_ids(self):
         self.allowed_user_ids = False
         self.allowed_users_count = False
@@ -114,8 +116,10 @@ class Announcement(models.Model):
             announcement.allowed_user_ids = announcement.specific_user_ids
             announcement.allowed_users_count = len(announcement.specific_user_ids)
         for announcement in self - specific_user_announcements:
-            announcement.allowed_user_ids = announcement.user_group_ids.users
-            announcement.allowed_users_count = len(announcement.user_group_ids.users)
+            announcement.allowed_user_ids = announcement.user_group_ids.all_user_ids
+            announcement.allowed_users_count = len(
+                announcement.user_group_ids.all_user_ids
+            )
 
     @api.depends("is_general_announcement")
     def _compute_user_group_ids(self):
@@ -128,16 +132,15 @@ class Announcement(models.Model):
 
     @api.depends("announcement_log_ids")
     def _compute_read_announcement_count(self):
-        logs = self.env["announcement.log"].read_group(
-            [("announcement_id", "in", self.ids)],
-            ["announcement_id"],
-            ["announcement_id"],
+        result = dict(
+            self.env["announcement.log"]._read_group(
+                [("announcement_id", "in", self.ids)],
+                ["announcement_id"],
+                ["__count"],
+            )
         )
-        result = {
-            data["announcement_id"][0]: (data["announcement_id_count"]) for data in logs
-        }
         for announcement in self:
-            announcement.read_announcement_count = result.get(announcement.id, 0)
+            announcement.read_announcement_count = result.get(announcement, 0)
 
     @api.depends("notification_date")
     def _compute_notification_start_date(self):

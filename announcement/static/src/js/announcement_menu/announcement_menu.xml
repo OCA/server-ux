@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="announcement.AnnouncementMenu">
-        <Dropdown position="'bottom-end'" menuClass="discussSystray.menuClass">
+        <Dropdown position="'bottom-end'" menuClass="this.discussSystray.menuClass">
             <button>
-                <i class="fa fa-lg fa-bullhorn" role="img" aria-label="Announcements" />
+                <i
+                    class="oi"
+                    data-icon="campaign"
+                    role="img"
+                    aria-label="Announcements"
+                />
                 <span
-                    t-if="announcements.count"
+                    t-if="this.announcements.count"
                     class="o-mail-ActivityMenu-counter badge rounded-pill bg-warning"
                 >
-                    <t t-esc="announcements.count" />
+                    <t t-out="this.announcements.count" />
                 </span>
             </button>
             <t t-set-slot="content">
-                <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
+                <div
+                    t-att-class="`${this.discussSystray.contentClass} o-mail-ActivityMenu`"
+                >
                     <div
-                        t-if="announcements.count === 0"
+                        t-if="this.announcements.count === 0"
                         class="o-mail-ActivityMenu-empty align-items-center text-muted p-2 opacity-50 d-flex justify-content-center"
                     >
                         <span>No announcements.</span>
@@ -24,7 +31,7 @@
                         name="activityGroups"
                     >
                         <t
-                            t-foreach="announcements.data"
+                            t-foreach="this.announcements.data"
                             t-as="announcement"
                             t-key="announcement.id"
                         >

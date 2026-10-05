@@ -36,7 +36,9 @@ class ResUsers(models.Model):
             {
                 x["id"]
                 for x in group_announcements
-                if any(g in self.env.user.groups_id.ids for g in x["user_group_ids"])
+                if any(
+                    g in self.env.user.all_group_ids.ids for g in x["user_group_ids"]
+                )
             }
         )
         # Unread announcements are directly linked to the user. Normally, only a
@@ -70,8 +72,8 @@ class ResUsers(models.Model):
                 attachment_url = f"/web/content/{attachment.id}?download=false"
                 attachment_link = (
                     f'<a href="{attachment_url}" '
-                    f'class="list-group-item list-group-item-action'
-                    f'target="_blank"><i class="fa fa-download" /> '
+                    f'class="list-group-item list-group-item-action" '
+                    f'target="_blank"><i class="oi" data-icon="download"/> '
                     f"{attachment.name}</a>"
                 )
                 attachment_links += attachment_link
