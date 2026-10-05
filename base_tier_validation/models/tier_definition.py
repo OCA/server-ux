@@ -42,7 +42,12 @@ class TierDefinition(models.Model):
         string="Allow Write For Reviewers",
         default=False,
     )
-    reviewer_id = fields.Many2one(comodel_name="res.users", string="Reviewer")
+    reviewer_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Reviewer",
+        domain=[("share", "=", False)],
+        help="Only internal users: portal users cannot act on tier reviews.",
+    )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups", string="Reviewer group"
     )

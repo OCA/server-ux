@@ -2,3 +2,4 @@
 
 from . import test_tier_validation
 from . import test_tier_validation_reminder
+from . import test_tier_definition_reviewer
