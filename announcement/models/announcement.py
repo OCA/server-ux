@@ -1,7 +1,7 @@
 # Copyright 2022 Tecnativa - David Vidal
 # Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class AnnouncementLog(models.Model):
@@ -96,8 +96,10 @@ class Announcement(models.Model):
         itself"""
         for announcement in self:
             for user in announcement.specific_user_ids.filtered(
-                lambda x, announcement=announcement: announcement
-                not in (x.read_announcement_ids + x.unread_announcement_ids)
+                lambda x, announcement=announcement: (
+                    announcement
+                    not in (x.read_announcement_ids + x.unread_announcement_ids)
+                )
             ):
                 user.unread_announcement_ids |= announcement
 
@@ -280,5 +282,5 @@ class Announcement(models.Model):
             "views": [[False, "list"]],
             "domain": [("id", "in", read_unread_log.ids)],
             "context": dict(self.env.context, create=False, group_by=["read_state"]),
-            "name": _("Read Logs"),
+            "name": self.env._("Read Logs"),
         }

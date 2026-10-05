@@ -1,7 +1,7 @@
 # Copyright 2025 Tecnativa - Víctor Martínez
 # Copyright 2025 Tecnativa - David Bañón
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from odoo import Command
 from odoo.tests import new_test_user, tagged, users
@@ -19,8 +19,9 @@ class TestAnnouncement(BaseCommon):
                 "name": "Test announcement",
                 "content": "<p>Test content for test announcement</p>",
                 "is_general_announcement": True,
-                "notification_date": datetime.now() + timedelta(days=-1),
-                "notification_expiry_date": datetime.now() + timedelta(days=+1),
+                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
+                "notification_expiry_date": datetime.now(timezone.utc)
+                + timedelta(days=+1),
                 "active": True,
             }
         )
@@ -29,8 +30,9 @@ class TestAnnouncement(BaseCommon):
                 "name": "Test expired announcement",
                 "content": "<p>Its gone</p>",
                 "is_general_announcement": True,
-                "notification_date": datetime.now() + timedelta(days=-2),
-                "notification_expiry_date": datetime.now() + timedelta(days=-1),
+                "notification_date": datetime.now(timezone.utc) + timedelta(days=-2),
+                "notification_expiry_date": datetime.now(timezone.utc)
+                + timedelta(days=-1),
                 "active": True,
             }
         )
@@ -44,8 +46,9 @@ class TestAnnouncement(BaseCommon):
                 "content": "<p>Test content for admins only</p>",
                 "announcement_type": "user_group",
                 "user_group_ids": cls.env.ref("base.group_system"),
-                "notification_date": datetime.now() + timedelta(days=-1),
-                "notification_expiry_date": datetime.now() + timedelta(days=+1),
+                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
+                "notification_expiry_date": datetime.now(timezone.utc)
+                + timedelta(days=+1),
                 "active": True,
             }
         )
@@ -58,8 +61,9 @@ class TestAnnouncement(BaseCommon):
                     Command.link(cls.user.id),
                     Command.link(cls.user_system.id),
                 ],
-                "notification_date": datetime.now() + timedelta(days=-1),
-                "notification_expiry_date": datetime.now() + timedelta(days=+1),
+                "notification_date": datetime.now(timezone.utc) + timedelta(days=-1),
+                "notification_expiry_date": datetime.now(timezone.utc)
+                + timedelta(days=+1),
                 "active": True,
             }
         )

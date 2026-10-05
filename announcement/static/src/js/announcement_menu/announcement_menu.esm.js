@@ -5,13 +5,13 @@ import {Component, markup, onMounted, useState} from "@odoo/owl";
 import {AnnouncementDialog} from "../announcement_dialog/announcement_dialog.esm";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
+import {_t} from "@web/core/l10n/translation";
 import {deserializeDateTime} from "@web/core/l10n/dates";
 import {registry} from "@web/core/registry";
 import {session} from "@web/session";
-import {_t} from "@web/core/l10n/translation";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
-import {user} from "@web/core/user";
 import {useService} from "@web/core/utils/hooks";
+import {user} from "@web/core/user";
 const {DateTime} = luxon;
 
 export class AnnouncementMenu extends Component {
