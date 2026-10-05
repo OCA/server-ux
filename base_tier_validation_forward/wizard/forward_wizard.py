@@ -13,6 +13,7 @@ class ValidationForwardWizard(models.TransientModel):
         comodel_name="res.users",
         string="Next Reviewer",
         required=True,
+        domain=[("share", "=", False)],
     )
     forward_description = fields.Char()
     has_comment = fields.Boolean(string="Allow Comment", default=True)
