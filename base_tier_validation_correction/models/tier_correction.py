@@ -167,6 +167,10 @@ class TierCorrection(models.Model):
         self.write({"date_actual_revert": fields.Datetime.now()})
 
     def action_draft(self):
+        if self.filtered(lambda rec: rec.state not in ("draft", "prepare", "cancel")):
+            raise ValidationError(
+                self.env._("A correction that was applied cannot be set to draft.")
+            )
         self.mapped("item_ids").unlink()
         self.write({"state": "draft"})
 
@@ -179,6 +183,14 @@ class TierCorrection(models.Model):
         self.write({"state": "done"})
 
     def action_cancel(self):
+        if self.filtered(lambda rec: rec.state not in ("draft", "prepare")):
+            raise ValidationError(
+                self.env._(
+                    "Only a correction that is not applied yet can be cancelled. "
+                    "Revert an applied correction instead: cancelling it would "
+                    "leave the new reviewers in place."
+                )
+            )
         self.write({"state": "cancel"})
 
     def action_revert(self):

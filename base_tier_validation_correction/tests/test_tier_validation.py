@@ -18,6 +18,31 @@ class TierTierValidation(CommonTierValidation):
 
         self.test_record.name = "test"
 
+    def test_cancel_only_before_applying(self):
+        """A correction can be cancelled while it is not applied, and set back
+        to draft from there; an applied one must be reverted instead."""
+        self.test_record.with_user(self.test_user_2).request_validation()
+        correction = self.env["tier.correction"].create(
+            {
+                "name": "Correction",
+                "model_id": self.tester_model.id,
+                "old_reviewer_ids": [(6, 0, self.test_user_1.ids)],
+                "new_reviewer_ids": [(6, 0, self.test_user_2.ids)],
+            }
+        )
+        correction.action_prepare()
+        correction.action_cancel()
+        self.assertEqual(correction.state, "cancel")
+        correction.action_draft()
+        self.assertEqual(correction.state, "draft")
+        correction.action_prepare()
+        correction.action_done()
+        with self.assertRaises(ValidationError):
+            correction.action_cancel()
+        with self.assertRaises(ValidationError):
+            correction.action_draft()
+        self.assertEqual(correction.state, "done")
+
     def test_01_tier_correction(self):
         """With the document in validation,
         - User click on Change Reviewer to creat new correction
