@@ -32,7 +32,7 @@ class DateRangeSearchMixin(models.AbstractModel):
             isinstance(v, bool) for v in value
         ):
             # Convert to list for uniform handling
-            value = list(value)[0]
+            value = next(iter(value))
 
         if not value:
             if operator in Domain.NEGATIVE_OPERATORS:
@@ -54,18 +54,11 @@ class DateRangeSearchMixin(models.AbstractModel):
             ranges = self.env["date.range"].search([("id", sub_op, value)])
         if not ranges:
             return Domain.FALSE
-        domain = (len(ranges) - 1) * ["|"] + sum(
-            (
-                [
-                    "&",
-                    (self._date_range_search_field, ">=", date_range.date_start),
-                    (self._date_range_search_field, "<=", date_range.date_end),
-                ]
-                for date_range in ranges
-            ),
-            [],
+        return Domain.OR(
+            Domain(self._date_range_search_field, ">=", date_range.date_start)
+            & Domain(self._date_range_search_field, "<=", date_range.date_end)
+            for date_range in ranges
         )
-        return domain
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
