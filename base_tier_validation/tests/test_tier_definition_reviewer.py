@@ -18,3 +18,21 @@ class TestTierDefinitionReviewer(TransactionCase):
         domain = self.env["tier.definition"]._fields["reviewer_id"].domain
         self.assertFalse(portal.filtered_domain(domain))
         self.assertTrue(internal.filtered_domain(domain))
+
+    def test_reviewer_group_is_internal(self):
+        """The portal and public roles, and groups implying them, are not
+        offered as reviewer group."""
+        portal = self.env.ref("base.group_portal")
+        public = self.env.ref("base.group_public")
+        portal_based = self.env["res.groups"].create(
+            {"name": "Portal based", "implied_ids": [Command.link(portal.id)]}
+        )
+        internal = self.env["res.groups"].create({"name": "Reviewers"})
+        domain = (
+            self.env["tier.definition"]
+            ._fields["reviewer_group_id"]
+            .domain(self.env["tier.definition"])
+        )
+        allowed = self.env["res.groups"].search(domain)
+        self.assertFalse((portal | public | portal_based) & allowed)
+        self.assertIn(internal, allowed)
