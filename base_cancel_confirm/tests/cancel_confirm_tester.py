@@ -7,7 +7,7 @@ from odoo import fields, models
 class CancelConfirmTester(models.Model):
     _name = "cancel.confirm.tester"
     _description = "Cancel Confirm Tester"
-    _inherit = ["base.cancel.confirm"]
+    _inherit = "base.cancel.confirm"
 
     _has_cancel_reason = "optional"
 
