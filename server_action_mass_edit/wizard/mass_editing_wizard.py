@@ -96,15 +96,26 @@ class MassEditingWizard(models.TransientModel):
 
             dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
 
+        # The registry computes the triggers of all the fields lazily, looping
+        # over every field of every model. The dynamic fields below are not set
+        # up (they have no model_name), so if that computation happens while
+        # they are in the registry it fails with KeyError(None). Make sure it is
+        # done before injecting them (e.g. a worker that has only served website
+        # requests may not have computed it yet).
+        self.pool.get_dependent_fields(self._fields["message"])
         self._fields.update(dynamic_fields)
 
-        res = super().onchange(values, field_names, fields_spec)
+        try:
+            res = super().onchange(values, field_names, fields_spec)
+        finally:
+            # Always remove them, even if the onchange fails. Otherwise they
+            # stay in the registry of the worker and every later request that
+            # needs the field triggers fails until the worker is restarted.
+            for field in dynamic_fields:
+                self._fields.pop(field, None)
         if not res["value"]:
             value = {key: value for key, value in values.items() if value is not False}
             res["value"] = value
-
-        for field in dynamic_fields:
-            self._fields.pop(field)
 
         view_temp = (
             self.env["ir.ui.view"]
