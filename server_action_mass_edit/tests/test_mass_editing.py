@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
+from unittest.mock import patch
 
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
@@ -387,6 +388,51 @@ class TestMassEditing(common.TransactionCase):
 
         mass_edit_line_form.field_id = self.env.ref("base.field_res_users__country_id")
         self.assertFalse(mass_edit_line_form.widget_option)
+
+    def _onchange_wizard(self):
+        return self.MassEditingWizard.with_context(
+            server_action_id=self.mass_editing_user.id,
+            active_model="res.users",
+            active_ids=[],
+        )
+
+    def _leftover_dynamic_fields(self):
+        return [
+            name
+            for name in self.MassEditingWizard._fields
+            if name.startswith("selection__")
+        ]
+
+    def test_onchange_removes_dynamic_fields_on_error(self):
+        """The dynamic fields must not stay in the registry if onchange fails.
+
+        Otherwise the registry is left broken (fields without model) and any
+        later request needing the field triggers fails with KeyError(None).
+        """
+        with patch(
+            "odoo.addons.web.models.models.Base.onchange",
+            side_effect=ValueError("boom"),
+        ):
+            with self.assertRaises(ValueError):
+                self._onchange_wizard().onchange({}, [], {})
+        self.assertFalse(self._leftover_dynamic_fields())
+        # Must not fail: it would if the registry were left with broken fields
+        self.env.registry.__dict__.pop("_field_triggers", None)
+        self.env.registry.get_dependent_fields(self.env["res.partner"]._fields["name"])
+
+    def test_onchange_with_uncomputed_field_triggers(self):
+        """The dynamic fields must not break the lazy field triggers computation."""
+        registry = self.env.registry
+
+        def fake_onchange(wizard, values, field_names, fields_spec):
+            # modified() resolves the field triggers of the registry
+            registry.get_dependent_fields(wizard._fields["message"])
+            return {"value": {}}
+
+        registry.__dict__.pop("_field_triggers", None)
+        with patch("odoo.addons.web.models.models.Base.onchange", new=fake_onchange):
+            self._onchange_wizard().onchange({}, [], {})
+        self.assertFalse(self._leftover_dynamic_fields())
 
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
