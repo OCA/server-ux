@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-02 12:13+0000\n"
-"Last-Translator: \"Denis Roussel (ACSONE)\" <denis.roussel@acsone.eu>\n"
+"PO-Revision-Date: 2026-10-08 07:17+0000\n"
+"Last-Translator: Jacques-Etienne Baudoux <je.baudoux@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -382,7 +382,7 @@ msgid ""
 "If set, all possible reviewers will be notified by email when this "
 "definition is triggered."
 msgstr ""
-"Avec cette option, tous les réviseurs autorisés seront notifiés par email "
+"Avec cette option, tous les approbateurs autorisés seront notifiés par email "
 "lors du déclenchement de cette définition."
 
 #. module: base_tier_validation
@@ -515,7 +515,7 @@ msgstr "Notifier les Approbateurs à l'Acceptation"
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_create
 msgid "Notify Reviewers on Creation"
-msgstr "Notifier les réviseurs à la création"
+msgstr "Notifier les Approbateurs à la création"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__notify_on_rejected
@@ -639,25 +639,25 @@ msgstr "Revue"
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_id
 msgid "Reviewer"
-msgstr "Réviseur"
+msgstr "Approbateur"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_field_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_field_id
 msgid "Reviewer field"
-msgstr "Champ du réviseur"
+msgstr "Champ de l'approbateur"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__reviewer_group_id
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_group_id
 msgid "Reviewer group"
-msgstr "Groupe des réviseurs"
+msgstr "Groupe des approbateurs"
 
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_review__reviewer_ids
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation__reviewer_ids
 msgid "Reviewers"
-msgstr "Réviseurs"
+msgstr "Approbateurs"
 
 #. module: base_tier_validation
 #. odoo-javascript
@@ -820,7 +820,7 @@ msgstr ""
 #. module: base_tier_validation
 #: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition__valid_reviewer_field_ids
 msgid "Valid Reviewer Field"
-msgstr "Champs réviseur valides"
+msgstr "Champ Approbateur valide"
 
 #. module: base_tier_validation
 #: model_terms:ir.ui.view,arch_db:base_tier_validation.tier_validation_label
