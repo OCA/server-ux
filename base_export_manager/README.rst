@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ============================
 Manage model export profiles
 ============================
@@ -17,7 +13,7 @@ Manage model export profiles
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -54,6 +50,14 @@ Configuration
 - Uncheck the "Export Access" box on the object of your choice and save
 
 You can also go to Settings > Technical > Security > Access Rights.
+
+To change the default value of "Export Access" for newly created access
+rights:
+
+- Go to Settings > General Settings > Permissions.
+- Check "Deny export access by default" and save, so newly created model
+  access rights have export access unchecked by default. Leave it
+  unchecked to keep the original behavior.
 
 Usage
 =====
@@ -133,6 +137,9 @@ Contributors
 - Olivier Jossen <olivier.jossen@braintec-group.com>
 - Alexandre Díaz <alexandre.diaz@tecnativa.com>
 - Kevin Khao <kevin.khao@akretion.com>
+- Quartile <https://www.quartile.co>
+
+  - Morita Shinnosuke
 
 Maintainers
 -----------

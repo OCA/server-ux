@@ -8,12 +8,13 @@
     "name": "Manage model export profiles",
     "category": "Personalization",
     "version": "18.0.1.0.3",
-    "depends": ["web"],
+    "depends": ["web", "base_setup"],
     "data": [
         "views/ir_exports.xml",
         "views/ir_model.xml",
         "views/ir_model_access.xml",
         "views/res_groups.xml",
+        "views/res_config_settings_views.xml",
     ],
     "author": "Tecnativa, "
     "LasLabs, "
