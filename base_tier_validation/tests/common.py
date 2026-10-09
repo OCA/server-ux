@@ -19,6 +19,7 @@ class CommonTierValidation(BaseCommon):
             TierValidationTester,
             TierValidationTester2,
             TierValidationTesterComputed,
+            TierValidationTesterMultipleStates,
         )
 
         self.loader.update_registry(
@@ -26,6 +27,7 @@ class CommonTierValidation(BaseCommon):
                 TierValidationTester,
                 TierValidationTester2,
                 TierValidationTesterComputed,
+                TierValidationTesterMultipleStates,
                 TierDefinition,
             )
         )
@@ -33,6 +35,9 @@ class CommonTierValidation(BaseCommon):
         self.test_model = self.env[TierValidationTester._name]
         self.test_model_2 = self.env[TierValidationTester2._name]
         self.test_model_computed = self.env[TierValidationTesterComputed._name]
+        self.test_model_multiple_states = self.env[
+            TierValidationTesterMultipleStates._name
+        ]
 
         self.tester_model = self.env["ir.model"].search(
             [("model", "=", "tier.validation.tester")]
@@ -43,6 +48,9 @@ class CommonTierValidation(BaseCommon):
         self.tester_model_computed = self.env["ir.model"].search(
             [("model", "=", "tier.validation.tester.computed")]
         )
+        self.tester_model_multiple_states = self.env["ir.model"].search(
+            [("model", "=", "tier.validation.tester.multiple.states")]
+        )
         # Create a multi-company
         self.main_company = self.env.ref("base.main_company")
         self.other_company = self.env["res.company"].create({"name": "My Company"})
@@ -51,6 +59,7 @@ class CommonTierValidation(BaseCommon):
             self.tester_model,
             self.tester_model_2,
             self.tester_model_computed,
+            self.tester_model_multiple_states,
         )
         for model in models:
             # Access record:
@@ -115,7 +124,9 @@ class CommonTierValidation(BaseCommon):
         self.test_record = self.test_model.create({"test_field": 1.0})
         self.test_record_2 = self.test_model_2.create({"test_field": 1.0})
         self.test_record_computed = self.test_model_computed.create({"test_field": 1.0})
-
+        self.test_record_multiple_states = self.test_model_multiple_states.create(
+            {"test_field": 1.0}
+        )
         self.tier_def_obj.create(
             {
                 "model_id": self.tester_model.id,
@@ -207,6 +218,33 @@ class CommonTierValidation(BaseCommon):
                 "sequence": 30,
                 "name": "Definition for test 30 - sequence - user 3 - other company",
                 "company_id": self.other_company.id,
+            }
+        )
+        # Create definitions for test 34
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model_multiple_states.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('state', '=', 'draft')]",
+                "approve_sequence": False,
+                "notify_on_pending": False,
+                "sequence": 30,
+                "name": "Definition for test 34 - draft to in_progress",
+                "company_id": self.main_company.id,
+            }
+        )
+        self.tier_def_obj.create(
+            {
+                "model_id": self.tester_model_multiple_states.id,
+                "review_type": "individual",
+                "reviewer_id": self.test_user_1.id,
+                "definition_domain": "[('state', '=', 'in_progress')]",
+                "approve_sequence": False,
+                "notify_on_pending": False,
+                "sequence": 30,
+                "name": "Definition for test 34 - in_progress to confirmed",
+                "company_id": self.main_company.id,
             }
         )
 
