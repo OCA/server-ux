@@ -20,14 +20,14 @@ Base Menu Visibility Restriction
 .. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/19.0/base_menu_visibility_restriction
-    :alt: OCA/server-ux
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux__base_menu_visibility_restriction-lightgray.png?logo=github
+    :target: https://github.com/OCA/server-ux__base_menu_visibility_restriction/tree/20.0/base_menu_visibility_restriction
+    :alt: OCA/server-ux__base_menu_visibility_restriction
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-base_menu_visibility_restriction
+    :target: https://translation.odoo-community.org/projects/server-ux__base_menu_visibility_restriction-20-0/server-ux__base_menu_visibility_restriction-20-0-base_menu_visibility_restriction
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux__base_menu_visibility_restriction&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -57,10 +57,10 @@ You can try with demo data for the menu Apps > App Store and user demo.
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux__base_menu_visibility_restriction/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20base_menu_visibility_restriction%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux__base_menu_visibility_restriction/issues/new?body=module:%20base_menu_visibility_restriction%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -75,13 +75,13 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
-- Dhara Solanki <dhara.solanki@initos.com>
-- Nedas Žilinskas <nedas.zilinskas@avoin.systems>
-- Maciej Wichowski <maciej@versada.eu>
+-  Dhara Solanki <dhara.solanki@initos.com>
+-  Nedas Žilinskas <nedas.zilinskas@avoin.systems>
+-  Maciej Wichowski <maciej@versada.eu>
 
 Maintainers
 -----------
@@ -104,6 +104,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/19.0/base_menu_visibility_restriction>`_ project on GitHub.
+This module is part of the `OCA/server-ux__base_menu_visibility_restriction <https://github.com/OCA/server-ux__base_menu_visibility_restriction/tree/20.0/base_menu_visibility_restriction>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
