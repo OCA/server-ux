@@ -1,5 +1,5 @@
+import {onWillRender} from "@web/owl2/utils";
 import {ListController} from "@web/views/list/list_controller";
-const {onWillRender} = owl;
 import {patch} from "@web/core/utils/patch";
 import {session} from "@web/session";
 

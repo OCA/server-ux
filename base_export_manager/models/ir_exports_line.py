@@ -95,7 +95,7 @@ class IrExportsLine(models.Model):
     def _compute_label(self):
         """Column label in a user-friendly format and language."""
         for one in self:
-            parts = list()
+            parts = []
             for num in range(1, 5):
                 field = one.field_n(num)
                 if not field:
