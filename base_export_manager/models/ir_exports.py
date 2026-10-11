@@ -12,7 +12,6 @@ class IrExports(models.Model):
     resource = fields.Char(readonly=True, help="Model's technical name.")
     model_id = fields.Many2one(
         "ir.model",
-        "Model",
         store=True,
         inverse="_inverse_model_id",
         compute="_compute_model_id",
