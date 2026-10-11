@@ -4,7 +4,7 @@
 
 {
     "name": "Barcode action launcher",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-ux",
     "author": "Creu Blanca, ForgeFlow, Odoo Community Association (OCA)",
@@ -14,8 +14,8 @@
     "summary": "Allows to use barcodes as a launcher",
     "depends": ["barcodes"],
     "data": [
-        "security/ir.model.access.csv",
         "wizard/barcode_action_view.xml",
+        "security/ir.access.csv",
     ],
     "assets": {
         "web.assets_backend": [
