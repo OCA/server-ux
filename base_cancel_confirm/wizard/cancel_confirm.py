@@ -28,5 +28,4 @@ class CancelConfirm(models.TransientModel):
         # Cancel Reason
         if self.has_cancel_reason in ["optional", "required"]:
             docs.write({"cancel_reason": self.cancel_reason})
-        res = getattr(docs, cancel_method)()
-        return res
+        return getattr(docs, cancel_method)()

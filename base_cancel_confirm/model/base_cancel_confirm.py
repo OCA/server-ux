@@ -29,7 +29,7 @@ class BaseCancelConfirm(models.AbstractModel):
 
     def _cancel_confirm_disabled(self):
         key = f"{self._name}.cancel_confirm_disable"
-        res = self.env["ir.config_parameter"].sudo().get_param(key)
+        res = self.env["ir.config_parameter"].sudo().get_str(key)
         if not res:
             return True
         if res not in ("True", "False"):

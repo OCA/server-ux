@@ -3,7 +3,7 @@
 
 {
     "name": "Base Cancel Confirm",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
@@ -11,8 +11,8 @@
     "depends": ["base"],
     "data": [
         "wizard/cancel_confirm.xml",
-        "security/ir.model.access.csv",
         "views/cancel_confirm_template.xml",
+        "security/ir.access.csv",
     ],
     "auto_install": False,
     "installable": True,
