@@ -15,8 +15,8 @@ class BaseRevision(models.AbstractModel):
     @api.depends("old_revision_ids")
     def _compute_has_old_revisions(self):
         for rec in self:
-            rec.has_old_revisions = (
-                True if rec.with_context(active_test=False).old_revision_ids else False
+            rec.has_old_revisions = bool(
+                rec.with_context(active_test=False).old_revision_ids
             )
 
     current_revision_id = fields.Many2one(
@@ -122,7 +122,7 @@ class BaseRevision(models.AbstractModel):
                 )
                 rec.message_post(body=source_msg)
             revision_ids.append(copied_rec.id)
-        action = {
+        return {
             "type": "ir.actions.act_window",
             "view_mode": "list,form",
             "name": self.env._("New Revisions"),
@@ -130,4 +130,3 @@ class BaseRevision(models.AbstractModel):
             "domain": f"[('id', 'in', {revision_ids})]",
             "target": "current",
         }
-        return action
