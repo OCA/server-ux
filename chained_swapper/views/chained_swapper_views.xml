@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Tecnativa - Ernesto Tejeda
+     Copyright 2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Chained Swapper -->
+    <record id="chained_swapper_view_form" model="ir.ui.view">
+        <field name="name">chained.swapper.form</field>
+        <field name="model">chained.swapper</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="ref_ir_act_window_id" invisible="1" />
+                        <!--string="Create Contextual Action"-->
+                        <button
+                            name="add_action"
+                            type="object"
+                            string="Add Action"
+                            invisible="ref_ir_act_window_id"
+                            class="oe_stat_button"
+                            icon="fa-plus"
+                            help="Add a new contextual action of related documents to open a composition wizard"
+                        />
+                        <button
+                            name="unlink_action"
+                            type="object"
+                            string="Remove Action"
+                            class="oe_stat_button"
+                            icon="fa-minus"
+                            invisible="not ref_ir_act_window_id"
+                            help="Remove the contextual action to use this template on related documents"
+                            widget="statinfo"
+                        />
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="model_id">
+                            <field
+                                name="model_id"
+                                required="1"
+                                readonly="ref_ir_act_window_id"
+                            />
+                            <field name="field_id" />
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Sub-fields">
+                            <field name="sub_field_ids" nolabel="1" />
+                        </page>
+                        <page string="Constraints">
+                            <field name="constraint_ids" nolabel="1" />
+                            <h1>Adding Constraints for Restricting the Chained Swap</h1>
+                            <p>
+        You can add possible constraints to restrict the chained swap. These constraints are Python expressions that must be evaluated as a boolean value.
+        If the evaluation returns <code
+                            >True</code>, a message will be thrown and no swap will be allowed.
+                            </p>
+                            <p>
+        You can use the variable <code
+                            >records</code> in your expression. This will refer to the selected records for performing the swap. For example:
+                            </p>
+                            <pre>
+        any(p.state == 'done' for p in records.picking_ids)
+                            </pre>
+                            <p>
+        In this case, the constraint restricts the swap if any of the related picking orders has been validated (state 'done').
+                            </p>
+                            <h2>Other Variables You Can Use</h2>
+                            <ul>
+                                <li>
+                                    <code>env</code>: The Odoo environment.</li>
+                                <li>
+                                    <code>date</code>: The current date.</li>
+                                <li>
+                                    <code
+                                >datetime</code>: The current date and time.</li>
+                            </ul>
+                            <h2>Constraint Name</h2>
+                            <p>
+        Each constraint should have a <strong
+                            >name</strong> for identifying it. This name is also used when displaying the error message in case the swap is not allowed.
+                            </p>
+                        </page>
+                        <page string="Security">
+                            <field name="group_ids" nolabel="1" />
+                        </page>
+                        <page string="Advanced" invisible="not ref_ir_act_window_id">
+                            <group colspan="2" col="2">
+                                <field name="ref_ir_act_window_id" />
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="allowed_field_ids_domain" invisible="1" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="chained_swapper_view_tree" model="ir.ui.view">
+        <field name="name">chained.swapper.tree</field>
+        <field name="model">chained.swapper</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_id" />
+            </list>
+        </field>
+    </record>
+    <record id="chained_swapper_action" model="ir.actions.act_window">
+        <field name="name">Field Swaps</field>
+        <field name="res_model">chained.swapper</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <!-- Chained Swapper Sub-fields -->
+    <record id="chained_swapper_sub_field_view_tree" model="ir.ui.view">
+        <field name="name">chained.swapper.sub.field.tree</field>
+        <field name="model">chained.swapper.sub.field</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="model_name" column_invisible="1" />
+                <field
+                    name="sub_field_chain"
+                    widget="DynamicModelFieldSelectorChar"
+                    options="{'model': 'model_name'}"
+                />
+            </list>
+        </field>
+    </record>
+    <!-- Chained Swapper Constraints -->
+    <record id="chained_swapper_constraint_view_tree" model="ir.ui.view">
+        <field name="name">chained.swapper.constraint.tree</field>
+        <field name="model">chained.swapper.constraint</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+                <field name="expression" />
+            </list>
+        </field>
+    </record>
+    <record id="chained_swapper_constraint_view_form" model="ir.ui.view">
+        <field name="name">chained.swapper.constraint.form</field>
+        <field name="model">chained.swapper.constraint</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                </group>
+                <group string="Constraint expression">
+                    <field
+                        name="expression"
+                        nolabel="1"
+                        widget="ace"
+                        options="{'mode': 'python'}"
+                    />
+                </group>
+            </form>
+        </field>
+    </record>
+    <!-- Menus -->
+    <menuitem
+        id="chained_swapper_menu"
+        name="Field Swaps"
+        parent="base.menu_administration"
+        sequence="7"
+    />
+    <menuitem
+        id="chained_swapper_submenu"
+        action="chained_swapper_action"
+        parent="chained_swapper_menu"
+    />
+</odoo>
