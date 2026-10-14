@@ -1,6 +1,7 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
+from datetime import date
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY
@@ -148,3 +149,65 @@ class DateRangeType(models.Model):
                     f"Error autogenerating ranges for date range type "
                     f"{dr_type.name}: {e}"
                 )
+
+    @api.model
+    def generate_next_years_as_of_month(self):
+        """Generate cumulative monthly 'As Of Month' date ranges
+        for the next configured number of years."""
+
+        date_range = self.env["date.range"]
+        as_of_month_type = self.env.ref(
+            "date_range.date_range_as_of_month",
+            raise_if_not_found=False,
+        )
+        if not as_of_month_type:
+            return
+
+        Param = self.env["ir.config_parameter"].sudo()
+        total_years = int(
+            Param.get_param(
+                "date_range.cumulative_month_range_years",
+                default=5,
+            )
+        )
+
+        current_year = fields.Date.today().year
+        last_year = current_year + total_years
+
+        # Prepare all candidate ranges (start_date = Jan 1,
+        # end_date = last day of each month)
+        candidate_ranges = []
+        for year in range(current_year, last_year):
+            jan_first = date(year, 1, 1)
+            for month in range(1, 13):
+                month_end = date(year, month, 1) + relativedelta(day=31)
+                candidate_ranges.append((jan_first, month_end))
+
+        existing_ranges = date_range.search(
+            [
+                ("type_id", "=", as_of_month_type.id),
+                ("active", "=", True),
+                ("date_start", ">=", date(current_year, 1, 1)),
+                ("date_end", "<=", date(last_year - 1, 12, 31)),
+            ]
+        )
+        existing_ranges_set = set((r.date_start, r.date_end) for r in existing_ranges)
+
+        ranges_to_create = []
+        for start_date, end_date in candidate_ranges:
+            if (start_date, end_date) in existing_ranges_set:
+                continue
+            range_name = f"As Of {end_date:%B} {start_date:%Y} "
+            ranges_to_create.append(
+                {
+                    "name": range_name,
+                    "date_start": start_date,
+                    "date_end": end_date,
+                    "type_id": as_of_month_type.id,
+                    "active": True,
+                    "company_id": False,
+                }
+            )
+
+        if ranges_to_create:
+            date_range.create(ranges_to_create)
