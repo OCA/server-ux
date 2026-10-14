@@ -43,14 +43,12 @@ class CommonBaseSubstate(BaseCommon):
             ]
         )
         for model in models:
-            cls.env["ir.model.access"].create(
+            cls.env["ir.access"].create(
                 {
                     "name": f"access {model.name}",
                     "model_id": model.id,
-                    "perm_read": 1,
-                    "perm_write": 1,
-                    "perm_create": 1,
-                    "perm_unlink": 1,
+                    "group_id": cls.env.ref("base.group_user").id,
+                    "operation": "crud",
                 }
             )
 

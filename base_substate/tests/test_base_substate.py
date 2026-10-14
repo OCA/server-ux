@@ -2,7 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import Command
+from odoo.exceptions import AccessError, ValidationError
 from odoo.tests import tagged
+from odoo.tests.common import new_test_user
 
 from .common import CommonBaseSubstate
 
@@ -12,6 +14,10 @@ class TestBaseSubstate(CommonBaseSubstate):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Fixture operations are separate from the explicit access checks below.
+        cls.env = cls.env(su=True)
+        cls.sale_test_model = cls.sale_test_model.sudo()
+        cls.sale_line_test_model = cls.sale_line_test_model.sudo()
 
         cls.substate_type = cls.env["base.substate.type"]
         cls.base_substate = cls.env["base.substate"]
@@ -114,11 +120,15 @@ class TestBaseSubstate(CommonBaseSubstate):
 
     def test_sale_order_substate(self):
         # Create a partner instead of using a potentially non-existent XML ID
-        partner = self.env["res.partner"].create(
-            {
-                "name": "Test Partner",
-                "email": "test@example.com",
-            }
+        partner = (
+            self.env["res.partner"]
+            .sudo()
+            .create(
+                {
+                    "name": "Test Partner",
+                    "email": "test@example.com",
+                }
+            )
         )
         so_test1 = self.sale_test_model.create(
             {
@@ -157,3 +167,78 @@ class TestBaseSubstate(CommonBaseSubstate):
         so_test1.button_cancel()
         self.assertTrue(so_test1.state == "cancel")
         self.assertTrue(not so_test1.substate_id)
+
+    def test_invalid_substate_state_message(self):
+        sale = self.sale_test_model.create({"name": "State constraint"})
+        with (
+            self.assertRaisesRegex(
+                ValidationError,
+                "Substate To publish not defined for state New but for Done",
+            ),
+            self.cr.savepoint(),
+        ):
+            sale.substate_id = self.substate_to_publish
+
+    def test_substate_sequence_and_archive(self):
+        self.assertEqual(
+            self.sale_test_model._get_default_substate_id("sale"),
+            self.substate_wait_docs.id,
+        )
+        self.substate_wait_docs.sudo().write({"active": False})
+        self.assertEqual(
+            self.sale_test_model._get_default_substate_id("sale"),
+            self.substate_valid_docs.id,
+        )
+        self.substate_in_delivering.sudo().write({"sequence": 0})
+        self.assertEqual(
+            self.sale_test_model._get_default_substate_id("sale"),
+            self.substate_in_delivering.id,
+        )
+
+    def test_batch_computed_state_updates(self):
+        sales = self.sale_test_model.create(
+            [
+                {
+                    "name": name,
+                    "line_ids": [Command.create({"name": "Line"})],
+                }
+                for name in ("First", "Second")
+            ]
+        )
+        sales.line_ids.button_done()
+        self.assertEqual(sales.mapped("state"), ["done", "done"])
+        self.assertEqual(sales.mapped("substate_id"), self.substate_to_publish)
+        sales.substate_id = self.substate_published
+        sales.line_ids.button_done()
+        self.assertEqual(sales.mapped("substate_id"), self.substate_published)
+
+    def test_substate_model_consistency(self):
+        sale = self.sale_test_model.create({"name": "Model constraint"})
+        self.sale_test_substate_type.sudo().write(
+            {"model": "base.substate.test.sale.line"}
+        )
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Substate not for this object but for base.substate.test.sale.line",
+        ):
+            sale.check_substate_id_consistency()
+
+    def test_substate_access_groups(self):
+        user = new_test_user(
+            self.env, login="substate_reader", groups="base.group_user"
+        )
+        manager = new_test_user(
+            self.env,
+            login="substate_manager",
+            groups="base_substate.group_substate_manager",
+        )
+        for record in (
+            self.sale_test_substate_type,
+            self.substate_val_quotation,
+            self.substate_under_negotiation,
+        ):
+            record.with_user(user).check_access("read")
+            for operation in ("create", "write", "unlink"):
+                with self.assertRaises(AccessError):
+                    record.with_user(user).check_access(operation)
+                record.with_user(manager).check_access(operation)

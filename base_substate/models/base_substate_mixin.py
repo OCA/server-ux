@@ -11,6 +11,10 @@ class BaseSubstateMixin(models.AbstractModel):
     _description = "BaseSubstate Mixin"
     _state_field = "state"
 
+    @api.model
+    def _valid_field_parameter(self, field, name):
+        return name == "tracking" or super()._valid_field_parameter(field, name)
+
     @api.constrains("substate_id", _state_field)
     def check_substate_id_value(self):
         if self.env.context.get("skip_substate_while_state_field_computation"):

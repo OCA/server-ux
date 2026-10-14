@@ -3,7 +3,7 @@
 
 {
     "name": "Base Sub State",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "category": "Tools",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
@@ -11,7 +11,7 @@
     "depends": ["base", "mail"],
     "data": [
         "security/base_substate_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/base_substate_type_views.xml",
         "views/base_substate_value_views.xml",
         "views/base_substate_views.xml",

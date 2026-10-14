@@ -1,5 +1,7 @@
 # Copyright 2020 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from typing import ClassVar
+
 from odoo import api, fields, models
 
 
@@ -7,14 +9,20 @@ class BaseSubstateType(models.Model):
     _inherit = "base.substate.type"
 
     model = fields.Selection(
-        selection_add=[("base.substate.test.sale", "Sale Test")],
-        ondelete={"base.substate.test.sale": "cascade"},
+        selection_add=[
+            ("base.substate.test.sale", "Sale Test"),
+            ("base.substate.test.sale.line", "Sale Line Test"),
+        ],
+        ondelete={
+            "base.substate.test.sale": "cascade",
+            "base.substate.test.sale.line": "cascade",
+        },
     )
 
 
 class SaleTest(models.Model):
     _name = "base.substate.test.sale"
-    _inherit = ["base.substate.mixin", "mail.thread"]
+    _inherit: ClassVar[list[str]] = ["base.substate.mixin", "mail.thread"]
     _description = "Base substate Test Model"
 
     name = fields.Char(required=True)
@@ -28,7 +36,7 @@ class SaleTest(models.Model):
         store=True,
     )
     active = fields.Boolean(default=True)
-    partner_id = fields.Many2one("res.partner", string="Partner")
+    partner_id = fields.Many2one("res.partner")
     line_ids = fields.One2many(
         comodel_name="base.substate.test.sale.line",
         inverse_name="sale_id",
