@@ -26,6 +26,11 @@ class BaseCancelConfirm(models.AbstractModel):
         copy=False,
         help="An optional cancel reason",
     )
+    cancel_by = fields.Many2one(
+        comodel_name="res.users",
+        copy=False,
+    )
+    cancel_date = fields.Date(copy=False)
 
     def _cancel_confirm_disabled(self):
         key = f"{self._name}.cancel_confirm_disable"
@@ -49,8 +54,16 @@ class BaseCancelConfirm(models.AbstractModel):
         }
         return action
 
+    def _get_value_clear_cancel(self):
+        return {
+            "cancel_confirm": False,
+            "cancel_reason": False,
+            "cancel_by": False,
+            "cancel_date": False,
+        }
+
     def clear_cancel_confirm_data(self):
-        self.write({"cancel_confirm": False, "cancel_reason": False})
+        self.write(self._get_value_clear_cancel())
 
     def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(view_id=view_id, view_type=view_type, **options)
