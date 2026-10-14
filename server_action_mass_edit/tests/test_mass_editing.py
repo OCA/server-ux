@@ -134,7 +134,6 @@ class TestMassEditing(common.TransactionCase):
         with dynamic fields.
         """
         view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
-        view_id.mass_server_action_id = False
         result = self.MassEditingWizard.with_context(
             active_ids=[],
         ).get_view(view_id=view_id.id)
@@ -143,11 +142,9 @@ class TestMassEditing(common.TransactionCase):
             "selection__email" not in arch,
             "Fields view get must return architecture w/o fields" "created dynamicaly",
         )
-        view_id.mass_server_action_id = self.mass_editing_user
-        result = self.MassEditingWizard.with_context(
-            server_action_id=self.mass_editing_user.id,
-            active_ids=[],
-        ).get_view(view_id=view_id.id)
+        ctx = {"active_ids": []}
+        self.mass_editing_user._add_mass_edit_server_action_to_context(ctx)
+        result = self.MassEditingWizard.with_context(**ctx).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
@@ -162,10 +159,7 @@ class TestMassEditing(common.TransactionCase):
             ]
         ).unlink()
         self.env.ref("base.res_partner_view_form_private").model = "res.users"
-        result = self.MassEditingWizard.with_context(
-            server_action_id=self.mass_editing_user.id,
-            active_ids=[],
-        ).get_view(view_id=view_id.id)
+        result = self.MassEditingWizard.with_context(**ctx).get_view(view_id=view_id.id)
         arch = result.get("arch", "")
         self.assertIn(
             "<list editable=",
