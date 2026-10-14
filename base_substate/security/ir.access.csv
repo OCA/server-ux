@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_base_substate_type,base.substate.type user,base.substate.type,base.group_user,r,
+access_base_substate_type_manager,base.substate.type manager,base.substate.type,base_substate.group_substate_manager,crud,
+access_target_state_value,base.substate.value user,target.state.value,base.group_user,r,
+access_target_state_value_manager,base.substate.value manager,target.state.value,base_substate.group_substate_manager,crud,
+access_base_substate,base.substate user,base.substate,base.group_user,r,
+access_base_substate_manager,base.substate manager,base.substate,base_substate.group_substate_manager,crud,
