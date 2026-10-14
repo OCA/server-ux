@@ -1,7 +1,7 @@
 # Copyright 2020 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class BaseSubstateType(models.Model):
@@ -27,6 +27,24 @@ class BaseSubstateType(models.Model):
         help="Technical target state field name."
         ' Ex for sale order "state" for other "status" ... ',
     )
+
+    # base.substate.mixin._get_substate_type_id caches the type per model;
+    # clear that cache whenever the (model -> type) mapping can change.
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        self.env.registry.clear_cache()
+        return records
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "model" in vals:
+            self.env.registry.clear_cache()
+        return res
+
+    def unlink(self):
+        self.env.registry.clear_cache()
+        return super().unlink()
 
 
 class TargetStateValue(models.Model):
