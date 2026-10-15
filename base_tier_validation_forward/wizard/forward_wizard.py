@@ -25,6 +25,17 @@ class ValidationForwardWizard(models.TransientModel):
         """Add extra step, with specific reviewer"""
         self.ensure_one()
         rec = self.env[self.res_model].browse(self.res_id)
+        # Subscribe the forward target as a follower so they receive
+        # email notifications about the forwarded review.
+        if hasattr(rec, "message_subscribe"):
+            fwd_subtype = self.env.ref(
+                "base_tier_validation_forward.mt_tier_validation_forwarded",
+                raise_if_not_found=False,
+            )
+            rec.message_subscribe(
+                partner_ids=self.forward_reviewer_id.partner_id.ids,
+                subtype_ids=fwd_subtype.ids if fwd_subtype else [],
+            )
         prev_comment = self.env["comment.wizard"].browse(
             self._context.get("comment_id")
         )
