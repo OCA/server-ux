@@ -1,3 +1,5 @@
+/* Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
+   License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
 odoo.define("tier_validation.systray", function (require) {
     "use strict";
 
@@ -45,13 +47,16 @@ odoo.define("tier_validation.systray", function (require) {
             var self = this;
 
             return self
-                ._rpc({
-                    model: "res.users",
-                    method: "review_user_count",
-                    kwargs: {
-                        context: session.user_context,
+                ._rpc(
+                    {
+                        model: "res.users",
+                        method: "review_user_count",
+                        kwargs: {
+                            context: session.user_context,
+                        },
                     },
-                })
+                    {shadow: true}
+                )
                 .then(function (data) {
                     self.reviews = data;
                     self.reviewCounter = _.reduce(
