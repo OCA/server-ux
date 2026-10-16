@@ -29,12 +29,12 @@ odoo.define("tier_validation.systray", function (require) {
 
         bus_notification: function (notifications) {
             var self = this;
-            _.each(notifications, function (notification) {
-                var channel = notification[0];
-                if (channel === self.channel) {
-                    self._updateReviewPreview();
-                }
+            var reviewChanged = _.some(notifications, function (notification) {
+                return notification[0] === self.channel;
             });
+            if (reviewChanged) {
+                self._updateReviewPreview();
+            }
         },
         // Private
 
