@@ -1,4 +1,5 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from lxml import etree
@@ -491,6 +492,34 @@ class TierTierValidation(CommonTierValidation):
             {"allow_write_for_reviewer": True}
         )
         record.with_user(self.test_user_1.id).write({"test_field": 0.3})
+
+    def test_20_review_counter_refreshed_on_cancel(self):
+        """Cancelling a record under validation removes its reviews and
+        refreshes the review counters."""
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.test_record.invalidate_cache()
+        notifications_before = self.env["bus.bus"].search([])
+        self.test_record.write({"state": "cancel"})
+        notifications = self.env["bus.bus"].search([]) - notifications_before
+        self.assertFalse(self.test_record.review_ids)
+        self.assertEqual(notifications.mapped("channel"), ['"base.tier.validation"'])
+
+    def test_21_review_counter_refreshed_on_unlink(self):
+        """Deleting a record under validation refreshes the review counters."""
+        self.test_record.with_user(self.test_user_2.id).request_validation()
+        self.test_record.invalidate_cache()
+        notifications_before = self.env["bus.bus"].search([])
+        self.test_record.unlink()
+        notifications = self.env["bus.bus"].search([]) - notifications_before
+        self.assertEqual(notifications.mapped("channel"), ['"base.tier.validation"'])
+
+    def test_22_review_counter_not_refreshed_without_reviews(self):
+        """Cancelling or deleting a record without reviews refreshes nothing."""
+        notifications_before = self.env["bus.bus"].search([])
+        self.test_record.write({"state": "cancel"})
+        self.test_record_2.unlink()
+        notifications = self.env["bus.bus"].search([]) - notifications_before
+        self.assertFalse(notifications)
 
 
 @tagged("at_install")

@@ -1,4 +1,5 @@
 # Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
@@ -330,7 +331,7 @@ class TierValidation(models.AbstractModel):
             ):
                 raise ValidationError(_("The operation is under validation."))
             if rec._allow_to_remove_reviews(vals):
-                new_self.mapped("review_ids").unlink()
+                new_self._remove_reviews()
         res = super(TierValidation, new_self).write(vals)
         validated_records._post_tier_validation(validated_reviews)
         return res
@@ -355,6 +356,14 @@ class TierValidation(models.AbstractModel):
         if state_to in self._state_from and state_from not in self._state_from:
             return True
         return False
+
+    def _remove_reviews(self):
+        """Unlink the reviews of these records and, when there were any,
+        refresh the review counters."""
+        reviews = self.mapped("review_ids")
+        if reviews:
+            reviews.unlink()
+            self._update_counter()
 
     def _check_state_from_condition(self):
         return self.env.context.get("skip_check_state_condition") or (
@@ -573,7 +582,7 @@ class TierValidation(models.AbstractModel):
         self.env["bus.bus"].sendmany(notifications)
 
     def unlink(self):
-        self.mapped("review_ids").unlink()
+        self._remove_reviews()
         return super().unlink()
 
     def _add_tier_validation_buttons(self, node, params):
