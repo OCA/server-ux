@@ -1,3 +1,5 @@
+/* Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
+   License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
 odoo.define("tier_validation.systray", function (require) {
     "use strict";
 
@@ -18,13 +20,22 @@ odoo.define("tier_validation.systray", function (require) {
         start: function () {
             this.$reviews_preview = this.$(".o_mail_systray_dropdown_items");
             this._updateReviewPreview();
-            var channel = "base.tier.validation";
-            this.call("bus_service", "addChannel", channel);
+            this.channel = "base.tier.validation";
+            this.call("bus_service", "addChannel", this.channel);
             this.call("bus_service", "startPolling");
-            this.call("bus_service", "onNotification", this, this._updateReviewPreview);
+            this.call("bus_service", "onNotification", this, this.bus_notification);
             return this._super();
         },
 
+        bus_notification: function (notifications) {
+            var self = this;
+            var reviewChanged = _.some(notifications, function (notification) {
+                return notification[0] === self.channel;
+            });
+            if (reviewChanged) {
+                self._updateReviewPreview();
+            }
+        },
         // Private
 
         /**
@@ -36,13 +47,16 @@ odoo.define("tier_validation.systray", function (require) {
             var self = this;
 
             return self
-                ._rpc({
-                    model: "res.users",
-                    method: "review_user_count",
-                    kwargs: {
-                        context: session.user_context,
+                ._rpc(
+                    {
+                        model: "res.users",
+                        method: "review_user_count",
+                        kwargs: {
+                            context: session.user_context,
+                        },
                     },
-                })
+                    {shadow: true}
+                )
                 .then(function (data) {
                     self.reviews = data;
                     self.reviewCounter = _.reduce(
@@ -83,27 +97,6 @@ odoo.define("tier_validation.systray", function (require) {
                     })
                 );
             });
-        },
-
-        /**
-         * Update counter based on activity status(created or Done)
-         * @private
-         * @param {Object} [data] key, value to decide activity created or deleted
-         * @param {String} [data.type] notification type
-         * @param {Boolean} [data.activity_deleted] when activity deleted
-         * @param {Boolean} [data.activity_created] when activity created
-         */
-        _updateCounter: function (data) {
-            if (data) {
-                if (data.review_created) {
-                    this.reviewCounter++;
-                }
-                if (data.review_deleted && this.reviewCounter > 0) {
-                    this.reviewCounter--;
-                }
-                this.$(".o_notification_counter").text(this.reviewCounter);
-                this.$el.toggleClass("o_no_notification", !this.reviewCounter);
-            }
         },
 
         // ------------------------------------------------------------

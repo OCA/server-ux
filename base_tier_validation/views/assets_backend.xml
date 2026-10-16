@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <template id="assets_backend" name="mail assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
@@ -19,6 +21,18 @@
                 rel="stylesheet"
                 href="/base_tier_validation/static/src/scss/review.scss"
                 type="text/scss"
+            />
+        </xpath>
+    </template>
+    <template
+        id="qunit_suite_tests"
+        name="base_tier_validation tests"
+        inherit_id="web.qunit_suite_tests"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/base_tier_validation/static/tests/systray_tests.js"
             />
         </xpath>
     </template>
