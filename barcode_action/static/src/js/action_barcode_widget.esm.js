@@ -4,13 +4,17 @@ import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useBus, useService} from "@web/core/utils/hooks";
 
-import {Component, xml} from "@odoo/owl";
+import {Component, useProps, xml} from "@odoo/owl";
 
 export class ActionBarcodeField extends Component {
+  props = useProps(standardFieldProps);
+
   setup() {
     const barcode = useService("barcode");
     this.orm = useService("orm");
-    useBus(barcode.bus, "barcode_scanned", this.onBarcodeScanned);
+    useBus(barcode.bus, "barcode_scanned", (event) =>
+      this.onBarcodeScanned(event)
+    );
   }
 
   async onBarcodeScanned(event) {
@@ -20,7 +24,7 @@ export class ActionBarcodeField extends Component {
     const action = await this.orm.call(
       record.data.model,
       record.data.method,
-      [[record.data.res_id], barcode],
+      [record.data.res_id ? [record.data.res_id] : [], barcode],
       {
         context: record.context,
       }
@@ -31,7 +35,6 @@ export class ActionBarcodeField extends Component {
 }
 
 ActionBarcodeField.template = xml``;
-ActionBarcodeField.props = {...standardFieldProps};
 
 export const actionBarcodeField = {
   component: ActionBarcodeField,
