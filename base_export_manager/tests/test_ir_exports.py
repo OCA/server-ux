@@ -63,3 +63,8 @@ class TestIrExportsCase(BaseCommon):
         # Creating without anyone
         with self.assertRaises(ValidationError):
             IrExports.create({"name": "some"})
+
+    @users("test-user")
+    def test_fetch_export_models(self):
+        models = self.env.user.fetch_export_models()
+        self.assertIn("ir.exports", models)
