@@ -7,37 +7,35 @@ import {useBus, useService} from "@web/core/utils/hooks";
 import {Component, useProps, xml} from "@odoo/owl";
 
 export class ActionBarcodeField extends Component {
-  props = useProps(standardFieldProps);
+    props = useProps(standardFieldProps);
 
-  setup() {
-    const barcode = useService("barcode");
-    this.orm = useService("orm");
-    useBus(barcode.bus, "barcode_scanned", (event) =>
-      this.onBarcodeScanned(event)
-    );
-  }
+    setup() {
+        const barcode = useService("barcode");
+        this.orm = useService("orm");
+        useBus(barcode.bus, "barcode_scanned", (event) => this.onBarcodeScanned(event));
+    }
 
-  async onBarcodeScanned(event) {
-    const {barcode} = event.detail;
-    const record = this.props.record;
+    async onBarcodeScanned(event) {
+        const {barcode} = event.detail;
+        const record = this.props.record;
 
-    const action = await this.orm.call(
-      record.data.model,
-      record.data.method,
-      [record.data.res_id ? [record.data.res_id] : [], barcode],
-      {
-        context: record.context,
-      }
-    );
+        const action = await this.orm.call(
+            record.data.model,
+            record.data.method,
+            [record.data.res_id ? [record.data.res_id] : [], barcode],
+            {
+                context: record.context,
+            }
+        );
 
-    this.env.services.action.doAction(action);
-  }
+        this.env.services.action.doAction(action);
+    }
 }
 
 ActionBarcodeField.template = xml``;
 
 export const actionBarcodeField = {
-  component: ActionBarcodeField,
+    component: ActionBarcodeField,
 };
 
 registry.category("fields").add("action_barcode_handler", actionBarcodeField);
