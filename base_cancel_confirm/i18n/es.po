@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_cancel_confirm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-11 15:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,help:base_cancel_confirm.field_base_cancel_confirm__cancel_confirm
+msgid "A flag signify that this document is confirmed for cancellation"
+msgstr ""
+"Una bandera significa que este documento está confirmado para su anulación"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,help:base_cancel_confirm.field_base_cancel_confirm__cancel_reason
+msgid "An optional cancel reason"
+msgstr "Un motivo de cancelación opcional"
+
+#. module: base_cancel_confirm
+#: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
+msgid "Are you sure to cancel this document?"
+msgstr "¿Está seguro de cancelar este documento?"
+
+#. module: base_cancel_confirm
+#: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: base_cancel_confirm
+#: model:ir.model,name:base_cancel_confirm.model_cancel_confirm
+msgid "Cancel Confirm"
+msgstr "Cancelar Confirmar"
+
+#. module: base_cancel_confirm
+#: model:ir.actions.act_window,name:base_cancel_confirm.action_cancel_confirm_wizard
+#: model:ir.model,name:base_cancel_confirm.model_base_cancel_confirm
+#: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
+msgid "Cancel Confirmation"
+msgstr "Cancelar Confirmación"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_confirm
+msgid "Cancel Confirmed"
+msgstr "Cancelar Confirmado"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_reason
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__cancel_reason
+msgid "Cancel Reason"
+msgstr "Cancelar Razón"
+
+#. module: base_cancel_confirm
+#. odoo-python
+#: code:addons/base_cancel_confirm/model/base_cancel_confirm.py:0
+msgid "Configuration Error (%s), should be 'True' or 'False'"
+msgstr "Error de configuración (%s), debe ser 'True' o 'False'"
+
+#. module: base_cancel_confirm
+#: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__has_cancel_reason
+msgid "Has Cancel Reason"
+msgstr "Tiene Motivo de Cancelación"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__no
+msgid "None"
+msgstr "Ninguno/a"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__optional
+msgid "Optional"
+msgstr "Opcional"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields.selection,name:base_cancel_confirm.selection__cancel_confirm__has_cancel_reason__required
+msgid "Required"
+msgstr "Requerido"
+
+#. module: base_cancel_confirm
+#: model_terms:ir.ui.view,arch_db:base_cancel_confirm.view_cancel_confirm_wizard
+msgid "or"
+msgstr "o"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modifiación el"
