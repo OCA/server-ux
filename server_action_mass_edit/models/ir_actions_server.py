@@ -1,7 +1,7 @@
 # Copyright (C) 2020 Iván Todorovich (https://twitter.com/ivantodorovich)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class IrActionsServer(models.Model):
@@ -31,7 +31,7 @@ class IrActionsServer(models.Model):
         if hasattr(super(), "_onchange_model_id"):
             res = super()._onchange_model_id()
         # Clear mass_edit_line_ids
-        self.update({"mass_edit_line_ids": [(5, 0, 0)]})
+        self.update({"mass_edit_line_ids": [Command.clear()]})
         return res
 
     @api.constrains("model_id")

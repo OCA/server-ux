@@ -5,6 +5,9 @@
 
 from ast import literal_eval
 
+from lxml import etree
+
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
 
@@ -321,7 +324,7 @@ class TestMassEditing(common.TransactionCase):
         )
         result = mass_wizard.read(fields)[0]
         self.assertTrue(
-            all([field in result for field in fields]), "Read must return all fields."
+            all(field in result for field in fields), "Read must return all fields."
         )
 
         result = mass_wizard.read(fields=[])[0]
@@ -371,26 +374,26 @@ class TestMassEditing(common.TransactionCase):
         """Test Case for MASS EDITING which will remove and add
         Partner's bank o2m."""
         # Set another bank (must replace existing one)
-        bank_vals = {"acc_number": "account number"}
+        bank_vals = {"account_number": "account number"}
         self.user.write(
             {
-                "bank_ids": [(6, 0, []), (0, 0, bank_vals)],
+                "bank_ids": [Command.set([]), Command.create(bank_vals)],
             }
         )
         vals = {
             "selection__bank_ids": "set_o2m",
-            "bank_ids": [(0, 0, dict(bank_vals, acc_number="new number"))],
+            "bank_ids": [Command.create(dict(bank_vals, account_number="new number"))],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
-        self.assertEqual(self.user.bank_ids.acc_number, "new number")
+        self.assertEqual(self.user.bank_ids.account_number, "new number")
         # Add bank (must keep existing one)
         vals = {
             "selection__bank_ids": "add_o2m",
-            "bank_ids": [(0, 0, dict(bank_vals, acc_number="new number2"))],
+            "bank_ids": [Command.create(dict(bank_vals, account_number="new number2"))],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertEqual(
-            self.user.bank_ids.mapped("acc_number"), ["new number", "new number2"]
+            self.user.bank_ids.mapped("account_number"), ["new number", "new number2"]
         )
         # Set empty list (must remove all banks)
         vals = {"selection__bank_ids": "set_o2m"}
@@ -411,7 +414,7 @@ class TestMassEditing(common.TransactionCase):
         # Add m2m categories
         vals = {
             "selection__category_id": "add",
-            "category_id": [(4, categ1.id), (4, categ2.id)],
+            "category_id": [Command.link(categ1.id), Command.link(categ2.id)],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
@@ -421,7 +424,7 @@ class TestMassEditing(common.TransactionCase):
         # Remove one m2m category
         vals = {
             "selection__category_id": "remove_m2m",
-            "category_id": [[4, categ2.id]],
+            "category_id": [Command.link(categ2.id)],
         }
         self._create_wizard_and_apply_values(self.mass_editing_user, self.user, vals)
         self.assertTrue(
@@ -530,3 +533,66 @@ class TestMassEditing(common.TransactionCase):
             result,
             None,
         )
+
+    def test_wzd_without_server_action(self):
+        """Without a server action the wizard behaves like a plain model"""
+        result = self.MassEditingWizard.default_get(["selected_item_qty"])
+        self.assertNotIn("operation_description_info", result)
+        result = self.MassEditingWizard.onchange(
+            values={}, field_names=[], fields_spec={"message": {}}
+        )
+        self.assertIn("value", result)
+
+    def test_onchange_defaults_and_temporary_view_cleanup(self):
+        """First onchange call gets the defaults and drops the temporary view"""
+        form_view = self.env.ref(
+            "server_action_mass_edit.view_mass_editing_wizard_form"
+        )
+        form_view.copy({"name": "Temporary Mass Editing Wizard"})
+        result = self.MassEditingWizard.with_context(
+            active_ids=self.users.ids,
+            active_model="res.users",
+            server_action_id=self.mass_editing_user.id,
+        ).onchange(
+            values={},
+            field_names=[],
+            fields_spec={"selected_item_qty": {}, "selection__email": {}},
+        )
+        self.assertIn("value", result)
+        self.assertFalse(
+            self.env["ir.ui.view"].search(
+                [("name", "=", "Temporary Mass Editing Wizard")]
+            )
+        )
+
+    def test_wiz_get_views(self):
+        """get_views takes the server action from the given view"""
+        view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
+        view_id.mass_server_action_id = self.mass_editing_user
+        result = self.MassEditingWizard.get_views([(view_id.id, "form")])
+        self.assertIn("selection__email", result["views"]["form"]["arch"])
+
+    def test_wiz_get_view_embedded_o2m_list(self):
+        """One2many comodel without own views: embed the list of the form view"""
+        server_action = self.env["ir.actions.server"].create(
+            {
+                "state": "mass_edit",
+                "name": "Mass Edit Server Actions",
+                "model_id": self.env.ref("base.model_ir_actions_server").id,
+            }
+        )
+        self.env["ir.actions.server.mass.edit.line"].create(
+            {
+                "server_action_id": server_action.id,
+                "field_id": self.env["ir.model.fields"]
+                ._get("ir.actions.server", "mass_edit_line_ids")
+                .id,
+            }
+        )
+        view_id = self.env.ref("server_action_mass_edit.view_mass_editing_wizard_form")
+        view_id.mass_server_action_id = server_action
+        result = self.MassEditingWizard.with_context(
+            server_action_id=server_action.id
+        ).get_view(view_id=view_id.id)
+        arch = etree.fromstring(result["arch"])
+        self.assertTrue(arch.xpath("//field[@name='mass_edit_line_ids']/list"))
