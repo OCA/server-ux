@@ -21,13 +21,13 @@ Mass Editing
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-ux/tree/19.0/server_action_mass_edit
+    :target: https://github.com/OCA/server-ux/tree/20.0/server_action_mass_edit
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-server_action_mass_edit
+    :target: https://translation.odoo-community.org/projects/server-ux-20-0/server-ux-20-0-server_action_mass_edit
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -81,9 +81,9 @@ edited file.
 Another example would be to give access to specific users, using access
 groups, to mass edit some fields on the invoices.
 
-.. |Odoo Mass Editing| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-Odoo_Mass_Edit.png
-.. |Odoo Mass Editing Confirmation| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-Odoo_Mass_Edit_Confirmation.png
-.. |Odoo Mass Editing Result| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-Odoo_Mass_edit_Result.png
+.. |Odoo Mass Editing| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-Odoo_Mass_Edit.png
+.. |Odoo Mass Editing Confirmation| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-Odoo_Mass_Edit_Confirmation.png
+.. |Odoo Mass Editing Result| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-Odoo_Mass_edit_Result.png
 
 Configuration
 =============
@@ -138,18 +138,18 @@ Groups| |Odoo Mass Editing Security Result|
 Now, only users from those groups will be able to see and use this
 action.
 
-.. |OCA Mass Editing Menu| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Menu.png
-.. |OCA Mass Editing Type| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Type.png
-.. |OCA Mass Editing Model| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Model.png
-.. |OCA Mass Editing Field| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Field.png
-.. |OCA Mass Editing Field Filter| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Field_Filter.png
-.. |OCA Mass Editing Create Contextual Action| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Create_Action.png
-.. |OCA Mass Editing Widget| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Widget.png
-.. |OCA Mass Editing Domain| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Domain.png
-.. |OCA Mass Editing Message| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Message.png
-.. |OCA Mass Editing Security| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security.png
-.. |OCA Mass Editing Securtiy Groups| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security_Groups.png
-.. |Odoo Mass Editing Security Result| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security_Result.png
+.. |OCA Mass Editing Menu| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Menu.png
+.. |OCA Mass Editing Type| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Type.png
+.. |OCA Mass Editing Model| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Model.png
+.. |OCA Mass Editing Field| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Field.png
+.. |OCA Mass Editing Field Filter| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Field_Filter.png
+.. |OCA Mass Editing Create Contextual Action| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Create_Action.png
+.. |OCA Mass Editing Widget| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Widget.png
+.. |OCA Mass Editing Domain| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Domain.png
+.. |OCA Mass Editing Message| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Message.png
+.. |OCA Mass Editing Security| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security.png
+.. |OCA Mass Editing Securtiy Groups| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security_Groups.png
+.. |Odoo Mass Editing Security Result| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/18-OCA_Mass_Edit_Security_Result.png
 
 Usage
 =====
@@ -168,9 +168,9 @@ Usage
 
 |Wizard Result|
 
-.. |Action| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/mass_editing-item_tree.png
-.. |Wizard Form| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/mass_editing-wizard_form.png
-.. |Wizard Result| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/mass_editing-item_tree-result.png
+.. |Action| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/mass_editing-item_tree.png
+.. |Wizard Form| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/mass_editing-wizard_form.png
+.. |Wizard Result| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/mass_editing-item_tree-result.png
 
 Known issues / Roadmap
 ======================
@@ -197,7 +197,7 @@ As a user from the access group *Administration / Settings*, go to
 *Settings / Mass Operations / Mass Editing.* |OCA Mass Editing Access
 V11 to V13|
 
-.. |OCA Mass Editing Access V11 to V13| image:: https://raw.githubusercontent.com/OCA/server-ux/19.0/server_action_mass_edit/static/description/OCA_mass_edit_v11_v13.png
+.. |OCA Mass Editing Access V11 to V13| image:: https://raw.githubusercontent.com/OCA/server-ux/20.0/server_action_mass_edit/static/description/OCA_mass_edit_v11_v13.png
 
 Bug Tracker
 ===========
@@ -205,7 +205,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-ux/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20server_action_mass_edit%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-ux/issues/new?body=module:%20server_action_mass_edit%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -253,6 +253,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/19.0/server_action_mass_edit>`_ project on GitHub.
+This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/20.0/server_action_mass_edit>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

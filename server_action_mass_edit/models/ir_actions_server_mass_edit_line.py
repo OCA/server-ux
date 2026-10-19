@@ -17,7 +17,6 @@ class IrActionsServerMassEditLine(models.Model):
     sequence = fields.Integer()
     server_action_id = fields.Many2one(
         "ir.actions.server",
-        string="Server Action",
         ondelete="cascade",
         required=True,
     )
@@ -27,7 +26,6 @@ class IrActionsServerMassEditLine(models.Model):
     )
     field_id = fields.Many2one(
         "ir.model.fields",
-        string="Field",
         domain=f"""
             [
                 ("name", "not in", {MAGIC_FIELDS!s}),
@@ -80,7 +78,8 @@ class IrActionsServerMassEditLine(models.Model):
             widget_option = False
             if rec.field_id.ttype == "many2many":
                 widget_option = "many2many_tags"
-            elif rec.field_id.ttype == "binary":
-                if "image" in rec.field_id.name or "logo" in rec.field_id.name:
-                    widget_option = "image"
+            elif rec.field_id.ttype == "binary" and (
+                "image" in rec.field_id.name or "logo" in rec.field_id.name
+            ):
+                widget_option = "image"
             rec.widget_option = widget_option

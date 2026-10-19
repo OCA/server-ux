@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Mass Editing",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Serpent Consulting Services Pvt. Ltd., "
     "Tecnativa, "
     "GRAP, "
@@ -16,14 +16,13 @@
         "base",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/ir_actions_server.xml",
         "wizard/mass_editing_wizard.xml",
     ],
     "assets": {
         "web.assets_backend": [
             "/server_action_mass_edit/static/src/js/record.esm.js",
-            "/server_action_mass_edit/static/src/js/static_list.esm.js",
         ]
     },
     "demo": ["demo/mass_editing.xml"],

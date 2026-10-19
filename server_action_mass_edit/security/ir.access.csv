@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_mass_editing_line_system,ir.actions.server.mass.edit.line manager,ir.actions.server.mass.edit.line,base.group_system,crud,
+access_mass_editing_wizard_user,mass.editing.wizard user,mass.editing.wizard,base.group_user,crud,
