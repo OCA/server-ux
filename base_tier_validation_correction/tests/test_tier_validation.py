@@ -2,7 +2,9 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from datetime import timedelta
 
-from odoo import fields
+from lxml import etree
+
+from odoo import Command, fields
 from odoo.exceptions import ValidationError
 
 from odoo.addons.base_tier_validation.tests.common import CommonTierValidation
@@ -140,3 +142,39 @@ class TierTierValidation(CommonTierValidation):
         self.assertTrue(doc_user1.can_review)
         doc_user1.invalidate_recordset()
         self.assertFalse(doc_user2.can_review)
+
+    def test_affected_tier_reviews_as_user(self):
+        """A correction user can open the affected tier reviews."""
+        self.test_record.with_user(self.test_user_2).request_validation()
+        user = self.test_user_1
+        user.groups_id |= self.env.ref(
+            "base_tier_validation_correction.group_tier_correction"
+        )
+        correction = (
+            self.env["tier.correction"]
+            .with_user(user)
+            .create(
+                {
+                    "name": "Correction",
+                    "model_id": self.tester_model.id,
+                    "old_reviewer_ids": [Command.set(self.test_user_1.ids)],
+                    "new_reviewer_ids": [Command.set(self.test_user_2.ids)],
+                }
+            )
+        )
+        correction.action_prepare()
+        item = correction.item_ids[0]
+        wizard = (
+            self.env["affected.tier.reviews"]
+            .with_user(user)
+            .with_context(active_id=item.id)
+            .create({})
+        )
+        self.assertEqual(wizard.review_ids, item.review_ids)
+
+    def test_scheduled_action_button(self):
+        """The Scheduled Action button opens the correction's scheduled job."""
+        arch = self.env["tier.correction"].get_view(view_type="form")["arch"]
+        button = etree.fromstring(arch).xpath("//button[@string='Scheduled Action']")[0]
+        self.assertEqual(button.get("name"), "view_scheduled_action")
+        self.assertEqual(button.get("type"), "object")
