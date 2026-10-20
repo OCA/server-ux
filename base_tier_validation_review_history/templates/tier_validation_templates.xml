@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="tier_validation_review_history">
+        <div attrs="{'invisible': [('review_history_ids', '=', [])]}">
+            <separator string="Reviews History" />
+            <field name="review_history_ids" nolabel="1" readonly="1">
+                <tree
+                    create="false"
+                    edit="false"
+                    delete="false"
+                    decoration-success="status == 'approved'"
+                    decoration-danger="status == 'rejected'"
+                >
+                    <field name="status" invisible="1" />
+                    <field name="sequence" string="Sequence" />
+                    <field name="requested_by" />
+                    <field name="name" />
+                    <field name="display_status" string="Status" />
+                    <field name="done_by" />
+                    <field name="reviewed_formated_date" string="Validation Date" />
+                    <field name="comment" />
+                </tree>
+            </field>
+        </div>
+    </template>
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- A dedicated tree instead of an extension of
+         base_tier_validation.tier_review_view_tree, which is also used by the
+         action of base_tier_validation_board. -->
+    <record id="tier_review_view_tree_history" model="ir.ui.view">
+        <field name="name">tier.review.tree.history</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <tree
+                create="false"
+                edit="false"
+                delete="false"
+                decoration-danger="status=='rejected'"
+                decoration-success="status=='approved'"
+                decoration-muted="not active"
+            >
+                <field name="active" invisible="1" />
+                <field name="record_reference" widget="reference" />
+                <field name="name" string="Definition" optional="hide" />
+                <field name="sequence" optional="hide" />
+                <field name="status" />
+                <field name="requested_by" />
+                <field name="done_by" />
+                <field name="reviewed_date" />
+                <field name="comment" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="tier_review_view_search_history" model="ir.ui.view">
+        <field name="name">tier.review.search.history</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- name is a non-stored related field, so the definition itself
+                     is what can actually be searched. -->
+                <field name="definition_id" />
+                <field name="model" />
+                <field name="requested_by" />
+                <field name="done_by" />
+                <filter
+                    name="filter_current"
+                    string="Current"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    name="filter_history"
+                    string="History"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <filter
+                    name="filter_pending"
+                    string="Pending"
+                    domain="[('status', '=', 'pending')]"
+                />
+                <filter
+                    name="filter_approved"
+                    string="Approved"
+                    domain="[('status', '=', 'approved')]"
+                />
+                <filter
+                    name="filter_rejected"
+                    string="Rejected"
+                    domain="[('status', '=', 'rejected')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="groupby_document"
+                        string="Document"
+                        context="{'group_by': 'res_name'}"
+                    />
+                    <filter
+                        name="groupby_model"
+                        string="Document Model"
+                        context="{'group_by': 'model'}"
+                    />
+                    <filter
+                        name="groupby_status"
+                        string="Status"
+                        context="{'group_by': 'status'}"
+                    />
+                    <filter
+                        name="groupby_definition"
+                        string="Definition"
+                        context="{'group_by': 'definition_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tier_review_action" model="ir.actions.act_window">
+        <field name="name">Tier Reviews</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.review</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="tier_review_view_tree_history" />
+        <field name="search_view_id" ref="tier_review_view_search_history" />
+        <field name="context">{'active_test': False}</field>
+    </record>
+    <menuitem
+        id="menu_tier_review"
+        parent="base_tier_validation.menu_tier_confirmation"
+        action="tier_review_action"
+        sequence="20"
+    />
+</odoo>
