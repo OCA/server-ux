@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="custom_field_filter_demo" model="ir.ui.custom.field.filter">
         <field name="model_id" ref="base.model_res_partner" />
