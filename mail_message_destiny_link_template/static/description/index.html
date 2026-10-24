@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Mail Message Destiny Link Template</title>
 <style type="text/css">
 
 /*
@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:8ed467769f4d26625c6697f828b704603c1ec6a6398d1692e196dfa633ceaf7e
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/19.0/mail_message_destiny_link_template"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-19-0/server-ux-19-0-mail_message_destiny_link_template"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-ux/tree/20.0/mail_message_destiny_link_template"><img alt="OCA/server-ux" src="https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-ux-20-0/server-ux-20-0-mail_message_destiny_link_template"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-ux&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module provides an email template to show which target records have
 been modified by a source record.</p>
 <p>Example: When a purchase order generates an invoice, the invoice
@@ -416,21 +416,28 @@ the message inherits from <tt class="docutils literal">mail.thread</tt>.</p>
     </span><span class="sd">&quot;&quot;&quot;Adds a chatter message to origin and destiny records&quot;&quot;&quot;</span><span class="w">
 </span>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span><span class="w">
 </span>        <span class="n">destiny_records</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">_create_destiny_records</span><span class="p">()</span>  <span class="c1"># A bunch of Destiny Records</span><span class="w">
-</span>        <span class="n">mt_note_subtype_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">'ir.model.data'</span><span class="p">]</span><span class="o">.</span><span class="n">_xmlid_to_res_id</span><span class="p">(</span><span class="s1">'mail.mt_note'</span><span class="p">)</span><span class="w">
 
 </span>        <span class="c1"># Add note to chatter that indicates destiny records</span><span class="w">
-</span>        <span class="n">record</span><span class="o">.</span><span class="n">message_post_with_view</span><span class="p">(</span><span class="w">
-</span>            <span class="s1">'mail_message_destiny_link_template.message_destiny_link'</span><span class="p">,</span><span class="w">
-</span>            <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s1">'self'</span><span class="p">:</span> <span class="n">record</span><span class="p">,</span> <span class="s1">'destiny'</span><span class="p">:</span> <span class="n">destiny_records</span><span class="p">,</span> <span class="s2">&quot;edit&quot;</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">},</span><span class="w">
-</span>            <span class="n">subtype_id</span><span class="o">=</span><span class="n">mt_note_subtype_id</span><span class="p">,</span><span class="w">
+</span>        <span class="n">record</span><span class="o">.</span><span class="n">message_post_with_source</span><span class="p">(</span><span class="w">
+</span>            <span class="s2">&quot;mail_message_destiny_link_template.message_destiny_link&quot;</span><span class="p">,</span><span class="w">
+</span>            <span class="n">render_values</span><span class="o">=</span><span class="p">{</span><span class="w">
+</span>                <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="n">record</span><span class="p">,</span><span class="w">
+</span>                <span class="s2">&quot;destiny&quot;</span><span class="p">:</span> <span class="n">destiny_records</span><span class="p">,</span><span class="w">
+</span>                <span class="s2">&quot;edit&quot;</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">,</span><span class="w">
+</span>            <span class="p">},</span><span class="w">
+</span>            <span class="n">subtype_xmlid</span><span class="o">=</span><span class="s2">&quot;mail.mt_note&quot;</span><span class="p">,</span><span class="w">
 </span>        <span class="p">)</span><span class="w">
 
 </span>        <span class="c1"># Origin Link common usage to show differences</span><span class="w">
 </span>        <span class="k">for</span> <span class="n">destiny_record</span> <span class="ow">in</span> <span class="n">destiny_records</span><span class="p">:</span><span class="w">
-</span>            <span class="n">destiny_record</span><span class="o">.</span><span class="n">message_post_with_view</span><span class="p">(</span><span class="w">
-</span>                <span class="s1">'mail.message_origin_link'</span><span class="p">,</span><span class="w">
-</span>                <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s1">'self'</span><span class="p">:</span> <span class="n">destiny_record</span><span class="p">,</span> <span class="s1">'origin'</span><span class="p">:</span> <span class="n">record</span><span class="p">,</span> <span class="s2">&quot;edit&quot;</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">},</span><span class="w">
-</span>                <span class="n">subtype_id</span><span class="o">=</span><span class="n">mt_note_subtype_id</span><span class="p">,</span><span class="w">
+</span>            <span class="n">destiny_record</span><span class="o">.</span><span class="n">message_post_with_source</span><span class="p">(</span><span class="w">
+</span>                <span class="s2">&quot;mail.message_origin_link&quot;</span><span class="p">,</span><span class="w">
+</span>                <span class="n">render_values</span><span class="o">=</span><span class="p">{</span><span class="w">
+</span>                    <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="n">destiny_record</span><span class="p">,</span><span class="w">
+</span>                    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="n">record</span><span class="p">,</span><span class="w">
+</span>                    <span class="s2">&quot;edit&quot;</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">,</span><span class="w">
+</span>                <span class="p">},</span><span class="w">
+</span>                <span class="n">subtype_xmlid</span><span class="o">=</span><span class="s2">&quot;mail.mt_note&quot;</span><span class="p">,</span><span class="w">
 </span>            <span class="p">)</span>
 </pre>
 </div>
@@ -439,7 +446,7 @@ the message inherits from <tt class="docutils literal">mail.thread</tt>.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-ux/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20mail_message_destiny_link_template%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-ux/issues/new?body=module:%20mail_message_destiny_link_template%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -467,7 +474,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/Shide"><img alt="Shide" src="https://github.com/Shide.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/rafaelbn"><img alt="rafaelbn" src="https://github.com/rafaelbn.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/19.0/mail_message_destiny_link_template">OCA/server-ux</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-ux/tree/20.0/mail_message_destiny_link_template">OCA/server-ux</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

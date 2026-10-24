@@ -2,7 +2,7 @@
 <!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
 <odoo>
-    <template id="message_destiny_link">
+    <template id="message_destiny_link" technical_usage="mail_post_source">
         <p>
             <t t-if="edit">This <t
                 t-out="self.env['ir.model']._get(self._name).name.lower()"
