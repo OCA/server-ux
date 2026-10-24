@@ -21,8 +21,8 @@
         />
         <menuitem
             id="rec_rule"
-            name="📑 Record Rules"
-            action="base.action_rule"
+            name="🔐 Access Rights"
+            action="base.ir_access_action"
             sequence="20"
         />
         <menuitem id="view" name="Views" action="base.action_ui_view" sequence="30" />
