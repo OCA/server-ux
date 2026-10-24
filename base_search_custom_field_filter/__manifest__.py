@@ -4,13 +4,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Add custom filters for fields via UI",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Usability",
     "website": "https://github.com/OCA/server-ux",
     "author": "Tecnativa, Amitaujas, Odoo Community Association (OCA)",
     "demo": ["demo/demo_ir_ui_custom_field_filter.xml"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/ir_ui_custom_field_filter_views.xml",
     ],
     "depends": ["web"],

@@ -10,6 +10,10 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestFilter(BaseCommon):
+    # On 20.0 BaseCommon runs the tests as a restricted user built from this
+    # attribute, and only the System group may create custom filters.
+    _test_user_groups = ("base.group_system",)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
