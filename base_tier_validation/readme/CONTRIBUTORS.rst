@@ -5,3 +5,6 @@
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 * Kitti U. <kittiu@ecosoft.co.th>
 * Saran Lim. <saranl@ecosoft.co.th>
+* `NuoBiT Solutions SL <https://www.nuobit.com>`__:
+
+  * Eric Antones <eantones@nuobit.com>
