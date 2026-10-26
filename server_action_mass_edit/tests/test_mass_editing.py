@@ -5,8 +5,10 @@
 
 from ast import literal_eval
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common, new_test_user
+from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.base.models.ir_actions import IrActionsServer
 
@@ -498,6 +500,40 @@ class TestMassEditing(common.TransactionCase):
 
         with self.assertRaises(ValidationError):
             line.write({"apply_domain": True})
+
+    def test_mass_edit_readonly_field(self):
+        """Read-only fields can be mass edited, as with the core
+        "Update Record" server actions"""
+        model_id = self.env.ref("base.model_res_partner").id
+        field = self.env["ir.model.fields"].search(
+            [("model_id", "=", model_id), ("name", "=", "commercial_company_name")],
+            limit=1,
+        )
+        self.assertTrue(field.readonly)
+        field_domain = safe_eval(
+            self.env["ir.actions.server.mass.edit.line"]._fields["field_id"].domain,
+            {"model_id": model_id},
+        )
+        self.assertIn(field, self.env["ir.model.fields"].search(field_domain))
+        action = self.env["ir.actions.server"].create(
+            {
+                "state": "mass_edit",
+                "name": "Test Read-only Field",
+                "model_id": model_id,
+                "mass_edit_line_ids": [Command.create({"field_id": field.id})],
+            }
+        )
+        fields_info = self.MassEditingWizard.with_context(
+            server_action_id=action.id
+        ).fields_get()
+        self.assertFalse(fields_info["commercial_company_name"]["readonly"])
+        partner = self.env["res.partner"].create({"name": "Test Partner"})
+        vals = {
+            "selection__commercial_company_name": "set",
+            "commercial_company_name": "Forced Name",
+        }
+        self._create_wizard_and_apply_values(action, partner, vals)
+        self.assertEqual(partner.commercial_company_name, "Forced Name")
 
     def test_onchange_call(self):
         """Onchange call does not error on dynamically added fields"""
