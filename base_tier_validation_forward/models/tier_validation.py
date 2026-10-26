@@ -8,6 +8,10 @@ class TierValidation(models.AbstractModel):
 
     can_forward = fields.Boolean(compute="_compute_can_forward")
 
+    def _get_current_reviews(self, tiers=None):
+        valid_reviews = super()._get_current_reviews(tiers=tiers)
+        return valid_reviews + self.review_ids.filtered(lambda r: not r.definition_id)
+
     def _compute_can_forward(self):
         for rec in self:
             if not rec.can_review:
