@@ -91,6 +91,10 @@
                                 <span
                                 >Bypass, if previous tier was validated by same reviewer</span>
                             </div>
+                            <field
+                                name="exclude_requester"
+                                invisible="review_type != 'group'"
+                            />
                         </group>
                     </group>
                     <notebook>
