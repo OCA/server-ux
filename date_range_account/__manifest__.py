@@ -4,7 +4,7 @@
 
 {
     "name": "Date Range Account",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Accounting",
     "license": "AGPL-3",
     "summary": "Add Date Range menu entry in Invoicing app",
@@ -14,7 +14,7 @@
     "depends": ["account", "date_range"],
     "data": [
         "views/date_range.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "installable": True,
     "auto_install": True,
