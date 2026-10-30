@@ -102,3 +102,8 @@ class TestCancelConfirm(common.TransactionCase):
         form = etree.fromstring(view["arch"])
         self.assertTrue(form.xpath("//field[@name='cancel_confirm']"))
         self.assertTrue(form.xpath("//field[@name='cancel_reason']"))
+        # the web client needs the injected fields' description too
+        views = self.env[self.test_record._name].get_views([(False, "form")])
+        model_fields = views["models"][self.test_record._name]["fields"]
+        self.assertIn("cancel_confirm", model_fields)
+        self.assertIn("cancel_reason", model_fields)
