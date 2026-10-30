@@ -141,7 +141,7 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" not in arch,
-            "Fields view get must return architecture w/o fields" "created dynamicaly",
+            "Fields view get must return architecture w/o fields created dynamicaly",
         )
         view_id.mass_server_action_id = self.mass_editing_user
         result = self.MassEditingWizard.with_context(
@@ -151,7 +151,7 @@ class TestMassEditing(common.TransactionCase):
         arch = result.get("arch", "")
         self.assertTrue(
             "selection__email" in arch,
-            "Fields view get must return architecture with fields" "created dynamicaly",
+            "Fields view get must return architecture with fields created dynamicaly",
         )
 
         # test the code path where we extract an embedded tree for o2m fields
@@ -252,7 +252,7 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             self.partner_title.with_context(lang="de_DE").shortcut,
             "Bots.",
-            "Translation for Partner Title's Abbreviation " "was not loaded properly.",
+            "Translation for Partner Title's Abbreviation was not loaded properly.",
         )
         # Removing partner title with mass edit action
         vals = {"selection__shortcut": "remove"}
@@ -268,7 +268,7 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             self.partner_title.with_context(lang="de_DE").shortcut,
             False,
-            "Translation for Partner Title's Abbreviation " "was not removed properly.",
+            "Translation for Partner Title's Abbreviation was not removed properly.",
         )
 
     def test_mass_edit_email(self):
@@ -418,4 +418,24 @@ class TestMassEditing(common.TransactionCase):
         self.assertEqual(
             result,
             None,
+        )
+
+    def test_onchange_dynamic_field_field_triggers(self):
+        # Flush to store the setUp writes
+        self.env.flush_all()
+        # Clear the lazy property so it has to be computed again.
+        # As if we were on a cold worker.
+        self.env.registry.__dict__.pop("_field_triggers", None)
+
+        wizard = self.MassEditingWizard.with_context(
+            server_action_id=self.mass_editing_partner_title.id,
+            active_ids=self.partner_title.ids,
+        )
+        wizard.onchange({}, [], {"message": {}})
+
+        # dynamic fields added during the onchange have no `model_name`
+        # and would break any later computation of the field trigger,
+        # verify they have been properly removed from the fields
+        self.assertFalse(
+            [name for name, field in wizard._fields.items() if not field.model_name]
         )
