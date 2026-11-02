@@ -37,6 +37,11 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_by
+msgid "Cancel By"
+msgstr ""
+
+#. module: base_cancel_confirm
 #: model:ir.model,name:base_cancel_confirm.model_cancel_confirm
 msgid "Cancel Confirm"
 msgstr "Annulla conferma"
@@ -52,6 +57,11 @@ msgstr "Annulla conferma"
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_confirm
 msgid "Cancel Confirmed"
 msgstr "Annullamento confermato"
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_date
+msgid "Cancel Date"
+msgstr ""
 
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_reason
@@ -81,6 +91,7 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
@@ -91,6 +102,7 @@ msgid "Has Cancel Reason"
 msgstr "Ha causale annullamento"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__id
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
 msgid "ID"
 msgstr "ID"
