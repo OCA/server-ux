@@ -37,6 +37,11 @@ msgid "Cancel"
 msgstr "Annuleer"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_by
+msgid "Cancel By"
+msgstr ""
+
+#. module: base_cancel_confirm
 #: model:ir.model,name:base_cancel_confirm.model_cancel_confirm
 msgid "Cancel Confirm"
 msgstr ""
@@ -51,6 +56,11 @@ msgstr ""
 #. module: base_cancel_confirm
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_confirm
 msgid "Cancel Confirmed"
+msgstr ""
+
+#. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__cancel_date
+msgid "Cancel Date"
 msgstr ""
 
 #. module: base_cancel_confirm
@@ -81,6 +91,7 @@ msgid "Created on"
 msgstr "Aangemaakt op"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
@@ -91,6 +102,7 @@ msgid "Has Cancel Reason"
 msgstr "Heeft annuleringsreden"
 
 #. module: base_cancel_confirm
+#: model:ir.model.fields,field_description:base_cancel_confirm.field_base_cancel_confirm__id
 #: model:ir.model.fields,field_description:base_cancel_confirm.field_cancel_confirm__id
 msgid "ID"
 msgstr "ID"
