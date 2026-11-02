@@ -42,7 +42,7 @@ class Base(models.AbstractModel):
                     {"name": custom_filter.expression, "string": custom_filter.name},
                 )
                 node[0].addnext(elem)
-        res["arch"] = etree.tostring(arch)
+        res["arch"] = etree.tostring(arch, encoding="unicode")
         return res
 
     @api.model

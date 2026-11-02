@@ -71,8 +71,8 @@ patch(TreeEditor.prototype, {
                         if (!selected) {
                             selected = dateRanges[0];
                             update([
-                                toDateTime(selected.date_end, fieldDef.type),
-                                toDateTime(selected.date_start, fieldDef.type, true),
+                                toDateTime(selected.date_end, fieldDef.type, true),
+                                toDateTime(selected.date_start, fieldDef.type),
                             ]);
                         }
 
@@ -81,8 +81,8 @@ patch(TreeEditor.prototype, {
                             update: (v) => {
                                 const range = dateRanges.find((r) => r.id === v);
                                 update([
-                                    toDateTime(range.date_end, fieldDef.type),
-                                    toDateTime(range.date_start, fieldDef.type, true),
+                                    toDateTime(range.date_end, fieldDef.type, true),
+                                    toDateTime(range.date_start, fieldDef.type),
                                 ]);
                             },
                             value: selected.id,
@@ -130,8 +130,8 @@ patch(TreeEditor.prototype, {
             }
             if (operator.includes("daterange") && dateRanges) {
                 node.value = [
-                    toDateTime(dateRanges[0].date_end, fieldDef.type),
-                    toDateTime(dateRanges[0].date_start, fieldDef.type, true),
+                    toDateTime(dateRanges[0].date_end, fieldDef.type, true),
+                    toDateTime(dateRanges[0].date_start, fieldDef.type),
                 ];
                 this.notifyChanges();
             }
