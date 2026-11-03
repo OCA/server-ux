@@ -115,3 +115,18 @@ class TestFilterMultiUser(common.TransactionCase):
             self.assertTrue(test_filter.with_user(self.user_2).name)
         test_filter.invalidate_recordset()
         self.assertTrue(test_filter.with_user(self.user_3).name)
+
+    def test_05_create_keeps_user_ids(self):
+        """When neither manual_user_ids nor group_ids is set, the user_ids
+        given at creation (the filter creator in the web client) are kept."""
+        test_filter = self.filter_model.create(
+            {
+                "name": "Test filter",
+                "model_id": "ir.filters",
+                "user_ids": [Command.set(self.user_1.ids)],
+            }
+        )
+        self.assertEqual(test_filter.user_ids, self.user_1)
+        test_filter.invalidate_recordset()
+        with self.assertRaises(AccessError):
+            self.assertTrue(test_filter.with_user(self.user_2).name)
