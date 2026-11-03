@@ -23,7 +23,9 @@ class IrFilters(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        records._sync_user_ids()
+        records.filtered(
+            lambda rec: rec.manual_user_ids or rec.group_ids
+        )._sync_user_ids()
         return records
 
     def write(self, vals):
