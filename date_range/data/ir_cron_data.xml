@@ -9,4 +9,14 @@
         <field name="state">code</field>
         <field name="code">model.autogenerate_ranges()</field>
     </record>
+
+    <record id="cron_generate_next_years_as_of_month" model="ir.cron">
+        <field name="name">Generate As Of Month Date Ranges</field>
+        <field name="model_id" ref="date_range.model_date_range_type" />
+        <field name="state">code</field>
+        <field name="code">model.generate_next_years_as_of_month()</field>
+        <field name="interval_type">months</field>
+        <field name="interval_number">1</field>
+        <field name="active">True</field>
+    </record>
 </odoo>
