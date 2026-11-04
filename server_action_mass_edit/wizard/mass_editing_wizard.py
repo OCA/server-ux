@@ -274,6 +274,7 @@ class MassEditingWizard(models.TransientModel):
                 self.env[server_action.model_id.model], field, fields_info[field.name]
             )
             field_info["relation_field"] = False
+            field_info["readonly"] = False
             if line.field_domain:
                 field_info["domain"] = line.field_domain
             elif not line.apply_domain and "domain" in field_info:

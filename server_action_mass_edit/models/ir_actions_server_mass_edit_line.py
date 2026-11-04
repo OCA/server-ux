@@ -33,7 +33,6 @@ class IrActionsServerMassEditLine(models.Model):
                 ("name", "not in", {str(MAGIC_FIELDS)}),
                 ("ttype", "not in", ["reference", "function"]),
                 ("model_id", "=", model_id),
-                ("readonly", "!=", True),
             ]
         """,
         ondelete="cascade",
