@@ -1,0 +1,12 @@
+- Alejandro Santana \<<alejandrosantana@anubia.es>\>
+- Antonio Esposito \<<a.esposito@onestein.nl>\>
+- Druidoo \<<https://www.druidoo.io>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Víctor Martínez
+- [Open Source Integrators](https://www.opensourceintegrators.com/):
+  - Daniel Reis
+  - Chandresh Thakkar
+- [Opener B.V.](https://opener.amsterdam/):
+  - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- [ACSONE SA/NV](https://acsone.eu/):
+  - Souheil Bejaoui \<<souheil.bejaoui@acsone.eu>\>
