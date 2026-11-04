@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_template_content_mapping_public,template_content_mapping_public,model_template_content_mapping,base.group_public,1,0,0,0
+access_template_content_mapping_portal,template_content_mapping_portal,model_template_content_mapping,base.group_portal,1,0,0,0
+access_template_content_mapping_user,template_content_mapping_user,model_template_content_mapping,base.group_user,1,0,0,0
+access_template_content_mapping_system,template_content_mapping_system,model_template_content_mapping,base.group_system,1,1,1,1
