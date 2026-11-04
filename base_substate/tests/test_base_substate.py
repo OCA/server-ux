@@ -112,6 +112,39 @@ class TestBaseSubstate(CommonBaseSubstate):
             }
         )
 
+    def test_substate_type_cache_invalidation(self):
+        """The cached model -> substate type lookup follows base.substate.type."""
+        sale_test = self.sale_test_model
+        # First call fills the cache.
+        self.assertEqual(sale_test._get_substate_type(), self.sale_test_substate_type)
+
+        # Creating a type for the same model invalidates the cache. "AAA Sale"
+        # sorts before "Sale", so it becomes the one the lookup resolves to
+        # (_order = "name asc, model asc", search is limited to one record).
+        other_type = self.substate_type.create(
+            {
+                "name": "AAA Sale",
+                "model": "base.substate.test.sale",
+                "target_state_field": "state",
+            }
+        )
+        self.assertEqual(sale_test._get_substate_type(), other_type)
+
+        # Moving the type to another model invalidates the cache too.
+        other_type.write({"model": "base.substate.test.sale.line"})
+        self.assertEqual(sale_test._get_substate_type(), self.sale_test_substate_type)
+
+        # A write that cannot change the model -> type mapping keeps the cache.
+        other_type.write({"target_state_field": "state"})
+        self.assertEqual(sale_test._get_substate_type(), self.sale_test_substate_type)
+
+        other_type.write({"model": "base.substate.test.sale"})
+        self.assertEqual(sale_test._get_substate_type(), other_type)
+
+        # ... and so does unlinking.
+        other_type.unlink()
+        self.assertEqual(sale_test._get_substate_type(), self.sale_test_substate_type)
+
     def test_sale_order_substate(self):
         # Create a partner instead of using a potentially non-existent XML ID
         partner = self.env["res.partner"].create(
