@@ -335,7 +335,20 @@ class MassEditingWizard(models.TransientModel):
             real_fields = [x for x in fields if x in self._fields]
         result = super().read(real_fields, load=load)
         # adding fields to result
-        [result[0].update({x: False}) for x in fields if x not in real_fields]
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
+        x2many_fields = (
+            server_action.mass_edit_line_ids.field_id.filtered(
+                lambda f: f.ttype in ("one2many", "many2many")
+            ).mapped("name")
+            if server_action
+            else []
+        )
+        [
+            result[0].update({x: [] if x in x2many_fields else False})
+            for x in fields
+            if x not in real_fields
+        ]
         return result
 
     def button_apply(self):
