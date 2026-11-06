@@ -38,6 +38,7 @@ addon | version | maintainers | summary
 [mail_message_destiny_link_template](mail_message_destiny_link_template/) | 19.0.1.0.0 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Mail template to show destiny records in chatter.
 [sequence_reset_period](sequence_reset_period/) | 19.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
 [server_action_mass_edit](server_action_mass_edit/) | 19.0.1.0.1 |  | Mass Editing
+[server_action_mass_edit_onchange](server_action_mass_edit_onchange/) | 19.0.1.0.0 |  | Extension of server_action_mass_edit
 
 [//]: # (end addons)
 
