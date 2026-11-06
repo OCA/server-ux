@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="announcement_tag_1" model="announcement.tag">
+        <field name="name">Company information</field>
+        <field name="color" eval="1" />
+    </record>
+    <record id="announcement_tag_2" model="announcement.tag">
+        <field name="name">Employees</field>
+        <field name="color" eval="2" />
+    </record>
+    <record id="announcement_tag_3" model="announcement.tag">
+        <field name="name">Accounting</field>
+        <field name="color" eval="3" />
+    </record>
+    <record id="announcement_tag_4" model="announcement.tag">
+        <field name="name">Sales</field>
+        <field name="color" eval="4" />
+    </record>
+    <record id="announcement_tag_5" model="announcement.tag">
+        <field name="name">Manufacturing</field>
+        <field name="color" eval="5" />
+    </record>
+</odoo>
