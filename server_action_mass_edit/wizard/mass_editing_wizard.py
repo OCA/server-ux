@@ -99,15 +99,23 @@ class MassEditingWizard(models.TransientModel):
             )
             dynamic_fields[line.field_id.name] = fields.Text([()], default=False)
 
+        # `_field_triggers` is a lazy property. It computes the inverse of
+        # field dependencies. The dynamic fields added temporarily to `_fields`
+        # have `model_name` equal to None, which makes the computation of
+        # `_field_triggers` fail with `KeyError: None` if it has not been
+        # computed yet, for instance on a fresh worker. Force the computation
+        # before messing with `_fields`.
+        self.pool._field_triggers  # noqa: B018  # pylint: disable=pointless-statement
         self._fields.update(dynamic_fields)
+        try:
+            res = super().onchange(values, field_names, fields_spec)
+        finally:
+            for field in dynamic_fields:
+                self._fields.pop(field, None)
 
-        res = super().onchange(values, field_names, fields_spec)
         if not res["value"]:
             value = {key: value for key, value in values.items() if value is not False}
             res["value"] = value
-
-        for field in dynamic_fields:
-            self._fields.pop(field)
 
         view_temp = (
             self.env["ir.ui.view"]
