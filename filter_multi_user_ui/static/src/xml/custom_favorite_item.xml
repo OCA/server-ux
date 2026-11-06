@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.CustomFavoriteItem" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('px-3')]" position="inside">
+            <div t-if="state.isShared" class="mt-2">
+                <label class="form-label small mb-1">Partager avec</label>
+                <input type="text"
+                       class="o_input form-control form-control-sm mb-1"
+                       placeholder="Rechercher un utilisateur..."
+                       t-on-input="(ev) => this.state.userSearch = ev.target.value"/>
+                <div class="border rounded p-1" style="max-height: 150px; overflow-y: auto;">
+                    <t t-foreach="filteredUsers" t-as="u" t-key="u.id">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   t-att-id="'abi_user_' + u.id"
+                                   t-att-checked="state.sharedUserIds.includes(u.id)"
+                                   t-on-change="() => this.toggleUser(u.id)"/>
+                            <label class="form-check-label"
+                                   t-att-for="'abi_user_' + u.id"
+                                   t-esc="u.name"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.SearchBarMenu.FavoriteItem" t-inherit-mode="extension">
+        <xpath expr="//i[hasclass('fa-trash-o')]" position="before">
+            <i t-if="item.userId === false"
+               class="ms-1 fa fa-users text-muted"
+               title="cliquez pour gérer les utilisateurs"
+               t-on-click.stop="() => this.openFilterUsers(item)"/>
+        </xpath>
+    </t>
+
+
+</templates>
