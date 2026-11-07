@@ -17,6 +17,15 @@ from .common import CommonTierValidation
 
 @tagged("post_install", "-at_install")
 class TierTierValidation(CommonTierValidation):
+    def test_00_allow_remove_reviews_cancel_equality(self):
+        """`state_to in (self._cancel_state)` was a substring test on a str:
+        any state whose name is a substring of the cancel state (e.g. "c",
+        "an" for "cancel") wrongly triggered review removal."""
+        rec = self.test_record
+        self.assertFalse(rec._allow_to_remove_reviews({"state": "c"}))
+        self.assertFalse(rec._allow_to_remove_reviews({"state": "an"}))
+        self.assertTrue(rec._allow_to_remove_reviews({"state": "cancel"}))
+
     def test_01_auto_validation(self):
         """When the user can validate all future reviews, it is not needed
         to request a validation, the action can be done straight forward."""
