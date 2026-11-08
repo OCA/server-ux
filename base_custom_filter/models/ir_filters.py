@@ -2,9 +2,8 @@
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.osv import expression
 
 
 class IrFilters(models.Model):
@@ -66,7 +65,7 @@ class IrFilters(models.Model):
             has_domain = record.domain and record.domain != "[]"
             if has_domain and record.date_field:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Filter '%(name)s': You cannot set both Domain and "
                         "Date Field. Please choose only one.",
                         name=record.name,
@@ -104,12 +103,3 @@ class IrFilters(models.Model):
             self.search([("id", "in", result_ids), ("type", "!=", "favorite")]).ids
         )
         return [r for r in results if r.get("id") not in non_favorite_ids]
-
-    @api.model
-    @api.returns("self")
-    def search(self, domain, offset=0, limit=None, order=None):
-        if self.env.context.get("filter_type"):
-            domain = expression.AND(
-                (domain, [("type", "=", self.env.context["filter_type"])])
-            )
-        return super().search(domain, offset, limit, order)

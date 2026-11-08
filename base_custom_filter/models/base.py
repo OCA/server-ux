@@ -19,7 +19,7 @@ class Base(models.AbstractModel):
     def _user_has_access_to_item(self, item):
         if not item.group_ids:
             return True
-        return bool(set(self.env.user.groups_id.ids) & set(item.group_ids.ids))
+        return bool(set(self.env.user.all_group_ids.ids) & set(item.group_ids.ids))
 
     @api.model
     def _insert_element(self, node, elem, position, is_root=False):

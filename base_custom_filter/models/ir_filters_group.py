@@ -4,7 +4,7 @@
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -17,9 +17,7 @@ class IrFiltersGroup(models.Model):
         return [("filter", "Filter"), ("groupby", "Group By")]
 
     sequence = fields.Integer()
-    model_id = fields.Selection(
-        selection="_list_all_models", string="Model", required=True
-    )
+    model_id = fields.Selection(selection="_list_all_models", required=True)
     name = fields.Char(required=True, translate=True)
     type = fields.Selection(
         selection="_selection_type",
@@ -55,7 +53,7 @@ class IrFiltersGroup(models.Model):
             try:
                 etree.XPath(xpath)
             except (etree.XPathSyntaxError, etree.XPathEvalError) as e:
-                raise ValidationError(_("Invalid XPath:\n%s") % e) from e
+                raise ValidationError(self.env._("Invalid XPath:\n%s", e)) from e
 
     def unlink(self):
         self.filter_ids.unlink()

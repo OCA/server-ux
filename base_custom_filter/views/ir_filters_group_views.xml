@@ -123,7 +123,7 @@
                     name="Without_filters"
                     domain="[('filter_ids','=',False)]"
                 />
-                <group expand="1" string="Group By">
+                <group>
                     <filter string="Type" name='user' context="{'group_by':'type'}" />
                 </group>
             </search>
