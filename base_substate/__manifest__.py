@@ -3,7 +3,7 @@
 
 {
     "name": "Base Sub State",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "category": "Tools",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
