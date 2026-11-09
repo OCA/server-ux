@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="2" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Miscellaneous" name="misc_app" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_misc_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="view_id" ref="res_config_settings_view_form" />
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module' : 'misc_settings', 'bin_size': False}</field>
+    </record>
+
+    <menuitem
+        id="menu_misc_settings_root"
+        name="Misc Settings"
+        web_icon="misc_settings,static/description/icon.png"
+        sequence="100"
+    />
+</odoo>
