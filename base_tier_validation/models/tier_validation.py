@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
+from datetime import datetime
 
 from lxml import etree
 
@@ -354,12 +355,18 @@ class TierValidation(models.AbstractModel):
                 body=self._notify_accepted_reviews_body(),
             )
 
+    def _get_last_review_comment(self):
+        reviews = self.review_ids.filtered(
+            lambda r: r.done_by == self.env.user
+        ) or self.review_ids.filtered(lambda r: self.env.user in r.reviewer_ids)
+        last_review = reviews.sorted(
+            lambda r: (r.reviewed_date or datetime.min, r.id), reverse=True
+        )[:1]
+        return last_review.comment
+
     def _notify_accepted_reviews_body(self):
-        has_comment = self.review_ids.filtered(
-            lambda r: (self.env.user in r.reviewer_ids) and r.comment
-        )
-        if has_comment:
-            comment = has_comment.mapped("comment")[0]
+        comment = self._get_last_review_comment()
+        if comment:
             return _("A review was accepted. (%s)") % comment
         return _("A review was accepted")
 
@@ -405,11 +412,8 @@ class TierValidation(models.AbstractModel):
         self._update_counter()
 
     def _notify_rejected_review_body(self):
-        has_comment = self.review_ids.filtered(
-            lambda r: (self.env.user in r.reviewer_ids) and r.comment
-        )
-        if has_comment:
-            comment = has_comment.mapped("comment")[0]
+        comment = self._get_last_review_comment()
+        if comment:
             return _("A review was rejected by %(user)s. (%(comment)s)") % {
                 "user": self.env.user.name,
                 "comment": comment,
