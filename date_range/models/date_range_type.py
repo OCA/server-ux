@@ -29,7 +29,6 @@ class DateRangeType(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         index=1,
         default=lambda self: self._default_company(),
     )

@@ -85,9 +85,7 @@ class BaseSubstate(models.Model):
         index=True,
         help="Gives the sequence order when applying the default substate",
     )
-    target_state_value_id = fields.Many2one(
-        "target.state.value", string="Target State Value", ondelete="restrict"
-    )
+    target_state_value_id = fields.Many2one("target.state.value", ondelete="restrict")
     active = fields.Boolean(default=True)
     mail_template_id = fields.Many2one(
         "mail.template",

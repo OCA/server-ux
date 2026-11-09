@@ -17,7 +17,6 @@ class IrActionsServerMassEditLine(models.Model):
     sequence = fields.Integer()
     server_action_id = fields.Many2one(
         "ir.actions.server",
-        string="Server Action",
         ondelete="cascade",
         required=True,
     )
@@ -27,7 +26,6 @@ class IrActionsServerMassEditLine(models.Model):
     )
     field_id = fields.Many2one(
         "ir.model.fields",
-        string="Field",
         domain=f"""
             [
                 ("name", "not in", {str(MAGIC_FIELDS)}),
