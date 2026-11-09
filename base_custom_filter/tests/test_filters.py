@@ -1,3 +1,5 @@
+from lxml import etree
+
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase, tagged
 
@@ -206,3 +208,13 @@ class Test(TransactionCase):
             view_content,
             "The date filter is not in the returned view",
         )
+
+    def _get_form_type_field(self, view_id=None):
+        arch = self.filters_obj.get_view(view_id=view_id, view_type="form")["arch"]
+        return etree.fromstring(arch).xpath("//field[@name='type']")[0]
+
+    def test_edit_favorite_form_hides_type(self):
+        # The core edit-favorite dialog inherits the backend form in primary mode
+        edit_view = self.env.ref("base.ir_filters_view_edit_form")
+        self.assertEqual(self._get_form_type_field(edit_view.id).get("invisible"), "1")
+        self.assertIsNone(self._get_form_type_field().get("invisible"))
