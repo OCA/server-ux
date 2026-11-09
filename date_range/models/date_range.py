@@ -20,7 +20,6 @@ class DateRange(models.Model):
     date_end = fields.Date(string="End date", required=True)
     type_id = fields.Many2one(
         comodel_name="date.range.type",
-        string="Type",
         index=True,
         required=True,
         ondelete="restrict",
@@ -28,7 +27,6 @@ class DateRange(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         index=True,
         default=lambda self: self._default_company(),
     )

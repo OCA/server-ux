@@ -28,7 +28,7 @@ class SaleTest(models.Model):
         store=True,
     )
     active = fields.Boolean(default=True)
-    partner_id = fields.Many2one("res.partner", string="Partner")
+    partner_id = fields.Many2one("res.partner")
     line_ids = fields.One2many(
         comodel_name="base.substate.test.sale.line",
         inverse_name="sale_id",

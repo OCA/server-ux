@@ -48,7 +48,6 @@ class DateRangeGenerator(models.TransientModel):
     )
     type_id = fields.Many2one(
         comodel_name="date.range.type",
-        string="Type",
         required=True,
         domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]",
         ondelete="cascade",
@@ -58,7 +57,6 @@ class DateRangeGenerator(models.TransientModel):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         compute="_compute_company_id",
         readonly=False,
         store=True,
