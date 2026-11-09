@@ -207,6 +207,49 @@ class TierTierValidation(CommonTierValidation):
         )._notify_rejected_review_body()
         self.assertEqual(comment, "A review was rejected by John. (Test Comment)")
 
+    def test_11_add_comment_same_reviewer_many_tiers(self):
+        self.tier_definition.unlink()
+        test_record = self.test_model.create({"test_field": 2.5})
+        for sequence, reviewer in [
+            (30, self.test_user_1),
+            (20, self.test_user_2),
+            (10, self.test_user_1),
+        ]:
+            self.tier_def_obj.create(
+                {
+                    "model_id": self.tester_model.id,
+                    "review_type": "individual",
+                    "reviewer_id": reviewer.id,
+                    "definition_domain": "[('test_field', '>', 1.0)]",
+                    "approve_sequence": True,
+                    "has_comment": True,
+                    "sequence": sequence,
+                }
+            )
+        reviews = test_record.with_user(self.test_user_2.id).request_validation()
+        self.assertEqual(len(reviews), 3)
+        test_record.invalidate_cache()
+        for reviewer, comment in [
+            (self.test_user_1, "First Comment"),
+            (self.test_user_2, "Second Comment"),
+            (self.test_user_1, "Third Comment"),
+        ]:
+            record = test_record.with_user(reviewer.id)
+            record.invalidate_cache()
+            res = record.validate_tier()
+            wizard = Form(
+                self.env["comment.wizard"]
+                .with_user(reviewer.id)
+                .with_context(**res["context"])
+            )
+            wizard.comment = comment
+            wizard.save().add_comment()
+            self.assertEqual(
+                record._notify_accepted_reviews_body(),
+                "A review was accepted. (%s)" % comment,
+            )
+        self.assertTrue(test_record.validated)
+
     def test_12_approve_sequence(self):
         # Create new test record
         test_record = self.test_model.create({"test_field": 2.5})
