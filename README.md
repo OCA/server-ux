@@ -53,7 +53,7 @@ addon | version | maintainers | summary
 [multi_step_wizard](multi_step_wizard/) | 18.0.1.0.1 |  | Multi-Steps Wizards
 [sequence_check_digit](sequence_check_digit/) | 18.0.1.1.0 |  | Adds a check digit on sequences
 [sequence_reset_period](sequence_reset_period/) | 18.0.1.0.0 |  | Auto-generate yearly/monthly/weekly/daily sequence period ranges
-[server_action_mass_edit](server_action_mass_edit/) | 18.0.1.1.4 |  | Mass Editing
+[server_action_mass_edit](server_action_mass_edit/) | 18.0.1.1.5 |  | Mass Editing
 [server_action_mass_edit_onchange](server_action_mass_edit_onchange/) | 18.0.1.1.1 |  | Extension of server_action_mass_edit
 [template_content_swapper](template_content_swapper/) | 18.0.1.1.0 | <a href='https://github.com/yostashiro'><img src='https://github.com/yostashiro.png' width='32' height='32' style='border-radius:50%;' alt='yostashiro'/></a> <a href='https://github.com/AungKoKoLin1997'><img src='https://github.com/AungKoKoLin1997.png' width='32' height='32' style='border-radius:50%;' alt='AungKoKoLin1997'/></a> | Template Content Swapper
 
