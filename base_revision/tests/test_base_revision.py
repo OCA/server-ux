@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo_test_helper import FakeModelLoader
 
+from odoo.exceptions import UserError
 from odoo.tests import common
 
 
@@ -99,3 +100,16 @@ class TestBaseRevision(common.TransactionCase):
         # Check the 'Order Reference' of the tester
         for tester in tester_2:
             self.assertEqual(tester.name, tester.unrevisioned_name)
+
+    def test_revision_of_old_revision(self):
+        """A superseded revision cannot be revised again"""
+        tester_1 = self._create_tester()
+        self._revision_tester(tester_1)
+        revision_1 = tester_1.current_revision_id
+        self._revision_tester(revision_1)
+        revision_2 = revision_1.current_revision_id
+        with self.assertRaisesRegex(UserError, "has already been revised"):
+            tester_1.create_revision()
+        with self.assertRaisesRegex(UserError, "has already been revised"):
+            revision_1.create_revision()
+        self.assertEqual(tester_1.current_revision_id, revision_2)
