@@ -2,14 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.orm.model_classes import add_to_registry
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class CommonTestMultiStepWizard(common.TransactionCase):
+class CommonTestMultiStepWizard(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         from .multi_step_wizard_test import MultiStepWizardTest
 
         add_to_registry(cls.registry, MultiStepWizardTest)
