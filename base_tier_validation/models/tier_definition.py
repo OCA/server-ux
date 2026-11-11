@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import lazy_property
 
 
 class TierDefinition(models.Model):
@@ -168,3 +169,35 @@ class TierDefinition(models.Model):
             review_to_remind = record._get_review_needing_reminder()
             if review_to_remind:
                 review_to_remind._send_review_reminder()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        result = super().create(vals_list)
+        result._update_registry()
+        return result
+
+    def write(self, vals):
+        result = super().write(vals)
+        if "definition_domain" in vals or "active" in vals:
+            self._update_registry()
+        return result
+
+    def unlink(self):
+        models = set(self.mapped("model"))
+        result = super().unlink()
+        self._update_registry(models)
+        return result
+
+    def _update_registry(self, models=None):
+        """Update dependencies of validation flag"""
+
+        for model in models or self.model_id.mapped("model"):
+            Model = self.env[model]
+            field = Model._fields["need_validation"]
+            depends, depends_context = field.get_depends(Model)
+            self.pool.field_depends[field] = tuple(depends)
+            self.pool.field_depends_context[field] = tuple(depends_context)
+
+        self.pool.clear_all_caches()
+        lazy_property.reset_all(self.pool)
+        self.pool.registry_invalidated = True
