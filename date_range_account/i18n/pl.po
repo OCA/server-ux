@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-11 10:46+0000\n"
+"Last-Translator: leszekszczepkowski <leszekszczepkowski@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +15,20 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_type
 msgid "Date Range Types"
-msgstr ""
+msgstr "Typy zakresów dat"
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_root
 msgid "Date Ranges"
-msgstr ""
+msgstr "Zakresy dat"
 
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_generator
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "Generuj zakresy dat"
