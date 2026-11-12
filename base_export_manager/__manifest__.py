@@ -25,6 +25,10 @@
     "assets": {
         "web.assets_backend": [
             "base_export_manager/static/src/views/list/list_controller.esm.js",
+            "base_export_manager/static/src/views/kanban/kanban_controller.esm.js",
+        ],
+        "web.assets_unit_tests": [
+            "base_export_manager/static/tests/**/*",
         ],
     },
     "installable": True,
