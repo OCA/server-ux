@@ -1,0 +1,9 @@
+id,name,model_id,group_id/id,operation,domain
+access_announcement_management,announcement.manager,announcement,announcement.announcemenent_manager,crud,
+access_announcement_user,announcement.user,announcement,base.group_user,r,"[('active', '=', True), ('allowed_user_ids', 'in', user.id), ('in_date', '=', True)]"
+access_announcement_log_all,announcement_log_all,announcement.log,base.group_user,cr,
+access_read_announcement_wizard,access_read_announcement_wizard,read.announcement.wizard,announcement.announcemenent_manager,crud,
+access_announcement_tag_management,announcement.tag.manager,announcement.tag,announcement.announcemenent_manager,crud,
+access_announcement_tag_user,announcement.tag.user,announcement.tag,base.group_user,r,
+announcement_log_rule,Announcement log per user,announcement.log,,cud,"[('create_uid','=', user.id)]"
+rule_multi_company_announcement_tag,Announcement Tag multi-company,announcement.tag,,crud,"[('company_id', 'in', [False] + company_ids)]"
