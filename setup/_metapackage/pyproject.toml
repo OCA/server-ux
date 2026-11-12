@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-server-ux"
-version = "20.0.20261013.0"
+version = "20.0.20261112.0"
 dependencies = [
     "odoo-addon-date_range==20.0.*",
+    "odoo-addon-filter_multi_user==20.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
