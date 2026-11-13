@@ -15,5 +15,5 @@
     "depends": ["web"],
     "license": "AGPL-3",
     "installable": True,
-    "maintainers": ["AshishHirapara", "ForgeFlow"],
+    "maintainers": ["AshishHirapara", "AungKoKoLin1997"],
 }
