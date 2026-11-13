@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-13 10:07+0000\n"
+"Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__definition_type
 msgid "Definition"
-msgstr ""
+msgstr "Definição"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__domain_formula
 msgid "Domain & Formula"
-msgstr ""
+msgstr "Domínio e fórmula"
 
 #. module: base_tier_validation_formula
 #. odoo-python
@@ -32,57 +34,59 @@ msgid ""
 "Error evaluating tier validation conditions.\n"
 " %s"
 msgstr ""
+"Erro ao avaliar as condições da validação por nível.\n"
+" %s"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__definition_type__formula
 msgid "Formula"
-msgstr ""
+msgstr "Fórmula"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields.selection,name:base_tier_validation_formula.selection__tier_definition__review_type__expression
 msgid "Python Expression"
-msgstr ""
+msgstr "Expressão Python"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__reviewer_expression
 msgid "Review Expression"
-msgstr ""
+msgstr "Expressão de revisão"
 
 #. module: base_tier_validation_formula
 #. odoo-python
 #: code:addons/base_tier_validation_formula/models/tier_review.py:0
 msgid "Reviewer python expression must return a res.users recordset."
-msgstr ""
+msgstr "A expressão Python do revisor deve retornar um recordset de res.users."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_review__python_reviewer_ids
 msgid "Reviewers from Python expression"
-msgstr ""
+msgstr "Revisores a partir de expressão Python"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Definição de nível"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__python_code
 msgid "Tier Definition Expression"
-msgstr ""
+msgstr "Expressão da definição de nível"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_review
 msgid "Tier Review"
-msgstr ""
+msgstr "Revisão de nível"
 
 #. module: base_tier_validation_formula
 #: model:ir.model,name:base_tier_validation_formula.model_tier_validation
 msgid "Tier Validation (abstract)"
-msgstr ""
+msgstr "Validação por nível (abstrato)"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,field_description:base_tier_validation_formula.field_tier_definition__review_type
 msgid "Validated by"
-msgstr ""
+msgstr "Validado por"
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__reviewer_expression
@@ -90,6 +94,8 @@ msgid ""
 "Write Python code that defines the reviewer. The result of executing the "
 "expression must be a res.users recordset."
 msgstr ""
+"Escreva o código Python que define o revisor. O resultado da execução da "
+"expressão deve ser um recordset de res.users."
 
 #. module: base_tier_validation_formula
 #: model:ir.model.fields,help:base_tier_validation_formula.field_tier_definition__python_code
@@ -97,3 +103,5 @@ msgid ""
 "Write Python code that defines when this tier confirmation will be needed. "
 "The result of executing the expresion must be a boolean."
 msgstr ""
+"Escreva o código Python que define quando a confirmação deste nível será "
+"necessária. O resultado da execução da expressão deve ser um booleano."
