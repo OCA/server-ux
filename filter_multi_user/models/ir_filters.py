@@ -36,4 +36,4 @@ class IrFilters(models.Model):
 
     def _sync_user_ids(self):
         for rec in self:
-            rec.user_ids = rec.manual_user_ids | rec.group_ids.user_ids
+            rec.user_ids = rec.manual_user_ids | rec.group_ids.all_user_ids
