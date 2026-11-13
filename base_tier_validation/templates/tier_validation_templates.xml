@@ -12,7 +12,7 @@
             <button
                 name="restart_validation"
                 string="Restart Validation"
-                invisible="not review_ids or hide_reviews"
+                invisible="not current_review_ids or hide_reviews"
                 type="object"
             />
         </div>
@@ -22,7 +22,7 @@
             <div
                 class="alert alert-warning mb-0"
                 role="alert"
-                t-attf-invisible="validation_status == 'validated' or hide_reviews or validation_status == 'rejected' or not review_ids"
+                t-attf-invisible="validation_status == 'validated' or hide_reviews or validation_status == 'rejected' or not current_review_ids"
             >
                 <p class="mb-1">
                 <i class="fa fa-lg fa-info-circle" />
