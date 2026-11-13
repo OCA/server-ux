@@ -149,3 +149,16 @@ class TestFilterMultiUser(common.TransactionCase):
         )
         self.assertIn(user_4, test_filter.user_ids)
         self.assertTrue(test_filter.with_user(user_4).name)
+
+    def test_07_group_filter_without_members(self):
+        """A group nobody belongs to hides the filter instead of making it public."""
+        group_empty = self.env["res.groups"].create({"name": "Test Empty Group"})
+        test_filter = self.filter_model.create(
+            {
+                "name": "Test filter",
+                "model_id": "ir.filters",
+                "group_ids": [Command.set(group_empty.ids)],
+            }
+        )
+        with self.assertRaises(AccessError):
+            self.assertTrue(test_filter.with_user(self.user_1).name)
