@@ -8,13 +8,11 @@
 
     > - Search Field (`name`)
     > - Filter Domain (`filter_domain`)
-    > - User Groups (`groups`)
 
     Filter:
 
     > - Domain (`domain`) - OR -
     > - Date Field (`date_field`) - creates a date filter with period options
-    > - User Groups (`groups`)
     >
     > **Note:** For filter type, you must specify either Domain or Date Field,
     > but not both. Date filters automatically provide period options like
@@ -23,7 +21,6 @@
     Group By:
 
     > - Group By Field (field to be assigned to `group_by` context)
-    > - User Groups (`groups`)
 
     See [the official
     documentation](https://www.odoo.com/documentation/16.0/developer/reference/backend/views.html#search)
@@ -39,3 +36,11 @@
     - Insert Position: Insert before or after the target element
     - Separator Position: Place separator before, after, or none
       (filter type only)
+
+4.  To restrict custom filters to specific users or groups, install
+    `filter_multi_user` and set *Available for Users* and *Available for
+    Groups* on the filter.
+
+    When upgrading from a version where this module had its own *User
+    Groups* field, install `filter_multi_user` before upgrading, so that
+    custom filters restricted by group keep their restriction.

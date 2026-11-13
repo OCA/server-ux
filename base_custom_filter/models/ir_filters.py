@@ -54,7 +54,6 @@ class IrFilters(models.Model):
         "(Today, This Week, This Month, etc.) instead of a domain filter. "
         "Only applicable for filter type.",
     )
-    group_ids = fields.Many2many("res.groups", string="User Groups")
     group_id = fields.Many2one(comodel_name="ir.filters.group", string="Filter Group")
 
     @api.constrains("type", "domain", "date_field")

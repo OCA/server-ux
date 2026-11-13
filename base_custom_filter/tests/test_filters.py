@@ -35,7 +35,6 @@ class Test(TransactionCase):
                 "base_custom_filter.field_ir_filters_group__display_name"
             )
             filters_search.filter_domain = "['display_name', 'ilike', self]"
-            filters_search.group_ids.add(self.env.ref("base.group_system"))
 
         filter_search = self.filters_obj.search([("name", "=", "Test Search Field")])
         self.assertEqual(filter_search.name, "Test Search Field")

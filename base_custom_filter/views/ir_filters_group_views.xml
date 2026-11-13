@@ -65,11 +65,6 @@
                                             invisible="type != 'search'"
                                         />
                                         <field
-                                            name="group_ids"
-                                            widget="many2many_tags"
-                                            invisible="type == 'favorite'"
-                                        />
-                                        <field
                                             name="domain"
                                             widget="domain"
                                             options="{'model': 'model_id'}"

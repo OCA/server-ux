@@ -16,12 +16,6 @@ class Base(models.AbstractModel):
     _inherit = "base"
 
     @api.model
-    def _user_has_access_to_item(self, item):
-        if not item.group_ids:
-            return True
-        return bool(set(self.env.user.all_group_ids.ids) & set(item.group_ids.ids))
-
-    @api.model
     def _insert_element(self, node, elem, position, is_root=False):
         if is_root:
             if position == "before":
@@ -76,8 +70,6 @@ class Base(models.AbstractModel):
         last_inserted = None
         custom_node = self._get_custom_insertion_node(arch, insert_xpath)
         for custom_filter in custom_filters:
-            if not self._user_has_access_to_item(custom_filter):
-                continue
             elem = self._build_filter_element(custom_filter)
             if custom_node:
                 if last_inserted is not None:
@@ -127,8 +119,6 @@ class Base(models.AbstractModel):
         if not insertion_node:
             return res
         for custom_groupby in custom_groupbys:
-            if not self._user_has_access_to_item(custom_groupby):
-                continue
             elem = self._build_filter_element(custom_groupby, is_groupby=True)
             if last_inserted is not None:
                 last_inserted.addnext(elem)
@@ -143,8 +133,6 @@ class Base(models.AbstractModel):
     def _add_search_field(self, res, search_fields):
         xml_arch = etree.fromstring(res["arch"])
         for search_field in search_fields:
-            if not self._user_has_access_to_item(search_field):
-                continue
             new_field = etree.Element(
                 "field",
                 name=search_field.search_field_id.sudo().name,
@@ -160,6 +148,7 @@ class Base(models.AbstractModel):
         """Add filters in search views."""
         res = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "search":
+            user_domain = [("user_ids", "in", [self.env.uid, False])]
             filter_groups = self.env["ir.filters.group"].search(
                 [
                     ("model_id", "=", res.get("model")),
@@ -168,7 +157,8 @@ class Base(models.AbstractModel):
                 ]
             )
             filters_no_group = self.env["ir.filters"].search(
-                [
+                user_domain
+                + [
                     ("model_id", "=", res.get("model")),
                     ("group_id", "=", False),
                     ("type", "=", "filter"),
@@ -183,7 +173,8 @@ class Base(models.AbstractModel):
                 ]
             )
             groupbys_no_group = self.env["ir.filters"].search(
-                [
+                user_domain
+                + [
                     ("model_id", "=", res.get("model")),
                     ("group_id", "=", False),
                     ("type", "=", "groupby"),
@@ -191,7 +182,8 @@ class Base(models.AbstractModel):
                 order="sequence desc",
             )
             search_fields = self.env["ir.filters"].search(
-                [
+                user_domain
+                + [
                     ("model_id", "=", res.get("model")),
                     ("type", "=", "search"),
                 ],
@@ -202,7 +194,10 @@ class Base(models.AbstractModel):
                 for filter_group in filter_groups:
                     res = self._add_grouped_filters(
                         res,
-                        filter_group.filter_ids.sorted("sequence", True),
+                        self.env["ir.filters"].search(
+                            user_domain + [("group_id", "=", filter_group.id)],
+                            order="sequence desc",
+                        ),
                         group=filter_group,
                     )
             if filters_no_group:
@@ -213,7 +208,10 @@ class Base(models.AbstractModel):
                 for groupby_group in groupby_groups:
                     res = self._add_grouped_groupby(
                         res,
-                        groupby_group.filter_ids.sorted("sequence", True),
+                        self.env["ir.filters"].search(
+                            user_domain + [("group_id", "=", groupby_group.id)],
+                            order="sequence desc",
+                        ),
                         group=groupby_group,
                     )
             if groupbys_no_group:

@@ -17,11 +17,6 @@
                 />
                 <field name="filter_domain" invisible="type != 'search'" />
                 <field
-                    name="group_ids"
-                    widget="many2many_tags"
-                    invisible="type == 'favorite'"
-                />
-                <field
                     name="group_id"
                     domain="[('model_id', '=', model_id), ('type', '=', type)]"
                     context="{'default_model_id': model_id, 'default_type': type}"
