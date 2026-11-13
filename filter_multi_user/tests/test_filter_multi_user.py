@@ -130,3 +130,22 @@ class TestFilterMultiUser(common.TransactionCase):
         test_filter.invalidate_recordset()
         with self.assertRaises(AccessError):
             self.assertTrue(test_filter.with_user(self.user_2).name)
+
+    def test_06_group_filter_implied_group(self):
+        """Members who get the group through an implied group can read the filter."""
+        group_implying = self.env["res.groups"].create(
+            {
+                "name": "Test Implying Group",
+                "implied_ids": [Command.link(self.group_private.id)],
+            }
+        )
+        user_4 = self._create_user("user_4", [self.group_user, group_implying])
+        test_filter = self.filter_model.create(
+            {
+                "name": "Test filter",
+                "model_id": "ir.filters",
+                "group_ids": [Command.set(self.group_private.ids)],
+            }
+        )
+        self.assertIn(user_4, test_filter.user_ids)
+        self.assertTrue(test_filter.with_user(user_4).name)
