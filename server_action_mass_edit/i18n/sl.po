@@ -1,0 +1,345 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mass_editing
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-17 21:08+0000\n"
+"PO-Revision-Date: 2026-06-16 19:00+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: server_action_mass_edit
+#: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
+msgid ""
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
+msgstr ""
+"<b>OPOZORILO</b>: Upoštevajte, da bo dodajanje polja z domeno, pri čemer v "
+"opredelitev te operacije ne vključite polj te domene, povzročilo napako pri "
+"poskusu izvedbe operacije. Prepričajte se, da jih vključite."
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "Add"
+msgstr "Dodaj"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
+msgid ""
+"Add widget text that will be used to display the field in the wizard.\n"
+"Example: 'many2many_tags', 'selection', 'image'"
+msgstr ""
+"Vnesite besedilo widgeta, ki se bo uporabljalo za prikaz polja v čarovniku.\n"
+"Primer: 'many2many_tags', 'selection', 'image'"
+
+#. module: server_action_mass_edit
+#: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_mass_editing_wizard_form
+msgid "Apply"
+msgstr "Uveljavi"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__apply_domain
+msgid "Apply Domain"
+msgstr "Uveljavi domeno"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__apply_domain
+msgid "Apply default domain related to field"
+msgstr "Uveljavi privzeto domeno vezano na polje"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_apply_domain_in_lines
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__mass_edit_apply_domain_in_lines
+msgid "Apply domain in lines"
+msgstr "Uveljavi domeno v postavkah"
+
+#. module: server_action_mass_edit
+#: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_mass_editing_wizard_form
+msgid "Cancel"
+msgstr "Prekliči"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__create_uid
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__create_date
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__display_name
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "Don't touch"
+msgstr "Pusti"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__field_id
+msgid "Field"
+msgstr "Polje"
+
+#. module: server_action_mass_edit
+#: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
+msgid "Fields"
+msgstr "Polja"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__id
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__mass_edit_message
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__mass_edit_message
+msgid "If set, this message will be displayed in the wizard."
+msgstr "Če je to nastavljeno, se bo to sporočilo prikazalo v čarovniku."
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_uid
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__write_date
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: server_action_mass_edit
+#: model:ir.actions.server,name:server_action_mass_edit.mass_editing_partner_title
+#: model:ir.actions.server,name:server_action_mass_edit.mass_editing_user
+msgid "Mass Edit"
+msgstr "Masovno urejanje"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_line_ids
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__mass_edit_line_ids
+msgid "Mass Edit Line"
+msgstr "Postavka masovnega urejanja"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields.selection,name:server_action_mass_edit.selection__ir_actions_server__state__mass_edit
+msgid "Mass Edit Records"
+msgstr "Zapisi masovnega urejanja"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_ui_view__mass_server_action_id
+msgid "Mass Server Action"
+msgstr "Masovno strežniško dejanje"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/models/ir_actions_server_mass_edit_line.py:0
+msgid "Mass edit fields should belong to the server action model."
+msgstr "Polja za množično urejanje morajo pripadati modelu strežniških dejanj."
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__mass_edit_message
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__mass_edit_message
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__message
+#: model_terms:ir.ui.view,arch_db:server_action_mass_edit.view_server_action_form
+msgid "Message"
+msgstr "Sporočilo"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__model_id
+msgid "Model"
+msgstr "Model"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server_mass_edit_line__model_id
+msgid "Model on which the server action runs."
+msgstr "Model na katerem se izvaja strežniško dejanje."
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "None of the %(amount)d record(s) you have selected can be processed."
+msgstr "Noben od %(amount)d izbranih zapisov ne more biti obdelan."
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__operation_description_danger
+msgid "Operation Description Danger"
+msgstr "Opis nevarne operacije"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__operation_description_info
+msgid "Operation Description Info"
+msgstr "Opis informativne operacije"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__operation_description_warning
+msgid "Operation Description Warning"
+msgstr "Opis opozorilne operacije"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__remaining_item_qty
+msgid "Remaining Item Qty"
+msgstr "Kol preostalih postavk"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "Remove"
+msgstr "Odstrani"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_mass_editing_wizard__selected_item_qty
+msgid "Selected Item Qty"
+msgstr "Kol izbranih postavk"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__sequence
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__server_action_id
+msgid "Server Action"
+msgstr "Strežniško dejanje"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_actions_server_mass_edit_line
+msgid "Server Actions Mass Edit Lines"
+msgstr "Postavke masovnega urejanja strežniških dejanj"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "Set"
+msgstr "Nastavi"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid "The treatment will be processed on the %(amount)d selected record(s)."
+msgstr "Obdelava bo izvedena na %(amount)d izbranih zapisih."
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_cron__state
+msgid "Type"
+msgstr "Tip"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_actions_server__state
+#: model:ir.model.fields,help:server_action_mass_edit.field_ir_cron__state
+msgid ""
+"Type of server action. The following values are available:\n"
+"- 'Update a Record': update the values of a record\n"
+"- 'Create Activity': create an activity (Discuss)\n"
+"- 'Send Email': post a message, a note or send an email (Discuss)\n"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': "
+"add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, "
+"also known as a Webhook\n"
+"- 'Execute Existing Actions': define an action that triggers several other "
+"server actions\n"
+msgstr ""
+"Vrsta strežniške akcije. Na voljo so naslednje vrednosti:\n"
+"- 'Posodobi zapis' (Update a Record): posodobi vrednosti zapisa\n"
+"- 'Ustvari aktivnost' (Create Activity): ustvari aktivnost (Discuss)\n"
+"- 'Pošlji e-pošto' (Send Email): objavi sporočilo, opombo ali pošlji e-pošto "
+"(Discuss)\n"
+"- 'Pošlji SMS' (Send SMS): pošlji SMS-sporočilo in ga zabeleži v dokumentih "
+"(SMS)- 'Dodaj/odstrani sledilce' (Add/Remove Followers): dodaj ali odstrani "
+"sledilce zapisu (Discuss)\n"
+"- 'Ustvari zapis': ustvari nov zapis z novimi vrednostmi\n"
+"- 'Izvedi kodo': blok kode Python, ki bo izveden\n"
+"- 'Pošlji obvestilo Webhook': pošlji zahtevo POST zunanjemu sistemu, znanemu "
+"tudi kot Webhook\n"
+"- 'Izvedi obstoječe akcije': opredeli akcijo, ki sproži več drugih "
+"strežniških akcij\n"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_ir_ui_view
+msgid "View"
+msgstr "Prikaz"
+
+#. module: server_action_mass_edit
+#: model:ir.model.fields,field_description:server_action_mass_edit.field_ir_actions_server_mass_edit_line__widget_option
+msgid "Widget Option"
+msgstr "Možnosti widgeta"
+
+#. module: server_action_mass_edit
+#: model:ir.model,name:server_action_mass_edit.model_mass_editing_wizard
+msgid "Wizard for mass edition"
+msgstr "Čarovnik za masovno urejanje"
+
+#. module: server_action_mass_edit
+#. odoo-python
+#: code:addons/server_action_mass_edit/wizard/mass_editing_wizard.py:0
+msgid ""
+"You have selected %(origin_amount)d record(s) that can not be processed.\n"
+"Only %(amount)d record(s) will be processed."
+msgstr ""
+"Izbrali ste %(origin_amount)d zapisov, ki jih ni mogoče obdelati.\n"
+"Obdelanih bo le %(amount)d zapisov."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zadnjič spremenjeno"
+
+#~ msgid "Mass Editing"
+#~ msgstr "Masovno urejanje"
+
+#, fuzzy
+#~ msgid "Mass Editing Line"
+#~ msgstr "Masovno urejanje"
+
+#~ msgid "Name"
+#~ msgstr "Naziv"
+
+#~ msgid "Advanced"
+#~ msgstr "Napredno"
+
+#~ msgid ""
+#~ "Display a button in the sidebar of related documents to open a "
+#~ "composition wizard"
+#~ msgstr ""
+#~ "Prikaz gumba v stranski vrstici povezanega dokumenta za zagon čarovnika "
+#~ "za urejanje"
+
+#~ msgid "Mass Editing (%s)"
+#~ msgstr "Masovno urejanje (%s)"
+
+#~ msgid "Model List"
+#~ msgstr "Seznam modelov"
+
+#~ msgid "Name must be unique!"
+#~ msgstr "Naziv mora biti unikaten!"
+
+#~ msgid "Object"
+#~ msgstr "Objekt"
+
+#~ msgid ""
+#~ "Remove the contextual action to use this template on related documents"
+#~ msgstr ""
+#~ "Odstrani kontekstno dejanje za uporabo te predloge na povezanih dokumentih"
