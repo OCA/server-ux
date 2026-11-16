@@ -99,10 +99,13 @@ test("a date range domain is shown as a daterange condition", async () => {
 });
 
 test("an interval matching no date range is left as is", async () => {
+    let domain = null;
     await mountDomainSelector(
-        `[("date", "<=", "2026-06-30"), ("date", ">=", "2026-01-01")]`
+        `[("date", "<=", "2026-06-30"), ("date", ">=", "2026-01-01")]`,
+        {onUpdate: (newDomain) => (domain = newDomain)}
     );
     expect(getCurrentOperator()).not.toBe("daterange");
+    expect(domain).toBe(null);
 });
 
 test("a date range on a datetime field covers whole days", async () => {
