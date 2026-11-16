@@ -33,6 +33,18 @@ function fromDateTime(date, type) {
     return serializeDate(deserializeDateTime(date));
 }
 
+/**
+ * Domain value of a date range, as written by the date range operators:
+ * the end bound first, so that the core does not read the pair as a between.
+ */
+export function dateRangeValue(range, type) {
+    return [toDateTime(range.date_end, type, true), toDateTime(range.date_start, type)];
+}
+
+function dateRangeTypeId(operator) {
+    return Number(operator.split("daterange_")[1]);
+}
+
 patch(TreeEditor.prototype, {
     setup() {
         super.setup();
@@ -51,12 +63,9 @@ patch(TreeEditor.prototype, {
         }
         if (this.dateRangePlugin) {
             let dateRanges = this.dateRangePlugin.dateRanges;
-            if (this.update_operator && this.update_operator.split("daterange_")[1]) {
-                dateRanges = this.dateRangePlugin.dateRanges.filter(
-                    (range) =>
-                        range.type_id[0] ===
-                        Number(this.update_operator.split("daterange_")[1])
-                );
+            const typeId = dateRangeTypeId(node.operator);
+            if (typeId) {
+                dateRanges = dateRanges.filter((range) => range.type_id[0] === typeId);
             }
             patch(info, {
                 extractProps({value, update}) {
@@ -74,20 +83,14 @@ patch(TreeEditor.prototype, {
                         );
                         if (!selected) {
                             selected = dateRanges[0];
-                            update([
-                                toDateTime(selected.date_end, fieldDef.type, true),
-                                toDateTime(selected.date_start, fieldDef.type),
-                            ]);
+                            update(dateRangeValue(selected, fieldDef.type));
                         }
 
                         return {
                             options: dateRanges.map((dt) => [dt.id, dt.name]),
                             update: (v) => {
                                 const range = dateRanges.find((r) => r.id === v);
-                                update([
-                                    toDateTime(range.date_end, fieldDef.type, true),
-                                    toDateTime(range.date_start, fieldDef.type),
-                                ]);
+                                update(dateRangeValue(range, fieldDef.type));
                             },
                             value: selected.id,
                         };
@@ -121,24 +124,22 @@ patch(TreeEditor.prototype, {
         return info;
     },
 
-    updateLeafOperator(node, operator) {
-        super.updateLeafOperator.apply(this, arguments);
-        this.update_operator = operator;
-        const fieldDef = this.getFieldDef(node.path);
-        if (this.dateRangePlugin) {
-            let dateRanges = this.dateRangePlugin.dateRanges.filter(
-                (range) => range.type_id[0] === Number(operator.split("daterange_")[1])
-            );
-            if (!dateRanges.length) {
-                dateRanges = this.dateRangePlugin.dateRanges;
-            }
-            if (operator.includes("daterange") && dateRanges) {
-                node.value = [
-                    toDateTime(dateRanges[0].date_end, fieldDef.type, true),
-                    toDateTime(dateRanges[0].date_start, fieldDef.type),
-                ];
-                this.notifyChanges();
-            }
+    _updateLeafOperator(node, operator, negate) {
+        if (
+            !this.dateRangePlugin ||
+            typeof operator !== "string" ||
+            !operator.includes("daterange")
+        ) {
+            return super._updateLeafOperator(...arguments);
         }
+        const allRanges = this.dateRangePlugin.dateRanges;
+        const typeId = dateRangeTypeId(operator);
+        const dateRanges = allRanges.filter((range) => range.type_id[0] === typeId);
+        node.negate = negate;
+        node.operator = operator;
+        node.value = dateRangeValue(
+            (dateRanges.length ? dateRanges : allRanges)[0],
+            this.getFieldDef(node.path).type
+        );
     },
 });
