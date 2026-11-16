@@ -3,3 +3,4 @@
 - Alexis de Lattre <alexis.delattre@akretion.com>
 - Gilles Meyomesse <gilles.meyomesse@acsone.eu> (<https://acsone.eu>)
 - Carmen Rondon Regalado <crondon@archeti.com>
+- Asta Kasinskaitė <asta@versada.eu> (<https://versada.eu>)

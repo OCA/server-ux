@@ -104,6 +104,5 @@ class IrModel(models.Model):
         res = super().write(vals)
         self._patch_quick_create()
         if "avoid_quick_create" in vals:
-            self.pool.registry_invalidated = True
-            self.pool.signal_changes()
+            self.env.transaction.will_change_registry()
         return res
