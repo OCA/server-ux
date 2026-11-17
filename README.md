@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [barcode_action](barcode_action/) | 19.0.1.0.0 |  | Allows to use barcodes as a launcher
 [base_cancel_confirm](base_cancel_confirm/) | 19.0.1.0.2 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Base Cancel Confirm
 [base_export_manager](base_export_manager/) | 19.0.1.0.1 |  | Manage model export profiles
+[base_line_numbering](base_line_numbering/) | 19.0.1.0.0 |  | Generic mixin to renumber an ordered set of lines
 [base_menu_visibility_restriction](base_menu_visibility_restriction/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Restrict (with groups) menu visibilty
 [base_optional_quick_create](base_optional_quick_create/) | 19.0.1.0.0 |  | Avoid "quick create" on m2o fields, on a "by model" basis
 [base_revision](base_revision/) | 19.0.1.0.0 |  | Keep track of revised document
