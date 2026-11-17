@@ -15,7 +15,7 @@ class LineNumberingMixin(models.AbstractModel):
 
     - `_line_numbering_lines_field`: the one2many holding the lines;
     - `_line_numbering_position_field`: the field of the lines storing their
-      position, an integer field to add on the lines' model.
+      position, an integer (or a char) field to add on the lines' model.
 
     And can set or override:
 
@@ -34,7 +34,7 @@ class LineNumberingMixin(models.AbstractModel):
 
     # One2many field holding the lines to number
     _line_numbering_lines_field = None
-    # Integer field of the lines storing their position
+    # Integer (or char) field of the lines storing their position
     _line_numbering_position_field = None
     # Gap between two consecutive positions
     _line_numbering_step = 1
@@ -47,9 +47,20 @@ class LineNumberingMixin(models.AbstractModel):
         """
         position_field = self._line_numbering_position_field
         for index, line in enumerate(self._line_renumber_get_lines(), start=1):
-            position = index * self._line_numbering_step
+            position = self._line_numbering_value(line, index)
             if line[position_field] != position:
                 line.write({position_field: position})
+
+    def _line_numbering_value(self, line, index):
+        """Position of `line`, the `index`-th line (1-based) to number.
+
+        Returned as a string when the position field is a char field, so that
+        unchanged positions compare equal and are not written again.
+        """
+        position = index * self._line_numbering_step
+        if line._fields[self._line_numbering_position_field].type == "char":
+            return str(position)
+        return position
 
     def _line_renumber_get_lines(self):
         """Lines of `self`, in the order they get their positions."""

@@ -25,3 +25,4 @@ class LineNumberingTestLine(models.Model):
     sequence = fields.Integer(default=10)
     name = fields.Char()
     position = fields.Integer()
+    position_char = fields.Char()
