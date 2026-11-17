@@ -85,3 +85,21 @@ class TestLineNumbering(TransactionCase):
         with patch.object(type(self.order_model), "_line_numbering_step", 10):
             order = self._create_order("A", "B", "C")
         self.assertEqual(self._positions(order), [10, 20, 30])
+
+    def test_char_position_field(self):
+        """A char position field gets the positions as strings."""
+        order_class = type(self.order_model)
+        with (
+            patch.object(
+                order_class, "_line_numbering_position_field", "position_char"
+            ),
+            patch.object(order_class, "_line_numbering_step", 10),
+        ):
+            order = self._create_order("A", "B")
+            line_a = order.line_ids[0]
+            with self.assertQueryCount(0):
+                # Unchanged positions are not written again
+                order.renumber_lines_positions()
+        self.assertEqual(order.line_ids.mapped("position_char"), ["10", "20"])
+        self.assertEqual(line_a.position_char, "10")
+        self.assertEqual(self._positions(order), [0, 0])

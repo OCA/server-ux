@@ -13,8 +13,10 @@ class PurchaseOrder(models.Model):
 
 - `_line_numbering_lines_field`: the one2many field holding the lines to
   number.
-- `_line_numbering_position_field`: the integer field of the lines that
-  stores the position.
+- `_line_numbering_position_field`: the field of the lines that stores the
+  position. It is meant to be an integer field; a char field gets the
+  positions as strings (e.g. when it also stores references coming from a
+  partner).
 - `_line_numbering_step`: the gap between two consecutive positions
   (default: 1).
 
