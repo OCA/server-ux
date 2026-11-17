@@ -4,7 +4,7 @@
 {
     "name": "Base Line Numbering",
     "summary": "Generic mixin to renumber an ordered set of lines",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "base",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-ux",
