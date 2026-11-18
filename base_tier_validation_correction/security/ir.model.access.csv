@@ -3,4 +3,4 @@ access_tier_correction_admin,access.tier.correction.item.admin,model_tier_correc
 access_tier_correction_item_admin,access.tier.correction.item.admin,model_tier_correction_item,group_tier_correction,1,1,1,1
 access_tier_correction_user,access.tier.correction.item.user,model_tier_correction,base.group_user,1,0,0,0
 access_tier_correction_item_user,access.tier.correction.item.user,model_tier_correction_item,base.group_user,1,0,0,0
-access_affected_tier_reviews,access_affected_tier_reviews,model_affected_tier_reviews,base.group_user,1,0,0,0
+access_affected_tier_reviews,access_affected_tier_reviews,model_affected_tier_reviews,base.group_user,1,1,1,1
