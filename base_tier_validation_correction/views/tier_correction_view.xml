@@ -51,13 +51,13 @@
                     />
                     <button
                         name="action_draft"
-                        invisible="state != 'prepare'"
+                        invisible="state not in ['prepare', 'cancel']"
                         type="object"
                         string="Set to Draft"
                     />
                     <button
                         name="action_cancel"
-                        invisible="state in ['draft', 'prepare']"
+                        invisible="state not in ['draft', 'prepare']"
                         type="object"
                         string="Cancel"
                     />
