@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="ir_cron_update_holiday_status" model="ir.cron">
+        <field name="name">Delegation: Update Holiday Status</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="state">code</field>
+        <field name="code">model._cron_update_holiday_status()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field
+            name="nextcall"
+            eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:00:00')"
+        />
+        <field
+            name="help"
+        >Automatically activate or deactivate a user's 'On Holiday' status based on their configured start and end dates.</field>
+    </record>
+
+    <record id="ir_cron_send_delegation_reminder" model="ir.cron">
+        <field name="name">Delegation: Send Holiday Reminder</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="state">code</field>
+        <field name="code">model._cron_send_delegation_reminder()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field
+            name="nextcall"
+            eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 08:00:00')"
+        />
+        <field
+            name="help"
+        >Notifies users before their scheduled holiday if they have not yet configured a replacer.</field>
+    </record>
+</odoo>
