@@ -135,7 +135,13 @@ class TierReview(models.Model):
 
     @api.model
     def _get_reviewer_fields(self):
-        return ["reviewer_id", "reviewer_group_id", "reviewer_group_id.users"]
+        return [
+            "reviewer_id",
+            "reviewer_group_id",
+            "reviewer_group_id.users",
+            "definition_id.exclude_requester",
+            "requested_by",
+        ]
 
     @api.depends(lambda self: self._get_reviewer_fields())
     def _compute_reviewer_ids(self):
@@ -158,16 +164,17 @@ class TierReview(models.Model):
             rec.todo_by = todo_by
 
     def _get_reviewers(self):
+        reviewers = self.env["res.users"]
         if self.reviewer_id or self.reviewer_group_id.users:
-            return self.reviewer_id + self.reviewer_group_id.users
-        if self.reviewer_field_id:
+            reviewers = self.reviewer_id + self.reviewer_group_id.users
+        elif self.reviewer_field_id:
             resource = self.env[self.model].browse(self.res_id)
             reviewer_field = getattr(resource, self.reviewer_field_id.name, False)
             if reviewer_field:
                 if reviewer_field._name == "res.groups":
-                    return reviewer_field.users
+                    reviewers = reviewer_field.users
                 elif reviewer_field._name == "res.users":
-                    return reviewer_field
+                    reviewers = reviewer_field
                 else:
                     raise ValidationError(
                         self.env._(
@@ -175,7 +182,12 @@ class TierReview(models.Model):
                             "should be of the appropriate type"
                         )
                     )
-        return self.env["res.users"]
+        # Four-eyes: drop the requester from the reviewer pool if the
+        # definition opted in. Done as a post-filter so it applies
+        # uniformly across individual / group / field review types.
+        if self.definition_id.exclude_requester and self.requested_by:
+            reviewers -= self.requested_by
+        return reviewers
 
     def _notify_pending_status(self, review_ids):
         """Method to call and reuse abstract notification method"""

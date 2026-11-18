@@ -112,6 +112,17 @@ class TierDefinition(models.Model):
         help="Bypassed (auto validated), if previous tier was validated "
         "by same reviewer",
     )
+    exclude_requester = fields.Boolean(
+        string="Four-eyes Principle",
+        default=False,
+        help="When set, the user who requested the validation is removed "
+        "from this tier's reviewer pool. Anyone else in the configured "
+        "group can validate -- except the requester themselves. Without "
+        "this flag, a requester who happens to be in the same group as "
+        "the configured reviewers can auto-validate their own request. "
+        "Only meaningful for review_type='group'; the form hides this "
+        "field for the other review types.",
+    )
 
     @api.onchange("review_type")
     def onchange_review_type(self):
