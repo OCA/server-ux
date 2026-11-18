@@ -3,10 +3,9 @@
 
 import logging
 
-import pytz
-
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import format_datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -82,16 +81,17 @@ class TierReview(models.Model):
         for record in self:
             record.display_status = selection_dict[record.status]
 
-    @api.depends_context("tz")
+    @api.depends_context("tz", "lang")
     def _compute_reviewed_formated_date(self):
         timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
         for review in self:
             if not review.reviewed_date:
                 review.reviewed_formated_date = False
                 continue
-            reviewed_date_utc = pytz.timezone("UTC").localize(review.reviewed_date)
-            reviewed_date_tz = reviewed_date_utc.astimezone(pytz.timezone(timezone))
-            review.reviewed_formated_date = reviewed_date_tz.replace(tzinfo=None)
+            # Date and time in the user's timezone and language format
+            review.reviewed_formated_date = format_datetime(
+                self.env, review.reviewed_date, tz=timezone, dt_format=False
+            )
 
     @api.depends("definition_id.approve_sequence")
     def _compute_can_review(self):
