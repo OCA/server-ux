@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==========
 Date Range
 ==========
@@ -17,7 +13,7 @@ Date Range
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--ux-lightgray.png?logo=github
@@ -75,6 +71,24 @@ model:
 ::
 
    _date_range_search_field = "invoice_date"
+
+As Of Month Date Ranges
+-----------------------
+
+The module can automatically generate cumulative monthly "As Of Month"
+date ranges (e.g., "As Of January 2025", "As Of February 2025", etc.).
+
+To configure:
+
+1. Go to **Settings → General Settings → Date Range Configuration**
+2. Set the **Number of Years** for which cumulative monthly ranges
+   should be generated (default: 5 years from the current year)
+3. A scheduled action runs monthly to generate any missing ranges
+
+..
+
+   **Note:** The "As Of Month" date range type is system-managed and
+   cannot be manually generated through the Date Range Generator wizard.
 
 .. |search_view| image:: https://raw.githubusercontent.com/OCA/server-ux/18.0/date_range/static/description/date_range_many2one_search_field.png
 
