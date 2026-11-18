@@ -14,3 +14,4 @@
 - [XCG Consulting](https://xcg-consulting.fr):
   - Houzéfa Abbasbhay
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- Camille Morand \<<camille.morand@camptocamp.com>\>
