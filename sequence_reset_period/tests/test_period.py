@@ -1,0 +1,135 @@
+# Copyright 2017 Creu Blanca <https://creublanca.es/>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+
+from datetime import UTC, date, datetime
+
+from odoo.tests import common
+
+
+class TestSequence(common.TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.date = date(2018, 3, 14)
+        cls.dt = datetime(2018, 3, 14, tzinfo=UTC)
+
+    def get_sequence(self, method):
+        return self.env["ir.sequence"].create(
+            {
+                "name": "Test sequence",
+                "implementation": "standard",
+                "use_date_range": True,
+                "range_reset": method,
+                "padding": "5",
+            }
+        )
+
+    def test_none(self):
+        sequence = self.get_sequence(False)
+        self.assertFalse(sequence.date_range_ids)
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 1, 1), xrange.date_from)
+        self.assertEqual(date(2018, 12, 31), xrange.date_to)
+
+    def test_daily(self):
+        sequence = self.get_sequence("daily")
+        self.assertFalse(sequence.date_range_ids)
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(self.date, xrange.date_from)
+        self.assertEqual(self.date, xrange.date_to)
+
+    def test_weekly(self):
+        sequence = self.get_sequence("weekly")
+        self.assertFalse(sequence.date_range_ids)
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 3, 12), xrange.date_from)
+        self.assertEqual(date(2018, 3, 18), xrange.date_to)
+
+    def test_monthly(self):
+        sequence = self.get_sequence("monthly")
+        self.assertFalse(sequence.date_range_ids)
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 3, 1), xrange.date_from)
+        self.assertEqual(date(2018, 3, 31), xrange.date_to)
+
+    def test_yearly(self):
+        sequence = self.get_sequence("yearly")
+        self.assertFalse(sequence.date_range_ids)
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        xrange = sequence.date_range_ids
+        self.assertTrue(xrange)
+        self.assertEqual(date(2018, 1, 1), xrange.date_from)
+        self.assertEqual(date(2018, 12, 31), xrange.date_to)
+
+    def test_monthly_existing(self):
+        sequence = self.get_sequence("monthly")
+        self.env["ir.sequence.date_range"].create(
+            {
+                "date_from": date(2018, 3, 1),
+                "date_to": date(2018, 3, 10),
+                "sequence_id": sequence.id,
+            }
+        )
+        self.env["ir.sequence.date_range"].create(
+            {
+                "date_from": date(2018, 3, 20),
+                "date_to": date(2018, 3, 25),
+                "sequence_id": sequence.id,
+            }
+        )
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+
+    def test_sequence_reset(self):
+        sequence = self.get_sequence("monthly")
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        self.assertEqual(
+            "00002", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        self.assertEqual(
+            "00001",
+            sequence.with_context(
+                ir_sequence_date=datetime(2018, 4, 1, tzinfo=UTC)
+            ).next_by_id(),
+        )
+
+    def test_sequence_padding(self):
+        sequence = self.get_sequence("monthly")
+        sequence.padding = 10
+        self.assertEqual(
+            "0000000001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        self.assertEqual(
+            "0000000002", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+
+    def test_sequence_implementation(self):
+        sequence = self.get_sequence("monthly")
+        sequence.implementation = "no_gap"
+        self.assertEqual(
+            "00001", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
+        self.assertEqual(
+            "00002", sequence.with_context(ir_sequence_date=self.dt).next_by_id()
+        )
