@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-server-ux"
-version = "20.0.20261116.0"
+version = "20.0.20261119.0"
 dependencies = [
     "odoo-addon-date_range==20.0.*",
+    "odoo-addon-developer_menu==20.0.*",
     "odoo-addon-filter_multi_user==20.0.*",
     "odoo-addon-server_action_mass_edit==20.0.*",
 ]
