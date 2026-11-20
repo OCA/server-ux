@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Quartile
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!-- Read reaches up the hierarchy and maintenance does not: a rule set on a
+         parent company governs the records of its branches, so the admin of a
+         branch has to be able to see what refuses their values - without being
+         able to edit a rule that also binds the parent and every sibling. -->
+    <record id="base_field_length_rule_comp_rule" model="ir.rule">
+        <field name="name">Field Length Rule: multi-company (read)</field>
+        <field name="model_id" ref="model_base_field_length_rule" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]</field>
+    </record>
+    <record id="base_field_length_rule_comp_rule_write" model="ir.rule">
+        <field name="name">Field Length Rule: multi-company (write)</field>
+        <field name="model_id" ref="model_base_field_length_rule" />
+        <field name="perm_read" eval="False" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
