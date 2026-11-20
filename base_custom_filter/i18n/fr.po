@@ -1,0 +1,149 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_custom_filter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: base_custom_filter
+#: model:ir.model,name:base_custom_filter.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.actions.act_window,name:base_custom_filter.action_ir_filters_group
+#: model:ir.ui.menu,name:base_custom_filter.menu_ir_filters_group
+msgid "Custom Filter Groups"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.actions.act_window,name:base_custom_filter.action_ir_custom_filter
+#: model:ir.ui.menu,name:base_custom_filter.menu_base_custom_filter
+#: model:ir.ui.menu,name:base_custom_filter.menu_ir_custom_filter
+msgid "Custom Filters"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,help:base_custom_filter.field_ir_filters__filter_domain
+msgid ""
+"Enter a filter domain expression if necessary.\n"
+"        Example: [('default_code', 'ilike', self)]"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__filter_domain
+msgid "Filter Domain"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_id
+msgid "Filter Group"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model,name:base_custom_filter.model_ir_filters
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__filter_ids
+msgid "Filters"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model,name:base_custom_filter.model_ir_filters_group
+msgid "Filters Group"
+msgstr ""
+
+#. module: base_custom_filter
+#: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
+msgid "Group By"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__groupby_field
+msgid "Group By Field"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__id
+msgid "ID"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__model_id
+msgid "Model"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__name
+msgid "Name"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__search_field_id
+msgid "Search Field"
+msgstr ""
+
+#. module: base_custom_filter
+#: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
+msgid "Search Filters Group"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__sequence
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__type
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters_group__type
+#: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
+msgid "Type"
+msgstr ""
+
+#. module: base_custom_filter
+#: model:ir.model.fields,field_description:base_custom_filter.field_ir_filters__group_ids
+msgid "User Groups"
+msgstr ""
+
+#. module: base_custom_filter
+#: model_terms:ir.ui.view,arch_db:base_custom_filter.search_ir_filters_group
+msgid "Without Filters"
+msgstr ""
