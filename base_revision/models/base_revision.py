@@ -48,13 +48,13 @@ class BaseRevision(models.AbstractModel):
         res = (
             self.with_context(active_test=False)
             .sudo()
-            .formatted_read_group(
+            ._read_group(
                 domain=[("current_revision_id", "in", self.ids)],
                 groupby=["current_revision_id"],
                 aggregates=["__count"],
             )
         )
-        revision_dict = {x["current_revision_id"][0]: x["__count"] for x in res}
+        revision_dict = {x[0].id: x[1] for x in res}
         for rec in self:
             rec.revision_count = revision_dict.get(rec.id, 0)
 
