@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: template_content_swapper
+#. odoo-python
+#: code:addons/template_content_swapper/models/template_content_mapping.py:0
+msgid ""
+"A domain can only be set for report templates. The template '%(template)s' "
+"is not linked to any report."
+msgstr ""
 
 #. module: template_content_swapper
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__content_from
@@ -34,8 +42,14 @@ msgid "Created on"
 msgstr ""
 
 #. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_ir_qweb__display_name
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__domain
+msgid "Domain"
 msgstr ""
 
 #. module: template_content_swapper
@@ -44,11 +58,7 @@ msgid "Frontend"
 msgstr ""
 
 #. module: template_content_swapper
-#: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
-msgid "Group By"
-msgstr ""
-
-#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_ir_qweb__id
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__id
 msgid "ID"
 msgstr ""
@@ -57,6 +67,14 @@ msgstr ""
 #: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__lang
 msgid ""
 "If no language is selected, the mapping will be applied to all languages."
+msgstr ""
+
+#. module: template_content_swapper
+#. odoo-python
+#: code:addons/template_content_swapper/models/template_content_mapping.py:0
+msgid ""
+"Invalid domain format: %(domain)s.\n"
+"Error: %(error)s"
 msgstr ""
 
 #. module: template_content_swapper
@@ -86,6 +104,13 @@ msgid "Open Template Mapping"
 msgstr ""
 
 #. module: template_content_swapper
+#: model:ir.model.fields,help:template_content_swapper.field_template_content_mapping__domain
+msgid ""
+"Optional domain on the report records. The mapping is applied only if the "
+"record in the report matches this domain. Example: [('partner_id', '=', 1)]"
+msgstr ""
+
+#. module: template_content_swapper
 #: model:ir.model,name:template_content_swapper.model_ir_qweb
 msgid "Qweb"
 msgstr ""
@@ -94,6 +119,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__report_id
 #: model_terms:ir.ui.view,arch_db:template_content_swapper.view_template_content_mapping_search
 msgid "Report"
+msgstr ""
+
+#. module: template_content_swapper
+#: model:ir.model.fields,field_description:template_content_swapper.field_template_content_mapping__report_model
+msgid "Report Model"
 msgstr ""
 
 #. module: template_content_swapper
