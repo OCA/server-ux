@@ -144,6 +144,20 @@ class TierTierValidation(TransactionCase):
         record.validate_tier()
         self.assertTrue(review_2.status == "approved")
 
+    def test_03_waiting_no_sequence_validate_directly(self):
+        """A waiting review without approval sequence is approved by its
+        reviewer even when the validation is requested and validated in the
+        same transaction (reversal auto-post)."""
+        test_record = self.test_model.create({"test_field": 0.5})
+        review = test_record.request_validation()
+        self.assertEqual(len(review), 1)
+        self.assertEqual(review.status, "waiting")
+        record = test_record.with_user(self.test_user_1.id)
+        record.invalidate_model()
+        record.validate_tier()
+        self.assertEqual(review.status, "approved")
+        self.assertEqual(test_record.validation_status, "validated")
+
     def test_02_no_sequence(self):
         # Create new test record
         tier_review_obj = self.env["tier.review"]
