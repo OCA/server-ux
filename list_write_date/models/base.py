@@ -15,5 +15,7 @@ class Base(models.AbstractModel):
                 node = etree.SubElement(arch, "field")
                 node.set("name", "write_date")
                 node.set("optional", "hide")
+                # the field definition is sent to the client by the core:
+                # _get_view_fields() adds write_date to the list views models
                 result["arch"] = etree.tostring(arch, encoding="unicode")
         return result
