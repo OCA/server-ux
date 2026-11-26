@@ -20,20 +20,30 @@ class TestIRRule(TransactionCase):
         )
         cls.edit_own_defaults_rule.excluded_group_ids = cls.edit_all_defaults_group
 
-        cls.user = new_test_user(cls.env, login="Test user")
+        cls.user = new_test_user(
+            cls.env,
+            login="Test user",
+            groups="base.group_user,base.group_partner_manager",
+        )
         cls.user_default = cls.env["ir.default"].create(
             {
                 "user_id": cls.user.id,
-                "field_id": cls.env["ir.model.fields"].search([], limit=1).id,
+                "field_id": cls.env.ref("base.field_res_partner__name").id,
                 "json_value": json.dumps(True),
             }
         )
 
-        cls.group_user = new_test_user(cls.env, login="I can edit all users' defaults")
+        cls.group_user = new_test_user(
+            cls.env,
+            login="I can edit all users' defaults",
+            groups="base.group_user,base.group_partner_manager",
+        )
         cls.group_user.groups_id += cls.edit_all_defaults_group
 
         cls.no_group_user = new_test_user(
-            cls.env, login="I can't edit other users' defaults"
+            cls.env,
+            login="I can't edit other users' defaults",
+            groups="base.group_user,base.group_partner_manager",
         )
 
     def test_users_edit_defaults(self):
