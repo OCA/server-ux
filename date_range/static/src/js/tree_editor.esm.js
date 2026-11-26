@@ -8,6 +8,7 @@ import {
 import {Select} from "@web/core/tree_editor/tree_editor_components";
 import {TreeEditor} from "@web/core/tree_editor/tree_editor";
 import {patch} from "@web/core/utils/patch";
+import {restoreDateRangeOperators} from "./condition_tree.esm";
 
 function toDateTime(date, type, end) {
     if (type === "date") {
@@ -36,6 +37,11 @@ patch(TreeEditor.prototype, {
     setup() {
         super.setup();
     },
+    async onPropsUpdated() {
+        const previousTree = this.previousTree;
+        await super.onPropsUpdated(...arguments);
+        restoreDateRangeOperators(this.tree, previousTree);
+    },
     getValueEditorInfo(node) {
         const fieldDef = this.getFieldDef(node.path);
         const info = super.getValueEditorInfo.apply(this, arguments);
@@ -52,11 +58,10 @@ patch(TreeEditor.prototype, {
             return info;
         }
         let dateRanges = this.env.domain.dateRanges;
-        if (this.update_operator && this.update_operator.split("daterange_")[1]) {
+        const typeId = Number(String(node.operator).split("daterange_")[1]);
+        if (typeId) {
             dateRanges = this.env.domain.dateRanges.filter(
-                (range) =>
-                    range.type_id[0] ===
-                    Number(this.update_operator.split("daterange_")[1])
+                (range) => range.type_id[0] === typeId
             );
         }
         patch(info, {
@@ -108,7 +113,6 @@ patch(TreeEditor.prototype, {
 
     updateLeafOperator(node, operator) {
         super.updateLeafOperator.apply(this, arguments);
-        this.update_operator = operator;
         const fieldDef = this.getFieldDef(node.path);
         // Prevent issues when the domain is not initialized, for example in
         // Odoo Studio editing

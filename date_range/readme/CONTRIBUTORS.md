@@ -5,3 +5,5 @@
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
 - David Ramia \<<@ramiadavid>\>
 - Son Ho \<<sonhd@trobz.com>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Carlos Lopez

@@ -21,6 +21,9 @@
         "web.assets_backend": [
             "date_range/static/src/js/*",
         ],
+        "web.qunit_suite_tests": [
+            "date_range/static/tests/**/*",
+        ],
     },
     "development_status": "Mature",
     "maintainers": ["lmignon"],
