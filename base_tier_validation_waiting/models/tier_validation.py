@@ -35,7 +35,11 @@ class TierValidation(models.AbstractModel):
         waiting_reviews = tier_reviews.filtered(
             lambda r: r.status == "waiting"
             and (self.env.user in r.reviewer_ids)
-            and r.approve_sequence_bypass
+            # A waiting review without approval sequence is reachable:
+            # _compute_can_review turns it into pending. Approve it directly
+            # when the validation is requested and validated in the same
+            # transaction, before that compute runs.
+            and (r.approve_sequence_bypass or not r.approve_sequence)
         )
         if waiting_reviews:
             waiting_reviews.write(
