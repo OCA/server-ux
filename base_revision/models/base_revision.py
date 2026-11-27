@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class BaseRevision(models.AbstractModel):
@@ -110,6 +111,16 @@ class BaseRevision(models.AbstractModel):
         revision_ids = []
         # Looping over records
         for rec in self:
+            if rec.current_revision_id:
+                # A newer revision exists: its number would be taken again
+                raise UserError(
+                    _(
+                        "%(record)s has already been revised, create the new "
+                        "revision from the current one: %(current)s.",
+                        record=rec.display_name,
+                        current=rec.current_revision_id.display_name,
+                    )
+                )
             # Calling  Copy method
             copied_rec = rec.copy_revision_with_context()
             if hasattr(self, "message_post"):
