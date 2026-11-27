@@ -1,5 +1,7 @@
 # Copyright 2020 Ecosoft (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+from unittest.mock import patch
+
 from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import common
@@ -106,7 +108,12 @@ class TierTierValidation(common.TransactionCase):
             record.review_ids.mapped("status"), ["approved", "pending", "pending"]
         )
         # Auto validate, 2nd tier -> OK
-        self.tier_def_obj._cron_auto_tier_validation()
+        with patch(
+            "odoo.addons.base_tier_validation_server_action.models"
+            ".tier_definition._logger"
+        ) as logger:
+            self.tier_def_obj._cron_auto_tier_validation()
+        logger.error.assert_not_called()
         self.assertEqual(
             record.review_ids.mapped("status"), ["approved", "approved", "pending"]
         )
