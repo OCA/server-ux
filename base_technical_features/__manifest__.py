@@ -10,4 +10,9 @@
     "data": ["security/res_groups.xml", "views/res_users.xml", "data/res_users.xml"],
     "license": "AGPL-3",
     "depends": ["base"],
+    "assets": {
+        "web.assets_backend": [
+            "base_technical_features/static/src/js/**",
+        ],
+    },
 }
