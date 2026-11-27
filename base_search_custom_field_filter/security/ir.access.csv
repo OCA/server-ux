@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_ir_ui_custom_field_filter_user,ir.ui.custom.field.filter,ir.ui.custom.field.filter,base.group_user,r,
+access_ir_ui_custom_field_filter_system,ir.ui.custom.field.filter,ir.ui.custom.field.filter,base.group_system,crud,
