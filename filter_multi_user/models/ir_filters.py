@@ -36,4 +36,8 @@ class IrFilters(models.Model):
 
     def _sync_user_ids(self):
         for rec in self:
-            rec.user_ids = rec.manual_user_ids | rec.group_ids.user_ids
+            users = rec.manual_user_ids | rec.group_ids.all_user_ids
+            if not users and rec.group_ids:
+                # An empty user_ids would make the filter visible to everyone.
+                users = self.env.ref("base.user_root")
+            rec.user_ids = users
