@@ -6,73 +6,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "Language: pt_BR\n"
+"PO-Revision-Date: 2026-11-27 17:46+0000\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__active
 msgid "Active"
-msgstr ""
+msgstr "Ativo"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__current_revision_id
 msgid "Current revision"
-msgstr ""
+msgstr "Versão corrente"
 
 #. module: base_revision
 #: model:ir.model,name:base_revision.model_base_revision
 msgid "Document Revision (abstract)"
-msgstr ""
+msgstr "Versão do documento (abstrato)"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__has_old_revisions
 msgid "Has Old Revisions"
-msgstr ""
+msgstr "Possui versões antigas"
 
 #. module: base_revision
 #. odoo-python
 #: code:addons/base_revision/models/base_revision.py:0
 msgid "New Revisions"
-msgstr ""
+msgstr "Novas versões"
 
 #. module: base_revision
 #. odoo-python
 #: code:addons/base_revision/models/base_revision.py:0
 msgid "New revision created from: %s"
-msgstr ""
+msgstr "Nova versão criada a partir de: %s"
 
 #. module: base_revision
 #. odoo-python
 #: code:addons/base_revision/models/base_revision.py:0
 msgid "New revision created: %s"
-msgstr ""
+msgstr "Nova versão criada: %s"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__old_revision_ids
 msgid "Old revisions"
-msgstr ""
+msgstr "Versões antigas"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__unrevisioned_name
 msgid "Original Reference"
-msgstr ""
+msgstr "Referência original"
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_count
 msgid "Previous versions count"
-msgstr ""
+msgstr "Quantidade de versões prévias"
 
 #. module: base_revision
 #: model:ir.model.constraint,message:base_revision.constraint_base_revision_revision_unique
 msgid "Reference and revision must be unique."
-msgstr ""
+msgstr "A referência e a versão devem ser únicas."
 
 #. module: base_revision
 #: model:ir.model.fields,field_description:base_revision.field_base_revision__revision_number
 msgid "Revision"
-msgstr ""
+msgstr "Versão"
