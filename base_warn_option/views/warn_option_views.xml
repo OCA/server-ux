@@ -63,7 +63,7 @@
                 <filter
                     name="flt_warning_type_alert"
                     string="Alert"
-                    domain="[('allowed_warning_type', '=', 'alert')]"
+                    domain="[('allowed_warning_type', '=', 'warning')]"
                 />
                 <filter
                     name="flt_warning_type_block"
