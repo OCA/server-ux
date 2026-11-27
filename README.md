@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [base_revision](base_revision/) | 19.0.1.0.0 |  | Keep track of revised document
 [base_search_custom_field_filter](base_search_custom_field_filter/) | 19.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Add custom filters for fields via UI
 [base_substate](base_substate/) | 19.0.1.0.2 |  | Base Sub State
-[base_technical_features](base_technical_features/) | 19.0.1.0.0 |  | Access to technical features without activating debug mode
+[base_technical_features](base_technical_features/) | 19.0.1.0.1 |  | Access to technical features without activating debug mode
 [date_range](date_range/) | 19.0.1.0.3 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | Manage all kind of date range
 [date_range_account](date_range_account/) | 19.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add Date Range menu entry in Invoicing app
 [developer_menu](developer_menu/) | 19.0.1.0.0 | <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> | Shortcut menus for developer usage
