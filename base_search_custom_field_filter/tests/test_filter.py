@@ -21,6 +21,7 @@ class TestFilter(common.TransactionCase):
         filter_form.expression = "title"
         filter_form.save()
         arch = self.env["res.partner"].get_view(False, "search")["arch"]
+        self.assertIsInstance(arch, str)
         search = etree.fromstring(arch)
         self.assertTrue(
             search.xpath(
