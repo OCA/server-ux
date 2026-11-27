@@ -1,9 +1,9 @@
 /** @odoo-module **/
 import {domainFromTreeDateRange, treeFromDomainDateRange} from "./condition_tree.esm";
-import {onWillStart, useChildSubEnv} from "@odoo/owl";
 import {Domain} from "@web/core/domain";
 import {DomainSelector} from "@web/core/domain_selector/domain_selector";
 import {patch} from "@web/core/utils/patch";
+import {useChildSubEnv} from "@odoo/owl";
 import {useService} from "@web/core/utils/hooks";
 
 const ARCHIVED_DOMAIN = `[("active", "in", [True, False])]`;
@@ -15,14 +15,15 @@ patch(DomainSelector.prototype, {
         this.dateRanges = [];
         this.dateRangeTypes = [];
         useChildSubEnv({domain: this});
-        onWillStart(async () => {
+        // Loaded before the tree is built (see onPropsUpdated)
+        this.dateRangesLoaded = (async () => {
             this.dateRanges = await this.orm.call("date.range", "search_read", []);
             this.dateRangeTypes = await this.orm.call(
                 "date.range.type",
                 "search_read",
                 []
             );
-        });
+        })();
     },
 
     async onPropsUpdated(p) {
@@ -42,8 +43,10 @@ patch(DomainSelector.prototype, {
             this.includeArchived = false;
             return;
         }
+        await this.dateRangesLoaded;
         this.tree = treeFromDomainDateRange(domain, {
             getFieldDef: this.getFieldDef.bind(this),
+            dateRanges: this.dateRanges,
             distributeNot: !p.isDebugMode,
         });
     },
