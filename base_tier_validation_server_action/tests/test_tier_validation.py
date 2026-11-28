@@ -187,7 +187,7 @@ class TierTierValidation(common.TransactionCase):
                 "name": "Set test_bool = True",
                 "model_id": self.tester_model.id,
                 "state": "code",
-                "code": "record.write({'test_bool': True})",
+                "code": "records.write({'test_bool': True})",
             }
         )
         # Create tier definitions
@@ -204,5 +204,5 @@ class TierTierValidation(common.TransactionCase):
         test_record.with_user(self.test_user_2).request_validation()
         record = test_record.with_user(self.test_user_1)
         record.invalidate_recordset()
-        record.reject_tier()
+        record.with_context(active_ids=[]).reject_tier()
         self.assertTrue(record.test_bool)
