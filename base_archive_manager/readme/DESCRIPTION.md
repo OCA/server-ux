@@ -1,0 +1,1 @@
+This module allows administrators to control who can archive and unarchive records in Odoo. By default, Odoo only provides a `write` permission, which implicitly allows any user with write access to archive and unarchive records. This module introduces specific `Archive Access` and `Unarchive Access` permissions on the Access Rights (`ir.model.access`) level.
