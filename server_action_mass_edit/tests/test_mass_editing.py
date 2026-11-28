@@ -514,6 +514,38 @@ class TestMassEditing(common.TransactionCase):
             },
         )
 
+    def test_onchange_first_call_defaults(self):
+        """Opening the wizard shows the message, the operation description and
+        every line on "Don't touch"; changing a line only returns no values"""
+        self.mass_editing_user.mass_edit_message = "Read this first"
+        wizard = self.env["mass.editing.wizard"].with_context(
+            active_ids=self.env.user.ids,
+            active_model=self.env.user._name,
+            server_action_id=self.mass_editing_user.id,
+        )
+        fields_spec = {
+            "message": {},
+            "operation_description_info": {},
+            "selection__email": {},
+            "email": {},
+            "selection__category_id": {},
+            "category_id": {"fields": {"display_name": {}}},
+        }
+        value = wizard.onchange({}, [], fields_spec)["value"]
+        self.assertEqual(value["message"], "Read this first")
+        self.assertIn("1 selected record", value["operation_description_info"])
+        self.assertEqual(value["selection__email"], "ignore")
+        self.assertEqual(value["selection__category_id"], "ignore")
+        self.assertFalse(value["email"])
+        # the web client expects a list for x2many fields
+        self.assertEqual(value["category_id"], [])
+        result = wizard.onchange(
+            {"selection__email": "set", "email": False},
+            ["selection__email"],
+            fields_spec,
+        )
+        self.assertEqual(result["value"], {})
+
     def test_onchange_model_id(self):
         """Test super call of `_onchange_model_id`"""
 

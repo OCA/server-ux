@@ -67,65 +67,51 @@ class MassEditingWizard(models.TransientModel):
         return res
 
     def onchange(self, values, field_names, fields_spec):
-        # Make sure the values passed to the super cover the dynamic fields.
-        # No onchanges are defined, but Odoo will call the onchange with empty
-        # values for all fields when opening the wizard form view.
-        first_call = not field_names
-        if first_call:
-            field_names = [fname for fname in values if fname != "id"]
-            missing_names = [fname for fname in fields_spec if fname not in values]
-            defaults = self.default_get(missing_names)
-            for field_name in missing_names:
-                values[field_name] = defaults.get(field_name, False)
-                if field_name in defaults:
-                    field_names.append(field_name)
-
         server_action_id = self.env.context.get("server_action_id")
         server_action = self.env["ir.actions.server"].sudo().browse(server_action_id)
         if not server_action:
             return super().onchange(values, field_names, fields_spec)
 
-        # Collect dynamic field names to filter them out
+        # The dynamic fields of the mass edit lines are not fields of this model:
+        # keep them out of the core onchange. On the first call (opening the
+        # wizard), field_names stays empty, so the core returns the defaults of
+        # the real fields (message, operation description); filling it here
+        # would make the core take them as changes and return nothing.
+        first_call = not field_names
         dynamic_field_names = set()
         for line in server_action.mapped("mass_edit_line_ids"):
-            selection_field = "selection__" + line.field_id.name
-            field_name = line.field_id.name
-            dynamic_field_names.add(selection_field)
-            dynamic_field_names.add(field_name)
-
-            # Set default values for dynamic fields
-            if selection_field not in values:
-                values[selection_field] = "ignore"
-            if field_name not in values:
-                values[field_name] = False
-
-        # Filter out dynamic fields before calling super
-        filtered_values = {
-            key: value
-            for key, value in values.items()
-            if key not in dynamic_field_names
-        }
+            dynamic_field_names.add("selection__" + line.field_id.name)
+            dynamic_field_names.add(line.field_id.name)
         filtered_field_names = [
             fname for fname in field_names if fname not in dynamic_field_names
         ]
-        filtered_fields_spec = {
-            fname: spec
-            for fname, spec in fields_spec.items()
-            if fname not in dynamic_field_names
-        }
-
-        res = super().onchange(
-            filtered_values, filtered_field_names, filtered_fields_spec
-        )
-
-        # Ensure dynamic field values are included in the response
-        if not res.get("value"):
-            res["value"] = {}
-
-        # Add dynamic field values to the result
-        for field_name in dynamic_field_names:
-            if field_name in values:
-                res["value"][field_name] = values[field_name]
+        if not first_call and not filtered_field_names:
+            # Only dynamic fields changed: nothing to compute.
+            res = {"value": {}}
+        else:
+            res = super().onchange(
+                {
+                    key: value
+                    for key, value in values.items()
+                    if key not in dynamic_field_names
+                },
+                filtered_field_names,
+                {
+                    fname: spec
+                    for fname, spec in fields_spec.items()
+                    if fname not in dynamic_field_names
+                },
+            )
+        res.setdefault("value", {})
+        if first_call:
+            # Every line starts on "Don't touch", with an empty value: a list for
+            # the x2many fields, as the web client expects one.
+            for line in server_action.mapped("mass_edit_line_ids"):
+                field = line.field_id
+                res["value"]["selection__" + field.name] = "ignore"
+                res["value"][field.name] = (
+                    [] if field.ttype in ("one2many", "many2many") else False
+                )
 
         view_temp = (
             self.env["ir.ui.view"]
