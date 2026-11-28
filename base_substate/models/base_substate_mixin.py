@@ -18,9 +18,11 @@ class BaseSubstateMixin(models.AbstractModel):
             if rec.substate_id and rec.state != target_state:
                 raise ValidationError(
                     self.env._(
-                        f"The substate {rec.substate_id.name} is not defined for"
-                        f"the state {rec_states[rec.state]} but for "
-                        f"{rec_states[target_state]}"
+                        "The substate %(name)s is not defined for the state"
+                        " %(state)s but for %(target_state)s ",
+                        name=rec.substate_id.name,
+                        state=rec_states[rec.state],
+                        target_state=rec_states[target_state],
                     )
                 )
 
