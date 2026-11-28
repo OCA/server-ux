@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_groups_form_inherit" model="ir.ui.view">
+        <field name="name">res.groups.form.inherit</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.view_groups_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Restricted Window Actions"
+                    name="restricted_window_actions"
+                >
+                    <field name="restricted_window_action_ids" colspan="4" nolabel="1">
+                        <list
+                            string="Restricted Window Actions"
+                            create="false"
+                            edit="false"
+                        >
+                            <field name="name" />
+                            <field name="res_model" />
+                            <field name="binding_model_id" />
+                        </list>
+                    </field>
+                </page>
+                <page
+                    string="Restricted Server Actions"
+                    name="restricted_server_actions"
+                >
+                    <field name="restricted_server_action_ids" colspan="4" nolabel="1">
+                        <list
+                            string="Restricted Server Actions"
+                            create="false"
+                            edit="false"
+                        >
+                            <field name="name" />
+                            <field name="model_name" string="Model" />
+                            <field name="state" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
