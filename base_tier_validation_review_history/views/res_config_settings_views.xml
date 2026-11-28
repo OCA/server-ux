@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.tier.validation.history</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="base_tier_validation.res_config_settings_view_form_budget"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[@name='base_tier_validation_option_setting_container']"
+                position="inside"
+            >
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="tier_validation_keep_review_history"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="tier_validation_keep_review_history" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="tier_validation_keep_review_history" />
+                        <div class="text-muted">
+                            Keep completed reviews as history for all tier definitions.
+                            Each tier definition can override this default.
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

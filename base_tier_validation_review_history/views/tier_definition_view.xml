@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_definition_view_form" model="ir.ui.view">
+        <field name="name">tier.definition.form.history</field>
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='more_option']" position="inside">
+                <group name="history">
+                    <field name="keep_review_history" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
