@@ -32,3 +32,5 @@ Once you have configured groups who cannot export an object:
 - Connect as a user of this group
 - Go to the list view of the object you disabled the export
 - Select records and open the Action menu. The "Export" is not there.
+- Go to a pivot view of the object. The "Download xlsx" button is not
+  there either.
