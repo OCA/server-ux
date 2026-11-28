@@ -12,8 +12,10 @@
     "depends": ["web"],
     "data": [
         "data/ir_cron_data.xml",
+        "data/date_range_type_data.xml",
         "security/ir.model.access.csv",
         "security/date_range_security.xml",
+        "views/res_config_settings_views.xml",
         "views/date_range_view.xml",
         "wizard/date_range_generator.xml",
     ],

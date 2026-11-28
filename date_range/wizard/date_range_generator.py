@@ -320,6 +320,19 @@ class DateRangeGenerator(models.TransientModel):
                 )
 
     def action_apply(self, batch=False):
+        as_of_month_type = self.env.ref(
+            "date_range.date_range_as_of_month",
+            raise_if_not_found=False,
+        )
+        if as_of_month_type and self.type_id and self.type_id.id == as_of_month_type.id:
+            raise UserError(
+                self.env._(
+                    "You cannot manually generate Date Ranges "
+                    "for the (%(as_of_type)s) type."
+                    "This type is managed automatically by the system.",
+                    as_of_type=as_of_month_type.display_name,
+                )
+            )
         date_ranges = self._generate_date_ranges(batch=batch)
         if date_ranges:
             for dr in date_ranges:

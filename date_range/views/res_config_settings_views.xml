@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.account</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='user_default_rights']" position="after">
+                <block title="Date Range Configuration" id="date_range_configuration">
+                    <setting
+                        string="Cumulative Monthly Date Range Settings"
+                        help="Specify the number of years for
+                    which cumulative monthly 'As Of Month' date ranges will be automatically created, starting
+                    from January of the current year.
+                    For example, if you enter 5, the system will generate ranges like:
+                    - As Of January 2025,
+                    - As Of February 2025
+                    - As Of March 2025,
+                    …and so on for the specified number of years."
+                    >
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label
+                                    for="cumulative_month_range_years"
+                                    class="col-lg-4 o_light_label"
+                                    string="Number of Years"
+                                />
+                                <field
+                                    name="cumulative_month_range_years"
+                                    placeholder="Enter number of years"
+                                />
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
