@@ -15,6 +15,11 @@ To configure this module, you need to:
   Reject.
 - If check *Approve by sequence*, reviewers is forced to review by
   specified sequence.
+- In *More Options* tab, you can configure the *Restart Validation Group*
+  to control which users can restart the validation process. By default,
+  all internal user can restart validations. The restart button will be
+  hidden for users who don't have all the groups specified in this field
+  for all the reviews to restart.
 
 To configure Tier Validation Exceptions, you need to:
 

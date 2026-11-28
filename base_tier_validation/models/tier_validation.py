@@ -78,6 +78,10 @@ class TierValidation(models.AbstractModel):
     )
     next_review = fields.Char(compute="_compute_next_review")
     hide_reviews = fields.Boolean(compute="_compute_hide_reviews")
+    can_restart_validation = fields.Boolean(
+        compute="_compute_can_restart_validation",
+        help="Whether the current user can restart the validation process.",
+    )
 
     def _compute_has_comment(self):
         for rec in self:
@@ -246,6 +250,22 @@ class TierValidation(models.AbstractModel):
     def _compute_hide_reviews(self):
         for rec in self:
             rec.hide_reviews = rec[self._state_field] not in self._state_from
+
+    @api.depends("review_ids.restart_validation_group_id")
+    @api.depends_context("uid")
+    def _compute_can_restart_validation(self):
+        """Check if the current user can restart validation.
+        User can restart if they belong to all the restart validation groups
+        defined in the implied tier reviews."""
+        for rec in self:
+            restart_groups_xmlids = (
+                rec.review_ids.restart_validation_group_id.get_external_id()
+            )
+            # Check if user belongs to all of these groups
+            rec.can_restart_validation = all(
+                self.env.user.has_group(group_xmlid)
+                for group_xmlid in restart_groups_xmlids.values()
+            )
 
     def _compute_need_validation(self):
         for rec in self:
@@ -798,6 +818,11 @@ class TierValidation(models.AbstractModel):
 
     def restart_validation(self):
         for rec in self:
+            # Check if user has permission to restart validation
+            if not rec.can_restart_validation:
+                raise ValidationError(
+                    _("You don't have permission to restart the validation process.")
+                )
             partners_to_notify_ids = False
             if getattr(rec, self._state_field) in self._state_from:
                 to_update_counter = (
