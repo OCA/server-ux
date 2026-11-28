@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_message_destiny_link_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-28 07:46+0000\n"
+"PO-Revision-Date: 2024-06-28 09:46+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: mail_message_destiny_link_template
+#: model_terms:ir.ui.view,arch_db:mail_message_destiny_link_template.message_destiny_link
+msgid "This"
+msgstr "Este"
+
+#. module: mail_message_destiny_link_template
+#: model_terms:ir.ui.view,arch_db:mail_message_destiny_link_template.message_destiny_link
+msgid "has created:"
+msgstr "ha creado:"
+
+#. module: mail_message_destiny_link_template
+#: model_terms:ir.ui.view,arch_db:mail_message_destiny_link_template.message_destiny_link
+msgid "has modified:"
+msgstr "ha modificado:"
