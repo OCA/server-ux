@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Disable restart validation on hr.leave model -->
+<odoo>
+    <template
+        id="tier_validation_buttons_inherit_hide_restart"
+        inherit_id="base_tier_validation.tier_validation_buttons"
+    >
+        <xpath expr="//button[@name='restart_validation']" position="before">
+            <field name="disable_validation_restart" invisible="1" />
+        </xpath>
+        <xpath expr="//button[@name='restart_validation']" position="attributes">
+            <attribute
+                name="t-attf-attrs"
+            >{"invisible": "['|', ('review_ids', '=', []), (disable_validation_restart == True)]"}</attribute>
+        </xpath>
+    </template>
+</odoo>
