@@ -42,21 +42,22 @@ export function removeDateRangeOperators(tree) {
     return newTree;
 }
 
-function createDateRangeOperators(tree) {
+/**
+ * Turns each "<=" / ">=" pair on the same field into a date range condition,
+ * when getOperator returns an operator for it. A pair it does not recognize
+ * is left untouched, so a hand-written interval is never replaced by a range.
+ */
+export function createDateRangeOperators(tree, getOperator = () => "daterange") {
     if (["condition", "complex_condition"].includes(tree.type)) {
         return tree;
     }
-    const processedChildren = tree.children.map(createDateRangeOperators);
+    const processedChildren = tree.children.map((child) =>
+        createDateRangeOperators(child, getOperator)
+    );
     if (tree.value === "|") {
         return {...tree, children: processedChildren};
     }
     const children = [];
-    let operator = "daterange";
-    if (document.getElementsByTagName("select").length) {
-        operator = document
-            .getElementsByTagName("select")[0]
-            .selectedOptions[0].value.replace(/^"|"$/g, "");
-    }
     for (let i = 0; i < processedChildren.length; i++) {
         const child1 = processedChildren[i];
         const child2 = processedChildren[i + 1];
@@ -68,17 +69,15 @@ function createDateRangeOperators(tree) {
             child1.operator === "<=" &&
             child2.operator === ">="
         ) {
-            children.push(
-                condition(
-                    child1.path,
-                    operator,
-                    normalizeValue([child1.value, child2.value])
-                )
-            );
-            i += 1;
-        } else {
-            children.push(child1);
+            const value = normalizeValue([child1.value, child2.value]);
+            const operator = getOperator(child1.path, value);
+            if (operator) {
+                children.push(condition(child1.path, operator, value));
+                i += 1;
+                continue;
+            }
         }
+        children.push(child1);
     }
     if (children.length === 1) {
         return {...children[0]};
@@ -91,5 +90,8 @@ export function domainFromTreeDateRange(tree) {
 }
 
 export function treeFromDomainDateRange(domain, options = {}) {
-    return createDateRangeOperators(treeFromDomain(domain, options));
+    return createDateRangeOperators(
+        treeFromDomain(domain, options),
+        options.getDateRangeOperator
+    );
 }

@@ -1,18 +1,29 @@
-import {domainFromTreeDateRange, treeFromDomainDateRange} from "./condition_tree.esm";
+import {createDateRangeOperators, domainFromTreeDateRange} from "./condition_tree.esm";
 
-import {providePlugins, usePlugin} from "@odoo/owl";
+import {providePlugins, usePlugin, useScope} from "@odoo/owl";
 import {DateRangePlugin} from "./date_range_plugin.esm";
 import {Domain} from "@web/core/domain";
 import {DomainSelector} from "@web/core/domain_selector/domain_selector";
+import {dateRangeValue} from "./tree_editor.esm";
+import {formatValue} from "@web/core/tree_editor/condition_tree";
 import {patch} from "@web/core/utils/patch";
 
 const ARCHIVED_DOMAIN = `[("active", "in", [True, False])]`;
+
+function dateRangeKey(path, value) {
+    return JSON.stringify([formatValue(path), value]);
+}
 
 patch(DomainSelector.prototype, {
     setup() {
         super.setup();
         providePlugins([DateRangePlugin]);
         this.dateRangePlugin = usePlugin(DateRangePlugin);
+        // The plugin loads the ranges in parallel with onPropsUpdated
+        this.dateRangePluginManager = useScope().pluginManager;
+        // Operator picked in the editor for each (path, value), since the
+        // domain does not tell "daterange" from "daterange_<type id>"
+        this.dateRangeOperators = new Map();
     },
 
     get dateRanges() {
@@ -23,24 +34,48 @@ patch(DomainSelector.prototype, {
         return this.dateRangePlugin.dateRangeTypes;
     },
 
-    async onPropsUpdated(p) {
-        // First call the parent method to handle the standard domain processing
-        await super.onPropsUpdated.apply(this, arguments);
-
-        // If we have a valid tree, apply our date range enhancements
+    async onPropsUpdated() {
+        await Promise.all([
+            super.onPropsUpdated.apply(this, arguments),
+            this.dateRangePluginManager.ready,
+        ]);
         if (this.tree) {
-            let domain = null;
-            try {
-                domain = new Domain(p.domain);
-                this.tree = treeFromDomainDateRange(domain, {
-                    distributeNot: !p.isDebugMode,
-                });
-            } catch (error) {
-                // If there's an error with our custom processing, keep the original tree
-                console.warn("Date range domain processing failed:", error);
-            }
+            this.tree = createDateRangeOperators(this.tree, (path, value) =>
+                this.getDateRangeOperator(path, value)
+            );
         }
     },
+
+    getDateRangeOperator(path, value) {
+        const operator = this.dateRangeOperators.get(dateRangeKey(path, value));
+        if (operator) {
+            return operator;
+        }
+        const isRange = this.dateRanges.some((range) =>
+            ["date", "datetime"].some(
+                (type) =>
+                    JSON.stringify(dateRangeValue(range, type)) ===
+                    JSON.stringify(value)
+            )
+        );
+        return isRange ? "daterange" : null;
+    },
+
+    rememberDateRangeOperators(tree) {
+        if (tree.type === "connector") {
+            tree.children.forEach((child) => this.rememberDateRangeOperators(child));
+        } else if (
+            tree.type === "condition" &&
+            typeof tree.operator === "string" &&
+            tree.operator.includes("daterange")
+        ) {
+            this.dateRangeOperators.set(
+                dateRangeKey(tree.path, tree.value),
+                tree.operator
+            );
+        }
+    },
+
     getOperatorEditorInfo(fieldDef) {
         const info = super.getOperatorEditorInfo(fieldDef);
         const dateRanges = this.dateRanges;
@@ -88,6 +123,9 @@ patch(DomainSelector.prototype, {
         return info;
     },
     update(tree) {
+        if (tree) {
+            this.rememberDateRangeOperators(tree);
+        }
         const archiveDomain = this.includeArchived ? ARCHIVED_DOMAIN : `[]`;
         const domain = tree
             ? Domain.and([domainFromTreeDateRange(tree), archiveDomain]).toString()
