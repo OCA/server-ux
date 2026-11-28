@@ -1,0 +1,7 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza
+  - David Vidal
+  - Carlos Roca
+  - David Bañón Gil
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
