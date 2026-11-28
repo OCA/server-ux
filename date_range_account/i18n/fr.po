@@ -30,7 +30,7 @@ msgstr "Plages de dates"
 #. module: date_range_account
 #: model:ir.ui.menu,name:date_range_account.menu_date_range_generator
 msgid "Generate Date Ranges"
-msgstr "G??n??rer les plages de dates"
+msgstr "Générer les plages de dates"
 
 #~ msgid "Date ranges"
 #~ msgstr "Plages de dates"
